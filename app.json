@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "Cetățenia Română - Romanian Citizenship Prep",
+    "slug": "romanian-citizenship-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0F172A"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.romanian.citizenship"
+    },
+    "android": {
+      "package": "com.romanian.citizenship",
+      "adaptiveIcon": {
+        "backgroundColor": "#0F172A",
+        "foregroundImage": "./assets/android-icon-foreground.png"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "themeColor": "#0F172A",
+      "backgroundColor": "#0F172A",
+      "name": "Cetățenia Română Prep",
+      "shortName": "Cetățenia RO",
+      "display": "standalone",
+      "orientation": "portrait"
+    },
+    "plugins": [
+      "expo-font"
+    ]
+  }
+}
