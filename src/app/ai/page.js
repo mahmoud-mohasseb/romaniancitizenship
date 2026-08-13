@@ -7,22 +7,20 @@ import {
   Sparkles, 
   Settings, 
   Send, 
-  User, 
-  Bot, 
   Loader2 
 } from 'lucide-react';
 import Navbar from '../../components/Navbar';
+import { useTheme } from '../../context/ThemeContext';
+import { useLanguage } from '../../context/LanguageContext';
 import { queryOllama } from '../../utils/aiService';
-import { UI_STRINGS } from '../../utils/languageHelper';
 
 function AIContent() {
   const searchParams = useSearchParams();
   const initialPrompt = searchParams.get('q') || '';
-  const initialLang = searchParams.get('lang') || 'ar';
 
-  const [appLang, setAppLang] = useState(initialLang);
-  const strings = UI_STRINGS[appLang] || UI_STRINGS.ar;
-  const isRtl = appLang === 'ar';
+  const { theme } = useTheme();
+  const { appLang, strings, isRtl } = useLanguage();
+  const isDark = theme === 'dark';
 
   const [inputQuery, setInputQuery] = useState(initialPrompt);
   const [messages, setMessages] = useState([
@@ -95,22 +93,22 @@ function AIContent() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0F172A] text-slate-100 flex flex-col">
-      <Navbar appLang={appLang} setAppLang={setAppLang} />
+    <div className="min-h-screen pb-20 bg-theme-main text-theme-main flex flex-col">
+      <Navbar />
 
-      <main className={`flex-1 w-full max-w-4xl mx-auto px-4 py-6 space-y-4 flex flex-col h-[85vh] ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
+      <main className={`flex-1 w-full max-w-4xl mx-auto px-4 py-6 space-y-4 flex flex-col h-[82vh] ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
         {/* Top Header */}
-        <div className="flex items-center justify-between bg-slate-800/80 backdrop-blur-md p-3 rounded-2xl border border-slate-700/60 shrink-0">
+        <div className={`flex items-center justify-between p-3 rounded-2xl border shrink-0 ${isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-white border-slate-200 shadow-sm'}`}>
           <div className="text-center w-full flex items-center justify-between px-2">
             <div className="flex items-center space-x-1.5 space-x-reverse">
               <Sparkles className="w-5 h-5 text-amber-400" />
-              <h1 className="text-base font-bold text-white">
+              <h1 className="text-base font-bold">
                 {appLang === 'ar' ? 'المساعد الذكي للجنسية' : appLang === 'en' ? 'AI Citizenship Tutor' : 'Asistent AI Cetățenie'}
               </h1>
             </div>
             <button
               onClick={() => setShowConfig(!showConfig)}
-              className="p-2 bg-slate-900 text-emerald-400 rounded-xl border border-slate-700 hover:text-white text-xs font-bold flex items-center space-x-1 space-x-reverse"
+              className={`p-2 rounded-xl border text-xs font-bold flex items-center space-x-1 space-x-reverse ${isDark ? 'bg-slate-900 border-slate-700 text-emerald-400' : 'bg-slate-100 border-slate-200 text-emerald-600'}`}
             >
               <Settings className="w-4 h-4" />
               <span>Ollama Settings</span>
@@ -120,26 +118,26 @@ function AIContent() {
 
         {/* Ollama Settings Drawer */}
         {showConfig && (
-          <div className="bg-slate-800 p-4 rounded-2xl border border-slate-700 space-y-3 shrink-0 text-xs text-slate-300">
-            <p className="font-bold text-emerald-400">⚙️ Ollama Local AI Server Settings:</p>
+          <div className={`p-4 rounded-2xl border space-y-3 shrink-0 text-xs ${isDark ? 'bg-slate-800 border-slate-700 text-slate-300' : 'bg-white border-slate-200 text-slate-700 shadow-sm'}`}>
+            <p className="font-bold text-emerald-500">⚙️ Ollama Local AI Server Settings:</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <div>
-                <label className="block text-[11px] text-slate-400 mb-1">Ollama URL:</label>
+                <label className="block text-[11px] text-theme-sub mb-1">Ollama URL:</label>
                 <input 
                   type="text" 
                   value={ollamaUrl} 
                   onChange={(e) => setOllamaUrl(e.target.value)}
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl p-2 text-white font-mono"
+                  className={`w-full border rounded-xl p-2 font-mono ${isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-slate-100 border-slate-200 text-slate-900'}`}
                   placeholder="http://localhost:11434"
                 />
               </div>
               <div>
-                <label className="block text-[11px] text-slate-400 mb-1">Model Name:</label>
+                <label className="block text-[11px] text-theme-sub mb-1">Model Name:</label>
                 <input 
                   type="text" 
                   value={ollamaModel} 
                   onChange={(e) => setOllamaModel(e.target.value)}
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl p-2 text-white font-mono"
+                  className={`w-full border rounded-xl p-2 font-mono ${isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-slate-100 border-slate-200 text-slate-900'}`}
                   placeholder="llama3 / mistral / qwen"
                 />
               </div>
@@ -153,7 +151,9 @@ function AIContent() {
             <button
               key={idx}
               onClick={() => handleSend(prompt)}
-              className="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700/80 whitespace-nowrap shrink-0 transition-colors"
+              className={`px-3 py-1.5 rounded-xl text-xs font-semibold border whitespace-nowrap shrink-0 transition-colors ${
+                isDark ? 'bg-slate-800 hover:bg-slate-700 text-slate-300 border-slate-700/80' : 'bg-white hover:bg-slate-100 text-slate-700 border-slate-200 shadow-sm'
+              }`}
             >
               {prompt}
             </button>
@@ -161,7 +161,7 @@ function AIContent() {
         </div>
 
         {/* Chat Messages Log */}
-        <div className="flex-1 bg-slate-800/60 rounded-2xl border border-slate-700/60 p-4 overflow-y-auto space-y-4">
+        <div className={`flex-1 rounded-2xl border p-4 overflow-y-auto space-y-4 ${isDark ? 'bg-slate-800/60 border-slate-700/60' : 'bg-white border-slate-200 shadow-sm'}`}>
           {messages.map((msg) => (
             <div
               key={msg.id}
@@ -171,23 +171,23 @@ function AIContent() {
                 className={`max-w-[85%] rounded-2xl p-4 text-xs sm:text-sm leading-relaxed ${
                   msg.sender === 'user'
                     ? 'bg-rose-600 text-white rounded-br-none'
-                    : 'bg-slate-900/90 text-slate-100 border border-slate-700/80 rounded-bl-none space-y-2'
+                    : isDark ? 'bg-slate-900/90 text-slate-100 border border-slate-700/80 rounded-bl-none space-y-2' : 'bg-slate-100 text-slate-900 border border-slate-200 rounded-bl-none space-y-2'
                 }`}
               >
                 {msg.sender === 'ai' && (
-                  <div className="flex items-center space-x-1.5 space-x-reverse text-[10px] font-bold text-rose-400 mb-1 border-b border-slate-800 pb-1">
+                  <div className={`flex items-center space-x-1.5 space-x-reverse text-[10px] font-bold text-rose-500 mb-1 border-b pb-1 ${isDark ? 'border-slate-800' : 'border-slate-200'}`}>
                     <Sparkles className="w-3.5 h-3.5" />
                     <span>{msg.source === 'ollama' ? 'Ollama AI (Local Server)' : 'مساعد الجنسية الذكي المدمج'}</span>
                   </div>
                 )}
                 <div className="whitespace-pre-wrap">{msg.text}</div>
               </div>
-              <span className="text-[10px] text-slate-500 mt-1 px-1">{msg.time}</span>
+              <span className="text-[10px] text-theme-sub mt-1 px-1">{msg.time}</span>
             </div>
           ))}
 
           {loading && (
-            <div className="flex items-center space-x-2 space-x-reverse bg-slate-900/90 p-3 rounded-2xl border border-slate-700 max-w-xs text-xs text-slate-400">
+            <div className={`flex items-center space-x-2 space-x-reverse p-3 rounded-2xl border max-w-xs text-xs text-theme-sub ${isDark ? 'bg-slate-900/90 border-slate-700' : 'bg-slate-100 border-slate-200'}`}>
               <Loader2 className="w-4 h-4 animate-spin text-rose-500" />
               <span>جاري التفكير وتوليد الإجابة...</span>
             </div>
@@ -195,14 +195,14 @@ function AIContent() {
         </div>
 
         {/* Input Bar */}
-        <div className="flex items-center space-x-2 space-x-reverse bg-slate-800 p-2 rounded-2xl border border-slate-700 shrink-0">
+        <div className={`flex items-center space-x-2 space-x-reverse p-2 rounded-2xl border shrink-0 ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200 shadow-sm'}`}>
           <input
             type="text"
             value={inputQuery}
             onChange={(e) => setInputQuery(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSend()}
             placeholder={appLang === 'ar' ? 'اسأل أي سؤال حول الجنسية أو التاريخ الروماني...' : appLang === 'en' ? 'Ask any question about Romanian citizenship...' : 'Întreabă orice despre cetățenia română...'}
-            className="flex-1 bg-slate-900 border border-slate-700/80 text-white placeholder-slate-500 rounded-xl px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-rose-500"
+            className={`flex-1 border text-xs sm:text-sm rounded-xl px-4 py-3 focus:outline-none focus:border-rose-500 ${isDark ? 'bg-slate-900 border-slate-700/80 text-white placeholder-slate-500' : 'bg-slate-100 border-slate-200 text-slate-900 placeholder-slate-400'}`}
           />
           <button
             onClick={() => handleSend()}

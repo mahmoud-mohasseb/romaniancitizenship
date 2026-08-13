@@ -19,26 +19,23 @@ import {
 import questions from '../../data/questions_ar.json';
 import Navbar from '../../components/Navbar';
 import { useTheme } from '../../context/ThemeContext';
+import { useLanguage } from '../../context/LanguageContext';
 import { CATEGORIES_LIST, getCategoryMeta } from '../../utils/categories';
-import { getQuestionText, getAnswerText, UI_STRINGS } from '../../utils/languageHelper';
+import { getQuestionText, getAnswerText } from '../../utils/languageHelper';
 
 function StudyContent() {
   const searchParams = useSearchParams();
   const initialCat = searchParams.get('category') || 'all';
-  const initialLang = searchParams.get('lang') || 'ar';
 
   const { theme } = useTheme();
+  const { appLang, setAppLang, strings, isRtl } = useLanguage();
   const isDark = theme === 'dark';
 
   const [activeCategory, setActiveCategory] = useState(initialCat);
-  const [appLang, setAppLang] = useState(initialLang);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
-
-  const strings = UI_STRINGS[appLang] || UI_STRINGS.ar;
-  const isRtl = appLang === 'ar';
 
   const filteredQuestions = activeCategory === 'all' 
     ? questions 
@@ -98,7 +95,7 @@ function StudyContent() {
 
   return (
     <div className="min-h-screen pb-20 bg-theme-main text-theme-main flex flex-col">
-      <Navbar appLang={appLang} setAppLang={setAppLang} />
+      <Navbar />
 
       <main className={`flex-1 w-full max-w-4xl mx-auto px-4 py-6 space-y-4 ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
         {/* Category Filters Horizontal Scroll */}
@@ -184,11 +181,11 @@ function StudyContent() {
               }`}
             >
               <ExternalLink className="w-4 h-4 text-rose-400" />
-              <span>{appLang === 'ar' ? 'اقرأ المقال على ويكيبيديا ℹ️' : 'Read Article on Wikipedia ℹ️'}</span>
+              <span>{appLang === 'ar' ? 'اقرأ المقال على ويكيبيديا ℹ️' : appLang === 'en' ? 'Read Article on Wikipedia ℹ️' : 'Citește articolul pe Wikipedia ℹ️'}</span>
             </a>
 
             <Link
-              href={`/ai?lang=${appLang}&q=${encodeURIComponent(currentQ.question)}`}
+              href={`/ai?q=${encodeURIComponent(currentQ.question)}`}
               className="flex items-center space-x-1.5 space-x-reverse py-2 px-3.5 bg-amber-500/15 hover:bg-amber-500/25 rounded-xl text-xs font-bold text-amber-500 border border-amber-500/40 transition-colors shrink-0"
             >
               <Sparkles className="w-4 h-4 text-amber-400" />

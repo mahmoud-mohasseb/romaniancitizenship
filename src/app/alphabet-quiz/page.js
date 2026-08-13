@@ -14,23 +14,17 @@ import {
   Zap, 
   Flame, 
   Timer, 
-  Star,
-  Award
+  Star
 } from 'lucide-react';
 import alphabetData from '../../data/romanian_alphabet.json';
 import Navbar from '../../components/Navbar';
 import { useTheme } from '../../context/ThemeContext';
-import { UI_STRINGS } from '../../utils/languageHelper';
+import { useLanguage } from '../../context/LanguageContext';
 
 function AlphabetQuizContent() {
-  const searchParams = useSearchParams();
-  const initialLang = searchParams.get('lang') || 'ar';
   const { theme } = useTheme();
+  const { appLang, strings, isRtl } = useLanguage();
   const isDark = theme === 'dark';
-
-  const [appLang, setAppLang] = useState(initialLang);
-  const strings = UI_STRINGS[appLang] || UI_STRINGS.ar;
-  const isRtl = appLang === 'ar';
 
   const [gameMode, setGameMode] = useState('audio'); // 'audio', 'special', 'speed'
   const [questionCount, setQuestionCount] = useState(0);
@@ -71,7 +65,6 @@ function AlphabetQuizContent() {
     };
   }, [speedTimeLeft, isFinished, gameMode]);
 
-  // Web Audio API Synthesizer for Fun Sound Effects
   const playSoundEffect = (type) => {
     if (typeof window === 'undefined') return;
     try {
@@ -85,8 +78,8 @@ function AlphabetQuizContent() {
 
       if (type === 'correct') {
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(523.25, ctx.currentTime); // C5
-        osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.15); // A5
+        osc.frequency.setValueAtTime(523.25, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.15);
         gain.gain.setValueAtTime(0.3, ctx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.25);
         osc.start();
@@ -100,9 +93,7 @@ function AlphabetQuizContent() {
         osc.start();
         osc.stop(ctx.currentTime + 0.2);
       }
-    } catch (e) {
-      // Audio fallback silent
-    }
+    } catch (e) {}
   };
 
   const generateNewQuestion = () => {
@@ -199,7 +190,7 @@ function AlphabetQuizContent() {
 
     return (
       <div className="min-h-screen pb-20 bg-theme-main text-theme-main flex flex-col">
-        <Navbar appLang={appLang} setAppLang={setAppLang} />
+        <Navbar />
 
         <main className={`flex-1 max-w-lg mx-auto w-full px-4 py-8 space-y-6 ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
           <div className={`rounded-2xl p-6 border shadow-xl text-center space-y-6 ${isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'}`}>
@@ -211,12 +202,12 @@ function AlphabetQuizContent() {
             <div className="space-y-1">
               <h2 className="text-2xl font-extrabold">{strings.quizFinished} 🎉</h2>
               <p className="text-xs text-theme-sub">
-                {gameMode === 'audio' ? '🎧 سماع الحروف والكلمات' : gameMode === 'special' ? '🔤 أبطال الحروف الخاصة (Ă, Â, Î, Ș, Ț)' : '⚡ تحدي السرعة 30 ثانية'}
+                {gameMode === 'audio' ? (appLang === 'ar' ? '🎧 سماع الحروف والكلمات' : '🎧 Audio Pronunciation') : gameMode === 'special' ? '🔤 Ă, Â, Î, Ș, Ț Special Letters' : '⚡ 30-Second Challenge'}
               </p>
             </div>
 
             <div className={`p-6 rounded-2xl border-2 space-y-2 ${isDark ? 'bg-slate-900/90 border-amber-500' : 'bg-slate-50 border-amber-500'}`}>
-              <p className="text-4xl font-black text-amber-400">{score} {appLang === 'ar' ? 'إجابات صحيحة' : 'Correct'}</p>
+              <p className="text-4xl font-black text-amber-400">{score} {appLang === 'ar' ? 'إجابات صحيحة' : appLang === 'en' ? 'Correct' : 'Corecte'}</p>
               <p className="text-xs font-bold text-theme-sub">{strings.score}: {percentage}%</p>
               <p className="text-xs font-bold text-emerald-400">
                 🏆 Best Score: {bestScore}
@@ -233,7 +224,7 @@ function AlphabetQuizContent() {
               </button>
 
               <Link
-                href={`/alphabet?lang=${appLang}`}
+                href="/alphabet"
                 className={`block w-full py-3 font-bold rounded-xl text-xs transition-colors ${isDark ? 'bg-slate-700 hover:bg-slate-600 text-slate-300' : 'bg-slate-200 hover:bg-slate-300 text-slate-700'}`}
               >
                 العودة لجدول الأبجدية
@@ -249,7 +240,7 @@ function AlphabetQuizContent() {
 
   return (
     <div className="min-h-screen pb-20 bg-theme-main text-theme-main flex flex-col">
-      <Navbar appLang={appLang} setAppLang={setAppLang} />
+      <Navbar />
 
       <main className={`flex-1 max-w-lg mx-auto w-full px-4 py-6 space-y-5 ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
         {/* Game Mode Switcher Chips */}

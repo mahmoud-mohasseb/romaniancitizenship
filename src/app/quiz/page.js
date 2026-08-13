@@ -17,18 +17,19 @@ import {
 } from 'lucide-react';
 import questions from '../../data/questions_ar.json';
 import Navbar from '../../components/Navbar';
+import { useTheme } from '../../context/ThemeContext';
+import { useLanguage } from '../../context/LanguageContext';
 import { getCategoryMeta, CATEGORIES_LIST } from '../../utils/categories';
-import { getQuestionText, getAnswerText, UI_STRINGS } from '../../utils/languageHelper';
+import { getQuestionText, getAnswerText } from '../../utils/languageHelper';
 
 function QuizContent() {
   const searchParams = useSearchParams();
   const quizMode = searchParams.get('mode') || 'quick';
   const initialCategory = searchParams.get('category') || 'all';
-  const initialLang = searchParams.get('lang') || 'ar';
 
-  const [appLang, setAppLang] = useState(initialLang);
-  const strings = UI_STRINGS[appLang] || UI_STRINGS.ar;
-  const isRtl = appLang === 'ar';
+  const { theme } = useTheme();
+  const { appLang, strings, isRtl } = useLanguage();
+  const isDark = theme === 'dark';
 
   const totalQuestionsLimit = quizMode === 'exam' ? 25 : 10;
   const initialTimeSeconds = quizMode === 'exam' ? 20 * 60 : null;
@@ -136,38 +137,38 @@ function QuizContent() {
     const categoryMeta = getCategoryMeta(selectedCategory);
 
     return (
-      <div className="min-h-screen bg-[#0F172A] text-slate-100 flex flex-col">
-        <Navbar appLang={appLang} setAppLang={setAppLang} />
+      <div className="min-h-screen pb-20 bg-theme-main text-theme-main flex flex-col">
+        <Navbar />
 
         <main className={`flex-1 max-w-lg mx-auto w-full px-4 py-8 space-y-6 ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
-          <div className="bg-slate-800/90 rounded-2xl p-6 border border-slate-700/80 shadow-xl text-center space-y-6">
+          <div className={`rounded-2xl p-6 border shadow-xl text-center space-y-6 ${isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'}`}>
             <div className={`w-24 h-24 rounded-full mx-auto flex items-center justify-center ${isPassed ? 'bg-emerald-500/20 text-yellow-400' : 'bg-rose-500/20 text-rose-500'}`}>
               {isPassed ? <Trophy className="w-12 h-12" /> : <XCircle className="w-12 h-12" />}
             </div>
 
             <div className="space-y-1">
-              <h2 className="text-2xl font-extrabold text-white">
+              <h2 className="text-2xl font-extrabold">
                 {isPassed ? strings.passedExam : strings.failedExam}
               </h2>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-theme-sub">
                 {quizMode === 'exam' ? strings.examQuizTitle : strings.quickQuizTitle} - {appLang === 'ar' ? categoryMeta.name_ar : categoryMeta.name_en}
               </p>
             </div>
 
-            <div className={`p-6 rounded-2xl border-2 bg-slate-900/80 ${isPassed ? 'border-emerald-500' : 'border-rose-500'} space-y-2`}>
+            <div className={`p-6 rounded-2xl border-2 space-y-2 ${isDark ? 'bg-slate-900/80' : 'bg-slate-50'} ${isPassed ? 'border-emerald-500' : 'border-rose-500'}`}>
               <p className={`text-4xl font-extrabold ${isPassed ? 'text-emerald-400' : 'text-rose-400'}`}>
                 {score} / {totalQuestionsLimit}
               </p>
-              <p className="text-xs text-slate-400 font-semibold">{strings.score}: {percentage}%</p>
+              <p className="text-xs font-semibold text-theme-sub">{strings.score}: {percentage}%</p>
               <p className={`text-xs font-bold ${isPassed ? 'text-emerald-400' : 'text-rose-400'}`}>
-                {isPassed ? (appLang === 'ar' ? '✅ ناجح (مستوف لشروط المقابلة الرسمية)' : '✅ Passed Official Standard') : (appLang === 'ar' ? '❌ غير ناجح (الحد الأدنى 75%)' : '❌ Below Pass Mark (75% Minimum)')}
+                {isPassed ? (appLang === 'ar' ? '✅ ناجح (مستوف لشروط المقابلة الرسمية)' : appLang === 'en' ? '✅ Passed Official Standard' : '✅ Promovat Standard Oficial') : (appLang === 'ar' ? '❌ غير ناجح (الحد الأدنى 75%)' : appLang === 'en' ? '❌ Below Pass Mark (75% Minimum)' : '❌ Nepromovat (Minim 75%)')}
               </p>
             </div>
 
             {wrongAnswers.length > 0 && (
               <button
                 onClick={() => setShowReviewModal(true)}
-                className="w-full py-3 bg-slate-900 hover:bg-slate-800 text-amber-400 font-bold rounded-xl border border-amber-500/40 flex items-center justify-center space-x-2 space-x-reverse transition-colors text-xs"
+                className={`w-full py-3 text-amber-500 font-bold rounded-xl border border-amber-500/40 flex items-center justify-center space-x-2 space-x-reverse transition-colors text-xs ${isDark ? 'bg-slate-900 hover:bg-slate-800' : 'bg-amber-50 hover:bg-amber-100'}`}
               >
                 <AlertCircle className="w-4 h-4" />
                 <span>{strings.reviewWrong} ({wrongAnswers.length})</span>
@@ -185,7 +186,7 @@ function QuizContent() {
 
               <Link
                 href="/"
-                className="block w-full py-3.5 bg-slate-700 hover:bg-slate-600 text-slate-300 hover:text-white font-bold rounded-xl text-sm transition-all"
+                className={`block w-full py-3.5 font-bold rounded-xl text-sm transition-all ${isDark ? 'bg-slate-700 hover:bg-slate-600 text-slate-300' : 'bg-slate-200 hover:bg-slate-300 text-slate-700'}`}
               >
                 {strings.backHome}
               </Link>
@@ -201,18 +202,18 @@ function QuizContent() {
   const categoryMeta = getCategoryMeta(currentQuestion.category || selectedCategory);
 
   return (
-    <div className="min-h-screen bg-[#0F172A] text-slate-100 flex flex-col">
-      <Navbar appLang={appLang} setAppLang={setAppLang} />
+    <div className="min-h-screen pb-20 bg-theme-main text-theme-main flex flex-col">
+      <Navbar />
 
       <main className={`flex-1 max-w-4xl mx-auto w-full px-4 py-6 space-y-4 ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
         {/* Quiz Top Header Bar */}
-        <div className="flex items-center justify-between bg-slate-800/80 backdrop-blur-md p-3 rounded-2xl border border-slate-700/60">
-          <Link href="/" className="p-2 hover:bg-slate-700/50 rounded-xl text-slate-300">
+        <div className={`flex items-center justify-between p-3 rounded-2xl border ${isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-white border-slate-200 shadow-sm'}`}>
+          <Link href="/" className="p-2 hover:opacity-75 rounded-xl">
             <X className="w-5 h-5" />
           </Link>
 
           <div className="text-center">
-            <p className="text-sm font-bold text-white">
+            <p className="text-sm font-bold">
               {strings.question} {questionCount} {strings.of} {totalQuestionsLimit}
             </p>
             <p className="text-[11px] font-semibold" style={{ color: categoryMeta.color }}>
@@ -221,7 +222,7 @@ function QuizContent() {
           </div>
 
           {quizMode === 'exam' ? (
-            <div className="flex items-center space-x-1.5 space-x-reverse px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-xl text-xs font-bold border border-emerald-500/30">
+            <div className="flex items-center space-x-1.5 space-x-reverse px-3 py-1 bg-emerald-500/20 text-emerald-500 rounded-xl text-xs font-bold border border-emerald-500/30">
               <Timer className="w-4 h-4" />
               <span>{formatTimer(timeLeft)}</span>
             </div>
@@ -241,7 +242,7 @@ function QuizContent() {
                 className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all shrink-0 ${
                   isSel 
                     ? 'text-white shadow-md' 
-                    : 'bg-slate-800/80 text-slate-400 border border-slate-700/60 hover:text-white'
+                    : isDark ? 'bg-slate-800/80 text-slate-400 border border-slate-700/60 hover:text-white' : 'bg-white text-slate-600 border border-slate-200 hover:text-slate-900 shadow-sm'
                 }`}
                 style={isSel ? { backgroundColor: cat.color } : {}}
               >
@@ -252,7 +253,7 @@ function QuizContent() {
         </div>
 
         {/* Main Question Card */}
-        <div className="bg-slate-800/90 rounded-2xl border border-slate-700/80 overflow-hidden shadow-xl space-y-3">
+        <div className={`rounded-2xl border overflow-hidden shadow-xl space-y-3 ${isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'}`}>
           <div 
             onClick={() => setImageModalVisible(true)}
             className="relative w-full h-52 bg-slate-950 flex items-center justify-center p-3 cursor-pointer group border-b border-slate-700/60"
@@ -277,20 +278,20 @@ function QuizContent() {
           </div>
 
           {/* Links Bar */}
-          <div className="flex items-center justify-between px-4 py-2 bg-slate-900/90 border-b border-slate-700/60 text-xs font-bold gap-2">
+          <div className={`flex items-center justify-between px-4 py-2 border-b text-xs font-bold gap-2 ${isDark ? 'bg-slate-900/90 border-slate-700/60' : 'bg-slate-50 border-slate-200'}`}>
             <a
               href={currentQuestion.wiki_url || 'https://en.wikipedia.org/wiki/Romania'}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center space-x-1.5 space-x-reverse py-1.5 bg-slate-800 hover:bg-slate-700/80 rounded-lg text-slate-200 border border-slate-700/80"
+              className={`flex-1 flex items-center justify-center space-x-1.5 space-x-reverse py-1.5 rounded-lg border ${isDark ? 'bg-slate-800 border-slate-700 text-slate-200' : 'bg-white border-slate-300 text-slate-800'}`}
             >
               <ExternalLink className="w-3.5 h-3.5 text-rose-400" />
               <span>ويكيبيديا ℹ️</span>
             </a>
 
             <Link
-              href={`/ai?lang=${appLang}&q=${encodeURIComponent(currentQuestion.question)}`}
-              className="flex items-center space-x-1 space-x-reverse py-1.5 px-3 bg-amber-500/15 hover:bg-amber-500/25 rounded-lg text-amber-400 border border-amber-500/40 shrink-0"
+              href={`/ai?q=${encodeURIComponent(currentQuestion.question)}`}
+              className="flex items-center space-x-1 space-x-reverse py-1.5 px-3 bg-amber-500/15 hover:bg-amber-500/25 rounded-lg text-amber-500 border border-amber-500/40 shrink-0"
             >
               <Sparkles className="w-3.5 h-3.5" />
               <span>اسأل AI</span>
@@ -299,23 +300,23 @@ function QuizContent() {
 
           {/* Question Text */}
           <div className="p-4 space-y-3">
-            <h2 className="text-lg font-semibold text-white leading-relaxed">
+            <h2 className="text-lg font-semibold leading-relaxed">
               {currentQuestion.question}
             </h2>
 
-            <div className="h-px bg-slate-700/80 w-full" />
+            <div className={`h-px w-full ${isDark ? 'bg-slate-700/80' : 'bg-slate-200'}`} />
 
             <div className="space-y-2">
               <div>
-                <span className="text-[10px] font-bold text-rose-400 block mb-0.5">🇸🇦 Arabic:</span>
-                <p className="text-base font-bold text-rose-400 text-right leading-relaxed">
+                <span className="text-[10px] font-bold text-rose-500 block mb-0.5">🇸🇦 Arabic:</span>
+                <p className="text-base font-bold text-rose-500 text-right leading-relaxed">
                   {currentQuestion.question_ar}
                 </p>
               </div>
 
               <div>
-                <span className="text-[10px] font-bold text-emerald-400 block mb-0.5">🇬🇧 English:</span>
-                <p className="text-xs font-medium text-slate-200 leading-relaxed">
+                <span className="text-[10px] font-bold text-emerald-500 block mb-0.5">🇬🇧 English:</span>
+                <p className="text-xs font-medium leading-relaxed">
                   {getQuestionText(currentQuestion, 'en')}
                 </p>
               </div>
@@ -323,18 +324,18 @@ function QuizContent() {
           </div>
         </div>
 
-        <p className="text-xs font-medium text-slate-400">{strings.chooseCorrectAns}</p>
+        <p className="text-xs font-medium text-theme-sub">{strings.chooseCorrectAns}</p>
 
         {/* Options Grid */}
         <div className="space-y-2.5">
           {options.map((option, index) => {
-            let bgClass = 'bg-slate-800/90 border-slate-700/80 text-white hover:border-slate-500';
+            let bgClass = isDark ? 'bg-slate-800/90 border-slate-700/80 text-white hover:border-slate-500' : 'bg-white border-slate-200 text-slate-900 hover:border-slate-400 shadow-sm';
 
             if (selectedOption) {
               if (option === currentQuestion.answer) {
-                bgClass = 'bg-emerald-500/20 border-emerald-500 text-emerald-400 font-bold';
+                bgClass = 'bg-emerald-500/20 border-emerald-500 text-emerald-500 font-bold';
               } else if (option === selectedOption) {
-                bgClass = 'bg-rose-500/20 border-rose-500 text-rose-400 font-bold';
+                bgClass = 'bg-rose-500/20 border-rose-500 text-rose-500 font-bold';
               }
             }
 
@@ -348,10 +349,10 @@ function QuizContent() {
                 <span className="w-full text-center">{option}</span>
 
                 {selectedOption && option === currentQuestion.answer && (
-                  <CheckCircle className="w-5 h-5 text-emerald-400 shrink-0" />
+                  <CheckCircle className="w-5 h-5 text-emerald-500 shrink-0" />
                 )}
                 {selectedOption === option && option !== currentQuestion.answer && (
-                  <XCircle className="w-5 h-5 text-rose-400 shrink-0" />
+                  <XCircle className="w-5 h-5 text-rose-500 shrink-0" />
                 )}
               </button>
             );

@@ -22,19 +22,16 @@ import {
 import questions from '../data/questions_ar.json';
 import Navbar from '../components/Navbar';
 import { useTheme } from '../context/ThemeContext';
+import { useLanguage } from '../context/LanguageContext';
 import { CATEGORIES_LIST } from '../utils/categories';
-import { UI_STRINGS } from '../utils/languageHelper';
 
 export default function HomePage() {
-  const [appLang, setAppLang] = useState('ar');
   const { theme } = useTheme();
+  const { appLang, setAppLang, strings, isRtl } = useLanguage();
   const isDark = theme === 'dark';
 
   const [showInstallModal, setShowInstallModal] = useState(false);
   const [downloadMarket, setDownloadMarket] = useState('pwa');
-
-  const strings = UI_STRINGS[appLang] || UI_STRINGS.ar;
-  const isRtl = appLang === 'ar';
 
   const categoryCounts = CATEGORIES_LIST.reduce((acc, cat) => {
     if (cat.id === 'all') {
@@ -52,15 +49,15 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen pb-20 bg-theme-main text-theme-main flex flex-col">
-      <Navbar appLang={appLang} setAppLang={setAppLang} />
+      <Navbar />
 
       <main className={`flex-1 w-full max-w-4xl mx-auto px-4 py-6 space-y-6 ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
-        {/* Hero Banner with App Logo */}
+        {/* Hero Banner with Clean App Logo */}
         <div className="flex flex-col items-center text-center space-y-4 pt-2">
           <div className="relative w-24 h-24 rounded-2xl overflow-hidden shadow-xl border-2 border-rose-500 bg-slate-800">
             <Image 
               src="/icon.png" 
-              alt="Romanian Citizenship Logo" 
+              alt="Romanian Citizenship Emblem Logo" 
               fill 
               className="object-cover"
             />
@@ -90,19 +87,19 @@ export default function HomePage() {
             <div className="grid grid-cols-3 gap-2">
               <button
                 onClick={() => setAppLang('ar')}
-                className={`py-2 px-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center space-x-1.5 space-x-reverse ${
+                className={`py-2.5 px-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center space-x-1.5 space-x-reverse ${
                   appLang === 'ar' 
                     ? 'bg-rose-600 text-white shadow-md shadow-rose-600/30' 
                     : isDark ? 'bg-slate-900/60 text-slate-400 hover:text-white border-slate-700/50' : 'bg-slate-100 text-slate-600 border-slate-200'
                 }`}
               >
                 <span>🇸🇦</span>
-                <span>العربية</span>
+                <span>العربية (Arabic)</span>
               </button>
 
               <button
                 onClick={() => setAppLang('en')}
-                className={`py-2 px-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center space-x-1.5 ${
+                className={`py-2.5 px-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center space-x-1.5 ${
                   appLang === 'en' 
                     ? 'bg-rose-600 text-white shadow-md shadow-rose-600/30' 
                     : isDark ? 'bg-slate-900/60 text-slate-400 hover:text-white border-slate-700/50' : 'bg-slate-100 text-slate-600 border-slate-200'
@@ -114,7 +111,7 @@ export default function HomePage() {
 
               <button
                 onClick={() => setAppLang('ro')}
-                className={`py-2 px-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center space-x-1.5 ${
+                className={`py-2.5 px-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center space-x-1.5 ${
                   appLang === 'ro' 
                     ? 'bg-rose-600 text-white shadow-md shadow-rose-600/30' 
                     : isDark ? 'bg-slate-900/60 text-slate-400 hover:text-white border-slate-700/50' : 'bg-slate-100 text-slate-600 border-slate-200'
@@ -194,7 +191,7 @@ export default function HomePage() {
           }`}>
             <Type className="w-6 h-6 text-amber-400 mb-1" />
             <span className="text-xl font-bold">31</span>
-            <span className="text-[11px] text-theme-sub mt-1">حرفاً وأمثلة</span>
+            <span className="text-[11px] text-theme-sub mt-1">{appLang === 'ar' ? 'حرفاً وأمثلة' : appLang === 'en' ? 'Letters & Examples' : 'Litere și Exemple'}</span>
           </div>
 
           <div className={`rounded-2xl p-4 text-center border flex flex-col items-center justify-center ${
@@ -202,14 +199,14 @@ export default function HomePage() {
           }`}>
             <Sparkles className="w-6 h-6 text-amber-400 mb-1" />
             <span className="text-xl font-bold text-amber-400">AI</span>
-            <span className="text-[11px] text-theme-sub mt-1">مساعد ذكي + Ollama</span>
+            <span className="text-[11px] text-theme-sub mt-1">{appLang === 'ar' ? 'مساعد ذكي + Ollama' : appLang === 'en' ? 'AI Tutor + Ollama' : 'Asistent AI + Ollama'}</span>
           </div>
         </div>
 
         {/* Alphabet & Language Learning Banners */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <Link
-            href={`/alphabet?lang=${appLang}`}
+            href="/alphabet"
             className="flex items-center justify-between p-5 bg-gradient-to-r from-amber-600 via-amber-700 to-amber-900 rounded-2xl border border-amber-500/40 shadow-lg hover:opacity-95 transition-all text-white group"
           >
             <div className="space-y-1">
@@ -218,14 +215,14 @@ export default function HomePage() {
               </span>
               <h3 className="text-base font-bold">{strings.alphabetTitle}</h3>
               <p className="text-xs text-amber-100/90">
-                {appLang === 'ar' ? 'تعلم نطق الحروف الرومانية بالأمثلة والجمل المترجمة' : 'Learn letters, pronunciation, words & sentences'}
+                {appLang === 'ar' ? 'تعلم نطق الحروف الرومانية بالأمثلة والجمل المترجمة' : appLang === 'en' ? 'Learn letters, pronunciation, words & sentences' : 'Învăță literele, pronunția, cuvinte și propoziții'}
               </p>
             </div>
             <Type className="w-8 h-8 text-white shrink-0" />
           </Link>
 
           <Link
-            href={`/alphabet-quiz?lang=${appLang}`}
+            href="/alphabet-quiz"
             className="flex items-center justify-between p-5 bg-gradient-to-r from-rose-600 via-rose-700 to-amber-700 rounded-2xl border border-rose-500/40 shadow-lg hover:opacity-95 transition-all text-white group"
           >
             <div className="space-y-1">
@@ -234,7 +231,7 @@ export default function HomePage() {
               </span>
               <h3 className="text-base font-bold">{strings.alphabetGameTitle}</h3>
               <p className="text-xs text-rose-100/90">
-                {appLang === 'ar' ? 'لعبة استماع وتفاعل ممتعة لاختبار معرفتك بالحروف' : 'Interactive sound game to test listening skills'}
+                {appLang === 'ar' ? 'لعبة استماع وتفاعل ممتعة لاختبار معرفتك بالحروف' : appLang === 'en' ? 'Interactive sound game to test listening skills' : 'Joc interactiv audio pentru testarea pronunției'}
               </p>
             </div>
             <Gamepad2 className="w-8 h-8 text-white shrink-0" />
@@ -244,7 +241,7 @@ export default function HomePage() {
         {/* Action Banners for AI Tutor & Study */}
         <div className="space-y-3">
           <Link 
-            href={`/ai?lang=${appLang}`}
+            href="/ai"
             className={`flex items-center justify-between p-5 rounded-2xl border shadow-lg hover:border-amber-400 transition-all group ${
               isDark ? 'bg-gradient-to-r from-slate-800 via-slate-800 to-amber-950/40 border-amber-500/40' : 'bg-slate-900 border-slate-800'
             }`}
@@ -257,20 +254,20 @@ export default function HomePage() {
                 {appLang === 'ar' ? 'المساعد الذكي للأسئلة المفتوحة' : appLang === 'en' ? 'AI Romanian Citizenship Tutor' : 'Asistent AI Cetățenie'}
               </h3>
               <p className="text-xs text-slate-400">
-                {appLang === 'ar' ? 'اسأل أي سؤال إضافي وتحدث مع الذكاء الاصطناعي' : 'Ask custom questions & practice oral responses with AI'}
+                {appLang === 'ar' ? 'اسأل أي سؤال إضافي وتحدث مع الذكاء الاصطناعي' : appLang === 'en' ? 'Ask custom questions & practice oral responses with AI' : 'Întreabă orice despre interviu și constituție'}
               </p>
             </div>
             <Sparkles className="w-8 h-8 text-amber-400 shrink-0" />
           </Link>
 
           <Link 
-            href={`/study?category=all&lang=${appLang}`}
+            href="/study?category=all"
             className="flex items-center justify-between p-5 bg-gradient-to-r from-rose-600 to-rose-700 rounded-2xl shadow-lg shadow-rose-600/30 hover:opacity-95 transition-all text-white group"
           >
             <div className="space-y-1">
               <h3 className="text-lg font-bold">{strings.studyNow}</h3>
               <p className="text-xs text-rose-100/90">
-                {appLang === 'ar' ? 'تصفح الأسئلة مع صور ويكيبيديا الواضحة والروابط المعرفية' : 'Browse questions with clear Wikipedia photos & article references'}
+                {appLang === 'ar' ? 'تصفح الأسئلة مع صور ويكيبيديا الواضحة والروابط المعرفية' : appLang === 'en' ? 'Browse questions with clear Wikipedia photos & article references' : 'Răsfoiește întrebările cu imagini clare și referințe Wikipedia'}
               </p>
             </div>
             <BookOpen className="w-8 h-8 text-white shrink-0" />
@@ -282,7 +279,7 @@ export default function HomePage() {
           <h2 className="text-lg font-bold">{strings.testYourself} 🏆</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <Link
-              href={`/quiz?mode=quick&category=all&lang=${appLang}`}
+              href="/quiz?mode=quick&category=all"
               className={`flex items-center justify-between p-4 rounded-2xl border-l-4 border-l-rose-500 border hover:border-rose-500 transition-all group ${
                 isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-white border-slate-200 shadow-sm'
               }`}
@@ -300,7 +297,7 @@ export default function HomePage() {
             </Link>
 
             <Link
-              href={`/quiz?mode=exam&category=all&lang=${appLang}`}
+              href="/quiz?mode=exam&category=all"
               className={`flex items-center justify-between p-4 rounded-2xl border-l-4 border-l-emerald-400 border hover:border-emerald-400 transition-all group ${
                 isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-white border-slate-200 shadow-sm'
               }`}
@@ -326,7 +323,7 @@ export default function HomePage() {
             {CATEGORIES_LIST.filter(c => c.id !== 'all').map((cat) => (
               <Link
                 key={cat.id}
-                href={`/study?category=${cat.id}&lang=${appLang}`}
+                href={`/study?category=${cat.id}`}
                 className={`flex items-center justify-between p-4 rounded-2xl border-l-4 border hover:border-slate-400 transition-all group ${
                   isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-white border-slate-200 shadow-sm'
                 }`}
