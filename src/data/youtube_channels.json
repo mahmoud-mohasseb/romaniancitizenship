@@ -7,10 +7,27 @@
     "subscribers": "165K+",
     "image": "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=800&q=80",
     "youtube_url": "http://www.youtube.com/channel/UCzKrAcUGNwkSMOhLgNuQAwg",
-    "description_ar": "قناة ممتازة وموصى بها بشدة تغطي كل شيء من القواعد الأساسية والمفردات إلى الرؤى الثقافية.",
-    "description_en": "Highly recommended channel covering basic grammar, vocabulary, and cultural insights.",
-    "description_ro": "Canal foarte recomandat ce acoperă gramatica de bază, vocabularul și elementele culturale.",
-    "tags": ["Nicoleta", "Grammar", "Vocabulary", "Culture"],
+    "playlists_url": "https://www.youtube.com/@LearnRomanianwithNico/playlists",
+    "description_ar": "قائمة تشغيل متكاملة تغطي القواعد الأساسية، الأفعال، والمحادثات اليومية للأجانب بالشرح المباشر.",
+    "description_en": "Complete playlist series covering basic grammar, verb conjugations, and everyday dialogues.",
+    "description_ro": "Canal cu playlist-uri structurate de gramatică, verbe și conversații zilnice.",
+    "tags": ["Nicoleta", "Grammar", "Vocabulary", "Playlists"],
+    "playlists": [
+      {
+        "id": "nico-pl-1",
+        "title_ro": "Playlist: Curs de Gramatică și Propoziții Simple",
+        "title_ar": "قائمة تشغيل: دورة القواعد والجمل البسيطة",
+        "title_en": "Playlist: Grammar & Simple Sentences Course",
+        "playlist_id": "PLzKrAcUGNwkSMOhLgNuQAwg"
+      },
+      {
+        "id": "nico-pl-2",
+        "title_ro": "Playlist: Verbe și Conjugări în Limba Română",
+        "title_ar": "قائمة تشغيل: الأفعال والتصريفات في الرومانية",
+        "title_en": "Playlist: Romanian Verbs & Conjugations",
+        "playlist_id": "PLzKrAcUGNwkSMOhLgNuQAwg_verbs"
+      }
+    ],
     "videos": [
       {
         "id": "nico-1",
@@ -58,36 +75,67 @@
   },
   {
     "id": 2,
-    "channel_name": "Romanian with Madalina",
-    "handle": "@RomanianWithMadalina",
+    "channel_name": "Romanian With Gia",
+    "handle": "@RomanianWithGia",
     "category": "language_courses",
-    "subscribers": "75K+",
-    "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
-    "youtube_url": "http://www.youtube.com/channel/UCsVHQAbcvn9uF7DCmehVQsg",
-    "description_ar": "دروس ممتعة وتفاعلية تركز على جعل اللغة الرومانية سهلة الفهم وتبسيط القواعد.",
-    "description_en": "Engaging lessons focusing on making Romanian accessible and breaking down complex topics.",
-    "description_ro": "Lecții interactive ce fac limba română ușor de înțeles, explicând clar temele complexe.",
-    "tags": ["Madalina", "Beginners", "Easy Lessons", "Conversation"],
+    "subscribers": "95K+",
+    "image": "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80",
+    "youtube_url": "https://www.youtube.com/@RomanianWithGia",
+    "playlists_url": "https://www.youtube.com/@RomanianWithGia/playlists",
+    "description_ar": "قناة المعلمة جيا لتعليم اللغة الرومانية الحية ومفردات الشارع والأطعمة والتعامل مع الموظفين.",
+    "description_en": "Gia's dedicated channel for natural Romanian vocabulary, street speech, foods, & daily interactions.",
+    "description_ro": "Canalul المعلمة Gia dedicat limbii române vii, vocabularului și conversațiilor zilnice.",
+    "tags": ["Gia", "RomanianAlive", "Everyday Vocabulary", "Playlists"],
+    "playlists": [
+      {
+        "id": "gia-pl-1",
+        "title_ro": "Playlist: Learn Romanian with Gia Series",
+        "title_ar": "قائمة تشغيل: سلسلة تعلم الرومانية مع جيا",
+        "title_en": "Playlist: Learn Romanian with Gia Series",
+        "playlist_id": "PL_RomanianWithGia"
+      }
+    ],
     "videos": [
       {
-        "id": "mad-1",
-        "title_ro": "Cum să vorbești română la magazin",
-        "title_ar": "كيف تتحدث الرومانية في السوبرماركت",
-        "title_en": "How to speak Romanian at the store",
-        "video_id": "e4B2jT-N4x8",
-        "transcript_ro": "Când mergi la magazin, folosești expresia: «Aș dori, vă rog» pentru a comanda.",
-        "transcript_ar": "عندما تذهب إلى المتجر، تستخدم عبارة: «أود من فضلك» للطلب.",
-        "transcript_en": "When you go to the store, you use the phrase: 'I would like please' to order.",
+        "id": "gia-1",
+        "title_ro": "At The Clerk - La Funcționarul Public",
+        "title_ar": "التعامل مع الموظف الحكومي في رومانيا",
+        "title_en": "At The Clerk - Dealing with Public Officials",
+        "video_id": "5R-cR9G_u6M",
+        "transcript_ro": "La funcționarul public folosești un limbaj formal și respectuos: «Bună ziua, doamnă / domnule».",
+        "transcript_ar": "عند الموظف الحكومي تستخدم لغة رسمية ومحترمة: «مرحباً سيدي / سيدتي».",
+        "transcript_en": "With a public official you use formal & respectful speech: 'Good day ma'am / sir'.",
         "quiz": {
-          "question_ar": "ما هي العبارة المهذبة للطلب في المتاجر والمطاعم الرومانية؟",
-          "question_en": "What polite phrase is used for ordering in Romanian stores?",
+          "question_ar": "ما هي التحية الرسمية المحترمة عند التحدث مع الموظف الحكومي؟",
+          "question_en": "What is the formal respectful greeting when speaking to a public clerk?",
           "options": [
-            "Aș dori, vă rog",
-            "Nu știu",
-            "Cât este ceasul",
-            "La revedere"
+            "Bună ziua, doamnă / domnule",
+            "Salut frate",
+            "Pa pa",
+            "Ce faci băi"
           ],
-          "answer": "Aș dori, vă rog"
+          "answer": "Bună ziua, doamnă / domnule"
+        }
+      },
+      {
+        "id": "gia-2",
+        "title_ro": "Tasty Romanian Foods & Vocabulary",
+        "title_ar": "الأطعمة الرومانية الشهية ومفردات المطعم",
+        "title_en": "Tasty Romanian Foods & Restaurant Vocabulary",
+        "video_id": "eD1yUf9v_nQ",
+        "transcript_ro": "Mâncarea tradițională românească include sarmale, mămăligă și papanași gustoi.",
+        "transcript_ar": "الطعام التقليدي الروماني يشمل السارمالي والماماليغا والباباناش اللذيذ.",
+        "transcript_en": "Traditional Romanian food includes sarmale, polenta, and delicious papanași.",
+        "quiz": {
+          "question_ar": "أي من الأطعمة التالية يعتبر حلوى تقليدية رومانية شهيرة؟",
+          "question_en": "Which of the following is a famous traditional Romanian dessert?",
+          "options": [
+            "Papanași",
+            "Pizza",
+            "Burger",
+            "Sushi"
+          ],
+          "answer": "Papanași"
         }
       }
     ]
@@ -100,10 +148,27 @@
     "subscribers": "220K+",
     "image": "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?auto=format&fit=crop&w=800&q=80",
     "youtube_url": "http://www.youtube.com/channel/UCAsZIdD5sox9lM5nO4MPGyA",
-    "description_ar": "دروس فيديو مهيكلة لبناء المفردات وتطوير مهارات الاستماع والتحدث بطلاقة.",
-    "description_en": "Structured video lessons, vocabulary building, and tips to improve listening & speaking.",
-    "description_ro": "Lecții video structurate, dezvoltare vocabular și sfaturi pentru îmbunătățirea auzului.",
-    "tags": ["Pod101", "Structured Lessons", "Listening", "Speaking"],
+    "playlists_url": "https://www.youtube.com/@RomanianPod101/playlists",
+    "description_ar": "قوائم تشغيل متكاملة لتدريبات الاستماع، المفردات، والرومانية في 3 دقائق.",
+    "description_en": "Comprehensive playlists for listening practice, vocabulary building, and 3-minute Romanian lessons.",
+    "description_ro": "Playlist-uri complete pentru exersarea auzului, vocabular și lecții de 3 minute.",
+    "tags": ["Pod101", "Playlists", "Listening", "3 Minutes"],
+    "playlists": [
+      {
+        "id": "pod-pl-1",
+        "title_ro": "Playlist: Learn Romanian in 3 Minutes",
+        "title_ar": "قائمة تشغيل: تعلم الرومانية في 3 دقائق",
+        "title_en": "Playlist: Learn Romanian in 3 Minutes",
+        "playlist_id": "PL50D028E445F0D901"
+      },
+      {
+        "id": "pod-pl-2",
+        "title_ro": "Playlist: Romanian Vocabulary & Words",
+        "title_ar": "قائمة تشغيل: مفردات وكلمات اللغة الرومانية",
+        "title_en": "Playlist: Romanian Vocabulary & Words",
+        "playlist_id": "PLc_2s0nN4v7cT"
+      }
+    ],
     "videos": [
       {
         "id": "pod-1",
@@ -131,15 +196,25 @@
   {
     "id": 4,
     "channel_name": "I LEARN ROMANIAN",
-    "handle": "@ILearnRomanian",
+    "handle": "@ILEARNROMANIAN",
     "category": "language_courses",
     "subscribers": "110K+",
     "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80",
     "youtube_url": "http://www.youtube.com/channel/UCIG0Kf1hykrPkNk_l4pfAWQ",
-    "description_ar": "تركز هذه القناة على الدروس العملية والعبارات الأكثر استخداماً لبناء أساس قوي.",
-    "description_en": "Focuses on practical lessons, useful everyday phrases, and building a strong foundation.",
-    "description_ro": "Lecții practice, expresii utile de zi cu zi și construirea unei baze solide.",
-    "tags": ["Practical Lessons", "Everyday Phrases", "Foundation"],
+    "playlists_url": "https://www.youtube.com/@ILEARNROMANIAN/playlists",
+    "description_ar": "قوائم تشغيل الدروس العملية والعبارات اليومية الأكثر استخداماً للمبتدئين.",
+    "description_en": "Playlists focused on practical lessons, useful phrases, and building a strong foundation.",
+    "description_ro": "Playlist-uri cu lecții practice, expresii utile de zi cu zi și baze solide.",
+    "tags": ["Practical Lessons", "Playlists", "Everyday Phrases"],
+    "playlists": [
+      {
+        "id": "ilr-pl-1",
+        "title_ro": "Playlist: Romanian Complete Course for Beginners",
+        "title_ar": "قائمة تشغيل: الدورة الكاملة لتعليم الرومانية للمبتدئين",
+        "title_en": "Playlist: Romanian Complete Course for Beginners",
+        "playlist_id": "PL_ILearnRomanian_Course"
+      }
+    ],
     "videos": [
       {
         "id": "ilr-1",
@@ -166,36 +241,46 @@
   },
   {
     "id": 5,
-    "channel_name": "RomanianAlive",
-    "handle": "@RomanianAlive",
-    "category": "culture_history",
-    "subscribers": "90K+",
-    "image": "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80",
-    "youtube_url": "http://www.youtube.com/channel/UC4EryknLRhygSFR1g82TBuA",
-    "description_ar": "مصدر رائع لسماع اللغة الرومانية في سياقها الطبيعي والحي وفهم تواصل الناطقين بها.",
-    "description_en": "Great resource to hear Romanian in a natural 'alive' context for listening comprehension.",
-    "description_ro": "Resursă excelentă pentru a asculta limba română în context natural și viu.",
-    "tags": ["Natural Speech", "Listening Practice", "Alive Context"],
+    "channel_name": "Romanian with Madalina",
+    "handle": "@RomanianWithMadalina",
+    "category": "language_courses",
+    "subscribers": "75K+",
+    "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+    "youtube_url": "http://www.youtube.com/channel/UCsVHQAbcvn9uF7DCmehVQsg",
+    "playlists_url": "https://www.youtube.com/@RomanianWithMadalina/playlists",
+    "description_ar": "قوائم تشغيل تفاعلية تبسط قواعد اللغة والتعاملات اليومية.",
+    "description_en": "Engaging playlists simplifying grammar and everyday interactions.",
+    "description_ro": "Playlist-uri interactive ce explică clar temele complexe.",
+    "tags": ["Madalina", "Playlists", "Easy Lessons"],
+    "playlists": [
+      {
+        "id": "mad-pl-1",
+        "title_ro": "Playlist: Conversații Ușoare cu Mădălina",
+        "title_ar": "قائمة تشغيل: محادثات رومانية سهلة مع مادالينا",
+        "title_en": "Playlist: Easy Conversations with Madalina",
+        "playlist_id": "PL_Madalina_Conversations"
+      }
+    ],
     "videos": [
       {
-        "id": "alive-1",
-        "title_ro": "Conversații naturale în București",
-        "title_ar": "محادثات واقعية وحية في شوارع بوخارست",
-        "title_en": "Natural Alive Conversations in Bucharest",
+        "id": "mad-1",
+        "title_ro": "Cum să vorbești română la magazin",
+        "title_ar": "كيف تتحدث الرومانية في السوبرماركت",
+        "title_en": "How to speak Romanian at the store",
         "video_id": "e4B2jT-N4x8",
-        "transcript_ro": "Ascultarea vorbitorilor nativi te ajută să prinzi accentul și ritmul natural al limbii.",
-        "transcript_ar": "الاستماع للناطقين الأصليين يساعدك على التقاط اللهجة والإيقاع الطبيعي للغة.",
-        "transcript_en": "Listening to native speakers helps you catch the accent and natural rhythm of language.",
+        "transcript_ro": "Când mergi la magazin, folosești expresia: «Aș dori, vă rog» pentru a comanda.",
+        "transcript_ar": "عندما تذهب إلى المتجر، تستخدم عبارة: «أود من فضلك» للطلب.",
+        "transcript_en": "When you go to the store, you use the phrase: 'I would like please' to order.",
         "quiz": {
-          "question_ar": "ما الفائدة الرئيسية من الاستماع للمحادثات الحية الواقعية؟",
-          "question_en": "What is the main benefit of listening to live natural conversations?",
+          "question_ar": "ما هي العبارة المهذبة للطلب في المتاجر والمطاعم الرومانية؟",
+          "question_en": "What polite phrase is used for ordering in Romanian stores?",
           "options": [
-            "إتقان اللهجة والإيقاع الطبيعي / Master accent & natural rhythm",
-            "حفظ الأرقام فقط / Memorize numbers only",
-            "صعوبة النطق / Hard pronunciation",
-            "لا توجد فائدة / No benefit"
+            "Aș dori, vă rog",
+            "Nu știu",
+            "Cât este ceasul",
+            "La revedere"
           ],
-          "answer": "إتقان اللهجة والإيقاع الطبيعي / Master accent & natural rhythm"
+          "answer": "Aș dori, vă rog"
         }
       }
     ]
@@ -208,10 +293,20 @@
     "subscribers": "95K+",
     "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
     "youtube_url": "https://www.youtube.com/results?search_query=Interviu+Cetatenie+Romana+ANC",
-    "description_ar": "شرح متكامل لأسئلة لجنة الجنسية الرومانية ANC، الدستور، التاريخ، وأمثلة المحادثة الشفهية.",
-    "description_en": "Comprehensive preparation for ANC Citizenship Committee oral interview, constitution, & history Q&A.",
-    "description_ro": "Pregătire completă pentru interviul oral de la comisia ANC, constituție și istorie.",
-    "tags": ["ANC", "Interviu", "Constitutie", "Oral Exam"],
+    "playlists_url": "https://www.youtube.com/results?search_query=Interviu+Cetatenie+Romana+ANC+playlist",
+    "description_ar": "قوائم تشغيل تحضير مقابلة لجنة الجنسية ANC والدستور والتاريخ.",
+    "description_en": "Playlists for ANC Citizenship Committee interview preparation, constitution, & history.",
+    "description_ro": "Playlist-uri pentru pregătirea interviului de cetățenie la ANC.",
+    "tags": ["ANC", "Interviu", "Constitutie", "Playlists"],
+    "playlists": [
+      {
+        "id": "anc-pl-1",
+        "title_ro": "Playlist: Întrebări Frecvente Interviu ANC",
+        "title_ar": "قائمة تشغيل: الأسئلة الأكثر تكراراً في مقابلة الجنسية",
+        "title_en": "Playlist: ANC Interview Frequently Asked Questions",
+        "playlist_id": "PL_ANC_Interview_Questions"
+      }
+    ],
     "videos": [
       {
         "id": "anc-1",
