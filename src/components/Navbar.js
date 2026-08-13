@@ -12,7 +12,13 @@ import {
   Gamepad2, 
   Sparkles, 
   Moon, 
-  Sun 
+  Sun, 
+  Menu, 
+  X, 
+  Smartphone, 
+  ChevronLeft, 
+  ChevronRight, 
+  Globe 
 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { UI_STRINGS } from '../utils/languageHelper';
@@ -20,117 +26,209 @@ import { UI_STRINGS } from '../utils/languageHelper';
 export default function Navbar({ appLang = 'ar', setAppLang }) {
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const strings = UI_STRINGS[appLang] || UI_STRINGS.ar;
   const isRtl = appLang === 'ar';
   const isDark = theme === 'dark';
 
   const navLinks = [
-    { href: '/', label: strings.homeNav, icon: Home },
-    { href: '/study', label: strings.studyNav, icon: BookOpen },
-    { href: '/quiz', label: strings.quizNav, icon: Trophy },
-    { href: '/alphabet', label: strings.alphabetNav, icon: Type },
-    { href: '/alphabet-quiz', label: strings.alphabetQuizNav, icon: Gamepad2 },
-    { href: '/ai', label: strings.aiNav, icon: Sparkles },
+    { href: '/', label: strings.homeNav, sub: 'الصفحة الرئيسية', icon: Home, color: 'text-rose-500' },
+    { href: '/study', label: strings.studyNav, sub: '469 سؤالاً مصوراً', icon: BookOpen, color: 'text-blue-400' },
+    { href: '/quiz', label: strings.quizNav, sub: 'اختبارات ومحاكاة الامتحان', icon: Trophy, color: 'text-amber-400' },
+    { href: '/alphabet', label: strings.alphabetNav, sub: '31 حرفاً مع النطق', icon: Type, color: 'text-purple-400' },
+    { href: '/alphabet-quiz', label: strings.alphabetQuizNav, sub: 'لعبة استماع وتفاعل', icon: Gamepad2, color: 'text-emerald-400' },
+    { href: '/ai', label: strings.aiNav, sub: 'Ollama + مساعد مدمج', icon: Sparkles, color: 'text-amber-300' },
   ];
 
   return (
     <>
-      {/* Top Mobile & Web App Bar Header */}
-      <header className={`sticky top-0 z-40 backdrop-blur-md border-b transition-colors ${
+      {/* Native Mobile App Header Bar */}
+      <header className={`sticky top-0 z-40 backdrop-blur-xl border-b transition-colors ${
         isDark 
-          ? 'bg-slate-900/90 border-slate-800 text-white' 
-          : 'bg-white/90 border-slate-200 text-slate-900'
+          ? 'bg-slate-900/95 border-slate-800 text-white' 
+          : 'bg-white/95 border-slate-200 text-slate-900 shadow-sm'
       } ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
-        <div className="max-w-4xl mx-auto px-4 py-2.5 flex items-center justify-between">
-          {/* Logo & Mobile Brand */}
-          <Link href="/" className="flex items-center space-x-2 space-x-reverse group">
-            <div className="relative w-9 h-9 rounded-xl overflow-hidden shadow border border-rose-500/80 group-hover:scale-105 transition-transform">
+        <div className="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
+          {/* Mobile App Brand & Logo */}
+          <Link href="/" className="flex items-center space-x-2.5 space-x-reverse">
+            <div className="relative w-8 h-8 rounded-xl overflow-hidden border border-rose-500/80 shadow-md">
               <Image src="/icon.png" alt="Logo" fill className="object-cover" />
             </div>
             <div className="flex flex-col">
-              <span className="text-sm font-extrabold group-hover:text-rose-500 transition-colors leading-none">
+              <span className="text-sm font-extrabold leading-none tracking-tight">
                 Cetățenia RO
               </span>
-              <span className={`text-[10px] font-semibold leading-tight mt-0.5 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-                Mobile Prep
+              <span className="text-[10px] text-rose-500 font-bold leading-tight mt-0.5">
+                Mobile App
               </span>
             </div>
           </Link>
 
-          {/* Desktop Web Nav Bar Links */}
-          <nav className={`hidden md:flex items-center space-x-1 space-x-reverse p-1 rounded-2xl border ${
-            isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-slate-100 border-slate-200'
-          }`}>
-            {navLinks.map((link) => {
-              const Icon = link.icon;
-              const isActive = pathname === link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={`${link.href}?lang=${appLang}`}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5 space-x-reverse ${
-                    isActive 
-                      ? 'bg-rose-600 text-white shadow' 
-                      : isDark ? 'text-slate-300 hover:text-white hover:bg-slate-700/50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200'
-                  }`}
-                >
-                  <Icon className="w-3.5 h-3.5" />
-                  <span>{link.label}</span>
-                </Link>
-              );
-            })}
-          </nav>
-
-          {/* Controls: Dark/Light Switcher & 3-Language Selector */}
+          {/* Mobile Quick Action Buttons (Dark Mode, Language, Menu Drawer) */}
           <div className="flex items-center space-x-2 space-x-reverse">
-            {/* Dark/Light Mode Button */}
+            {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
               className={`p-2 rounded-xl border transition-all ${
                 isDark 
-                  ? 'bg-slate-800 border-slate-700 text-amber-400 hover:bg-slate-700' 
-                  : 'bg-slate-100 border-slate-300 text-slate-700 hover:bg-slate-200'
+                  ? 'bg-slate-800 border-slate-700 text-amber-400' 
+                  : 'bg-slate-100 border-slate-200 text-slate-700'
               }`}
-              title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+              title="Toggle Dark/Light Mode"
             >
               {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
 
-            {/* 3-Language Selector */}
+            {/* Language Switcher Pill */}
             <div className={`flex items-center p-0.5 rounded-xl border ${
-              isDark ? 'bg-slate-800 border-slate-700' : 'bg-slate-100 border-slate-300'
+              isDark ? 'bg-slate-800 border-slate-700' : 'bg-slate-100 border-slate-200'
             }`}>
               <button
                 onClick={() => setAppLang && setAppLang('ar')}
-                className={`px-2 py-1 rounded-lg text-[11px] font-bold transition-all ${
-                  appLang === 'ar' ? 'bg-rose-600 text-white shadow' : isDark ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-slate-900'
+                className={`px-1.5 py-1 rounded-lg text-[10px] font-bold ${
+                  appLang === 'ar' ? 'bg-rose-600 text-white shadow' : isDark ? 'text-slate-400' : 'text-slate-600'
                 }`}
               >
-                🇸🇦 AR
+                🇸🇦
               </button>
               <button
                 onClick={() => setAppLang && setAppLang('en')}
-                className={`px-2 py-1 rounded-lg text-[11px] font-bold transition-all ${
-                  appLang === 'en' ? 'bg-rose-600 text-white shadow' : isDark ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-slate-900'
+                className={`px-1.5 py-1 rounded-lg text-[10px] font-bold ${
+                  appLang === 'en' ? 'bg-rose-600 text-white shadow' : isDark ? 'text-slate-400' : 'text-slate-600'
                 }`}
               >
-                🇬🇧 EN
+                🇬🇧
               </button>
               <button
                 onClick={() => setAppLang && setAppLang('ro')}
-                className={`px-2 py-1 rounded-lg text-[11px] font-bold transition-all ${
-                  appLang === 'ro' ? 'bg-rose-600 text-white shadow' : isDark ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-slate-900'
+                className={`px-1.5 py-1 rounded-lg text-[10px] font-bold ${
+                  appLang === 'ro' ? 'bg-rose-600 text-white shadow' : isDark ? 'text-slate-400' : 'text-slate-600'
                 }`}
               >
-                🇷🇴 RO
+                🇷🇴
               </button>
             </div>
+
+            {/* Mobile App Drawer Hamburger Toggle */}
+            <button
+              onClick={() => setDrawerOpen(true)}
+              className="p-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white shadow-md shadow-rose-600/30"
+              title="Open Mobile Navigation Menu"
+            >
+              <Menu className="w-5 h-5" />
+            </button>
           </div>
         </div>
       </header>
 
-      {/* Bottom Fixed Mobile App Navigation Bar (App Dock) */}
-      <nav className={`md:hidden fixed bottom-0 left-0 right-0 z-50 border-t backdrop-blur-lg px-2 py-1.5 transition-colors ${
+      {/* Full-Screen Mobile App Slide-Over Sheet / Drawer Menu */}
+      {drawerOpen && (
+        <div className="fixed inset-0 z-50 flex justify-end bg-black/80 backdrop-blur-sm transition-opacity">
+          <div className={`w-full max-w-xs h-full flex flex-col justify-between p-5 shadow-2xl transition-transform ${
+            isDark ? 'bg-slate-900 text-white border-l border-slate-800' : 'bg-white text-slate-900 border-l border-slate-200'
+          } ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
+            
+            {/* Drawer Header */}
+            <div className="space-y-4">
+              <div className="flex items-center justify-between border-b border-slate-700/60 pb-3">
+                <div className="flex items-center space-x-2.5 space-x-reverse">
+                  <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-rose-500">
+                    <Image src="/icon.png" alt="App Logo" fill className="object-cover" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-extrabold leading-tight">قائمة التطبيق</h3>
+                    <p className="text-[11px] text-rose-500 font-bold">Cetățenia Română v2.0</p>
+                  </div>
+                </div>
+
+                <button 
+                  onClick={() => setDrawerOpen(false)}
+                  className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Drawer Mobile Nav Items List */}
+              <div className="space-y-2 pt-2">
+                {navLinks.map((link) => {
+                  const Icon = link.icon;
+                  const isActive = pathname === link.href;
+                  return (
+                    <Link
+                      key={link.href}
+                      href={`${link.href}?lang=${appLang}`}
+                      onClick={() => setDrawerOpen(false)}
+                      className={`flex items-center justify-between p-3.5 rounded-2xl border transition-all ${
+                        isActive 
+                          ? 'bg-rose-600 text-white border-rose-600 shadow-lg shadow-rose-600/30' 
+                          : isDark ? 'bg-slate-800/80 border-slate-700/60 text-slate-200 hover:bg-slate-800' : 'bg-slate-100 border-slate-200 text-slate-800 hover:bg-slate-200'
+                      }`}
+                    >
+                      <div className="flex items-center space-x-3 space-x-reverse">
+                        <div className={`p-2 rounded-xl ${isActive ? 'bg-white/20 text-white' : 'bg-slate-900/40 ' + link.color}`}>
+                          <Icon className="w-5 h-5" />
+                        </div>
+                        <div>
+                          <p className="text-xs font-bold leading-tight">{link.label}</p>
+                          <p className={`text-[10px] ${isActive ? 'text-rose-100' : 'text-slate-400'}`}>{link.sub}</p>
+                        </div>
+                      </div>
+
+                      {isRtl ? <ChevronLeft className="w-4 h-4 opacity-70" /> : <ChevronRight className="w-4 h-4 opacity-70" />}
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Drawer Footer Controls */}
+            <div className="pt-4 border-t border-slate-700/60 space-y-3">
+              {/* Language Selector in Drawer */}
+              <div className="space-y-1.5">
+                <span className="text-[11px] font-bold text-slate-400 block">لغة الواجهة والترجمة:</span>
+                <div className="grid grid-cols-3 gap-2">
+                  <button
+                    onClick={() => setAppLang && setAppLang('ar')}
+                    className={`py-2 rounded-xl text-xs font-bold ${appLang === 'ar' ? 'bg-rose-600 text-white' : 'bg-slate-800 text-slate-400'}`}
+                  >
+                    🇸🇦 العربية
+                  </button>
+                  <button
+                    onClick={() => setAppLang && setAppLang('en')}
+                    className={`py-2 rounded-xl text-xs font-bold ${appLang === 'en' ? 'bg-rose-600 text-white' : 'bg-slate-800 text-slate-400'}`}
+                  >
+                    🇬🇧 English
+                  </button>
+                  <button
+                    onClick={() => setAppLang && setAppLang('ro')}
+                    className={`py-2 rounded-xl text-xs font-bold ${appLang === 'ro' ? 'bg-rose-600 text-white' : 'bg-slate-800 text-slate-400'}`}
+                  >
+                    🇷🇴 Română
+                  </button>
+                </div>
+              </div>
+
+              {/* Theme Selector in Drawer */}
+              <button
+                onClick={toggleTheme}
+                className={`w-full py-2.5 px-3 rounded-xl border flex items-center justify-between text-xs font-bold ${
+                  isDark ? 'bg-slate-800 border-slate-700 text-amber-400' : 'bg-slate-100 border-slate-200 text-slate-700'
+                }`}
+              >
+                <div className="flex items-center space-x-2 space-x-reverse">
+                  {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+                  <span>{isDark ? 'تفعيل الوضع الفاتح ☀️' : 'تفعيل الوضع الداكن 🌙'}</span>
+                </div>
+                <span>{isDark ? 'Dark' : 'Light'}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Fixed Bottom Mobile App Dock (App Tabs Bar) */}
+      <nav className={`fixed bottom-0 left-0 right-0 z-40 border-t backdrop-blur-xl px-2 py-1.5 transition-colors ${
         isDark 
           ? 'bg-slate-900/95 border-slate-800 text-slate-300' 
           : 'bg-white/95 border-slate-200 text-slate-700 shadow-lg'
