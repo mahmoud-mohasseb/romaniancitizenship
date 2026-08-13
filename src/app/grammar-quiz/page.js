@@ -13,7 +13,10 @@ import {
   HelpCircle, 
   ChevronRight, 
   BookOpen, 
-  Flame 
+  Flame, 
+  PenTool, 
+  Layers, 
+  Shuffle 
 } from 'lucide-react';
 import grammarQuizData from '../../data/romanian_grammar_quiz.json';
 import Navbar from '../../components/Navbar';
@@ -25,6 +28,7 @@ function GrammarQuizContent() {
   const { appLang, strings, isRtl } = useLanguage();
   const isDark = theme === 'dark';
 
+  const [activeTechnique, setActiveTechnique] = useState('all');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [score, setScore] = useState(0);
@@ -32,7 +36,18 @@ function GrammarQuizContent() {
   const [isAnswered, setIsAnswered] = useState(false);
   const [quizFinished, setQuizFinished] = useState(false);
 
-  const currentQuestion = grammarQuizData[currentIndex];
+  const techniques = [
+    { id: 'all', label_ar: 'جميع الأنواع (All Modes 🎮)', label_en: 'All Modes' },
+    { id: 'multiple_choice', label_ar: '🎯 اختيارات متعددة (Multiple Choice)', label_en: 'Multiple Choice' },
+    { id: 'fill_in_blank', label_ar: '✍️ إكمال الفراغ (Fill In The Blank)', label_en: 'Fill In The Blank' },
+    { id: 'word_order', label_ar: '🧩 ترتيب الكلمات (Word Reordering)', label_en: 'Word Reordering' },
+  ];
+
+  const filteredQuestions = grammarQuizData.filter(q => 
+    activeTechnique === 'all' || q.type === activeTechnique
+  );
+
+  const currentQuestion = filteredQuestions[currentIndex] || filteredQuestions[0];
 
   const playSound = (type) => {
     if (typeof window === 'undefined') return;
@@ -81,7 +96,7 @@ function GrammarQuizContent() {
   };
 
   const handleNextQuestion = () => {
-    if (currentIndex + 1 < grammarQuizData.length) {
+    if (currentIndex + 1 < filteredQuestions.length) {
       setCurrentIndex(prev => prev + 1);
       setSelectedOption(null);
       setIsAnswered(false);
@@ -108,15 +123,15 @@ function GrammarQuizContent() {
       } ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
         
         {/* Banner Header */}
-        <div className={`rounded-2xl p-5 border shadow-xl flex items-center justify-between ${
+        <div className={`rounded-2xl p-5 border shadow-xl flex flex-wrap items-center justify-between gap-3 ${
           isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'
         }`}>
           <div>
             <span className="text-[10px] font-bold text-amber-500 uppercase tracking-wider block">
-              🎮 Romanian Grammar Quiz
+              🎮 Romanian Grammar Quiz Game (تقنيات ممتعة)
             </span>
             <h1 className="text-xl font-extrabold">
-              تحدي قواعد اللغة الرومانية
+              تحدي وتدريبات قواعد اللغة الرومانية
             </h1>
           </div>
 
@@ -126,31 +141,57 @@ function GrammarQuizContent() {
               <span>{streak} Streak</span>
             </div>
             <div className="px-3 py-1.5 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-black">
-              🏆 {score} / {grammarQuizData.length}
+              🏆 {score} / {filteredQuestions.length}
             </div>
           </div>
         </div>
 
-        {!quizFinished ? (
+        {/* Technique Mode Selector Chips */}
+        <div className="flex items-center space-x-2 space-x-reverse overflow-x-auto pb-1 no-scrollbar">
+          {techniques.map((t) => {
+            const isActive = activeTechnique === t.id;
+            return (
+              <button
+                key={t.id}
+                onClick={() => {
+                  setActiveTechnique(t.id);
+                  handleRestartQuiz();
+                }}
+                className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all shrink-0 ${
+                  isActive 
+                    ? 'bg-amber-600 text-white shadow-md shadow-amber-600/30' 
+                    : isDark ? 'bg-slate-800/80 text-slate-400 border border-slate-700/60 hover:text-white' : 'bg-white text-slate-600 border border-slate-200 hover:text-slate-900 shadow-sm'
+                }`}
+              >
+                {t.label_ar}
+              </button>
+            );
+          })}
+        </div>
+
+        {!quizFinished && currentQuestion ? (
           <div className={`rounded-2xl p-6 border shadow-2xl space-y-6 ${
             isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'
           }`}>
             {/* Progress Bar */}
             <div className="space-y-1">
               <div className="flex justify-between text-xs font-bold text-slate-400">
-                <span>السؤال {currentIndex + 1} من {grammarQuizData.length}</span>
-                <span>{Math.round(((currentIndex + 1) / grammarQuizData.length) * 100)}%</span>
+                <span>السؤال {currentIndex + 1} من {filteredQuestions.length} ({currentQuestion.type})</span>
+                <span>{Math.round(((currentIndex + 1) / filteredQuestions.length) * 100)}%</span>
               </div>
               <div className="w-full h-2 rounded-full bg-slate-700/40 overflow-hidden">
                 <div 
                   className="h-full bg-gradient-to-r from-amber-500 to-rose-600 transition-all duration-300" 
-                  style={{ width: `${((currentIndex + 1) / grammarQuizData.length) * 100}%` }}
+                  style={{ width: `${((currentIndex + 1) / filteredQuestions.length) * 100}%` }}
                 />
               </div>
             </div>
 
-            {/* Question Text */}
+            {/* Question Text Badge */}
             <div className="space-y-2">
+              <span className="text-[10px] font-extrabold px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 uppercase">
+                {currentQuestion.type === 'fill_in_blank' ? '✍️ أكمل الفراغ (Fill in Blank)' : currentQuestion.type === 'word_order' ? '🧩 ترتيب الكلمات (Word Reorder)' : '🎯 اختيارات (Multiple Choice)'}
+              </span>
               <h2 className="text-lg font-black text-theme-main leading-relaxed">
                 {currentQuestion.question_ro}
               </h2>
@@ -214,7 +255,7 @@ function GrammarQuizContent() {
                   onClick={handleNextQuestion}
                   className="w-full py-3.5 bg-gradient-to-r from-amber-500 to-rose-600 hover:opacity-95 text-white font-extrabold rounded-2xl text-sm shadow-xl transition-all flex items-center justify-center space-x-2 space-x-reverse"
                 >
-                  <span>{currentIndex + 1 < grammarQuizData.length ? 'السؤال التالي ➔' : 'عرض النتيجة النهائية 🏆'}</span>
+                  <span>{currentIndex + 1 < filteredQuestions.length ? 'السؤال التالي ➔' : 'عرض النتيجة النهائية 🏆'}</span>
                 </button>
               </div>
             )}
@@ -231,7 +272,7 @@ function GrammarQuizContent() {
             <div className="space-y-2">
               <h2 className="text-2xl font-black">أحسنت! أكملت تحدي القواعد الرومانية 🎉</h2>
               <p className="text-sm font-bold text-amber-400">
-                حصلت على {score} من أصل {grammarQuizData.length} إجابات صحيحة!
+                حصلت على {score} من أصل {filteredQuestions.length} إجابات صحيحة!
               </p>
             </div>
 

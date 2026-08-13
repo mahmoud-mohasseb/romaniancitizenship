@@ -1,6 +1,7 @@
 [
   {
     "id": "gq-1",
+    "type": "multiple_choice",
     "question_ro": "Care este forma corectă de plural a cuvântului «Scaun» (محايد - neutru)?",
     "question_ar": "ما هو الجمع الصحيح لكلمة «Scaun» (كرسي - اسم محايد)؟",
     "question_en": "What is the correct plural form of neuter noun «Scaun» (chair)?",
@@ -16,6 +17,23 @@
   },
   {
     "id": "gq-2",
+    "type": "fill_in_blank",
+    "question_ro": "Completați spațiul: Eu _______ la școală în fiecare zi. (a merge)",
+    "question_ar": "أكمل الفراغ: أنا _______ إلى المدرسة كل يوم. (فعل الذهاب a merge)",
+    "question_en": "Fill in the blank: Eu _______ la școală (to go).",
+    "category": "verbs",
+    "correct_answer": "merg",
+    "options": [
+      "merg",
+      "mergi",
+      "merge",
+      "mergem"
+    ],
+    "explanation_ar": "تصريف الفعل a merge مع الضمير Eu هو (merg)."
+  },
+  {
+    "id": "gq-3",
+    "type": "multiple_choice",
     "question_ro": "Cum adaugi articolul hotărât la cuvântul masculin «Băiat» (ولد)?",
     "question_ar": "كيف يضاف أداة التعريف المعرفة إلى كلمة «Băiat» (ولد - مذكر)؟",
     "question_en": "How do you add the definite article to masculine noun «Băiat» (boy)?",
@@ -30,7 +48,40 @@
     "explanation_ar": "أداة التعريف للمذكر المفرد في الرومانية هي اللاحقة (-ul) كـ băiat -> băiatul."
   },
   {
-    "id": "gq-3",
+    "id": "gq-4",
+    "type": "fill_in_blank",
+    "question_ro": "Completați spațiul: Noi _______ o casă frumoasă în București. (a avea)",
+    "question_ar": "أكمل الفراغ: نحن _______ بيتاً جميلاً في بوخارست. (فعل الملكية a avea)",
+    "question_en": "Fill in the blank: Noi _______ o casă frumoasă (to have).",
+    "category": "verbs",
+    "correct_answer": "avem",
+    "options": [
+      "avem",
+      "am",
+      "ai",
+      "aveți"
+    ],
+    "explanation_ar": "تصريف الفعل a avea مع الضمير Noi هو (avem)."
+  },
+  {
+    "id": "gq-5",
+    "type": "word_order",
+    "question_ro": "Oronați cuvintele: [sunt / Eu / inginer / român]",
+    "question_ar": "رتب الكلمات لتكوين جملة صحيحة: [Eu / sunt / inginer / român]",
+    "question_en": "Order the words to form a sentence: [sunt / Eu / inginer / român]",
+    "category": "sentence_structure",
+    "correct_answer": "Eu sunt inginer român",
+    "options": [
+      "Eu sunt inginer român",
+      "Inginer sunt Eu român",
+      "Român Eu inginer sunt",
+      "Sunt român inginer Eu"
+    ],
+    "explanation_ar": "الترتيب الصحيح للجملة: الضمير (Eu) + الفعل (sunt) + المهنة (inginer) + الصفة (român)."
+  },
+  {
+    "id": "gq-6",
+    "type": "multiple_choice",
     "question_ro": "Care este تصريف الفعل «A fi» مع الضمير (Noi / نحن) في الحاضر؟",
     "question_ar": "ما هو تصريف الفعل «A fi» (يكون) مع الضمير نحن (Noi) في المضارع؟",
     "question_en": "What is the present conjugation of «A fi» (to be) for 'Noi' (We)?",
@@ -45,22 +96,24 @@
     "explanation_ar": "تصريف الفعل a fi مع الضمائر: Eu sunt, Tu ești, El este, Noi suntem, Voi sunteți, Ei sunt."
   },
   {
-    "id": "gq-4",
-    "question_ro": "Cum spui «لقد أكلتُ» (Past Composite Tense) باللغة الرومانية؟",
-    "question_ar": "كيف تعبر عن الماضي المركب «أنا أكلتُ» بالرومانية؟",
-    "question_en": "How do you say 'I ate' (Past Composite Tense) in Romanian?",
+    "id": "gq-7",
+    "type": "fill_in_blank",
+    "question_ro": "Completați spațiul: Ieri eu _______ la film cu prietenii. (Past composite of a merge)",
+    "question_ar": "أكمل الفراغ: الأمس أنا _______ إلى الفيلم مع الأصدقاء. (الماضي المركب لمذهب)",
+    "question_en": "Fill in the blank: Ieri eu _______ la film (I went).",
     "category": "verbs",
-    "correct_answer": "Am mâncat",
+    "correct_answer": "am mers",
     "options": [
-      "Am mâncat",
-      "Ai mâncat",
-      "A mâncat",
-      "Mănânc"
+      "am mers",
+      "ai mers",
+      "a mers",
+      "vom merge"
     ],
-    "explanation_ar": "يتكون الماضي المركب مع الضمير (Eu) من الفعل المساعد (Am) + التصريف (Am mâncat)."
+    "explanation_ar": "الماضي المركب مع الضمير Eu هو (am mers)."
   },
   {
-    "id": "gq-5",
+    "id": "gq-8",
+    "type": "multiple_choice",
     "question_ro": "Care este أداة التعريف للجمع المؤنث «Fetele» (الفتيات)؟",
     "question_ar": "ما هي لاحقة التعريف للجمع المؤنث في «Fetele» (الفتيات)؟",
     "question_en": "What is the definite article suffix for plural feminine «Fetele» (the girls)?",
@@ -75,78 +128,35 @@
     "explanation_ar": "للجمع المؤنث والجمع المحايد تضاف اللاحقة (-le) مثل fetele, casele, scaunele."
   },
   {
-    "id": "gq-6",
-    "question_ro": "Cum se formează viitorul colocvial «سأذهب» în limba română?",
-    "question_ar": "كيف يصاغ المستقبل العامي «سأذهب» باللغة الرومانية؟",
-    "question_en": "How is the colloquial future 'I will go' formed in Romanian?",
-    "category": "verbs",
-    "correct_answer": "O să merg",
-    "options": [
-      "O să merg",
-      "Voi merge",
-      "Am mers",
-      "Merg"
-    ],
-    "explanation_ar": "المستقبل العامي الشائع يصاغ بـ (O să + Conjunctiv) مثل: O să merg, O să mănânc."
-  },
-  {
-    "id": "gq-7",
-    "question_ro": "Care este ضمير الملكية للمذكر المفرد (كتابي / my book)?",
-    "question_ar": "ما هو ضمير الملكية للمذكر المفرد «كتابي»؟",
-    "question_en": "What is the masculine singular possessive pronoun for 'my'?",
-    "category": "pronouns",
-    "correct_answer": "al meu (Cartea mea / Cursul meu)",
-    "options": [
-      "al meu (Cartea mea / Cursul meu)",
-      "al tău",
-      "al său",
-      "ai mei"
-    ],
-    "explanation_ar": "ضمير الملكية للمذكر المفرد مع (Eu) هو (al meu)."
-  },
-  {
-    "id": "gq-8",
-    "question_ro": "Care este pluralul cuvântului «Oraș» (مدينة - اسم محايد)?",
-    "question_ar": "ما هو جمع كلمة «Oraș» (مدينة - اسم محايد)؟",
-    "question_en": "What is the plural of neuter noun «Oraș» (city)?",
-    "category": "nouns",
-    "correct_answer": "Orașe",
-    "options": [
-      "Orașe",
-      "Orași",
-      "Orașuri",
-      "Orașele"
-    ],
-    "explanation_ar": "الجمع المحايد لكلمة oraș هو orașe."
-  },
-  {
     "id": "gq-9",
-    "question_ro": "Cum spui «سنذهب» (Noi) la timpul viitor formal?",
-    "question_ar": "كيف تقول «سنذهب» (نحن) في المستقبل الرسمي؟",
-    "question_en": "How do you say 'We will go' in formal future tense?",
-    "category": "verbs",
-    "correct_answer": "Vom merge",
+    "type": "word_order",
+    "question_ro": "Oronați cuvintele: [costă / biletul / Cât / de / metrou?]",
+    "question_ar": "رتب الكلمات للسؤال عن السعر: [Cât / costă / biletul / de / metrou?]",
+    "question_en": "Order words to ask price: [costă / biletul / Cât / de / metrou?]",
+    "category": "sentence_structure",
+    "correct_answer": "Cât costă biletul de metrou?",
     "options": [
-      "Vom merge",
-      "Voi merge",
-      "Veți merge",
-      "Vor merge"
+      "Cât costă biletul de metrou?",
+      "Biletul costă cât de metrou?",
+      "De metrou cât costă biletul?",
+      "Metrou biletul cât costă de?"
     ],
-    "explanation_ar": "المستقبل الرسمي مع Noi هو (Vom merge)."
+    "explanation_ar": "الترتيب الصحيح للسؤال عن السعر: Cât (كم) + costă (يكلف) + biletul de metrou (تذكرة المترو)؟"
   },
   {
     "id": "gq-10",
-    "question_ro": "Care este أداة التنكير للمؤنث المفرد «فتاة» (a girl)?",
-    "question_ar": "ما هي أداة التنكير للمؤنث المفرد «فتاة»؟",
-    "question_en": "What is the indefinite article for singular feminine noun?",
-    "category": "articles",
-    "correct_answer": "o (o fată)",
+    "type": "fill_in_blank",
+    "question_ro": "Completați spațiul: Mâine el _______ la București. (Future tense of a călători)",
+    "question_ar": "أكمل الفراغ: غداً هو _______ إلى بوخارست. (المستقبل من يسافر)",
+    "question_en": "Fill in the blank: Mâine el _______ la București (will travel).",
+    "category": "verbs",
+    "correct_answer": "va călători",
     "options": [
-      "o (o fată)",
-      "un (un băiat)",
-      "niște",
-      "lui"
+      "va călători",
+      "am călătorit",
+      "călătorește",
+      "să călătorească"
     ],
-    "explanation_ar": "أداة التنكير للمؤنث المفرد هي (o) مثل o fată, o casă."
+    "explanation_ar": "المستقبل الرسمي مع الضمير El هو (va călători)."
   }
 ]
