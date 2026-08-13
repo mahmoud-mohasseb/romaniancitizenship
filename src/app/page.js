@@ -19,7 +19,11 @@ import {
   Gamepad2, 
   MessageSquare, 
   Puzzle, 
-  GraduationCap 
+  GraduationCap, 
+  ShieldCheck, 
+  Globe, 
+  Landmark, 
+  Palette 
 } from 'lucide-react';
 import questions from '../data/questions_ar.json';
 import Navbar from '../components/Navbar';
@@ -49,6 +53,16 @@ export default function HomePage() {
     setShowInstallModal(true);
   };
 
+  const getCategoryIcon = (catId) => {
+    switch (catId) {
+      case 'constitution': return ShieldCheck;
+      case 'history': return Landmark;
+      case 'geography': return Globe;
+      case 'culture': return Palette;
+      default: return BookOpen;
+    }
+  };
+
   return (
     <div className="min-h-screen pb-20 bg-theme-main text-theme-main flex flex-col">
       {/* Sidebar Navigation */}
@@ -74,7 +88,7 @@ export default function HomePage() {
             <span className={`inline-block px-4 py-1.5 rounded-full text-xs font-bold border ${
               isDark ? 'bg-slate-800 text-rose-400 border-rose-500/30' : 'bg-rose-50 text-rose-600 border-rose-200'
             }`}>
-              🇷🇴 Cetățenia Română Prep
+              🇷🇴 {questions.length} سؤالاً مصوراً لاختبار الجنسية الرومانية ANC
             </span>
             <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
               {strings.appTitle}
@@ -131,75 +145,135 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Learning Modules Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {/* Romanian Grammar Guide Card */}
-          <Link
-            href="/grammar"
-            className="flex items-center justify-between p-5 bg-gradient-to-r from-amber-500 via-amber-600 to-rose-700 rounded-2xl border border-amber-500/40 shadow-lg hover:opacity-95 transition-all text-white group"
-          >
-            <div className="space-y-1">
-              <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-black/20 text-white border border-white/20">
-                📚 Gramatica Limbii Române
-              </span>
-              <h3 className="text-base font-bold">{appLang === 'ar' ? 'شرح قواعد الرومانية والضمائر' : 'Romanian Grammar Guide'}</h3>
-              <p className="text-xs text-amber-100/90">
-                {appLang === 'ar' ? 'الأجناس وأدوات التعريف وتصريف الأفعال مع الصوت' : 'Nouns, Definite articles & Verb conjugations'}
-              </p>
-            </div>
-            <GraduationCap className="w-8 h-8 text-white shrink-0" />
-          </Link>
+        {/* FEATURED: 469 CITIZENSHIP QUESTIONS CATEGORIZED GRID */}
+        <div className="space-y-3 pt-2">
+          <div className="flex items-center justify-between">
+            <h2 className="text-lg font-extrabold flex items-center space-x-2 space-x-reverse">
+              <BookOpen className="w-5 h-5 text-rose-500" />
+              <span>أسئلة امتحان الجنسية ({questions.length} سؤالاً مصوراً)</span>
+            </h2>
+            <Link
+              href="/study?category=all"
+              className="text-xs font-bold text-rose-500 hover:underline flex items-center space-x-1 space-x-reverse"
+            >
+              <span>عرض جميع الأسئلة</span>
+              {isRtl ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+            </Link>
+          </div>
 
-          {/* Grammar Quiz Game Card */}
-          <Link
-            href="/grammar-quiz"
-            className="flex items-center justify-between p-5 bg-gradient-to-r from-rose-600 via-rose-700 to-amber-800 rounded-2xl border border-rose-500/40 shadow-lg hover:opacity-95 transition-all text-white group"
-          >
-            <div className="space-y-1">
-              <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-black/20 text-white border border-white/20">
-                🎮 Grammar Quiz Challenge
-              </span>
-              <h3 className="text-base font-bold">{appLang === 'ar' ? 'لعبة اختبار القواعد 🎮' : 'Grammar Quiz Game'}</h3>
-              <p className="text-xs text-rose-100/90">
-                {appLang === 'ar' ? 'تحديات ممتعة لاختبار معرفتك بتصريف الأفعال والأدوات' : 'Fun interactive verb & article quizzes'}
-              </p>
-            </div>
-            <Trophy className="w-8 h-8 text-white shrink-0" />
-          </Link>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {CATEGORIES_LIST.filter(c => c.id !== 'all').map((cat) => {
+              const IconComp = getCategoryIcon(cat.id);
+              const count = categoryCounts[cat.id] || 0;
+              return (
+                <Link
+                  key={cat.id}
+                  href={`/study?category=${cat.id}`}
+                  className={`flex items-center justify-between p-4 rounded-2xl border-l-4 border hover:border-rose-500 transition-all group ${
+                    isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200 shadow-sm'
+                  }`}
+                  style={{ borderLeftColor: cat.color }}
+                >
+                  <div className="flex items-center space-x-3 space-x-reverse">
+                    <div 
+                      className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
+                      style={{ backgroundColor: cat.color + '20', color: cat.color }}
+                    >
+                      <IconComp className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold leading-tight group-hover:text-rose-500 transition-colors">
+                        {appLang === 'ar' ? cat.name_ar : appLang === 'en' ? cat.name_en : cat.name_ro}
+                      </h4>
+                      <p className="text-[11px] text-theme-sub leading-tight">{cat.name_ro}</p>
+                      <span className="inline-block mt-1 text-[10px] font-black px-2 py-0.5 rounded-md bg-slate-900/40 text-emerald-400">
+                        {count} سؤالاً جاهزاً ⚡
+                      </span>
+                    </div>
+                  </div>
+                  {isRtl ? <ChevronLeft className="w-5 h-5 text-slate-400" /> : <ChevronRight className="w-5 h-5 text-slate-400" />}
+                </Link>
+              );
+            })}
+          </div>
+        </div>
 
-          {/* Daily Conversations Card */}
-          <Link
-            href="/conversations"
-            className="flex items-center justify-between p-5 bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-900 rounded-2xl border border-blue-500/40 shadow-lg hover:opacity-95 transition-all text-white group"
-          >
-            <div className="space-y-1">
-              <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-black/20 text-white border border-white/20">
-                🗣️ Daily Dialogues
-              </span>
-              <h3 className="text-base font-bold">{strings.conversationsTitle}</h3>
-              <p className="text-xs text-blue-100/90">
-                {appLang === 'ar' ? 'حوارات الفندق والقطار والطوارئ والمقابلة بالصوت' : 'Translated dialogues with native audio'}
-              </p>
-            </div>
-            <MessageSquare className="w-8 h-8 text-white shrink-0" />
-          </Link>
+        {/* Learning Modules Grid (Grammar, Conversations, Quizzes) */}
+        <div className="space-y-3 pt-2">
+          <h2 className="text-lg font-extrabold flex items-center space-x-2 space-x-reverse">
+            <GraduationCap className="w-5 h-5 text-amber-500" />
+            <span>وحدات تعلم اللغة والقواعد والمحادثات</span>
+          </h2>
 
-          {/* Fun Language Learning Quiz Card */}
-          <Link
-            href="/language-quiz"
-            className="flex items-center justify-between p-5 bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-900 rounded-2xl border border-emerald-500/40 shadow-lg hover:opacity-95 transition-all text-white group"
-          >
-            <div className="space-y-1">
-              <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-black/20 text-white border border-white/20">
-                🧩 Vocabulary & Phrases
-              </span>
-              <h3 className="text-base font-bold">{appLang === 'ar' ? 'اختبار المفردات والجمل 🎮' : 'Vocabulary Quiz'}</h3>
-              <p className="text-xs text-emerald-100/90">
-                {appLang === 'ar' ? 'تحدي الكلمات والجمل الرومانية اليومية' : 'Fun vocabulary & phrase challenges'}
-              </p>
-            </div>
-            <Puzzle className="w-8 h-8 text-white shrink-0" />
-          </Link>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {/* Romanian Grammar Guide Card */}
+            <Link
+              href="/grammar"
+              className="flex items-center justify-between p-5 bg-gradient-to-r from-amber-500 via-amber-600 to-rose-700 rounded-2xl border border-amber-500/40 shadow-lg hover:opacity-95 transition-all text-white group"
+            >
+              <div className="space-y-1">
+                <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-black/20 text-white border border-white/20">
+                  📚 Gramatica Limbii Române
+                </span>
+                <h3 className="text-base font-bold">{appLang === 'ar' ? 'شرح قواعد الرومانية والضمائر' : 'Romanian Grammar Guide'}</h3>
+                <p className="text-xs text-amber-100/90">
+                  {appLang === 'ar' ? 'الأجناس وأدوات التعريف وتصريف الأفعال مع الصوت' : 'Nouns, Definite articles & Verb conjugations'}
+                </p>
+              </div>
+              <GraduationCap className="w-8 h-8 text-white shrink-0" />
+            </Link>
+
+            {/* Grammar Quiz Game Card */}
+            <Link
+              href="/grammar-quiz"
+              className="flex items-center justify-between p-5 bg-gradient-to-r from-rose-600 via-rose-700 to-amber-800 rounded-2xl border border-rose-500/40 shadow-lg hover:opacity-95 transition-all text-white group"
+            >
+              <div className="space-y-1">
+                <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-black/20 text-white border border-white/20">
+                  🎮 Grammar Quiz Challenge
+                </span>
+                <h3 className="text-base font-bold">{appLang === 'ar' ? 'لعبة اختبار القواعد 🎮' : 'Grammar Quiz Game'}</h3>
+                <p className="text-xs text-rose-100/90">
+                  {appLang === 'ar' ? 'تحديات ممتعة لاختبار معرفتك بتصريف الأفعال والأدوات' : 'Fun interactive verb & article quizzes'}
+                </p>
+              </div>
+              <Trophy className="w-8 h-8 text-white shrink-0" />
+            </Link>
+
+            {/* Daily Conversations Card */}
+            <Link
+              href="/conversations"
+              className="flex items-center justify-between p-5 bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-900 rounded-2xl border border-blue-500/40 shadow-lg hover:opacity-95 transition-all text-white group"
+            >
+              <div className="space-y-1">
+                <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-black/20 text-white border border-white/20">
+                  🗣️ Daily Dialogues
+                </span>
+                <h3 className="text-base font-bold">{strings.conversationsTitle}</h3>
+                <p className="text-xs text-blue-100/90">
+                  {appLang === 'ar' ? 'حوارات الفندق والقطار والطوارئ والمقابلة بالصوت' : 'Translated dialogues with native audio'}
+                </p>
+              </div>
+              <MessageSquare className="w-8 h-8 text-white shrink-0" />
+            </Link>
+
+            {/* Fun Language Learning Quiz Card */}
+            <Link
+              href="/language-quiz"
+              className="flex items-center justify-between p-5 bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-900 rounded-2xl border border-emerald-500/40 shadow-lg hover:opacity-95 transition-all text-white group"
+            >
+              <div className="space-y-1">
+                <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-black/20 text-white border border-white/20">
+                  🧩 Vocabulary & Phrases
+                </span>
+                <h3 className="text-base font-bold">{appLang === 'ar' ? 'اختبار المفردات والجمل 🎮' : 'Vocabulary Quiz'}</h3>
+                <p className="text-xs text-emerald-100/90">
+                  {appLang === 'ar' ? 'تحدي الكلمات والجمل الرومانية اليومية' : 'Fun vocabulary & phrase challenges'}
+                </p>
+              </div>
+              <Puzzle className="w-8 h-8 text-white shrink-0" />
+            </Link>
+          </div>
         </div>
 
         {/* Action Banners for AI Tutor & Study */}
@@ -222,19 +296,6 @@ export default function HomePage() {
               </p>
             </div>
             <Sparkles className="w-8 h-8 text-amber-400 shrink-0" />
-          </Link>
-
-          <Link 
-            href="/study?category=all"
-            className="flex items-center justify-between p-5 bg-gradient-to-r from-rose-600 to-rose-700 rounded-2xl shadow-lg shadow-rose-600/30 hover:opacity-95 transition-all text-white group"
-          >
-            <div className="space-y-1">
-              <h3 className="text-lg font-bold">{strings.studyNow}</h3>
-              <p className="text-xs text-rose-100/90">
-                {appLang === 'ar' ? 'تصفح الأسئلة مع صور ويكيبيديا الواضحة والروابط المعرفية' : appLang === 'en' ? 'Browse questions with clear Wikipedia photos & article references' : 'Răsfoiește întrebările cu imagini clare și referințe Wikipedia'}
-              </p>
-            </div>
-            <BookOpen className="w-8 h-8 text-white shrink-0" />
           </Link>
         </div>
 
