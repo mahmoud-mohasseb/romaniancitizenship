@@ -7,27 +7,28 @@
     "category": "nouns",
     "easy_tip_ar": "💡 نصيحة سريعة: المذكر ينتهي بساكن، المؤنث ينتهي بـ (ă)، والمحايد يكون مذكر في المفرد ومؤنث في الجمع!",
     "easy_tip_en": "💡 Quick Tip: Masculine ends in a consonant, Feminine in -ă, Neuter is masculine in singular & feminine in plural!",
-    "explanation_ar": "تتميز اللغة الرومانية بوجود ثلاثة أجناس للأسماء. معرفة جنس الاسم تساعدك فوراً على استخدام أداة التعريف والتصريف الصحيح.",
+    "explanation_ar": "تتميز اللغة الرومانية بوجود ثلاثة أجناس للأسماء: المذكر (Masculin)، المؤنث (Feminin)، والمحايد (Neutru). معرفة جنس الاسم تساعدك فوراً على اختيار أدوات التعريف والتنكير والصفات المناسبة.",
     "explanation_en": "Romanian nouns have three genders: Masculine, Feminine, and Neuter. Knowing the gender helps you choose correct articles & adjectives.",
+    "explanation_ro": "Substantivele în limba română au trei genuri: masculin, feminin și neutru. Genul neutru este masculin la singular și feminin la plural.",
     "rules": [
       {
         "gender": "Masculin (مذكر)",
-        "singular_ro": "băiat / om / frate",
-        "plural_ro": "băieți / oameni / frați",
+        "singular_ro": "băiat / om / frate / profesor / doctor",
+        "plural_ro": "băieți / oameni / frați / profesori / doctori",
         "rule_ar": "ينتهي عادة بحرف ساكن، وفي الجمع يضاف حرف (i)",
         "rule_en": "Ends in a consonant, plural formed with -i"
       },
       {
         "gender": "Feminin (مؤنث)",
-        "singular_ro": "fată / casă / școală",
-        "plural_ro": "fete / case / școli",
-        "rule_ar": "ينتهي عادة بحرف (ă)، وفي الجمع يتحول إلى (e) أو (i)",
-        "rule_en": "Ends in -ă, plural changes to -e or -i"
+        "singular_ro": "fată / casă / școală / țară / mașină",
+        "plural_ro": "fete / case / școli / țări / mașini",
+        "rule_ar": "ينتهي عادة بحرف (ă) أو (a)، وفي الجمع يتحول إلى (e) أو (i)",
+        "rule_en": "Ends in -ă or -a, plural changes to -e or -i"
       },
       {
         "gender": "Neutru (محايد)",
-        "singular_ro": "scaun / drum / oraș",
-        "plural_ro": "scaune / drumuri / orașe",
+        "singular_ro": "scaun / drum / oraș / parc / birou",
+        "plural_ro": "scaune / drumuri / orașe / parcuri / birouri",
         "rule_ar": "مفرد مذكر وجمع مؤنث، يجمع بـ (e) أو (uri)",
         "rule_en": "Singular masculine, plural feminine (-e or -uri)"
       }
@@ -49,14 +50,64 @@
   },
   {
     "id": "g-2",
-    "topic_ro": "2. Articolul Hotărât și Nehotărât (Definite & Indefinite Articles)",
-    "topic_ar": "2. أدوات التعريف والتنكير (الـ التعريف كلاحقة)",
-    "topic_en": "2. Definite & Indefinite Articles (Attached Suffixes)",
+    "topic_ro": "2. Pluralul Substantivelor (Plural Rules & Endings)",
+    "topic_ar": "2. قواعد جمع الأسماء واللواحق (i, e, uri)",
+    "topic_en": "2. Noun Plural Formation Rules (-i, -e, -uri)",
+    "category": "nouns",
+    "easy_tip_ar": "💡 نصيحة سريعة: المذكر يجمع بـ (i)، المؤنث يجمع بـ (e) أو (i)، والمحايد بالأشياء غير الحية يجمع بـ (uri)!",
+    "easy_tip_en": "💡 Quick Tip: Masculine plural is -i, Feminine is -e or -i, and Neuter inanimate things take -uri!",
+    "explanation_ar": "تختلف نهاية الاسم عند تحويله من المفرد إلى الجمع بناءً على جنسه ونهايته الأصلية.",
+    "explanation_en": "Noun plurals are formed based on gender and the final letter of the singular noun.",
+    "explanation_ro": "Formarea pluralului depinde de genul substantivului și de litera finală a singularului.",
+    "rules": [
+      {
+        "gender": "Masculin Plural (-i)",
+        "singular_ro": "student / copac / prieten",
+        "plural_ro": "studenți / copaci / prieteni",
+        "rule_ar": "التحول الصوتي: t -> ț, c -> ci",
+        "rule_en": "Phonetic shift: t -> ț, c -> ci"
+      },
+      {
+        "gender": "Feminin Plural (-e / -i)",
+        "singular_ro": "carte / floare / grădină",
+        "plural_ro": "cărți / flori / grădini",
+        "rule_ar": "التحول الصوتي: a -> ă, oa -> o",
+        "rule_en": "Phonetic shift: a -> ă, oa -> o"
+      },
+      {
+        "gender": "Neutru Plural (-uri / -e)",
+        "singular_ro": "cadou / lucru / tren",
+        "plural_ro": "cadouri / lucruri / trenuri",
+        "rule_ar": "الجماد والأشياء تأخذ اللاحقة (uri)",
+        "rule_en": "Inanimate objects take suffix -uri"
+      }
+    ],
+    "dialogue_example": [
+      {
+        "speaker": "Profesor",
+        "text_ro": "Studenții au cumpărat multe cărți noi.",
+        "text_ar": "الطلاب (studenții) اشتروا كتباً (cărți) جديدة كثيرة.",
+        "text_en": "The students (studenții) bought many new books (cărți)."
+      },
+      {
+        "speaker": "Student",
+        "text_ro": "Am luat și două cadouri pentru prieteni.",
+        "text_ar": "أخذت أيضاً هديتين (cadouri) للأصدقاء (prieteni).",
+        "text_en": "I also took two gifts (cadouri) for friends (prieteni)."
+      }
+    ]
+  },
+  {
+    "id": "g-3",
+    "topic_ro": "3. Articolul Hotărât și Nehotărât (Definite & Indefinite Articles)",
+    "topic_ar": "3. أدوات التعريف والتنكير (الـ التعريف كلاحقة)",
+    "topic_en": "3. Definite & Indefinite Articles (Attached Suffixes)",
     "category": "articles",
     "easy_tip_ar": "💡 نصيحة سريعة: في الرومانية أداة التعريف تُضاف في نهاية الكلمة كلاحقة! (băiat + ul = băiatul / الولد)",
     "easy_tip_en": "💡 Quick Tip: In Romanian, the definite article 'the' is attached at the END of the word! (băiat + ul = băiatul)",
     "explanation_ar": "أدوات التنكير توضع قبل الاسم (un, o, niște). أما أدوات التعريف فتلتصق بآخره (-ul للمذكر، -a للمؤنث، -le للجمع).",
     "explanation_en": "Indefinite articles go before the noun (un, o, niște). Definite articles attach at the end (-ul, -a, -le).",
+    "explanation_ro": "Articolul nehotărât se pune înaintea substantivului, iar cel hotărât se adaugă la sfârșitul substantivului.",
     "rules": [
       {
         "gender": "Masculin Singur",
@@ -91,7 +142,7 @@
       {
         "speaker": "Client",
         "text_ro": "Unde este băiatul care vinde pâinea?",
-        "text_ar": "أين الولد (băiatul) الذي يبيع الخخبز (pâinea)؟",
+        "text_ar": "أين الولد (băiatul) الذي يبيع الخبز (pâinea)؟",
         "text_en": "Where is the boy (băiatul) who sells the bread (pâinea)?"
       },
       {
@@ -103,15 +154,16 @@
     ]
   },
   {
-    "id": "g-3",
-    "topic_ro": "3. Verbele la Prezent (Present Tense Conjugations)",
-    "topic_ar": "3. تصريف الأفعال في زمن المضارع الحاضر",
-    "topic_en": "3. Present Tense Verb Conjugations (A fi, A avea, A merge)",
+    "id": "g-4",
+    "topic_ro": "4. Verbele la Prezent (Present Tense Conjugations)",
+    "topic_ar": "4. تصريف الأفعال في زمن المضارع الحاضر",
+    "topic_en": "4. Present Tense Verb Conjugations (A fi, A avea, A merge)",
     "category": "verbs",
     "easy_tip_ar": "💡 نصيحة سريعة: احفظ تصريف أفعال الكينونة والملكية لأنك ستستخدمها في 90% من محادثاتك اليومية!",
     "easy_tip_en": "💡 Quick Tip: Master 'to be' (a fi) and 'to have' (a avea) as you will use them in 90% of daily conversations!",
     "explanation_ar": "تصريف الأفعال في الحاضر يتغير بحسب الضمير الشخصي (Eu, Tu, El/Ea, Noi, Voi, Ei/Ele).",
     "explanation_en": "Present tense verbs change their endings according to personal pronouns.",
+    "explanation_ro": "Conjugarea verbelor la prezent variază în funcție de persoană și număr.",
     "rules": [
       {
         "pronoun": "Eu (أنا / I)",
@@ -172,15 +224,72 @@
     ]
   },
   {
-    "id": "g-4",
-    "topic_ro": "4. Timpul Trecut Compus (Past Composite Tense)",
-    "topic_ar": "4. الزمن الماضي المركب (Trecut Compus)",
-    "topic_en": "4. Past Composite Tense (Am fost, Am mâncat)",
+    "id": "g-5",
+    "topic_ro": "5. Grupele de Verbe la Prezent (Verb Groups -are, -ere, -ire)",
+    "topic_ar": "5. مجموعات تصريف الأفعال الرومانية 4",
+    "topic_en": "5. The 4 Romanian Verb Groups (-are, -ere, -ere, -ire)",
+    "category": "verbs",
+    "easy_tip_ar": "💡 نصيحة سريعة: تقسم الأفعال إلى 4 مجموعات حسب نهايتها في المصدر (-are, -e, -ere, -ire)!",
+    "easy_tip_en": "💡 Quick Tip: Romanian verbs divide into 4 groups based on infinitive endings (-are, -e, -ere, -ire)!",
+    "explanation_ar": "تأخذ أفعال كل مجموعة نهايات محددة عند تصريفها في المضارع الحاضر.",
+    "explanation_en": "Verbs in each group take specific suffix endings in present tense.",
+    "explanation_ro": "Verbele se clasifică în 4 conjugări după terminatia de infinitiv.",
+    "rules": [
+      {
+        "group": "Grupul 1 (-are)",
+        "infinitive": "a lucra / a cânta",
+        "eu_form": "lucrez / cânt",
+        "rule_ar": "بعضها يأخذ اللاحقة (-ez) مثل lucrez",
+        "rule_en": "Some take suffix -ez like lucrez"
+      },
+      {
+        "group": "Grupul 2 (-e)",
+        "infinitive": "a tăcea / a avea",
+        "eu_form": "tac / am",
+        "rule_ar": "أفعال المجموعة الثانية تنتهي بـ (-e)",
+        "rule_en": "Group 2 ends in -e"
+      },
+      {
+        "group": "Grupul 3 (-ere)",
+        "infinitive": "a face / a începe",
+        "eu_form": "fac / încep",
+        "rule_ar": "ينتهي المصدر بـ (-ere) وتكون قصيرة النطق",
+        "rule_en": "Infinitive ends in short -ere"
+      },
+      {
+        "group": "Grupul 4 (-ire/-îre)",
+        "infinitive": "a citi / a hotărî",
+        "eu_form": "citesc / hotărăsc",
+        "rule_ar": "معظمها يأخذ اللاحقة (-esc) مثل citesc",
+        "rule_en": "Most take suffix -esc like citesc"
+      }
+    ],
+    "dialogue_example": [
+      {
+        "speaker": "Ioana",
+        "text_ro": "Eu citesc o carte nouă și lucrez de acasă.",
+        "text_ar": "أنا أقرأ (citesc) كتاباً جديداً وأعمل (lucrez) من المنزل.",
+        "text_en": "I read (citesc) a new book and work (lucrez) from home."
+      },
+      {
+        "speaker": "Paul",
+        "text_ro": "Ce faci tu în timpul liber?",
+        "text_ar": "ماذا تفعل (faci) في وقت الفراغ؟",
+        "text_en": "What do you do (faci) in your free time?"
+      }
+    ]
+  },
+  {
+    "id": "g-6",
+    "topic_ro": "6. Timpul Trecut Compus (Past Composite Tense)",
+    "topic_ar": "6. الزمن الماضي المركب (Trecut Compus)",
+    "topic_en": "6. Past Composite Tense (Am fost, Am mâncat)",
     "category": "verbs",
     "easy_tip_ar": "💡 نصيحة سريعة: صيغة الماضي سهلة جداً! (am / ai / a / am / ați / au) + الفعل في الماضي!",
     "easy_tip_en": "💡 Quick Tip: Past tense is super easy! Just take (am/ai/a/am/ați/au) + Past Participle of main verb!",
     "explanation_ar": "يستخدم الماضي المركب للتعبير عن أحداث اكتملت في الماضي. يتكون من (am/ai/a/am/ați/au) + التصريف الثالث.",
     "explanation_en": "Past composite expresses completed actions. Formed using auxiliary verb + past participle.",
+    "explanation_ro": "Trecutul compus exprimă acțiuni încheiate în trecut. Se formează cu auxiliarul a avea + participiu.",
     "rules": [
       {
         "pronoun": "Eu (أنا)",
@@ -227,15 +336,16 @@
     ]
   },
   {
-    "id": "g-5",
-    "topic_ro": "5. Timpul Viitor (Future Tense Formations)",
-    "topic_ar": "5. صيغ زمن المستقبل (O să merg / Voi merge)",
-    "topic_en": "5. Future Tense Formations (Colloquial vs Formal)",
+    "id": "g-7",
+    "topic_ro": "7. Timpul Viitor (Future Tense Formations)",
+    "topic_ar": "7. صيغ زمن المستقبل (O să merg / Voi merge)",
+    "topic_en": "7. Future Tense Formations (Colloquial vs Formal)",
     "category": "verbs",
     "easy_tip_ar": "💡 نصيحة سريعة: في المحادثات الشارعية واليومية الرومانية، استخدم دائماً (O să + Verb) مثل: O să merg (سأذهب)!",
     "easy_tip_en": "💡 Quick Tip: In daily spoken Romanian, always use 'O să + Verb' e.g. O să merg (I will go)!",
     "explanation_ar": "للمستقبل صيغتان: المستقبل العامي الشائع (O să + Conjunctiv) والمستقبل الرسمي (Voi/Vei/Va + Infinitive).",
     "explanation_en": "Future has two forms: Spoken conversational (O să + Subjunctive) & Official formal (Voi + Infinitive).",
+    "explanation_ro": "Viitorul are două forme principale: viitorul vorbit (o să + conjunctiv) și cel formal (voi + infinitiv).",
     "rules": [
       {
         "pronoun": "Eu",
@@ -271,6 +381,623 @@
         "text_ro": "O să merg la primărie și voi depune dosarul.",
         "text_ar": "سأذهب (O să merg) إلى البلدية وسأقدم الملف.",
         "text_en": "I will go (O să merg) to municipality and file the documents."
+      }
+    ]
+  },
+  {
+    "id": "g-8",
+    "topic_ro": "8. Modul Conjunctiv (Subjunctive Mood with 'Să')",
+    "topic_ar": "8. صيغة المنصوب والمطالبة باستخدام (Să)",
+    "topic_en": "8. Subjunctive Mood with 'Să' (Vreau să merg)",
+    "category": "verbs",
+    "easy_tip_ar": "💡 نصيحة سريعة: بعد أفعال الرغبة مثل (Vreau / أود)، استخدم أداة (Să) لتكوين جملة المنصوب (Vreau să merg)!",
+    "easy_tip_en": "💡 Quick Tip: After verbs of wanting (Vreau / I want), use particle 'să' to form subjunctive (Vreau să merg)!",
+    "explanation_ar": "تستخدم صيغة المنصوب (Conjunctiv) بعد أفعال الرغبة والواجب مثل (Vreau să, Trebuie să, Pot să).",
+    "explanation_en": "Subjunctive mood is used after verbs of desire or necessity (Vreau să, Trebuie să, Pot să).",
+    "explanation_ro": "Conjunctivul se folosește după verbe care exprimă dorința sau necesitatea, fiind marcat prin particula să.",
+    "rules": [
+      {
+        "phrase": "Vreau să...",
+        "example_ro": "Vreau să învăț limba română",
+        "meaning_ar": "أريد أن أتعلم اللغة الرومانية",
+        "meaning_en": "I want to learn Romanian"
+      },
+      {
+        "phrase": "Trebuie să...",
+        "example_ro": "Trebuie să merg la doctor",
+        "meaning_ar": "يجب أن أذهب إلى الطبيب",
+        "meaning_en": "I must go to the doctor"
+      },
+      {
+        "phrase": "Pot să...",
+        "example_ro": "Pot să vă ajut cu actele",
+        "meaning_ar": "أستطيع أن أساعدك في الأوراق",
+        "meaning_en": "I can help you with documents"
+      }
+    ],
+    "dialogue_example": [
+      {
+        "speaker": "Laura",
+        "text_ro": "Vrei să mergem la cafea astăzi?",
+        "text_ar": "هل تريد أن نذهب (Vrei să mergem) لتناول القهوة اليوم؟",
+        "text_en": "Do you want us to go (Vrei să mergem) for coffee today?"
+      },
+      {
+        "speaker": "Gabriel",
+        "text_ro": "Da, trebuie să terminăm proiectul mai întâi.",
+        "text_ar": "نعم، يجب أن ننهي (trebuie să terminăm) المشروع أولاً.",
+        "text_en": "Yes, we must finish (trebuie să terminăm) the project first."
+      }
+    ]
+  },
+  {
+    "id": "g-9",
+    "topic_ro": "9. Pronumele Posesive (Possessive Pronouns)",
+    "topic_ar": "9. ضمائر الملكية (al meu, a mea, ai mei, ale mele)",
+    "topic_en": "9. Possessive Pronouns in Romanian",
+    "category": "pronouns",
+    "easy_tip_ar": "💡 نصيحة سريعة: ضمير الملكية يتطابق مع جنس المملوك! (al meu = للمذكر، a mea = للمؤنث)!",
+    "easy_tip_en": "💡 Quick Tip: Possessive pronouns agree in gender with the owned item! (al meu = masc, a mea = fem)!",
+    "explanation_ar": "تتطابق ضمائر الملكية في الرومانية مع جنس وعدده المملوك.",
+    "explanation_en": "Possessive pronouns agree in gender and number with the possessed noun.",
+    "explanation_ro": "Pronumele posesive se acordă în gen și număr cu obiectul posedat.",
+    "rules": [
+      {
+        "person": "Eu (ملكي)",
+        "masculine_singular": "al meu",
+        "feminine_singular": "a mea",
+        "masculine_plural": "ai mei",
+        "feminine_plural": "ale mele"
+      },
+      {
+        "person": "Tu (ملكك)",
+        "masculine_singular": "al tău",
+        "feminine_singular": "a ta",
+        "masculine_plural": "ai tăi",
+        "feminine_plural": "ale tale"
+      },
+      {
+        "person": "El / Ea (ملكه/ملكها)",
+        "masculine_singular": "al său",
+        "feminine_singular": "a sa",
+        "masculine_plural": "ai săi",
+        "feminine_plural": "ale sale"
+      }
+    ],
+    "dialogue_example": [
+      {
+        "speaker": "Matei",
+        "text_ro": "Aceasta este mașina mea și fratele meu este inginer.",
+        "text_ar": "هذه سيارتي (mașina mea) وأخي (fratele meu) مهندس.",
+        "text_en": "This is my car (mașina mea) and my brother (fratele meu) is engineer."
+      },
+      {
+        "speaker": "Cristina",
+        "text_ro": "Și prietenii mei sunt din București.",
+        "text_ar": "وأصدقائي (prietenii mei) من بوخارست.",
+        "text_en": "And my friends (prietenii mei) are from Bucharest."
+      }
+    ]
+  },
+  {
+    "id": "g-10",
+    "topic_ro": "10. Prepozițiile cu Acuzativ și Genitiv",
+    "topic_ar": "10. حروف الجر مع حالات الأكوزاتيف والجينيتيف",
+    "topic_en": "10. Prepositions with Accusative & Genitive Cases",
+    "category": "pronouns",
+    "easy_tip_ar": "💡 نصيحة سريعة: معظم حروف الجر اليومية (la, în, pe, cu, pentru) تأخذ حالة الأكوزاتيف المباشرة!",
+    "easy_tip_en": "💡 Quick Tip: Most daily prepositions (la, în, pe, cu, pentru) take the direct Accusative case!",
+    "explanation_ar": "تحدد حروف الجر حالة الاسم الذي يليها (المكان، الزمان، الهدف، الإضافة).",
+    "explanation_en": "Prepositions dictate the grammatical case of the following noun.",
+    "explanation_ro": "Prepozițiile impun cazurile acuzativ sau genitiv substantivelor pe care le însoțesc.",
+    "rules": [
+      {
+        "preposition": "la (إلى / في)",
+        "case": "Acuzativ",
+        "example_ro": "Merg la școală / la doctor",
+        "meaning_ar": "أذهب إلى المدرسة / إلى الطبيب",
+        "meaning_en": "I go to school / to the doctor"
+      },
+      {
+        "preposition": "în (في / داخل)",
+        "case": "Acuzativ",
+        "example_ro": "Locuiesc în România",
+        "meaning_ar": "أعيش في رومانيا",
+        "meaning_en": "I live in Romania"
+      },
+      {
+        "preposition": "pentru (من أجل / لـ)",
+        "case": "Acuzativ",
+        "example_ro": "Acest cadou este pentru tine",
+        "meaning_ar": "هذه الهدية لك",
+        "meaning_en": "This gift is for you"
+      },
+      {
+        "preposition": "înaintea (قبل / أمام)",
+        "case": "Genitiv",
+        "example_ro": "Înaintea examinării",
+        "meaning_ar": "قبل الامتحان",
+        "meaning_en": "Before the examination"
+      }
+    ],
+    "dialogue_example": [
+      {
+        "speaker": "Ofițer",
+        "text_ro": "Ați venit pentru interviul de cetățenie?",
+        "text_ar": "هل جئت من أجل (pentru) مقابلة الجنسية؟",
+        "text_en": "Did you come for (pentru) citizenship interview?"
+      },
+      {
+        "speaker": "Candidat",
+        "text_ro": "Da, sunt pregătit înaintea comisiei.",
+        "text_ar": "نعم، أنا مستعد قبل (înaintea) اللجنة.",
+        "text_en": "Yes, I am prepared before (înaintea) the committee."
+      }
+    ]
+  },
+  {
+    "id": "g-11",
+    "topic_ro": "11. Adjectivul și Acordul cu Substantivul",
+    "topic_ar": "11. الصفات ومطابقتها للاسم في الجنس والعدد",
+    "topic_en": "11. Adjectives & Agreement with Nouns",
+    "category": "nouns",
+    "easy_tip_ar": "💡 نصيحة سريعة: الصفة تأتي بعد الاسم وتتطابق معه في التذكير والتأنيث والجمع! (om frumos / fată frumoasă)!",
+    "easy_tip_en": "💡 Quick Tip: Adjectives come AFTER the noun and agree in gender/number! (om frumos / fată frumoasă)!",
+    "explanation_ar": "الصفة في الرومانية تتبع الاسم الذي تصفه وتتغير نهايتها بحسب التذكير والتأنيث والجمع.",
+    "explanation_en": "Adjectives follow the noun they describe and change their endings to match gender & number.",
+    "explanation_ro": "Adjectivul se poziționează după substantiv și își schimbă terminația după gen și număr.",
+    "rules": [
+      {
+        "gender": "Masculin Singular",
+        "example_ro": "un băiat frumos",
+        "meaning_ar": "ولد جميل",
+        "meaning_en": "a handsome boy"
+      },
+      {
+        "gender": "Feminin Singular",
+        "example_ro": "o fată frumoasă",
+        "meaning_ar": "فتاة جميلة",
+        "meaning_en": "a beautiful girl"
+      },
+      {
+        "gender": "Masculin Plural",
+        "example_ro": "băieți frumoși",
+        "meaning_ar": "أولاد أجملاء",
+        "meaning_en": "handsome boys"
+      },
+      {
+        "gender": "Feminin Plural",
+        "example_ro": "fete frumoase",
+        "meaning_ar": "فتيات جميلات",
+        "meaning_en": "beautiful girls"
+      }
+    ],
+    "dialogue_example": [
+      {
+        "speaker": "Maria",
+        "text_ro": "Am cumpărat o rochie frumoasă și pantofi eleganți.",
+        "text_ar": "اشتريت فستاناً جميلاً (rochie frumoasă) وأحذية أنيقة (pantofi eleganți).",
+        "text_en": "I bought a beautiful dress (rochie frumoasă) and elegant shoes."
+      }
+    ]
+  },
+  {
+    "id": "g-12",
+    "topic_ro": "12. Numeralul Cardinal și Ordinal (Numbers & Ordinals)",
+    "topic_ar": "12. الأرقام الأصلية والترتيبية (unu, doi / primul, a doua)",
+    "topic_en": "12. Cardinal & Ordinal Numbers (First, Second, Third)",
+    "category": "articles",
+    "easy_tip_ar": "💡 نصيحة سريعة: الرقم 2 يتغير بحسب التذكير والتأنيث (doi băieți / două fete)!",
+    "easy_tip_en": "💡 Quick Tip: Number 2 changes with gender! (doi băieți = 2 boys / două fete = 2 girls)!",
+    "explanation_ar": "تتغير بعض الأرقام الأفقية والترتيبية في الرومانية بحسب جنس الاسم الذي تصفه.",
+    "explanation_en": "Cardinal and ordinal numbers agree in gender with the noun they count.",
+    "explanation_ro": "Numeralele se acordă în gen cu substantivul pe care îl însoțesc.",
+    "rules": [
+      {
+        "type": "Cardinal 1",
+        "masculine_ro": "un băiat",
+        "feminine_ro": "o fată",
+        "meaning_ar": "ولد واحد / فتاة واحدة",
+        "meaning_en": "one boy / one girl"
+      },
+      {
+        "type": "Cardinal 2",
+        "masculine_ro": "doi băieți",
+        "feminine_ro": "două fete",
+        "meaning_ar": "ولدان / فتاتان",
+        "meaning_en": "two boys / two girls"
+      },
+      {
+        "type": "Ordinal 1st",
+        "masculine_ro": "primul băiat",
+        "feminine_ro": "prima fată",
+        "meaning_ar": "الولد الأول / الفتاة الأولى",
+        "meaning_en": "the 1st boy / 1st girl"
+      }
+    ],
+    "dialogue_example": [
+      {
+        "speaker": "Ghid",
+        "text_ro": "Acesta este primul muzeu din tur și avem două ore la dispoziție.",
+        "text_ar": "هذا هو المتحف الأول (primul muzeu) ولديك ساعتان (două ore).",
+        "text_en": "This is the first museum (primul muzeu) and we have two hours (două ore)."
+      }
+    ]
+  },
+  {
+    "id": "g-13",
+    "topic_ro": "13. Timpul Imperfect (Continuous Past Actions)",
+    "topic_ar": "13. زمن الماضي المستمر (Imperfectul: eram, aveam)",
+    "topic_en": "13. Imperfect Tense for Continuous Past Actions",
+    "category": "verbs",
+    "easy_tip_ar": "💡 نصيحة سريعة: يعبر عن أحداث كانت مستمرة في الماضي بشكل كلاسيكي (eram = كنتُ، aveam = كان لدي)!",
+    "easy_tip_en": "💡 Quick Tip: Used for habitual continuous past actions (eram = I used to be, aveam = I used to have)!",
+    "explanation_ar": "يستخدم زمن الماضي المستمر (Imperfectul) لوصف العادات والأحداث المستمرة في الماضي.",
+    "explanation_en": "Imperfect tense describes past habits, conditions, or ongoing states.",
+    "explanation_ro": "Imperfectul exprimă o acțiune trecută care se desfășoară în mod continuu.",
+    "rules": [
+      {
+        "pronoun": "Eu (أنا)",
+        "a_fi": "eram",
+        "a_avea": "aveam",
+        "a_face": "făceam",
+        "a_merge": "mergeam"
+      },
+      {
+        "pronoun": "Tu (أنتَ)",
+        "a_fi": "erai",
+        "a_avea": "aveai",
+        "a_face": "făceai",
+        "a_merge": "mergeai"
+      },
+      {
+        "pronoun": "El / Ea (هو/هي)",
+        "a_fi": "era",
+        "a_avea": "avea",
+        "a_face": "făcea",
+        "a_merge": "mergea"
+      }
+    ],
+    "dialogue_example": [
+      {
+        "speaker": "Bunicul",
+        "text_ro": "Când eram tânăr, mergeam la școală pe jos în fiecare zi.",
+        "text_ar": "عندما كنتُ (eram) شاباً، كنتُ أذهبُ (mergeam) للمدرسة مشياً كل يوم.",
+        "text_en": "When I was (eram) young, I used to go (mergeam) to school on foot."
+      }
+    ]
+  },
+  {
+    "id": "g-14",
+    "topic_ro": "14. Modul Condițional-Optativ (Conditional Mood)",
+    "topic_ar": "14. صيغة الشرط والتمني (Aș dori, Ai putea)",
+    "topic_en": "14. Conditional Mood for Polite Requests & Desires",
+    "category": "verbs",
+    "easy_tip_ar": "💡 نصيحة سريعة: اطلب بلباقة ودبلوماسية دائماً باستخدام (Aș dori = أود أن...)!",
+    "easy_tip_en": "💡 Quick Tip: Always make polite requests using 'Aș dori...' (I would like...)!",
+    "explanation_ar": "تستخدم صيغة الشرط والتمني للتعبير عن الرغبات والطلبات المؤدبة للغاية.",
+    "explanation_en": "Conditional mood expresses wishes or polite requests (aș, ai, ar, am, ați, ar + Infinitive).",
+    "explanation_ro": "Condiționalul-optativ exprimă o dorință sau o rugăminte politicoasă.",
+    "rules": [
+      {
+        "pronoun": "Eu",
+        "auxiliary": "aș",
+        "example_ro": "Aș dori o cafea / Aș dori să învăț",
+        "meaning_ar": "أود فنجان قهوة / أود أن أتعلم",
+        "meaning_en": "I would like a coffee / I would like to learn"
+      },
+      {
+        "pronoun": "Tu",
+        "auxiliary": "ai",
+        "example_ro": "Ai putea să mă ajuți?",
+        "meaning_ar": "هل يمكنك مساعدتي؟",
+        "meaning_en": "Could you help me?"
+      }
+    ],
+    "dialogue_example": [
+      {
+        "speaker": "Turist",
+        "text_ro": "Buna ziua, aș dori un bilet de tren pentru Brașov, vă rog.",
+        "text_ar": "مرحباً، أودُّ (aș dori) تذكرة قطار إلى براشوف من فضلك.",
+        "text_en": "Hello, I would like (aș dori) a train ticket to Brașov, please."
+      }
+    ]
+  },
+  {
+    "id": "g-15",
+    "topic_ro": "15. Pronumele Demonstrative (Demonstrative Pronouns)",
+    "topic_ar": "15. أسماء الإشارة (acesta, aceasta, aceștia, acestea)",
+    "topic_en": "15. Demonstrative Pronouns (This / That)",
+    "category": "pronouns",
+    "easy_tip_ar": "💡 نصيحة سريعة: للقريب استخدم (acesta للمذكر / aceasta للمؤنث)، وللبعيد (acel / aceea)!",
+    "easy_tip_en": "💡 Quick Tip: For near objects use acesta (masc) / aceasta (fem); for far objects use acel / aceea!",
+    "explanation_ar": "تحدد أسماء الإشارة القرب أو البعد المكاني والشخصي وتتطابق مع الاسم.",
+    "explanation_en": "Demonstratives indicate proximity or distance of nouns.",
+    "explanation_ro": "Pronumele demonstrative arată apropierea sau depărtarea obiectelor.",
+    "rules": [
+      {
+        "distance": "Near (القريب)",
+        "masculine_singular": "acest / acesta",
+        "feminine_singular": "această / aceasta",
+        "masculine_plural": "acești / aceștia",
+        "feminine_plural": "aceste / acestea"
+      },
+      {
+        "distance": "Far (البعيد)",
+        "masculine_singular": "acel / acela",
+        "feminine_singular": "acea / aceea",
+        "masculine_plural": "acei / aceia",
+        "feminine_plural": "acele / acelea"
+      }
+    ],
+    "dialogue_example": [
+      {
+        "speaker": "Cumpărător",
+        "text_ro": "Acest bilet este valabil și pentru acea linie de autobuz?",
+        "text_ar": "هل تذكرة (acest bilet) هذا القريب صالحة أيضاً لتلك (acea) الحافلة؟",
+        "text_en": "Is this ticket (acest bilet) valid for that (acea) bus line as well?"
+      }
+    ]
+  },
+  {
+    "id": "g-16",
+    "topic_ro": "16. Diateza Pasivă (Passive Voice Formation)",
+    "topic_ar": "16. المبني للمجهول (Diateza Pasivă: este scris / a fost făcut)",
+    "topic_en": "16. Passive Voice Formation in Romanian",
+    "category": "verbs",
+    "easy_tip_ar": "💡 نصيحة سريعة: يصاغ المبني للمجهول بـ (a fi + اسم المفعول): este scris = كُتِبَ / مَكْتُوب!",
+    "easy_tip_en": "💡 Quick Tip: Passive voice is formed using 'a fi + past participle': este scris = is written!",
+    "explanation_ar": "يستخدم المبني للمجهول عندما يكون الفاعل غير معروف أو التركيز على الفعل والنتيجة.",
+    "explanation_en": "Passive voice shifts emphasis from the doer to the recipient of the action.",
+    "explanation_ro": "Diateza pasivă arată că subiectul suferă acțiunea savârșită de agent.",
+    "rules": [
+      {
+        "tense": "Prezent Pasiv",
+        "structure": "este + participiu",
+        "example_ro": "Documentul este semnat de primar",
+        "meaning_ar": "المستند مُوَقَّع من قبل العمدة",
+        "meaning_en": "The document is signed by mayor"
+      },
+      {
+        "tense": "Trecut Pasiv",
+        "structure": "a fost + participiu",
+        "example_ro": "Legea a fost adoptată de parlament",
+        "meaning_ar": "القانون أُقِرَّ من قبل البرلمان",
+        "meaning_en": "The law was passed by parliament"
+      }
+    ],
+    "dialogue_example": [
+      {
+        "speaker": "Avocat",
+        "text_ro": "Dosarul dumneavoastră a fost aprobat de comisie azi.",
+        "text_ar": "ملفكم (Dosarul) تَمَّت الموافقة عليه (a fost aprobat) اليوم من قبل اللجنة.",
+        "text_en": "Your file (Dosarul) was approved (a fost aprobat) today by committee."
+      }
+    ]
+  },
+  {
+    "id": "g-17",
+    "topic_ro": "17. Adverbele de Timp, Loc și Mod (Adverbs)",
+    "topic_ar": "17. الظروف (الزمان، المكان، الكيفية: acum, aici, bine)",
+    "topic_en": "17. Adverbs of Time, Place, & Manner",
+    "category": "articles",
+    "easy_tip_ar": "💡 نصيحة سريعة: الظروف لا تتغير في الجنس والعدد وتصف الفعل أو الصفة (acum = الآن، aici = هنا)!",
+    "easy_tip_en": "💡 Quick Tip: Adverbs are invariable and modify verbs or adjectives (acum = now, aici = here)!",
+    "explanation_ar": "توضح الظروف مكان وزمان وطريقة حدوث الفعل في الجملة.",
+    "explanation_en": "Adverbs specify time, location, or manner of actions.",
+    "explanation_ro": "Adverbele determină timpul, locul sau modul de desfășurare a acțiunii.",
+    "rules": [
+      {
+        "type": "Timp (الزمان)",
+        "words_ro": "acum / azi / mâine / ieri / întotdeauna",
+        "meaning_ar": "الآن / اليوم / غداً / الأمس / دائماً",
+        "meaning_en": "now / today / tomorrow / yesterday / always"
+      },
+      {
+        "type": "Loc (المكان)",
+        "words_ro": "aici / acolo / departe / aproape / sus",
+        "meaning_ar": "هنا / هناك / بعيداً / قريباً / فوق",
+        "meaning_en": "here / there / far / near / up"
+      },
+      {
+        "type": "Mod (الكيفية)",
+        "words_ro": "bine / rău / repede / încet / ușor",
+        "meaning_ar": "جيداً / سيئاً / بسرعة / ببطء / بفيـسولة",
+        "meaning_en": "well / badly / fast / slowly / easily"
+      }
+    ],
+    "dialogue_example": [
+      {
+        "speaker": "Elena",
+        "text_ro": "Mergem acolo acum sau mâine dimineață?",
+        "text_ar": "هل نذهب هناك (acolo) الآن (acum) أم غداً صباحاً؟",
+        "text_en": "Are we going there (acolo) now (acum) or tomorrow morning?"
+      }
+    ]
+  },
+  {
+    "id": "g-18",
+    "topic_ro": "18. Cazurile Genitiv și Dativ (Possession & Indirect Object)",
+    "topic_ar": "18. حالتا الجينيتيف والداتيف (الإضافة والمفعول به غير المباشر)",
+    "topic_en": "18. Genitive & Dative Cases (Lui, Ei, Lor)",
+    "category": "nouns",
+    "easy_tip_ar": "💡 نصيحة سريعة: للإضافة والملكية الشخصية نستخدم أداة (lui للأعلام المذكرة: lui Andrei)!",
+    "easy_tip_en": "💡 Quick Tip: For personal proper name possession, use particle 'lui': lui Andrei (Andrei's)!",
+    "explanation_ar": "تعبر حالة الجينيتيف عن الملكية، وتحدد حالة الداتيف المفعول به غير المباشر (إلى من يُعطى الشيء).",
+    "explanation_en": "Genitive shows possession, while Dative shows indirect object (to whom something is given).",
+    "explanation_ro": "Genitivul exprimă posesia, iar dativul obiectul indirect căruia i se adresează acțiunea.",
+    "rules": [
+      {
+        "type": "Genitiv Proper Name",
+        "structure": "lui + Nume",
+        "example_ro": "Cartea lui Andrei / Casa lui Mihai",
+        "meaning_ar": "كتاب أندريه / بيت ميهاي",
+        "meaning_en": "Andrei's book / Mihai's house"
+      },
+      {
+        "type": "Dative Pronouns",
+        "structure": "îi / îți / îmi / le",
+        "example_ro": "Îi dau o floare Măriei",
+        "meaning_ar": "أعطي زهرة لماريا",
+        "meaning_en": "I give a flower to Maria"
+      }
+    ],
+    "dialogue_example": [
+      {
+        "speaker": "Secretar",
+        "text_ro": "Am dat documentele lui Andrei și i-am trimis un e-mail.",
+        "text_ar": "أعطيت الأوراق لأندريه (lui Andrei) وأرسلت له (i-am trimis) بريداً.",
+        "text_en": "I gave documents to Andrei (lui Andrei) and sent him (i-am trimis) an email."
+      }
+    ]
+  },
+  {
+    "id": "g-19",
+    "topic_ro": "19. Modul Imperativ (Commands & Imperatives)",
+    "topic_ar": "19. صيغة الأمر والتعليمات (Ascultă, Vorbește, Fă)",
+    "topic_en": "19. Imperative Mood for Commands & Directives",
+    "category": "verbs",
+    "easy_tip_ar": "💡 نصيحة سريعة: صيغة الأمر موجهة للشخص المفرد (Tu) أو الجمع واللاحقة المؤدبة (Voi)!",
+    "easy_tip_en": "💡 Quick Tip: Imperatives command 'Tu' (singular) or 'Voi' (polite/plural)! (Ascultă / Ascultați)!",
+    "explanation_ar": "تستخدم صيغة الأمر لإعطاء التوجيهات والأوامر المباشرة والنصائح.",
+    "explanation_en": "Imperative mood is used to give direct orders, instructions, or advice.",
+    "explanation_ro": "Imperativul exprimă un ordin, o rugăminte sau un îndemn.",
+    "rules": [
+      {
+        "pronoun": "Tu (أمر مفرد)",
+        "example_ro": "Ascultă! / Vorbește! / Fă!",
+        "meaning_ar": "استمع! / تحدث! / افعل!",
+        "meaning_en": "Listen! / Speak! / Do!"
+      },
+      {
+        "pronoun": "Voi (أمر جمع/مؤدب)",
+        "example_ro": "Ascultați! / Vorbiți! / Faceți!",
+        "meaning_ar": "استمعوا! / تحدثوا! / افعلوا!",
+        "meaning_en": "Listen (pl)! / Speak (pl)! / Do (pl)!"
+      }
+    ],
+    "dialogue_example": [
+      {
+        "speaker": "Președinte ANC",
+        "text_ro": "Semnați aici și citiți jurământul de credință, vă rog!",
+        "text_ar": "وقعوا هنا (Semnați) واقرأوا (citiți) قسم الولاء من فضلكم!",
+        "text_en": "Sign here (Semnați) and read (citiți) the oath of allegiance, please!"
+      }
+    ]
+  },
+  {
+    "id": "g-20",
+    "topic_ro": "20. Pronumele Relative (Care, Ce, Cine)",
+    "topic_ar": "20. الأسماء الموصولة (care الذي/التي، ce ما/ماذا، cine من)",
+    "topic_en": "20. Relative Pronouns (Who, Which, That)",
+    "category": "pronouns",
+    "easy_tip_ar": "💡 نصيحة سريعة: كلمة (care) هي الأكثر استخداماً بمعنى الذي / التي وتصل بين جملتين!",
+    "easy_tip_en": "💡 Quick Tip: 'care' is the most popular relative pronoun meaning who/which/that!",
+    "explanation_ar": "تربط الأسماء الموصولة بين الجملة الرئيسية والجملة التابعة وتوضح الفاعل أو المفعول.",
+    "explanation_en": "Relative pronouns connect sentences and refer back to nouns previously mentioned.",
+    "explanation_ro": "Pronumele relative leagă o propoziție secundară de o propoziție regentă.",
+    "rules": [
+      {
+        "word": "care (الذي / التي)",
+        "example_ro": "Omul care vorbește este profesor",
+        "meaning_ar": "الرجل الذي يتحدث هو أستاذ",
+        "meaning_en": "The man who is speaking is a professor"
+      },
+      {
+        "word": "ce (ما / ماذا)",
+        "example_ro": "Știu ce trebuie să fac",
+        "meaning_ar": "أعرف ما يجب أن أفعله",
+        "meaning_en": "I know what I must do"
+      }
+    ],
+    "dialogue_example": [
+      {
+        "speaker": "Ofițer ANC",
+        "text_ro": "Cine este persoana care a depus jurământul?",
+        "text_ar": "من هو الشخص الذي (care) أدى القسم؟",
+        "text_en": "Who is the person who (care) took the oath?"
+      }
+    ]
+  },
+  {
+    "id": "g-21",
+    "topic_ro": "21. Verbele Neregulate (Irregular Verbs Conjugations)",
+    "topic_ar": "21. الأفعال الشاذة الشائعة (a da, a lua, a mânca, a bea)",
+    "topic_en": "21. Common Irregular Verbs (a da, a lua, a mânca, a bea)",
+    "category": "verbs",
+    "easy_tip_ar": "💡 نصيحة سريعة: الأفعال الشاذة تتغير جذورها في الحاضر والماضي وتتطلب الحفظ والممارسة!",
+    "easy_tip_en": "💡 Quick Tip: Irregular verbs change stem vowels in present & past tenses and require practice!",
+    "explanation_ar": "تغير الأفعال الشاذة مثل (a da - يعطي، a lua - يأخذ، a mânca - يأكل، a bea - يشرب) جذورها الصوتية.",
+    "explanation_en": "Irregular verbs undergo stem vowel changes across present and past conjugations.",
+    "explanation_ro": "Verbele neregulate își modifică rădăcina vocalică în timpul conjugării.",
+    "rules": [
+      {
+        "infinitive": "A da (يعطي / to give)",
+        "eu_form": "dau",
+        "tu_form": "dai",
+        "el_form": "dă",
+        "noi_form": "dăm"
+      },
+      {
+        "infinitive": "A lua (يأخذ / to take)",
+        "eu_form": "iau",
+        "tu_form": "iei",
+        "el_form": "ia",
+        "noi_form": "luăm"
+      },
+      {
+        "infinitive": "A mânca (يأكل / to eat)",
+        "eu_form": "mănânc",
+        "tu_form": "mănânci",
+        "el_form": "mănâncă",
+        "noi_form": "mâncăm"
+      },
+      {
+        "infinitive": "A bea (يشرب / to drink)",
+        "eu_form": "beau",
+        "tu_form": "bei",
+        "el_form": "bea",
+        "noi_form": "bem"
+      }
+    ],
+    "dialogue_example": [
+      {
+        "speaker": "Oaspete",
+        "text_ro": "Eu mănânc o zupă și beau apă minerală.",
+        "text_ar": "أنا آكل (mănânc) حساء وأشرب (beau) مياه معدنية.",
+        "text_en": "I eat (mănânc) soup and drink (beau) mineral water."
+      }
+    ]
+  },
+  {
+    "id": "g-22",
+    "topic_ro": "22. Expresii Idiomatice Gramaticale (Grammatical Idioms)",
+    "topic_ar": "22. تعابير وقواعد الشارع الروماني الشائعة",
+    "topic_en": "22. Spoken Romanian Grammatical Expressions",
+    "category": "articles",
+    "easy_tip_ar": "💡 نصيحة سريعة: عبارات مثل (n-am nicio problemă = ليس لدي أي مشكلة) تستخدم النفي المزدوج الصريح!",
+    "easy_tip_en": "💡 Quick Tip: Phrases like 'n-am nicio problemă' use explicit double negation in Romanian!",
+    "explanation_ar": "تتميز الرومانية باستخدام النفي المزدوج (Double Negation) للتأكيد في الكلام.",
+    "explanation_en": "Romanian uses double negatives naturally to emphasize negative statements.",
+    "explanation_ro": "Dubla negație este o caracteristică firească a limbii române vorbite.",
+    "rules": [
+      {
+        "phrase": "Nu am nimic",
+        "meaning_ar": "ليس لدي أي شيء (نفي مزدوج)",
+        "meaning_en": "I don't have anything (double negative)"
+      },
+      {
+        "phrase": "Nu vine nimeni",
+        "meaning_ar": "لا يأتي أحد",
+        "meaning_en": "Nobody is coming"
+      }
+    ],
+    "dialogue_example": [
+      {
+        "speaker": "Prieten",
+        "text_ro": "Nu am nicio problemă cu examenul, sunt pregătit!",
+        "text_ar": "ليس لدي أي مشكلة (Nu am nicio problemă) مع الامتحان، أنا مستعد!",
+        "text_en": "I don't have any problem (Nu am nicio problemă) with the exam, I am ready!"
       }
     ]
   }
