@@ -23,29 +23,47 @@ function AIContent() {
   const isDark = theme === 'dark';
 
   const [inputQuery, setInputQuery] = useState(initialPrompt);
-  const [messages, setMessages] = useState([
-    {
-      id: 1,
-      sender: 'ai',
-      text: appLang === 'ar' 
-        ? 'مرحباً بك! أنا مساعدك الذكي المخصص لاختبار الجنسية الرومانية 🇷🇴. يمكنك سؤالي عن أي سؤال دستوري، تاريخي، جغرافي، أو نصائح للمقابلة الرسمية!'
-        : appLang === 'en'
-        ? 'Welcome! I am your Romanian Citizenship AI Tutor 🇷🇴. Ask me any question about Romanian history, constitution, geography, or interview prep!'
-        : 'Bine ai venit! Sunt asistentul tău AI pentru cetățenia română 🇷🇴. Întreabă-mă orice despre istorie, constituție, geografie sau sfaturi pentru interviu!',
-      time: 'Just now'
-    }
-  ]);
-
+  const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [ollamaUrl, setOllamaUrl] = useState('http://localhost:11434');
   const [ollamaModel, setOllamaModel] = useState('llama3');
   const [showConfig, setShowConfig] = useState(false);
 
   useEffect(() => {
+    // Load Ollama PWA config from localStorage
+    if (typeof window !== 'undefined') {
+      const savedUrl = localStorage.getItem('ollama_url');
+      const savedModel = localStorage.getItem('ollama_model');
+      if (savedUrl) setOllamaUrl(savedUrl);
+      if (savedModel) setOllamaModel(savedModel);
+    }
+
+    setMessages([
+      {
+        id: 1,
+        sender: 'ai',
+        text: appLang === 'ar' 
+          ? 'مرحباً بك! أنا مساعدك الذكي المخصص لاختبار الجنسية الرومانية 🇷🇴. يمكنك سؤالي عن أي سؤال دستوري، تاريخي، جغرافي، أو نصائح للمقابلة الرسمية!'
+          : appLang === 'en'
+          ? 'Welcome! I am your Romanian Citizenship AI Tutor 🇷🇴. Ask me any question about Romanian history, constitution, geography, or interview prep!'
+          : 'Bine ai venit! Sunt asistentul tău AI pentru cetățenia română 🇷🇴. Întreabă-mă orice despre istorie, constituție, geografie sau sfaturi pentru interviu!',
+        time: 'Just now'
+      }
+    ]);
+
     if (initialPrompt) {
       handleSend(initialPrompt);
     }
-  }, []);
+  }, [appLang]);
+
+  const saveOllamaConfig = (newUrl, newModel) => {
+    setOllamaUrl(newUrl);
+    setOllamaModel(newModel);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('ollama_url', newUrl);
+      localStorage.setItem('ollama_model', newModel);
+    }
+  };
 
   const quickPrompts = appLang === 'ar' ? [
     'ما هو شكل الحكومة في رومانيا؟',
@@ -78,7 +96,7 @@ function AIContent() {
     setInputQuery('');
     setLoading(true);
 
-    const result = await queryOllama(q, ollamaModel, ollamaUrl);
+    const result = await queryOllama(q, ollamaModel, ollamaUrl, appLang);
 
     const aiMsg = {
       id: Date.now() + 1,
@@ -105,7 +123,7 @@ function AIContent() {
             <div className="flex items-center space-x-1.5 space-x-reverse">
               <Sparkles className="w-5 h-5 text-amber-400" />
               <h1 className="text-base font-bold">
-                {appLang === 'ar' ? 'المساعد الذكي للجنسية' : appLang === 'en' ? 'AI Citizenship Tutor' : 'Asistent AI Cetățenie'}
+                {strings.aiCardTitle || (appLang === 'ar' ? 'المساعد الذكي للجنسية' : appLang === 'en' ? 'AI Citizenship Tutor' : 'Asistent AI Cetățenie')}
               </h1>
             </div>
             <button
@@ -113,7 +131,7 @@ function AIContent() {
               className={`p-2 rounded-xl border text-xs font-bold flex items-center space-x-1 space-x-reverse ${isDark ? 'bg-slate-900 border-slate-700 text-emerald-400' : 'bg-slate-100 border-slate-200 text-emerald-600'}`}
             >
               <Settings className="w-4 h-4" />
-              <span>Ollama Settings</span>
+              <span>Ollama PWA Settings</span>
             </button>
           </div>
         </div>
@@ -121,14 +139,14 @@ function AIContent() {
         {/* Ollama Settings Drawer */}
         {showConfig && (
           <div className={`p-4 rounded-2xl border space-y-3 shrink-0 text-xs ${isDark ? 'bg-slate-800 border-slate-700 text-slate-300' : 'bg-white border-slate-200 text-slate-700 shadow-sm'}`}>
-            <p className="font-bold text-emerald-500">⚙️ Ollama Local AI Server Settings:</p>
+            <p className="font-bold text-emerald-500">⚙️ Ollama AI Server Settings (PWA Supported):</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <div>
-                <label className="block text-[11px] text-theme-sub mb-1">Ollama URL:</label>
+                <label className="block text-[11px] text-theme-sub mb-1">Ollama Host URL:</label>
                 <input 
                   type="text" 
                   value={ollamaUrl} 
-                  onChange={(e) => setOllamaUrl(e.target.value)}
+                  onChange={(e) => saveOllamaConfig(e.target.value, ollamaModel)}
                   className={`w-full border rounded-xl p-2 font-mono ${isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-slate-100 border-slate-200 text-slate-900'}`}
                   placeholder="http://localhost:11434"
                 />
@@ -138,12 +156,15 @@ function AIContent() {
                 <input 
                   type="text" 
                   value={ollamaModel} 
-                  onChange={(e) => setOllamaModel(e.target.value)}
+                  onChange={(e) => saveOllamaConfig(ollamaUrl, e.target.value)}
                   className={`w-full border rounded-xl p-2 font-mono ${isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-slate-100 border-slate-200 text-slate-900'}`}
                   placeholder="llama3 / mistral / qwen"
                 />
               </div>
             </div>
+            <p className="text-[10px] text-slate-400">
+              💡 Works automatically in installed PWA mode! If Ollama is offline, smart embedded AI knowledge takes over.
+            </p>
           </div>
         )}
 
@@ -179,7 +200,7 @@ function AIContent() {
                 {msg.sender === 'ai' && (
                   <div className={`flex items-center space-x-1.5 space-x-reverse text-[10px] font-bold text-rose-500 mb-1 border-b pb-1 ${isDark ? 'border-slate-800' : 'border-slate-200'}`}>
                     <Sparkles className="w-3.5 h-3.5" />
-                    <span>{msg.source === 'ollama' ? 'Ollama AI (Local Server)' : 'مساعد الجنسية الذكي المدمج'}</span>
+                    <span>{msg.source === 'ollama' ? 'Ollama AI (PWA Connected)' : (appLang === 'ar' ? 'مساعد الجنسية الذكي المدمج' : appLang === 'en' ? 'Embedded Citizenship AI Assistant' : 'Asistent Cetățenie AI')}</span>
                   </div>
                 )}
                 <div className="whitespace-pre-wrap">{msg.text}</div>
@@ -191,7 +212,7 @@ function AIContent() {
           {loading && (
             <div className={`flex items-center space-x-2 space-x-reverse p-3 rounded-2xl border max-w-xs text-xs text-theme-sub ${isDark ? 'bg-slate-900/90 border-slate-700' : 'bg-slate-100 border-slate-200'}`}>
               <Loader2 className="w-4 h-4 animate-spin text-rose-500" />
-              <span>جاري التفكير وتوليد الإجابة...</span>
+              <span>{appLang === 'ar' ? 'جاري التفكير وتوليد الإجابة...' : appLang === 'en' ? 'Thinking and generating answer...' : 'Se generează răspunsul...'}</span>
             </div>
           )}
         </div>
