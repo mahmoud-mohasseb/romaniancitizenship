@@ -64,10 +64,10 @@ function ConversationsContent() {
   };
 
   return (
-    <div className="min-h-screen pb-20 bg-theme-main text-theme-main flex flex-col">
+    <div className="min-h-screen pb-28 sm:pb-24 bg-theme-main text-theme-main flex flex-col">
       <Navbar />
 
-      <main className={`flex-1 w-full max-w-4xl mx-auto px-4 py-6 space-y-6 ${
+      <main className={`flex-1 w-full max-w-4xl mx-auto px-4 py-6 space-y-6 animate-fade-in-up ${
         isRtl ? 'lg:mr-72' : 'lg:ml-72'
       } ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
         {/* Header Title Banner */}
@@ -98,7 +98,7 @@ function ConversationsContent() {
               }`}
             >
               <Eye className="w-4 h-4" />
-              <span>{showTranslations ? (appLang === 'ar' ? 'إخفاء الترجمات' : 'Hide Translations') : (appLang === 'ar' ? 'إظهار الترجمات' : 'Show Translations')}</span>
+              <span>{showTranslations ? (appLang === 'ar' ? 'إخفاء الترجمة' : 'Hide Translations') : (appLang === 'ar' ? 'عرض الترجمة' : 'Show Translations')}</span>
             </button>
           </div>
         </div>
@@ -106,116 +106,106 @@ function ConversationsContent() {
         {/* Search & Category Filter Section */}
         <div className="space-y-3">
           <div className="relative">
-            <Search className="w-5 h-5 absolute right-3.5 top-3 text-slate-500 rtl:right-3.5 rtl:left-auto ltr:left-3.5 ltr:right-auto" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder={appLang === 'ar' ? 'ابحث في المحادثات اليومية...' : 'Search daily conversations...'}
-              className={`w-full border rounded-2xl py-3 px-11 text-xs sm:text-sm focus:outline-none focus:border-rose-500 ${
-                isDark ? 'bg-slate-800/80 border-slate-700/80 text-white placeholder-slate-500' : 'bg-white border-slate-200 text-slate-900 placeholder-slate-400 shadow-sm'
+              placeholder={appLang === 'ar' ? 'ابحث في محادثات اليمين أو الفندق أو التسوق...' : appLang === 'en' ? 'Search dialogues...' : 'Caută conversații...'}
+              className={`w-full border rounded-2xl px-4 py-3 text-xs sm:text-sm pl-10 focus:outline-none focus:border-rose-500 ${
+                isDark ? 'bg-slate-800 border-slate-700/80 text-white placeholder-slate-500' : 'bg-white border-slate-200 text-slate-900 shadow-sm placeholder-slate-400'
               }`}
             />
+            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
           </div>
 
           <div className="flex items-center space-x-2 space-x-reverse overflow-x-auto pb-1 no-scrollbar">
-            {categories.map((c) => {
-              const isActive = activeCategory === c.id;
-              const label = appLang === 'ar' ? c.label_ar : appLang === 'en' ? c.label_en : c.label_ro;
-              return (
-                <button
-                  key={c.id}
-                  onClick={() => setActiveCategory(c.id)}
-                  className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all shrink-0 ${
-                    isActive 
-                      ? 'bg-rose-600 text-white shadow-md shadow-rose-600/30' 
-                      : isDark ? 'bg-slate-800/80 text-slate-400 border border-slate-700/60 hover:text-white' : 'bg-white text-slate-600 border border-slate-200 hover:text-slate-900 shadow-sm'
-                  }`}
-                >
-                  {label}
-                </button>
-              );
-            })}
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap shrink-0 transition-all border ${
+                  activeCategory === cat.id
+                    ? 'bg-rose-600 text-white border-rose-600 shadow-md animate-quiz-pop'
+                    : isDark ? 'bg-slate-800 text-slate-300 border-slate-700/60 hover:bg-slate-700' : 'bg-white text-slate-700 border-slate-200 shadow-sm hover:bg-slate-100'
+                }`}
+              >
+                {appLang === 'ar' ? cat.label_ar : appLang === 'en' ? cat.label_en : cat.label_ro}
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Conversations List */}
-        <div className="space-y-6">
-          {filteredConversations.map((conv) => (
-            <div 
-              key={conv.id}
-              className={`rounded-2xl border shadow-xl overflow-hidden space-y-4 ${
-                isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'
-              }`}
-            >
-              {/* Conversation Image Header */}
-              <div className="relative w-full h-44 bg-slate-950 flex items-end p-4 border-b border-slate-700/60">
-                <img 
-                  src={conv.image} 
-                  alt={conv.title_ro}
-                  className="absolute inset-0 w-full h-full object-cover opacity-40"
-                />
-                <div className="relative z-10 space-y-1">
-                  <span className="inline-block px-3 py-1 rounded-lg text-xs font-bold bg-rose-600 text-white shadow">
-                    {appLang === 'ar' ? conv.title_ar : conv.title_en}
-                  </span>
-                  <h3 className="text-xl font-extrabold text-white">
-                    {conv.title_ro}
-                  </h3>
-                  <p className="text-xs text-slate-300">
-                    🇸🇦 {conv.description_ar}
-                  </p>
+        {/* Dialogues List */}
+        <div className="space-y-4">
+          {filteredConversations.map((dialogue) => {
+            const linesList = dialogue.dialogue || dialogue.lines || [];
+
+            return (
+              <div
+                key={dialogue.id}
+                className={`p-5 rounded-2xl border space-y-4 shadow-lg animate-fade-in-up ${
+                  isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'
+                }`}
+              >
+                <div className="flex items-center justify-between border-b border-slate-700/60 pb-3">
+                  <div className="space-y-0.5">
+                    <span className="text-[10px] font-bold text-rose-400 block uppercase tracking-wider">
+                      {dialogue.category_ar || dialogue.category}
+                    </span>
+                    <h2 className="text-base sm:text-lg font-bold">
+                      {appLang === 'ar' ? dialogue.title_ar : appLang === 'en' ? dialogue.title_en : dialogue.title_ro}
+                    </h2>
+                  </div>
+                </div>
+
+                {/* Dialogue Lines */}
+                <div className="space-y-3">
+                  {linesList.map((line, lIdx) => {
+                    const speakerText = line.speaker_ro || line.speaker || '🗣️ Person';
+                    const textRo = line.text_ro || line.ro;
+                    const textAr = line.text_ar || line.ar;
+                    const textEn = line.text_en || line.en;
+                    const lineId = `${dialogue.id}-${lIdx}`;
+                    const isSpeaking = isSpeakingId === lineId;
+
+                    return (
+                      <div
+                        key={lIdx}
+                        className={`p-3.5 rounded-xl border space-y-1.5 transition-all ${
+                          speakerText.includes('Ofițer') || speakerText.includes('commission')
+                            ? isDark ? 'bg-slate-900/80 border-slate-700' : 'bg-slate-50 border-slate-200'
+                            : isDark ? 'bg-rose-950/20 border-rose-500/30' : 'bg-rose-50/60 border-rose-200'
+                        }`}
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="text-[11px] font-bold text-rose-400">{speakerText}</span>
+                          <button
+                            onClick={() => speakLine(lineId, textRo)}
+                            className={`p-1.5 rounded-lg border text-xs font-bold flex items-center space-x-1 space-x-reverse transition-all ${
+                              isSpeaking 
+                                ? 'bg-rose-600 text-white border-rose-600 animate-pulse' 
+                                : isDark ? 'bg-slate-800 border-slate-700 text-slate-300 hover:text-white' : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-100'
+                            }`}
+                          >
+                            {isSpeaking ? <Square className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
+                            <span className="text-[10px]">استمع 🔊</span>
+                          </button>
+                        </div>
+
+                        <p className="text-xs sm:text-sm font-extrabold text-theme-main leading-snug">{textRo}</p>
+
+                        {showTranslations && (
+                          <p className="text-xs text-theme-sub pt-0.5 leading-relaxed">
+                            {appLang === 'en' ? `🇬🇧 ${textEn || textRo}` : `🇸🇦 ${textAr}`}
+                          </p>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
-
-              {/* Dialogue Bubbles List */}
-              <div className="p-5 space-y-4">
-                {conv.dialogue.map((line, idx) => {
-                  const isOfficer = line.speaker_ro.includes('Ofițer') || line.speaker_ro.includes('Președintele') || line.speaker_ro.includes('Vânzător') || line.speaker_ro.includes('Chelner') || line.speaker_ro.includes('Farmacist') || line.speaker_ro.includes('Proprietar') || line.speaker_ro.includes('Bancher');
-                  const lineId = `${conv.id}-${idx}`;
-                  const isSpeaking = isSpeakingId === lineId;
-
-                  return (
-                    <div 
-                      key={idx}
-                      className={`p-4 rounded-2xl border space-y-2.5 transition-all ${
-                        isOfficer 
-                          ? isDark ? 'bg-slate-900/90 border-rose-500/40 text-slate-100' : 'bg-rose-50 border-rose-200 text-slate-900'
-                          : isDark ? 'bg-slate-800 border-emerald-500/40 text-slate-100' : 'bg-emerald-50 border-emerald-200 text-slate-900'
-                      }`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className={`text-xs font-extrabold px-2.5 py-0.5 rounded-lg ${
-                          isOfficer ? 'bg-rose-500 text-white' : 'bg-emerald-600 text-white'
-                        }`}>
-                          🗣️ {line.speaker_ro}
-                        </span>
-
-                        <button
-                          onClick={() => speakLine(lineId, line.text_ro)}
-                          className="p-2 bg-rose-500/15 hover:bg-rose-500/25 text-rose-500 rounded-xl transition-colors flex items-center space-x-1 space-x-reverse text-xs font-bold"
-                        >
-                          {isSpeaking ? <Square className="w-4 h-4 text-amber-400 animate-pulse" /> : <Volume2 className="w-4 h-4" />}
-                          <span>{strings.playAudio}</span>
-                        </button>
-                      </div>
-
-                      <p className="text-base sm:text-lg font-bold leading-relaxed">
-                        {line.text_ro}
-                      </p>
-
-                      {showTranslations && (
-                        <div className="pt-2 border-t border-slate-700/40 space-y-1 text-xs">
-                          <p className="text-rose-500 font-bold text-right">🇸🇦 {line.text_ar}</p>
-                          <p className="text-emerald-500 font-medium">🇬🇧 {line.text_en}</p>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </main>
     </div>

@@ -64,10 +64,10 @@ function GrammarContent() {
   });
 
   return (
-    <div className="min-h-screen pb-20 bg-theme-main text-theme-main flex flex-col">
+    <div className="min-h-screen pb-28 sm:pb-24 bg-theme-main text-theme-main flex flex-col">
       <Navbar />
 
-      <main className={`flex-1 w-full max-w-4xl mx-auto px-4 py-6 space-y-6 ${
+      <main className={`flex-1 w-full max-w-4xl mx-auto px-4 py-6 space-y-6 animate-fade-in-up ${
         isRtl ? 'lg:mr-72' : 'lg:ml-72'
       } ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
         
@@ -76,13 +76,13 @@ function GrammarContent() {
           isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'
         }`}>
           <span className="inline-block px-4 py-1.5 rounded-full text-xs font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30">
-            📚 قواعد اللغة الرومانية المبسطة (Gramatică Ușoară)
+            📚 Gramatica Limbii Române
           </span>
           <h1 className="text-2xl sm:text-3xl font-extrabold">
-            شرح القواعد بأسلوب المحادثات اليومية والنطق
+            {strings.grammarTitle}
           </h1>
           <p className="text-xs sm:text-sm text-theme-sub max-w-xl mx-auto leading-relaxed">
-            دليل مبسط جداً لشرح القواعد مع نصائح سريعة وفيديوهات حوارية توضيحية ونطق صوتي لكل مثال!
+            {strings.grammarSubtitle}
           </p>
 
           <div className="pt-2">
@@ -91,7 +91,7 @@ function GrammarContent() {
               className="inline-flex items-center space-x-2 space-x-reverse px-5 py-3 bg-gradient-to-r from-amber-500 to-rose-600 text-white font-extrabold rounded-2xl text-xs shadow-lg hover:opacity-95 transition-all"
             >
               <Trophy className="w-4 h-4" />
-              <span>جرب لعبة اختبار القواعد والمحادثات 🎮</span>
+              <span>{strings.grammarQuizCardTitle || 'جرب لعبة اختبار القواعد والمحادثات 🎮'}</span>
             </Link>
           </div>
         </div>
@@ -99,187 +99,127 @@ function GrammarContent() {
         {/* Search & Category Filter Section */}
         <div className="space-y-3">
           <div className="relative">
-            <Search className="w-5 h-5 absolute right-3.5 top-3 text-slate-500 rtl:right-3.5 rtl:left-auto ltr:left-3.5 ltr:right-auto" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder={appLang === 'ar' ? 'ابحث في قواعد اللغة والمحادثات...' : 'Search grammar & dialogues...'}
-              className={`w-full border rounded-2xl py-3 px-11 text-xs sm:text-sm focus:outline-none focus:border-amber-500 ${
-                isDark ? 'bg-slate-800/80 border-slate-700/80 text-white placeholder-slate-500' : 'bg-white border-slate-200 text-slate-900 placeholder-slate-400 shadow-sm'
+              placeholder={appLang === 'ar' ? 'ابحث في قواعد اللغة (مثال: الجمع، الفاعل، a merge...)' : appLang === 'en' ? 'Search grammar topics...' : 'Caută lecții de gramatică...'}
+              className={`w-full border rounded-2xl px-4 py-3 text-xs sm:text-sm pl-10 focus:outline-none focus:border-amber-500 ${
+                isDark ? 'bg-slate-800 border-slate-700/80 text-white placeholder-slate-500' : 'bg-white border-slate-200 text-slate-900 shadow-sm placeholder-slate-400'
               }`}
             />
+            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
           </div>
 
           <div className="flex items-center space-x-2 space-x-reverse overflow-x-auto pb-1 no-scrollbar">
-            {categories.map((c) => {
-              const isActive = activeCategory === c.id;
-              const label = appLang === 'ar' ? c.label_ar : appLang === 'en' ? c.label_en : c.label_ro;
-              return (
-                <button
-                  key={c.id}
-                  onClick={() => setActiveCategory(c.id)}
-                  className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all shrink-0 ${
-                    isActive 
-                      ? 'bg-amber-600 text-white shadow-md shadow-amber-600/30' 
-                      : isDark ? 'bg-slate-800/80 text-slate-400 border border-slate-700/60 hover:text-white' : 'bg-white text-slate-600 border border-slate-200 hover:text-slate-900 shadow-sm'
-                  }`}
-                >
-                  {label}
-                </button>
-              );
-            })}
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap shrink-0 transition-all border ${
+                  activeCategory === cat.id
+                    ? 'bg-amber-500 text-slate-900 border-amber-500 shadow-md font-black animate-quiz-pop'
+                    : isDark ? 'bg-slate-800 text-slate-300 border-slate-700/60 hover:bg-slate-700' : 'bg-white text-slate-700 border-slate-200 shadow-sm hover:bg-slate-100'
+                }`}
+              >
+                {appLang === 'ar' ? cat.label_ar : appLang === 'en' ? cat.label_en : cat.label_ro}
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* GRAMMAR LESSON CARDS LIST */}
-        <div className="space-y-6">
-          {filteredGrammar.map((lesson) => (
-            <div 
-              key={lesson.id}
-              className={`rounded-2xl border shadow-xl overflow-hidden space-y-4 ${
+        {/* Grammar Modules List */}
+        <div className="space-y-4">
+          {filteredGrammar.map((module) => (
+            <div
+              key={module.id}
+              className={`p-5 rounded-2xl border space-y-4 shadow-lg animate-fade-in-up ${
                 isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'
               }`}
             >
-              {/* Lesson Header */}
-              <div className="p-4 border-b border-slate-700/60 bg-gradient-to-r from-amber-600 via-amber-700 to-rose-700 text-white flex items-center justify-between">
-                <div className="flex items-center space-x-3 space-x-reverse">
-                  <GraduationCap className="w-6 h-6 text-white shrink-0" />
-                  <div>
-                    <h2 className="text-base font-black text-white">{lesson.topic_ro}</h2>
-                    <p className="text-xs text-amber-100 font-bold">🇸🇦 {lesson.topic_ar}</p>
-                  </div>
+              {/* Header */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-700/60 pb-3 gap-2">
+                <div className="space-y-1">
+                  <span className="text-[10px] font-bold text-amber-400 block uppercase tracking-wider">
+                    {module.topic_ro}
+                  </span>
+                  <h2 className="text-lg font-bold">
+                    {appLang === 'ar' ? module.topic_ar : appLang === 'en' ? module.topic_en : module.topic_ro}
+                  </h2>
                 </div>
 
-                <button
-                  onClick={() => speakText(lesson.topic_ro, lesson.id)}
-                  className={`p-2 rounded-xl text-white transition-colors shrink-0 ${
-                    playingId === lesson.id ? 'bg-rose-500 animate-pulse' : 'bg-white/20 hover:bg-white/30'
-                  }`}
-                  title="Listen Pronunciation"
-                >
-                  <Volume2 className="w-4 h-4" />
-                </button>
+                {/* Quick Tip Box */}
+                {module.easy_tip_ar && (
+                  <div className="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold flex items-center space-x-2 space-x-reverse shrink-0">
+                    <Lightbulb className="w-4 h-4 shrink-0 text-amber-400" />
+                    <span>{module.easy_tip_ar}</span>
+                  </div>
+                )}
               </div>
 
-              {/* Quick Easy Tip Box */}
-              {lesson.easy_tip_ar && (
-                <div className="px-5">
-                  <div className="p-3 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-400 text-xs font-bold flex items-center space-x-2 space-x-reverse">
-                    <Lightbulb className="w-4 h-4 text-amber-400 shrink-0" />
-                    <span>{lesson.easy_tip_ar}</span>
-                  </div>
+              {/* Explanation */}
+              <div className="text-xs sm:text-sm text-theme-sub leading-relaxed space-y-2">
+                <p>🇸🇦 {module.explanation_ar}</p>
+                {module.explanation_en && <p className="text-[11px] text-slate-400">🇬🇧 {module.explanation_en}</p>}
+              </div>
+
+              {/* Rule Examples Table */}
+              {module.rules && module.rules.length > 0 && (
+                <div className="overflow-x-auto rounded-xl border border-slate-700/60">
+                  <table className="w-full text-xs text-right">
+                    <thead className={`border-b text-slate-400 ${isDark ? 'bg-slate-900/80 border-slate-700' : 'bg-slate-100 border-slate-200'}`}>
+                      <tr>
+                        <th className="p-2.5 text-right font-bold">الرومانية</th>
+                        <th className="p-2.5 text-right font-bold">المعنى بالعربية</th>
+                        <th className="p-2.5 text-center font-bold">صوت 🔊</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-700/40">
+                      {module.rules.map((rule, rIdx) => (
+                        <tr key={rIdx} className={isDark ? 'hover:bg-slate-900/40' : 'hover:bg-slate-50'}>
+                          <td className="p-2.5 font-bold text-rose-400">{rule.rule_ro || rule.rule}</td>
+                          <td className="p-2.5 text-slate-300">{rule.explanation_ar}</td>
+                          <td className="p-2.5 text-center">
+                            <button
+                              onClick={() => speakText(rule.rule_ro || rule.rule, `rule-${module.id}-${rIdx}`)}
+                              className="p-1.5 rounded-lg bg-rose-500/15 hover:bg-rose-500/30 text-rose-400 transition-colors"
+                            >
+                              <Volume2 className="w-3.5 h-3.5" />
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               )}
 
-              {/* Lesson Explanation Box */}
-              <div className="px-5 space-y-2 text-xs">
-                <div className={`p-3.5 rounded-xl border space-y-1 ${
-                  isDark ? 'bg-slate-900/80 border-slate-700 text-slate-300' : 'bg-slate-50 border-slate-200 text-slate-800'
-                }`}>
-                  <p className="font-bold text-amber-500">🇸🇦 الشرح المبسط بالعربية:</p>
-                  <p className="leading-relaxed text-theme-main font-medium">{lesson.explanation_ar}</p>
-                  <p className="font-medium text-slate-400 pt-1">🇬🇧 {lesson.explanation_en}</p>
-                </div>
-              </div>
-
-              {/* Rules & Conjugations Table / Cards */}
-              <div className="px-5 space-y-2">
-                <p className="text-xs font-black text-theme-main">
-                  📌 قواعد وأمثلة الدرس (Grammar Rules & Examples):
-                </p>
-
-                <div className="grid grid-cols-1 gap-2.5">
-                  {lesson.rules.map((rule, idx) => (
-                    <div 
-                      key={idx}
-                      className={`p-3.5 rounded-xl border text-xs space-y-1.5 transition-all ${
-                        isDark ? 'bg-slate-900/90 border-slate-700 text-slate-200' : 'bg-white border-slate-200 text-slate-900 shadow-sm'
-                      }`}
+              {/* Conversational Dialogue Example */}
+              {module.dialogue_example && (
+                <div className={`p-4 rounded-xl border space-y-2 ${isDark ? 'bg-slate-900/90 border-slate-700' : 'bg-amber-50/60 border-amber-200'}`}>
+                  <div className="flex items-center justify-between border-b border-slate-700/50 pb-1.5">
+                    <span className="text-[10px] font-extrabold text-rose-400 flex items-center space-x-1 space-x-reverse">
+                      <MessageSquare className="w-3.5 h-3.5" />
+                      <span>حوار تطبيقي في الحياة اليومية (Dialogue Example)</span>
+                    </span>
+                    <button
+                      onClick={() => speakText(`${module.dialogue_example.speaker_a}: ${module.dialogue_example.line_a_ro}. ${module.dialogue_example.speaker_b}: ${module.dialogue_example.line_b_ro}`, `dialogue-${module.id}`)}
+                      className="text-[11px] font-bold text-amber-400 hover:underline flex items-center space-x-1 space-x-reverse"
                     >
-                      <div className="flex items-center justify-between border-b border-slate-700/40 pb-2">
-                        <span className="font-black text-amber-400">{rule.gender || rule.pronoun}</span>
-                        <button
-                          onClick={() => speakText(rule.singular_ro || rule.definite_ro || rule.example_ro || rule.a_fi, `${lesson.id}-rule-${idx}`)}
-                          className={`p-1.5 rounded-lg text-amber-400 transition-colors ${
-                            playingId === `${lesson.id}-rule-${idx}` ? 'bg-amber-500 text-white animate-pulse' : 'bg-amber-500/20 hover:bg-amber-500/30'
-                          }`}
-                        >
-                          <Volume2 className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
+                      <Play className="w-3 h-3 fill-current" />
+                      <span>استمع للحوار كامل 🔊</span>
+                    </button>
+                  </div>
 
-                      {/* Rule details */}
-                      {rule.singular_ro && (
-                        <div className="grid grid-cols-2 gap-2 text-right">
-                          <div>
-                            <span className="text-slate-400 block text-[10px]">المفرد:</span>
-                            <span className="font-bold text-emerald-400">{rule.singular_ro}</span>
-                          </div>
-                          <div>
-                            <span className="text-slate-400 block text-[10px]">الجمع:</span>
-                            <span className="font-bold text-rose-400">{rule.plural_ro}</span>
-                          </div>
-                        </div>
-                      )}
-
-                      {rule.indefinite_ro && (
-                        <div className="grid grid-cols-2 gap-2 text-right">
-                          <div>
-                            <span className="text-slate-400 block text-[10px]">نكرة (Indefinite):</span>
-                            <span className="font-bold text-blue-400">{rule.indefinite_ro}</span>
-                          </div>
-                          <div>
-                            <span className="text-slate-400 block text-[10px]">معرفة (Definite):</span>
-                            <span className="font-bold text-emerald-400">{rule.definite_ro}</span>
-                          </div>
-                        </div>
-                      )}
-
-                      {rule.a_fi && (
-                        <div className="grid grid-cols-4 gap-1.5 text-center pt-1 font-bold">
-                          <div className="p-1.5 rounded bg-slate-800 text-amber-400">A fi: {rule.a_fi}</div>
-                          <div className="p-1.5 rounded bg-slate-800 text-emerald-400">A avea: {rule.a_avea}</div>
-                          <div className="p-1.5 rounded bg-slate-800 text-blue-400">Merge: {rule.a_merge}</div>
-                          <div className="p-1.5 rounded bg-slate-800 text-purple-400">Vorbi: {rule.a_vorbi}</div>
-                        </div>
-                      )}
-
-                      {rule.rule_ar && <p className="text-[11px] font-semibold text-rose-400 text-right">🇸🇦 {rule.rule_ar}</p>}
+                  <div className="space-y-2 text-xs pt-1">
+                    <div className="space-y-0.5">
+                      <p className="font-bold text-rose-400">{module.dialogue_example.speaker_a}: {module.dialogue_example.line_a_ro}</p>
+                      <p className="text-theme-sub text-[11px]">🇸🇦 {module.dialogue_example.line_a_ar}</p>
                     </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Conversational Dialogue Example Section */}
-              {lesson.dialogue_example && (
-                <div className="px-5 pb-5 space-y-2">
-                  <p className="text-xs font-black text-emerald-400 flex items-center space-x-1.5 space-x-reverse">
-                    <MessageSquare className="w-4 h-4" />
-                    <span>تطبيق القاعدة في حوار واقعي (Conversational Dialogue):</span>
-                  </p>
-
-                  <div className={`rounded-xl p-3.5 border space-y-2 text-xs ${
-                    isDark ? 'bg-slate-900 border-emerald-500/30' : 'bg-emerald-50/40 border-emerald-200'
-                  }`}>
-                    {lesson.dialogue_example.map((line, dIdx) => (
-                      <div key={dIdx} className="flex items-start justify-between border-b border-slate-700/40 pb-2 last:border-0 last:pb-0">
-                        <div className="space-y-0.5 text-right">
-                          <span className="text-[10px] font-extrabold text-amber-400">{line.speaker}:</span>
-                          <p className="font-bold text-emerald-400">{line.text_ro}</p>
-                          <p className="text-[11px] text-rose-400 font-semibold">🇸🇦 {line.text_ar}</p>
-                        </div>
-
-                        <button
-                          onClick={() => speakText(line.text_ro, `${lesson.id}-diag-${dIdx}`)}
-                          className={`p-1.5 rounded-lg text-emerald-400 transition-colors shrink-0 ${
-                            playingId === `${lesson.id}-diag-${dIdx}` ? 'bg-emerald-500 text-white animate-pulse' : 'bg-emerald-500/20 hover:bg-emerald-500/30'
-                          }`}
-                        >
-                          <Volume2 className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
-                    ))}
+                    <div className="space-y-0.5 border-t border-slate-700/40 pt-1">
+                      <p className="font-bold text-emerald-400">{module.dialogue_example.speaker_b}: {module.dialogue_example.line_b_ro}</p>
+                      <p className="text-theme-sub text-[11px]">🇸🇦 {module.dialogue_example.line_b_ar}</p>
+                    </div>
                   </div>
                 </div>
               )}
@@ -293,7 +233,7 @@ function GrammarContent() {
 
 export default function GrammarPage() {
   return (
-    <Suspense fallback={<div className="p-8 text-center text-slate-400">Loading Grammar Page...</div>}>
+    <Suspense fallback={<div className="p-8 text-center text-slate-400">Loading Grammar Guide...</div>}>
       <GrammarContent />
     </Suspense>
   );

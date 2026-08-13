@@ -98,19 +98,25 @@ function QuizContent() {
     setQuestionCount(prev => prev + 1);
   };
 
-  const handleSelect = (option) => {
-    if (selectedOption) return;
-    
+  const handleOptionSelect = (option) => {
+    if (selectedOption !== null) return;
+
     setSelectedOption(option);
-    if (option === currentQuestion.answer) {
+    const isCorrect = option === currentQuestion.answer;
+
+    if (isCorrect) {
       setScore(prev => prev + 1);
     } else {
-      setWrongAnswers(prev => [...prev, { question: currentQuestion, userSelected: option }]);
+      setWrongAnswers(prev => [...prev, {
+        question: currentQuestion,
+        userAnswer: option,
+        correctAnswer: currentQuestion.answer
+      }]);
     }
 
     setTimeout(() => {
       generateQuestion();
-    }, 1400);
+    }, 1200);
   };
 
   const resetQuiz = () => {
@@ -137,15 +143,15 @@ function QuizContent() {
     const categoryMeta = getCategoryMeta(selectedCategory);
 
     return (
-      <div className="min-h-screen pb-20 bg-theme-main text-theme-main flex flex-col">
+      <div className="min-h-screen pb-28 sm:pb-24 bg-theme-main text-theme-main flex flex-col">
         <Navbar />
 
-        <main className={`flex-1 max-w-lg mx-auto w-full px-4 py-8 space-y-6 ${
+        <main className={`flex-1 max-w-lg mx-auto w-full px-4 py-8 space-y-6 animate-scale-in ${
           isRtl ? 'lg:mr-72' : 'lg:ml-72'
         } ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
-          <div className={`rounded-2xl p-6 border shadow-xl text-center space-y-6 ${isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'}`}>
-            <div className={`w-24 h-24 rounded-full mx-auto flex items-center justify-center ${isPassed ? 'bg-emerald-500/20 text-yellow-400' : 'bg-rose-500/20 text-rose-500'}`}>
-              {isPassed ? <Trophy className="w-12 h-12" /> : <XCircle className="w-12 h-12" />}
+          <div className={`p-6 rounded-2xl border text-center space-y-6 shadow-xl ${isDark ? 'bg-slate-800/90 border-slate-700' : 'bg-white border-slate-200'}`}>
+            <div className={`w-20 h-20 mx-auto rounded-full flex items-center justify-center border-4 animate-bounce-subtle ${isPassed ? 'bg-emerald-500/20 border-emerald-500 text-emerald-400' : 'bg-rose-500/20 border-rose-500 text-rose-400'}`}>
+              <Trophy className="w-10 h-10" />
             </div>
 
             <div className="space-y-1">
@@ -180,7 +186,7 @@ function QuizContent() {
             <div className="space-y-2">
               <button
                 onClick={resetQuiz}
-                className="w-full py-3.5 bg-rose-600 hover:bg-rose-500 text-white font-bold rounded-xl flex items-center justify-center space-x-2 space-x-reverse shadow-lg shadow-rose-600/30 transition-all text-sm"
+                className="w-full py-3 bg-rose-600 hover:bg-rose-500 text-white font-black rounded-xl text-xs sm:text-sm shadow-md shadow-rose-600/30 transition-all flex items-center justify-center space-x-2 space-x-reverse"
               >
                 <RotateCcw className="w-4 h-4" />
                 <span>{strings.retakeQuiz}</span>
@@ -188,7 +194,7 @@ function QuizContent() {
 
               <Link
                 href="/"
-                className={`block w-full py-3.5 font-bold rounded-xl text-sm transition-all ${isDark ? 'bg-slate-700 hover:bg-slate-600 text-slate-300' : 'bg-slate-200 hover:bg-slate-300 text-slate-700'}`}
+                className={`block w-full py-3 font-bold rounded-xl border text-xs sm:text-sm transition-all text-center ${isDark ? 'bg-slate-900 border-slate-700 hover:bg-slate-800' : 'bg-slate-100 border-slate-200 hover:bg-slate-200'}`}
               >
                 {strings.backHome}
               </Link>
@@ -201,13 +207,13 @@ function QuizContent() {
 
   if (!currentQuestion) return null;
 
-  const categoryMeta = getCategoryMeta(currentQuestion.category || selectedCategory);
+  const categoryMeta = getCategoryMeta(currentQuestion.category);
 
   return (
-    <div className="min-h-screen pb-20 bg-theme-main text-theme-main flex flex-col">
+    <div className="min-h-screen pb-28 sm:pb-24 bg-theme-main text-theme-main flex flex-col">
       <Navbar />
 
-      <main className={`flex-1 max-w-4xl mx-auto w-full px-4 py-6 space-y-4 ${
+      <main className={`flex-1 max-w-4xl mx-auto w-full px-4 py-6 space-y-4 animate-fade-in-up ${
         isRtl ? 'lg:mr-72' : 'lg:ml-72'
       } ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
         {/* Quiz Top Header Bar */}
@@ -226,141 +232,85 @@ function QuizContent() {
           </div>
 
           {quizMode === 'exam' ? (
-            <div className="flex items-center space-x-1.5 space-x-reverse px-3 py-1 bg-emerald-500/20 text-emerald-500 rounded-xl text-xs font-bold border border-emerald-500/30">
-              <Timer className="w-4 h-4" />
+            <div className="flex items-center space-x-1.5 space-x-reverse text-xs font-mono font-bold text-rose-500 bg-rose-500/10 border border-rose-500/20 px-2.5 py-1 rounded-xl">
+              <Timer className="w-4 h-4 animate-pulse" />
               <span>{formatTimer(timeLeft)}</span>
             </div>
           ) : (
-            <div className="w-8" />
+            <div className="text-xs font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-xl">
+              {strings.score}: {score}
+            </div>
           )}
         </div>
 
-        {/* Category Picker Strip */}
-        <div className="flex items-center space-x-2 space-x-reverse overflow-x-auto pb-1 no-scrollbar">
-          {CATEGORIES_LIST.map((cat) => {
-            const isSel = selectedCategory === cat.id;
-            return (
-              <button
-                key={cat.id}
-                onClick={() => setSelectedCategory(cat.id)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all shrink-0 ${
-                  isSel 
-                    ? 'text-white shadow-md' 
-                    : isDark ? 'bg-slate-800/80 text-slate-400 border border-slate-700/60 hover:text-white' : 'bg-white text-slate-600 border border-slate-200 hover:text-slate-900 shadow-sm'
-                }`}
-                style={isSel ? { backgroundColor: cat.color } : {}}
-              >
-                {appLang === 'ar' ? cat.name_ar : appLang === 'en' ? cat.name_en : cat.name_ro}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Main Question Card */}
-        <div className={`rounded-2xl border overflow-hidden shadow-xl space-y-3 ${isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'}`}>
+        {/* Progress Bar */}
+        <div className="w-full bg-slate-700/30 h-2 rounded-full overflow-hidden">
           <div 
-            onClick={() => setImageModalVisible(true)}
-            className="relative w-full h-52 bg-slate-950 flex items-center justify-center p-3 cursor-pointer group border-b border-slate-700/60"
-          >
-            <img 
-              src={currentQuestion.image} 
-              alt={currentQuestion.question}
-              className="max-h-full max-w-full object-contain transition-transform group-hover:scale-105"
-            />
-
-            <span 
-              className="absolute top-3 right-3 text-xs font-bold text-white px-3 py-1 rounded-lg shadow"
-              style={{ backgroundColor: categoryMeta.color }}
-            >
-              {appLang === 'ar' ? categoryMeta.name_ar : appLang === 'en' ? categoryMeta.name_en : categoryMeta.name_ro}
-            </span>
-
-            <button className="absolute bottom-3 left-3 bg-black/75 text-white px-2 py-1 rounded-lg text-xs font-semibold flex items-center space-x-1 space-x-reverse backdrop-blur-sm">
-              <Maximize2 className="w-3.5 h-3.5" />
-              <span>{strings.zoomImage}</span>
-            </button>
-          </div>
-
-          {/* Links Bar */}
-          <div className={`flex items-center justify-between px-4 py-2 border-b text-xs font-bold gap-2 ${isDark ? 'bg-slate-900/90 border-slate-700/60' : 'bg-slate-50 border-slate-200'}`}>
-            <a
-              href={currentQuestion.wiki_url || 'https://en.wikipedia.org/wiki/Romania'}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`flex-1 flex items-center justify-center space-x-1.5 space-x-reverse py-1.5 rounded-lg border ${isDark ? 'bg-slate-800 border-slate-700 text-slate-200' : 'bg-white border-slate-300 text-slate-800'}`}
-            >
-              <ExternalLink className="w-3.5 h-3.5 text-rose-400" />
-              <span>ويكيبيديا ℹ️</span>
-            </a>
-
-            <Link
-              href={`/ai?q=${encodeURIComponent(currentQuestion.question)}`}
-              className="flex items-center space-x-1 space-x-reverse py-1.5 px-3 bg-amber-500/15 hover:bg-amber-500/25 rounded-lg text-amber-500 border border-amber-500/40 shrink-0"
-            >
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>اسأل AI</span>
-            </Link>
-          </div>
-
-          {/* Question Text */}
-          <div className="p-4 space-y-3">
-            <h2 className="text-lg font-semibold leading-relaxed">
-              {currentQuestion.question}
-            </h2>
-
-            <div className={`h-px w-full ${isDark ? 'bg-slate-700/80' : 'bg-slate-200'}`} />
-
-            <div className="space-y-2">
-              <div>
-                <span className="text-[10px] font-bold text-rose-500 block mb-0.5">🇸🇦 Arabic:</span>
-                <p className="text-base font-bold text-rose-500 text-right leading-relaxed">
-                  {currentQuestion.question_ar}
-                </p>
-              </div>
-
-              <div>
-                <span className="text-[10px] font-bold text-emerald-500 block mb-0.5">🇬🇧 English:</span>
-                <p className="text-xs font-medium leading-relaxed">
-                  {getQuestionText(currentQuestion, 'en')}
-                </p>
-              </div>
-            </div>
-          </div>
+            className="bg-rose-500 h-full transition-all duration-300 rounded-full"
+            style={{ width: `${(questionCount / totalQuestionsLimit) * 100}%` }}
+          />
         </div>
 
-        <p className="text-xs font-medium text-theme-sub">{strings.chooseCorrectAns}</p>
-
-        {/* Options Grid */}
-        <div className="space-y-2.5">
-          {options.map((option, index) => {
-            let bgClass = isDark ? 'bg-slate-800/90 border-slate-700/80 text-white hover:border-slate-500' : 'bg-white border-slate-200 text-slate-900 hover:border-slate-400 shadow-sm';
-
-            if (selectedOption) {
-              if (option === currentQuestion.answer) {
-                bgClass = 'bg-emerald-500/20 border-emerald-500 text-emerald-500 font-bold';
-              } else if (option === selectedOption) {
-                bgClass = 'bg-rose-500/20 border-rose-500 text-rose-500 font-bold';
-              }
-            }
-
-            return (
-              <button
-                key={index}
-                onClick={() => handleSelect(option)}
-                disabled={selectedOption !== null}
-                className={`w-full p-4 rounded-2xl border-2 text-center text-sm font-semibold transition-all flex items-center justify-between ${bgClass}`}
+        {/* Question Flashcard */}
+        <div className={`p-5 rounded-2xl border space-y-4 shadow-xl animate-scale-in ${isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'}`}>
+          {currentQuestion.image && (
+            <div className="relative w-full h-44 sm:h-56 rounded-xl overflow-hidden border border-slate-700/60 group cursor-pointer" onClick={() => setImageModalVisible(true)}>
+              <img 
+                src={currentQuestion.image} 
+                alt={currentQuestion.question}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+              />
+              <button 
+                onClick={() => setImageModalVisible(true)}
+                className="absolute bottom-2 right-2 p-1.5 bg-black/60 backdrop-blur-md text-white rounded-lg text-[10px] font-bold flex items-center space-x-1 space-x-reverse"
               >
-                <span className="w-full text-center">{option}</span>
-
-                {selectedOption && option === currentQuestion.answer && (
-                  <CheckCircle className="w-5 h-5 text-emerald-500 shrink-0" />
-                )}
-                {selectedOption === option && option !== currentQuestion.answer && (
-                  <XCircle className="w-5 h-5 text-rose-500 shrink-0" />
-                )}
+                <Maximize2 className="w-3.5 h-3.5" />
+                <span>عرض 🔍</span>
               </button>
-            );
-          })}
+            </div>
+          )}
+
+          <div className="space-y-1">
+            <span className="text-[10px] font-bold text-rose-500">🇷🇴 Limba Română:</span>
+            <h2 className="text-base sm:text-lg font-extrabold leading-snug">{currentQuestion.question}</h2>
+            <p className="text-xs text-theme-sub">🇸🇦 {getQuestionText(currentQuestion, appLang)}</p>
+          </div>
+
+          {/* Options Grid */}
+          <div className="space-y-2.5 pt-2">
+            <p className="text-xs font-semibold text-theme-sub">{strings.chooseCorrectAns}</p>
+            {options.map((option, idx) => {
+              let btnStyle = isDark 
+                ? 'bg-slate-900/90 border-slate-700/80 hover:border-rose-500 text-slate-100' 
+                : 'bg-slate-100 border-slate-200 hover:border-rose-500 text-slate-900';
+
+              if (selectedOption !== null) {
+                if (option === currentQuestion.answer) {
+                  btnStyle = 'bg-emerald-600 text-white border-emerald-600 animate-quiz-pop font-black';
+                } else if (option === selectedOption) {
+                  btnStyle = 'bg-rose-600 text-white border-rose-600 animate-quiz-shake font-black';
+                }
+              }
+
+              return (
+                <button
+                  key={idx}
+                  disabled={selectedOption !== null}
+                  onClick={() => handleOptionSelect(option)}
+                  className={`w-full p-3.5 rounded-xl border text-xs sm:text-sm text-right font-bold transition-all flex items-center justify-between ${btnStyle}`}
+                >
+                  <span className="leading-snug">{option}</span>
+                  {selectedOption !== null && (
+                    option === currentQuestion.answer ? (
+                      <CheckCircle className="w-5 h-5 text-white shrink-0" />
+                    ) : option === selectedOption ? (
+                      <XCircle className="w-5 h-5 text-white shrink-0" />
+                    ) : null
+                  )}
+                </button>
+              );
+            })}
+          </div>
         </div>
       </main>
     </div>
