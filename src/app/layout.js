@@ -1,8 +1,9 @@
 import './globals.css';
+import { ThemeProvider } from '../context/ThemeContext';
 
 export const metadata = {
   title: 'Cetățenia Română Prep - Romanian Citizenship Learning App',
-  description: 'Comprehensive guide for Romanian Citizenship oral interview with Wikipedia media, bilingual translations, quizzes, and AI tutor',
+  description: 'Comprehensive guide for Romanian Citizenship oral interview with Wikipedia media, bilingual translations, quizzes, & AI tutor',
   manifest: '/manifest.json',
   icons: {
     icon: '/favicon.png',
@@ -27,10 +28,10 @@ export default function RootLayout({ children }) {
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </head>
-      <body className="bg-[#0F172A] text-slate-100 min-h-screen flex flex-col selection:bg-rose-500 selection:text-white">
-        <main className="flex-1 w-full max-w-4xl mx-auto px-4 py-6">
+      <body className="min-h-screen flex flex-col selection:bg-rose-500 selection:text-white">
+        <ThemeProvider>
           {children}
-        </main>
+        </ThemeProvider>
       </body>
     </html>
   );

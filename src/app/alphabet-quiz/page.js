@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect, useRef, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { 
@@ -11,21 +11,28 @@ import {
   XCircle, 
   Sparkles, 
   Gamepad2, 
-  ArrowLeft,
-  Star
+  Zap, 
+  Flame, 
+  Timer, 
+  Star,
+  Award
 } from 'lucide-react';
 import alphabetData from '../../data/romanian_alphabet.json';
 import Navbar from '../../components/Navbar';
+import { useTheme } from '../../context/ThemeContext';
 import { UI_STRINGS } from '../../utils/languageHelper';
 
 function AlphabetQuizContent() {
   const searchParams = useSearchParams();
   const initialLang = searchParams.get('lang') || 'ar';
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
 
   const [appLang, setAppLang] = useState(initialLang);
   const strings = UI_STRINGS[appLang] || UI_STRINGS.ar;
   const isRtl = appLang === 'ar';
 
+  const [gameMode, setGameMode] = useState('audio'); // 'audio', 'special', 'speed'
   const [questionCount, setQuestionCount] = useState(0);
   const [score, setScore] = useState(0);
   const [currentLetter, setCurrentLetter] = useState(null);
@@ -33,21 +40,84 @@ function AlphabetQuizContent() {
   const [selectedOption, setSelectedOption] = useState(null);
   const [isFinished, setIsFinished] = useState(false);
   const [streak, setStreak] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
+  const [speedTimeLeft, setSpeedTimeLeft] = useState(30);
 
-  const TOTAL_QUESTIONS = 10;
+  const speedTimerRef = useRef(null);
+
+  const TOTAL_QUESTIONS = gameMode === 'speed' ? 99 : 10;
 
   useEffect(() => {
-    generateNewQuestion();
+    const savedBest = localStorage.getItem('alphabet_quiz_best');
+    if (savedBest) setBestScore(parseInt(savedBest));
   }, []);
 
+  useEffect(() => {
+    restartGame();
+  }, [gameMode]);
+
+  useEffect(() => {
+    if (gameMode === 'speed' && !isFinished) {
+      if (speedTimeLeft <= 0) {
+        setIsFinished(true);
+        return;
+      }
+      speedTimerRef.current = setTimeout(() => {
+        setSpeedTimeLeft(prev => prev - 1);
+      }, 1000);
+    }
+    return () => {
+      if (speedTimerRef.current) clearTimeout(speedTimerRef.current);
+    };
+  }, [speedTimeLeft, isFinished, gameMode]);
+
+  // Web Audio API Synthesizer for Fun Sound Effects
+  const playSoundEffect = (type) => {
+    if (typeof window === 'undefined') return;
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+      const ctx = new AudioCtx();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      if (type === 'correct') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(523.25, ctx.currentTime); // C5
+        osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.15); // A5
+        gain.gain.setValueAtTime(0.3, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.25);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.25);
+      } else {
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(150, ctx.currentTime);
+        osc.frequency.setValueAtTime(110, ctx.currentTime + 0.1);
+        gain.gain.setValueAtTime(0.3, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.2);
+      }
+    } catch (e) {
+      // Audio fallback silent
+    }
+  };
+
   const generateNewQuestion = () => {
-    if (questionCount >= TOTAL_QUESTIONS) {
-      setIsFinished(true);
+    let pool = alphabetData;
+    if (gameMode === 'special') {
+      pool = alphabetData.filter(item => item.category.startsWith('special'));
+    }
+
+    if ((gameMode !== 'speed' && questionCount >= TOTAL_QUESTIONS) || pool.length === 0) {
+      finishGame();
       return;
     }
 
-    const randomIdx = Math.floor(Math.random() * alphabetData.length);
-    const correctLetter = alphabetData[randomIdx];
+    const randomIdx = Math.floor(Math.random() * pool.length);
+    const correctLetter = pool[randomIdx];
 
     let wrongOptions = [];
     while (wrongOptions.length < 3) {
@@ -66,9 +136,19 @@ function AlphabetQuizContent() {
     setSelectedOption(null);
     setQuestionCount(prev => prev + 1);
 
-    setTimeout(() => {
-      speakAudio(`${correctLetter.letter}. ${correctLetter.example_word_ro}.`);
-    }, 400);
+    if (gameMode === 'audio') {
+      setTimeout(() => {
+        speakAudio(`${correctLetter.letter}. ${correctLetter.example_word_ro}.`);
+      }, 300);
+    }
+  };
+
+  const finishGame = () => {
+    setIsFinished(true);
+    if (score > bestScore) {
+      setBestScore(score);
+      localStorage.setItem('alphabet_quiz_best', score.toString());
+    }
   };
 
   const speakAudio = (text) => {
@@ -85,15 +165,24 @@ function AlphabetQuizContent() {
 
     setSelectedOption(item);
     if (item.letter === currentLetter.letter) {
-      setScore(prev => prev + 1);
+      playSoundEffect('correct');
+      setScore(prev => {
+        const newScore = prev + 1;
+        if (newScore > bestScore) {
+          setBestScore(newScore);
+          localStorage.setItem('alphabet_quiz_best', newScore.toString());
+        }
+        return newScore;
+      });
       setStreak(prev => prev + 1);
     } else {
+      playSoundEffect('wrong');
       setStreak(0);
     }
 
     setTimeout(() => {
       generateNewQuestion();
-    }, 1300);
+    }, 1100);
   };
 
   const restartGame = () => {
@@ -101,31 +190,36 @@ function AlphabetQuizContent() {
     setScore(0);
     setStreak(0);
     setIsFinished(false);
+    setSpeedTimeLeft(30);
     generateNewQuestion();
   };
 
   if (isFinished) {
-    const percentage = Math.round((score / TOTAL_QUESTIONS) * 100);
+    const percentage = Math.round((score / Math.max(questionCount, 1)) * 100);
+
     return (
-      <div className="min-h-screen bg-[#0F172A] text-slate-100 flex flex-col">
+      <div className="min-h-screen pb-20 bg-theme-main text-theme-main flex flex-col">
         <Navbar appLang={appLang} setAppLang={setAppLang} />
 
         <main className={`flex-1 max-w-lg mx-auto w-full px-4 py-8 space-y-6 ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
-          <div className="bg-slate-800/90 rounded-2xl p-6 border border-slate-700/80 shadow-xl text-center space-y-6">
-            <div className="w-20 h-20 rounded-full mx-auto bg-amber-500/20 text-amber-400 flex items-center justify-center">
-              <Trophy className="w-10 h-10" />
+          <div className={`rounded-2xl p-6 border shadow-xl text-center space-y-6 ${isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'}`}>
+            <div className="w-24 h-24 rounded-full mx-auto bg-amber-500/20 text-amber-400 flex items-center justify-center relative">
+              <Trophy className="w-12 h-12" />
+              <Sparkles className="w-6 h-6 text-amber-300 absolute top-2 right-2 animate-bounce" />
             </div>
 
             <div className="space-y-1">
-              <h2 className="text-2xl font-extrabold text-white">{strings.quizFinished}</h2>
-              <p className="text-xs text-slate-400">{strings.alphabetGameTitle}</p>
+              <h2 className="text-2xl font-extrabold">{strings.quizFinished} 🎉</h2>
+              <p className="text-xs text-theme-sub">
+                {gameMode === 'audio' ? '🎧 سماع الحروف والكلمات' : gameMode === 'special' ? '🔤 أبطال الحروف الخاصة (Ă, Â, Î, Ș, Ț)' : '⚡ تحدي السرعة 30 ثانية'}
+              </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-slate-900/90 border-2 border-amber-500 space-y-2">
-              <p className="text-4xl font-black text-amber-400">{score} / {TOTAL_QUESTIONS}</p>
-              <p className="text-xs font-bold text-slate-300">{strings.score}: {percentage}%</p>
+            <div className={`p-6 rounded-2xl border-2 space-y-2 ${isDark ? 'bg-slate-900/90 border-amber-500' : 'bg-slate-50 border-amber-500'}`}>
+              <p className="text-4xl font-black text-amber-400">{score} {appLang === 'ar' ? 'إجابات صحيحة' : 'Correct'}</p>
+              <p className="text-xs font-bold text-theme-sub">{strings.score}: {percentage}%</p>
               <p className="text-xs font-bold text-emerald-400">
-                {percentage >= 80 ? '🌟 ممتاز! أنقنت نطق الحروف الرومانية!' : '👍 أداء جيد! واصل التمرين واللعب!'}
+                🏆 Best Score: {bestScore}
               </p>
             </div>
 
@@ -140,7 +234,7 @@ function AlphabetQuizContent() {
 
               <Link
                 href={`/alphabet?lang=${appLang}`}
-                className="block w-full py-3 bg-slate-700 hover:bg-slate-600 text-slate-300 font-bold rounded-xl text-xs transition-colors"
+                className={`block w-full py-3 font-bold rounded-xl text-xs transition-colors ${isDark ? 'bg-slate-700 hover:bg-slate-600 text-slate-300' : 'bg-slate-200 hover:bg-slate-300 text-slate-700'}`}
               >
                 العودة لجدول الأبجدية
               </Link>
@@ -154,39 +248,94 @@ function AlphabetQuizContent() {
   if (!currentLetter) return null;
 
   return (
-    <div className="min-h-screen bg-[#0F172A] text-slate-100 flex flex-col">
+    <div className="min-h-screen pb-20 bg-theme-main text-theme-main flex flex-col">
       <Navbar appLang={appLang} setAppLang={setAppLang} />
 
       <main className={`flex-1 max-w-lg mx-auto w-full px-4 py-6 space-y-5 ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
-        {/* Progress & Streak Bar */}
-        <div className="flex items-center justify-between bg-slate-800/80 p-3 rounded-2xl border border-slate-700/60 text-xs font-bold">
-          <span className="text-slate-400">
-            {strings.question} {questionCount} {strings.of} {TOTAL_QUESTIONS}
-          </span>
+        {/* Game Mode Switcher Chips */}
+        <div className="grid grid-cols-3 gap-2 text-center">
+          <button
+            onClick={() => setGameMode('audio')}
+            className={`py-2 px-2 rounded-xl text-xs font-bold border transition-all ${
+              gameMode === 'audio' 
+                ? 'bg-rose-600 text-white border-rose-600 shadow' 
+                : isDark ? 'bg-slate-800 border-slate-700 text-slate-300' : 'bg-slate-100 border-slate-200 text-slate-700'
+            }`}
+          >
+            🎧 الصوت والكلمة
+          </button>
+          
+          <button
+            onClick={() => setGameMode('special')}
+            className={`py-2 px-2 rounded-xl text-xs font-bold border transition-all ${
+              gameMode === 'special' 
+                ? 'bg-amber-600 text-white border-amber-600 shadow' 
+                : isDark ? 'bg-slate-800 border-slate-700 text-slate-300' : 'bg-slate-100 border-slate-200 text-slate-700'
+            }`}
+          >
+            🔤 الحروف الخاصة
+          </button>
+
+          <button
+            onClick={() => setGameMode('speed')}
+            className={`py-2 px-2 rounded-xl text-xs font-bold border transition-all ${
+              gameMode === 'speed' 
+                ? 'bg-emerald-600 text-white border-emerald-600 shadow' 
+                : isDark ? 'bg-slate-800 border-slate-700 text-slate-300' : 'bg-slate-100 border-slate-200 text-slate-700'
+            }`}
+          >
+            ⚡ سرعة 30 ثانية
+          </button>
+        </div>
+
+        {/* Status Dashboard: Streak, Timer, Score */}
+        <div className={`flex items-center justify-between p-3 rounded-2xl border text-xs font-bold ${
+          isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-white border-slate-200 shadow-sm'
+        }`}>
+          {gameMode === 'speed' ? (
+            <div className="flex items-center space-x-1.5 space-x-reverse text-rose-500 font-extrabold animate-pulse">
+              <Timer className="w-4 h-4" />
+              <span>{speedTimeLeft}s</span>
+            </div>
+          ) : (
+            <span className="text-theme-sub">
+              {strings.question} {questionCount} / {TOTAL_QUESTIONS}
+            </span>
+          )}
+
           <div className="flex items-center space-x-1 space-x-reverse text-amber-400 bg-amber-500/10 px-3 py-1 rounded-xl border border-amber-500/20">
-            <Star className="w-4 h-4" />
+            <Flame className="w-4 h-4" />
             <span>Streak: {streak} 🔥</span>
           </div>
+
           <span className="text-emerald-400">{strings.score}: {score}</span>
         </div>
 
-        {/* Audio Game Main Card */}
-        <div className="bg-slate-800/90 rounded-2xl p-6 border border-slate-700/80 shadow-xl text-center space-y-5">
+        {/* Main Interactive Play Card */}
+        <div className={`rounded-2xl p-6 border shadow-xl text-center space-y-4 ${
+          isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'
+        }`}>
           <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold bg-rose-500/20 text-rose-400 border border-rose-500/30">
-            🎮 {appLang === 'ar' ? 'استمع للصوت واختر الحرف والكلمة الصحيحة' : 'Listen and pick the matching letter'}
+            🎮 {gameMode === 'audio' ? 'استمع للصوت واختر الحرف المناسب' : gameMode === 'special' ? 'خبير الحروف الرومانية الخاصة (Ă, Â, Î, Ș, Ț)' : 'اختر بأسرع وقت ممكن!'}
           </span>
 
-          <button
-            onClick={() => speakAudio(`${currentLetter.letter}. ${currentLetter.example_word_ro}.`)}
-            className="w-24 h-24 rounded-3xl mx-auto bg-gradient-to-tr from-rose-600 to-amber-500 hover:scale-105 transition-transform flex flex-col items-center justify-center text-white shadow-xl shadow-rose-600/30 group"
-          >
-            <Volume2 className="w-10 h-10 group-hover:scale-110 transition-transform" />
-            <span className="text-[10px] font-bold mt-1">اضغط للاستماع 🔊</span>
-          </button>
+          {gameMode === 'audio' ? (
+            <button
+              onClick={() => speakAudio(`${currentLetter.letter}. ${currentLetter.example_word_ro}.`)}
+              className="w-24 h-24 rounded-3xl mx-auto bg-gradient-to-tr from-rose-600 to-amber-500 hover:scale-105 transition-transform flex flex-col items-center justify-center text-white shadow-xl shadow-rose-600/30 group"
+            >
+              <Volume2 className="w-10 h-10 group-hover:scale-110 transition-transform" />
+              <span className="text-[10px] font-bold mt-1">اضغط للاستماع 🔊</span>
+            </button>
+          ) : (
+            <div className="w-24 h-24 rounded-3xl mx-auto bg-gradient-to-tr from-amber-500 to-rose-600 flex items-center justify-center text-white text-5xl font-black shadow-xl">
+              {currentLetter.letter}
+            </div>
+          )}
 
           <div className="space-y-1">
-            <h2 className="text-base font-bold text-white">
-              {appLang === 'ar' ? 'ما هو الحرف المسموع؟' : 'Which letter did you hear?'}
+            <h2 className="text-base font-bold">
+              {gameMode === 'audio' ? 'ما هو الحرف المسموع؟' : `ما هي الكلمة والمثال للحرف (${currentLetter.letter})؟`}
             </h2>
             <p className="text-xs text-amber-400 font-semibold">
               🇸🇦 {currentLetter.pronunciation_ar}
@@ -194,10 +343,12 @@ function AlphabetQuizContent() {
           </div>
         </div>
 
-        {/* Options Grid */}
+        {/* Multiple Choice Options Grid */}
         <div className="grid grid-cols-2 gap-3">
           {options.map((item, idx) => {
-            let btnStyle = 'bg-slate-800/90 border-slate-700/80 text-white hover:border-slate-500';
+            let btnStyle = isDark 
+              ? 'bg-slate-800/90 border-slate-700/80 text-white hover:border-slate-500' 
+              : 'bg-white border-slate-200 text-slate-900 hover:border-slate-400 shadow-sm';
 
             if (selectedOption) {
               if (item.letter === currentLetter.letter) {
@@ -212,11 +363,11 @@ function AlphabetQuizContent() {
                 key={idx}
                 onClick={() => handleSelect(item)}
                 disabled={selectedOption !== null}
-                className={`p-5 rounded-2xl border-2 transition-all flex flex-col items-center justify-center space-y-1 ${btnStyle}`}
+                className={`p-4 rounded-2xl border-2 transition-all flex flex-col items-center justify-center space-y-1 ${btnStyle}`}
               >
                 <span className="text-3xl font-black">{item.letter}</span>
-                <span className="text-xs font-bold text-slate-300">{item.example_word_ro}</span>
-                <span className="text-[10px] text-slate-400">🇸🇦 {item.example_translation_ar}</span>
+                <span className="text-xs font-bold text-emerald-400">{item.example_word_ro}</span>
+                <span className="text-[10px] text-theme-sub">🇸🇦 {item.example_translation_ar}</span>
 
                 {selectedOption && item.letter === currentLetter.letter && (
                   <CheckCircle className="w-5 h-5 text-emerald-400 mt-1" />

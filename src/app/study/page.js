@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import questions from '../../data/questions_ar.json';
 import Navbar from '../../components/Navbar';
+import { useTheme } from '../../context/ThemeContext';
 import { CATEGORIES_LIST, getCategoryMeta } from '../../utils/categories';
 import { getQuestionText, getAnswerText, UI_STRINGS } from '../../utils/languageHelper';
 
@@ -25,6 +26,9 @@ function StudyContent() {
   const searchParams = useSearchParams();
   const initialCat = searchParams.get('category') || 'all';
   const initialLang = searchParams.get('lang') || 'ar';
+
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
 
   const [activeCategory, setActiveCategory] = useState(initialCat);
   const [appLang, setAppLang] = useState(initialLang);
@@ -93,7 +97,7 @@ function StudyContent() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0F172A] text-slate-100 flex flex-col">
+    <div className="min-h-screen pb-20 bg-theme-main text-theme-main flex flex-col">
       <Navbar appLang={appLang} setAppLang={setAppLang} />
 
       <main className={`flex-1 w-full max-w-4xl mx-auto px-4 py-6 space-y-4 ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
@@ -108,7 +112,7 @@ function StudyContent() {
                 className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all flex items-center space-x-2 space-x-reverse shrink-0 ${
                   isActive 
                     ? 'text-white shadow-md' 
-                    : 'bg-slate-800/80 text-slate-400 border border-slate-700/60 hover:text-white'
+                    : isDark ? 'bg-slate-800/80 text-slate-400 border border-slate-700/60 hover:text-white' : 'bg-white text-slate-600 border border-slate-200 hover:text-slate-900 shadow-sm'
                 }`}
                 style={isActive ? { backgroundColor: cat.color } : {}}
               >
@@ -119,16 +123,16 @@ function StudyContent() {
         </div>
 
         {/* Progress Bar */}
-        <div className="bg-slate-800/80 rounded-xl p-3 border border-slate-700/60 space-y-1.5">
+        <div className={`rounded-xl p-3 border space-y-1.5 ${isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-white border-slate-200 shadow-sm'}`}>
           <div className="flex justify-between text-xs font-semibold">
             <span style={{ color: categoryMeta.color }}>
               {appLang === 'ar' ? categoryMeta.name_ar : appLang === 'en' ? categoryMeta.name_en : categoryMeta.name_ro}
             </span>
-            <span className="text-slate-400">
+            <span className="text-theme-sub">
               {strings.question} {currentIndex + 1} {strings.of} {filteredQuestions.length}
             </span>
           </div>
-          <div className="w-full bg-slate-900 h-2 rounded-full overflow-hidden">
+          <div className={`w-full h-2 rounded-full overflow-hidden ${isDark ? 'bg-slate-900' : 'bg-slate-100'}`}>
             <div 
               className="h-full transition-all duration-300"
               style={{ 
@@ -140,7 +144,7 @@ function StudyContent() {
         </div>
 
         {/* Main Question Card */}
-        <div className="bg-slate-800/90 rounded-2xl border border-slate-700/80 overflow-hidden shadow-xl">
+        <div className={`rounded-2xl border overflow-hidden shadow-xl ${isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'}`}>
           {/* Uncropped Wikipedia Image Container */}
           <div 
             onClick={() => setModalVisible(true)}
@@ -170,12 +174,14 @@ function StudyContent() {
           </div>
 
           {/* Action Toolbar */}
-          <div className="flex items-center justify-between p-3 bg-slate-900/90 border-b border-slate-700/60 gap-2">
+          <div className={`flex items-center justify-between p-3 border-b gap-2 ${isDark ? 'bg-slate-900/90 border-slate-700/60' : 'bg-slate-50 border-slate-200'}`}>
             <a
               href={currentQ.wiki_url || 'https://en.wikipedia.org/wiki/Romania'}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center space-x-2 space-x-reverse py-2 px-3 bg-slate-800 hover:bg-slate-700/80 rounded-xl text-xs font-bold text-slate-200 border border-slate-700/80 transition-colors"
+              className={`flex-1 flex items-center justify-center space-x-2 space-x-reverse py-2 px-3 rounded-xl text-xs font-bold border transition-colors ${
+                isDark ? 'bg-slate-800 hover:bg-slate-700/80 text-slate-200 border-slate-700/80' : 'bg-white hover:bg-slate-100 text-slate-800 border-slate-300'
+              }`}
             >
               <ExternalLink className="w-4 h-4 text-rose-400" />
               <span>{appLang === 'ar' ? 'اقرأ المقال على ويكيبيديا ℹ️' : 'Read Article on Wikipedia ℹ️'}</span>
@@ -183,7 +189,7 @@ function StudyContent() {
 
             <Link
               href={`/ai?lang=${appLang}&q=${encodeURIComponent(currentQ.question)}`}
-              className="flex items-center space-x-1.5 space-x-reverse py-2 px-3.5 bg-amber-500/15 hover:bg-amber-500/25 rounded-xl text-xs font-bold text-amber-400 border border-amber-500/40 transition-colors shrink-0"
+              className="flex items-center space-x-1.5 space-x-reverse py-2 px-3.5 bg-amber-500/15 hover:bg-amber-500/25 rounded-xl text-xs font-bold text-amber-500 border border-amber-500/40 transition-colors shrink-0"
             >
               <Sparkles className="w-4 h-4 text-amber-400" />
               <span>اسأل AI</span>
@@ -197,27 +203,27 @@ function StudyContent() {
                 onClick={() => speakText(currentQ.question)}
                 className="p-3 bg-rose-500/15 hover:bg-rose-500/25 rounded-xl text-rose-400 shrink-0 transition-colors"
               >
-                {isSpeaking ? <Square className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+                {isSpeaking ? <Square className="w-5 h-5 animate-pulse text-amber-400" /> : <Volume2 className="w-5 h-5" />}
               </button>
-              <h2 className="text-xl font-semibold text-white leading-relaxed">
+              <h2 className="text-xl font-semibold leading-relaxed">
                 {currentQ.question}
               </h2>
             </div>
 
-            <div className="h-px bg-slate-700/80 w-full" />
+            <div className={`h-px w-full ${isDark ? 'bg-slate-700/80' : 'bg-slate-200'}`} />
 
             {/* Translations */}
             <div className="space-y-3">
               <div>
-                <span className="text-[11px] font-bold text-rose-400 block mb-1">🇸🇦 {strings.arabicText}:</span>
-                <p className="text-lg font-bold text-rose-400 text-right leading-relaxed">
+                <span className="text-[11px] font-bold text-rose-500 block mb-1">🇸🇦 {strings.arabicText}:</span>
+                <p className="text-lg font-bold text-rose-500 text-right leading-relaxed">
                   {currentQ.question_ar}
                 </p>
               </div>
 
               <div>
-                <span className="text-[11px] font-bold text-emerald-400 block mb-1">🇬🇧 {strings.englishText}:</span>
-                <p className="text-sm font-medium text-slate-200 leading-relaxed">
+                <span className="text-[11px] font-bold text-emerald-500 block mb-1">🇬🇧 {strings.englishText}:</span>
+                <p className="text-sm font-medium leading-relaxed">
                   {getQuestionText(currentQ, 'en')}
                 </p>
               </div>
@@ -233,26 +239,26 @@ function StudyContent() {
                 <span>{strings.showAnswer}</span>
               </button>
             ) : (
-              <div className="pt-4 border-t border-slate-700/80 space-y-3">
-                <span className="text-xs font-bold text-emerald-400 block">{strings.modelAnswer}</span>
+              <div className={`pt-4 border-t space-y-3 ${isDark ? 'border-slate-700/80' : 'border-slate-200'}`}>
+                <span className="text-xs font-bold text-emerald-500 block">{strings.modelAnswer}</span>
                 
                 <div className="flex items-start space-x-3 space-x-reverse">
                   <button
                     onClick={() => speakText(currentQ.answer)}
-                    className="p-3 bg-emerald-500/15 hover:bg-emerald-500/25 rounded-xl text-emerald-400 shrink-0 transition-colors"
+                    className="p-3 bg-emerald-500/15 hover:bg-emerald-500/25 rounded-xl text-emerald-500 shrink-0 transition-colors"
                   >
                     <Volume2 className="w-5 h-5" />
                   </button>
-                  <p className="text-lg font-bold text-emerald-400 leading-relaxed">
+                  <p className="text-lg font-bold text-emerald-500 leading-relaxed">
                     {currentQ.answer}
                   </p>
                 </div>
 
-                <div className="h-px bg-slate-700/80 w-full" />
+                <div className={`h-px w-full ${isDark ? 'bg-slate-700/80' : 'bg-slate-200'}`} />
 
                 <div className="space-y-2 text-right">
-                  <p className="text-lg font-bold text-emerald-400">🇸🇦 {currentQ.answer_ar}</p>
-                  <p className="text-sm font-medium text-emerald-300">🇬🇧 {getAnswerText(currentQ, 'en')}</p>
+                  <p className="text-lg font-bold text-emerald-500">🇸🇦 {currentQ.answer_ar}</p>
+                  <p className="text-sm font-medium text-emerald-600">🇬🇧 {getAnswerText(currentQ, 'en')}</p>
                 </div>
               </div>
             )}
@@ -260,13 +266,13 @@ function StudyContent() {
         </div>
 
         {/* Navigation Footer */}
-        <div className="flex justify-between items-center bg-slate-800/80 p-3 rounded-2xl border border-slate-700/60">
+        <div className={`flex justify-between items-center p-3 rounded-2xl border ${isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-white border-slate-200 shadow-sm'}`}>
           <button
             onClick={handlePrev}
             disabled={currentIndex === 0}
             className={`flex items-center space-x-2 space-x-reverse px-5 py-2.5 rounded-xl text-sm font-bold transition-all ${
               currentIndex === 0 
-                ? 'bg-slate-900 text-slate-600 cursor-not-allowed' 
+                ? 'opacity-40 cursor-not-allowed' 
                 : 'bg-slate-700 hover:bg-slate-600 text-white'
             }`}
           >
@@ -279,7 +285,7 @@ function StudyContent() {
             disabled={currentIndex === filteredQuestions.length - 1}
             className={`flex items-center space-x-2 space-x-reverse px-5 py-2.5 rounded-xl text-sm font-bold transition-all ${
               currentIndex === filteredQuestions.length - 1 
-                ? 'bg-slate-900 text-slate-600 cursor-not-allowed' 
+                ? 'opacity-40 cursor-not-allowed' 
                 : 'bg-slate-700 hover:bg-slate-600 text-white'
             }`}
           >
