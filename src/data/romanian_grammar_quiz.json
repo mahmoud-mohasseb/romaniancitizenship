@@ -66,7 +66,7 @@
   {
     "id": "gq-5",
     "type": "word_order",
-    "question_ro": "Oronați cuvintele: [sunt / Eu / inginer / român]",
+    "question_ro": "Ordonați cuvintele: [sunt / Eu / inginer / român]",
     "question_ar": "رتب الكلمات لتكوين جملة صحيحة: [Eu / sunt / inginer / român]",
     "question_en": "Order the words to form a sentence: [sunt / Eu / inginer / român]",
     "category": "sentence_structure",
@@ -99,7 +99,7 @@
     "id": "gq-7",
     "type": "fill_in_blank",
     "question_ro": "Completați spațiul: Ieri eu _______ la film cu prietenii. (Past composite of a merge)",
-    "question_ar": "أكمل الفراغ: الأمس أنا _______ إلى الفيلم مع الأصدقاء. (الماضي المركب لمذهب)",
+    "question_ar": "أكمل الفراغ: الأمس أنا _______ إلى الفيلم مع الأصدقاء. (الماضي المركب لـ a merge)",
     "question_en": "Fill in the blank: Ieri eu _______ la film (I went).",
     "category": "verbs",
     "correct_answer": "am mers",
@@ -130,7 +130,7 @@
   {
     "id": "gq-9",
     "type": "word_order",
-    "question_ro": "Oronați cuvintele: [costă / biletul / Cât / de / metrou?]",
+    "question_ro": "Ordonați cuvintele: [costă / biletul / Cât / de / metrou?]",
     "question_ar": "رتب الكلمات للسؤال عن السعر: [Cât / costă / biletul / de / metrou?]",
     "question_en": "Order words to ask price: [costă / biletul / Cât / de / metrou?]",
     "category": "sentence_structure",
@@ -158,5 +158,85 @@
       "să călătorească"
     ],
     "explanation_ar": "المستقبل الرسمي مع الضمير El هو (va călători)."
+  },
+  {
+    "id": "gq-11",
+    "type": "multiple_choice",
+    "question_ro": "Cum spui «أود أن...» (Polite Request) باللغة الرومانية؟",
+    "question_ar": "كيف تعبر عن الطلب اللبق «أود أن...» باللغة الرومانية؟",
+    "question_en": "How do you state polite request 'I would like...' in Romanian?",
+    "category": "verbs",
+    "correct_answer": "Aș dori...",
+    "options": [
+      "Aș dori...",
+      "Vreau!",
+      "Trebuie!",
+      "Am vrut!"
+    ],
+    "explanation_ar": "صيغة الشرط المؤدب للطلب هي Aș dori... (أود...)."
+  },
+  {
+    "id": "gq-12",
+    "type": "fill_in_blank",
+    "question_ro": "Completați spațiul: Vreau _______ învăț limba română repede. (Subjunctive particle)",
+    "question_ar": "أكمل الفراغ: أريد _______ أتعلم اللغة الرومانية بسرعة. (أداة المنصوب)",
+    "question_en": "Fill in the blank: Vreau _______ învăț limba română (to learn).",
+    "category": "verbs",
+    "correct_answer": "să",
+    "options": [
+      "să",
+      "la",
+      "de",
+      "cu"
+    ],
+    "explanation_ar": "تستخدم الأداة (să) لتكوين جملة المنصوب بعد أفعال الرغبة (Vreau să...)."
+  },
+  {
+    "id": "gq-13",
+    "type": "word_order",
+    "question_ro": "Ordonați cuvintele: [este / mea / Aceasta / mașină]",
+    "question_ar": "رتب الكلمات: [Aceasta / este / mașina / mea]",
+    "question_en": "Order the words: [este / mea / Aceasta / mașină]",
+    "category": "sentence_structure",
+    "correct_answer": "Aceasta este mașina mea",
+    "options": [
+      "Aceasta este mașina mea",
+      "Mașina mea este aceasta",
+      "Este mașina aceasta mea",
+      "Mea mașina este aceasta"
+    ],
+    "explanation_ar": "اسم الإشارة (Aceasta) + الفعل (este) + الاسم المعرف (mașina) + الملكية (mea)."
+  },
+  {
+    "id": "gq-14",
+    "type": "multiple_choice",
+    "question_ro": "Care este forma de plural feminin a adjectivului «Frumos» (جميل)?",
+    "question_ar": "ما هو جمع المؤنث للصفة «Frumos» (جميل)؟",
+    "question_en": "What is the plural feminine form of adjective «Frumos» (handsome/beautiful)?",
+    "category": "nouns",
+    "correct_answer": "Frumoase (fete frumoase)",
+    "options": [
+      "Frumoase (fete frumoase)",
+      "Frumoși",
+      "Frumoasă",
+      "Frumose"
+    ],
+    "explanation_ar": "جمع المؤنث للصفة frumos هو frumoase (fete frumoase)."
+  },
+  {
+    "id": "gq-15",
+    "type": "fill_in_blank",
+    "question_ro": "Completați spațiul: Cartea este pe masă, am dat-o _______ Andrei.",
+    "question_ar": "أكمل الفراغ: الكتاب على الطاولة، أعطيته لـ أندريه. (حالة الجينيتيف للأعلم)",
+    "question_en": "Fill in the blank: Cartea este pe masă, am dat-o _______ Andrei.",
+    "category": "articles",
+    "correct_answer": "lui",
+    "options": [
+      "lui",
+      "la",
+      "de",
+      "pe"
+    ],
+    "explanation_ar": "للإضافة وأسماء الأعلام المذكرة نستخدم الأداة (lui Andrei)."
   }
 ]

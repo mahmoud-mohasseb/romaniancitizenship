@@ -1,119 +1,127 @@
 [
   {
     "id": 1,
-    "question_ro": "Ce înseamnă cuvântul «Mulțumesc»?",
-    "question_ar": "ماذا تعني كلمة «Mulțumesc» بالرومانية؟",
-    "question_en": "What does the word «Mulțumesc» mean?",
-    "category": "vocabulary",
-    "correct_answer": "شكراً جزيلاً / Thank you",
+    "question_ro": "Care este traducerea salutului «Bună ziua»?",
+    "question_ar": "ما هي ترجمة التحية «Bună ziua» باللغة العربية؟",
+    "question_en": "What is the English translation of «Bună ziua»?",
+    "category": "greetings",
+    "correct_answer": "يوم سعيد / يومك مبارك / Good day",
     "options": [
-      "شكراً جزيلاً / Thank you",
+      "يوم سعيد / يومك مبارك / Good day",
       "صباح الخير / Good morning",
-      "مع السلامة / Goodbye",
-      "من فضلك / Please"
-    ]
+      "مساء الخير / Good evening",
+      "تصبح على خير / Good night"
+    ],
+    "explanation_ar": "تستخدم Bună ziua للتحية الرسمية طوال فترة النهار."
   },
   {
     "id": 2,
-    "question_ro": "Care este forma corectă a verbului «a fi» la persoana I (Eu)?",
-    "question_ar": "ما هو التصريف الصحيح لفعل الكينونة «a fi» مع الضمير أنا (Eu)؟",
-    "question_en": "What is the correct form of verb «a fi» for 'Eu' (I am)?",
-    "category": "grammar",
-    "correct_answer": "Eu sunt",
+    "question_ro": "Cum spui «شكراً جزيلاً» باللغة الرومانية؟",
+    "question_ar": "كيف تقول «شكراً جزيلاً» باللغة الرومانية؟",
+    "question_en": "How do you say 'Thank you very much' in Romanian?",
+    "category": "phrases",
+    "correct_answer": "Mulțumesc frumos",
     "options": [
-      "Eu sunt",
-      "Eu ești",
-      "Eu este",
-      "Eu suntem"
-    ]
+      "Mulțumesc frumos",
+      "Cu plăcere",
+      "La revedere",
+      "Scuzați-mă"
+    ],
+    "explanation_ar": "Mulțumesc frumos أو Vă mulțumesc تعني شكراً جزيلاً."
   },
   {
     "id": 3,
-    "question_ro": "Cum spui «Cât costă?» în limba română?",
-    "question_ar": "كيف تسأل عن السعر «كم الثمن؟» بالرومانية؟",
-    "question_en": "How do you ask «How much does it cost?» in Romanian?",
-    "category": "phrases",
-    "correct_answer": "Cât costă?",
+    "question_ro": "Care este sunetul literei speciale «Ă» în limba română?",
+    "question_ar": "ما هو نطق الحرف الروماني الخاص «Ă»؟",
+    "question_en": "What is the sound of special diacritic letter «Ă»?",
+    "category": "alphabet",
+    "correct_answer": "صوت الفتحة الممالة المفتوحة (مثل a في كلمة banana)",
     "options": [
-      "Cât costă?",
-      "Unde locuiești?",
-      "Cum te cheamă?",
-      "Cât este ceasul?"
-    ]
+      "صوت الفتحة الممالة المفتوحة (مثل a في كلمة banana)",
+      "صوت الشين (Ș)",
+      "صوت التسين (Ț)",
+      "صوت الخاء (Kh)"
+    ],
+    "explanation_ar": "الحرف Ă ينطق كفتحة خفيفة بين الألف والياء مثل fată, casă."
   },
   {
     "id": 4,
-    "question_ro": "Ce înseamnă «Bună dimineața»?",
-    "question_ar": "ما هي الترجمة الصحيحة للعبارة «Bună dimineața»؟",
-    "question_en": "What is the correct translation of «Bună dimineața»?",
+    "question_ro": "Cum răspunzi la «Mulțumesc» (عفواً / على الرحب والسعة)؟",
+    "question_ar": "كيف ترد على كلمة «Mulțumesc» (شكراً) بالرومانية؟",
+    "question_en": "How do you respond to 'Mulțumesc' (You are welcome)?",
     "category": "phrases",
-    "correct_answer": "صباح الخير / Good morning",
+    "correct_answer": "Cu plăcere",
     "options": [
-      "صباح الخير / Good morning",
-      "مساء الخير / Good evening",
-      "تصبح على خير / Good night",
-      "أهلاً وسهلاً / Welcome"
-    ]
+      "Cu plăcere",
+      "La revedere",
+      "Bună seara",
+      "Nu știu"
+    ],
+    "explanation_ar": "Cu plăcere تعني بكل سرور / عفواً."
   },
   {
     "id": 5,
-    "question_ro": "Care este pluralul cuvântului «Casă» (بيت / منزل)?",
-    "question_ar": "ما هو جمع كلمة «Casă» (منزل) باللغة الرومانية؟",
-    "question_en": "What is the plural of «Casă» (house)?",
-    "category": "grammar",
-    "correct_answer": "Case",
-    "options": [
-      "Case",
-      "Casuri",
-      "Casi",
-      "Casede"
-    ]
-  },
-  {
-    "id": 6,
-    "question_ro": "Cum spui «أين تقع الصيدلية؟» باللغة الرومانية؟",
-    "question_ar": "كيف تسأل «أين تقع الصيدلية؟» بالرومانية؟",
-    "question_en": "How do you ask «Where is the pharmacy?» in Romanian?",
-    "category": "phrases",
-    "correct_answer": "Unde este farmacia?",
-    "options": [
-      "Unde este farmacia?",
-      "Cât costă pâinea?",
-      "Cum te cheamă?",
-      "Ce ora este?"
-    ]
-  },
-  {
-    "id": 7,
-    "question_ro": "Care este forma corectă a verbului «a avea» (يملك) مع (Noi / نحن)؟",
-    "question_ar": "ما هو تصريف الفعل «a avea» (يمتلك) مع الضمير نحن (Noi)؟",
-    "question_en": "What is the conjugation of «a avea» (to have) for 'Noi' (We)?",
-    "category": "grammar",
-    "correct_answer": "Noi avem",
-    "options": [
-      "Noi avem",
-      "Noi ai",
-      "Noi are",
-      "Noi au"
-    ]
-  },
-  {
-    "id": 8,
-    "question_ro": "Ce înseamnă cuvântul «Apa»?",
-    "question_ar": "ما المعنى العربي لكلمة «Apa» الرومانية؟",
-    "question_en": "What does the word «Apa» mean?",
+    "question_ro": "Care este traducerea cuvântului «Apă»?",
+    "question_ar": "ما هي ترجمة كلمة «Apă» باللغة العربية؟",
+    "question_en": "What is the English translation of «Apă»?",
     "category": "vocabulary",
     "correct_answer": "الماء / Water",
     "options": [
       "الماء / Water",
       "الخبز / Bread",
-      "التفاحة / Apple",
-      "الحليب / Milk"
-    ]
+      "الحليب / Milk",
+      "القهوة / Coffee"
+    ],
+    "explanation_ar": "Apă تعني الماء (Apă minerală = مياه معدنية)."
+  },
+  {
+    "id": 6,
+    "question_ro": "Cum spui «أين يقع المطار؟» باللغة الرومانية؟",
+    "question_ar": "كيف تسأل «أين يقع المطار؟» باللغة الرومانية؟",
+    "question_en": "How do you ask 'Where is the airport?' in Romanian?",
+    "category": "phrases",
+    "correct_answer": "Unde este aeroportul?",
+    "options": [
+      "Unde este aeroportul?",
+      "Cât costă biletul?",
+      "Unde este gara?",
+      "Ce ora este?"
+    ],
+    "explanation_ar": "Unde (أين) + este (يكون) + aeroportul (المطار)؟"
+  },
+  {
+    "id": 7,
+    "question_ro": "Care este noul حرف «Ș» în alfabetul român?",
+    "question_ar": "ما هو النطق الصحيح للحرف الروماني «Ș»؟",
+    "question_en": "How is the Romanian letter «Ș» pronounced?",
+    "category": "alphabet",
+    "correct_answer": "ينطق كحرف الشين العربي (Sh)",
+    "options": [
+      "ينطق كحرف الشين العربي (Sh)",
+      "ينطق كحرف السين (S)",
+      "ينطق كحرف الزاي (Z)",
+      "ينطق كحرف الجيم (G)"
+    ],
+    "explanation_ar": "الحرف Ș ينطق تماماً كحرف الشين (Școală = مدرسة)."
+  },
+  {
+    "id": 8,
+    "question_ro": "Care este noul حرف «Ț» în alfabetul român?",
+    "question_ar": "ما هو النطق الصحيح للحرف الروماني «Ț»؟",
+    "question_en": "How is the Romanian letter «Ț» pronounced?",
+    "category": "alphabet",
+    "correct_answer": "ينطق كحرف (تس / Ts) مثل tsunami",
+    "options": [
+      "ينطق كحرف (تس / Ts) مثل tsunami",
+      "ينطق كحرف التاء (T)",
+      "ينطق كحرف الظاء (Z)",
+      "ينطق كحرف الكاف (K)"
+    ],
+    "explanation_ar": "الحرف Ț ينطق كـ (تس) مثل Țară (بلد), Țânțar (بعوضة)."
   },
   {
     "id": 9,
-    "question_ro": "Cum cerش تذكرة مترو «أود تذكرة مترو من فضلك»؟",
+    "question_ro": "Cum ceri o cartelă de metrou: «أود تذكرة مترو من فضلك»؟",
     "question_ar": "كيف تطلب تذكرة مترو بالرومانية؟",
     "question_en": "How do you order a metro ticket in Romanian?",
     "category": "phrases",
@@ -123,7 +131,8 @@
       "Cât este ora?",
       "Unde locuiești?",
       "De unde ești?"
-    ]
+    ],
+    "explanation_ar": "Aș dori (أود) + o cartelă de metrou (تذكرة مترو) + vă rog (من فضلك)."
   },
   {
     "id": 10,
@@ -137,6 +146,7 @@
       "اللحم / Meat",
       "الجبن / Cheese",
       "البيض / Eggs"
-    ]
+    ],
+    "explanation_ar": "Pâine تعني الخبز في اللغة الرومانية."
   }
 ]
