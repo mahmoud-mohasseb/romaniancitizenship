@@ -17,6 +17,7 @@ import {
   X, 
   MessageSquare, 
   Puzzle, 
+  GraduationCap, 
   ChevronLeft, 
   ChevronRight 
 } from 'lucide-react';
@@ -36,6 +37,8 @@ export default function Navbar() {
     { href: '/quiz', label: strings.quizNav, sub: appLang === 'ar' ? 'اختبارات ومحاكاة الامتحان' : 'Exam & Quizzes', icon: Trophy, color: 'text-amber-400' },
     { href: '/conversations', label: strings.conversationsNav, sub: appLang === 'ar' ? 'حوارات الرومانية والمقابلة' : 'Daily Dialogues', icon: MessageSquare, color: 'text-emerald-400' },
     { href: '/conversation-quiz', label: strings.conversationQuizNav, sub: appLang === 'ar' ? 'لعبة حوارات الحياة اليومية' : 'Conversation Quiz Game', icon: Gamepad2, color: 'text-indigo-400' },
+    { href: '/grammar', label: appLang === 'ar' ? 'شرح قواعد الرومانية' : 'Romanian Grammar Guide', sub: appLang === 'ar' ? 'الأجناس والضمائر والتصريفات' : 'Nouns, Articles & Conjugations', icon: GraduationCap, color: 'text-amber-400' },
+    { href: '/grammar-quiz', label: appLang === 'ar' ? 'لعبة اختبار القواعد' : 'Grammar Quiz Game', sub: appLang === 'ar' ? 'تحدي القواعد والتصريفات' : 'Grammar Challenges', icon: Gamepad2, color: 'text-rose-400' },
     { href: '/alphabet', label: strings.alphabetNav, sub: appLang === 'ar' ? '31 حرفاً مع النطق والأمثلة' : '31 Letters with Audio', icon: Type, color: 'text-purple-400' },
     { href: '/alphabet-quiz', label: strings.alphabetQuizNav, sub: appLang === 'ar' ? 'لعبة نطق واستماع الحروف' : 'Alphabet Audio Game', icon: Gamepad2, color: 'text-rose-400' },
     { href: '/language-quiz', label: appLang === 'ar' ? 'اختبارات المفردات والقواعد' : 'Language Quiz', sub: appLang === 'ar' ? 'تحدي كلمات وجمل اللغة' : 'Vocabulary & Grammar Quiz', icon: Puzzle, color: 'text-teal-400' },
@@ -104,7 +107,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Sidebar Footer Controls: Language Switcher & Theme Mode */}
+      {/* Sidebar Footer Controls */}
       <div className="pt-3 border-t border-slate-700/60 space-y-3 shrink-0">
         {/* 3-Language Selector */}
         <div className="space-y-1.5">
@@ -158,14 +161,14 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Desktop Fixed Sidebar Drawer (Always Visible on lg: screens) */}
+      {/* Desktop Fixed Sidebar Drawer */}
       <aside className={`hidden lg:block fixed top-0 bottom-0 w-72 z-40 ${
         isRtl ? 'right-0 border-l' : 'left-0 border-r'
       }`}>
         {sidebarContent}
       </aside>
 
-      {/* Floating Mobile Sidebar Trigger Button (Visible on Mobile & Tablet) */}
+      {/* Floating Mobile Sidebar Trigger Button */}
       <div className={`lg:hidden fixed top-4 z-50 ${isRtl ? 'right-4' : 'left-4'}`}>
         <button
           onClick={() => setMobileSidebarOpen(true)}

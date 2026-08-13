@@ -18,7 +18,8 @@ import {
   Type, 
   Gamepad2, 
   MessageSquare, 
-  Puzzle 
+  Puzzle, 
+  GraduationCap 
 } from 'lucide-react';
 import questions from '../data/questions_ar.json';
 import Navbar from '../components/Navbar';
@@ -130,60 +131,42 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Marketplace Downloads Section */}
-        <div className={`rounded-2xl p-4 border text-center space-y-3 ${
-          isDark ? 'bg-slate-800/60 border-slate-700/60' : 'bg-white border-slate-200 shadow-sm'
-        }`}>
-          <p className="text-xs font-bold text-theme-main">
-            {appLang === 'ar' ? '📲 حمل التطبيق على جهازك المحمول (Stores & PWA)' : appLang === 'en' ? '📲 Download App on Mobile Stores & Web' : '📲 Descarcă Aplicația pe Mobil'}
-          </p>
-
-          <div className="grid grid-cols-3 gap-2">
-            <button
-              onClick={() => openDownloadModal('appstore')}
-              className="flex items-center justify-center p-3 bg-black hover:bg-slate-900 rounded-xl border border-slate-700 transition-all text-white group"
-            >
-              <div className="flex items-center space-x-2 space-x-reverse">
-                <span className="text-xl">🍏</span>
-                <div className="text-left rtl:text-right">
-                  <p className="text-[9px] text-slate-400 font-semibold uppercase leading-tight">App Store</p>
-                  <p className="text-xs font-bold text-white leading-tight">Download</p>
-                </div>
-              </div>
-            </button>
-
-            <button
-              onClick={() => openDownloadModal('googleplay')}
-              className="flex items-center justify-center p-3 bg-slate-900 hover:bg-slate-800 rounded-xl border border-slate-700 transition-all text-white group"
-            >
-              <div className="flex items-center space-x-2 space-x-reverse">
-                <span className="text-xl">🤖</span>
-                <div className="text-left rtl:text-right">
-                  <p className="text-[9px] text-slate-400 font-semibold uppercase leading-tight">Google Play</p>
-                  <p className="text-xs font-bold text-emerald-400 leading-tight">Get It On</p>
-                </div>
-              </div>
-            </button>
-
-            <button
-              onClick={() => openDownloadModal('pwa')}
-              className={`flex items-center justify-center p-3 rounded-xl border border-amber-500/40 transition-all text-white group ${
-                isDark ? 'bg-slate-900 hover:bg-slate-800' : 'bg-slate-800 hover:bg-slate-700'
-              }`}
-            >
-              <div className="flex items-center space-x-2 space-x-reverse">
-                <Smartphone className="w-5 h-5 text-amber-400" />
-                <div className="text-left rtl:text-right">
-                  <p className="text-[9px] text-amber-400 font-semibold uppercase leading-tight">Direct PWA</p>
-                  <p className="text-xs font-bold text-white leading-tight">Install</p>
-                </div>
-              </div>
-            </button>
-          </div>
-        </div>
-
         {/* Learning Modules Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {/* Romanian Grammar Guide Card */}
+          <Link
+            href="/grammar"
+            className="flex items-center justify-between p-5 bg-gradient-to-r from-amber-500 via-amber-600 to-rose-700 rounded-2xl border border-amber-500/40 shadow-lg hover:opacity-95 transition-all text-white group"
+          >
+            <div className="space-y-1">
+              <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-black/20 text-white border border-white/20">
+                📚 Gramatica Limbii Române
+              </span>
+              <h3 className="text-base font-bold">{appLang === 'ar' ? 'شرح قواعد الرومانية والضمائر' : 'Romanian Grammar Guide'}</h3>
+              <p className="text-xs text-amber-100/90">
+                {appLang === 'ar' ? 'الأجناس وأدوات التعريف وتصريف الأفعال مع الصوت' : 'Nouns, Definite articles & Verb conjugations'}
+              </p>
+            </div>
+            <GraduationCap className="w-8 h-8 text-white shrink-0" />
+          </Link>
+
+          {/* Grammar Quiz Game Card */}
+          <Link
+            href="/grammar-quiz"
+            className="flex items-center justify-between p-5 bg-gradient-to-r from-rose-600 via-rose-700 to-amber-800 rounded-2xl border border-rose-500/40 shadow-lg hover:opacity-95 transition-all text-white group"
+          >
+            <div className="space-y-1">
+              <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-black/20 text-white border border-white/20">
+                🎮 Grammar Quiz Challenge
+              </span>
+              <h3 className="text-base font-bold">{appLang === 'ar' ? 'لعبة اختبار القواعد 🎮' : 'Grammar Quiz Game'}</h3>
+              <p className="text-xs text-rose-100/90">
+                {appLang === 'ar' ? 'تحديات ممتعة لاختبار معرفتك بتصريف الأفعال والأدوات' : 'Fun interactive verb & article quizzes'}
+              </p>
+            </div>
+            <Trophy className="w-8 h-8 text-white shrink-0" />
+          </Link>
+
           {/* Daily Conversations Card */}
           <Link
             href="/conversations"
@@ -195,7 +178,7 @@ export default function HomePage() {
               </span>
               <h3 className="text-base font-bold">{strings.conversationsTitle}</h3>
               <p className="text-xs text-blue-100/90">
-                {appLang === 'ar' ? 'حوارات رومانية مترجمة بالصوت للمقابلة الرسمية والمتاجر' : 'Translated dialogues with native audio'}
+                {appLang === 'ar' ? 'حوارات الفندق والقطار والطوارئ والمقابلة بالصوت' : 'Translated dialogues with native audio'}
               </p>
             </div>
             <MessageSquare className="w-8 h-8 text-white shrink-0" />
@@ -208,48 +191,14 @@ export default function HomePage() {
           >
             <div className="space-y-1">
               <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-black/20 text-white border border-white/20">
-                🧩 Vocabulary & Grammar
+                🧩 Vocabulary & Phrases
               </span>
-              <h3 className="text-base font-bold">{appLang === 'ar' ? 'اختبارات اللغة والمفردات 🎮' : 'Language Quiz Game'}</h3>
+              <h3 className="text-base font-bold">{appLang === 'ar' ? 'اختبار المفردات والجمل 🎮' : 'Vocabulary Quiz'}</h3>
               <p className="text-xs text-emerald-100/90">
-                {appLang === 'ar' ? 'تحدي الكلمات والجمل والقواعد الرومانية بشكل ممتع' : 'Fun vocabulary & grammar challenges'}
+                {appLang === 'ar' ? 'تحدي الكلمات والجمل الرومانية اليومية' : 'Fun vocabulary & phrase challenges'}
               </p>
             </div>
             <Puzzle className="w-8 h-8 text-white shrink-0" />
-          </Link>
-
-          {/* Romanian Alphabet */}
-          <Link
-            href="/alphabet"
-            className="flex items-center justify-between p-5 bg-gradient-to-r from-amber-600 via-amber-700 to-amber-900 rounded-2xl border border-amber-500/40 shadow-lg hover:opacity-95 transition-all text-white group"
-          >
-            <div className="space-y-1">
-              <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-black/20 text-white border border-white/20">
-                🔤 31 Litere
-              </span>
-              <h3 className="text-base font-bold">{strings.alphabetTitle}</h3>
-              <p className="text-xs text-amber-100/90">
-                {appLang === 'ar' ? 'تعلم نطق الحروف الرومانية بالأمثلة والجمل المترجمة' : 'Learn letters, pronunciation, words & sentences'}
-              </p>
-            </div>
-            <Type className="w-8 h-8 text-white shrink-0" />
-          </Link>
-
-          {/* Alphabet Audio Game */}
-          <Link
-            href="/alphabet-quiz"
-            className="flex items-center justify-between p-5 bg-gradient-to-r from-rose-600 via-rose-700 to-amber-700 rounded-2xl border border-rose-500/40 shadow-lg hover:opacity-95 transition-all text-white group"
-          >
-            <div className="space-y-1">
-              <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-black/20 text-white border border-white/20">
-                🎮 Fun Audio Game
-              </span>
-              <h3 className="text-base font-bold">{strings.alphabetGameTitle}</h3>
-              <p className="text-xs text-rose-100/90">
-                {appLang === 'ar' ? 'لعبة استماع وتفاعل ممتعة لاختبار معرفتك بالحروف' : 'Interactive sound game to test listening skills'}
-              </p>
-            </div>
-            <Gamepad2 className="w-8 h-8 text-white shrink-0" />
           </Link>
         </div>
 
@@ -330,102 +279,6 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-
-        {/* Categories Grid Section */}
-        <div className="space-y-3 pt-2">
-          <h2 className="text-lg font-bold">{strings.categoriesCount}</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {CATEGORIES_LIST.filter(c => c.id !== 'all').map((cat) => (
-              <Link
-                key={cat.id}
-                href={`/study?category=${cat.id}`}
-                className={`flex items-center justify-between p-4 rounded-2xl border-l-4 border hover:border-slate-400 transition-all group ${
-                  isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-white border-slate-200 shadow-sm'
-                }`}
-                style={{ borderLeftColor: cat.color }}
-              >
-                <div className="flex items-center space-x-3 space-x-reverse">
-                  <div 
-                    className="w-10 h-10 rounded-xl flex items-center justify-center"
-                    style={{ backgroundColor: cat.color + '20', color: cat.color }}
-                  >
-                    <Grid className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold">
-                      {appLang === 'ar' ? cat.name_ar : appLang === 'en' ? cat.name_en : cat.name_ro}
-                    </h4>
-                    <p className="text-[11px] text-theme-sub">{cat.name_ro}</p>
-                    <p className="text-[11px] font-semibold mt-0.5" style={{ color: cat.color }}>
-                      {categoryCounts[cat.id]} {strings.questionsCount}
-                    </p>
-                  </div>
-                </div>
-                {isRtl ? <ChevronLeft className="w-5 h-5 text-slate-400" /> : <ChevronRight className="w-5 h-5 text-slate-400" />}
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        {/* Install Modal */}
-        {showInstallModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-            <div className={`rounded-2xl border max-w-md w-full p-6 space-y-4 ${
-              isDark ? 'bg-slate-800 border-slate-700 text-slate-100' : 'bg-white border-slate-200 text-slate-900'
-            }`}>
-              <div className="flex items-center justify-between border-b border-slate-700/60 pb-3">
-                <h3 className="text-base font-bold">
-                  {downloadMarket === 'appstore' ? '🍏 Apple App Store Setup' : downloadMarket === 'googleplay' ? '🤖 Google Play Setup' : '📱 Universal PWA Installation'}
-                </h3>
-                <button onClick={() => setShowInstallModal(false)} className="text-slate-400 hover:text-rose-500">
-                  <X className="w-6 h-6" />
-                </button>
-              </div>
-
-              <div className="flex flex-col items-center text-center space-y-2 py-2">
-                <div className="relative w-16 h-16 rounded-xl overflow-hidden shadow-md border border-rose-500">
-                  <Image src="/icon.png" alt="App Logo" fill className="object-cover" />
-                </div>
-                <p className="text-sm font-bold text-emerald-400">Cetățenia Română Prep</p>
-              </div>
-
-              <div className={`rounded-xl p-4 border space-y-2 text-xs ${
-                isDark ? 'bg-slate-900/80 border-slate-700/80 text-slate-300' : 'bg-slate-100 border-slate-200 text-slate-700'
-              }`}>
-                {downloadMarket === 'appstore' && (
-                  <>
-                    <p className="font-bold text-amber-400">🍏 iPhone / iPad (iOS Safari):</p>
-                    <p>1. Open this website in Safari on your iPhone.</p>
-                    <p>2. Tap the Share icon 📤 at the bottom.</p>
-                    <p>3. Tap "Add to Home Screen" to install the app icon onto your phone!</p>
-                  </>
-                )}
-                {downloadMarket === 'googleplay' && (
-                  <>
-                    <p className="font-bold text-emerald-400">🤖 Android Chrome:</p>
-                    <p>1. Open this website in Chrome on your Android device.</p>
-                    <p>2. Tap the 3 dots menu ≡ in top corner.</p>
-                    <p>3. Tap "Install App" to download directly to your home screen.</p>
-                  </>
-                )}
-                {downloadMarket === 'pwa' && (
-                  <>
-                    <p className="font-bold text-amber-400">📱 Universal PWA Mobile Download:</p>
-                    <p>• iOS Safari: Share 📤 &rarr; Add to Home Screen</p>
-                    <p>• Android Chrome: Options ≡ &rarr; Install App</p>
-                  </>
-                )}
-              </div>
-
-              <button
-                onClick={() => setShowInstallModal(false)}
-                className="w-full py-3 bg-rose-600 hover:bg-rose-500 font-bold rounded-xl text-white shadow-lg transition-all"
-              >
-                Done (تم)
-              </button>
-            </div>
-          </div>
-        )}
       </main>
     </div>
   );

@@ -1,0 +1,77 @@
+[
+  {
+    "id": "gq-1",
+    "question_ro": "Care este forma corectă de plural a cuvântului «Scaun» (محايد - neutru)?",
+    "question_ar": "ما هو الجمع الصحيح لكلمة «Scaun» (كرسي - اسم محايد)؟",
+    "question_en": "What is the correct plural form of neuter noun «Scaun» (chair)?",
+    "category": "nouns",
+    "correct_answer": "Scaune",
+    "options": [
+      "Scaune",
+      "Scauni",
+      "Scaunuri",
+      "Scaunele"
+    ],
+    "explanation_ar": "الأسماء المحايدة (Neutru) تجمع بالحرف (-e) مثل scaun -> scaune أو (-uri) مثل drum -> drumuri."
+  },
+  {
+    "id": "gq-2",
+    "question_ro": "Cum adaugi articolul hotărât la cuvântul masculin «Băiat» (ولد)?",
+    "question_ar": "كيف يضاف أداة التعريف المعرفة إلى كلمة «Băiat» (ولد - مذكر)؟",
+    "question_en": "How do you add the definite article to masculine noun «Băiat» (boy)?",
+    "category": "articles",
+    "correct_answer": "Băiatul (-ul)",
+    "options": [
+      "Băiatul (-ul)",
+      "Băiata (-a)",
+      "Băiții (-ii)",
+      "Băiatle (-le)"
+    ],
+    "explanation_ar": "أداة التعريف للمذكر المفرد في الرومانية هي اللاحقة (-ul) كـ băiat -> băiatul."
+  },
+  {
+    "id": "gq-3",
+    "question_ro": "Care este تصريف الفعل «A fi» مع الضمير (Noi / نحن) في الحاضر؟",
+    "question_ar": "ما هو تصريف الفعل «A fi» (يكون) مع الضمير نحن (Noi) في المضارع؟",
+    "question_en": "What is the present conjugation of «A fi» (to be) for 'Noi' (We)?",
+    "category": "verbs",
+    "correct_answer": "Noi suntem",
+    "options": [
+      "Noi suntem",
+      "Noi ești",
+      "Noi este",
+      "Noi sunteți"
+    ],
+    "explanation_ar": "تصريف الفعل a fi مع الضمائر: Eu sunt, Tu ești, El este, Noi suntem, Voi sunteți, Ei sunt."
+  },
+  {
+    "id": "gq-4",
+    "question_ro": "Cum spui «لقد أكلتُ» (Past Composite Tense) باللغة الرومانية؟",
+    "question_ar": "كيف تعبر عن الماضي المركب «أنا أكلتُ» بالرومانية؟",
+    "question_en": "How do you say 'I ate' (Past Composite Tense) in Romanian?",
+    "category": "verbs",
+    "correct_answer": "Am mâncat",
+    "options": [
+      "Am mâncat",
+      "Ai mâncat",
+      "A mâncat",
+      "Mănânc"
+    ],
+    "explanation_ar": "يتكون الماضي المركب مع الضمير (Eu) من الفعل المساعد (Am) + التصريف (Am mâncat)."
+  },
+  {
+    "id": "gq-5",
+    "question_ro": "Care este أداة التعريف للجمع المؤنث «Fetele» (الفتيات)؟",
+    "question_ar": "ما هي لاحقة التعريف للجمع المؤنث في «Fetele» (الفتيات)؟",
+    "question_en": "What is the definite article suffix for plural feminine «Fetele» (the girls)?",
+    "category": "articles",
+    "correct_answer": "-le (Fete + le)",
+    "options": [
+      "-le (Fete + le)",
+      "-ul",
+      "-ii",
+      "-a"
+    ],
+    "explanation_ar": "للجمع المؤنث والجمع المحايد تضاف اللاحقة (-le) مثل fetele, casele, scaunele."
+  }
+]

@@ -1,0 +1,151 @@
+[
+  {
+    "id": "g-1",
+    "topic_ro": "Genul Substantivelor (Masculin, Feminin, Neutru)",
+    "topic_ar": "جنس الأسماء في الرومانية (مذكر، مؤنث، محايد)",
+    "topic_en": "Noun Genders in Romanian (Masculine, Feminine, Neuter)",
+    "category": "nouns",
+    "explanation_ar": "تتميز اللغة الرومانية بوجود 3 أجناس للأسماء: المذكر (Masculin)، المؤنث (Feminin)، والمحايد (Neutru - يكون مذكر في المفرد ومؤنث في الجمع).",
+    "explanation_en": "Romanian nouns have 3 genders: Masculine, Feminine, and Neuter (singular masculine, plural feminine).",
+    "rules": [
+      {
+        "gender": "Masculin (مذكر)",
+        "singular_ro": "băiat / om",
+        "plural_ro": "băieți / oameni",
+        "rule_ar": "ينتهي عادة بحرف ساكن ويجمع بحرف (i)",
+        "rule_en": "Usually ends in consonant, plural with -i"
+      },
+      {
+        "gender": "Feminin (مؤنث)",
+        "singular_ro": "fată / casă",
+        "plural_ro": "fete / case",
+        "rule_ar": "ينتهي بالحرف الخاص (ă) أو (a) ويجمع بحرف (e) أو (i)",
+        "rule_en": "Ends in -ă or -a, plural with -e or -i"
+      },
+      {
+        "gender": "Neutru (محايد)",
+        "singular_ro": "scaun / drum",
+        "plural_ro": "scaune / drumuri",
+        "rule_ar": "مفرد مذكر وجمع مؤنث، يجمع بـ (e) أو (uri)",
+        "rule_en": "Singular masculine, plural feminine (-e or -uri)"
+      }
+    ]
+  },
+  {
+    "id": "g-2",
+    "topic_ro": "Articolul Hotărât și Nehotărât (Definite & Indefinite Articles)",
+    "topic_ar": "أدوات التعريف والتنكير في اللغة الرومانية",
+    "topic_en": "Definite & Indefinite Articles Suffixes",
+    "category": "articles",
+    "explanation_ar": "في اللغة الرومانية، تلتصق أداة التعريف في نهاية الكلمة كلاحقة (Suffix) بخلاف العربية والإنجليزي.",
+    "explanation_en": "In Romanian, the definite article is attached at the end of the noun as a suffix.",
+    "rules": [
+      {
+        "gender": "Masculin Singur",
+        "indefinite_ro": "un băiat",
+        "definite_ro": "băiatul (-ul)",
+        "meaning_ar": "ولد -> الولد",
+        "meaning_en": "a boy -> the boy"
+      },
+      {
+        "gender": "Feminin Singur",
+        "indefinite_ro": "o fată",
+        "definite_ro": "fata (-a)",
+        "meaning_ar": "فتاة -> الفتاة",
+        "meaning_en": "a girl -> the girl"
+      },
+      {
+        "gender": "Neutru Singur",
+        "indefinite_ro": "un scaun",
+        "definite_ro": "scaunul (-ul)",
+        "meaning_ar": "كرسي -> الكرسي",
+        "meaning_en": "a chair -> the chair"
+      }
+    ]
+  },
+  {
+    "id": "g-3",
+    "topic_ro": "Conjugarea Verbelor la Prezent (Present Tense Verbs)",
+    "topic_ar": "تصريف الأفعال في زمن المضارع الحاضر",
+    "topic_en": "Present Tense Verb Conjugations",
+    "category": "verbs",
+    "explanation_ar": "تصرف الأفعال في الحاضر حسب الضمائر الشخصية (Eu, Tu, El/Ea, Noi, Voi, Ei/Ele).",
+    "explanation_en": "Verbs are conjugated in present tense according to personal pronouns.",
+    "rules": [
+      {
+        "pronoun": "Eu (أنا / I)",
+        "a_fi": "sunt",
+        "a_avea": "am",
+        "a_merge": "merg",
+        "a_vorbi": "vorbesc"
+      },
+      {
+        "pronoun": "Tu (أنتَ/أنتِ / You)",
+        "a_fi": "ești",
+        "a_avea": "ai",
+        "a_merge": "mergi",
+        "a_vorbi": "vorbești"
+      },
+      {
+        "pronoun": "El / Ea (هو/هي / He/She)",
+        "a_fi": "este (e)",
+        "a_avea": "are",
+        "a_merge": "merge",
+        "a_vorbi": "vorbește"
+      },
+      {
+        "pronoun": "Noi (نحن / We)",
+        "a_fi": "suntem",
+        "a_avea": "avem",
+        "a_merge": "mergem",
+        "a_vorbi": "vorbim"
+      },
+      {
+        "pronoun": "Voi (أنتم / You pl.)",
+        "a_fi": "sunteți",
+        "a_avea": "aveți",
+        "a_merge": "mergeți",
+        "a_vorbi": "vorbiți"
+      },
+      {
+        "pronoun": "Ei / Ele (هم/هن / They)",
+        "a_fi": "sunt",
+        "a_avea": "au",
+        "a_merge": "merg",
+        "a_vorbi": "vorbesc"
+      }
+    ]
+  },
+  {
+    "id": "g-4",
+    "topic_ro": "Timpul Trecut Compus (Past Composite Tense)",
+    "topic_ar": "الزمن الماضي المركب (Trecut Compus)",
+    "topic_en": "Past Composite Tense (Am fost, Am mâncat)",
+    "category": "verbs",
+    "explanation_ar": "يتكون الماضي المركب من الفعل المساعد (a avea) + اسم المفعول (Participiu).",
+    "explanation_en": "Formed using auxiliary verb 'a avea' + past participle of the main verb.",
+    "rules": [
+      {
+        "pronoun": "Eu",
+        "auxiliary": "am",
+        "example_ro": "Am fost / Am mâncat",
+        "meaning_ar": "كنت / أكلتُ",
+        "meaning_en": "I was / I ate"
+      },
+      {
+        "pronoun": "Tu",
+        "auxiliary": "ai",
+        "example_ro": "Ai fost / Ai mâncat",
+        "meaning_ar": "كنتَ / أكلتَ",
+        "meaning_en": "You were / You ate"
+      },
+      {
+        "pronoun": "El / Ea",
+        "auxiliary": "a",
+        "example_ro": "A fost / A mâncat",
+        "meaning_ar": "كان / أكلَ",
+        "meaning_en": "He/She was / ate"
+      }
+    ]
+  }
+]
