@@ -10,14 +10,16 @@ import {
   Smartphone, 
   Grid, 
   Images, 
-  Globe, 
   ChevronLeft, 
   ChevronRight, 
   Zap, 
   Timer, 
   X, 
   Type, 
-  Gamepad2 
+  Gamepad2, 
+  MessageSquare, 
+  Tv, 
+  Puzzle 
 } from 'lucide-react';
 import questions from '../data/questions_ar.json';
 import Navbar from '../components/Navbar';
@@ -52,7 +54,7 @@ export default function HomePage() {
       <Navbar />
 
       <main className={`flex-1 w-full max-w-4xl mx-auto px-4 py-6 space-y-6 ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
-        {/* Hero Banner with Clean App Logo */}
+        {/* Hero Banner */}
         <div className="flex flex-col items-center text-center space-y-4 pt-2">
           <div className="relative w-24 h-24 rounded-2xl overflow-hidden shadow-xl border-2 border-rose-500 bg-slate-800">
             <Image 
@@ -94,7 +96,7 @@ export default function HomePage() {
                 }`}
               >
                 <span>🇸🇦</span>
-                <span>العربية (Arabic)</span>
+                <span>العربية</span>
               </button>
 
               <button
@@ -176,35 +178,60 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Stats Summary Grid */}
-        <div className="grid grid-cols-3 gap-3">
-          <div className={`rounded-2xl p-4 text-center border flex flex-col items-center justify-center ${
-            isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-white border-slate-200 shadow-sm'
-          }`}>
-            <Images className="w-6 h-6 text-rose-500 mb-1" />
-            <span className="text-xl font-bold">{questions.length}</span>
-            <span className="text-[11px] text-theme-sub mt-1">{strings.questionsCount}</span>
-          </div>
-
-          <div className={`rounded-2xl p-4 text-center border flex flex-col items-center justify-center ${
-            isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-white border-slate-200 shadow-sm'
-          }`}>
-            <Type className="w-6 h-6 text-amber-400 mb-1" />
-            <span className="text-xl font-bold">31</span>
-            <span className="text-[11px] text-theme-sub mt-1">{appLang === 'ar' ? 'حرفاً وأمثلة' : appLang === 'en' ? 'Letters & Examples' : 'Litere și Exemple'}</span>
-          </div>
-
-          <div className={`rounded-2xl p-4 text-center border flex flex-col items-center justify-center ${
-            isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-white border-slate-200 shadow-sm'
-          }`}>
-            <Sparkles className="w-6 h-6 text-amber-400 mb-1" />
-            <span className="text-xl font-bold text-amber-400">AI</span>
-            <span className="text-[11px] text-theme-sub mt-1">{appLang === 'ar' ? 'مساعد ذكي + Ollama' : appLang === 'en' ? 'AI Tutor + Ollama' : 'Asistent AI + Ollama'}</span>
-          </div>
-        </div>
-
-        {/* Alphabet & Language Learning Banners */}
+        {/* Learning Modules Grid (Conversations, YouTube, Quizzes, Alphabet) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {/* Daily Conversations Card */}
+          <Link
+            href="/conversations"
+            className="flex items-center justify-between p-5 bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-900 rounded-2xl border border-blue-500/40 shadow-lg hover:opacity-95 transition-all text-white group"
+          >
+            <div className="space-y-1">
+              <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-black/20 text-white border border-white/20">
+                🗣️ Daily Dialogues
+              </span>
+              <h3 className="text-base font-bold">{strings.conversationsTitle}</h3>
+              <p className="text-xs text-blue-100/90">
+                {appLang === 'ar' ? 'حوارات رومانية مترجمة بالصوت للمقابلة الرسمية والمتاجر' : 'Translated dialogues with native audio'}
+              </p>
+            </div>
+            <MessageSquare className="w-8 h-8 text-white shrink-0" />
+          </Link>
+
+          {/* Fun Language Learning Quiz Card */}
+          <Link
+            href="/language-quiz"
+            className="flex items-center justify-between p-5 bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-900 rounded-2xl border border-emerald-500/40 shadow-lg hover:opacity-95 transition-all text-white group"
+          >
+            <div className="space-y-1">
+              <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-black/20 text-white border border-white/20">
+                🧩 Vocabulary & Grammar
+              </span>
+              <h3 className="text-base font-bold">{appLang === 'ar' ? 'اختبارات اللغة والمفردات 🎮' : 'Language Quiz Game'}</h3>
+              <p className="text-xs text-emerald-100/90">
+                {appLang === 'ar' ? 'تحدي الكلمات والجمل والقواعد الرومانية بشكل ممتع' : 'Fun vocabulary & grammar challenges'}
+              </p>
+            </div>
+            <Puzzle className="w-8 h-8 text-white shrink-0" />
+          </Link>
+
+          {/* YouTube Channels Card */}
+          <Link
+            href="/youtube"
+            className="flex items-center justify-between p-5 bg-gradient-to-r from-red-600 via-red-700 to-rose-900 rounded-2xl border border-red-500/40 shadow-lg hover:opacity-95 transition-all text-white group"
+          >
+            <div className="space-y-1">
+              <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-black/20 text-white border border-white/20">
+                📺 YouTube Embedded Videos
+              </span>
+              <h3 className="text-base font-bold">{strings.youtubeTitle}</h3>
+              <p className="text-xs text-red-100/90">
+                {appLang === 'ar' ? 'شاهد مقاطع اليوتيوب وقنوات التعليم مباشرة داخل الصفحة' : 'Watch YouTube channels & videos in-app'}
+              </p>
+            </div>
+            <Tv className="w-8 h-8 text-white shrink-0" />
+          </Link>
+
+          {/* Romanian Alphabet */}
           <Link
             href="/alphabet"
             className="flex items-center justify-between p-5 bg-gradient-to-r from-amber-600 via-amber-700 to-amber-900 rounded-2xl border border-amber-500/40 shadow-lg hover:opacity-95 transition-all text-white group"
@@ -215,26 +242,10 @@ export default function HomePage() {
               </span>
               <h3 className="text-base font-bold">{strings.alphabetTitle}</h3>
               <p className="text-xs text-amber-100/90">
-                {appLang === 'ar' ? 'تعلم نطق الحروف الرومانية بالأمثلة والجمل المترجمة' : appLang === 'en' ? 'Learn letters, pronunciation, words & sentences' : 'Învăță literele, pronunția, cuvinte și propoziții'}
+                {appLang === 'ar' ? 'تعلم نطق الحروف الرومانية بالأمثلة والجمل المترجمة' : 'Learn letters, pronunciation, words & sentences'}
               </p>
             </div>
             <Type className="w-8 h-8 text-white shrink-0" />
-          </Link>
-
-          <Link
-            href="/alphabet-quiz"
-            className="flex items-center justify-between p-5 bg-gradient-to-r from-rose-600 via-rose-700 to-amber-700 rounded-2xl border border-rose-500/40 shadow-lg hover:opacity-95 transition-all text-white group"
-          >
-            <div className="space-y-1">
-              <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-black/20 text-white border border-white/20">
-                🎮 Fun Audio Game
-              </span>
-              <h3 className="text-base font-bold">{strings.alphabetGameTitle}</h3>
-              <p className="text-xs text-rose-100/90">
-                {appLang === 'ar' ? 'لعبة استماع وتفاعل ممتعة لاختبار معرفتك بالحروف' : appLang === 'en' ? 'Interactive sound game to test listening skills' : 'Joc interactiv audio pentru testarea pronunției'}
-              </p>
-            </div>
-            <Gamepad2 className="w-8 h-8 text-white shrink-0" />
           </Link>
         </div>
 

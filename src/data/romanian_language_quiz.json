@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "question_ro": "Ce înseamnă cuvântul «Mulțumesc»?",
+    "question_ar": "ماذا تعني كلمة «Mulțumesc» بالرومانية؟",
+    "question_en": "What does the word «Mulțumesc» mean?",
+    "category": "vocabulary",
+    "correct_answer": "شكراً جزيلاً / Thank you",
+    "options": [
+      "شكراً جزيلاً / Thank you",
+      "صباح الخير / Good morning",
+      "مع السلامة / Goodbye",
+      "من فضلك / Please"
+    ]
+  },
+  {
+    "id": 2,
+    "question_ro": "Care este forma corectă a verb ului «a fi» la persoana I (Eu)?",
+    "question_ar": "ما هو التصريف الصحيح لفعل الكينونة «a fi» مع الضمير أنا (Eu)؟",
+    "question_en": "What is the correct form of verb «a fi» for 'Eu' (I am)?",
+    "category": "grammar",
+    "correct_answer": "Eu sunt",
+    "options": [
+      "Eu sunt",
+      "Eu ești",
+      "Eu este",
+      "Eu suntem"
+    ]
+  },
+  {
+    "id": 3,
+    "question_ro": "Cum spui «Cât costă?» în limba română?",
+    "question_ar": "كيف تسأل عن السعر «كم الثمن؟» بالرومانية؟",
+    "question_en": "How do you ask «How much does it cost?» in Romanian?",
+    "category": "phrases",
+    "correct_answer": "Cât costă?",
+    "options": [
+      "Cât costă?",
+      "Unde locuiești?",
+      "Cum te cheamă?",
+      "Cât este ceasul?"
+    ]
+  },
+  {
+    "id": 4,
+    "question_ro": "Ce înseamnă «Bună dimineața»?",
+    "question_ar": "ما هي الترجمة الصحيحة للعبارة «Bună dimineața»؟",
+    "question_en": "What is the correct translation of «Bună dimineața»?",
+    "category": "phrases",
+    "correct_answer": "صباح الخير / Good morning",
+    "options": [
+      "صباح الخير / Good morning",
+      "مساء الخير / Good evening",
+      "تصبح على خير / Good night",
+      "أهلاً وسهلاً / Welcome"
+    ]
+  },
+  {
+    "id": 5,
+    "question_ro": "Care este pluralul cuvântului «Casă» (بيت / منزل)?",
+    "question_ar": "ما هو جمع كلمة «Casă» (منزل) باللغة الرومانية؟",
+    "question_en": "What is the plural of «Casă» (house)?",
+    "category": "grammar",
+    "correct_answer": "Case",
+    "options": [
+      "Case",
+      "Casuri",
+      "Casi",
+      "Casede"
+    ]
+  }
+]

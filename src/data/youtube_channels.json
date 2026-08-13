@@ -1,0 +1,67 @@
+[
+  {
+    "id": 1,
+    "channel_name": "Learn Romanian with Nico",
+    "category": "language_courses",
+    "subscribers": "150K+",
+    "image": "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=800&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Learn+Romanian+with+Nico",
+    "description_ar": "أشهر قناة لتعليم اللغة الرومانية للأجانب بالشرح المبسط والقواعد اليومية",
+    "description_en": "Popular channel for learning Romanian with clear grammar & vocabulary lessons",
+    "description_ro": "Canal popular pentru învățarea limbii române de către străini",
+    "featured_video_id": "vLp0_rA0-8w",
+    "tags": ["Language", "Grammar", "Beginners"]
+  },
+  {
+    "id": 2,
+    "channel_name": "Romanian Citizenship Interview Prep",
+    "category": "citizenship_prep",
+    "subscribers": "85K+",
+    "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Interviu+Cetatenie+Romana",
+    "description_ar": "مقاطع فيديو تشرح أسئلة الدستور والتاريخ والجغرافيا لاختبار لجنة الجنسية ANC",
+    "description_en": "Videos explaining constitutional questions, history, & geography for ANC interview",
+    "description_ro": "Videoclipuri explicative pentru interviul de cetățenie la comisia ANC",
+    "featured_video_id": "dQw4w9WgXcQ",
+    "tags": ["ANC", "Interviu", "Constitutie"]
+  },
+  {
+    "id": 3,
+    "channel_name": "Romanian Pod101",
+    "category": "language_courses",
+    "subscribers": "200K+",
+    "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=RomanianPod101",
+    "description_ar": "دروس استماع ونطق سريعة ومحادثات ممتعة لتعلم الرومانية بطلاقة",
+    "description_en": "Fast listening & pronunciation lessons to speak Romanian fluently",
+    "description_ro": "Lecții rapide de ascultare și pronunție pentru limba română",
+    "featured_video_id": "dQw4w9WgXcQ",
+    "tags": ["Listening", "Conversation", "Daily"]
+  },
+  {
+    "id": 4,
+    "channel_name": "Istoria României - Romania History",
+    "category": "culture_history",
+    "subscribers": "120K+",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/01_Chateau_Peles.jpg/1280px-01_Chateau_Peles.jpg",
+    "youtube_url": "https://www.youtube.com/results?search_query=Istoria+Romaniei+documentar",
+    "description_ar": "وثائقيات مصورة عن تاريخ رومانيا وملوكها وأبطالها مثل ستيفان تشيل ماري وفلاد تسبيش",
+    "description_en": "Documentaries on Romanian history, kings & heroes like Stephen the Great & Vlad the Impaler",
+    "description_ro": "Documentare despre istoria României, domnitori și eroi naționali",
+    "featured_video_id": "dQw4w9WgXcQ",
+    "tags": ["Istorie", "Domnitori", "Cultura"]
+  },
+  {
+    "id": 5,
+    "channel_name": "Stiri si Radio Romania Listening",
+    "category": "news_listening",
+    "subscribers": "300K+",
+    "image": "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?auto=format&fit=crop&w=800&q=80",
+    "youtube_url": "https://www.youtube.com/results?search_query=Stiri+Romania+Radio",
+    "description_ar": "قنوات أخبار وبرامج استماع رومانية مخصصة لتقوية مهارة الاستماع للأجانب",
+    "description_en": "Romanian news & podcasts tailored for advanced listening practice",
+    "description_ro": "Știri și emisiuni radio pentru exersarea auzului și vocabularului",
+    "featured_video_id": "dQw4w9WgXcQ",
+    "tags": ["Stiri", "Radio", "Listening"]
+  }
+]

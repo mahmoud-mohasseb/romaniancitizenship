@@ -1,0 +1,254 @@
+[
+  {
+    "id": 1,
+    "title_ro": "Saluturi și Prezentare Personala",
+    "title_ar": "التحيات والتعريف بالنفس",
+    "title_en": "Greetings & Personal Introduction",
+    "category": "greetings",
+    "image": "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "محادثة أساسية للتعارف والتقديم في المقابلة الرسمية",
+    "description_en": "Basic dialogue for introducing yourself in official settings",
+    "dialogue": [
+      {
+        "speaker_ro": "Ofițer (اللجنة)",
+        "text_ro": "Bună ziua! Cum vă numiți și de unde sunteți?",
+        "text_ar": "مرحباً! ما اسمك ومن أين أنت؟",
+        "text_en": "Good day! What is your name and where are you from?"
+      },
+      {
+        "speaker_ro": "Candidat (المتقدم)",
+        "text_ro": "Bună ziua! Mă numesc Mahmoud și sunt din Siria. Locuiesc în România de 8 ani.",
+        "text_ar": "مرحباً! اسمي محمود وأنا من سورية. أعيش في رومانيا منذ 8 سنوات.",
+        "text_en": "Hello! My name is Mahmoud and I am from Syria. I have been living in Romania for 8 years."
+      },
+      {
+        "speaker_ro": "Ofițer (اللجنة)",
+        "text_ro": "Cu ce vă ocupați în România?",
+        "text_ar": "ماذا تعمل في رومانيا؟",
+        "text_en": "What do you do for work in Romania?"
+      },
+      {
+        "speaker_ro": "Candidat (المتقدم)",
+        "text_ro": "Sunt inginer de software și lucrez la o companie din București.",
+        "text_ar": "أنا مهندس برمجيات وأعمل في شركة في بوخارست.",
+        "text_en": "I am a software engineer and I work at a company in Bucharest."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title_ro": "Interviul Oficial de Cetățenie",
+    "title_ar": "مقابلة الجنسية الرومانية الرسمية",
+    "title_en": "Official Citizenship Interview Simulation",
+    "category": "citizenship",
+    "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "نموذج محاكاة الحوار الشفهي مع لجنة الجنسية الرومانية",
+    "description_en": "Simulated oral interview dialogue with the Citizenship Committee",
+    "dialogue": [
+      {
+        "speaker_ro": "Președintele Comisiei",
+        "text_ro": "De ce doriți să obțineți cetățenia română?",
+        "text_ar": "لماذا ترغب في الحصول على الجنسية الرومانية؟",
+        "text_en": "Why do you wish to obtain Romanian citizenship?"
+      },
+      {
+        "speaker_ro": "Candidat",
+        "text_ro": "Pentru că România este casa mea, respect constituția, cultura și poporul român.",
+        "text_ar": "لأن رومانيا هي بيتي، وأنا أحترم الدستور والثقافة والشعب الروماني.",
+        "text_en": "Because Romania is my home, I respect the constitution, culture, and Romanian people."
+      },
+      {
+        "speaker_ro": "Președintele Comisiei",
+        "text_ro": "Care sunt culorile drapelului național?",
+        "text_ar": "ما هي ألوان العلم الوطني الروماني؟",
+        "text_en": "What are the colors of the national flag?"
+      },
+      {
+        "speaker_ro": "Candidat",
+        "text_ro": "Culorile sunt albastru, galben și roșu, așezate vertical.",
+        "text_ar": "الألوان هي الأزرق والأصفر والأحمر، مرتبة رأسياً.",
+        "text_en": "The colors are blue, yellow, and red, arranged vertically."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title_ro": "La Supermarket și Cumpărături",
+    "title_ar": "في السوبرماركت والتسوق اليومي",
+    "title_en": "At the Supermarket & Grocery Shopping",
+    "category": "daily_life",
+    "image": "https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "محادثة الشراء والاستفسار عن الأسعار في المتاجر",
+    "description_en": "Buying items & asking for prices in grocery stores",
+    "dialogue": [
+      {
+        "speaker_ro": "Cumpărător",
+        "text_ro": "Bună ziua! Unde pot găsi lapte proaspăt și pâine?",
+        "text_ar": "مرحباً! أين أجد الحليب الطازج والخبز؟",
+        "text_en": "Hello! Where can I find fresh milk and bread?"
+      },
+      {
+        "speaker_ro": "Vânzător",
+        "text_ro": "Laptele este pe raftul din dreapta, iar pâinea la raionul de patiserie.",
+        "text_ar": "الحليب في الرف على اليمين، والخبز في قسم المخبوزات.",
+        "text_en": "Milk is on the right shelf, and bread is in the bakery section."
+      },
+      {
+        "speaker_ro": "Cumpărător",
+        "text_ro": "Mulțumesc! Pot plăti cu cardul bancar?",
+        "text_ar": "شكراً! هل يمكنني الدفع بالبطاقة المصرفية؟",
+        "text_en": "Thank you! Can I pay by card?"
+      },
+      {
+        "speaker_ro": "Vânzător",
+        "text_ro": "Da, desigur! Apropiați cardul de POS.",
+        "text_ar": "نعم بالطبع! قَرّب البطاقة من جهاز الدفع.",
+        "text_en": "Yes, of course! Tap your card on the POS machine."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title_ro": "La Restaurant și Comandă de Mâncare",
+    "title_ar": "في المطعم وطلب الطعام الروماني",
+    "title_en": "At the Restaurant Ordering Romanian Food",
+    "category": "daily_life",
+    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "كيف تطلب وجبة تقليدية مثل السارمالي في المطاعم",
+    "description_en": "How to order traditional dishes like sarmale at restaurants",
+    "dialogue": [
+      {
+        "speaker_ro": "Chelner",
+        "text_ro": "Bună seara! Ați ales ceva din meniu?",
+        "text_ar": "مساء الخير! هل اخترتم شيئاً من القائمة؟",
+        "text_en": "Good evening! Have you chosen something from the menu?"
+      },
+      {
+        "speaker_ro": "Client",
+        "text_ro": "Aș dori o porție de sarmale cu mămăligă și ciorbă de rădăuțeană.",
+        "text_ar": "أود وجبة سارمالي (محشي) مع الماماليغا وشوربة راداوتس.",
+        "text_en": "I would like a portion of sarmale with polenta and Rădăuți soup."
+      },
+      {
+        "speaker_ro": "Chelner",
+        "text_ro": "Excelentă alegere! Ce doriți de băut?",
+        "text_ar": "اختيار ممتاز! ماذا تحب أن تشرب؟",
+        "text_en": "Excellent choice! What would you like to drink?"
+      },
+      {
+        "speaker_ro": "Client",
+        "text_ro": "O apă plată cu lămâie, vă rog.",
+        "text_ar": "ماء عادي مع ليمون من فضلك.",
+        "text_en": "Still water with lemon, please."
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title_ro": "La Farmacie și Starea de Sănătate",
+    "title_ar": "في الصيدلية وشرح الأعراض الصحية",
+    "title_en": "At the Pharmacy & Health Advice",
+    "category": "daily_life",
+    "image": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "محادثة طلب علاج ودروس التعامل مع الصيدلي",
+    "description_en": "Asking for medicine and explaining symptoms at a pharmacy",
+    "dialogue": [
+      {
+        "speaker_ro": "Pacient",
+        "text_ro": "Bună ziua! Mă doare capul și am febră. Aveți ceva recomandat?",
+        "text_ar": "مرحباً! رأسي يؤلمني وعندي حرارة. هل تملك دواءً تنصح به؟",
+        "text_en": "Hello! I have a headache and a fever. Do you recommend anything?"
+      },
+      {
+        "speaker_ro": "Farmacist",
+        "text_ro": "Vă recomand Paracetamol. Luați o pastilă la 8 ore după masă.",
+        "text_ar": "أنصحك بالباراسيتامول. خذ حبة كل 8 ساعات بعد الأكل.",
+        "text_en": "I recommend Paracetamol. Take one tablet every 8 hours after meals."
+      },
+      {
+        "speaker_ro": "Pacient",
+        "text_ro": "Mulțumesc mult! Cât costă?",
+        "text_ar": "شكراً جزيلاً! كم السعر؟",
+        "text_en": "Thank you very much! How much is it?"
+      },
+      {
+        "speaker_ro": "Farmacist",
+        "text_ro": "Costă 12 lei. Sănătate multă!",
+        "text_ar": "السعر 12 لي. بالشفاء العاجل!",
+        "text_en": "It costs 12 lei. Get well soon!"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title_ro": "Închiriere Apartament și Cazare",
+    "title_ar": "استئجار شقة والسكن في رومانيا",
+    "title_en": "Renting an Apartment in Romania",
+    "category": "daily_life",
+    "image": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "حوار استئجار شقة ومناقشة الإيجار والخدمات",
+    "description_en": "Renting an apartment and discussing rent and utilities",
+    "dialogue": [
+      {
+        "speaker_ro": "Chiriaș (المستأجر)",
+        "text_ro": "Bună ziua! Am văzut anunțul pentru apartamentul cu două camere.",
+        "text_ar": "مرحباً! رأيت إعلان الشقة ذات الغرفتين.",
+        "text_en": "Hello! I saw the ad for the two-room apartment."
+      },
+      {
+        "speaker_ro": "Proprietar (المالك)",
+        "text_ro": "Da, este disponibil. Chiria lunară este de 350 de euro plus utilitățile.",
+        "text_ar": "نعم، إنها متاحة. الإيجار الشهرية 350 يورو بالإضافة للخدمات.",
+        "text_en": "Yes, it is available. Monthly rent is 350 euros plus utilities."
+      },
+      {
+        "speaker_ro": "Chiriaș (المستأجر)",
+        "text_ro": "Cât este garanția?",
+        "text_ar": "كم قيمة التأمين (الضمان)؟",
+        "text_en": "How much is the deposit?"
+      },
+      {
+        "speaker_ro": "Proprietar (المالك)",
+        "text_ro": "Garanția este echivalentul unei luni de chirie.",
+        "text_ar": "التأمين يعادل إيجار شهر واحد.",
+        "text_en": "The deposit is equal to one month's rent."
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title_ro": "La Bancă și Schimb Valutar",
+    "title_ar": "في البنك والصرافة وتحويل الأموال",
+    "title_en": "At the Bank & Money Exchange",
+    "category": "daily_life",
+    "image": "https://images.unsplash.com/photo-1541354329998-f4d9a9f9297f?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "محادثة فتح حساب بنكي وتحويل العملات في رومانيا",
+    "description_en": "Opening a bank account & exchanging currency in Romania",
+    "dialogue": [
+      {
+        "speaker_ro": "Client",
+        "text_ro": "Bună ziua! Doresc să deschid un cont bancar în lei și euro.",
+        "text_ar": "مرحباً! أود فتح حساب بنكي باللي واليورو.",
+        "text_en": "Hello! I would like to open a bank account in lei and euros."
+      },
+      {
+        "speaker_ro": "Bancher",
+        "text_ro": "Aveți nevoie de permisul de ședere și un act de identitate.",
+        "text_ar": "تحتاج إلى تصريح الإقامة وثيقة إثبات شخصية.",
+        "text_en": "You need your residence permit and an ID document."
+      },
+      {
+        "speaker_ro": "Client",
+        "text_ro": "Am toate documentele aici. Cât durează activarea contului?",
+        "text_ar": "لدي جميع الوثائق هنا. كم يستغرق تفعيل الحساب؟",
+        "text_en": "I have all documents here. How long does account activation take?"
+      },
+      {
+        "speaker_ro": "Bancher",
+        "text_ro": "Contul va fi activ astăzi, iar cardul va sosi în 3 zile.",
+        "text_ar": "سيكون الحساب نشطاً اليوم، وستصل البطاقة خلال 3 أيام.",
+        "text_en": "The account will be active today, and the card arrives in 3 days."
+      }
+    ]
+  }
+]

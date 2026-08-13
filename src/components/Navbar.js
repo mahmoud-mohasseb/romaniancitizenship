@@ -15,6 +15,9 @@ import {
   Sun, 
   Menu, 
   X, 
+  MessageSquare, 
+  Tv, 
+  Puzzle, 
   ChevronLeft, 
   ChevronRight 
 } from 'lucide-react';
@@ -29,24 +32,28 @@ export default function Navbar() {
   const isDark = theme === 'dark';
 
   const navLinks = [
-    { href: '/', label: strings.homeNav, sub: appLang === 'ar' ? 'الصفحة الرئيسية' : appLang === 'en' ? 'Main Home Page' : 'Pagina Principală', icon: Home, color: 'text-rose-500' },
-    { href: '/study', label: strings.studyNav, sub: appLang === 'ar' ? '469 سؤالاً مصوراً' : appLang === 'en' ? '469 Visual Questions' : '469 Întrebări Ilustrate', icon: BookOpen, color: 'text-blue-400' },
-    { href: '/quiz', label: strings.quizNav, sub: appLang === 'ar' ? 'اختبارات ومحاكاة الامتحان' : appLang === 'en' ? 'Quizzes & Exam Simulation' : 'Teste și Simulare Examen', icon: Trophy, color: 'text-amber-400' },
-    { href: '/alphabet', label: strings.alphabetNav, sub: appLang === 'ar' ? '31 حرفاً مع النطق' : appLang === 'en' ? '31 Letters with Audio' : '31 Litere cu Pronunție', icon: Type, color: 'text-purple-400' },
-    { href: '/alphabet-quiz', label: strings.alphabetQuizNav, sub: appLang === 'ar' ? 'لعبة استماع وتفاعل' : appLang === 'en' ? 'Sound Listening Game' : 'Joc Interactiv Audio', icon: Gamepad2, color: 'text-emerald-400' },
-    { href: '/ai', label: strings.aiNav, sub: appLang === 'ar' ? 'Ollama + مساعد مدمج' : appLang === 'en' ? 'Ollama + Embedded AI' : 'Ollama + Asistent AI', icon: Sparkles, color: 'text-amber-300' },
+    { href: '/', label: strings.homeNav, sub: appLang === 'ar' ? 'الصفحة الرئيسية' : 'Main Home Page', icon: Home, color: 'text-rose-500' },
+    { href: '/study', label: strings.studyNav, sub: appLang === 'ar' ? '469 سؤالاً مصوراً للجنسية' : '469 Visual Questions', icon: BookOpen, color: 'text-blue-400' },
+    { href: '/quiz', label: strings.quizNav, sub: appLang === 'ar' ? 'اختبارات ومحاكاة الامتحان الرسمي' : 'Exam & Quizzes', icon: Trophy, color: 'text-amber-400' },
+    { href: '/conversations', label: strings.conversationsNav, sub: appLang === 'ar' ? 'حوارات الرومانية والمقابلة اليومية' : 'Daily Dialogues & Interview', icon: MessageSquare, color: 'text-emerald-400' },
+    { href: '/conversation-quiz', label: strings.conversationQuizNav, sub: appLang === 'ar' ? 'لعبة ردود وحوارات الحياة اليومية' : 'Conversation Quiz Game', icon: Gamepad2, color: 'text-indigo-400' },
+    { href: '/alphabet', label: strings.alphabetNav, sub: appLang === 'ar' ? '31 حرفاً مع النطق الصوتي والأمثلة' : '31 Letters with Audio', icon: Type, color: 'text-purple-400' },
+    { href: '/alphabet-quiz', label: strings.alphabetQuizNav, sub: appLang === 'ar' ? 'لعبة نطق واستماع الحروف' : 'Alphabet Audio Game', icon: Gamepad2, color: 'text-rose-400' },
+    { href: '/language-quiz', label: appLang === 'ar' ? 'اختبارات المفردات والقواعد' : 'Language Quiz', sub: appLang === 'ar' ? 'تحدي كلمات وجمل اللغة الرومانية' : 'Vocabulary & Grammar Quiz', icon: Puzzle, color: 'text-teal-400' },
+    { href: '/youtube', label: strings.youtubeNav, sub: appLang === 'ar' ? 'قنوات مصنفة مع مشغل الفيديو' : 'YouTube Learning Videos', icon: Tv, color: 'text-red-500' },
+    { href: '/ai', label: strings.aiNav, sub: appLang === 'ar' ? 'المساعد الذكي Ollama' : 'AI Citizenship Tutor', icon: Sparkles, color: 'text-amber-300' },
   ];
 
   return (
     <>
-      {/* Top App Header Bar */}
+      {/* Sleek Header Bar - Pure Emblem Logo, Controls & Burger Button */}
       <header className={`sticky top-0 z-40 backdrop-blur-xl border-b transition-colors ${
         isDark 
           ? 'bg-slate-900/95 border-slate-800 text-white' 
           : 'bg-white/95 border-slate-200 text-slate-900 shadow-sm'
       } ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
         <div className="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
-          {/* Crisp Clean Logo & Brand Title */}
+          {/* Crisp Clean Logo & Title */}
           <Link href="/" className="flex items-center space-x-2.5 space-x-reverse group">
             <div className="relative w-9 h-9 rounded-xl overflow-hidden border border-rose-500/80 shadow-md group-hover:scale-105 transition-transform shrink-0">
               <Image src="/icon.png" alt="Romanian Citizenship Logo" fill className="object-cover" />
@@ -56,9 +63,9 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Controls: Dark/Light Mode, 3-Language Selector, Mobile Menu */}
+          {/* Header Controls: Theme Toggle, Language Switcher, Burger Button */}
           <div className="flex items-center space-x-2 space-x-reverse">
-            {/* Theme Toggle Button */}
+            {/* Theme Switcher Button */}
             <button
               onClick={toggleTheme}
               className={`p-2 rounded-xl border transition-all ${
@@ -71,7 +78,7 @@ export default function Navbar() {
               {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
 
-            {/* 3-Language Switcher Pills */}
+            {/* 3-Language Selector Pills */}
             <div className={`flex items-center p-0.5 rounded-xl border ${
               isDark ? 'bg-slate-800 border-slate-700' : 'bg-slate-100 border-slate-200'
             }`}>
@@ -101,10 +108,10 @@ export default function Navbar() {
               </button>
             </div>
 
-            {/* Mobile Drawer Hamburger Button */}
+            {/* Burger Logo Menu Button */}
             <button
               onClick={() => setDrawerOpen(true)}
-              className="p-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white shadow-md shadow-rose-600/30"
+              className="p-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white shadow-md shadow-rose-600/30 flex items-center space-x-1 space-x-reverse"
               title="Open Navigation Menu"
             >
               <Menu className="w-5 h-5" />
@@ -113,10 +120,10 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Slide-Over Drawer Sheet */}
+      {/* Slide-Over Burger Side Drawer Panel (Contains ALL App Pages) */}
       {drawerOpen && (
         <div className="fixed inset-0 z-50 flex justify-end bg-black/80 backdrop-blur-sm transition-opacity">
-          <div className={`w-full max-w-xs h-full flex flex-col justify-between p-5 shadow-2xl transition-transform ${
+          <div className={`w-full max-w-xs h-full flex flex-col justify-between p-5 shadow-2xl transition-transform overflow-y-auto ${
             isDark ? 'bg-slate-900 text-white border-l border-slate-800' : 'bg-white text-slate-900 border-l border-slate-200'
           } ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
             
@@ -129,7 +136,7 @@ export default function Navbar() {
                   </div>
                   <div>
                     <h3 className="text-base font-extrabold leading-tight">Cetățenia Română</h3>
-                    <p className="text-[10px] text-rose-500 font-bold">Preparation Guide</p>
+                    <p className="text-[10px] text-rose-500 font-bold">Comprehensive Platform</p>
                   </div>
                 </div>
 
@@ -141,7 +148,7 @@ export default function Navbar() {
                 </button>
               </div>
 
-              {/* Drawer Links List */}
+              {/* All Navigation Links List */}
               <div className="space-y-2 pt-1">
                 {navLinks.map((link) => {
                   const Icon = link.icon;
@@ -151,7 +158,7 @@ export default function Navbar() {
                       key={link.href}
                       href={link.href}
                       onClick={() => setDrawerOpen(false)}
-                      className={`flex items-center justify-between p-3.5 rounded-2xl border transition-all ${
+                      className={`flex items-center justify-between p-3 rounded-2xl border transition-all ${
                         isActive 
                           ? 'bg-rose-600 text-white border-rose-600 shadow-lg shadow-rose-600/30' 
                           : isDark ? 'bg-slate-800/80 border-slate-700/60 text-slate-200 hover:bg-slate-800' : 'bg-slate-100 border-slate-200 text-slate-800 hover:bg-slate-200'
@@ -159,7 +166,7 @@ export default function Navbar() {
                     >
                       <div className="flex items-center space-x-3 space-x-reverse">
                         <div className={`p-2 rounded-xl ${isActive ? 'bg-white/20 text-white' : 'bg-slate-900/40 ' + link.color}`}>
-                          <Icon className="w-5 h-5" />
+                          <Icon className="w-4 h-4" />
                         </div>
                         <div>
                           <p className="text-xs font-bold leading-tight">{link.label}</p>
@@ -175,7 +182,7 @@ export default function Navbar() {
             </div>
 
             {/* Drawer Footer Controls */}
-            <div className="pt-4 border-t border-slate-700/60 space-y-3">
+            <div className="pt-4 mt-4 border-t border-slate-700/60 space-y-3">
               <div className="space-y-1.5">
                 <span className="text-[11px] font-bold text-slate-400 block">{strings.selectLangLabel}</span>
                 <div className="grid grid-cols-3 gap-2">
@@ -216,36 +223,6 @@ export default function Navbar() {
           </div>
         </div>
       )}
-
-      {/* Fixed Bottom Mobile App Navigation Dock */}
-      <nav className={`fixed bottom-0 left-0 right-0 z-40 border-t backdrop-blur-xl px-2 py-1.5 transition-colors ${
-        isDark 
-          ? 'bg-slate-900/95 border-slate-800 text-slate-300' 
-          : 'bg-white/95 border-slate-200 text-slate-700 shadow-lg'
-      } ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
-        <div className="max-w-md mx-auto grid grid-cols-6 gap-1">
-          {navLinks.map((link) => {
-            const Icon = link.icon;
-            const isActive = pathname === link.href;
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`flex flex-col items-center justify-center py-1 rounded-xl text-[10px] font-bold transition-all ${
-                  isActive 
-                    ? 'text-rose-500 scale-105' 
-                    : isDark ? 'text-slate-400 hover:text-slate-200' : 'text-slate-500 hover:text-slate-900'
-                }`}
-              >
-                <div className={`p-1 rounded-lg ${isActive ? 'bg-rose-500/15' : ''}`}>
-                  <Icon className="w-5 h-5" />
-                </div>
-                <span className="truncate w-full text-center leading-none mt-0.5">{link.label}</span>
-              </Link>
-            );
-          })}
-        </div>
-      </nav>
     </>
   );
 }
