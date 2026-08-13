@@ -51,7 +51,7 @@ export default function Navbar() {
     { href: '/quiz', label: strings.quizNav, icon: Trophy },
     { href: '/grammar', label: appLang === 'ar' ? 'القواعد' : appLang === 'en' ? 'Grammar' : 'Gramatică', icon: GraduationCap },
     { href: '/conversations', label: appLang === 'ar' ? 'المحادثات' : appLang === 'en' ? 'Dialogues' : 'Conversații', icon: MessageSquare },
-    { href: '/ai', label: appLang === 'ar' ? 'المساعد الذكي' : appLang === 'en' ? 'AI Tutor' : 'Asistent AI', icon: Sparkles },
+    { href: '/ai', label: appLang === 'ar' ? 'المساعد' : appLang === 'en' ? 'AI Tutor' : 'Asistent AI', icon: Sparkles },
   ];
 
   const sidebarContent = (
@@ -179,8 +179,8 @@ export default function Navbar() {
 
       {/* Floating Mobile Sidebar Trigger Header Bar */}
       <div className="lg:hidden sticky top-0 z-40 w-full px-4 py-2.5 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 flex items-center justify-between shadow-md">
-        <Link href="/" className="flex items-center space-x-2.5 space-x-reverse">
-          <div className="relative w-8 h-8 rounded-xl overflow-hidden border border-rose-500 shrink-0 bg-slate-800">
+        <Link href="/" className="flex items-center space-x-2.5 space-x-reverse group">
+          <div className="relative w-8 h-8 rounded-xl overflow-hidden border border-rose-500 shrink-0 bg-slate-800 shadow-md group-hover:scale-105 transition-transform">
             <Image src="/icon.png" alt="Romanian Citizenship Emblem" fill className="object-cover" />
           </div>
           <span className="text-sm font-extrabold text-white">Cetățenia Română</span>
@@ -189,7 +189,7 @@ export default function Navbar() {
         <div className="flex items-center space-x-2 space-x-reverse">
           <button
             onClick={() => setMobileSidebarOpen(true)}
-            className="px-3 py-1.5 bg-rose-600 hover:bg-rose-500 text-white rounded-xl text-xs font-bold flex items-center space-x-1.5 space-x-reverse shadow-md"
+            className="px-3 py-1.5 bg-rose-600 hover:bg-rose-500 text-white rounded-xl text-xs font-bold flex items-center space-x-1.5 space-x-reverse shadow-md shadow-rose-600/30"
           >
             <Menu className="w-4 h-4" />
             <span>{appLang === 'ar' ? 'القائمة ☰' : appLang === 'en' ? 'Menu ☰' : 'Meniu ☰'}</span>
@@ -207,9 +207,9 @@ export default function Navbar() {
         </div>
       )}
 
-      {/* Mobile Bottom Navigation Bar */}
-      <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-slate-900/95 backdrop-blur-lg border-t border-slate-800 px-2 py-1.5 shadow-2xl">
-        <div className="grid grid-cols-6 gap-1 text-center">
+      {/* Mobile Bottom Navigation Bar with Premium High-Visibility Icons */}
+      <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-slate-900/95 backdrop-blur-lg border-t border-slate-800/80 px-2 py-1.5 shadow-2xl">
+        <div className="grid grid-cols-6 gap-1 text-center items-center">
           {bottomMobileTabs.map((tab) => {
             const Icon = tab.icon;
             const isActive = pathname === tab.href;
@@ -217,12 +217,17 @@ export default function Navbar() {
               <Link
                 key={tab.href}
                 href={tab.href}
-                className={`flex flex-col items-center py-1 rounded-xl transition-all ${
-                  isActive ? 'text-rose-500 font-extrabold scale-105' : 'text-slate-400 hover:text-white'
+                className={`flex flex-col items-center py-1 rounded-xl transition-all relative ${
+                  isActive 
+                    ? 'text-rose-500 font-extrabold scale-105 bg-rose-500/10 border border-rose-500/30 shadow-sm' 
+                    : 'text-slate-400 hover:text-white hover:bg-slate-800/40'
                 }`}
               >
-                <Icon className="w-5 h-5 mb-0.5" />
-                <span className="text-[10px] leading-tight truncate w-full">{tab.label}</span>
+                <Icon className={`w-5 h-5 mb-0.5 transition-transform ${isActive ? 'animate-bounce-subtle text-rose-500' : 'text-slate-400'}`} />
+                <span className="text-[10px] leading-tight truncate w-full px-0.5">{tab.label}</span>
+                {isActive && (
+                  <span className="absolute -bottom-0.5 w-2 h-0.5 bg-rose-500 rounded-full animate-pulse" />
+                )}
               </Link>
             );
           })}
