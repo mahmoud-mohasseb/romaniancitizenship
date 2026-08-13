@@ -14,7 +14,8 @@ import {
   GraduationCap, 
   Lightbulb, 
   MessageSquare, 
-  Play 
+  Play,
+  Bookmark
 } from 'lucide-react';
 import grammarData from '../../data/romanian_grammar.json';
 import Navbar from '../../components/Navbar';
@@ -31,14 +32,14 @@ function GrammarContent() {
   const [playingId, setPlayingId] = useState(null);
 
   const categories = [
-    { id: 'all', label_ar: 'الكل (All Lessons)', label_en: 'All Lessons', label_ro: 'Toate Lecțiile' },
+    { id: 'all', label_ar: 'جميع الدروس (All 22 Modules)', label_en: 'All 22 Modules', label_ro: 'Toate cele 22 de Module' },
     { id: 'nouns', label_ar: '🏛️ الأجناس والأسماء (Nouns)', label_en: '🏛️ Nouns & Genders', label_ro: '🏛️ Substantive' },
     { id: 'articles', label_ar: '📌 أدوات التعريف (Articles)', label_en: '📌 Articles Suffixes', label_ro: '📌 Articole' },
     { id: 'verbs', label_ar: '⚡ تصريف الأفعال (Verbs)', label_en: '⚡ Verb Conjugations', label_ro: '⚡ Verbe' },
   ];
 
   const speakText = (text, id) => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined' || !window.speechSynthesis) return;
     try {
       window.speechSynthesis.cancel();
       setPlayingId(id);
@@ -75,8 +76,8 @@ function GrammarContent() {
         <div className={`rounded-2xl p-6 border shadow-xl space-y-3 text-center ${
           isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'
         }`}>
-          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30">
-            📚 Gramatica Limbii Române
+          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-black bg-amber-500/20 text-amber-400 border border-amber-500/30">
+            📚 Gramatica Limbii Române (22 Module)
           </span>
           <h1 className="text-2xl sm:text-3xl font-extrabold">
             {strings.grammarTitle}
@@ -88,7 +89,7 @@ function GrammarContent() {
           <div className="pt-2">
             <Link
               href="/grammar-quiz"
-              className="inline-flex items-center space-x-2 space-x-reverse px-5 py-3 bg-gradient-to-r from-amber-500 to-rose-600 text-white font-extrabold rounded-2xl text-xs shadow-lg hover:opacity-95 transition-all"
+              className="inline-flex items-center space-x-2 space-x-reverse px-5 py-3 bg-gradient-to-r from-amber-500 to-rose-600 text-white font-black rounded-2xl text-xs shadow-lg hover:opacity-95 transition-all"
             >
               <Trophy className="w-4 h-4" />
               <span>{strings.grammarQuizCardTitle || 'جرب لعبة اختبار القواعد والمحادثات 🎮'}</span>
@@ -128,97 +129,145 @@ function GrammarContent() {
           </div>
         </div>
 
-        {/* Grammar Modules List */}
-        <div className="space-y-4">
-          {filteredGrammar.map((module) => (
+        {/* Structured Grammar Modules List */}
+        <div className="space-y-6">
+          {filteredGrammar.map((module, index) => (
             <div
-              key={module.id}
-              className={`p-5 rounded-2xl border space-y-4 shadow-lg animate-fade-in-up ${
+              key={module.id || index}
+              className={`p-5 sm:p-6 rounded-2xl border space-y-5 shadow-xl animate-fade-in-up transition-all ${
                 isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'
               }`}
             >
-              {/* Header */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-700/60 pb-3 gap-2">
+              {/* Header Badge & Title */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-700/60 pb-4 gap-3">
                 <div className="space-y-1">
-                  <span className="text-[10px] font-bold text-amber-400 block uppercase tracking-wider">
-                    {module.topic_ro}
-                  </span>
-                  <h2 className="text-lg font-bold">
+                  <div className="flex items-center space-x-2 space-x-reverse">
+                    <span className="px-2.5 py-0.5 rounded-md text-[11px] font-black bg-rose-500/20 text-rose-400 border border-rose-500/30">
+                      Module #{index + 1}
+                    </span>
+                    <span className="text-xs font-bold text-amber-400 uppercase tracking-wider">
+                      {module.topic_ro}
+                    </span>
+                  </div>
+                  <h2 className="text-xl font-extrabold text-theme-main pt-1">
                     {appLang === 'ar' ? module.topic_ar : appLang === 'en' ? module.topic_en : module.topic_ro}
                   </h2>
                 </div>
 
-                {/* Quick Tip Box */}
-                {module.easy_tip_ar && (
-                  <div className="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold flex items-center space-x-2 space-x-reverse shrink-0">
-                    <Lightbulb className="w-4 h-4 shrink-0 text-amber-400" />
-                    <span>{module.easy_tip_ar}</span>
+                <button
+                  onClick={() => speakText(module.topic_ro, `topic-${module.id}`)}
+                  className="px-3 py-1.5 rounded-xl bg-slate-700/40 hover:bg-slate-700 text-rose-400 border border-slate-600/40 text-xs font-bold flex items-center space-x-1.5 space-x-reverse shrink-0 self-start sm:self-auto"
+                >
+                  <Volume2 className="w-4 h-4" />
+                  <span>{strings.playAudio || 'استمع'}</span>
+                </button>
+              </div>
+
+              {/* High Visibility Quick Tip Box */}
+              {module.easy_tip_ar && (
+                <div className="p-4 rounded-xl bg-amber-500/10 border-2 border-amber-500/30 text-amber-300 text-xs sm:text-sm font-bold flex items-start space-x-3 space-x-reverse shadow-inner">
+                  <Lightbulb className="w-5 h-5 text-amber-400 shrink-0 mt-0.5 animate-bounce-subtle" />
+                  <div>
+                    <span className="block text-amber-400 font-extrabold text-xs uppercase mb-1">
+                      💡 {appLang === 'ar' ? 'نصيحة سريعة للفهم (Quick Tip):' : '💡 Quick Tip:'}
+                    </span>
+                    <p className="leading-relaxed text-amber-200 font-bold">{module.easy_tip_ar}</p>
                   </div>
-                )}
-              </div>
-
-              {/* Explanation */}
-              <div className="text-xs sm:text-sm text-theme-sub leading-relaxed space-y-2">
-                <p>🇸🇦 {module.explanation_ar}</p>
-                {module.explanation_en && <p className="text-[11px] text-slate-400">🇬🇧 {module.explanation_en}</p>}
-              </div>
-
-              {/* Rule Examples Table */}
-              {module.rules && module.rules.length > 0 && (
-                <div className="overflow-x-auto rounded-xl border border-slate-700/60">
-                  <table className="w-full text-xs text-right">
-                    <thead className={`border-b text-slate-400 ${isDark ? 'bg-slate-900/80 border-slate-700' : 'bg-slate-100 border-slate-200'}`}>
-                      <tr>
-                        <th className="p-2.5 text-right font-bold">الرومانية</th>
-                        <th className="p-2.5 text-right font-bold">المعنى بالعربية</th>
-                        <th className="p-2.5 text-center font-bold">صوت 🔊</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-700/40">
-                      {module.rules.map((rule, rIdx) => (
-                        <tr key={rIdx} className={isDark ? 'hover:bg-slate-900/40' : 'hover:bg-slate-50'}>
-                          <td className="p-2.5 font-bold text-rose-400">{rule.rule_ro || rule.rule}</td>
-                          <td className="p-2.5 text-slate-300">{rule.explanation_ar}</td>
-                          <td className="p-2.5 text-center">
-                            <button
-                              onClick={() => speakText(rule.rule_ro || rule.rule, `rule-${module.id}-${rIdx}`)}
-                              className="p-1.5 rounded-lg bg-rose-500/15 hover:bg-rose-500/30 text-rose-400 transition-colors"
-                            >
-                              <Volume2 className="w-3.5 h-3.5" />
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
                 </div>
               )}
 
-              {/* Conversational Dialogue Example */}
+              {/* Clear Multilingual Explanation Box */}
+              <div className={`p-4 rounded-xl border space-y-2 text-xs sm:text-sm leading-relaxed ${
+                isDark ? 'bg-slate-900/80 border-slate-700/80' : 'bg-slate-50 border-slate-200'
+              }`}>
+                <span className="text-[11px] font-extrabold text-slate-400 block uppercase">
+                  📖 {appLang === 'ar' ? 'شرح الدرس والتوضيح:' : appLang === 'en' ? 'Lesson Explanation:' : 'Explicativă:'}
+                </span>
+                <p className="font-semibold text-theme-main leading-relaxed">
+                  🇸🇦 {module.explanation_ar}
+                </p>
+                {module.explanation_en && (
+                  <p className="text-xs text-slate-400 pt-1 border-t border-slate-700/40">
+                    🇬🇧 {module.explanation_en}
+                  </p>
+                )}
+              </div>
+
+              {/* High-Contrast Rules & Conjugation Table */}
+              {module.rules && module.rules.length > 0 && (
+                <div className="space-y-2">
+                  <span className="text-xs font-extrabold text-theme-sub flex items-center space-x-1.5 space-x-reverse">
+                    <Layers className="w-4 h-4 text-rose-500" />
+                    <span>{appLang === 'ar' ? 'قواعد وتصريفات وتراكيب الجمل:' : 'Grammar Rules & Conjugations:'}</span>
+                  </span>
+
+                  <div className="overflow-x-auto rounded-xl border border-slate-700/60 shadow-sm">
+                    <table className="w-full text-xs sm:text-sm text-right">
+                      <thead className={`border-b ${isDark ? 'bg-slate-900 border-slate-700 text-slate-300' : 'bg-slate-100 border-slate-200 text-slate-700'}`}>
+                        <tr>
+                          <th className="p-3 text-right font-black">الرومانية (Romanian)</th>
+                          <th className="p-3 text-right font-black">المعنى والشرح (Translation)</th>
+                          <th className="p-3 text-center font-black">نطق 🔊</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-700/40">
+                        {module.rules.map((rule, rIdx) => {
+                          const textRo = rule.rule_ro || rule.rule;
+                          const isPlaying = playingId === `rule-${module.id}-${rIdx}`;
+
+                          return (
+                            <tr key={rIdx} className={isDark ? 'hover:bg-slate-900/50' : 'hover:bg-slate-50'}>
+                              <td className="p-3 font-extrabold text-rose-400 font-mono text-xs sm:text-sm">{textRo}</td>
+                              <td className="p-3 font-medium text-slate-300">{rule.explanation_ar}</td>
+                              <td className="p-3 text-center">
+                                <button
+                                  onClick={() => speakText(textRo, `rule-${module.id}-${rIdx}`)}
+                                  className={`p-2 rounded-xl transition-all border ${
+                                    isPlaying 
+                                      ? 'bg-rose-600 text-white border-rose-600 animate-pulse' 
+                                      : isDark ? 'bg-slate-900 border-slate-700 text-rose-400 hover:bg-slate-800' : 'bg-white border-slate-200 text-rose-600 hover:bg-slate-100'
+                                  }`}
+                                >
+                                  <Volume2 className="w-4 h-4" />
+                                </button>
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
+
+              {/* Interactive Spoken Dialogue Card */}
               {module.dialogue_example && (
-                <div className={`p-4 rounded-xl border space-y-2 ${isDark ? 'bg-slate-900/90 border-slate-700' : 'bg-amber-50/60 border-amber-200'}`}>
-                  <div className="flex items-center justify-between border-b border-slate-700/50 pb-1.5">
-                    <span className="text-[10px] font-extrabold text-rose-400 flex items-center space-x-1 space-x-reverse">
-                      <MessageSquare className="w-3.5 h-3.5" />
-                      <span>حوار تطبيقي في الحياة اليومية (Dialogue Example)</span>
+                <div className={`p-4 rounded-2xl border space-y-3 ${isDark ? 'bg-slate-900/90 border-slate-700' : 'bg-amber-50/70 border-amber-200'}`}>
+                  <div className="flex items-center justify-between border-b border-slate-700/50 pb-2">
+                    <span className="text-xs font-black text-rose-400 flex items-center space-x-1.5 space-x-reverse">
+                      <MessageSquare className="w-4 h-4" />
+                      <span>{appLang === 'ar' ? 'حوار تطبيقي في الحياة اليومية:' : 'Practical Dialogue Example:'}</span>
                     </span>
                     <button
                       onClick={() => speakText(`${module.dialogue_example.speaker_a}: ${module.dialogue_example.line_a_ro}. ${module.dialogue_example.speaker_b}: ${module.dialogue_example.line_b_ro}`, `dialogue-${module.id}`)}
-                      className="text-[11px] font-bold text-amber-400 hover:underline flex items-center space-x-1 space-x-reverse"
+                      className="text-xs font-bold text-amber-400 hover:underline flex items-center space-x-1 space-x-reverse bg-amber-500/10 px-2.5 py-1 rounded-xl border border-amber-500/20"
                     >
-                      <Play className="w-3 h-3 fill-current" />
+                      <Play className="w-3.5 h-3.5 fill-current" />
                       <span>استمع للحوار كامل 🔊</span>
                     </button>
                   </div>
 
-                  <div className="space-y-2 text-xs pt-1">
-                    <div className="space-y-0.5">
-                      <p className="font-bold text-rose-400">{module.dialogue_example.speaker_a}: {module.dialogue_example.line_a_ro}</p>
-                      <p className="text-theme-sub text-[11px]">🇸🇦 {module.dialogue_example.line_a_ar}</p>
+                  <div className="space-y-3 pt-1">
+                    <div className="p-3 rounded-xl bg-slate-800/80 border border-slate-700/60 space-y-1">
+                      <span className="text-[11px] font-bold text-rose-400 block">{module.dialogue_example.speaker_a}</span>
+                      <p className="font-extrabold text-xs sm:text-sm text-white">{module.dialogue_example.line_a_ro}</p>
+                      <p className="text-xs text-slate-300">🇸🇦 {module.dialogue_example.line_a_ar}</p>
                     </div>
-                    <div className="space-y-0.5 border-t border-slate-700/40 pt-1">
-                      <p className="font-bold text-emerald-400">{module.dialogue_example.speaker_b}: {module.dialogue_example.line_b_ro}</p>
-                      <p className="text-theme-sub text-[11px]">🇸🇦 {module.dialogue_example.line_b_ar}</p>
+
+                    <div className="p-3 rounded-xl bg-rose-950/20 border border-rose-500/30 space-y-1">
+                      <span className="text-[11px] font-bold text-emerald-400 block">{module.dialogue_example.speaker_b}</span>
+                      <p className="font-extrabold text-xs sm:text-sm text-white">{module.dialogue_example.line_b_ro}</p>
+                      <p className="text-xs text-slate-300">🇸🇦 {module.dialogue_example.line_b_ar}</p>
                     </div>
                   </div>
                 </div>
