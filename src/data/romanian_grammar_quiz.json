@@ -238,5 +238,85 @@
       "pe"
     ],
     "explanation_ar": "للإضافة وأسماء الأعلام المذكرة نستخدم الأداة (lui Andrei)."
+  },
+  {
+    "id": "gq-16",
+    "type": "multiple_choice",
+    "question_ro": "Care este تصريف فعل الكينونة «A fi» مع الضمير (Tu / أنت)؟",
+    "question_ar": "ما هو تصريف فعل الكينونة «A fi» مع الضمير (Tu / أنت)؟",
+    "question_en": "What is the present tense of «A fi» (to be) for 'Tu' (You singular)?",
+    "category": "verbs",
+    "correct_answer": "Tu ești",
+    "options": [
+      "Tu ești",
+      "Tu sunt",
+      "Tu este",
+      "Tu suntem"
+    ],
+    "explanation_ar": "تصريف A fi مع Tu هو (Tu ești)."
+  },
+  {
+    "id": "gq-17",
+    "type": "fill_in_blank",
+    "question_ro": "Completați spațiul: Voi _______ la birou în fiecare dimineață. (a lucra)",
+    "question_ar": "أكمل الفراغ: أنتم _______ في المكتب كل صباح. (فعل العمل a lucra)",
+    "question_en": "Fill in the blank: Voi _______ la birou (to work).",
+    "category": "verbs",
+    "correct_answer": "lucrați",
+    "options": [
+      "lucrați",
+      "lucrez",
+      "lucrează",
+      "lucrăm"
+    ],
+    "explanation_ar": "تصريف a lucra مع الضمير Voi هو (lucrați)."
+  },
+  {
+    "id": "gq-18",
+    "type": "word_order",
+    "question_ro": "Ordonați cuvintele: [mâncat / Am / pizza / o / bună]",
+    "question_ar": "رتب الكلمات: [Am / mâncat / o / pizza / bună]",
+    "question_en": "Order words: [mâncat / Am / pizza / o / bună]",
+    "category": "sentence_structure",
+    "correct_answer": "Am mâncat o pizza bună",
+    "options": [
+      "Am mâncat o pizza bună",
+      "O pizza bună am mâncat",
+      "Mâncat am pizza o bună",
+      "Bunp o am mâncat pizza"
+    ],
+    "explanation_ar": "الماضي المركب Am mâncat + أداة التنكير o + الاسم pizza + الصفة bună."
+  },
+  {
+    "id": "gq-19",
+    "type": "multiple_choice",
+    "question_ro": "Cum zici بصيغة الأمر المباشر «استمع!» (Imperative command to Tu)?",
+    "question_ar": "كيف تقول بصيغة الأمر المباشر «استمع!» (المفرد Tu)؟",
+    "question_en": "How do you give imperative command 'Listen!' to single person (Tu)?",
+    "category": "verbs",
+    "correct_answer": "Ascultă!",
+    "options": [
+      "Ascultă!",
+      "Ascultați!",
+      "Am ascultat!",
+      "Să asculți!"
+    ],
+    "explanation_ar": "صيغة الأمر للمفرد Tu من الفعل a asculta هي (Ascultă!)."
+  },
+  {
+    "id": "gq-20",
+    "type": "fill_in_blank",
+    "question_ro": "Completați spațiul: Nu am _______ problemă cu limba română. (Double negative pronoun)",
+    "question_ar": "أكمل الفراغ: ليس لدي _______ مشكلة في اللغة الرومانية. (ضمير النفي المزدوج)",
+    "question_en": "Fill in the blank: Nu am _______ problemă (no problem).",
+    "category": "nouns",
+    "correct_answer": "nicio",
+    "options": [
+      "nicio",
+      "niciun",
+      "nimic",
+      "nimeni"
+    ],
+    "explanation_ar": "النفي المزدوج مع الاسم المؤنث المفرد problemă يأخذ (nicio problemă)."
   }
 ]

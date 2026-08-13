@@ -32,26 +32,26 @@ export default function Navbar() {
   const isDark = theme === 'dark';
 
   const navLinks = [
-    { href: '/', label: strings.homeNav, sub: appLang === 'ar' ? 'الصفحة الرئيسية' : 'Main Home Page', icon: Home, color: 'text-rose-500' },
-    { href: '/study', label: strings.studyNav, sub: appLang === 'ar' ? '469 سؤالاً مصوراً للجنسية' : '469 Visual Questions', icon: BookOpen, color: 'text-blue-400' },
-    { href: '/quiz', label: strings.quizNav, sub: appLang === 'ar' ? 'اختبارات ومحاكاة الامتحان' : 'Exam & Quizzes', icon: Trophy, color: 'text-amber-400' },
-    { href: '/conversations', label: strings.conversationsNav, sub: appLang === 'ar' ? 'حوارات الرومانية والمقابلة' : 'Daily Dialogues', icon: MessageSquare, color: 'text-emerald-400' },
-    { href: '/conversation-quiz', label: strings.conversationQuizNav, sub: appLang === 'ar' ? 'لعبة حوارات الحياة اليومية' : 'Conversation Quiz Game', icon: Gamepad2, color: 'text-indigo-400' },
-    { href: '/grammar', label: appLang === 'ar' ? 'شرح قواعد الرومانية' : 'Romanian Grammar Guide', sub: appLang === 'ar' ? 'الأجناس والضمائر والتصريفات' : 'Nouns, Articles & Conjugations', icon: GraduationCap, color: 'text-amber-400' },
-    { href: '/grammar-quiz', label: appLang === 'ar' ? 'لعبة اختبار القواعد' : 'Grammar Quiz Game', sub: appLang === 'ar' ? 'تحدي القواعد والتصريفات' : 'Grammar Challenges', icon: Gamepad2, color: 'text-rose-400' },
-    { href: '/alphabet', label: strings.alphabetNav, sub: appLang === 'ar' ? '31 حرفاً مع النطق والأمثلة' : '31 Letters with Audio', icon: Type, color: 'text-purple-400' },
-    { href: '/alphabet-quiz', label: strings.alphabetQuizNav, sub: appLang === 'ar' ? 'لعبة نطق واستماع الحروف' : 'Alphabet Audio Game', icon: Gamepad2, color: 'text-rose-400' },
-    { href: '/language-quiz', label: appLang === 'ar' ? 'اختبارات المفردات والقواعد' : 'Language Quiz', sub: appLang === 'ar' ? 'تحدي كلمات وجمل اللغة' : 'Vocabulary & Grammar Quiz', icon: Puzzle, color: 'text-teal-400' },
-    { href: '/ai', label: strings.aiNav, sub: appLang === 'ar' ? 'المساعد الذكي Hybrid AI' : 'AI Citizenship Tutor', icon: Sparkles, color: 'text-amber-300' },
+    { href: '/', label: strings.homeNav, sub: appLang === 'ar' ? 'الصفحة الرئيسية' : appLang === 'en' ? 'Main Home Page' : 'Pagina Principală', icon: Home, color: 'text-rose-500' },
+    { href: '/study', label: strings.studyNav, sub: appLang === 'ar' ? '469 سؤالاً مصوراً للجنسية' : appLang === 'en' ? '469 Visual Questions' : '469 Întrebări Ilustrate', icon: BookOpen, color: 'text-blue-400' },
+    { href: '/quiz', label: strings.quizNav, sub: appLang === 'ar' ? 'اختبارات ومحاكاة الامتحان' : appLang === 'en' ? 'Exam & Quizzes' : 'Simulare Examen & Teste', icon: Trophy, color: 'text-amber-400' },
+    { href: '/conversations', label: strings.conversationsNav, sub: appLang === 'ar' ? 'حوارات الرومانية والمقابلة' : appLang === 'en' ? 'Daily Dialogues' : 'Dialoguri Zilnice', icon: MessageSquare, color: 'text-emerald-400' },
+    { href: '/conversation-quiz', label: strings.conversationQuizNav, sub: appLang === 'ar' ? 'لعبة حوارات الحياة اليومية' : appLang === 'en' ? 'Conversation Quiz Game' : 'Joc de Conversații', icon: Gamepad2, color: 'text-indigo-400' },
+    { href: '/grammar', label: strings.grammarNav || (appLang === 'ar' ? 'شرح قواعد الرومانية' : appLang === 'en' ? 'Romanian Grammar Guide' : 'Ghid de Gramatică'), sub: appLang === 'ar' ? 'الأجناس والضمائر والتصريفات' : appLang === 'en' ? 'Nouns, Articles & Conjugations' : 'Genuri, Articole & Conjugări', icon: GraduationCap, color: 'text-amber-400' },
+    { href: '/grammar-quiz', label: strings.grammarQuizNav || (appLang === 'ar' ? 'لعبة اختبار القواعد' : appLang === 'en' ? 'Grammar Quiz Game' : 'Joc de Gramatică'), sub: appLang === 'ar' ? 'تحدي القواعد والتصريفات' : appLang === 'en' ? 'Grammar Challenges' : 'Sfidări de Gramatică', icon: Gamepad2, color: 'text-rose-400' },
+    { href: '/alphabet', label: strings.alphabetNav, sub: appLang === 'ar' ? '31 حرفاً مع النطق والأمثلة' : appLang === 'en' ? '31 Letters with Audio' : '31 Litere cu Audio', icon: Type, color: 'text-purple-400' },
+    { href: '/alphabet-quiz', label: strings.alphabetQuizNav, sub: appLang === 'ar' ? 'لعبة نطق واستماع الحروف' : appLang === 'en' ? 'Alphabet Audio Game' : 'Joc Audio Alfabet', icon: Gamepad2, color: 'text-rose-400' },
+    { href: '/language-quiz', label: appLang === 'ar' ? 'اختبار المفردات والجمل' : appLang === 'en' ? 'Vocabulary Quiz' : 'Test de Vocabular', sub: appLang === 'ar' ? 'تحدي كلمات وجمل اللغة' : appLang === 'en' ? 'Vocabulary & Grammar Quiz' : 'Test Vocabular & Expresii', icon: Puzzle, color: 'text-teal-400' },
+    { href: '/ai', label: strings.aiNav, sub: appLang === 'ar' ? 'المساعد الذكي Hybrid AI' : appLang === 'en' ? 'AI Citizenship Tutor' : 'Asistent AI Cetățenie', icon: Sparkles, color: 'text-amber-300' },
   ];
 
   const bottomMobileTabs = [
     { href: '/', label: strings.homeNav, icon: Home },
     { href: '/study', label: strings.studyNav, icon: BookOpen },
     { href: '/quiz', label: strings.quizNav, icon: Trophy },
-    { href: '/grammar', label: 'القواعد', icon: GraduationCap },
-    { href: '/conversations', label: 'المحادثات', icon: MessageSquare },
-    { href: '/ai', label: 'AI Tutor', icon: Sparkles },
+    { href: '/grammar', label: appLang === 'ar' ? 'القواعد' : appLang === 'en' ? 'Grammar' : 'Gramatică', icon: GraduationCap },
+    { href: '/conversations', label: appLang === 'ar' ? 'المحادثات' : appLang === 'en' ? 'Dialogues' : 'Conversații', icon: MessageSquare },
+    { href: '/ai', label: appLang === 'ar' ? 'المساعد الذكي' : appLang === 'en' ? 'AI Tutor' : 'Asistent AI', icon: Sparkles },
   ];
 
   const sidebarContent = (
@@ -160,7 +160,7 @@ export default function Navbar() {
         >
           <div className="flex items-center space-x-2 space-x-reverse">
             {isDark ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-700" />}
-            <span>{isDark ? 'الوضع الفاتح ☀️' : 'الوضع الداكن 🌙'}</span>
+            <span>{isDark ? (appLang === 'ar' ? 'الوضع الفاتح ☀️' : appLang === 'en' ? 'Light Mode ☀️' : 'Mod Luminos ☀️') : (appLang === 'ar' ? 'الوضع الداكن 🌙' : appLang === 'en' ? 'Dark Mode 🌙' : 'Mod Întunecat 🌙')}</span>
           </div>
           <span>{isDark ? 'Dark' : 'Light'}</span>
         </button>
@@ -192,7 +192,7 @@ export default function Navbar() {
             className="px-3 py-1.5 bg-rose-600 hover:bg-rose-500 text-white rounded-xl text-xs font-bold flex items-center space-x-1.5 space-x-reverse shadow-md"
           >
             <Menu className="w-4 h-4" />
-            <span>القائمة ☰</span>
+            <span>{appLang === 'ar' ? 'القائمة ☰' : appLang === 'en' ? 'Menu ☰' : 'Meniu ☰'}</span>
           </button>
         </div>
       </div>
