@@ -73,5 +73,80 @@
       "-a"
     ],
     "explanation_ar": "للجمع المؤنث والجمع المحايد تضاف اللاحقة (-le) مثل fetele, casele, scaunele."
+  },
+  {
+    "id": "gq-6",
+    "question_ro": "Cum se formează viitorul colocvial «سأذهب» în limba română?",
+    "question_ar": "كيف يصاغ المستقبل العامي «سأذهب» باللغة الرومانية؟",
+    "question_en": "How is the colloquial future 'I will go' formed in Romanian?",
+    "category": "verbs",
+    "correct_answer": "O să merg",
+    "options": [
+      "O să merg",
+      "Voi merge",
+      "Am mers",
+      "Merg"
+    ],
+    "explanation_ar": "المستقبل العامي الشائع يصاغ بـ (O să + Conjunctiv) مثل: O să merg, O să mănânc."
+  },
+  {
+    "id": "gq-7",
+    "question_ro": "Care este ضمير الملكية للمذكر المفرد (كتابي / my book)?",
+    "question_ar": "ما هو ضمير الملكية للمذكر المفرد «كتابي»؟",
+    "question_en": "What is the masculine singular possessive pronoun for 'my'?",
+    "category": "pronouns",
+    "correct_answer": "al meu (Cartea mea / Cursul meu)",
+    "options": [
+      "al meu (Cartea mea / Cursul meu)",
+      "al tău",
+      "al său",
+      "ai mei"
+    ],
+    "explanation_ar": "ضمير الملكية للمذكر المفرد مع (Eu) هو (al meu)."
+  },
+  {
+    "id": "gq-8",
+    "question_ro": "Care este pluralul cuvântului «Oraș» (مدينة - اسم محايد)?",
+    "question_ar": "ما هو جمع كلمة «Oraș» (مدينة - اسم محايد)؟",
+    "question_en": "What is the plural of neuter noun «Oraș» (city)?",
+    "category": "nouns",
+    "correct_answer": "Orașe",
+    "options": [
+      "Orașe",
+      "Orași",
+      "Orașuri",
+      "Orașele"
+    ],
+    "explanation_ar": "الجمع المحايد لكلمة oraș هو orașe."
+  },
+  {
+    "id": "gq-9",
+    "question_ro": "Cum spui «سنذهب» (Noi) la timpul viitor formal?",
+    "question_ar": "كيف تقول «سنذهب» (نحن) في المستقبل الرسمي؟",
+    "question_en": "How do you say 'We will go' in formal future tense?",
+    "category": "verbs",
+    "correct_answer": "Vom merge",
+    "options": [
+      "Vom merge",
+      "Voi merge",
+      "Veți merge",
+      "Vor merge"
+    ],
+    "explanation_ar": "المستقبل الرسمي مع Noi هو (Vom merge)."
+  },
+  {
+    "id": "gq-10",
+    "question_ro": "Care este أداة التنكير للمؤنث المفرد «فتاة» (a girl)?",
+    "question_ar": "ما هي أداة التنكير للمؤنث المفرد «فتاة»؟",
+    "question_en": "What is the indefinite article for singular feminine noun?",
+    "category": "articles",
+    "correct_answer": "o (o fată)",
+    "options": [
+      "o (o fată)",
+      "un (un băiat)",
+      "niște",
+      "lui"
+    ],
+    "explanation_ar": "أداة التنكير للمؤنث المفرد هي (o) مثل o fată, o casă."
   }
 ]

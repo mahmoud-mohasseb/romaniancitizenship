@@ -32,6 +32,18 @@
         "text_ro": "Sunt inginer de software și lucrez la o companie din București.",
         "text_ar": "أنا مهندس برمجيات وأعمل في شركة في بوخارست.",
         "text_en": "I am a software engineer and I work at a company in Bucharest."
+      },
+      {
+        "speaker_ro": "Ofițer (اللجنة)",
+        "text_ro": "Aveți familie aici în România?",
+        "text_ar": "هل لديك عائلة هنا في رومانيا؟",
+        "text_en": "Do you have family here in Romania?"
+      },
+      {
+        "speaker_ro": "Candidat (المتقدم)",
+        "text_ro": "Da, sunt căsătorit și avem un copil care merge la școală aici.",
+        "text_ar": "نعم، أنا متزوج ولدينا طفل يذهب إلى المدرسة هنا.",
+        "text_en": "Yes, I am married and we have a child who goes to school here."
       }
     ]
   },
@@ -68,6 +80,18 @@
         "text_ro": "Culorile sunt albastru, galben și roșu, așezate vertical.",
         "text_ar": "الألوان هي الأزرق والأصفر والأحمر، مرتبة رأسياً.",
         "text_en": "The colors are blue, yellow, and red, arranged vertically."
+      },
+      {
+        "speaker_ro": "Președintele Comisiei",
+        "text_ro": "Cine este șeful statului român?",
+        "text_ar": "من هو رئيس الدولة الرومانية؟",
+        "text_en": "Who is the head of the Romanian state?"
+      },
+      {
+        "speaker_ro": "Candidat",
+        "text_ro": "Președintele României este șeful statului, ales pentru un mandat de 5 ani.",
+        "text_ar": "رئيس رومانيا هو رئيس الدولة، ويُنتخب لمدة 5 سنوات.",
+        "text_en": "The President of Romania is the head of state, elected for a 5-year term."
       }
     ]
   },
@@ -104,6 +128,18 @@
         "text_ro": "Da, desigur! Apropiați cardul de POS.",
         "text_ar": "نعم بالطبع! قَرّب البطاقة من جهاز الدفع.",
         "text_en": "Yes, of course! Tap your card on the POS machine."
+      },
+      {
+        "speaker_ro": "Cumpărător",
+        "text_ro": "Doriți pungă de cumpărături?",
+        "text_ar": "هل تريد كيس تسوق؟",
+        "text_en": "Would you like a shopping bag?"
+      },
+      {
+        "speaker_ro": "Vânzător",
+        "text_ro": "Da, vă rog o pungă mare.",
+        "text_ar": "نعم من فضلك كيس كبير.",
+        "text_en": "Yes, please a large bag."
       }
     ]
   },
@@ -146,6 +182,18 @@
         "text_ro": "Micul dejun este între orele 7:00 și 10:00 dimineața.",
         "text_ar": "الإفطار بين الساعة 7:00 و10:00 صباحاً.",
         "text_en": "Breakfast is between 7:00 AM and 10:00 AM."
+      },
+      {
+        "speaker_ro": "Turist",
+        "text_ro": "Există conexiune Wi-Fi gratuită în cameră?",
+        "text_ar": "هل توجد شبكة واي فاي مجانية في الغرفة؟",
+        "text_en": "Is there free Wi-Fi in the room?"
+      },
+      {
+        "speaker_ro": "Recepționer",
+        "text_ro": "Da, parola este scrisă pe plicul cheii.",
+        "text_ar": "نعم، كلمة السر مكتوبة على ظرف المفتاح.",
+        "text_en": "Yes, the password is written on the key envelope."
       }
     ]
   },
@@ -182,6 +230,18 @@
         "text_ro": "Trenul InterRegio pleacă la ora 14:30 de la linia 3.",
         "text_ar": "قطار الإنترريجيو يغادر الساعة 14:30 من الرصيف رقم 3.",
         "text_en": "The InterRegio train leaves at 2:30 PM from track 3."
+      },
+      {
+        "speaker_ro": "Călător",
+        "text_ro": "Trebuie să rezerv și loc la fereastră?",
+        "text_ar": "هل يجب أن أحجز مقعداً بجانب النافذة أيضاً؟",
+        "text_en": "Should I also reserve a window seat?"
+      },
+      {
+        "speaker_ro": "Casier CFR",
+        "text_ro": "Locul la fereastră este inclus automat în bilet.",
+        "text_ar": "المقعد بجانب النافذة محجوز تلقائياً في التذكرة.",
+        "text_en": "The window seat is automatically included in the ticket."
       }
     ]
   },
@@ -196,7 +256,7 @@
     "description_en": "Emergency dialogue calling 112 or asking police for assistance",
     "dialogue": [
       {
-        "speaker_ro": "Aapelant",
+        "speaker_ro": "Apelant",
         "text_ro": "Ajutor! Am pierdut portofelul cu actele de identitate!",
         "text_ar": "النجدة! لقد فقدت محفظتي وبها وثائق إثبات الشخصية!",
         "text_en": "Help! I lost my wallet containing my ID documents!"
@@ -218,6 +278,624 @@
         "text_ro": "Mergem la secția de poliție pentru a completa o declarație.",
         "text_ar": "سنذهب إلى مركز الشرطة لتقديم بلاغ رسمي.",
         "text_en": "We will go to the police station to fill out a report."
+      },
+      {
+        "speaker_ro": "Apelant",
+        "text_ro": "Cât timp durează eliberarea unei adeverințe provizorii?",
+        "text_ar": "كم يستغرق إصدار شهادة إثبات موقتة؟",
+        "text_en": "How long does it take to issue a temporary certificate?"
+      },
+      {
+        "speaker_ro": "Polițist",
+        "text_ro": "Vă dăm adeverința pe loc după ce semnați declarația.",
+        "text_ar": "نعطيك الشهادة فوراً بعد توقيع الإقرار.",
+        "text_en": "We give you the certificate immediately after signing."
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title_ro": "La Poșta Română și Trimitere Pachet",
+    "title_ar": "في البريد الروماني وإرسال الطرود",
+    "title_en": "At the Romanian Post Office",
+    "category": "daily_life",
+    "image": "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "حوار إرسال رسالة مسجلة أو طرد بريدي",
+    "description_en": "Sending a registered letter or package at Poșta Română",
+    "dialogue": [
+      {
+        "speaker_ro": "Client",
+        "text_ro": "Bună ziua! Doresc să trimit acest pachet în Germania.",
+        "text_ar": "مرحباً! أود إرسال هذا الطرد إلى ألمانيا.",
+        "text_en": "Hello! I would like to send this package to Germany."
+      },
+      {
+        "speaker_ro": "Funcționar poștal",
+        "text_ro": "Puneți pachetul pe cântar. Are 2 kilograme.",
+        "text_ar": "ضع الطرد على الميزان. وزنه 2 كيلوغرام.",
+        "text_en": "Place the package on the scale. It weighs 2 kilograms."
+      },
+      {
+        "speaker_ro": "Client",
+        "text_ro": "Doresc și număr de urmărire AWB, vă rog.",
+        "text_ar": "أود أيضاً رقم تتبع AWB من فضلك.",
+        "text_en": "I would also like an AWB tracking number, please."
+      },
+      {
+        "speaker_ro": "Funcționar poștal",
+        "text_ro": "Costă 45 de lei și ajunge în 4 zile lucrătoare.",
+        "text_ar": "السعر 45 لي ويصل خلال 4 أيام عمل.",
+        "text_en": "It costs 45 lei and arrives in 4 business days."
+      },
+      {
+        "speaker_ro": "Client",
+        "text_ro": "Trebuie să completez vreun formular de declarație vamală?",
+        "text_ar": "هل يجب أن أملأ أي نموذج للإقرار الجمركي؟",
+        "text_en": "Should I fill out any customs declaration form?"
+      },
+      {
+        "speaker_ro": "Funcționar poștal",
+        "text_ro": "Pentru Uniunea Europeană nu este nevoie de declarație vamală.",
+        "text_ar": "بالنسبة لدول الاتحاد الأوروبي لا داعي للإقرار الجمركي.",
+        "text_en": "For the European Union no customs declaration is needed."
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title_ro": "La Salon de Frizerie și Coafură",
+    "title_ar": "في صالون الحلاقة والتجميل",
+    "title_en": "At the Barber Shop & Hair Salon",
+    "category": "daily_life",
+    "image": "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "حوار طلب قصة شعر وتحديد الموعد",
+    "description_en": "Haircut dialogue asking for style and appointment",
+    "dialogue": [
+      {
+        "speaker_ro": "Client",
+        "text_ro": "Bună ziua! Aveți un loc liber pentru o tundere astăzi?",
+        "text_ar": "مرحباً! هل لديكم مكان شاغر لحلاقة الشعر اليوم؟",
+        "text_en": "Hello! Do you have an open slot for a haircut today?"
+      },
+      {
+        "speaker_ro": "Frizer",
+        "text_ro": "Da, la ora 16:00. Cum doriți să vă tundeți?",
+        "text_ar": "نعم، في الساعة 16:00. كيف تحب أن تقص شعرك؟",
+        "text_en": "Yes, at 4:00 PM. How would you like your hair cut?"
+      },
+      {
+        "speaker_ro": "Client",
+        "text_ro": "Scurt pe părți și puțin aranjat sus, vă rog.",
+        "text_ar": "قصير من الجوانب ومرتب قليلاً من الأعلى من فضلك.",
+        "text_en": "Short on the sides and slightly styled on top, please."
+      },
+      {
+        "speaker_ro": "Frizer",
+        "text_ro": "Doriți și aranjat de barbă?",
+        "text_ar": "هل ترغب بتحديد اللحية أيضاً؟",
+        "text_en": "Would you like your beard trimmed too?"
+      },
+      {
+        "speaker_ro": "Client",
+        "text_ro": "Da, doar conturarea bărbii, mulțumesc.",
+        "text_ar": "نعم، تحديد أطراف اللحية فقط شكراً.",
+        "text_en": "Yes, just beard contouring, thank you."
+      },
+      {
+        "speaker_ro": "Frizer",
+        "text_ro": "Perfect, am terminat! Vă place rezultatul?",
+        "text_ar": "ممتاز، لقد انتهينا! هل تعجبك النتيجة؟",
+        "text_en": "Perfect, we are finished! Do you like the result?"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "title_ro": "La Primărie și Acte de Rezidență",
+    "title_ar": "في البلدية واستخراج أوراق الإقامة",
+    "title_en": "At the Municipality & Residence Papers",
+    "category": "citizenship",
+    "image": "https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "حوار استخراج إثبات السكن ومراجعة موظف البلدية",
+    "description_en": "Official residency proof & municipality documentation dialogue",
+    "dialogue": [
+      {
+        "speaker_ro": "Cetățean",
+        "text_ro": "Bună ziua! Am nevoie de o adeverință de rol fiscal și stabilire a domiciliului.",
+        "text_ar": "مرحباً! أحتاج شهادة السجل الضريبي وإثبات مكان الإقامة.",
+        "text_en": "Hello! I need a tax role certificate and proof of residence."
+      },
+      {
+        "speaker_ro": "Funcționar Primărie",
+        "text_ro": "Aveți contractul de închiriere înregistrat la ANAF și buletinul?",
+        "text_ar": "هل لديك عقد الإيجار الموثق في الهيئة الضريبية والهوية؟",
+        "text_en": "Do you have the rental contract registered at ANAF and your ID?"
+      },
+      {
+        "speaker_ro": "Cetățean",
+        "text_ro": "Da, am toate copiile legalizate la notariat.",
+        "text_ar": "نعم، معي جميع النسخ الموثقة لدى الكاتب العدل.",
+        "text_en": "Yes, I have all notarized copies ready."
+      },
+      {
+        "speaker_ro": "Funcționar Primărie",
+        "text_ro": "Depuneți cererea la ghiseul 4. Va fi gata în 3 zile.",
+        "text_ar": "قدم الطلب لدى الشباك رقم 4. ستكون جاهزة خلال 3 أيام.",
+        "text_en": "Submit the request at booth 4. It will be ready in 3 days."
+      },
+      {
+        "speaker_ro": "Cetățean",
+        "text_ro": "Trebuie să plătesc vreo taxă de timbru?",
+        "text_ar": "هل يجب دفع أي رسوم طابع بوب؟",
+        "text_en": "Do I need to pay any stamp tax fee?"
+      },
+      {
+        "speaker_ro": "Funcționar Primărie",
+        "text_ro": "Taxa de 15 lei se plătește la casierie sau online pe Ghișeul.ro.",
+        "text_ar": "رسم 15 لي يُدفع في الخزينة أو عبر الإنترنت على Ghișeul.ro.",
+        "text_en": "The 15 lei fee is paid at the cashier or online at Ghișeul.ro."
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title_ro": "La Spital și Internare de Urgență",
+    "title_ar": "في المستشفى والدخول للطوارئ",
+    "title_en": "At the Hospital & Emergency Room",
+    "category": "daily_life",
+    "image": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "حوار شرح الأعراض للدكتور عند الدخول للمستشفى",
+    "description_en": "Hospital triage dialogue explaining severe symptoms to doctors",
+    "dialogue": [
+      {
+        "speaker_ro": "Pacient",
+        "text_ro": "Bună ziua! Am o durere puternică de stomac și amețeală.",
+        "text_ar": "مرحباً! عندي ألم شديد في المعدة ودوخة.",
+        "text_en": "Hello! I have severe stomach pain and dizziness."
+      },
+      {
+        "speaker_ro": "Asistentă",
+        "text_ro": "Vă luăm tensiunea și temperatura la triaj. Aveți cardul de sănătate?",
+        "text_ar": "سنقيس الضغط والحرارة في قسم الفحص. هل معك كرت الصحة؟",
+        "text_en": "We will check your blood pressure and temperature at triage. Do you have your health card?"
+      },
+      {
+        "speaker_ro": "Pacient",
+        "text_ro": "Da, poftim cardul de sănătate și actul de identitate.",
+        "text_ar": "نعم تفضل كرت الصحة ووثيقة الشخصية.",
+        "text_en": "Yes, here is my health card and ID."
+      },
+      {
+        "speaker_ro": "Medic",
+        "text_ro": "Sunteți alergic la vreun medicament?",
+        "text_ar": "هل لديك حساسية من أي دواء؟",
+        "text_en": "Are you allergic to any medication?"
+      },
+      {
+        "speaker_ro": "Pacient",
+        "text_ro": "Nu, nu am nicio alergie cunoscută.",
+        "text_ar": "لا، ليس لدي أي حساسية معروفة.",
+        "text_en": "No, I do not have any known allergies."
+      },
+      {
+        "speaker_ro": "Medic",
+        "text_ro": "Vă facem o analiză de sânge și o ecografie abdominală.",
+        "text_ar": "سنجري لك فحص دم وتصويراً تلفزيونياً للبطن.",
+        "text_en": "We will do a blood test and an abdominal ultrasound."
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "title_ro": "Închiriere Mașină și Service Auto",
+    "title_ar": "استئجار سيارة والصيانة في رومانيا",
+    "title_en": "Car Rental & Auto Mechanic Service",
+    "category": "daily_life",
+    "image": "https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "حوار استئجار سيارة ورحلات القيادة على الطرق الرومانية",
+    "description_en": "Car rental dialogue and asking about vignettes & insurance",
+    "dialogue": [
+      {
+        "speaker_ro": "Client",
+        "text_ro": "Bună ziua! Doresc să închiriez o mașină economă pentru 5 zile.",
+        "text_ar": "مرحباً! أود استئجار سيارة اقتصادية لمدة 5 أيام.",
+        "text_en": "Hello! I would like to rent an economy car for 5 days."
+      },
+      {
+        "speaker_ro": "Agent Închirieri",
+        "text_ro": "Avem un Dacia Logan sau Renault Clio. Asigurarea CASCO este inclusă.",
+        "text_ar": "لدينا داتشيا لوغان أو رينو كليو. التأمين الشامل CASCO متضمن.",
+        "text_en": "We have a Dacia Logan or Renault Clio. Full CASCO insurance is included."
+      },
+      {
+        "speaker_ro": "Client",
+        "text_ro": "Rovinieta pentru autostradă este plătită?",
+        "text_ar": "هل ضريبة الطرق (Rovinieta) مدفوعة؟",
+        "text_en": "Is the highway vignette (Rovinieta) paid?"
+      },
+      {
+        "speaker_ro": "Agent Închirieri",
+        "text_ro": "Da, rovinieta este valabilă pe tot teritoriul României.",
+        "text_ar": "نعم، ضريبة الطرق صالحة في جميع أنحاء رومانيا.",
+        "text_en": "Yes, the vignette is valid across all of Romania."
+      },
+      {
+        "speaker_ro": "Client",
+        "text_ro": "Care este limita de kilometri pe zi?",
+        "text_ar": "ما هو حد الكيلومترات اليومي المسموح به؟",
+        "text_en": "What is the daily mileage limit?"
+      },
+      {
+        "speaker_ro": "Agent Închirieri",
+        "text_ro": "Kilometrajul este nelimitat pe perioada închirierii.",
+        "text_ar": "الكيلومترات مفتوحة وبدون حد طوال فترة الاستئجار.",
+        "text_en": "Mileage is unlimited during the rental period."
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "title_ro": "Comandă Mâncare Online și Livrare la Domiciliu",
+    "title_ar": "طلب الطعام عبر الإنترنت والتوصيل للمنزل",
+    "title_en": "Ordering Food Online & Home Delivery",
+    "category": "daily_life",
+    "image": "https://images.unsplash.com/photo-1526367790999-0150786686a2?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "حوار التحدث مع كورير التوصيل وتحديد العنوان",
+    "description_en": "Courier phone dialogue confirming address and payment",
+    "dialogue": [
+      {
+        "speaker_ro": "Curier",
+        "text_ro": "Bună ziua! Sunt de la firma de livrare. Am ajuns la blocul dumneavoastră.",
+        "text_ar": "مرحباً! أنا من شركة التوصيل. لقد وصلت إلى عمارتك.",
+        "text_en": "Hello! I am from the delivery company. I arrived at your building."
+      },
+      {
+        "speaker_ro": "Client",
+        "text_ro": "Mulțumesc! Sunt la etajul 3, apartamentul 12.",
+        "text_ar": "شكراً! أنا في الطابق الثالث، الشقة 12.",
+        "text_en": "Thank you! I am on the 3rd floor, apartment 12."
+      },
+      {
+        "speaker_ro": "Curier",
+        "text_ro": "Urc acum cu liftul. Comanda este achitată online.",
+        "text_ar": "سأصعد الآن بالمصعد. الطلب مدفوع عبر الإنترنت.",
+        "text_en": "I am coming up in the elevator now. Order is paid online."
+      },
+      {
+        "speaker_ro": "Client",
+        "text_ro": "Poftim un bacșiș pentru livrare. Poftă bună!",
+        "text_ar": "تفضل إكرامية (بقشيش) للتوصيل. شهية طيبة!",
+        "text_en": "Here is a tip for delivery. Enjoy your meal!"
+      },
+      {
+        "speaker_ro": "Curier",
+        "text_ro": "Vă mulțumesc mult! O zi frumoasă în continuare!",
+        "text_ar": "أشكرك جزيلاً! أتمنى لك يوماً جميلاً!",
+        "text_en": "Thank you very much! Have a nice day!"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "title_ro": "Interviu de Angajare la Companie",
+    "title_ar": "مقابلة التوظيف والعمل في شركة رومانية",
+    "title_en": "Company Job Interview & Technical Discussion",
+    "category": "citizenship",
+    "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "حوار شرح الخبرة الوظيفية والمهارات الفنية أثناء المقابلة",
+    "description_en": "Professional job interview discussing software skills & work routine",
+    "dialogue": [
+      {
+        "speaker_ro": "Intervievator HR",
+        "text_ro": "Bună ziua! Vorbiți-ne despre experiența dumneavoastră anterioară.",
+        "text_ar": "مرحباً! حدثنا عن خبرتك السابقة.",
+        "text_en": "Hello! Tell us about your previous experience."
+      },
+      {
+        "speaker_ro": "Candidat",
+        "text_ro": "Am 6 ani experiență ca inginer software și am condus o echipă de 5 persoane.",
+        "text_ar": "لدي 6 سنوات خبرة كمهندس برمجيات ودرت فريقاً من 5 أفراد.",
+        "text_en": "I have 6 years experience as a software engineer and led a team of 5 people."
+      },
+      {
+        "speaker_ro": "Intervievator HR",
+        "text_ro": "Cum gestionați termenele limită strânse?",
+        "text_ar": "كيف تتعامل مع مواعيد التسليم الضيقة؟",
+        "text_en": "How do you manage tight deadlines?"
+      },
+      {
+        "speaker_ro": "Candidat",
+        "text_ro": "Prioritizez sarcinile importante și folosesc metodologii Agile.",
+        "text_ar": "أمنح الأولوية للمهام المهمة وأستخدم منهجية Agile.",
+        "text_en": "I prioritize key tasks and use Agile methodologies."
+      },
+      {
+        "speaker_ro": "Intervievator HR",
+        "text_ro": "Care sunt așteptările dumneavoastră salariale?",
+        "text_ar": "ما هي توقعاتك بالنسبة للراتب؟",
+        "text_en": "What are your salary expectations?"
+      },
+      {
+        "speaker_ro": "Candidat",
+        "text_ro": "Mă aștept la un salariu conform pieței IT din București.",
+        "text_ar": "أتوقع راتباً يناسب سوق تقنية المعلومات في بوخارست.",
+        "text_en": "I expect a salary aligned with the IT market in Bucharest."
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "title_ro": "La Administrația Financiară (ANAF)",
+    "title_ar": "في الهيئة الضريبية العامة (ANAF)",
+    "title_en": "At the Tax Office (ANAF)",
+    "category": "citizenship",
+    "image": "https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "حوار استخراج الإبراء الضريبي والدفع للضرائب العامة",
+    "description_en": "Tax clearance certificate & filing taxes at ANAF counter",
+    "dialogue": [
+      {
+        "speaker_ro": "Contribuant",
+        "text_ro": "Bună ziua! Doresc să eliberez un certificat de atestare fiscală.",
+        "text_ar": "مرحباً! أود استخراج شهادة الإبراء الضريبي.",
+        "text_en": "Hello! I would like to issue a tax clearance certificate."
+      },
+      {
+        "speaker_ro": "Inspector ANAF",
+        "text_ro": "Introduceți codul de identificare fiscală (NIF sau CNP).",
+        "text_ar": "أدخل الرقم التعريفي الضريبي (NIF أو CNP).",
+        "text_en": "Enter your tax identification number (NIF or CNP)."
+      },
+      {
+        "speaker_ro": "Contribuant",
+        "text_ro": "Poftim fișa de depunere a declarației unice pe venit.",
+        "text_ar": "تفضل استمارة تقديم الإقرار الضريبي الموحد للدخل.",
+        "text_en": "Here is the single income tax declaration filing sheet."
+      },
+      {
+        "speaker_ro": "Inspector ANAF",
+        "text_ro": "Nu aveți restanțe de plată. Certificatul este eliberat pe loc.",
+        "text_ar": "ليس عليك أي متأخرات دفع. تم إصدار الشهادة فوراً.",
+        "text_en": "You have no outstanding debts. The certificate is issued immediately."
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "title_ro": "Cumpărare Haine și Încălțăminte la Mall",
+    "title_ar": "شراء الملابس والأحذية في المجمع التجاري",
+    "title_en": "Shopping for Clothes & Shoes at the Mall",
+    "category": "daily_life",
+    "image": "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "حوار الاستفسار عن المقاسات والتخفيضات والاستبدال",
+    "description_en": "Asking about clothing sizes, discounts & return policy",
+    "dialogue": [
+      {
+        "speaker_ro": "Cumpărător",
+        "text_ro": "Bună ziua! Aveți această jachetă în mărimea M?",
+        "text_ar": "مرحباً! هل تملكون هذه السترة بمقاس M؟",
+        "text_en": "Hello! Do you have this jacket in size M?"
+      },
+      {
+        "speaker_ro": "Asistent Magazin",
+        "text_ro": "Verific în depozit. Da, avem ultima bucată pe mărimea M.",
+        "text_ar": "سأفحص المستودع. نعم، لدينا آخر قطعة بمقاس M.",
+        "text_en": "Let me check the stock. Yes, we have the last piece in size M."
+      },
+      {
+        "speaker_ro": "Cumpărător",
+        "text_ro": "Unde se află cabina de probă?",
+        "text_ar": "أين تقع غرفة قياس الملابس (البروفا)؟",
+        "text_en": "Where is the fitting room?"
+      },
+      {
+        "speaker_ro": "Asistent Magazin",
+        "text_ro": "Cabinele sunt în capătul raionului pe partea stângă.",
+        "text_ar": "الغرف في نهاية القسم على جهة اليسار.",
+        "text_en": "The fitting rooms are at the end of the aisle on the left."
+      },
+      {
+        "speaker_ro": "Cumpărător",
+        "text_ro": "Îmi vine perfect! Care este politica de retur?",
+        "text_ar": "تناسبني تماماً! ما هي سياسة الإرجاع أو الاستبدال؟",
+        "text_en": "It fits perfectly! What is the return policy?"
+      },
+      {
+        "speaker_ro": "Asistent Magazin",
+        "text_ro": "Puteți returna produsul în termen de 30 de zile cu bonul fiscal.",
+        "text_ar": "يمكنك إرجاع المنتج خلال 30 يوماً مع الإيصال.",
+        "text_en": "You can return the item within 30 days with the receipt."
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "title_ro": "La Cinema și Cumpărare Bilete",
+    "title_ar": "في السينما وشراء التذاكر والمقرمشات",
+    "title_en": "At the Cinema & Movie Tickets",
+    "category": "daily_life",
+    "image": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "حوار اختيار الفيلم والمقاعد وشراء الفشار",
+    "description_en": "Buying movie tickets, popcorn & selecting seats at cinema",
+    "dialogue": [
+      {
+        "speaker_ro": "Spectator",
+        "text_ro": "Bună seara! Două bilete la filmul de la ora 20:00, vă rog.",
+        "text_ar": "مساء الخير! تذكرتان لفيلم الساعة 20:00 من فضلك.",
+        "text_en": "Good evening! Two tickets for the 8:00 PM movie, please."
+      },
+      {
+        "speaker_ro": "Casier Cinema",
+        "text_ro": "Ce rând preferați? În mijlocul sălii sau în spate?",
+        "text_ar": "أي صف تفضل؟ في منتصف القاعة أم في الخلف؟",
+        "text_en": "Which row do you prefer? In the middle or back?"
+      },
+      {
+        "speaker_ro": "Spectator",
+        "text_ro": "În mijloc, rândul 7, locurile 11 și 12.",
+        "text_ar": "في المنتصف، الصف 7، المقعدان 11 و12.",
+        "text_en": "In the middle, row 7, seats 11 and 12."
+      },
+      {
+        "speaker_ro": "Casier Cinema",
+        "text_ro": "Doriți și un meniu cu popcorn mare și suc?",
+        "text_ar": "هل ترغب أيضاً بوجبة فشار كبير وعصير؟",
+        "text_en": "Would you also like a large popcorn & drink menu?"
+      },
+      {
+        "speaker_ro": "Spectator",
+        "text_ro": "Da, un meniu combo cu cola, mulțumesc.",
+        "text_ar": "نعم، وجبة كومبو مع كولا شكراً.",
+        "text_en": "Yes, a combo menu with cola, thank you."
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "title_ro": "La Sala de Fitness și Abonament Sportiv",
+    "title_ar": "في النادي الرياضي وحجز الاشتراك",
+    "title_en": "At the Fitness Gym & Sport Membership",
+    "category": "daily_life",
+    "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "حوار الاستفسار عن مواعيد النادي والمدرب الشخصي",
+    "description_en": "Gym membership dialogue inquiring about personal trainers",
+    "dialogue": [
+      {
+        "speaker_ro": "Membru Nou",
+        "text_ro": "Bună ziua! Doresc să fac un abonament lunar la sală.",
+        "text_ar": "مرحباً! أود عمل اشتراك شهري في النادي الرياضي.",
+        "text_en": "Hello! I would like to make a monthly gym membership."
+      },
+      {
+        "speaker_ro": "Recepționer Sală",
+        "text_ro": "Abonamentul full-time este 200 de lei și include acces la saună.",
+        "text_ar": "الاشتراك الكامل 200 لي ويتضمن دخول الساونا.",
+        "text_en": "The full-time membership is 200 lei and includes sauna access."
+      },
+      {
+        "speaker_ro": "Membru Nou",
+        "text_ro": "Aveți antrenori personali pentru evaluarea inițială?",
+        "text_ar": "هل لديكم مدربون شخصيون للتقييم الأولي؟",
+        "text_en": "Do you have personal trainers for initial assessment?"
+      },
+      {
+        "speaker_ro": "Recepționer Sală",
+        "text_ro": "Prima ședință cu antrenorul personal este gratuită.",
+        "text_ar": "الجلسة الأولى مع المدرب الشخصي مجانية.",
+        "text_en": "The first session with the personal trainer is free."
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "title_ro": "Convorbire cu Proprietarul Apartamentului",
+    "title_ar": "المحادثة مع مالك العقار والإيجار",
+    "title_en": "Landlord Dialogue & Utility Bills",
+    "category": "daily_life",
+    "image": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "حوار دفع الفواتير والإصلاحات مع المالك",
+    "description_en": "Discussing utility bills & maintenance with apartment landlord",
+    "dialogue": [
+      {
+        "speaker_ro": "Chiriaș",
+        "text_ro": "Bună ziua, domnule Popa! Am trimis dovada plății chiriei pe WhatsApp.",
+        "text_ar": "مرحباً سيد بوبا! أرسلت لك إثبات دفع الإيجار على الواتساب.",
+        "text_en": "Hello Mr. Popa! I sent the rent payment proof on WhatsApp."
+      },
+      {
+        "speaker_ro": "Proprietar",
+        "text_ro": "Am primit, mulțumesc! Factura de întreținere a sosit?",
+        "text_ar": "استلمته شكراً! هل وصلت فاتورة الخدمات والصيانة؟",
+        "text_en": "Received, thank you! Did the maintenance bill arrive?"
+      },
+      {
+        "speaker_ro": "Chiriaș",
+        "text_ro": "Da, a sosit la avizier. Este 220 de lei luna aceasta.",
+        "text_ar": "نعم، وصلت على لوحة الإعلانات. المبلغ 220 لي هذا الشهر.",
+        "text_en": "Yes, it arrived on the notice board. It is 220 lei this month."
+      },
+      {
+        "speaker_ro": "Proprietar",
+        "text_ro": "Treceți plata în aplicația bancară și scădem din utilități.",
+        "text_ar": "قم بالدفع عبر تطبيق البنك ونخصمها من الخدمات.",
+        "text_en": "Make the payment via banking app and we deduct from utilities."
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "title_ro": "Călătorie cu Avionul și Control Vamal",
+    "title_ar": "السفر بالطائرة والتفتيش الجمركي",
+    "title_en": "Flight Travel & Customs Control",
+    "category": "citizenship",
+    "image": "https://images.unsplash.com/photo-1530521954074-e64f6810b32d?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "حوار الإجابة على أسئلة شرطة الحدود والجمارك في المطار",
+    "description_en": "Customs clearance & border officer airport interview dialogue",
+    "dialogue": [
+      {
+        "speaker_ro": "Polițist de frontieră",
+        "text_ro": "Bună ziua! Prezentați pasaportul și biletul de avion.",
+        "text_ar": "مرحباً! قدم الجواز وتذكرة الطيران.",
+        "text_en": "Hello! Present your passport and boarding pass."
+      },
+      {
+        "speaker_ro": "Pasager",
+        "text_ro": "Poftim pasaportul și permisul de ședere în România.",
+        "text_ar": "تفضل الجواز وتصريح الإقامة في رومانيا.",
+        "text_en": "Here is my passport and residence permit in Romania."
+      },
+      {
+        "speaker_ro": "Polițist de frontieră",
+        "text_ro": "Aveți bunuri de declarat la vamă?",
+        "text_ar": "هل لديك أغراض تفصح عنها في الجمرك؟",
+        "text_en": "Do you have any goods to declare at customs?"
+      },
+      {
+        "speaker_ro": "Pasager",
+        "text_ro": "Nu, am doar bagaje personale și cadouri.",
+        "text_ar": "لا، لدي فقط أمتعة شخصية وهدايا.",
+        "text_en": "No, I only have personal luggage and gifts."
+      },
+      {
+        "speaker_ro": "Polițist de frontieră",
+        "text_ro": "Drum bun și călătorie plăcută!",
+        "text_ar": "رافقتك السلامة رحلة ممتعة!",
+        "text_en": "Have a safe trip and pleasant journey!"
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "title_ro": "Discuție despre Istoria și Cultura României",
+    "title_ar": "محادثة حول تاريخ وثقافة رومانيا المعاصرة",
+    "title_en": "Discussion on Romanian History & Culture",
+    "category": "citizenship",
+    "image": "https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "حوار ثقافي رفيع المستوى عن ملوك وتاريخ رومانيا",
+    "description_en": "High-level cultural dialogue on Romanian historical kings & Peleș Castle",
+    "dialogue": [
+      {
+        "speaker_ro": "Profesor",
+        "text_ro": "Care este semnificația Marii Uniri de la 1 Decembrie 1918?",
+        "text_ar": "ما هي أهمية الاتحاد العظيم في 1 ديسمبر 1918؟",
+        "text_en": "What is the significance of the Great Union of December 1, 1918?"
+      },
+      {
+        "speaker_ro": "Student",
+        "text_ro": "Este Ziua Națională a României, când Transilvania s-a unit cu Regatul României la Alba Iulia.",
+        "text_ar": "هو اليوم الوطني لرومانيا، عندما اتحدت ترانسيلفانيا مع المملكة الرومانية في أوبا أيوليا.",
+        "text_en": "It is the National Day of Romania, when Transylvania united with the Kingdom of Romania in Alba Iulia."
+      },
+      {
+        "speaker_ro": "Profesor",
+        "text_ro": "Excelent! Cine a fost primul rege al României?",
+        "text_ar": "ممتاز! من كان أول ملك لـ رومانيا؟",
+        "text_en": "Excellent! Who was the first king of Romania?"
+      },
+      {
+        "speaker_ro": "Student",
+        "text_ro": "Regele Carol I din dinastia Hohenzollern-Sigmaringen, care a construit Castelul Peleș.",
+        "text_ar": "الملك كارول الأول من سلالة هوهنزولرن، الذي بنى قصر بيليش.",
+        "text_en": "King Carol I of the Hohenzollern dynasty, who built Peleș Castle."
       }
     ]
   }

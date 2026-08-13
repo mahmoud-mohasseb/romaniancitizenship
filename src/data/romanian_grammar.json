@@ -10,22 +10,22 @@
     "rules": [
       {
         "gender": "Masculin (مذكر)",
-        "singular_ro": "băiat / om",
-        "plural_ro": "băieți / oameni",
+        "singular_ro": "băiat / om / frate / profesor",
+        "plural_ro": "băieți / oameni / frați / profesori",
         "rule_ar": "ينتهي عادة بحرف ساكن ويجمع بحرف (i)",
         "rule_en": "Usually ends in consonant, plural with -i"
       },
       {
         "gender": "Feminin (مؤنث)",
-        "singular_ro": "fată / casă",
-        "plural_ro": "fete / case",
+        "singular_ro": "fată / casă / școală / țară",
+        "plural_ro": "fete / case / școli / țări",
         "rule_ar": "ينتهي بالحرف الخاص (ă) أو (a) ويجمع بحرف (e) أو (i)",
         "rule_en": "Ends in -ă or -a, plural with -e or -i"
       },
       {
         "gender": "Neutru (محايد)",
-        "singular_ro": "scaun / drum",
-        "plural_ro": "scaune / drumuri",
+        "singular_ro": "scaun / drum / oraș / parcuri",
+        "plural_ro": "scaune / drumuri / orașe / parcuri",
         "rule_ar": "مفرد مذكر وجمع مؤنث، يجمع بـ (e) أو (uri)",
         "rule_en": "Singular masculine, plural feminine (-e or -uri)"
       }
@@ -60,6 +60,20 @@
         "definite_ro": "scaunul (-ul)",
         "meaning_ar": "كرسي -> الكرسي",
         "meaning_en": "a chair -> the chair"
+      },
+      {
+        "gender": "Masculin Plural",
+        "indefinite_ro": "niște băieți",
+        "definite_ro": "băieții (-ii)",
+        "meaning_ar": "أولاد -> الأولاد",
+        "meaning_en": "boys -> the boys"
+      },
+      {
+        "gender": "Feminin Plural",
+        "indefinite_ro": "niște fete",
+        "definite_ro": "fetele (-le)",
+        "meaning_ar": "فتيات -> الفتيات",
+        "meaning_en": "girls -> the girls"
       }
     ]
   },
@@ -97,7 +111,7 @@
         "pronoun": "Noi (نحن / We)",
         "a_fi": "suntem",
         "a_avea": "avem",
-        "a_merge": "mergem",
+        "a_merge": "mergeți",
         "a_vorbi": "vorbim"
       },
       {
@@ -128,23 +142,108 @@
       {
         "pronoun": "Eu",
         "auxiliary": "am",
-        "example_ro": "Am fost / Am mâncat",
-        "meaning_ar": "كنت / أكلتُ",
-        "meaning_en": "I was / I ate"
+        "example_ro": "Am fost / Am mâncat / Am văzut",
+        "meaning_ar": "كنت / أكلتُ / رأيتُ",
+        "meaning_en": "I was / I ate / I saw"
       },
       {
         "pronoun": "Tu",
         "auxiliary": "ai",
-        "example_ro": "Ai fost / Ai mâncat",
-        "meaning_ar": "كنتَ / أكلتَ",
-        "meaning_en": "You were / You ate"
+        "example_ro": "Ai fost / Ai mâncat / Ai văzut",
+        "meaning_ar": "كنتَ / أكلتَ / رأيتَ",
+        "meaning_en": "You were / You ate / You saw"
       },
       {
         "pronoun": "El / Ea",
         "auxiliary": "a",
-        "example_ro": "A fost / A mâncat",
-        "meaning_ar": "كان / أكلَ",
-        "meaning_en": "He/She was / ate"
+        "example_ro": "A fost / A mâncat / A văzut",
+        "meaning_ar": "كان / أكلَ / رأى",
+        "meaning_en": "He/She was / ate / saw"
+      },
+      {
+        "pronoun": "Noi",
+        "auxiliary": "am",
+        "example_ro": "Am fost / Am mâncat / Am văzut",
+        "meaning_ar": "كنا / أكلنا / رأينا",
+        "meaning_en": "We were / We ate / We saw"
+      },
+      {
+        "pronoun": "Voi",
+        "auxiliary": "ați",
+        "example_ro": "Ați fost / Ați mâncat / Ați văzut",
+        "meaning_ar": "كنتم / أكلتم / رأيتم",
+        "meaning_en": "You all were / ate / saw"
+      },
+      {
+        "pronoun": "Ei / Ele",
+        "auxiliary": "au",
+        "example_ro": "Au fost / Au mâncat / Au văzut",
+        "meaning_ar": "كانوا / أكلوا / رأوا",
+        "meaning_en": "They were / ate / saw"
+      }
+    ]
+  },
+  {
+    "id": "g-5",
+    "topic_ro": "Timpul Viitor (Future Tense Formations)",
+    "topic_ar": "زمن المستقبل في الرومانية (Voi merge / O să merg)",
+    "topic_en": "Future Tense Formation (Standard & Colloquial)",
+    "category": "verbs",
+    "explanation_ar": "يتكون المستقبل من صيغتين: المستقبل الرسمي (Voi + Infinitive) والمستقبل العامي الأكثر شيوعاً (O să + Subjunctive).",
+    "explanation_en": "Future tense can be formed with Voi + Infinitive or O să + Subjunctive.",
+    "rules": [
+      {
+        "pronoun": "Eu",
+        "formal": "Voi merge",
+        "informal": "O să merg",
+        "meaning_ar": "سأذهب",
+        "meaning_en": "I will go"
+      },
+      {
+        "pronoun": "Tu",
+        "formal": "Vei merge",
+        "informal": "O să meargă",
+        "meaning_ar": "ستذهب",
+        "meaning_en": "You will go"
+      },
+      {
+        "pronoun": "El / Ea",
+        "formal": "Va merge",
+        "informal": "O să meargă",
+        "meaning_ar": "سيذهب",
+        "meaning_en": "He will go"
+      }
+    ]
+  },
+  {
+    "id": "g-6",
+    "topic_ro": "Pronumele Posesive (Possessive Pronouns)",
+    "topic_ar": "ضمائر الملكية (al meu, a mea, ai mei, ale mele)",
+    "topic_en": "Possessive Pronouns in Romanian",
+    "category": "pronouns",
+    "explanation_ar": "تتطابق ضمائر الملكية في الرومانية مع جنس وعدده المملوك.",
+    "explanation_en": "Possessive pronouns agree in gender and number with the possessed noun.",
+    "rules": [
+      {
+        "person": "Eu (ملكي)",
+        "masculine_singular": "al meu",
+        "feminine_singular": "a mea",
+        "masculine_plural": "ai mei",
+        "feminine_plural": "ale mele"
+      },
+      {
+        "person": "Tu (ملكك)",
+        "masculine_singular": "al tău",
+        "feminine_singular": "a ta",
+        "masculine_plural": "ai tăi",
+        "feminine_plural": "ale tale"
+      },
+      {
+        "person": "El / Ea (ملكه/ملكها)",
+        "masculine_singular": "al său",
+        "feminine_singular": "a sa",
+        "masculine_plural": "ai săi",
+        "feminine_plural": "ale sale"
       }
     ]
   }
