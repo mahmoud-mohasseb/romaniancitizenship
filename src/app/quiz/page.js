@@ -140,7 +140,9 @@ function QuizContent() {
       <div className="min-h-screen pb-20 bg-theme-main text-theme-main flex flex-col">
         <Navbar />
 
-        <main className={`flex-1 max-w-lg mx-auto w-full px-4 py-8 space-y-6 ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
+        <main className={`flex-1 max-w-lg mx-auto w-full px-4 py-8 space-y-6 ${
+          isRtl ? 'lg:mr-72' : 'lg:ml-72'
+        } ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
           <div className={`rounded-2xl p-6 border shadow-xl text-center space-y-6 ${isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'}`}>
             <div className={`w-24 h-24 rounded-full mx-auto flex items-center justify-center ${isPassed ? 'bg-emerald-500/20 text-yellow-400' : 'bg-rose-500/20 text-rose-500'}`}>
               {isPassed ? <Trophy className="w-12 h-12" /> : <XCircle className="w-12 h-12" />}
@@ -205,7 +207,9 @@ function QuizContent() {
     <div className="min-h-screen pb-20 bg-theme-main text-theme-main flex flex-col">
       <Navbar />
 
-      <main className={`flex-1 max-w-4xl mx-auto w-full px-4 py-6 space-y-4 ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
+      <main className={`flex-1 max-w-4xl mx-auto w-full px-4 py-6 space-y-4 ${
+        isRtl ? 'lg:mr-72' : 'lg:ml-72'
+      } ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
         {/* Quiz Top Header Bar */}
         <div className={`flex items-center justify-between p-3 rounded-2xl border ${isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-white border-slate-200 shadow-sm'}`}>
           <Link href="/" className="p-2 hover:opacity-75 rounded-xl">

@@ -66,7 +66,9 @@ function AlphabetContent() {
     <div className="min-h-screen pb-20 bg-theme-main text-theme-main flex flex-col">
       <Navbar />
 
-      <main className={`flex-1 w-full max-w-4xl mx-auto px-4 py-6 space-y-6 ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
+      <main className={`flex-1 w-full max-w-4xl mx-auto px-4 py-6 space-y-6 ${
+        isRtl ? 'lg:mr-72' : 'lg:ml-72'
+      } ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
         {/* Header Title Banner */}
         <div className={`rounded-2xl p-6 border shadow-xl space-y-3 text-center ${isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'}`}>
           <span className="inline-block px-4 py-1.5 rounded-full text-xs font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30">

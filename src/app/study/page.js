@@ -97,7 +97,9 @@ function StudyContent() {
     <div className="min-h-screen pb-20 bg-theme-main text-theme-main flex flex-col">
       <Navbar />
 
-      <main className={`flex-1 w-full max-w-4xl mx-auto px-4 py-6 space-y-4 ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
+      <main className={`flex-1 w-full max-w-4xl mx-auto px-4 py-6 space-y-4 ${
+        isRtl ? 'lg:mr-72' : 'lg:ml-72'
+      } ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
         {/* Category Filters Horizontal Scroll */}
         <div className="flex items-center space-x-2 space-x-reverse overflow-x-auto pb-1 no-scrollbar">
           {CATEGORIES_LIST.map((cat) => {

@@ -67,7 +67,9 @@ function ConversationsContent() {
     <div className="min-h-screen pb-20 bg-theme-main text-theme-main flex flex-col">
       <Navbar />
 
-      <main className={`flex-1 w-full max-w-4xl mx-auto px-4 py-6 space-y-6 ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
+      <main className={`flex-1 w-full max-w-4xl mx-auto px-4 py-6 space-y-6 ${
+        isRtl ? 'lg:mr-72' : 'lg:ml-72'
+      } ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
         {/* Header Title Banner */}
         <div className={`rounded-2xl p-6 border shadow-xl space-y-3 text-center ${isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'}`}>
           <span className="inline-block px-4 py-1.5 rounded-full text-xs font-bold bg-rose-500/20 text-rose-400 border border-rose-500/30">
@@ -96,7 +98,7 @@ function ConversationsContent() {
               }`}
             >
               <Eye className="w-4 h-4" />
-              <span>{showTranslations ? (appLang === 'ar' ? 'إخفاء الترجمات (اختبار القراءة)' : 'Hide Translations') : (appLang === 'ar' ? 'إظهار الترجمات' : 'Show Translations')}</span>
+              <span>{showTranslations ? (appLang === 'ar' ? 'إخفاء الترجمات' : 'Hide Translations') : (appLang === 'ar' ? 'إظهار الترجمات' : 'Show Translations')}</span>
             </button>
           </div>
         </div>
@@ -169,7 +171,7 @@ function ConversationsContent() {
               {/* Dialogue Bubbles List */}
               <div className="p-5 space-y-4">
                 {conv.dialogue.map((line, idx) => {
-                  const isOfficer = line.speaker_ro.includes('Ofițer') || line.speaker_ro.includes('Președintele') || line.speaker_ro.includes('Vânzător') || line.speaker_ro.includes('Chelner') || line.speaker_ro.includes('Farmacist');
+                  const isOfficer = line.speaker_ro.includes('Ofițer') || line.speaker_ro.includes('Președintele') || line.speaker_ro.includes('Vânzător') || line.speaker_ro.includes('Chelner') || line.speaker_ro.includes('Farmacist') || line.speaker_ro.includes('Proprietar') || line.speaker_ro.includes('Bancher');
                   const lineId = `${conv.id}-${idx}`;
                   const isSpeaking = isSpeakingId === lineId;
 

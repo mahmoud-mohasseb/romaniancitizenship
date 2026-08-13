@@ -51,9 +51,14 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen pb-20 bg-theme-main text-theme-main flex flex-col">
+      {/* Sidebar Navigation */}
       <Navbar />
 
-      <main className={`flex-1 w-full max-w-4xl mx-auto px-4 py-6 space-y-6 ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
+      {/* Main Content Area with Desktop Sidebar Offset */}
+      <main className={`flex-1 w-full max-w-4xl mx-auto px-4 py-6 space-y-6 ${
+        isRtl ? 'lg:mr-72' : 'lg:ml-72'
+      } ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
+        
         {/* Hero Banner */}
         <div className="flex flex-col items-center text-center space-y-4 pt-2">
           <div className="relative w-24 h-24 rounded-2xl overflow-hidden shadow-xl border-2 border-rose-500 bg-slate-800">
@@ -178,7 +183,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Learning Modules Grid (Conversations, YouTube, Quizzes, Alphabet) */}
+        {/* Learning Modules Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {/* Daily Conversations Card */}
           <Link
