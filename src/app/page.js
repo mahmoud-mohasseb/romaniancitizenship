@@ -88,7 +88,7 @@ export default function HomePage() {
             <span className={`inline-block px-4 py-1.5 rounded-full text-xs font-bold border ${
               isDark ? 'bg-slate-800 text-rose-400 border-rose-500/30' : 'bg-rose-50 text-rose-600 border-rose-200'
             }`}>
-              🇷🇴 {questions.length} سؤالاً مصوراً لاختبار الجنسية الرومانية ANC
+              🇷🇴 {questions.length} {strings.questionsBadge || 'سؤالاً مصوراً لاختبار الجنسية الرومانية ANC'}
             </span>
             <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
               {strings.appTitle}
@@ -150,13 +150,13 @@ export default function HomePage() {
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-extrabold flex items-center space-x-2 space-x-reverse">
               <BookOpen className="w-5 h-5 text-rose-500" />
-              <span>أسئلة امتحان الجنسية ({questions.length} سؤالاً مصوراً)</span>
+              <span>{strings.citizenshipSectionTitle || `أسئلة امتحان الجنسية (${questions.length} سؤالاً مصوراً)`}</span>
             </h2>
             <Link
               href="/study?category=all"
               className="text-xs font-bold text-rose-500 hover:underline flex items-center space-x-1 space-x-reverse"
             >
-              <span>عرض جميع الأسئلة</span>
+              <span>{strings.viewAllQuestions || 'عرض جميع الأسئلة'}</span>
               {isRtl ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
             </Link>
           </div>
@@ -187,7 +187,7 @@ export default function HomePage() {
                       </h4>
                       <p className="text-[11px] text-theme-sub leading-tight">{cat.name_ro}</p>
                       <span className="inline-block mt-1 text-[10px] font-black px-2 py-0.5 rounded-md bg-slate-900/40 text-emerald-400">
-                        {count} سؤالاً جاهزاً ⚡
+                        {count} {strings.questionsReadyBadge || 'سؤالاً جاهزاً ⚡'}
                       </span>
                     </div>
                   </div>
@@ -202,7 +202,7 @@ export default function HomePage() {
         <div className="space-y-3 pt-2">
           <h2 className="text-lg font-extrabold flex items-center space-x-2 space-x-reverse">
             <GraduationCap className="w-5 h-5 text-amber-500" />
-            <span>وحدات تعلم اللغة والقواعد والمحادثات</span>
+            <span>{strings.learningModulesSectionTitle || 'وحدات تعلم اللغة والقواعد والمحادثات'}</span>
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -215,9 +215,9 @@ export default function HomePage() {
                 <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-black/20 text-white border border-white/20">
                   📚 Gramatica Limbii Române
                 </span>
-                <h3 className="text-base font-bold">{appLang === 'ar' ? 'شرح قواعد الرومانية والضمائر' : 'Romanian Grammar Guide'}</h3>
+                <h3 className="text-base font-bold">{strings.grammarCardTitle || (appLang === 'ar' ? 'شرح قواعد الرومانية والضمائر' : 'Romanian Grammar Guide')}</h3>
                 <p className="text-xs text-amber-100/90">
-                  {appLang === 'ar' ? 'الأجناس وأدوات التعريف وتصريف الأفعال مع الصوت' : 'Nouns, Definite articles & Verb conjugations'}
+                  {strings.grammarCardSubtitle || (appLang === 'ar' ? 'الأجناس وأدوات التعريف وتصريف الأفعال مع الصوت' : 'Nouns, Definite articles & Verb conjugations')}
                 </p>
               </div>
               <GraduationCap className="w-8 h-8 text-white shrink-0" />
@@ -232,9 +232,9 @@ export default function HomePage() {
                 <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-black/20 text-white border border-white/20">
                   🎮 Grammar Quiz Challenge
                 </span>
-                <h3 className="text-base font-bold">{appLang === 'ar' ? 'لعبة اختبار القواعد 🎮' : 'Grammar Quiz Game'}</h3>
+                <h3 className="text-base font-bold">{strings.grammarQuizCardTitle || (appLang === 'ar' ? 'لعبة اختبار القواعد 🎮' : 'Grammar Quiz Game')}</h3>
                 <p className="text-xs text-rose-100/90">
-                  {appLang === 'ar' ? 'تحديات ممتعة لاختبار معرفتك بتصريف الأفعال والأدوات' : 'Fun interactive verb & article quizzes'}
+                  {strings.grammarQuizCardSubtitle || (appLang === 'ar' ? 'تحديات ممتعة لاختبار معرفتك بتصريف الأفعال والأدوات' : 'Fun interactive verb & article quizzes')}
                 </p>
               </div>
               <Trophy className="w-8 h-8 text-white shrink-0" />
@@ -251,7 +251,7 @@ export default function HomePage() {
                 </span>
                 <h3 className="text-base font-bold">{strings.conversationsTitle}</h3>
                 <p className="text-xs text-blue-100/90">
-                  {appLang === 'ar' ? 'حوارات الفندق والقطار والطوارئ والمقابلة بالصوت' : 'Translated dialogues with native audio'}
+                  {strings.conversationsCardSubtitle || (appLang === 'ar' ? 'حوارات الفندق والقطار والطوارئ والمقابلة بالصوت' : 'Translated dialogues with native audio')}
                 </p>
               </div>
               <MessageSquare className="w-8 h-8 text-white shrink-0" />
@@ -266,9 +266,9 @@ export default function HomePage() {
                 <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-black/20 text-white border border-white/20">
                   🧩 Vocabulary & Phrases
                 </span>
-                <h3 className="text-base font-bold">{appLang === 'ar' ? 'اختبار المفردات والجمل 🎮' : 'Vocabulary Quiz'}</h3>
+                <h3 className="text-base font-bold">{strings.vocabQuizCardTitle || (appLang === 'ar' ? 'اختبار المفردات والجمل 🎮' : 'Vocabulary Quiz')}</h3>
                 <p className="text-xs text-emerald-100/90">
-                  {appLang === 'ar' ? 'تحدي الكلمات والجمل الرومانية اليومية' : 'Fun vocabulary & phrase challenges'}
+                  {strings.vocabQuizCardSubtitle || (appLang === 'ar' ? 'تحدي الكلمات والجمل الرومانية اليومية' : 'Fun vocabulary & phrase challenges')}
                 </p>
               </div>
               <Puzzle className="w-8 h-8 text-white shrink-0" />
@@ -289,10 +289,10 @@ export default function HomePage() {
                 🤖 AI Model + Ollama Support
               </span>
               <h3 className="text-base font-bold text-white group-hover:text-amber-300 transition-colors">
-                {appLang === 'ar' ? 'المساعد الذكي للأسئلة المفتوحة' : appLang === 'en' ? 'AI Romanian Citizenship Tutor' : 'Asistent AI Cetățenie'}
+                {strings.aiCardTitle || (appLang === 'ar' ? 'المساعد الذكي للأسئلة المفتوحة' : appLang === 'en' ? 'AI Romanian Citizenship Tutor' : 'Asistent AI Cetățenie')}
               </h3>
               <p className="text-xs text-slate-400">
-                {appLang === 'ar' ? 'اسأل أي سؤال إضافي وتحدث مع الذكاء الاصطناعي' : appLang === 'en' ? 'Ask custom questions & practice oral responses with AI' : 'Întreabă orice despre interviu și constituție'}
+                {strings.aiCardSubtitle || (appLang === 'ar' ? 'اسأل أي سؤال إضافي وتحدث مع الذكاء الاصطناعي' : appLang === 'en' ? 'Ask custom questions & practice oral responses with AI' : 'Întreabă orice despre interviu și constituție')}
               </p>
             </div>
             <Sparkles className="w-8 h-8 text-amber-400 shrink-0" />
