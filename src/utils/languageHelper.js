@@ -221,3 +221,11 @@ export function getAnswerText(q, lang = 'ar') {
   }
   return q.answer_ar || q.answer;
 }
+
+export function getTranslation(item, field, lang = 'ar') {
+  if (!item) return '';
+  if (lang === 'en' && item[`${field}_en`]) return item[`${field}_en`];
+  if (lang === 'ro' && item[`${field}_ro`]) return item[`${field}_ro`];
+  if (lang === 'ro' && item[field]) return item[field];
+  return item[`${field}_ar`] || item[`${field}_en`] || item[field] || '';
+}
