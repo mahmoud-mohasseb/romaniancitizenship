@@ -16,7 +16,6 @@ import {
   Menu, 
   X, 
   MessageSquare, 
-  Tv, 
   Puzzle, 
   ChevronLeft, 
   ChevronRight 
@@ -40,7 +39,6 @@ export default function Navbar() {
     { href: '/alphabet', label: strings.alphabetNav, sub: appLang === 'ar' ? '31 حرفاً مع النطق والأمثلة' : '31 Letters with Audio', icon: Type, color: 'text-purple-400' },
     { href: '/alphabet-quiz', label: strings.alphabetQuizNav, sub: appLang === 'ar' ? 'لعبة نطق واستماع الحروف' : 'Alphabet Audio Game', icon: Gamepad2, color: 'text-rose-400' },
     { href: '/language-quiz', label: appLang === 'ar' ? 'اختبارات المفردات والقواعد' : 'Language Quiz', sub: appLang === 'ar' ? 'تحدي كلمات وجمل اللغة' : 'Vocabulary & Grammar Quiz', icon: Puzzle, color: 'text-teal-400' },
-    { href: '/youtube', label: strings.youtubeNav, sub: appLang === 'ar' ? 'قنوات يوتيوب مع المشغل' : 'YouTube Embedded Videos', icon: Tv, color: 'text-red-500' },
     { href: '/ai', label: strings.aiNav, sub: appLang === 'ar' ? 'المساعد الذكي Ollama' : 'AI Citizenship Tutor', icon: Sparkles, color: 'text-amber-300' },
   ];
 

@@ -18,7 +18,6 @@ import {
   Type, 
   Gamepad2, 
   MessageSquare, 
-  Tv, 
   Puzzle 
 } from 'lucide-react';
 import questions from '../data/questions_ar.json';
@@ -219,23 +218,6 @@ export default function HomePage() {
             <Puzzle className="w-8 h-8 text-white shrink-0" />
           </Link>
 
-          {/* YouTube Channels Card */}
-          <Link
-            href="/youtube"
-            className="flex items-center justify-between p-5 bg-gradient-to-r from-red-600 via-red-700 to-rose-900 rounded-2xl border border-red-500/40 shadow-lg hover:opacity-95 transition-all text-white group"
-          >
-            <div className="space-y-1">
-              <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-black/20 text-white border border-white/20">
-                📺 YouTube Embedded Videos
-              </span>
-              <h3 className="text-base font-bold">{strings.youtubeTitle}</h3>
-              <p className="text-xs text-red-100/90">
-                {appLang === 'ar' ? 'شاهد مقاطع اليوتيوب وقنوات التعليم مباشرة داخل الصفحة' : 'Watch YouTube channels & videos in-app'}
-              </p>
-            </div>
-            <Tv className="w-8 h-8 text-white shrink-0" />
-          </Link>
-
           {/* Romanian Alphabet */}
           <Link
             href="/alphabet"
@@ -251,6 +233,23 @@ export default function HomePage() {
               </p>
             </div>
             <Type className="w-8 h-8 text-white shrink-0" />
+          </Link>
+
+          {/* Alphabet Audio Game */}
+          <Link
+            href="/alphabet-quiz"
+            className="flex items-center justify-between p-5 bg-gradient-to-r from-rose-600 via-rose-700 to-amber-700 rounded-2xl border border-rose-500/40 shadow-lg hover:opacity-95 transition-all text-white group"
+          >
+            <div className="space-y-1">
+              <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-black/20 text-white border border-white/20">
+                🎮 Fun Audio Game
+              </span>
+              <h3 className="text-base font-bold">{strings.alphabetGameTitle}</h3>
+              <p className="text-xs text-rose-100/90">
+                {appLang === 'ar' ? 'لعبة استماع وتفاعل ممتعة لاختبار معرفتك بالحروف' : 'Interactive sound game to test listening skills'}
+              </p>
+            </div>
+            <Gamepad2 className="w-8 h-8 text-white shrink-0" />
           </Link>
         </div>
 
