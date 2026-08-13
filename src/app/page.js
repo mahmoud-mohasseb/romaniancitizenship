@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { 
@@ -23,7 +23,8 @@ import {
   ShieldCheck, 
   Globe, 
   Landmark, 
-  Palette 
+  Palette,
+  Download
 } from 'lucide-react';
 import questions from '../data/questions_ar.json';
 import Navbar from '../components/Navbar';
@@ -36,8 +37,31 @@ export default function HomePage() {
   const { appLang, setAppLang, strings, isRtl } = useLanguage();
   const isDark = theme === 'dark';
 
-  const [showInstallModal, setShowInstallModal] = useState(false);
-  const [downloadMarket, setDownloadMarket] = useState('pwa');
+  const [deferredPrompt, setDeferredPrompt] = useState(null);
+  const [isInstallable, setIsInstallable] = useState(false);
+
+  useEffect(() => {
+    const handleBeforeInstallPrompt = (e) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+      setIsInstallable(true);
+    };
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    };
+  }, []);
+
+  const handleInstallPWA = async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    console.log(`PWA User Choice Outcome: ${outcome}`);
+    setDeferredPrompt(null);
+    setIsInstallable(false);
+  };
 
   const categoryCounts = CATEGORIES_LIST.reduce((acc, cat) => {
     if (cat.id === 'all') {
@@ -47,11 +71,6 @@ export default function HomePage() {
     }
     return acc;
   }, {});
-
-  const openDownloadModal = (market) => {
-    setDownloadMarket(market);
-    setShowInstallModal(true);
-  };
 
   const getCategoryIcon = (catId) => {
     switch (catId) {
@@ -75,7 +94,7 @@ export default function HomePage() {
         
         {/* Hero Banner */}
         <div className="flex flex-col items-center text-center space-y-4 pt-2">
-          <div className="relative w-24 h-24 rounded-2xl overflow-hidden shadow-xl border-2 border-rose-500 bg-slate-800">
+          <div className="relative w-24 h-24 rounded-2xl overflow-hidden shadow-xl border-2 border-rose-500 bg-slate-800 animate-pulse-glow">
             <Image 
               src="/icon.png" 
               alt="Romanian Citizenship Emblem Logo" 
@@ -97,6 +116,29 @@ export default function HomePage() {
               {strings.appSubtitle}
             </p>
           </div>
+
+          {/* Native PWA Installation Banner */}
+          {isInstallable && (
+            <div className="w-full p-4 rounded-2xl bg-gradient-to-r from-rose-600 via-rose-700 to-amber-700 text-white shadow-xl flex items-center justify-between space-x-3 space-x-reverse border border-rose-400/40 animate-fade-in-up">
+              <div className="flex items-center space-x-3 space-x-reverse text-right">
+                <div className="w-10 h-10 rounded-xl bg-black/20 flex items-center justify-center shrink-0">
+                  <Smartphone className="w-6 h-6 text-white animate-bounce-subtle" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-black">{appLang === 'ar' ? 'تثبيت التطبيق على جهازك 📲' : appLang === 'en' ? 'Install App on Your Phone 📲' : 'Instalează Aplicația pe Telefon 📲'}</h3>
+                  <p className="text-[11px] text-rose-100">{appLang === 'ar' ? 'احصل على تجربة تطبيق هاتف كاملة بدون إنترنت!' : 'Get a full standalone app experience offline!'}</p>
+                </div>
+              </div>
+
+              <button
+                onClick={handleInstallPWA}
+                className="px-4 py-2.5 bg-white text-rose-700 hover:bg-rose-50 font-black rounded-xl text-xs shadow-md transition-all shrink-0 flex items-center space-x-1.5 space-x-reverse"
+              >
+                <Download className="w-4 h-4" />
+                <span>{appLang === 'ar' ? 'تثبيت 📲' : appLang === 'en' ? 'Install 📲' : 'Instalează 📲'}</span>
+              </button>
+            </div>
+          )}
 
           {/* 3-Language Selector Bar */}
           <div className={`w-full backdrop-blur-md rounded-2xl p-3 border shadow-lg ${

@@ -28,6 +28,7 @@ export default function RootLayout({ children }) {
         <link rel="apple-touch-icon" href="/icon.png" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="mobile-web-app-capable" content="yes" />
       </head>
       <body className="min-h-screen flex flex-col selection:bg-rose-500 selection:text-white">
         <LanguageProvider>
@@ -35,6 +36,26 @@ export default function RootLayout({ children }) {
             {children}
           </ThemeProvider>
         </LanguageProvider>
+
+        {/* PWA Service Worker Registration Script */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js').then(
+                    function(registration) {
+                      console.log('[PWA] Service Worker registered successfully with scope:', registration.scope);
+                    },
+                    function(err) {
+                      console.log('[PWA] Service Worker registration failed:', err);
+                    }
+                  );
+                });
+              }
+            `,
+          }}
+        />
       </body>
     </html>
   );
