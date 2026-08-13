@@ -1,150 +1,189 @@
 import questions from '../data/questions_ar.json';
+import grammarData from '../data/romanian_grammar.json';
+import conversationData from '../data/romanian_conversations.json';
 
 const DEFAULT_OLLAMA_URL = 'http://localhost:11434';
 const DEFAULT_MODEL = 'llama3';
 
-export async function queryOllama(prompt, model = DEFAULT_MODEL, ollamaUrl = DEFAULT_OLLAMA_URL, lang = 'ar') {
+/**
+ * Online Wikipedia Search Fetcher
+ */
+export async function searchOnlineKnowledge(topic, lang = 'ar') {
   try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 8000);
-
-    const response = await fetch(`${ollamaUrl}/api/generate`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      signal: controller.signal,
-      body: JSON.stringify({
-        model: model || DEFAULT_MODEL,
-        prompt: `You are an expert Romanian Citizenship Exam Tutor. Help the student with their question about Romanian history, constitution, geography, culture, language, or citizenship interview: ${prompt}`,
-        stream: false,
-      }),
-    });
-
-    clearTimeout(timeoutId);
-
+    const searchLang = lang === 'ro' ? 'ro' : 'en';
+    const response = await fetch(`https://${searchLang}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(topic)}`);
     if (response.ok) {
       const data = await response.json();
-      if (data && data.response) {
-        return { success: true, text: data.response, source: 'ollama' };
+      if (data && data.extract) {
+        return {
+          title: data.title,
+          extract: data.extract,
+          url: data.content_urls?.desktop?.page || '',
+          thumbnail: data.thumbnail?.source || ''
+        };
       }
     }
-  } catch (error) {
-    console.log('Ollama local server not reachable in PWA/Web mode, falling back to embedded AI Assistant:', error);
+  } catch (e) {
+    console.log('Online Wikipedia search error:', e);
   }
-
-  // Fallback to embedded AI Knowledge Assistant with 3-language support
-  return getEmbeddedAIResponse(prompt, lang);
+  return null;
 }
 
-export function getEmbeddedAIResponse(userPrompt, lang = 'ar') {
-  const query = (userPrompt || '').toLowerCase();
-  
-  // Search matching question in 469 questions dataset
-  const matches = questions.filter(q => 
-    q.question.toLowerCase().includes(query) ||
-    (q.question_ar && q.question_ar.includes(query)) ||
-    (q.question_en && q.question_en.toLowerCase().includes(query)) ||
-    q.answer.toLowerCase().includes(query) ||
-    (q.answer_ar && q.answer_ar.includes(query))
+/**
+ * Main Hybrid AI Query Function
+ */
+export async function queryOllama(prompt, model = DEFAULT_MODEL, ollamaUrl = DEFAULT_OLLAMA_URL, lang = 'ar') {
+  const query = (prompt || '').trim();
+  if (!query) return { success: false, text: '' };
+
+  // 1. Try Local Ollama Server (if reachable and configured by user)
+  if (ollamaUrl && !ollamaUrl.includes('localhost')) {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 4000);
+
+      const response = await fetch(`${ollamaUrl}/api/generate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        signal: controller.signal,
+        body: JSON.stringify({
+          model: model || DEFAULT_MODEL,
+          prompt: `You are an expert Romanian Citizenship Exam Tutor. Help the student with their question about Romanian history, constitution, geography, culture, language, or citizenship interview: ${query}`,
+          stream: false,
+        }),
+      });
+
+      clearTimeout(timeoutId);
+
+      if (response.ok) {
+        const data = await response.json();
+        if (data && data.response) {
+          return { success: true, text: data.response, source: 'ollama' };
+        }
+      }
+    } catch (error) {
+      console.log('Ollama custom URL unreachable, trying Hybrid Knowledge + Online Search');
+    }
+  }
+
+  // 2. Search local citizenship datasets (469 Questions + Grammar + Conversations)
+  const qLower = query.toLowerCase();
+
+  // Search in 469 Citizenship Questions
+  const matchingQuestions = questions.filter(q => 
+    q.question.toLowerCase().includes(qLower) ||
+    (q.question_ar && q.question_ar.includes(qLower)) ||
+    (q.question_en && q.question_en.toLowerCase().includes(qLower)) ||
+    q.answer.toLowerCase().includes(qLower) ||
+    (q.answer_ar && q.answer_ar.includes(qLower))
   );
 
-  if (matches.length > 0) {
-    const top = matches[0];
-    let responseText = '';
+  // Search in Grammar Modules
+  const matchingGrammar = grammarData.filter(g =>
+    g.topic_ro.toLowerCase().includes(qLower) ||
+    (g.topic_ar && g.topic_ar.includes(qLower)) ||
+    (g.topic_en && g.topic_en.toLowerCase().includes(qLower)) ||
+    (g.explanation_ar && g.explanation_ar.includes(qLower))
+  );
 
+  // Search in Conversations
+  const matchingConversations = conversationData.filter(c =>
+    c.title_ro.toLowerCase().includes(qLower) ||
+    (c.title_ar && c.title_ar.includes(qLower)) ||
+    (c.category_ar && c.category_ar.includes(qLower))
+  );
+
+  if (matchingQuestions.length > 0) {
+    const top = matchingQuestions[0];
+    let text = '';
     if (lang === 'en') {
-      responseText = `🇷🇴 **Related Official Citizenship Exam Question:**\n\n` +
-        `**Romanian Question:** ${top.question}\n` +
+      text = `🇷🇴 **Official Citizenship Exam Question Match:**\n\n` +
+        `**Question (RO):** ${top.question}\n` +
         `**Model Answer:** ${top.answer}\n\n` +
-        `🇬🇧 **English Translation:** ${top.question_en || top.question}\n` +
+        `🇬🇧 **English:** ${top.question_en || top.question}\n` +
         `**Answer:** ${top.answer_en || top.answer}\n\n` +
         `🇸🇦 **Arabic:** ${top.question_ar}\n` +
         `**Answer:** ${top.answer_ar}`;
     } else if (lang === 'ro') {
-      responseText = `🇷🇴 **Întrebare Oficială din Programa de Cetățenie:**\n\n` +
-        `**Întrebare în Limba Română:** ${top.question}\n` +
+      text = `🇷🇴 **Întrebare Oficială ANC Cetățenie:**\n\n` +
+        `**Întrebare:** ${top.question}\n` +
         `**Răspuns Model:** ${top.answer}\n\n` +
         `🇸🇦 **Traducere Arabă:** ${top.question_ar}\n` +
         `🇬🇧 **Traducere Engleză:** ${top.question_en || top.question}`;
     } else {
-      responseText = `🇷🇴 **سؤال ذو صلة من منهج الجنسية الرسمي / Related Question:**\n\n` +
-        `**الرومانية:** ${top.question}\n` +
+      text = `🇷🇴 **إجابة نموذجية من منهج الجنسية الرسمي (ANC):**\n\n` +
+        `**السؤال بالرومانية:** ${top.question}\n` +
         `**الإجابة النموذجية:** ${top.answer}\n\n` +
-        `🇸🇦 **بالعربية:** ${top.question_ar}\n` +
-        `**الإجابة:** ${top.answer_ar}\n\n` +
+        `🇸🇦 **الترجمة العربية:** ${top.question_ar}\n` +
+        `**الإجابة بالعربية:** ${top.answer_ar}\n\n` +
         `🇬🇧 **English:** ${top.question_en || top.question}\n` +
         `**Answer:** ${top.answer_en || top.answer}`;
     }
 
     return {
       success: true,
-      text: responseText,
-      source: 'embedded_ai',
-      questionItem: top
+      text: text,
+      source: 'dataset_question',
+      image: top.image,
+      wiki_url: top.wiki_url
     };
   }
 
-  // General Romanian Citizenship Guidance Response
-  if (query.includes('دليل') || query.includes('نصيح') || query.includes('مقابل') || query.includes('interview') || query.includes('tip') || query.includes('sfat')) {
-    if (lang === 'en') {
-      return {
-        success: true,
-        text: `🇷🇴 **Tips for Passing the Romanian Citizenship Oral Interview (ANC):**\n\n` +
-              `1. **Clear Pronunciation:** Speak clearly and confidently in Romanian.\n` +
-              `2. **Core Subjects:** Review Constitution (form of government, President, Parliament), national symbols (flag, emblem, anthem), and historic heroes (Stephen the Great, Mihai Eminescu).\n` +
-              `3. **Oath of Allegiance:** Memorize the text of the legal oath before entering the committee.\n\n` +
-              `💡 Type any historical figure or topic to search immediately!`,
-        source: 'embedded_ai'
-      };
-    } else if (lang === 'ro') {
-      return {
-        success: true,
-        text: `🇷🇴 **Sfaturi pentru Promovarea Interviului Oral de Cetățenie (ANC):**\n\n` +
-              `1. **Pronunție clară:** Răspunde cu calm și claritate în limba română.\n` +
-              `2. **Revizuire materie:** Concentrează-te pe Constituție (forma de guvernământ, Președinte, Parlament), simbolurile naționale și marii domnitori.\n` +
-              `3. **Jurământul de credință:** Învață textul jurământului înainte de comisie.\n\n` +
-              `💡 Scrie numele oricărui subiect pentru a căuta instant!`,
-        source: 'embedded_ai'
-      };
-    } else {
-      return {
-        success: true,
-        text: `🇷🇴 **نصائح لاجتياز مقابلة الجنسية الرومانية الشفهية (ANC):**\n\n` +
-              `1. **الهدوء والنطق الواضح:** احرص على نطق الإجابة باللغة الرومانية السليمة والواضحة.\n` +
-              `2. **مراجعة المواد الرئيسية:** ركز على الدستور (شكل الحكومة، الرئيس، البرلمان)، الرموز الوطنية (العلم واليمين)، وأهم الشخصيات التاريخية (مثل ستيفان تشيل ماري).\n` +
-              `3. **اليمين القانوني (Jurământul):** احفظ نص اليمين القانوني بدقة قبل دخول اللجنة.\n\n` +
-              `💡 يمكنك كتابة اسم أي موضوع أو شخصية في المحادثة للبحث المباشر!`,
-        source: 'embedded_ai'
-      };
-    }
+  if (matchingGrammar.length > 0) {
+    const gTop = matchingGrammar[0];
+    let text = `📚 **درس قواعد ذو صلة / Grammar Topic Match:**\n\n` +
+      `**الموضوع:** ${gTop.topic_ro}\n` +
+      `🇸🇦 **الشرح:** ${gTop.explanation_ar}\n\n` +
+      `💡 **نصيحة سريعة:** ${gTop.easy_tip_ar}`;
+
+    return {
+      success: true,
+      text: text,
+      source: 'dataset_grammar'
+    };
   }
 
-  // Default response
+  // 3. Perform Live Online Wikipedia Search for unmatched topics!
+  const onlineResult = await searchOnlineKnowledge(query, lang);
+  if (onlineResult) {
+    let text = `🌐 **نتائج البحث الحي عبر الإنترنت / Online Live Search Result:**\n\n` +
+      `**الموضوع:** ${onlineResult.title}\n\n` +
+      `${onlineResult.extract}\n\n` +
+      `🔗 [اقرأ المزيد على Wikipedia](${onlineResult.url})`;
+
+    return {
+      success: true,
+      text: text,
+      source: 'online_search',
+      image: onlineResult.thumbnail,
+      wiki_url: onlineResult.url
+    };
+  }
+
+  // 4. Default AI Citizenship Response
   if (lang === 'en') {
     return {
       success: true,
-      text: `🤖 **AI Romanian Citizenship Tutor:**\n\n` +
-            `Your query: "${userPrompt}"\n\n` +
-            `You can ask about any topic regarding Romanian history, constitution, geography, or culture (e.g. form of government, Stephen the Great, Danube river, capital, etc.).\n\n` +
-            `💡 To connect to your local Ollama AI model, make sure Ollama is running on your machine (http://localhost:11434) or set custom host in Settings!`,
-      source: 'embedded_ai'
+      text: `🤖 **AI Citizenship Tutor:**\n\n` +
+        `I am ready to answer any questions about Romanian Citizenship, History, Constitution, Geography, and Language Grammar!\n\n` +
+        `💡 Try asking: "Who was Stephen the Great?", "Form of government in Romania", or "What is the capital of Romania?".`,
+      source: 'ai_tutor'
     };
   } else if (lang === 'ro') {
     return {
       success: true,
-      text: `🤖 **Asistent AI Cetățenia Română:**\n\n` +
-            `Întrebarea ta: "${userPrompt}"\n\n` +
-            `Poți întreba despre orice subiect din istoria, constituția sau geografia României (ex: forma de guvernământ, Ștefan cel Mare, fluviul Dunărea, capitala, etc.).\n\n` +
-            `💡 Pentru a conecta modelul local Ollama, asigură-te că Ollama rulează (http://localhost:11434) sau configurează adresa în Setări!`,
-      source: 'embedded_ai'
+      text: `🤖 **Asistent AI Cetățenie:**\n\n` +
+        `Sunt pregătit să răspund la orice întrebare despre cetățenia română, istorie, constituție, geografie și gramatică!\n\n` +
+        `💡 Încearcă: „Cine a fost Ștefan cel Mare?”, „Forma de guvernământ”, sau „Fluviul Dunărea”.`,
+      source: 'ai_tutor'
     };
   }
 
   return {
     success: true,
-    text: `🤖 **المساعد الذكي لاختبار الجنسية الرومانية:**\n\n` +
-          `سؤالك: "${userPrompt}"\n\n` +
-          `يمكنك السؤال عن أي موضوع تاريخي، جغرافي، أو دستوري روماني (مثل: شكل الحكومة، الدستور، ستيفان تشيل ماري، نهر الدانوب، العاصمة، إلخ).\n\n` +
-          `💡 للربط مع نموذج AI محلي (مثل Ollama)، تأكد من تشغيل Ollama على جهازك (http://localhost:11434) أو تعديل العنوان من الإعدادات!`,
-    source: 'embedded_ai'
+    text: `🤖 **المساعد الذكي للجنسية الرومانية:**\n\n` +
+      `أنا مستعد لإجابتك عن أي سؤال يتعلق بالجنسية الرومانية، الدستور، التاريخ، الجغرافيا، أو قواعد اللغة!\n\n` +
+      `💡 جرب البحث عن: "من هو ستيفان تشيل ماري؟"، "شكل الحكومة في رومانيا"، أو "معلومات عن نهر الدانوب".`,
+    source: 'ai_tutor'
   };
 }
