@@ -42,7 +42,16 @@ export default function Navbar() {
     { href: '/alphabet', label: strings.alphabetNav, sub: appLang === 'ar' ? '31 حرفاً مع النطق والأمثلة' : '31 Letters with Audio', icon: Type, color: 'text-purple-400' },
     { href: '/alphabet-quiz', label: strings.alphabetQuizNav, sub: appLang === 'ar' ? 'لعبة نطق واستماع الحروف' : 'Alphabet Audio Game', icon: Gamepad2, color: 'text-rose-400' },
     { href: '/language-quiz', label: appLang === 'ar' ? 'اختبارات المفردات والقواعد' : 'Language Quiz', sub: appLang === 'ar' ? 'تحدي كلمات وجمل اللغة' : 'Vocabulary & Grammar Quiz', icon: Puzzle, color: 'text-teal-400' },
-    { href: '/ai', label: strings.aiNav, sub: appLang === 'ar' ? 'المساعد الذكي Ollama' : 'AI Citizenship Tutor', icon: Sparkles, color: 'text-amber-300' },
+    { href: '/ai', label: strings.aiNav, sub: appLang === 'ar' ? 'المساعد الذكي Hybrid AI' : 'AI Citizenship Tutor', icon: Sparkles, color: 'text-amber-300' },
+  ];
+
+  const bottomMobileTabs = [
+    { href: '/', label: strings.homeNav, icon: Home },
+    { href: '/study', label: strings.studyNav, icon: BookOpen },
+    { href: '/quiz', label: strings.quizNav, icon: Trophy },
+    { href: '/grammar', label: 'القواعد', icon: GraduationCap },
+    { href: '/conversations', label: 'المحادثات', icon: MessageSquare },
+    { href: '/ai', label: 'AI Tutor', icon: Sparkles },
   ];
 
   const sidebarContent = (
@@ -54,7 +63,7 @@ export default function Navbar() {
       <div className="space-y-4">
         <div className="flex items-center justify-between border-b border-slate-700/60 pb-4">
           <Link href="/" className="flex items-center space-x-3 space-x-reverse group">
-            <div className="relative w-10 h-10 rounded-2xl overflow-hidden border-2 border-rose-500 shadow-md group-hover:scale-105 transition-transform shrink-0">
+            <div className="relative w-11 h-11 rounded-2xl overflow-hidden border-2 border-rose-500 shadow-md animate-pulse-glow group-hover:scale-105 transition-transform shrink-0 bg-slate-800">
               <Image src="/icon.png" alt="Romanian Citizenship Emblem" fill className="object-cover" />
             </div>
             <div>
@@ -86,7 +95,7 @@ export default function Navbar() {
                 onClick={() => setMobileSidebarOpen(false)}
                 className={`flex items-center justify-between p-3 rounded-2xl border transition-all ${
                   isActive 
-                    ? 'bg-rose-600 text-white border-rose-600 shadow-lg shadow-rose-600/30' 
+                    ? 'bg-rose-600 text-white border-rose-600 shadow-lg shadow-rose-600/30 animate-fade-in-up' 
                     : isDark ? 'bg-slate-800/80 border-slate-700/60 text-slate-300 hover:bg-slate-800 hover:text-white' : 'bg-slate-100/80 border-slate-200 text-slate-800 hover:bg-slate-200'
                 }`}
               >
@@ -168,27 +177,57 @@ export default function Navbar() {
         {sidebarContent}
       </aside>
 
-      {/* Floating Mobile Sidebar Trigger Button */}
-      <div className={`lg:hidden fixed top-4 z-50 ${isRtl ? 'right-4' : 'left-4'}`}>
-        <button
-          onClick={() => setMobileSidebarOpen(true)}
-          className="p-3 bg-rose-600 hover:bg-rose-500 text-white rounded-2xl shadow-xl shadow-rose-600/40 border border-rose-400/40 flex items-center space-x-2 space-x-reverse group"
-          title="Open Navigation Sidebar"
-        >
-          <Menu className="w-6 h-6 group-hover:scale-110 transition-transform" />
-          <span className="text-xs font-extrabold pr-1 rtl:pr-1 ltr:pl-1">القائمة ☰</span>
-        </button>
+      {/* Floating Mobile Sidebar Trigger Header Bar */}
+      <div className="lg:hidden sticky top-0 z-40 w-full px-4 py-2.5 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 flex items-center justify-between shadow-md">
+        <Link href="/" className="flex items-center space-x-2.5 space-x-reverse">
+          <div className="relative w-8 h-8 rounded-xl overflow-hidden border border-rose-500 shrink-0 bg-slate-800">
+            <Image src="/icon.png" alt="Romanian Citizenship Emblem" fill className="object-cover" />
+          </div>
+          <span className="text-sm font-extrabold text-white">Cetățenia Română</span>
+        </Link>
+
+        <div className="flex items-center space-x-2 space-x-reverse">
+          <button
+            onClick={() => setMobileSidebarOpen(true)}
+            className="px-3 py-1.5 bg-rose-600 hover:bg-rose-500 text-white rounded-xl text-xs font-bold flex items-center space-x-1.5 space-x-reverse shadow-md"
+          >
+            <Menu className="w-4 h-4" />
+            <span>القائمة ☰</span>
+          </button>
+        </div>
       </div>
 
       {/* Mobile Slide-Over Sidebar Drawer Overlay */}
       {mobileSidebarOpen && (
         <div className="lg:hidden fixed inset-0 z-50 flex justify-start bg-black/80 backdrop-blur-sm transition-opacity">
-          <div className="w-80 max-w-[85vw] h-full shadow-2xl">
+          <div className="w-80 max-w-[85vw] h-full shadow-2xl animate-fade-in-up">
             {sidebarContent}
           </div>
           <div className="flex-1" onClick={() => setMobileSidebarOpen(false)} />
         </div>
       )}
+
+      {/* Mobile Bottom Navigation Bar */}
+      <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-slate-900/95 backdrop-blur-lg border-t border-slate-800 px-2 py-1.5 shadow-2xl">
+        <div className="grid grid-cols-6 gap-1 text-center">
+          {bottomMobileTabs.map((tab) => {
+            const Icon = tab.icon;
+            const isActive = pathname === tab.href;
+            return (
+              <Link
+                key={tab.href}
+                href={tab.href}
+                className={`flex flex-col items-center py-1 rounded-xl transition-all ${
+                  isActive ? 'text-rose-500 font-extrabold scale-105' : 'text-slate-400 hover:text-white'
+                }`}
+              >
+                <Icon className="w-5 h-5 mb-0.5" />
+                <span className="text-[10px] leading-tight truncate w-full">{tab.label}</span>
+              </Link>
+            );
+          })}
+        </div>
+      </nav>
     </>
   );
 }
