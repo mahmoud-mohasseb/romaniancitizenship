@@ -37,9 +37,9 @@
   },
   {
     "id": 2,
-    "title_ro": "Interviul Oficial de Cetățenie",
+    "title_ro": "Interviul Oficial de Cetățenie (ANC)",
     "title_ar": "مقابلة الجنسية الرومانية الرسمية",
-    "title_en": "Official Citizenship Interview Simulation",
+    "title_en": "Official ANC Citizenship Interview Simulation",
     "category": "citizenship",
     "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
     "description_ar": "نموذج محاكاة الحوار الشفهي مع لجنة الجنسية الرومانية",
@@ -217,6 +217,78 @@
   },
   {
     "id": 7,
+    "title_ro": "Transport în Comun și Taxi",
+    "title_ar": "وسائل النقل والمترو والتاكسي",
+    "title_en": "Public Transport, Metro & Taxi",
+    "category": "daily_life",
+    "image": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "كيف تستفسر عن الخطوط والتذاكر والتاكسي في المدن الرومانية",
+    "description_en": "Asking for metro tickets, bus routes & taxi rides in Romania",
+    "dialogue": [
+      {
+        "speaker_ro": "Pasager",
+        "text_ro": "Bună ziua! Unde pot cumpăra o cartelă de metrou cu două călătorii?",
+        "text_ar": "مرحباً! أين أشتري كرت مترو لرحلتين؟",
+        "text_en": "Hello! Where can I buy a two-trip metro card?"
+      },
+      {
+        "speaker_ro": "Casier",
+        "text_ro": "Chiar aici la casierie. Costă 6 lei.",
+        "text_ar": "هنا مباشرة لدى شباك التذاكر. السعر 6 لي.",
+        "text_en": "Right here at the ticket booth. It costs 6 lei."
+      },
+      {
+        "speaker_ro": "Pasager",
+        "text_ro": "Acest autobuz merge spre Piața Unirii?",
+        "text_ar": "هل هذه الحافلة تذهب باتجاه ساحة أونيري؟",
+        "text_en": "Does this bus go to Unirii Square?"
+      },
+      {
+        "speaker_ro": "Șofer",
+        "text_ro": "Da, coborâți la a treia stație.",
+        "text_ar": "نعم، انزل في المحطة الثالثة.",
+        "text_en": "Yes, get off at the third stop."
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title_ro": "La Aeroport și Controlul de Pașapoarte",
+    "title_ar": "في المطار ومراقبة الجوازات",
+    "title_en": "At the Airport & Passport Control",
+    "category": "citizenship",
+    "image": "https://images.unsplash.com/photo-1530521954074-e64f6810b32d?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "محادثة ختم الجواز والرد على ضابط الحدود في المطار",
+    "description_en": "Passport control dialogue with border police officers at the airport",
+    "dialogue": [
+      {
+        "speaker_ro": "Polițist de frontieră",
+        "text_ro": "Bună ziua! Pașaportul și permisul de ședere, vă rog.",
+        "text_ar": "مرحباً! الجواز وتصريح الإقامة من فضلك.",
+        "text_en": "Hello! Passport and residence permit, please."
+      },
+      {
+        "speaker_ro": "Călător",
+        "text_ro": "Poftim documentele. Mă întorc din vacanță.",
+        "text_ar": "تفضل الوثائق. أنا عائد من العطلة.",
+        "text_en": "Here are the documents. I am returning from vacation."
+      },
+      {
+        "speaker_ro": "Polițist de frontieră",
+        "text_ro": "Care este scopul călătoriei și unde locuiți în România?",
+        "text_ar": "ما هو هدف السفر وأين تسكن في رومانيا؟",
+        "text_en": "What is the purpose of travel and where do you live in Romania?"
+      },
+      {
+        "speaker_ro": "Călător",
+        "text_ro": "Locuiesc în București și lucrez ca inginer.",
+        "text_ar": "أسكن في بوخارست وأعمل كمهندس.",
+        "text_en": "I live in Bucharest and work as an engineer."
+      }
+    ]
+  },
+  {
+    "id": 9,
     "title_ro": "La Bancă și Schimb Valutar",
     "title_ar": "في البنك والصرافة وتحويل الأموال",
     "title_en": "At the Bank & Money Exchange",
@@ -248,6 +320,102 @@
         "text_ro": "Contul va fi activ astăzi, iar cardul va sosi în 3 zile.",
         "text_ar": "سيكون الحساب نشطاً اليوم، وستصل البطاقة خلال 3 أيام.",
         "text_en": "The account will be active today, and the card arrives in 3 days."
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title_ro": "Interviu de Angajare și Muncă",
+    "title_ar": "مقابلة العمل والحديث عن الخبرات",
+    "title_en": "Job Interview & Career Background",
+    "category": "greetings",
+    "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "حوار مقابلة التوظيف وشرح الخبرات والمهارات السابقة",
+    "description_en": "Job interview dialogue discussing career background & skills",
+    "dialogue": [
+      {
+        "speaker_ro": "Recrutator",
+        "text_ro": "Descrieți-ne puțin experiența dumneavoastră profesională.",
+        "text_ar": "حدثنا قليلاً عن خبرتك المهنية.",
+        "text_en": "Tell us a bit about your professional experience."
+      },
+      {
+        "speaker_ro": "Candidat",
+        "text_ro": "Am 5 ani de experiență în dezvoltare software și vorbesc română, engleză și arabă.",
+        "text_ar": "لدي 5 سنوات خبرة في تطوير البرمجيات وأتحدث الرومانية والإنجليزية والعربية.",
+        "text_en": "I have 5 years of experience in software development and speak Romanian, English, & Arabic."
+      },
+      {
+        "speaker_ro": "Recrutator",
+        "text_ro": "Când puteți începe activitatea?",
+        "text_ar": "متى يمكنك البدء في العمل؟",
+        "text_en": "When can you start working?"
+      },
+      {
+        "speaker_ro": "Candidat",
+        "text_ro": "Pot începe de la 1 ale lunii viitoare.",
+        "text_ar": "يمكنني البدء من الأول من الشهر القادم.",
+        "text_en": "I can start from the 1st of next month."
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "title_ro": "Discuții despre Vreme și Anotimpuri",
+    "title_ar": "الحديث عن الطقس وفصول السنة في رومانيا",
+    "title_en": "Weather, Seasons & Small Talk",
+    "category": "daily_life",
+    "image": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "محادثات اجتماعية حول حالة الجو وتساقط الثلوج في الشتاء",
+    "description_en": "Casual small talk about weather, temperature & winter snow in Romania",
+    "dialogue": [
+      {
+        "speaker_ro": "Prietena",
+        "text_ro": "Cum este vremea afară astăzi?",
+        "text_ar": "كيف حال الطقس بالخارج اليوم؟",
+        "text_en": "How is the weather outside today?"
+      },
+      {
+        "speaker_ro": "Prietenul",
+        "text_ro": "Este foarte frig și ninge. Sunt minus 2 grade.",
+        "text_ar": "الجو بارد جداً وثلجي. الحرارة تحت الصفر بدرجتين.",
+        "text_en": "It is very cold and snowing. It is minus 2 degrees."
+      },
+      {
+        "speaker_ro": "Prietena",
+        "text_ro": "Mai bine luăm o jachetă groasă și ceai cald.",
+        "text_ar": "من الأفضل أن نأخذ سترة سميكة وشايا دافئاً.",
+        "text_en": "We better wear a thick jacket and drink warm tea."
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "title_ro": "La Benzinărie și Service Auto",
+    "title_ar": "في محطة الوقود وإصلاح السيارات",
+    "title_en": "At the Gas Station & Mechanic",
+    "category": "daily_life",
+    "image": "https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "كيف تعبئ الوقود وتستفسر عن صيانة السيارة في رومانيا",
+    "description_en": "Refueling your car and asking for mechanic service in Romania",
+    "dialogue": [
+      {
+        "speaker_ro": "Șofer",
+        "text_ro": "Bună ziua! Plinul de motorină la pompa numărul 3, vă rog.",
+        "text_ar": "مرحباً! خزان كامل ديزل من المضخة رقم 3 من فضلك.",
+        "text_en": "Hello! Full tank of diesel at pump number 3, please."
+      },
+      {
+        "speaker_ro": "Operator",
+        "text_ro": "Sigur! Face 320 de lei. Doriți și spălare de parbriz?",
+        "text_ar": "بالتأكيد! الحساب 320 لي. هل ترغب بغسيل الزجاج الأمامي؟",
+        "text_en": "Sure! That is 320 lei. Would you like windshield washing too?"
+      },
+      {
+        "speaker_ro": "Șofer",
+        "text_ro": "Da, mulțumesc! Puteți verifica și presiunea la pneuri?",
+        "text_ar": "نعم شكراً! هل يمكنك فحص ضغط الإطارات أيضاً؟",
+        "text_en": "Yes, thank you! Can you also check the tire pressure?"
       }
     ]
   }

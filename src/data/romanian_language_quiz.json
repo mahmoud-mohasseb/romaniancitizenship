@@ -15,7 +15,7 @@
   },
   {
     "id": 2,
-    "question_ro": "Care este forma corectă a verb ului «a fi» la persoana I (Eu)?",
+    "question_ro": "Care este forma corectă a verbului «a fi» la persoana I (Eu)?",
     "question_ar": "ما هو التصريف الصحيح لفعل الكينونة «a fi» مع الضمير أنا (Eu)؟",
     "question_en": "What is the correct form of verb «a fi» for 'Eu' (I am)?",
     "category": "grammar",
@@ -67,6 +67,76 @@
       "Casuri",
       "Casi",
       "Casede"
+    ]
+  },
+  {
+    "id": 6,
+    "question_ro": "Cum spui «أين تقع الصيدلية؟» باللغة الرومانية؟",
+    "question_ar": "كيف تسأل «أين تقع الصيدلية؟» بالرومانية؟",
+    "question_en": "How do you ask «Where is the pharmacy?» in Romanian?",
+    "category": "phrases",
+    "correct_answer": "Unde este farmacia?",
+    "options": [
+      "Unde este farmacia?",
+      "Cât costă pâinea?",
+      "Cum te cheamă?",
+      "Ce ora este?"
+    ]
+  },
+  {
+    "id": 7,
+    "question_ro": "Care este forma corectă a verbului «a avea» (يملك) مع (Noi / نحن)؟",
+    "question_ar": "ما هو تصريف الفعل «a avea» (يمتلك) مع الضمير نحن (Noi)؟",
+    "question_en": "What is the conjugation of «a avea» (to have) for 'Noi' (We)?",
+    "category": "grammar",
+    "correct_answer": "Noi avem",
+    "options": [
+      "Noi avem",
+      "Noi ai",
+      "Noi are",
+      "Noi au"
+    ]
+  },
+  {
+    "id": 8,
+    "question_ro": "Ce înseamnă cuvântul «Apa»?",
+    "question_ar": "ما المعنى العربي لكلمة «Apa» الرومانية؟",
+    "question_en": "What does the word «Apa» mean?",
+    "category": "vocabulary",
+    "correct_answer": "الماء / Water",
+    "options": [
+      "الماء / Water",
+      "الخبز / Bread",
+      "التفاحة / Apple",
+      "الحليب / Milk"
+    ]
+  },
+  {
+    "id": 9,
+    "question_ro": "Cum cerش تذكرة مترو «أود تذكرة مترو من فضلك»؟",
+    "question_ar": "كيف تطلب تذكرة مترو بالرومانية؟",
+    "question_en": "How do you order a metro ticket in Romanian?",
+    "category": "phrases",
+    "correct_answer": "Aș dori o cartelă de metrou, vă rog",
+    "options": [
+      "Aș dori o cartelă de metrou, vă rog",
+      "Cât este ora?",
+      "Unde locuiești?",
+      "De unde ești?"
+    ]
+  },
+  {
+    "id": 10,
+    "question_ro": "Care este traducerea cuvântului «Pâine»?",
+    "question_ar": "ما هي ترجمة كلمة «Pâine» باللغة العربية؟",
+    "question_en": "What is the English translation of «Pâine»?",
+    "category": "vocabulary",
+    "correct_answer": "الخبز / Bread",
+    "options": [
+      "الخبز / Bread",
+      "اللحم / Meat",
+      "الجبن / Cheese",
+      "البيض / Eggs"
     ]
   }
 ]
