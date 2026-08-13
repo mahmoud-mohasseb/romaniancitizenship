@@ -1,15 +1,21 @@
-// UI Interface Localizations for English & Arabic
+// UI Interface Localizations for Arabic (Main Default), English, and Romanian
 
 export const UI_STRINGS = {
   ar: {
     appTitle: 'الجنسية الرومانية',
-    appSubtitle: 'دليلك المتكامل لاجتياز الاختبار الشفهي للجنسية الرومانية مع الصور والترجمة',
+    appSubtitle: 'دليلك المتكامل لاجتياز الاختبار الشفهي للجنسية الرومانية وتعلم الأبجدية والنطق الصحيح',
+    homeNav: 'الرئيسية',
+    studyNav: 'المذاكرة',
+    quizNav: 'الاختبارات',
+    alphabetNav: 'الأبجدية الرومانية',
+    alphabetQuizNav: 'لعبة النطق',
+    aiNav: 'المساعد الذكي',
     studyNow: 'ابدأ المذاكرة المصورة',
     testYourself: 'اختبر نفسك',
     questionsCount: 'سؤال مصور',
-    categoriesCount: 'تصنيفات',
-    languagesCount: 'لغات (روماني/عربي/إنجليزي)',
-    selectLangLabel: 'اختر لغة واجهة التطبيق والترجمة:',
+    categoriesCount: 'تصنيفات المنهج',
+    languagesCount: 'لغات المنهج (عربي/إنجليزي/روماني)',
+    selectLangLabel: 'لغة واجهة التطبيق والترجمة:',
     allCategories: 'جميع التصنيفات',
     constitutionCat: 'الدستور والحكومة',
     historyCat: 'التاريخ والشخصيات',
@@ -39,15 +45,29 @@ export const UI_STRINGS = {
     romanianText: 'الرومانية',
     arabicText: 'العربية',
     englishText: 'الإنجليزي',
+    alphabetTitle: 'تعلم الأبجدية الرومانية والنطق',
+    alphabetSubtitle: '31 حرفاً مع النطق الصوتي والأمثلة والجمل المترجمة بالكامل',
+    alphabetGameTitle: 'لعبة نطق الأبجدية الرومانية 🎮',
+    alphabetGameDesc: 'اختبر استماعك وقدرتك على تمييز الحروف والنطق الصحيح',
+    playAudio: 'استمع للنطق 🔊',
+    exampleWord: 'كلمة توضيحية:',
+    exampleSentence: 'جملة توضيحية:',
+    specialDiacritics: 'الحروف الرومانية الخاصة (Ă, Â, Î, Ș, Ț)',
   },
   en: {
     appTitle: 'Romanian Citizenship Prep',
-    appSubtitle: 'Comprehensive guide for Romanian Citizenship oral interview with photos & translations',
+    appSubtitle: 'Comprehensive guide for Romanian Citizenship oral interview, alphabet, & pronunciation',
+    homeNav: 'Home',
+    studyNav: 'Study',
+    quizNav: 'Quizzes',
+    alphabetNav: 'Romanian Alphabet',
+    alphabetQuizNav: 'Pronunciation Game',
+    aiNav: 'AI Tutor',
     studyNow: 'Start Illustrated Study',
     testYourself: 'Test Yourself (Quizzes)',
     questionsCount: 'Visual Questions',
     categoriesCount: 'Categories',
-    languagesCount: 'Languages (RO/AR/EN)',
+    languagesCount: 'Languages (AR/EN/RO)',
     selectLangLabel: 'App & Translation Language:',
     allCategories: 'All Categories',
     constitutionCat: 'Constitution & Law',
@@ -78,6 +98,67 @@ export const UI_STRINGS = {
     romanianText: 'Romanian',
     arabicText: 'Arabic',
     englishText: 'English',
+    alphabetTitle: 'Romanian Alphabet & Pronunciation',
+    alphabetSubtitle: '31 letters with native audio speech, example words, sentences, & translations',
+    alphabetGameTitle: 'Alphabet Pronunciation Game 🎮',
+    alphabetGameDesc: 'Fun interactive audio game to test your listening & letter recognition',
+    playAudio: 'Listen to Audio 🔊',
+    exampleWord: 'Example Word:',
+    exampleSentence: 'Example Sentence:',
+    specialDiacritics: 'Special Romanian Diacritics (Ă, Â, Î, Ș, Ț)',
+  },
+  ro: {
+    appTitle: 'Pregătire Cetățenia Română',
+    appSubtitle: 'Ghid complet pentru interviul de cetățenie, alfabetul român și pronunția corectă',
+    homeNav: 'Acasă',
+    studyNav: 'Studiu',
+    quizNav: 'Teste',
+    alphabetNav: 'Alfabetul Român',
+    alphabetQuizNav: 'Joc Pronunție',
+    aiNav: 'Asistent AI',
+    studyNow: 'Începe Studiul Ilustrat',
+    testYourself: 'Testează-te',
+    questionsCount: 'Întrebări Ilustrate',
+    categoriesCount: 'Categorii',
+    languagesCount: 'Limbi (RO/AR/EN)',
+    selectLangLabel: 'Limba Aplicației și Traducerii:',
+    allCategories: 'Toate Categoriile',
+    constitutionCat: 'Constituție și Drept',
+    historyCat: 'Istorie și Domnitori',
+    geographyCat: 'Geografie și Natură',
+    cultureCat: 'Cultură și Literatură',
+    generalCat: 'Limbă și Cultură Generală',
+    showAnswer: 'Afișează Răspunsul și Traducerea',
+    modelAnswer: 'Răspuns Model în Română și Traducere:',
+    prev: 'Înapoi',
+    next: 'Înainte',
+    zoomImage: 'Vezi Imaginea Completă 🔍',
+    close: 'Închide',
+    question: 'Întrebare',
+    of: 'din',
+    score: 'Scor',
+    quickQuizTitle: 'Test Rapid (10 Întrebări)',
+    quickQuizDesc: 'Verificare rapidă a cunoștințelor',
+    examQuizTitle: 'Simulare Examen Oficial (25 Întrebări)',
+    examQuizDesc: 'Test cronometrat 20 min ce simulează comisia oficială',
+    chooseCorrectAns: 'Alege răspunsul corect în română:',
+    quizFinished: 'Test Finalizat!',
+    passedExam: 'Felicitări! Ai promovat examenul 🏆',
+    failedExam: 'Nu ai promovat. Revizuiește și încearcă din nou!',
+    reviewWrong: 'Revizuiește Greșelile',
+    retakeQuiz: 'Reia Testul',
+    backHome: 'Înapoi la Pagina Principală',
+    romanianText: 'Română',
+    arabicText: 'Arabă',
+    englishText: 'Engleză',
+    alphabetTitle: 'Alfabetul Român și Pronunția',
+    alphabetSubtitle: '31 de litere cu audio vocal, cuvinte exemplu, propoziții și traduceri',
+    alphabetGameTitle: 'Joc de Pronunție a Alfabetului 🎮',
+    alphabetGameDesc: 'Joc interactiv distractiv pentru testarea auzului și recunoașterea literelor',
+    playAudio: 'Ascultă Pronunția 🔊',
+    exampleWord: 'Cuvânt Exemplu:',
+    exampleSentence: 'Propoziție Exemplu:',
+    specialDiacritics: 'Litere Speciat Românești (Ă, Â, Î, Ș, Ț)',
   }
 };
 
@@ -93,6 +174,9 @@ export function getQuestionText(q, lang = 'ar') {
     if (q.question.startsWith('Enumerați ')) return 'List ' + q.question.slice(10);
     return q.question_ar || q.question;
   }
+  if (lang === 'ro') {
+    return q.question;
+  }
   return q.question_ar || q.question;
 }
 
@@ -101,6 +185,9 @@ export function getAnswerText(q, lang = 'ar') {
   if (lang === 'en') {
     if (q.answer_en && q.answer_en !== q.answer) return q.answer_en;
     return q.answer_ar || q.answer;
+  }
+  if (lang === 'ro') {
+    return q.answer;
   }
   return q.answer_ar || q.answer;
 }
