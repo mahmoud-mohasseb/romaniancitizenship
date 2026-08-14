@@ -4,7 +4,7 @@ import { LanguageProvider } from '../context/LanguageContext';
 
 export const metadata = {
   title: 'Cetățenia Română Prep - Romanian Citizenship Learning App',
-  description: 'Comprehensive guide for Romanian Citizenship oral interview with Wikipedia media, bilingual translations, quizzes, & AI tutor',
+  description: 'Comprehensive guide for Romanian Citizenship oral interview with photos, bilingual translations, quizzes, & AI tutor',
   manifest: '/manifest.json',
   icons: {
     icon: '/favicon.png',
@@ -29,8 +29,13 @@ export default function RootLayout({ children }) {
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="mobile-web-app-capable" content="yes" />
+
+        {/* Google Fonts: Cairo (Best Arabic Mobile Font) & Outfit (Latin) */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
       </head>
-      <body className="min-h-screen flex flex-col selection:bg-rose-500 selection:text-white">
+      <body className="min-h-screen flex flex-col selection:bg-rose-500 selection:text-white font-cairo">
         <LanguageProvider>
           <ThemeProvider>
             {children}
