@@ -5,10 +5,10 @@
     "question_ar": "ما هي ترجمة التحية «Bună ziua» باللغة العربية؟",
     "question_en": "What is the English translation of «Bună ziua»?",
     "category": "greetings",
-    "correct_answer": "يوم سعيد / يومك مبارك / Good day",
+    "correct_answer": "يوم سعيد / نهارك مبارك (Good day)",
     "options": [
-      "يوم سعيد / يومك مبارك / Good day",
       "صباح الخير / Good morning",
+      "يوم سعيد / نهارك مبارك (Good day)",
       "مساء الخير / Good evening",
       "تصبح على خير / Good night"
     ],
@@ -22,10 +22,10 @@
     "category": "phrases",
     "correct_answer": "Mulțumesc frumos",
     "options": [
-      "Mulțumesc frumos",
       "Cu plăcere",
-      "La revedere",
-      "Scuzați-mă"
+      "Scuzați-mă",
+      "Mulțumesc frumos",
+      "La revedere"
     ],
     "explanation_ar": "Mulțumesc frumos أو Vă mulțumesc تعني شكراً جزيلاً."
   },
@@ -37,9 +37,9 @@
     "category": "alphabet",
     "correct_answer": "صوت الفتحة الممالة المفتوحة (مثل a في كلمة banana)",
     "options": [
-      "صوت الفتحة الممالة المفتوحة (مثل a في كلمة banana)",
       "صوت الشين (Ș)",
       "صوت التسين (Ț)",
+      "صوت الفتحة الممالة المفتوحة (مثل a في كلمة banana)",
       "صوت الخاء (Kh)"
     ],
     "explanation_ar": "الحرف Ă ينطق كفتحة خفيفة بين الألف والياء مثل fată, casă."
@@ -52,8 +52,8 @@
     "category": "phrases",
     "correct_answer": "Cu plăcere",
     "options": [
-      "Cu plăcere",
       "La revedere",
+      "Cu plăcere",
       "Bună seara",
       "Nu știu"
     ],
@@ -67,9 +67,9 @@
     "category": "vocabulary",
     "correct_answer": "الماء / Water",
     "options": [
-      "الماء / Water",
       "الخبز / Bread",
       "الحليب / Milk",
+      "الماء / Water",
       "القهوة / Coffee"
     ],
     "explanation_ar": "Apă تعني الماء (Apă minerală = مياه معدنية)."
@@ -82,8 +82,8 @@
     "category": "phrases",
     "correct_answer": "Unde este aeroportul?",
     "options": [
-      "Unde este aeroportul?",
       "Cât costă biletul?",
+      "Unde este aeroportul?",
       "Unde este gara?",
       "Ce ora este?"
     ],
@@ -97,9 +97,9 @@
     "category": "alphabet",
     "correct_answer": "ينطق كحرف الشين العربي (Sh)",
     "options": [
-      "ينطق كحرف الشين العربي (Sh)",
       "ينطق كحرف السين (S)",
       "ينطق كحرف الزاي (Z)",
+      "ينطق كحرف الشين العربي (Sh)",
       "ينطق كحرف الجيم (G)"
     ],
     "explanation_ar": "الحرف Ș ينطق تماماً كحرف الشين (Școală = مدرسة)."
@@ -112,8 +112,8 @@
     "category": "alphabet",
     "correct_answer": "ينطق كحرف (تس / Ts) مثل tsunami",
     "options": [
-      "ينطق كحرف (تس / Ts) مثل tsunami",
       "ينطق كحرف التاء (T)",
+      "ينطق كحرف (تس / Ts) مثل tsunami",
       "ينطق كحرف الظاء (Z)",
       "ينطق كحرف الكاف (K)"
     ],
@@ -127,8 +127,8 @@
     "category": "phrases",
     "correct_answer": "Aș dori o cartelă de metrou, vă rog",
     "options": [
-      "Aș dori o cartelă de metrou, vă rog",
       "Cât este ora?",
+      "Aș dori o cartelă de metrou, vă rog",
       "Unde locuiești?",
       "De unde ești?"
     ],
@@ -142,8 +142,8 @@
     "category": "vocabulary",
     "correct_answer": "الخبز / Bread",
     "options": [
-      "الخبز / Bread",
       "اللحم / Meat",
+      "الخبز / Bread",
       "الجبن / Cheese",
       "البيض / Eggs"
     ],
