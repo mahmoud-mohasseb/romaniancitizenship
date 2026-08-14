@@ -1,128 +1,157 @@
 'use client';
 
-import React, { useState, useEffect, Suspense } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { useSearchParams } from 'next/navigation';
+import React, { useState, useEffect, useRef, Suspense } from 'react';
 import { 
-  Sparkles, 
   Send, 
-  Loader2, 
+  Bot, 
+  User, 
+  Sparkles, 
   Globe, 
   BookOpen, 
-  GraduationCap, 
+  Volume2, 
+  Copy, 
+  Check, 
+  RotateCcw, 
+  GraduationCap,
+  MessageSquare,
+  Compass,
   ExternalLink,
-  Zap,
-  CheckCircle2
+  ShieldCheck,
+  Zap
 } from 'lucide-react';
 import Navbar from '../../components/Navbar';
 import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
-import { queryWebLlama, initWebLLMEngine } from '../../utils/aiService';
+import { queryAITutor } from '../../utils/aiService';
 
 function AIContent() {
-  const searchParams = useSearchParams();
-
   const { theme } = useTheme();
   const { appLang, strings, isRtl } = useLanguage();
   const isDark = theme === 'dark';
 
-  const [inputQuery, setInputQuery] = useState('');
-  const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const [engineLoaded, setEngineLoaded] = useState(false);
+  const [copiedIdx, setCopiedIdx] = useState(null);
+  const [playingIdx, setPlayingIdx] = useState(null);
+
+  const samplePrompts = {
+    ar: [
+      "من هو ستيفان تشيل ماري (Ștefan cel Mare)؟",
+      "ما هي المادة الأولى من الدستور الروماني؟",
+      "كيف أصرف فعل الملكية a avea في المضارع؟",
+      "ما هي عاصمة رومانيا وأهم المدن؟",
+      "كيف أطلب الفاتورة في المطعم بالرومانية؟"
+    ],
+    en: [
+      "Who was Stephen the Great (Ștefan cel Mare)?",
+      "What is Article 1 of the Romanian Constitution?",
+      "How to conjugate verb 'a avea' in present tense?",
+      "What is the capital of Romania and key rivers?",
+      "How to introduce myself in the citizenship interview?"
+    ],
+    ro: [
+      "Cine a fost Ștefan cel Mare?",
+      "Ce spune Articolul 1 din Constituția României?",
+      "Cum se conjugă verbul «a avea» la prezent?",
+      "Care este capitala României și fluviul Dunărea?",
+      "Cum mă prezint în fața Comisiei de Cetățenie?"
+    ]
+  };
+
+  const getInitialWelcomeMsg = () => {
+    if (appLang === 'en') {
+      return `Hello! I am your **Free AI Romanian Citizenship Tutor** 🤖\n\nI am built to help you master the **469 Official ANC Questions**, Romanian Constitution (Articles 1-148), History, Geography, and Grammar.\n\n💡 *Ask me anything about Romania, or click one of the quick topics below!*`;
+    } else if (appLang === 'ro') {
+      return `Bună ziua! Sunt **Asistentul tău AI pentru Cetățenia Română** 🤖\n\nSunt pregătit să te ajut cu cele **469 de Întrebări Oficiale ANC**, Constituția României, Istoria, Geografia și Gramatica.\n\n💡 *Adresează-mi orice întrebare despre România sau alege o temă rapidă de mai jos!*`;
+    }
+    return `مرحباً بك! أنا **المساعد الذكي المجاني للجنسية الرومانية** 🤖\n\nأنا هنا لمساعدتك في الإجابة على **أسئلة لجنة الجنسية 469 ANC**، مواد الدستور الروماني (1-148)، التاريخ، الجغرافيا، وقواعد اللغة.\n\n💡 *اكتب أي سؤال باللغة العربية أو الرومانية، أو اختر أحدا المواضيع السريعة أدناه!*`;
+  };
+
+  const [messages, setMessages] = useState([
+    {
+      sender: 'bot',
+      text: getInitialWelcomeMsg(),
+      source: 'ai_tutor',
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    }
+  ]);
+
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      // Auto initialize WebLLM engine in background for installed PWA users
-      initWebLLMEngine('Llama-3.2-1B-Instruct-q4f16_1-MLC').then((engine) => {
-        if (engine) setEngineLoaded(true);
-      });
-    }
-
-    setMessages([
-      {
-        id: 1,
-        sender: 'ai',
-        text: appLang === 'ar' 
-          ? 'مرحباً بك! أنا مساعدك الذكي المدمج لاختبار الجنسية الرومانية 🇷🇴. أعمل تلقائياً فور تثبيت التطبيق وبدون الحاجة لخادم أو إعدادات خافية ⚡ أبحث في منهج الـ 469 سؤالاً، القواعد، والإنترنت 🌐!'
-          : appLang === 'en'
-          ? 'Welcome! I am your Autonomous AI Romanian Citizenship Tutor 🇷🇴. Works out-of-the-box for installed app users with 0 setup required ⚡ Powered by ANC curriculum & Live Search 🌐!'
-          : 'Bine ai venit! Sunt asistentul tău AI pentru cetățenia română 🇷🇴. Rulează automat fără nicio configurare!',
-        time: 'Just now'
-      }
-    ]);
-
-    const initialPrompt = searchParams.get('q');
-    if (initialPrompt) {
-      setInputQuery(initialPrompt);
-      handleSend(initialPrompt);
-    }
-  }, [appLang, searchParams]);
-
-  const quickPrompts = appLang === 'ar' ? [
-    'ما هو شكل الحكومة في رومانيا؟',
-    'تلخيص أهم انجازات ستيفان تشيل ماري',
-    'نصائح لاجتياز المقابلة الشفهية مع اللجنة',
-    'معلومات عن نهر الدانوب والجغرافيا'
-  ] : appLang === 'en' ? [
-    'What is the form of government of Romania?',
-    'Summarize Stephen the Great accomplishments',
-    'Oral citizenship interview tips',
-    'Information about the Danube river & geography'
-  ] : [
-    'Care este forma de guvernământ a României?',
-    'Rezumat realizări Ștefan cel Mare',
-    'Sfaturi pentru interviul oral de cetățenie',
-    'Informații despre fluviul Dunărea'
-  ];
+    scrollToBottom();
+  }, [messages, loading]);
 
   const handleSend = async (textToSend) => {
-    const q = textToSend || inputQuery;
-    if (!q.trim()) return;
+    const query = (textToSend || input).trim();
+    if (!query || loading) return;
 
-    const userMsg = { 
-      id: Date.now(), 
-      sender: 'user', 
-      text: q, 
-      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) 
-    };
-    setMessages(prev => [...prev, userMsg]);
-    setInputQuery('');
+    const userTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+    setMessages(prev => [...prev, {
+      sender: 'user',
+      text: query,
+      time: userTime
+    }]);
+
+    if (!textToSend) setInput('');
     setLoading(true);
 
-    const result = await queryWebLlama(q, 'Llama-3.2-1B-Instruct-q4f16_1-MLC', '', appLang);
+    try {
+      const res = await queryAITutor(query, appLang);
+      const botTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-    const aiMsg = {
-      id: Date.now() + 1,
-      sender: 'ai',
-      text: result.text,
-      source: result.source,
-      image: result.image,
-      wiki_url: result.wiki_url,
-      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-    };
+      setMessages(prev => [...prev, {
+        sender: 'bot',
+        text: res.text,
+        source: res.source,
+        image: res.image,
+        wiki_url: res.wiki_url,
+        time: botTime
+      }]);
+    } catch (err) {
+      console.error('AI Query Error:', err);
+      setMessages(prev => [...prev, {
+        sender: 'bot',
+        text: appLang === 'ar' ? 'حدث خطأ أثناء معالجة السؤال. يرجى المحاولة مرة أخرى.' : 'Error processing query. Please try again.',
+        source: 'ai_tutor',
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      }]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    setMessages(prev => [...prev, aiMsg]);
-    setLoading(false);
+  const speakAudio = (text, idx) => {
+    if (typeof window === 'undefined' || !window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    if (playingIdx === idx) {
+      setPlayingIdx(null);
+      return;
+    }
+    const cleanText = text.replace(/[*_#`[\]()]/g, ' ');
+    const utterance = new SpeechSynthesisUtterance(cleanText);
+    utterance.lang = 'ro-RO';
+    utterance.rate = 0.85;
+    utterance.onend = () => setPlayingIdx(null);
+    utterance.onerror = () => setPlayingIdx(null);
+    setPlayingIdx(idx);
+    window.speechSynthesis.speak(utterance);
+  };
+
+  const copyToClipboard = (text, idx) => {
+    if (typeof navigator === 'undefined' || !navigator.clipboard) return;
+    navigator.clipboard.writeText(text);
+    setCopiedIdx(idx);
+    setTimeout(() => setCopiedIdx(null), 2000);
   };
 
   const getSourceBadge = (source) => {
     switch (source) {
-      case 'webllm':
-        return (
-          <span className="inline-flex items-center gap-1 text-emerald-400 font-bold">
-            <Zap className="w-3.5 h-3.5 fill-current shrink-0" />
-            <span>WebLLM In-Browser AI (Offline WebGPU ⚡)</span>
-          </span>
-        );
-      case 'online_search':
-        return (
-          <span className="inline-flex items-center gap-1 text-blue-400 font-bold">
-            <Globe className="w-3.5 h-3.5 shrink-0" />
-            <span>Live Wikipedia Search 🌐</span>
-          </span>
-        );
       case 'dataset_question':
         return (
           <span className="inline-flex items-center gap-1 text-emerald-400 font-bold">
@@ -134,14 +163,28 @@ function AIContent() {
         return (
           <span className="inline-flex items-center gap-1 text-amber-400 font-bold">
             <GraduationCap className="w-3.5 h-3.5 shrink-0" />
-            <span>Romanian Grammar 📖</span>
+            <span>Romanian Grammar Guide 📖</span>
+          </span>
+        );
+      case 'dataset_conversation':
+        return (
+          <span className="inline-flex items-center gap-1 text-rose-400 font-bold">
+            <MessageSquare className="w-3.5 h-3.5 shrink-0" />
+            <span>Interview Dialogue 🗣️</span>
+          </span>
+        );
+      case 'online_search':
+        return (
+          <span className="inline-flex items-center gap-1 text-blue-400 font-bold">
+            <Globe className="w-3.5 h-3.5 shrink-0" />
+            <span>Live Knowledge Search 🌐</span>
           </span>
         );
       default:
         return (
           <span className="inline-flex items-center gap-1 text-rose-400 font-bold">
             <Bot className="w-3.5 h-3.5 shrink-0" />
-            <span>AI Tutor 🤖</span>
+            <span>AI Citizenship Assistant 🤖</span>
           </span>
         );
     }
@@ -151,44 +194,42 @@ function AIContent() {
     <div className="min-h-screen pb-20 bg-theme-main text-theme-main flex flex-col font-cairo">
       <Navbar />
 
-      <main className={`flex-1 w-full max-w-4xl mx-auto px-4 py-6 space-y-4 flex flex-col h-[82vh] ${
+      <main className={`flex-1 w-full max-w-4xl mx-auto px-4 py-6 space-y-4 flex flex-col h-[84vh] ${
         isRtl ? 'lg:mr-72' : 'lg:ml-72'
       } ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
-        {/* Top Header */}
-        <div className={`flex items-center justify-between p-3.5 rounded-2xl border shrink-0 ${isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-white border-slate-200 shadow-sm'}`}>
-          <div className="text-center w-full flex items-center justify-between px-2">
-            <div className="flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-amber-400 animate-pulse shrink-0" />
-              <div>
-                <h1 className="text-base font-black text-right">
-                  {strings.aiCardTitle || (appLang === 'ar' ? 'المساعد الذكي للجنسية الرومانية' : 'AI Citizenship Tutor')}
-                </h1>
-                <p className="text-[11px] text-emerald-400 font-bold flex items-center gap-1">
-                  <Globe className="w-3 h-3 shrink-0" />
-                  <span>يعمل أوتوماتيكياً لمستخدمي التطبيق المثبت أونلاين وأوفلاين ⚡</span>
-                </p>
-              </div>
+        
+        {/* Header Bar */}
+        <div className={`flex items-center justify-between p-4 rounded-2xl border shrink-0 ${
+          isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200 shadow-sm'
+        }`}>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-rose-600 via-amber-500 to-rose-600 text-white flex items-center justify-center border border-amber-300 shadow-md animate-pulse-glow shrink-0">
+              <Bot className="w-6 h-6" />
             </div>
-
-            <div className="flex items-center gap-2">
-              {engineLoaded ? (
-                <span className="px-2.5 py-1 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-black flex items-center gap-1">
-                  <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
-                  <span>WebLLM Active</span>
-                </span>
-              ) : (
-                <span className="px-2.5 py-1 rounded-xl bg-blue-500/20 text-blue-400 border border-blue-500/30 text-[10px] font-black flex items-center gap-1">
-                  <Globe className="w-3.5 h-3.5 shrink-0" />
-                  <span>Online / Offline Hybrid</span>
-                </span>
-              )}
+            <div>
+              <h1 className="text-base font-black leading-tight">
+                {appLang === 'ar' ? 'المساعد الذكي للجنسية الرومانية 🤖' : appLang === 'en' ? 'Smart AI Citizenship Tutor 🤖' : 'Asistent AI Cetățenie Română 🤖'}
+              </h1>
+              <p className="text-[11px] text-emerald-400 font-bold flex items-center gap-1">
+                <Zap className="w-3 h-3 fill-current shrink-0" />
+                <span>100% Free & Unlimited Access • Works Online & Offline ⚡</span>
+              </p>
             </div>
           </div>
+
+          <button
+            onClick={() => setMessages([{ sender: 'bot', text: getInitialWelcomeMsg(), source: 'ai_tutor', time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }])}
+            className="p-2 rounded-xl border border-slate-700 text-slate-400 hover:text-rose-500 hover:bg-slate-800 transition-colors flex items-center gap-1 text-xs font-bold shrink-0"
+            title="Reset Chat"
+          >
+            <RotateCcw className="w-4 h-4" />
+            <span className="hidden sm:inline">محادثة جديدة</span>
+          </button>
         </div>
 
         {/* Quick Question Chips */}
         <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar shrink-0">
-          {samplePrompts.map((p, idx) => (
+          {(samplePrompts[appLang] || samplePrompts.ar).map((p, idx) => (
             <button
               key={idx}
               onClick={() => handleSend(p)}
@@ -203,84 +244,133 @@ function AIContent() {
           ))}
         </div>
 
-        {/* Chat Messages Log */}
-        <div className={`flex-1 rounded-2xl border p-4 overflow-y-auto space-y-4 ${isDark ? 'bg-slate-800/60 border-slate-700/60' : 'bg-white border-slate-200 shadow-sm'}`}>
-          {messages.map((msg) => (
+        {/* Chat Messages Feed Area */}
+        <div className={`flex-1 overflow-y-auto p-4 rounded-3xl border space-y-4 shadow-inner ${
+          isDark ? 'bg-slate-900/80 border-slate-800' : 'bg-slate-50 border-slate-200'
+        }`}>
+          {messages.map((msg, idx) => (
             <div
-              key={msg.id}
-              className={`flex flex-col ${msg.sender === 'user' ? 'items-end' : 'items-start'}`}
+              key={idx}
+              className={`flex flex-col ${msg.sender === 'user' ? 'items-end' : 'items-start'} animate-fade-in-up`}
             >
-              <div
-                className={`max-w-[90%] rounded-2xl p-4 text-xs sm:text-sm leading-relaxed ${
+              <div className={`flex items-start gap-2.5 max-w-[90%] sm:max-w-[82%] ${
+                msg.sender === 'user' ? 'flex-row-reverse' : 'flex-row'
+              }`}>
+                <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 border text-xs font-black shadow ${
                   msg.sender === 'user'
-                    ? 'bg-rose-600 text-white rounded-br-none font-bold'
-                    : isDark ? 'bg-slate-900/90 text-slate-100 border border-slate-700/80 rounded-bl-none space-y-2 font-bold' : 'bg-slate-100 text-slate-900 border border-slate-200 rounded-bl-none space-y-2 font-bold'
-                }`}
-              >
-                {msg.sender === 'ai' && (
-                  <div className={`text-[10px] mb-1 border-b pb-1 ${isDark ? 'border-slate-800' : 'border-slate-200'}`}>
-                    {getSourceBadge(msg.source)}
-                  </div>
-                )}
+                    ? 'bg-rose-600 text-white border-rose-500'
+                    : 'bg-gradient-to-tr from-amber-500 to-rose-600 text-white border-amber-400'
+                }`}>
+                  {msg.sender === 'user' ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
+                </div>
 
-                {/* Optional Image thumbnail for live online search or question */}
-                {msg.image && (
-                  <div className="relative w-full h-44 rounded-xl overflow-hidden my-2 border border-slate-700/60">
-                    <Image
-                      src={msg.image}
-                      alt="AI Search Result Image"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                )}
+                <div className={`rounded-2xl p-4 border space-y-3 shadow-md ${
+                  msg.sender === 'user'
+                    ? 'bg-rose-600 text-white border-rose-500'
+                    : isDark ? 'bg-slate-800 border-slate-700/80 text-slate-100' : 'bg-white border-slate-200 text-slate-900'
+                }`}>
+                  {/* Source Badge if Bot */}
+                  {msg.sender === 'bot' && (
+                    <div className="flex items-center justify-between text-[11px] border-b border-slate-700/50 pb-2">
+                      {getSourceBadge(msg.source)}
+                      <span className="text-slate-400 font-mono text-[10px]">{msg.time}</span>
+                    </div>
+                  )}
 
-                <div className="whitespace-pre-wrap">{msg.text}</div>
-
-                {msg.wiki_url && (
-                  <div className="pt-2">
-                    <a
-                      href={msg.wiki_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center space-x-1 space-x-reverse text-xs text-blue-400 hover:underline font-bold"
-                    >
-                      <ExternalLink className="w-3.5 h-3.5" />
-                      <span>قراءة المقال الكامل على Wikipedia ↗</span>
-                    </a>
+                  {/* Message Content */}
+                  <div className="text-xs sm:text-sm font-semibold leading-relaxed whitespace-pre-line dir-auto">
+                    {msg.text}
                   </div>
-                )}
+
+                  {/* Optional Image Thumbnail */}
+                  {msg.image && (
+                    <div className="relative w-full h-44 rounded-xl overflow-hidden border border-slate-700">
+                      <img src={msg.image} alt="Reference thumbnail" className="w-full h-full object-cover" />
+                    </div>
+                  )}
+
+                  {/* Action Bar for Bot Messages */}
+                  {msg.sender === 'bot' && (
+                    <div className="flex items-center justify-between border-t border-slate-700/50 pt-2 text-xs">
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => speakAudio(msg.text, idx)}
+                          className={`px-2.5 py-1 rounded-lg border flex items-center gap-1 text-[11px] font-bold transition-all ${
+                            playingIdx === idx 
+                              ? 'bg-amber-500 text-slate-950 border-amber-400 animate-pulse' 
+                              : isDark ? 'bg-slate-900 border-slate-700 hover:border-amber-400 text-amber-400' : 'bg-slate-100 border-slate-200 text-amber-600'
+                          }`}
+                        >
+                          <Volume2 className="w-3.5 h-3.5 shrink-0" />
+                          <span>{playingIdx === idx ? 'جاري الاستماع...' : 'استماع 🔊'}</span>
+                        </button>
+
+                        <button
+                          onClick={() => copyToClipboard(msg.text, idx)}
+                          className={`px-2.5 py-1 rounded-lg border flex items-center gap-1 text-[11px] font-bold transition-all ${
+                            copiedIdx === idx
+                              ? 'bg-emerald-600 text-white border-emerald-500'
+                              : isDark ? 'bg-slate-900 border-slate-700 hover:border-slate-500 text-slate-300' : 'bg-slate-100 border-slate-200 text-slate-700'
+                          }`}
+                        >
+                          {copiedIdx === idx ? <Check className="w-3.5 h-3.5 shrink-0 text-white" /> : <Copy className="w-3.5 h-3.5 shrink-0" />}
+                          <span>{copiedIdx === idx ? 'تم النسخ!' : 'نسخ النص'}</span>
+                        </button>
+                      </div>
+
+                      {msg.wiki_url && (
+                        <a
+                          href={msg.wiki_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[11px] text-blue-400 hover:underline flex items-center gap-1 font-bold"
+                        >
+                          <span>Wikipedia</span>
+                          <ExternalLink className="w-3 h-3 shrink-0" />
+                        </a>
+                      )}
+                    </div>
+                  )}
+                </div>
               </div>
-              <span className="text-[10px] text-theme-sub mt-1 px-1">{msg.time}</span>
             </div>
           ))}
 
           {loading && (
-            <div className={`flex items-center space-x-2 space-x-reverse p-3.5 rounded-2xl border max-w-xs text-xs text-theme-sub ${isDark ? 'bg-slate-900/90 border-slate-700' : 'bg-slate-100 border-slate-200'}`}>
-              <Loader2 className="w-4 h-4 animate-spin text-amber-400" />
-              <span className="font-bold">جاري المعالجة والبحث المباشر... 🌐</span>
+            <div className="flex items-center gap-3 p-3.5 rounded-2xl border max-w-xs bg-slate-800/90 border-slate-700 text-slate-300 animate-pulse">
+              <Bot className="w-5 h-5 text-amber-400 animate-spin shrink-0" />
+              <span className="text-xs font-bold">جاري البحث والمعالجة الذكية... ⚡</span>
             </div>
           )}
+          <div ref={messagesEndRef} />
         </div>
 
         {/* Input Bar */}
-        <div className={`flex items-center space-x-2 space-x-reverse p-2 rounded-2xl border shrink-0 ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200 shadow-sm'}`}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSend();
+          }}
+          className={`flex items-center gap-2 p-2 rounded-2xl border shrink-0 ${
+            isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200 shadow-lg'
+          }`}
+        >
           <input
             type="text"
-            value={inputQuery}
-            onChange={(e) => setInputQuery(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-            placeholder={appLang === 'ar' ? 'اسأل الذكاء الاصطناعي عن أي سؤال في منهج الجنسية أو التاريخ...' : appLang === 'en' ? 'Ask AI Tutor any question about curriculum...' : 'Întreabă AI despre programa de cetățenie...'}
-            className={`flex-1 border text-xs sm:text-sm rounded-xl px-4 py-3 focus:outline-none focus:border-rose-500 font-bold ${isDark ? 'bg-slate-900 border-slate-700/80 text-white placeholder-slate-500' : 'bg-slate-100 border-slate-200 text-slate-900 placeholder-slate-400'}`}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder={appLang === 'ar' ? 'اسأل المساعد الذكي أي سؤال عن الجنسية الرومانية...' : appLang === 'en' ? 'Ask any question about Romanian Citizenship...' : 'Adresează o întrebare despre cetățenia română...'}
+            className="flex-1 px-4 py-3 rounded-xl bg-transparent outline-none text-xs sm:text-sm font-semibold placeholder:text-slate-500"
           />
+
           <button
-            onClick={() => handleSend()}
-            disabled={!inputQuery.trim() || loading}
-            className="p-3 bg-rose-600 hover:bg-rose-500 disabled:opacity-40 text-white font-bold rounded-xl transition-all shadow-md shadow-rose-600/30"
+            type="submit"
+            disabled={!input.trim() || loading}
+            className="p-3 bg-gradient-to-r from-rose-600 via-rose-700 to-amber-600 hover:opacity-95 disabled:opacity-50 text-white rounded-xl shadow-lg transition-all shrink-0 flex items-center justify-center"
           >
-            <Send className="w-5 h-5 rtl:rotate-180" />
+            <Send className="w-5 h-5" />
           </button>
-        </div>
+        </form>
       </main>
     </div>
   );
@@ -288,7 +378,7 @@ function AIContent() {
 
 export default function AIPage() {
   return (
-    <Suspense fallback={<div className="p-8 text-center text-slate-400 font-bold">Loading AI Assistant...</div>}>
+    <Suspense fallback={<div className="p-8 text-center text-slate-400 font-bold">Loading AI Tutor...</div>}>
       <AIContent />
     </Suspense>
   );
