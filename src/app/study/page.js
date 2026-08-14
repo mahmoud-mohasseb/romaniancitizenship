@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import questions from '../../data/questions_ar.json';
 import Navbar from '../../components/Navbar';
+import ImageModal from '../../components/ImageModal';
 import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { CATEGORIES_LIST, getCategoryMeta } from '../../utils/categories';
@@ -94,7 +95,7 @@ function StudyContent() {
   };
 
   return (
-    <div className="min-h-screen pb-28 sm:pb-24 bg-theme-main text-theme-main flex flex-col">
+    <div className="min-h-screen pb-28 sm:pb-24 bg-theme-main text-theme-main flex flex-col font-cairo">
       <Navbar />
 
       <main className={`flex-1 w-full max-w-4xl mx-auto px-4 py-6 space-y-4 animate-fade-in-up ${
@@ -151,11 +152,11 @@ function StudyContent() {
 
         {/* Question & Answer Main Flashcard */}
         <div className={`rounded-2xl border shadow-xl p-5 space-y-4 animate-scale-in ${
-          isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'
+          isDark ? 'bg-slate-800/90 border-slate-700/80 text-white' : 'bg-white border-slate-200 text-slate-900'
         }`}>
           {/* Question Image Preview with Fallback */}
           {currentQ.image && (
-            <div className="relative w-full h-56 sm:h-72 rounded-2xl overflow-hidden border-2 border-slate-700/60 bg-slate-900 group cursor-pointer shadow-lg" onClick={() => setModalVisible(true)}>
+            <div className="relative w-full h-56 sm:h-72 rounded-2xl overflow-hidden border-2 border-slate-700/60 bg-slate-950 group cursor-pointer shadow-lg" onClick={() => setModalVisible(true)}>
               <img 
                 src={currentQ.image} 
                 alt={currentQ.question}
@@ -178,7 +179,7 @@ function StudyContent() {
           <div className="space-y-2 border-b border-slate-700/60 pb-4">
             <span className="text-[10px] font-bold text-rose-500">🇷🇴 Limba Română:</span>
             <h2 className="text-lg sm:text-xl font-extrabold leading-snug">{currentQ.question}</h2>
-            <p className="text-xs sm:text-sm text-theme-sub pt-1 leading-relaxed">
+            <p className="text-xs sm:text-sm text-theme-sub pt-1 leading-relaxed font-bold">
               🇸🇦 {getQuestionText(currentQ, appLang)}
             </p>
           </div>
@@ -208,7 +209,7 @@ function StudyContent() {
                   </button>
                 </div>
                 <p className="text-sm sm:text-base font-extrabold text-emerald-400 leading-snug">{currentQ.answer}</p>
-                <p className="text-xs sm:text-sm text-theme-sub pt-1 leading-relaxed">
+                <p className="text-xs sm:text-sm text-theme-sub pt-1 leading-relaxed font-bold">
                   🇸🇦 {getAnswerText(currentQ, appLang)}
                 </p>
               </div>
@@ -240,33 +241,21 @@ function StudyContent() {
         </div>
       </main>
 
-      {/* Image Full Modal */}
-      {modalVisible && currentQ.image && (
-        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 animate-scale-in" onClick={() => setModalVisible(false)}>
-          <div className="relative max-w-3xl max-h-[90vh] w-full h-full flex flex-col items-center justify-center">
-            <button 
-              onClick={() => setModalVisible(false)}
-              className="absolute top-4 right-4 p-2 bg-white/20 hover:bg-white/40 text-white rounded-full border border-white/30"
-            >
-              <X className="w-6 h-6" />
-            </button>
-            <img 
-              src={currentQ.image} 
-              alt={currentQ.question} 
-              onError={(e) => { e.currentTarget.src = '/icon.png'; }}
-              className="max-w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl bg-slate-950 p-2 border border-slate-700/60"
-            />
-            <p className="text-white text-xs font-bold mt-4 text-center px-4">{currentQ.question}</p>
-          </div>
-        </div>
-      )}
+      {/* Universal Fullscreen Image Review Modal */}
+      <ImageModal 
+        isOpen={modalVisible}
+        onClose={() => setModalVisible(false)}
+        imageUrl={currentQ?.image}
+        title={currentQ?.question}
+        caption={getQuestionText(currentQ, appLang)}
+      />
     </div>
   );
 }
 
 export default function StudyPage() {
   return (
-    <Suspense fallback={<div className="p-8 text-center text-slate-400">Loading Study Page...</div>}>
+    <Suspense fallback={<div className="p-8 text-center text-slate-400 font-bold">Loading Study Page...</div>}>
       <StudyContent />
     </Suspense>
   );

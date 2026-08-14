@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import questions from '../../data/questions_ar.json';
 import Navbar from '../../components/Navbar';
+import ImageModal from '../../components/ImageModal';
 import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { getCategoryMeta, CATEGORIES_LIST } from '../../utils/categories';
@@ -143,7 +144,7 @@ function QuizContent() {
     const categoryMeta = getCategoryMeta(selectedCategory);
 
     return (
-      <div className="min-h-screen pb-28 sm:pb-24 bg-theme-main text-theme-main flex flex-col">
+      <div className="min-h-screen pb-28 sm:pb-24 bg-theme-main text-theme-main flex flex-col font-cairo">
         <Navbar />
 
         <main className={`flex-1 max-w-lg mx-auto w-full px-4 py-8 space-y-6 animate-scale-in ${
@@ -158,7 +159,7 @@ function QuizContent() {
               <h2 className="text-2xl font-extrabold">
                 {isPassed ? strings.passedExam : strings.failedExam}
               </h2>
-              <p className="text-xs text-theme-sub">
+              <p className="text-xs text-theme-sub font-bold">
                 {quizMode === 'exam' ? strings.examQuizTitle : strings.quickQuizTitle} - {appLang === 'ar' ? categoryMeta.name_ar : categoryMeta.name_en}
               </p>
             </div>
@@ -167,8 +168,8 @@ function QuizContent() {
               <p className={`text-4xl font-extrabold ${isPassed ? 'text-emerald-400' : 'text-rose-400'}`}>
                 {score} / {totalQuestionsLimit}
               </p>
-              <p className="text-xs font-semibold text-theme-sub">{strings.score}: {percentage}%</p>
-              <p className={`text-xs font-bold ${isPassed ? 'text-emerald-400' : 'text-rose-400'}`}>
+              <p className="text-xs font-bold text-theme-sub">{strings.score}: {percentage}%</p>
+              <p className={`text-xs font-extrabold ${isPassed ? 'text-emerald-400' : 'text-rose-400'}`}>
                 {isPassed ? (appLang === 'ar' ? '✅ ناجح (مستوف لشروط المقابلة الرسمية)' : appLang === 'en' ? '✅ Passed Official Standard' : '✅ Promovat Standard Oficial') : (appLang === 'ar' ? '❌ غير ناجح (الحد الأدنى 75%)' : appLang === 'en' ? '❌ Below Pass Mark (75% Minimum)' : '❌ Nepromovat (Minim 75%)')}
               </p>
             </div>
@@ -176,7 +177,7 @@ function QuizContent() {
             {wrongAnswers.length > 0 && (
               <button
                 onClick={() => setShowReviewModal(true)}
-                className={`w-full py-3 text-amber-500 font-bold rounded-xl border border-amber-500/40 flex items-center justify-center space-x-2 space-x-reverse transition-colors text-xs ${isDark ? 'bg-slate-900 hover:bg-slate-800' : 'bg-amber-50 hover:bg-amber-100'}`}
+                className={`w-full py-3 text-amber-500 font-extrabold rounded-xl border border-amber-500/40 flex items-center justify-center space-x-2 space-x-reverse transition-colors text-xs ${isDark ? 'bg-slate-900 hover:bg-slate-800' : 'bg-amber-50 hover:bg-amber-100'}`}
               >
                 <AlertCircle className="w-4 h-4" />
                 <span>{strings.reviewWrong} ({wrongAnswers.length})</span>
@@ -186,7 +187,7 @@ function QuizContent() {
             <div className="space-y-2">
               <button
                 onClick={resetQuiz}
-                className="w-full py-3 bg-rose-600 hover:bg-rose-500 text-white font-black rounded-xl text-xs sm:text-sm shadow-md shadow-rose-600/30 transition-all flex items-center justify-center space-x-2 space-x-reverse"
+                className="w-full py-3.5 bg-rose-600 hover:bg-rose-500 text-white font-black rounded-xl text-xs sm:text-sm shadow-md shadow-rose-600/30 transition-all flex items-center justify-center space-x-2 space-x-reverse"
               >
                 <RotateCcw className="w-4 h-4" />
                 <span>{strings.retakeQuiz}</span>
@@ -194,7 +195,7 @@ function QuizContent() {
 
               <Link
                 href="/"
-                className={`block w-full py-3 font-bold rounded-xl border text-xs sm:text-sm transition-all text-center ${isDark ? 'bg-slate-900 border-slate-700 hover:bg-slate-800' : 'bg-slate-100 border-slate-200 hover:bg-slate-200'}`}
+                className={`block w-full py-3.5 font-bold rounded-xl border text-xs sm:text-sm transition-all text-center ${isDark ? 'bg-slate-900 border-slate-700 hover:bg-slate-800 text-white' : 'bg-slate-100 border-slate-200 hover:bg-slate-200 text-slate-900'}`}
               >
                 {strings.backHome}
               </Link>
@@ -210,7 +211,7 @@ function QuizContent() {
   const categoryMeta = getCategoryMeta(currentQuestion.category);
 
   return (
-    <div className="min-h-screen pb-28 sm:pb-24 bg-theme-main text-theme-main flex flex-col">
+    <div className="min-h-screen pb-28 sm:pb-24 bg-theme-main text-theme-main flex flex-col font-cairo">
       <Navbar />
 
       <main className={`flex-1 max-w-4xl mx-auto w-full px-4 py-6 space-y-4 animate-fade-in-up ${
@@ -223,66 +224,67 @@ function QuizContent() {
           </Link>
 
           <div className="text-center">
-            <p className="text-sm font-bold">
+            <p className="text-sm font-extrabold">
               {strings.question} {questionCount} {strings.of} {totalQuestionsLimit}
             </p>
-            <p className="text-[11px] font-semibold" style={{ color: categoryMeta.color }}>
+            <p className="text-[11px] font-bold" style={{ color: categoryMeta.color }}>
               {appLang === 'ar' ? categoryMeta.name_ar : appLang === 'en' ? categoryMeta.name_en : categoryMeta.name_ro}
             </p>
           </div>
 
           {quizMode === 'exam' ? (
-            <div className="flex items-center space-x-1.5 space-x-reverse text-xs font-mono font-bold text-rose-500 bg-rose-500/10 border border-rose-500/20 px-2.5 py-1 rounded-xl">
+            <div className="flex items-center space-x-1.5 space-x-reverse text-xs font-mono font-black text-rose-500 bg-rose-500/10 border border-rose-500/20 px-2.5 py-1 rounded-xl">
               <Timer className="w-4 h-4 animate-pulse" />
               <span>{formatTimer(timeLeft)}</span>
             </div>
           ) : (
-            <div className="text-xs font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-xl">
+            <div className="text-xs font-black text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-xl">
               {strings.score}: {score}
             </div>
           )}
         </div>
 
         {/* Progress Bar */}
-        <div className="w-full bg-slate-700/30 h-2 rounded-full overflow-hidden">
+        <div className="w-full bg-slate-700/30 h-2.5 rounded-full overflow-hidden">
           <div 
-            className="bg-rose-500 h-full transition-all duration-300 rounded-full"
+            className="bg-gradient-to-r from-rose-600 to-amber-500 h-full transition-all duration-300 rounded-full animate-shimmer"
             style={{ width: `${(questionCount / totalQuestionsLimit) * 100}%` }}
           />
         </div>
 
         {/* Question Flashcard */}
-        <div className={`p-5 rounded-2xl border space-y-4 shadow-xl animate-scale-in ${isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'}`}>
+        <div className={`p-5 rounded-2xl border space-y-4 shadow-xl animate-scale-in ${isDark ? 'bg-slate-800/90 border-slate-700/80 text-white' : 'bg-white border-slate-200 text-slate-900'}`}>
           {currentQuestion.image && (
-            <div className="relative w-full h-44 sm:h-56 rounded-xl overflow-hidden border border-slate-700/60 group cursor-pointer" onClick={() => setImageModalVisible(true)}>
+            <div className="relative w-full h-48 sm:h-64 rounded-2xl overflow-hidden border-2 border-slate-700/60 bg-slate-950 group cursor-pointer shadow-md" onClick={() => setImageModalVisible(true)}>
               <img 
                 src={currentQuestion.image} 
                 alt={currentQuestion.question}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                onError={(e) => { e.currentTarget.src = '/icon.png'; }}
+                className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
               />
               <button 
                 onClick={() => setImageModalVisible(true)}
-                className="absolute bottom-2 right-2 p-1.5 bg-black/60 backdrop-blur-md text-white rounded-lg text-[10px] font-bold flex items-center space-x-1 space-x-reverse"
+                className="absolute bottom-2.5 right-2.5 p-2 bg-black/70 backdrop-blur-md text-white rounded-xl text-xs font-bold flex items-center space-x-1.5 space-x-reverse border border-white/20 shadow-md"
               >
                 <Maximize2 className="w-3.5 h-3.5" />
-                <span>عرض 🔍</span>
+                <span>تكبير الصورة 🔍</span>
               </button>
             </div>
           )}
 
-          <div className="space-y-1">
+          <div className="space-y-1 border-b border-slate-700/60 pb-3">
             <span className="text-[10px] font-bold text-rose-500">🇷🇴 Limba Română:</span>
-            <h2 className="text-base sm:text-lg font-extrabold leading-snug">{currentQuestion.question}</h2>
-            <p className="text-xs text-theme-sub">🇸🇦 {getQuestionText(currentQuestion, appLang)}</p>
+            <h2 className="text-base sm:text-lg font-black leading-snug">{currentQuestion.question}</h2>
+            <p className="text-xs text-theme-sub font-bold">🇸🇦 {getQuestionText(currentQuestion, appLang)}</p>
           </div>
 
           {/* Options Grid */}
-          <div className="space-y-2.5 pt-2">
-            <p className="text-xs font-semibold text-theme-sub">{strings.chooseCorrectAns}</p>
+          <div className="space-y-2.5 pt-1">
+            <p className="text-xs font-bold text-theme-sub">{strings.chooseCorrectAns}</p>
             {options.map((option, idx) => {
               let btnStyle = isDark 
                 ? 'bg-slate-900/90 border-slate-700/80 hover:border-rose-500 text-slate-100' 
-                : 'bg-slate-100 border-slate-200 hover:border-rose-500 text-slate-900';
+                : 'bg-slate-50 border-slate-200 hover:border-rose-500 text-slate-900';
 
               if (selectedOption !== null) {
                 if (option === currentQuestion.answer) {
@@ -313,13 +315,22 @@ function QuizContent() {
           </div>
         </div>
       </main>
+
+      {/* Universal Fullscreen Image Review Modal */}
+      <ImageModal 
+        isOpen={imageModalVisible}
+        onClose={() => setImageModalVisible(false)}
+        imageUrl={currentQuestion?.image}
+        title={currentQuestion?.question}
+        caption={getQuestionText(currentQuestion, appLang)}
+      />
     </div>
   );
 }
 
 export default function QuizPage() {
   return (
-    <Suspense fallback={<div className="p-8 text-center text-slate-400">Loading Quiz Page...</div>}>
+    <Suspense fallback={<div className="p-8 text-center text-slate-400 font-bold">Loading Quiz Page...</div>}>
       <QuizContent />
     </Suspense>
   );
