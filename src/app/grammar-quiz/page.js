@@ -18,7 +18,8 @@ import {
   Layers, 
   Shuffle,
   PartyPopper,
-  Star
+  Star,
+  Zap
 } from 'lucide-react';
 import grammarQuizData from '../../data/romanian_grammar_quiz.json';
 import Navbar from '../../components/Navbar';
@@ -41,9 +42,10 @@ function GrammarQuizContent() {
   const [isAnswered, setIsAnswered] = useState(false);
   const [quizFinished, setQuizFinished] = useState(false);
   const [isNewHighScore, setIsNewHighScore] = useState(false);
+  const [showXpPopup, setShowXpPopup] = useState(false);
 
   const techniques = [
-    { id: 'all', label_ar: 'جميع الأنواع (All Modes 🎮)', label_en: 'All Modes 🎮', label_ro: 'Toate Modurile 🎮' },
+    { id: 'all', label_ar: `🌐 جميع القواعد (${grammarQuizData.length} درساً)`, label_en: `🌐 All ${grammarQuizData.length} Lessons`, label_ro: `🌐 Toate ${grammarQuizData.length} Lecțiile` },
     { id: 'multiple_choice', label_ar: '🎯 اختيارات متعددة', label_en: '🎯 Multiple Choice', label_ro: '🎯 Opțiuni Multiple' },
     { id: 'fill_in_blank', label_ar: '✍️ إكمال الفراغ', label_en: '✍️ Fill in the Blank', label_ro: '✍️ Completează Spațiul' },
     { id: 'word_order', label_ar: '🧩 ترتيب الكلمات', label_en: '🧩 Word Reordering', label_ro: '🧩 Ordonare Cuvinte' },
@@ -58,13 +60,47 @@ function GrammarQuizContent() {
   useEffect(() => {
     const saved = localStorage.getItem('grammar_quiz_best');
     if (saved) setBestScore(parseInt(saved, 10));
-  }, []);
+    loadQuestion(0);
+  }, [activeTechnique]);
 
-  useEffect(() => {
-    if (currentQuestion && currentQuestion.options) {
-      setShuffledOptions(shuffleArray(currentQuestion.options));
+  const loadQuestion = (index) => {
+    if (index >= filteredQuestions.length) {
+      finishGame(score);
+      return;
     }
-  }, [currentIndex, activeTechnique]);
+    const q = filteredQuestions[index];
+    if (q && q.options) {
+      setShuffledOptions(shuffleArray(q.options));
+    }
+    setSelectedOption(null);
+    setIsAnswered(false);
+  };
+
+  const finishGame = (finalScore) => {
+    setQuizFinished(true);
+    const saved = parseInt(localStorage.getItem('grammar_quiz_best') || '0', 10);
+    const isNewBest = finalScore > saved;
+    setIsNewHighScore(isNewBest);
+
+    if (isNewBest) {
+      setBestScore(finalScore);
+      localStorage.setItem('grammar_quiz_best', finalScore.toString());
+    }
+
+    if (isNewBest || finalScore >= Math.ceil(filteredQuestions.length * 0.7)) {
+      triggerConfetti();
+      playVictorySound();
+    }
+  };
+
+  const speakAudio = (text) => {
+    if (typeof window === 'undefined' || !window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'ro-RO';
+    utterance.rate = 0.85;
+    window.speechSynthesis.speak(utterance);
+  };
 
   const handleSelectOption = (option) => {
     if (isAnswered) return;
@@ -74,33 +110,25 @@ function GrammarQuizContent() {
     const isCorrect = option === currentQuestion.correct_answer;
     playOptionFeedbackSound(isCorrect);
 
+    let newScore = score;
     if (isCorrect) {
-      setScore(prev => prev + 1);
+      newScore = score + 1;
+      setScore(newScore);
       setStreak(prev => prev + 1);
+      setShowXpPopup(true);
+      setTimeout(() => setShowXpPopup(false), 1000);
     } else {
       setStreak(0);
     }
   };
 
   const handleNextQuestion = () => {
-    if (currentIndex + 1 < filteredQuestions.length) {
-      setCurrentIndex(prev => prev + 1);
-      setSelectedOption(null);
-      setIsAnswered(false);
+    const nextIdx = currentIndex + 1;
+    if (nextIdx < filteredQuestions.length) {
+      setCurrentIndex(nextIdx);
+      loadQuestion(nextIdx);
     } else {
-      const finalScore = score + (selectedOption === currentQuestion.correct_answer ? 0 : 0);
-      setQuizFinished(true);
-
-      const saved = parseInt(localStorage.getItem('grammar_quiz_best') || '0', 10);
-      if (finalScore > saved || finalScore >= Math.ceil(filteredQuestions.length * 0.7)) {
-        setIsNewHighScore(finalScore > saved);
-        if (finalScore > saved) {
-          setBestScore(finalScore);
-          localStorage.setItem('grammar_quiz_best', finalScore.toString());
-        }
-        triggerConfetti();
-        playVictorySound();
-      }
+      finishGame(score);
     }
   };
 
@@ -112,9 +140,7 @@ function GrammarQuizContent() {
     setIsAnswered(false);
     setQuizFinished(false);
     setIsNewHighScore(false);
-    if (filteredQuestions[0] && filteredQuestions[0].options) {
-      setShuffledOptions(shuffleArray(filteredQuestions[0].options));
-    }
+    loadQuestion(0);
   };
 
   return (
@@ -126,14 +152,14 @@ function GrammarQuizContent() {
       } ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
         
         {/* Banner Header */}
-        <div className={`rounded-2xl p-5 border shadow-xl flex flex-wrap items-center justify-between gap-3 ${
+        <div className={`rounded-3xl p-5 border shadow-xl flex flex-wrap items-center justify-between gap-3 ${
           isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'
         }`}>
           <div>
             <span className="text-[10px] font-bold text-amber-500 uppercase tracking-wider block">
-              🎮 Romanian Grammar Quiz Game
+              🎮 Romanian Grammar Challenge ({filteredQuestions.length} Questions)
             </span>
-            <h1 className="text-xl font-extrabold">
+            <h1 className="text-xl font-black">
               {appLang === 'ar' ? 'تحدي وتدريبات قواعد اللغة الرومانية' : appLang === 'en' ? 'Romanian Grammar Quiz Challenge' : 'Provocare Test Gramatică'}
             </h1>
           </div>
@@ -173,9 +199,16 @@ function GrammarQuizContent() {
         </div>
 
         {!quizFinished && currentQuestion ? (
-          <div className={`rounded-2xl p-6 border shadow-2xl space-y-6 animate-scale-in ${
+          <div className={`rounded-3xl p-6 border shadow-2xl space-y-6 animate-scale-in relative ${
             isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'
           }`}>
+            {/* Floating +100 XP Popup */}
+            {showXpPopup && (
+              <div className="absolute top-4 right-6 bg-gradient-to-r from-amber-400 to-emerald-400 text-slate-950 px-3 py-1 rounded-full font-black text-xs shadow-lg animate-bounce-subtle z-20">
+                +100 XP ⚡
+              </div>
+            )}
+
             {/* Progress Bar */}
             <div className="space-y-1">
               <div className="flex justify-between text-xs font-bold text-slate-400">
@@ -190,11 +223,22 @@ function GrammarQuizContent() {
               </div>
             </div>
 
-            {/* Question Text & Badge */}
-            <div className="space-y-2">
-              <span className="text-[10px] font-extrabold px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 uppercase">
-                {currentQuestion.type === 'fill_in_blank' ? '✍️ Fill in Blank' : currentQuestion.type === 'word_order' ? '🧩 Word Reorder' : '🎯 Multiple Choice'}
-              </span>
+            {/* Question Text & TTS Audio Button */}
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-extrabold px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 uppercase">
+                  {currentQuestion.type === 'fill_in_blank' ? '✍️ Fill in Blank' : currentQuestion.type === 'word_order' ? '🧩 Word Reorder' : '🎯 Multiple Choice'}
+                </span>
+
+                <button
+                  onClick={() => speakAudio(currentQuestion.question_ro)}
+                  className="p-2 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/30 hover:bg-amber-500/30 transition-all flex items-center space-x-1 space-x-reverse text-xs font-bold"
+                >
+                  <Volume2 className="w-4 h-4" />
+                  <span>استماع 🔊</span>
+                </button>
+              </div>
+
               <h2 className="text-lg font-black text-theme-main leading-relaxed">
                 {currentQuestion.question_ro}
               </h2>
@@ -203,7 +247,7 @@ function GrammarQuizContent() {
               </p>
             </div>
 
-            {/* Shuffled Options List */}
+            {/* Shuffled Tricky Options Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {shuffledOptions.map((option, idx) => {
                 let btnStyle = isDark 
@@ -240,14 +284,14 @@ function GrammarQuizContent() {
             {/* Explanation & Next Button */}
             {isAnswered && (
               <div className="space-y-4 border-t border-slate-700/60 pt-4 animate-fade-in-up">
-                <div className={`p-4 rounded-xl border text-xs space-y-1 ${
+                <div className={`p-4 rounded-2xl border text-xs space-y-1 ${
                   selectedOption === currentQuestion.correct_answer 
                     ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400' 
                     : 'bg-rose-500/10 border-rose-500/30 text-rose-400'
                 }`}>
                   <p className="font-black flex items-center space-x-1.5 space-x-reverse">
-                    <Sparkles className="w-4 h-4" />
-                    <span>{appLang === 'ar' ? 'توضيح القاعدة:' : appLang === 'en' ? 'Grammar Explanation:' : 'Explicativă:'}</span>
+                    <Sparkles className="w-4 h-4 text-amber-300" />
+                    <span>{appLang === 'ar' ? 'توضيح القاعدة النحوية:' : appLang === 'en' ? 'Grammar Rule Explanation:' : 'Explicativă:'}</span>
                   </p>
                   <p className="text-slate-200 font-bold leading-relaxed">
                     {currentQuestion.explanation_ar}
@@ -256,7 +300,7 @@ function GrammarQuizContent() {
 
                 <button
                   onClick={handleNextQuestion}
-                  className="w-full py-3.5 bg-gradient-to-r from-amber-500 via-rose-600 to-amber-600 hover:opacity-95 text-white font-black rounded-2xl text-sm shadow-xl transition-all flex items-center justify-center space-x-2 space-x-reverse"
+                  className="w-full py-4 bg-gradient-to-r from-amber-500 via-rose-600 to-amber-600 hover:opacity-95 text-white font-black rounded-2xl text-sm shadow-xl transition-all flex items-center justify-center space-x-2 space-x-reverse"
                 >
                   <span>{currentIndex + 1 < filteredQuestions.length ? (appLang === 'ar' ? 'السؤال التالي ➔' : 'Next Question ➔') : (appLang === 'ar' ? 'عرض النتيجة النهائية 🏆' : 'View Final Score 🏆')}</span>
                 </button>
@@ -265,24 +309,24 @@ function GrammarQuizContent() {
           </div>
         ) : (
           /* Celebratory High Score Final Results Card */
-          <div className={`rounded-2xl p-8 border shadow-2xl text-center space-y-6 animate-scale-in relative overflow-hidden ${
+          <div className={`rounded-3xl p-8 border shadow-2xl text-center space-y-6 animate-scale-in relative overflow-hidden ${
             isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'
           }`}>
             {isNewHighScore && (
-              <div className="bg-gradient-to-r from-amber-500 to-rose-600 text-white text-xs font-black py-1.5 px-6 rounded-full inline-flex items-center space-x-2 space-x-reverse shadow-lg animate-bounce-subtle">
+              <div className="bg-gradient-to-r from-amber-500 via-rose-500 to-amber-600 text-white text-xs font-black py-2 px-6 rounded-full inline-flex items-center space-x-2 space-x-reverse shadow-xl animate-bounce-subtle">
                 <PartyPopper className="w-4 h-4" />
-                <span>🏆 NEW HIGH SCORE RECORD! 🎉</span>
+                <span>🏆 NEW GRAMMAR HIGH SCORE RECORD! 🎉</span>
               </div>
             )}
 
-            <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-amber-500 to-rose-500 text-white flex items-center justify-center mx-auto border-4 border-amber-300 shadow-2xl animate-pulse-glow">
-              <Trophy className="w-12 h-12 animate-bounce-subtle" />
+            <div className="w-28 h-28 rounded-full bg-gradient-to-tr from-amber-500 via-rose-500 to-amber-400 text-white flex items-center justify-center mx-auto border-4 border-amber-300 shadow-2xl animate-pulse-glow">
+              <Trophy className="w-14 h-14 animate-bounce-subtle" />
             </div>
 
             <div className="space-y-2">
               <h2 className="text-2xl font-black">
                 {score >= Math.ceil(filteredQuestions.length * 0.7)
-                  ? (appLang === 'ar' ? '🎉 إنجاز أسطوري! ممتاز جداً 🏆' : '🎉 Outstanding Performance! 🏆')
+                  ? (appLang === 'ar' ? '🎉 إنجاز أسطوري في قواعد الرومانية! 🏆' : '🎉 Outstanding Grammar Mastery! 🏆')
                   : (appLang === 'ar' ? 'أحسنت! أكملت تحدي القواعد الرومانية 👍' : 'Well Done! Challenge Completed 👍')}
               </h2>
               <p className="text-base font-extrabold text-amber-400">
@@ -293,15 +337,15 @@ function GrammarQuizContent() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4">
               <button
                 onClick={handleRestartQuiz}
-                className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-amber-500 to-rose-600 hover:opacity-95 text-white font-extrabold rounded-xl text-xs flex items-center justify-center space-x-2 space-x-reverse shadow-lg transition-colors"
+                className="w-full sm:w-auto px-7 py-3.5 bg-gradient-to-r from-amber-500 to-rose-600 hover:opacity-95 text-white font-extrabold rounded-2xl text-xs flex items-center justify-center space-x-2 space-x-reverse shadow-lg transition-colors"
               >
                 <RotateCcw className="w-4 h-4" />
-                <span>{appLang === 'ar' ? 'إعادة التحدي مرة أخرى' : 'Restart Challenge'}</span>
+                <span>{appLang === 'ar' ? 'إعادة التحدي مرة أخرى 🎮' : 'Restart Challenge 🎮'}</span>
               </button>
 
               <Link
                 href="/grammar"
-                className="w-full sm:w-auto px-6 py-3 bg-slate-700 hover:bg-slate-600 text-white font-extrabold rounded-xl text-xs flex items-center justify-center space-x-2 space-x-reverse shadow transition-colors"
+                className="w-full sm:w-auto px-7 py-3.5 bg-slate-700 hover:bg-slate-600 text-white font-extrabold rounded-2xl text-xs flex items-center justify-center space-x-2 space-x-reverse shadow transition-colors"
               >
                 <BookOpen className="w-4 h-4" />
                 <span>{appLang === 'ar' ? 'مراجعة القواعد والدروس 📚' : 'Review Grammar Lessons 📚'}</span>
@@ -316,7 +360,7 @@ function GrammarQuizContent() {
 
 export default function GrammarQuizPage() {
   return (
-    <Suspense fallback={<div className="p-8 text-center text-slate-400">Loading Grammar Quiz...</div>}>
+    <Suspense fallback={<div className="p-8 text-center text-slate-400 font-bold">Loading Grammar Quiz...</div>}>
       <GrammarQuizContent />
     </Suspense>
   );

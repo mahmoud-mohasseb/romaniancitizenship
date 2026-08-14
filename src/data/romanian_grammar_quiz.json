@@ -8,9 +8,9 @@
     "category": "nouns",
     "correct_answer": "Scaune",
     "options": [
+      "Scaunuri",
       "Scaune",
       "Scauni",
-      "Scaunuri",
       "Scaunele"
     ],
     "explanation_ar": "الأسماء المحايدة (Neutru) تجمع بالحرف (-e) مثل scaun -> scaune أو (-uri) مثل drum -> drumuri."
@@ -24,9 +24,9 @@
     "category": "verbs",
     "correct_answer": "merg",
     "options": [
-      "merg",
       "mergi",
       "merge",
+      "merg",
       "mergem"
     ],
     "explanation_ar": "تصريف الفعل a merge مع الضمير Eu هو (merg)."
@@ -40,8 +40,8 @@
     "category": "articles",
     "correct_answer": "Băiatul (-ul)",
     "options": [
-      "Băiatul (-ul)",
       "Băiata (-a)",
+      "Băiatul (-ul)",
       "Băiții (-ii)",
       "Băiatle (-le)"
     ],
@@ -56,9 +56,9 @@
     "category": "verbs",
     "correct_answer": "avem",
     "options": [
-      "avem",
       "am",
       "ai",
+      "avem",
       "aveți"
     ],
     "explanation_ar": "تصريف الفعل a avea مع الضمير Noi هو (avem)."
@@ -72,8 +72,8 @@
     "category": "sentence_structure",
     "correct_answer": "Eu sunt inginer român",
     "options": [
-      "Eu sunt inginer român",
       "Inginer sunt Eu român",
+      "Eu sunt inginer român",
       "Român Eu inginer sunt",
       "Sunt român inginer Eu"
     ],
@@ -88,8 +88,8 @@
     "category": "verbs",
     "correct_answer": "Noi suntem",
     "options": [
-      "Noi suntem",
       "Noi ești",
+      "Noi suntem",
       "Noi este",
       "Noi sunteți"
     ],
@@ -98,305 +98,385 @@
   {
     "id": "gq-7",
     "type": "fill_in_blank",
-    "question_ro": "Completați spațiul: Ieri eu _______ la film cu prietenii. (Past composite)",
-    "question_ar": "أكمل الفراغ: الأمس أنا _______ إلى الفيلم مع الأصدقاء. (الماضي المركب لـ a merge)",
-    "question_en": "Fill in the blank: Ieri eu _______ la film (I went).",
-    "category": "verbs",
-    "correct_answer": "am mers",
+    "question_ro": "Completați spațiul: Cartea este _______ masă. (على الطاولة)",
+    "question_ar": "أكمل الفراغ بالحرف المناسب: الكتاب يكون _______ الطاولة (على).",
+    "question_en": "Fill in the preposition: Cartea este _______ masă (on the table).",
+    "category": "sentence_structure",
+    "correct_answer": "pe",
     "options": [
-      "am mers",
-      "ai mers",
-      "a mers",
-      "vom merge"
+      "în",
+      "la",
+      "pe",
+      "sub"
     ],
-    "explanation_ar": "الماضي المركب مع الضمير Eu هو (am mers)."
+    "explanation_ar": "حرف الجر (pe) يعني فوق / على، وحرف (în) يعني في/داخل، وحرف (la) يعني إلى/في."
   },
   {
     "id": "gq-8",
     "type": "multiple_choice",
-    "question_ro": "Care este أداة التعريف للجمع المؤنث «Fetele» (الفتيات)؟",
-    "question_ar": "ما هي لاحقة التعريف للجمع المؤنث في «Fetele» (الفتيات)؟",
-    "question_en": "What is the definite article suffix for plural feminine «Fetele» (the girls)?",
-    "category": "articles",
-    "correct_answer": "-le (Fete + le)",
+    "question_ro": "Care este forma de feminin plural a cuvântului «Fată» (فتاة)؟",
+    "question_ar": "ما هو جمع الكلمة المؤنثة «Fată» (بنت / فتاة)؟",
+    "question_en": "What is the plural form of feminine noun «Fată» (girl)?",
+    "category": "nouns",
+    "correct_answer": "Fete",
     "options": [
-      "-le (Fete + le)",
-      "-ul",
-      "-ii",
-      "-a"
+      "Fături",
+      "Fete",
+      "Fati",
+      "Fetele"
     ],
-    "explanation_ar": "للجمع المؤنث والجمع المحايد تضاف اللاحقة (-le) مثل fetele, casele, scaunele."
+    "explanation_ar": "الأسماء المؤنثة المنتهية بالحرف (-ă) تجمع عادة بالحرف (-e) مثل fată -> fete, casă -> case."
   },
   {
     "id": "gq-9",
-    "type": "word_order",
-    "question_ro": "Ordonați cuvintele: [costă / biletul / Cât / de / metrou?]",
-    "question_ar": "رتب الكلمات للسؤال عن السعر: [Cât / costă / biletul / de / metrou?]",
-    "question_en": "Order words to ask price: [costă / biletul / Cât / de / metrou?]",
-    "category": "sentence_structure",
-    "correct_answer": "Cât costă biletul de metrou?",
+    "type": "fill_in_blank",
+    "question_ro": "Completați spațiul: Dumneavoastră _______ limba română foarte bine. (a vorbi)",
+    "question_ar": "أكمل الفراغ للتعبير الرسمي: حضراتكم _______ اللغة الرومانية جيدا. (فعل التحدث a vorbi)",
+    "question_en": "Fill in the blank: Dumneavoastră _______ limba română (to speak).",
+    "category": "verbs",
+    "correct_answer": "vorbiți",
     "options": [
-      "Cât costă biletul de metrou?",
-      "Biletul costă cât de metrou?",
-      "De metrou cât costă biletul?",
-      "Metrou biletul cât costă de?"
+      "vorbești",
+      "vorbește",
+      "vorbiți",
+      "vorbim"
     ],
-    "explanation_ar": "الترتيب الصحيح للسؤال عن السعر: Cât (كم) + costă (يكلف) + biletul de metrou (تذكرة المترو)؟"
+    "explanation_ar": "الضمير الاحترامي Dumneavoastră يأخذ تصريف الجمع المؤدب (-ți) مثل vorbiți."
   },
   {
     "id": "gq-10",
-    "type": "fill_in_blank",
-    "question_ro": "Completați spațiul: Mâine el _______ la București. (Future tense)",
-    "question_ar": "أكمل الفراغ: غداً هو _______ إلى بوخارست. (المستقبل من يسافر)",
-    "question_en": "Fill in the blank: Mâine el _______ la București (will travel).",
-    "category": "verbs",
-    "correct_answer": "va călători",
+    "type": "multiple_choice",
+    "question_ro": "Cum adaugi articolul hotărât la cuvântul feminin «Casă» (بيت)؟",
+    "question_ar": "كيف يضاف أداة التعريف المعرفة للكلمة المؤنثة «Casă»؟",
+    "question_en": "How do you add the definite article to feminine noun «Casă» (house)?",
+    "category": "articles",
+    "correct_answer": "Casa (-a)",
     "options": [
-      "va călători",
-      "am călătorit",
-      "călătorește",
-      "să călătorească"
+      "Casăl (-ul)",
+      "Casai (-i)",
+      "Casa (-a)",
+      "Casele (-le)"
     ],
-    "explanation_ar": "المستقبل الرسمي مع الضمير El هو (va călători)."
+    "explanation_ar": "أداة التعريف للمؤنث المفرد المنتهي بـ (-ă) تحول الحرف إلى (-a) كـ casă -> casa."
   },
   {
     "id": "gq-11",
-    "type": "multiple_choice",
-    "question_ro": "Cum spui «أود أن...» (Polite Request) باللغة الرومانية؟",
-    "question_ar": "كيف تعبر عن الطلب اللبق «أود أن...» باللغة الرومانية؟",
-    "question_en": "How do you state polite request 'I would like...' in Romanian?",
-    "category": "verbs",
-    "correct_answer": "Aș dori...",
+    "type": "word_order",
+    "question_ro": "Ordonați cuvintele: [locuiesc / Eu / București / în]",
+    "question_ar": "رتب الكلمات لتكوين جملة صحيحة: [Eu / locuiesc / în / București]",
+    "question_en": "Order words to form a sentence: [locuiesc / Eu / București / în]",
+    "category": "sentence_structure",
+    "correct_answer": "Eu locuiesc în București",
     "options": [
-      "Aș dori...",
-      "Vreau!",
-      "Trebuie!",
-      "Am vrut!"
+      "Locuiesc Eu București în",
+      "În București Eu locuiesc",
+      "Eu locuiesc în București",
+      "București locuiesc în Eu"
     ],
-    "explanation_ar": "صيغة الشرط المؤدب للطلب هي Aș dori... (أود...)."
+    "explanation_ar": "الترتيب القياسي: الضمير (Eu) + الفعل (locuiesc) + حرف الجر (în) + المدينة (București)."
   },
   {
     "id": "gq-12",
     "type": "fill_in_blank",
-    "question_ro": "Completați spațiul: Vreau _______ învăț limba română repede.",
-    "question_ar": "أكمل الفراغ: أريد _______ أتعلم اللغة الرومانية بسرعة. (أداة المنصوب)",
-    "question_en": "Fill in the blank: Vreau _______ învăț limba română (to learn).",
+    "question_ro": "Completați spațiul: El _______ un bilet de tren. (a cumpăra)",
+    "question_ar": "أكمل الفراغ: هو _______ تذكرة قطار. (فعل الشراء a cumpăra في المضارع)",
+    "question_en": "Fill in the blank: El _______ un bilet de tren (to buy).",
     "category": "verbs",
-    "correct_answer": "să",
+    "correct_answer": "cumpără",
     "options": [
-      "să",
-      "la",
-      "de",
-      "cu"
+      "cumpăr",
+      "cumpără",
+      "cumpări",
+      "cumpărăm"
     ],
-    "explanation_ar": "تستخدم الأداة (să) لتكوين جملة المنصوب بعد أفعال الرغبة (Vreau să...)."
+    "explanation_ar": "تصريف الفعل a cumpăra مع الضمير الغائب المفرد (El/Ea) هو (cumpără)."
   },
   {
     "id": "gq-13",
-    "type": "word_order",
-    "question_ro": "Ordonați cuvintele: [este / mea / Aceasta / mașină]",
-    "question_ar": "رتب الكلمات: [Aceasta / este / mașina / mea]",
-    "question_en": "Order the words: [este / mea / Aceasta / mașină]",
-    "category": "sentence_structure",
-    "correct_answer": "Aceasta este mașina mea",
+    "type": "multiple_choice",
+    "question_ro": "Care este articolul nehotărât (أداة التنكير) للمذكر والمحايد المفرد؟",
+    "question_ar": "ما هي أداة التنكير (Indefinite Article) للمذكر والمحايد المفرد في الرومانية؟",
+    "question_en": "What is the indefinite article for singular masculine and neuter nouns?",
+    "category": "articles",
+    "correct_answer": "Un",
     "options": [
-      "Aceasta este mașina mea",
-      "Mașina mea este me",
-      "Este mașina aceasta mea",
-      "Mea mașina este aceasta"
+      "O",
+      "Un",
+      "Niște",
+      "Unul"
     ],
-    "explanation_ar": "اسم الإشارة (Aceasta) + الفعل (este) + الاسم المعرف (mașina) + الملكية (mea)."
+    "explanation_ar": "أداة التنكير للمذكر والمحايد المفرد هي (Un) مثل un băiat, un scaun. وللمؤنث المفرد هي (O) مثل o casă."
   },
   {
     "id": "gq-14",
     "type": "multiple_choice",
-    "question_ro": "Care este forma de plural feminin a adjectivului «Frumos» (جميل)؟",
-    "question_ar": "ما هو جمع المؤنث للصفة «Frumos» (جميل)؟",
-    "question_en": "What is the plural feminine form of adjective «Frumos»?",
+    "question_ro": "Care este forma de plural a cuvântului masculin «Bărbat» (رجل)؟",
+    "question_ar": "ما هو الجمع الصحيح للكلمة المذكرة «Bărbat» (رجل)؟",
+    "question_en": "What is the plural form of masculine noun «Bărbat» (man)?",
     "category": "nouns",
-    "correct_answer": "Frumoase (fete frumoase)",
+    "correct_answer": "Bărbați",
     "options": [
-      "Frumoase (fete frumoase)",
-      "Frumoși",
-      "Frumoasă",
-      "Frumose"
+      "Bărbați",
+      "Bărbate",
+      "Bărbaturi",
+      "Bărbații"
     ],
-    "explanation_ar": "جمع المؤنث للصفة frumos هو frumoase (fete frumoase)."
+    "explanation_ar": "الأسماء المذكرة تجمع بالحرف (-i) مع تغير صوت الحرف التاء مثل bărbat -> bărbați."
   },
   {
     "id": "gq-15",
     "type": "fill_in_blank",
-    "question_ro": "Completați spațiul: Cartea este pe masă, am dat-o _______ Andrei.",
-    "question_ar": "أكمل الفراغ: الكتاب على الطاولة، أعطيته لـ أندريه. (حالة الإضافة للأعلام)",
-    "question_en": "Fill in the blank: Cartea este pe masă, am dat-o _______ Andrei.",
-    "category": "articles",
-    "correct_answer": "lui",
+    "question_ro": "Completați spațiul: Voi _______ la birou la ora 9:00. (a veni)",
+    "question_ar": "أكمل الفراغ: أنتم _______ إلى المكتب في الساعة 9:00. (فعل القدوم a veni)",
+    "question_en": "Fill in the blank: Voi _______ la birou (to come).",
+    "category": "verbs",
+    "correct_answer": "veniți",
     "options": [
-      "lui",
-      "la",
-      "de",
-      "pe"
+      "vin",
+      "vii",
+      "vine",
+      "veniți"
     ],
-    "explanation_ar": "للإضافة وأسماء الأعلام المذكرة نستخدم الأداة (lui Andrei)."
+    "explanation_ar": "تصريف الفعل a veni مع الضمير Voi هو (veniți)."
   },
   {
     "id": "gq-16",
-    "type": "multiple_choice",
-    "question_ro": "Care este تصريف فعل الكينونة «A fi» مع الضمير (Tu / أنت)؟",
-    "question_ar": "ما هو تصريف فعل الكينونة «A fi» مع الضمير (Tu / أنت)؟",
-    "question_en": "What is the present tense of «A fi» (to be) for 'Tu'?",
-    "category": "verbs",
-    "correct_answer": "Tu ești",
+    "type": "word_order",
+    "question_ro": "Ordonați cuvintele: [română / Vorbesc / bine / limba]",
+    "question_ar": "رتب الكلمات لتكوين جملة صحيحة: [Vorbesc / limba / română / bine]",
+    "question_en": "Order words to form a sentence: [română / Vorbesc / bine / limba]",
+    "category": "sentence_structure",
+    "correct_answer": "Vorbesc limba română bine",
     "options": [
-      "Tu ești",
-      "Tu sunt",
-      "Tu este",
-      "Tu suntem"
+      "Limba bine vorbesc română",
+      "Vorbesc limba română bine",
+      "Bine vorbesc română limba",
+      "Română limba bine vorbesc"
     ],
-    "explanation_ar": "تصريف A fi مع Tu هو (Tu ești)."
+    "explanation_ar": "الترتيب الصحيح: الفعل (Vorbesc) + المفعول (limba română) + الظرف (bine)."
   },
   {
     "id": "gq-17",
-    "type": "fill_in_blank",
-    "question_ro": "Completați spațiul: Voi _______ la birou în fiecare dimineață. (a lucra)",
-    "question_ar": "أكمل الفراغ: أنتم _______ في المكتب كل صباح. (فعل العمل a lucra)",
-    "question_en": "Fill in the blank: Voi _______ la birou (to work).",
+    "type": "multiple_choice",
+    "question_ro": "Care este forma de trecut (Perfect Compus) للضمير (Eu) مع الفعل «a învăța» (يتعلم)؟",
+    "question_ar": "ما هو تصريف الماضي المركب (Perfect Compus) للضمير Eu مع فعل التعلّم a învăța؟",
+    "question_en": "What is the past tense (Perfect Compus) of 'a învăța' for 'Eu'?",
     "category": "verbs",
-    "correct_answer": "lucrați",
+    "correct_answer": "Eu am învățat",
     "options": [
-      "lucrați",
-      "lucrez",
-      "lucrează",
-      "lucrăm"
+      "Eu ai învățat",
+      "Eu am învățat",
+      "Eu a învățat",
+      "Eu am învăța"
     ],
-    "explanation_ar": "تصريف a lucra مع الضمير Voi هو (lucrați)."
+    "explanation_ar": "يتكون الماضي المركب من الفعل المساعد a avea (am, ai, a, am, ați, au) + اسم المفعول (învățat)."
   },
   {
     "id": "gq-18",
-    "type": "word_order",
-    "question_ro": "Ordonați cuvintele: [mâncat / Am / pizza / o / bună]",
-    "question_ar": "رتب الكلمات: [Am / mâncat / o / pizza / bună]",
-    "question_en": "Order words: [mâncat / Am / pizza / o / bună]",
-    "category": "sentence_structure",
-    "correct_answer": "Am mâncat o pizza bună",
+    "type": "multiple_choice",
+    "question_ro": "Care este forma de plural المعرفة (Articol Hotărât Plural) للمذكر «Băieți» (أولاد)؟",
+    "question_ar": "كيف تجمع كلمة الأولاد مع أداة التعريف المعرفة (الـ الأولاد)؟",
+    "question_en": "What is the definite plural form of masculine 'Băieți' (boys)?",
+    "category": "articles",
+    "correct_answer": "Băieții (-ii)",
     "options": [
-      "Am mâncat o pizza bună",
-      "O pizza bună am mâncat",
-      "Mâncat am pizza o bună",
-      "Bună o am mâncat pizza"
+      "Băiețele (-le)",
+      "Băieții (-ii)",
+      "Băiețiul (-ul)",
+      "Băiețil (il)"
     ],
-    "explanation_ar": "الماضي المركب Am mâncat + أداة التنكير o + الاسم pizza + الصفة bună."
+    "explanation_ar": "تضاف اللاحقة (-ii) لجمع المذكر المعرف بالـ مثل băieți -> băieții."
   },
   {
     "id": "gq-19",
-    "type": "multiple_choice",
-    "question_ro": "Cum zici بصيغة الأمر المباشر «استمع!» (Imperative command)?",
-    "question_ar": "كيف تقول بصيغة الأمر المباشر «استمع!» (المفرد Tu)؟",
-    "question_en": "How do you give imperative command 'Listen!' to single person (Tu)?",
-    "category": "verbs",
-    "correct_answer": "Ascultă!",
+    "type": "fill_in_blank",
+    "question_ro": "Completați spațiul: Această rochie este foarte _______. (جميلة - مؤنث)",
+    "question_ar": "أكمل الفراغ بالصفة المؤنثة المناسبة: هذا الفستان جميل جداً (frumos/frumoasă).",
+    "question_en": "Fill in the blank: Această rochie este foarte _______ (beautiful).",
+    "category": "nouns",
+    "correct_answer": "frumoasă",
     "options": [
-      "Ascultă!",
-      "Ascultați!",
-      "Am ascultat!",
-      "Să asculți!"
+      "frumos",
+      "frumoși",
+      "frumoasă",
+      "frumoase"
     ],
-    "explanation_ar": "صيغة الأمر للمفرد Tu من الفعل a asculta هي (Ascultă!)."
+    "explanation_ar": "تتبع الصفة الكلمة في الجنس والعدد: rochie اسم مؤنث مفرد فتأخذ الصفة المؤنثة (frumoasă)."
   },
   {
     "id": "gq-20",
-    "type": "fill_in_blank",
-    "question_ro": "Completați spațiul: Nu am _______ problemă cu limba română.",
-    "question_ar": "أكمل الفراغ: ليس لدي _______ مشكلة في اللغة الرومانية. (ضمير النفي المزدوج)",
-    "question_en": "Fill in the blank: Nu am _______ problemă (no problem).",
-    "category": "nouns",
-    "correct_answer": "nicio",
+    "type": "multiple_choice",
+    "question_ro": "Care este ضمير الملكية (Possessive Pronoun) للمؤنث «سيارتي» (o mașină)?",
+    "question_ar": "ما هو ضمير الملكية الصحيح لـ (سيارتي) بالرومانية؟",
+    "question_en": "What is the correct possessive pronoun for 'my car' (feminine)?",
+    "category": "sentence_structure",
+    "correct_answer": "mașina mea",
     "options": [
-      "nicio",
-      "niciun",
-      "nimic",
-      "nimeni"
+      "mașina meu",
+      "mașina mea",
+      "mașina mei",
+      "mașina mele"
     ],
-    "explanation_ar": "النفي المزدوج مع الاسم المؤنث المفرد problemă يأخذ (nicio problemă)."
+    "explanation_ar": "مع الأسماء المؤنثة المفردة تضاف أداة الملكية (mea) مثل casă mea, mașina mea."
   },
   {
     "id": "gq-21",
-    "type": "multiple_choice",
-    "question_ro": "Care este forma de trecut pasiv a propozitiei: «Legea _______ de parlament»?",
-    "question_ar": "ما هي أداة المبني للمجهول في الماضي: القانون _______ من قبل البرلمان؟",
-    "question_en": "What is the passive past tense marker: 'Legea _______ de parlament'?",
+    "type": "fill_in_blank",
+    "question_ro": "Completați spațiul: Ei _______ la cinematograf diseară. (a merge)",
+    "question_ar": "أكمل الفراغ: هم _______ إلى السينما هذا المساء. (فعل الذهاب a merge مع الضمير Ei)",
+    "question_en": "Fill in the blank: Ei _______ la cinematograf (to go).",
     "category": "verbs",
-    "correct_answer": "a fost adoptată",
+    "correct_answer": "merg",
     "options": [
-      "a fost adoptată",
-      "este adoptat",
-      "va fi adoptat",
-      "să adopte"
+      "merge",
+      "mergem",
+      "mergeți",
+      "merg"
     ],
-    "explanation_ar": "المبني للمجهول في الماضي المفرد المؤنث (Legea) هو (a fost adoptată)."
+    "explanation_ar": "تصريف الفعل a merge مع الضمير الغائب الجمع (Ei/Ele) يماثل تصريف الضمير (Eu) وهو (merg)."
   },
   {
     "id": "gq-22",
-    "type": "fill_in_blank",
-    "question_ro": "Completați spațiul: Cartea este _______ masă. (Preposition of location)",
-    "question_ar": "أكمل الفراغ: الكتاب يقع _______ الطاولة. (حرف جر المكان)",
-    "question_en": "Fill in the blank: Cartea este _______ masă (on the table).",
-    "category": "articles",
-    "correct_answer": "pe",
+    "type": "multiple_choice",
+    "question_ro": "Cum spui «قبل الساعة العاشرة» باستخدام حرف الجر المناسب؟",
+    "question_ar": "كيف تعبر عن الوقت «قبل الساعة العاشرة» في الرومانية؟",
+    "question_en": "How do you say 'before 10 o'clock' using the correct preposition?",
+    "category": "sentence_structure",
+    "correct_answer": "înainte de ora 10",
     "options": [
-      "pe",
-      "în",
-      "la",
-      "sub"
+      "după ora 10",
+      "înainte de ora 10",
+      "până la ora 10",
+      "pentru ora 10"
     ],
-    "explanation_ar": "حرف الجر (pe) يعني فوق أو على السطح."
+    "explanation_ar": "حرف التوقيت (înainte de) يعني قبل، بينما (după) يعني بعد، و(până la) يعني حتى."
   },
   {
     "id": "gq-23",
-    "type": "word_order",
-    "question_ro": "Ordonați cuvintele: [dorim / Vă / succes / mult!]",
-    "question_ar": "رتب الكلمات لتمني التوفيق: [Vă / dorim / mult / succes!]",
-    "question_en": "Order words to wish success: [dorim / Vă / succes / mult!]",
-    "category": "sentence_structure",
-    "correct_answer": "Vă dorim mult succes!",
+    "type": "multiple_choice",
+    "question_ro": "Care este forma de plural a cuvântului feminin «Țară» (بلد / دولة)؟",
+    "question_ar": "ما هو جمع كلمة «Țară» (بلد / دولة)؟",
+    "question_en": "What is the plural form of feminine noun «Țară» (country)?",
+    "category": "nouns",
+    "correct_answer": "Țări",
     "options": [
-      "Vă dorim mult succes!",
-      "Mult succes vă dorim!",
-      "Dorim vă succes mult!",
-      "Succes mult dorim vă!"
+      "Țări",
+      "Țăre",
+      "Țăruri",
+      "Țările"
     ],
-    "explanation_ar": "الترتيب الصحيح لتمني التوفيق: Vă dorim (نتمنى لكم) + mult succes (توفيقاً كبيراً)!"
+    "explanation_ar": "تجمع الكلمة المؤنثة Țară بالحرف (-i) مع إمالة الحرف إلى Țări."
   },
   {
     "id": "gq-24",
-    "type": "multiple_choice",
-    "question_ro": "Care este اسم الموصول المناسب في: «Omul _______ vorbește este profesor»?",
-    "question_ar": "ما هو اسم الموصول المناسب: الرجل _______ يتحدث هو أستاذ؟",
-    "question_en": "Which relative pronoun fits: 'Omul _______ vorbește este profesor'?",
-    "category": "nouns",
-    "correct_answer": "care",
+    "type": "fill_in_blank",
+    "question_ro": "Completați spațiul: Am cumpărat _______ mere proaspete. (بعض - أداة تنكير الجمع)",
+    "question_ar": "أكمل الفراغ بأداة تنكير الجمع: اشتريت _______ تفاحات طازجة (بعض).",
+    "question_en": "Fill in the blank with indefinite plural article: Am cumpărat _______ mere.",
+    "category": "articles",
+    "correct_answer": "niște",
     "options": [
-      "care",
-      "ce",
-      "cine",
-      "unde"
+      "un",
+      "o",
+      "niște",
+      "nicio"
     ],
-    "explanation_ar": "اسم الموصول (care) معناه الذي/التي ويستخدم للإشارة إلى الأشخاص والأشياء."
+    "explanation_ar": "أداة تنكير الجمع لجميع الأجناس في الرومانية هي (niște) بمعنى بعض."
   },
   {
     "id": "gq-25",
-    "type": "fill_in_blank",
-    "question_ro": "Completați spațiul: Mâine noi _______ la munte. (Future tense of a merge)",
-    "question_ar": "أكمل الفراغ: غداً نحن _______ إلى الجبل. (المستقبل من a merge)",
-    "question_en": "Fill in the blank: Mâine noi _______ la munte (will go).",
-    "category": "verbs",
-    "correct_answer": "vom merge",
+    "type": "word_order",
+    "question_ro": "Ordonați cuvintele: [vremea / Este / frumoasă / afară]",
+    "question_ar": "رتب الكلمات لتكوين جملة وصف الطقس: [Este / vremea / frumoasă / afară]",
+    "question_en": "Order words to describe weather: [vremea / Este / frumoasă / afară]",
+    "category": "sentence_structure",
+    "correct_answer": "Vremea este frumoasă afară",
     "options": [
-      "vom merge",
-      "am mers",
-      "mergem",
-      "să mergem"
+      "Este afară frumoasă vremea",
+      "Vremea este frumoasă afară",
+      "Frumoasă vremea afară este",
+      "Afară frumoasă este vremea"
     ],
-    "explanation_ar": "المستقبل مع الضمير Noi هو (vom merge)."
+    "explanation_ar": "الترتيب القياسي: الفاعل (Vremea) + الفعل (este) + الصفة (frumoasă) + المكان (afară)."
+  },
+  {
+    "id": "gq-26",
+    "type": "multiple_choice",
+    "question_ro": "Care este تصريف فعل المستقبل (Viitor Standard) للضمير (Eu) مع «a pleca» (يرحل)؟",
+    "question_ar": "ما هو تصريف زمن المستقبل للضمير Eu مع الفعل a pleca؟",
+    "question_en": "What is the future tense of 'a pleca' for 'Eu'?",
+    "category": "verbs",
+    "correct_answer": "Eu voi pleca",
+    "options": [
+      "Eu vei pleca",
+      "Eu voi pleca",
+      "Eu va pleca",
+      "Eu vom pleca"
+    ],
+    "explanation_ar": "صيغة المستقبل Standard تتكون من (voi, vei, va, vom, veți, vor) + المصدر (pleca)."
+  },
+  {
+    "id": "gq-27",
+    "type": "fill_in_blank",
+    "question_ro": "Completați spațiul: Mulțumesc _______ ajutor! (على / من أجل)",
+    "question_ar": "أكمل الفراغ بحرف الجر الصحيح: شكراً _______ المساعدة!",
+    "question_en": "Fill in the preposition: Mulțumesc _______ ajutor!",
+    "category": "sentence_structure",
+    "correct_answer": "pentru",
+    "options": [
+      "de",
+      "cu",
+      "pentru",
+      "la"
+    ],
+    "explanation_ar": "التعبير الشائع للشكر هو Mulțumesc pentru (شكراً لـ / من أجل)."
+  },
+  {
+    "id": "gq-28",
+    "type": "multiple_choice",
+    "question_ro": "Care este noul صيغة النفي (Negation) للجملة «Eu înțeleg» (أنا أفهم)؟",
+    "question_ar": "كيف تنفي الجملة «Eu înțeleg» بالرومانية؟",
+    "question_en": "How do you negate the sentence 'Eu înțeleg' (I understand)?",
+    "category": "sentence_structure",
+    "correct_answer": "Eu nu înțeleg",
+    "options": [
+      "Eu fără înțeleg",
+      "Eu nu înțeleg",
+      "Eu nici înțeleg",
+      "Eu n-am înțeleg"
+    ],
+    "explanation_ar": "يصاغ النفي المباشر في الرومانية بوضع أداة النفي (nu) قبل الفعل مباشرة."
+  },
+  {
+    "id": "gq-29",
+    "type": "multiple_choice",
+    "question_ro": "Care este جمع كلمة «Oraș» (مدينة - اسم محايد) المعرف بالـ؟",
+    "question_ar": "ما هو الجمع المعرف كلمة «Oraș» (المدن)؟",
+    "question_en": "What is the definite plural form of neuter noun «Oraș» (city)?",
+    "category": "nouns",
+    "correct_answer": "Orașele (-le)",
+    "options": [
+      "Orașii (-ii)",
+      "Orașele (-le)",
+      "Orașurile (-le)",
+      "Orașa (-a)"
+    ],
+    "explanation_ar": "جمع كلمة oraș هو orașe والمعرف بالـ يضاف له اللاحقة (-le) فتصبح orașele."
+  },
+  {
+    "id": "gq-30",
+    "type": "word_order",
+    "question_ro": "Ordonați cuvintele: [română / Doresc / obțin / cetățenia / să]",
+    "question_ar": "رتب الجملة الهامة للمقابلة الشفهية: [Doresc / să / obțin / cetățenia / română]",
+    "question_en": "Order interview sentence: [română / Doresc / obțin / cetățenia / să]",
+    "category": "sentence_structure",
+    "correct_answer": "Doresc să obțin cetățenia română",
+    "options": [
+      "Obțin să doresc cetățenia română",
+      "Doresc să obțin cetățenia română",
+      "Cetățenia română obțin să doresc",
+      "Să obțin doresc română cetățenia"
+    ],
+    "explanation_ar": "الجملة النموذجية في لجنة الجنسية: Doresc (أرغب) + să obțin (أن أحصل) + cetățenia română (على الجنسية الرومانية)."
   }
 ]
