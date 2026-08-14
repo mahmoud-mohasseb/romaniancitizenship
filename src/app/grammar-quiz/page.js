@@ -16,12 +16,15 @@ import {
   Flame, 
   PenTool, 
   Layers, 
-  Shuffle 
+  Shuffle,
+  PartyPopper,
+  Star
 } from 'lucide-react';
 import grammarQuizData from '../../data/romanian_grammar_quiz.json';
 import Navbar from '../../components/Navbar';
 import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
+import { shuffleArray, triggerConfetti, playVictorySound, playOptionFeedbackSound } from '../../utils/quizUtils';
 
 function GrammarQuizContent() {
   const { theme } = useTheme();
@@ -31,10 +34,13 @@ function GrammarQuizContent() {
   const [activeTechnique, setActiveTechnique] = useState('all');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [shuffledOptions, setShuffledOptions] = useState([]);
   const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
   const [isAnswered, setIsAnswered] = useState(false);
   const [quizFinished, setQuizFinished] = useState(false);
+  const [isNewHighScore, setIsNewHighScore] = useState(false);
 
   const techniques = [
     { id: 'all', label_ar: 'جميع الأنواع (All Modes 🎮)', label_en: 'All Modes 🎮', label_ro: 'Toate Modurile 🎮' },
@@ -49,48 +55,29 @@ function GrammarQuizContent() {
 
   const currentQuestion = filteredQuestions[currentIndex] || filteredQuestions[0];
 
-  const playSound = (type) => {
-    if (typeof window === 'undefined') return;
-    try {
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      if (!AudioCtx) return;
-      const ctx = new AudioCtx();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.connect(gain);
-      gain.connect(ctx.destination);
+  useEffect(() => {
+    const saved = localStorage.getItem('grammar_quiz_best');
+    if (saved) setBestScore(parseInt(saved, 10));
+  }, []);
 
-      if (type === 'correct') {
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(523.25, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.15);
-        gain.gain.setValueAtTime(0.3, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.25);
-        osc.start();
-        osc.stop(ctx.currentTime + 0.25);
-      } else {
-        osc.type = 'sawtooth';
-        osc.frequency.setValueAtTime(150, ctx.currentTime);
-        osc.frequency.setValueAtTime(110, ctx.currentTime + 0.1);
-        gain.gain.setValueAtTime(0.3, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.25);
-        osc.start();
-        osc.stop(ctx.currentTime + 0.25);
-      }
-    } catch (e) {}
-  };
+  useEffect(() => {
+    if (currentQuestion && currentQuestion.options) {
+      setShuffledOptions(shuffleArray(currentQuestion.options));
+    }
+  }, [currentIndex, activeTechnique]);
 
   const handleSelectOption = (option) => {
     if (isAnswered) return;
     setSelectedOption(option);
     setIsAnswered(true);
 
-    if (option === currentQuestion.correct_answer) {
-      playSound('correct');
+    const isCorrect = option === currentQuestion.correct_answer;
+    playOptionFeedbackSound(isCorrect);
+
+    if (isCorrect) {
       setScore(prev => prev + 1);
       setStreak(prev => prev + 1);
     } else {
-      playSound('wrong');
       setStreak(0);
     }
   };
@@ -101,7 +88,19 @@ function GrammarQuizContent() {
       setSelectedOption(null);
       setIsAnswered(false);
     } else {
+      const finalScore = score + (selectedOption === currentQuestion.correct_answer ? 0 : 0);
       setQuizFinished(true);
+
+      const saved = parseInt(localStorage.getItem('grammar_quiz_best') || '0', 10);
+      if (finalScore > saved || finalScore >= Math.ceil(filteredQuestions.length * 0.7)) {
+        setIsNewHighScore(finalScore > saved);
+        if (finalScore > saved) {
+          setBestScore(finalScore);
+          localStorage.setItem('grammar_quiz_best', finalScore.toString());
+        }
+        triggerConfetti();
+        playVictorySound();
+      }
     }
   };
 
@@ -112,10 +111,14 @@ function GrammarQuizContent() {
     setStreak(0);
     setIsAnswered(false);
     setQuizFinished(false);
+    setIsNewHighScore(false);
+    if (filteredQuestions[0] && filteredQuestions[0].options) {
+      setShuffledOptions(shuffleArray(filteredQuestions[0].options));
+    }
   };
 
   return (
-    <div className="min-h-screen pb-28 sm:pb-24 bg-theme-main text-theme-main flex flex-col">
+    <div className="min-h-screen pb-28 sm:pb-24 bg-theme-main text-theme-main flex flex-col font-cairo">
       <Navbar />
 
       <main className={`flex-1 w-full max-w-3xl mx-auto px-4 py-6 space-y-6 animate-fade-in-up ${
@@ -141,7 +144,7 @@ function GrammarQuizContent() {
               <span>{streak} Streak</span>
             </div>
             <div className="px-3 py-1.5 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-black">
-              🏆 {score} / {filteredQuestions.length}
+              🏆 Best: {bestScore}
             </div>
           </div>
         </div>
@@ -200,16 +203,16 @@ function GrammarQuizContent() {
               </p>
             </div>
 
-            {/* Options List */}
+            {/* Shuffled Options List */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {currentQuestion.options.map((option, idx) => {
+              {shuffledOptions.map((option, idx) => {
                 let btnStyle = isDark 
                   ? 'bg-slate-900 border-slate-700 text-slate-200 hover:border-amber-400' 
                   : 'bg-slate-50 border-slate-200 text-slate-900 hover:border-amber-400 shadow-sm';
 
                 if (isAnswered) {
                   if (option === currentQuestion.correct_answer) {
-                    btnStyle = 'bg-emerald-600 text-white border-emerald-600 font-black animate-quiz-pop';
+                    btnStyle = 'bg-emerald-600 text-white border-emerald-600 font-black animate-quiz-pop scale-[1.02] shadow-lg shadow-emerald-600/40';
                   } else if (option === selectedOption) {
                     btnStyle = 'bg-rose-600 text-white border-rose-600 font-black animate-quiz-shake';
                   }
@@ -261,27 +264,36 @@ function GrammarQuizContent() {
             )}
           </div>
         ) : (
-          /* Final Results Card */
-          <div className={`rounded-2xl p-8 border shadow-2xl text-center space-y-6 animate-scale-in ${
+          /* Celebratory High Score Final Results Card */
+          <div className={`rounded-2xl p-8 border shadow-2xl text-center space-y-6 animate-scale-in relative overflow-hidden ${
             isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'
           }`}>
-            <div className="w-20 h-20 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center mx-auto border-2 border-amber-500/40 shadow-inner animate-bounce-subtle">
-              <Trophy className="w-10 h-10" />
+            {isNewHighScore && (
+              <div className="bg-gradient-to-r from-amber-500 to-rose-600 text-white text-xs font-black py-1.5 px-6 rounded-full inline-flex items-center space-x-2 space-x-reverse shadow-lg animate-bounce-subtle">
+                <PartyPopper className="w-4 h-4" />
+                <span>🏆 NEW HIGH SCORE RECORD! 🎉</span>
+              </div>
+            )}
+
+            <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-amber-500 to-rose-500 text-white flex items-center justify-center mx-auto border-4 border-amber-300 shadow-2xl animate-pulse-glow">
+              <Trophy className="w-12 h-12 animate-bounce-subtle" />
             </div>
 
             <div className="space-y-2">
               <h2 className="text-2xl font-black">
-                {appLang === 'ar' ? 'أحسنت! أكملت تحدي القواعد الرومانية 🎉' : appLang === 'en' ? 'Well Done! Completed Grammar Challenge 🎉' : 'Felicitări! Ai Finalizat Testul de Gramatică 🎉'}
+                {score >= Math.ceil(filteredQuestions.length * 0.7)
+                  ? (appLang === 'ar' ? '🎉 إنجاز أسطوري! ممتاز جداً 🏆' : '🎉 Outstanding Performance! 🏆')
+                  : (appLang === 'ar' ? 'أحسنت! أكملت تحدي القواعد الرومانية 👍' : 'Well Done! Challenge Completed 👍')}
               </h2>
-              <p className="text-sm font-bold text-amber-400">
-                {appLang === 'ar' ? `حصلت على ${score} من أصل ${filteredQuestions.length} إجابات صحيحة!` : `You scored ${score} out of ${filteredQuestions.length}!`}
+              <p className="text-base font-extrabold text-amber-400">
+                {appLang === 'ar' ? `حصلت على ${score} من أصل ${filteredQuestions.length} إجابات صحيحة (${Math.round((score / filteredQuestions.length) * 100)}%)` : `You scored ${score} out of ${filteredQuestions.length} (${Math.round((score / filteredQuestions.length) * 100)}%)`}
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4">
               <button
                 onClick={handleRestartQuiz}
-                className="w-full sm:w-auto px-6 py-3 bg-amber-600 hover:bg-amber-500 text-white font-extrabold rounded-xl text-xs flex items-center justify-center space-x-2 space-x-reverse shadow transition-colors"
+                className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-amber-500 to-rose-600 hover:opacity-95 text-white font-extrabold rounded-xl text-xs flex items-center justify-center space-x-2 space-x-reverse shadow-lg transition-colors"
               >
                 <RotateCcw className="w-4 h-4" />
                 <span>{appLang === 'ar' ? 'إعادة التحدي مرة أخرى' : 'Restart Challenge'}</span>

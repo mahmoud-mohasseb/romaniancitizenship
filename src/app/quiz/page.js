@@ -13,7 +13,8 @@ import {
   AlertCircle, 
   Maximize2, 
   X, 
-  Timer 
+  Timer,
+  PartyPopper
 } from 'lucide-react';
 import questions from '../../data/questions_ar.json';
 import Navbar from '../../components/Navbar';
@@ -22,6 +23,7 @@ import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { getCategoryMeta, CATEGORIES_LIST } from '../../utils/categories';
 import { getQuestionText, getAnswerText } from '../../utils/languageHelper';
+import { shuffleArray, triggerConfetti, playVictorySound, playOptionFeedbackSound } from '../../utils/quizUtils';
 
 function QuizContent() {
   const searchParams = useSearchParams();
@@ -97,8 +99,7 @@ function QuizContent() {
       }
     }
 
-    let allOptions = [correctQ.answer, ...wrongOptions];
-    allOptions.sort(() => Math.random() - 0.5);
+    const allOptions = shuffleArray([correctQ.answer, ...wrongOptions]);
 
     setCurrentQuestion(correctQ);
     setOptions(allOptions);
@@ -111,6 +112,7 @@ function QuizContent() {
 
     setSelectedOption(option);
     const isCorrect = option === currentQuestion.answer;
+    playOptionFeedbackSound(isCorrect);
 
     if (isCorrect) {
       setScore(prev => prev + 1);
@@ -123,8 +125,28 @@ function QuizContent() {
     }
 
     setTimeout(() => {
-      generateQuestion();
+      if (questionCount >= totalQuestionsLimit) {
+        finishQuiz();
+      } else {
+        generateQuestion();
+      }
     }, 1200);
+  };
+
+  const finishQuiz = () => {
+    setIsFinished(true);
+    const finalScore = score + (selectedOption === currentQuestion.answer ? 0 : 0);
+    const pct = Math.round((finalScore / totalQuestionsLimit) * 100);
+
+    const saved = parseInt(localStorage.getItem('anc_quiz_best') || '0', 10);
+    if (finalScore > saved) {
+      localStorage.setItem('anc_quiz_best', finalScore.toString());
+    }
+
+    if (pct >= 75) {
+      triggerConfetti();
+      playVictorySound();
+    }
   };
 
   const resetQuiz = () => {
@@ -157,9 +179,16 @@ function QuizContent() {
         <main className={`flex-1 max-w-lg mx-auto w-full px-4 py-8 space-y-6 animate-scale-in ${
           isRtl ? 'lg:mr-72' : 'lg:ml-72'
         } ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
-          <div className={`p-6 rounded-2xl border text-center space-y-6 shadow-xl ${isDark ? 'bg-slate-800/90 border-slate-700' : 'bg-white border-slate-200'}`}>
-            <div className={`w-20 h-20 mx-auto rounded-full flex items-center justify-center border-4 animate-bounce-subtle ${isPassed ? 'bg-emerald-500/20 border-emerald-500 text-emerald-400' : 'bg-rose-500/20 border-rose-500 text-rose-400'}`}>
-              <Trophy className="w-10 h-10" />
+          <div className={`p-6 rounded-2xl border text-center space-y-6 shadow-xl relative overflow-hidden ${isDark ? 'bg-slate-800/90 border-slate-700' : 'bg-white border-slate-200'}`}>
+            {isPassed && (
+              <div className="bg-gradient-to-r from-emerald-500 via-teal-500 to-rose-600 text-white text-xs font-black py-1.5 px-6 rounded-full inline-flex items-center space-x-2 space-x-reverse shadow-lg animate-bounce-subtle">
+                <PartyPopper className="w-4 h-4" />
+                <span>🏆 OFFICIAL ANC PASS & CERTIFIED HIGH SCORE! 🎉</span>
+              </div>
+            )}
+
+            <div className={`w-24 h-24 mx-auto rounded-full flex items-center justify-center border-4 shadow-2xl animate-pulse-glow ${isPassed ? 'bg-gradient-to-tr from-emerald-500 to-teal-500 border-emerald-300 text-white' : 'bg-rose-500/20 border-rose-500 text-rose-400'}`}>
+              <Trophy className="w-12 h-12 animate-bounce-subtle" />
             </div>
 
             <div className="space-y-1">

@@ -12,12 +12,14 @@ import {
   Gamepad2, 
   Flame, 
   MessageSquare,
-  Star
+  Star,
+  PartyPopper
 } from 'lucide-react';
 import conversationsData from '../../data/romanian_conversations.json';
 import Navbar from '../../components/Navbar';
 import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
+import { shuffleArray, triggerConfetti, playVictorySound, playOptionFeedbackSound } from '../../utils/quizUtils';
 
 function ConversationQuizContent() {
   const { theme } = useTheme();
@@ -27,84 +29,75 @@ function ConversationQuizContent() {
   const [questionCount, setQuestionCount] = useState(0);
   const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
   const [currentScenario, setCurrentScenario] = useState(null);
   const [options, setOptions] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
   const [isFinished, setIsFinished] = useState(false);
+  const [isNewHighScore, setIsNewHighScore] = useState(false);
 
   const TOTAL_QUESTIONS = 5;
 
   useEffect(() => {
-    generateNewQuestion();
+    const saved = localStorage.getItem('conversation_quiz_best');
+    if (saved) setBestScore(parseInt(saved, 10));
+    generateNewQuestion(0);
   }, []);
 
-  const playSoundEffect = (type) => {
-    if (typeof window === 'undefined') return;
-    try {
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      if (!AudioCtx) return;
-      const ctx = new AudioCtx();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-
-      if (type === 'correct') {
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(523.25, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.15);
-        gain.gain.setValueAtTime(0.3, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.25);
-        osc.start();
-        osc.stop(ctx.currentTime + 0.25);
-      } else {
-        osc.type = 'sawtooth';
-        osc.frequency.setValueAtTime(150, ctx.currentTime);
-        osc.frequency.setValueAtTime(110, ctx.currentTime + 0.1);
-        gain.gain.setValueAtTime(0.3, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
-        osc.start();
-        osc.stop(ctx.currentTime + 0.2);
-      }
-    } catch (e) {}
-  };
-
-  const generateNewQuestion = () => {
-    if (questionCount >= TOTAL_QUESTIONS) {
-      setIsFinished(true);
+  const generateNewQuestion = (nextCount = questionCount) => {
+    if (nextCount >= TOTAL_QUESTIONS) {
+      finishGame();
       return;
     }
 
     const randomConvIdx = Math.floor(Math.random() * conversationsData.length);
     const conv = conversationsData[randomConvIdx];
     
-    // Pick first line as prompt, second line as correct answer
-    const promptLine = conv.dialogue[0];
-    const correctLine = conv.dialogue[1];
+    // Pick any valid adjacent pair from dialogue (e.g. index 0 -> 1 or 2 -> 3)
+    const maxStartIdx = Math.max(0, conv.dialogue.length - 2);
+    const startIdx = Math.floor(Math.random() * (maxStartIdx + 1));
+
+    const promptLine = conv.dialogue[startIdx];
+    const correctLine = conv.dialogue[startIdx + 1] || conv.dialogue[1] || conv.dialogue[0];
 
     let wrongOptions = [];
-    while (wrongOptions.length < 3) {
+    let attempts = 0;
+    while (wrongOptions.length < 3 && attempts < 50) {
+      attempts++;
       const otherConvIdx = Math.floor(Math.random() * conversationsData.length);
       const otherConv = conversationsData[otherConvIdx];
       const randomLineIdx = Math.floor(Math.random() * otherConv.dialogue.length);
-      const wrongText = otherConv.dialogue[randomLineIdx].text_ro;
+      const candidate = otherConv.dialogue[randomLineIdx];
 
-      if (wrongText !== correctLine.text_ro && !wrongOptions.some(w => w.text_ro === wrongText)) {
-        wrongOptions.push(otherConv.dialogue[randomLineIdx]);
+      if (candidate.text_ro !== correctLine.text_ro && !wrongOptions.some(w => w.text_ro === candidate.text_ro)) {
+        wrongOptions.push(candidate);
       }
     }
 
-    let allOptions = [correctLine, ...wrongOptions];
-    allOptions.sort(() => Math.random() - 0.5);
+    const allOptions = shuffleArray([correctLine, ...wrongOptions]);
 
     setCurrentScenario({ conv, promptLine, correctLine });
     setOptions(allOptions);
     setSelectedOption(null);
-    setQuestionCount(prev => prev + 1);
+    setQuestionCount(nextCount + 1);
 
     setTimeout(() => {
       speakAudio(promptLine.text_ro);
     }, 400);
+  };
+
+  const finishGame = () => {
+    setIsFinished(true);
+    const saved = parseInt(localStorage.getItem('conversation_quiz_best') || '0', 10);
+    if (score > saved || score >= Math.ceil(TOTAL_QUESTIONS * 0.7)) {
+      setIsNewHighScore(score > saved);
+      if (score > saved) {
+        setBestScore(score);
+        localStorage.setItem('conversation_quiz_best', score.toString());
+      }
+      triggerConfetti();
+      playVictorySound();
+    }
   };
 
   const speakAudio = (text) => {
@@ -120,17 +113,24 @@ function ConversationQuizContent() {
     if (selectedOption) return;
 
     setSelectedOption(item);
-    if (item.text_ro === currentScenario.correctLine.text_ro) {
-      playSoundEffect('correct');
-      setScore(prev => prev + 1);
+    const isCorrect = item.text_ro === currentScenario.correctLine.text_ro;
+    playOptionFeedbackSound(isCorrect);
+
+    let nextScore = score;
+    if (isCorrect) {
+      nextScore = score + 1;
+      setScore(nextScore);
       setStreak(prev => prev + 1);
     } else {
-      playSoundEffect('wrong');
       setStreak(0);
     }
 
     setTimeout(() => {
-      generateNewQuestion();
+      if (questionCount >= TOTAL_QUESTIONS) {
+        finishGame();
+      } else {
+        generateNewQuestion(questionCount);
+      }
     }, 1300);
   };
 
@@ -139,19 +139,27 @@ function ConversationQuizContent() {
     setScore(0);
     setStreak(0);
     setIsFinished(false);
-    generateNewQuestion();
+    setIsNewHighScore(false);
+    generateNewQuestion(0);
   };
 
   if (isFinished) {
     const percentage = Math.round((score / TOTAL_QUESTIONS) * 100);
     return (
-      <div className="min-h-screen pb-20 bg-theme-main text-theme-main flex flex-col">
+      <div className="min-h-screen pb-20 bg-theme-main text-theme-main flex flex-col font-cairo">
         <Navbar />
 
         <main className={`flex-1 max-w-lg mx-auto w-full px-4 py-8 space-y-6 ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
-          <div className={`rounded-2xl p-6 border shadow-xl text-center space-y-6 ${isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'}`}>
-            <div className="w-24 h-24 rounded-full mx-auto bg-amber-500/20 text-amber-400 flex items-center justify-center relative">
-              <Trophy className="w-12 h-12" />
+          <div className={`rounded-2xl p-6 border shadow-xl text-center space-y-6 relative overflow-hidden ${isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'}`}>
+            {isNewHighScore && (
+              <div className="bg-gradient-to-r from-amber-500 to-rose-600 text-white text-xs font-black py-1.5 px-6 rounded-full inline-flex items-center space-x-2 space-x-reverse shadow-lg animate-bounce-subtle">
+                <PartyPopper className="w-4 h-4" />
+                <span>🏆 NEW CONVERSATION HIGH SCORE! 🎉</span>
+              </div>
+            )}
+
+            <div className="w-24 h-24 rounded-full mx-auto bg-gradient-to-tr from-amber-500 to-rose-500 text-white flex items-center justify-center relative border-4 border-amber-300 shadow-2xl animate-pulse-glow">
+              <Trophy className="w-12 h-12 animate-bounce-subtle" />
               <Sparkles className="w-6 h-6 text-amber-300 absolute top-2 right-2 animate-bounce" />
             </div>
 
@@ -162,7 +170,7 @@ function ConversationQuizContent() {
 
             <div className={`p-6 rounded-2xl border-2 space-y-2 ${isDark ? 'bg-slate-900/90 border-amber-500' : 'bg-slate-50 border-amber-500'}`}>
               <p className="text-4xl font-black text-amber-400">{score} / {TOTAL_QUESTIONS}</p>
-              <p className="text-xs font-bold text-theme-sub">{strings.score}: {percentage}%</p>
+              <p className="text-xs font-bold text-theme-sub">{strings.score}: {percentage}% | Best: {bestScore}</p>
               <p className="text-xs font-bold text-emerald-400">
                 {percentage >= 80 ? '🌟 ممتااااز! أنقنت محادثات الحياة اليومية والمقابلة!' : '👍 أداء رائع! واصل الاستماع والتمرين!'}
               </p>
@@ -171,17 +179,17 @@ function ConversationQuizContent() {
             <div className="space-y-2">
               <button
                 onClick={restartGame}
-                className="w-full py-3.5 bg-gradient-to-r from-rose-600 to-amber-600 hover:opacity-95 text-white font-bold rounded-xl flex items-center justify-center space-x-2 space-x-reverse shadow-lg shadow-rose-600/30 text-sm transition-all"
+                className="w-full py-3.5 bg-gradient-to-r from-amber-500 to-rose-600 hover:opacity-95 text-white font-bold rounded-xl flex items-center justify-center space-x-2 space-x-reverse shadow-lg shadow-amber-600/30 text-sm transition-all"
               >
                 <RotateCcw className="w-4 h-4" />
-                <span>إعادة اللعب 🎮</span>
+                <span>إعادة اللعبة 🎮</span>
               </button>
 
               <Link
                 href="/conversations"
                 className={`block w-full py-3 font-bold rounded-xl text-xs transition-colors ${isDark ? 'bg-slate-700 hover:bg-slate-600 text-slate-300' : 'bg-slate-200 hover:bg-slate-300 text-slate-700'}`}
               >
-                العودة لجدول المحادثات
+                مراجعة المحادثات والحوارات 💬
               </Link>
             </div>
           </div>
@@ -193,11 +201,11 @@ function ConversationQuizContent() {
   if (!currentScenario) return null;
 
   return (
-    <div className="min-h-screen pb-20 bg-theme-main text-theme-main flex flex-col">
+    <div className="min-h-screen pb-20 bg-theme-main text-theme-main flex flex-col font-cairo">
       <Navbar />
 
       <main className={`flex-1 max-w-lg mx-auto w-full px-4 py-6 space-y-5 ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
-        {/* Progress & Streak Bar */}
+        {/* Header Bar */}
         <div className={`flex items-center justify-between p-3 rounded-2xl border text-xs font-bold ${isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-white border-slate-200 shadow-sm'}`}>
           <span className="text-theme-sub">
             {strings.question} {questionCount} {strings.of} {TOTAL_QUESTIONS}
@@ -206,43 +214,43 @@ function ConversationQuizContent() {
             <Flame className="w-4 h-4" />
             <span>Streak: {streak} 🔥</span>
           </div>
-          <span className="text-emerald-400">{strings.score}: {score}</span>
+          <span className="text-emerald-400">🏆 Best: {bestScore}</span>
         </div>
 
-        {/* Conversation Play Card */}
+        {/* Conversation Context Box */}
         <div className={`rounded-2xl p-6 border shadow-xl space-y-4 ${isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'}`}>
-          <div className="flex items-center justify-between">
-            <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold bg-rose-500/20 text-rose-400 border border-rose-500/30">
-              🗣️ {appLang === 'ar' ? currentScenario.conv.title_ar : currentScenario.conv.title_en}
+          <div className="flex items-center justify-between border-b border-slate-700/60 pb-3">
+            <span className="text-xs font-bold text-amber-400 flex items-center space-x-1 space-x-reverse">
+              <MessageSquare className="w-4 h-4" />
+              <span>{currentScenario.conv.title_ar}</span>
             </span>
-
             <button
               onClick={() => speakAudio(currentScenario.promptLine.text_ro)}
-              className="p-2 bg-rose-500/15 text-rose-400 hover:bg-rose-500/25 rounded-xl transition-colors text-xs font-bold flex items-center space-x-1 space-x-reverse"
+              className="p-2 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/30 hover:bg-amber-500/30 transition-all flex items-center space-x-1 space-x-reverse text-xs font-bold"
             >
               <Volume2 className="w-4 h-4" />
-              <span>استمع 🔊</span>
+              <span>استماع</span>
             </button>
           </div>
 
-          <div className="p-4 rounded-xl bg-slate-900/90 text-white space-y-2 border border-slate-700/80">
-            <span className="text-[10px] font-bold text-rose-400 block">
-              🗣️ {currentScenario.promptLine.speaker_ro}:
+          <div className="space-y-2">
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+              {currentScenario.promptLine.speaker}:
             </span>
-            <p className="text-base sm:text-lg font-bold leading-relaxed">
+            <p className="text-lg font-black text-theme-main leading-relaxed">
               "{currentScenario.promptLine.text_ro}"
             </p>
-            <p className="text-xs text-rose-400 font-bold text-right">
+            <p className="text-xs font-bold text-amber-400">
               🇸🇦 {currentScenario.promptLine.text_ar}
             </p>
           </div>
 
-          <p className="text-xs font-bold text-theme-sub text-center">
-            {appLang === 'ar' ? 'ما هو الرد المناسب باللغة الرومانية؟' : 'What is the correct response in Romanian?'}
-          </p>
+          <div className="pt-2 border-t border-slate-700/60 text-xs font-bold text-emerald-400">
+            ❓ {appLang === 'ar' ? 'ما هو الرد المناسب والرسمي باللغة الرومانية؟' : 'What is the appropriate Romanian reply?'}
+          </div>
         </div>
 
-        {/* Options List */}
+        {/* Shuffled Options List */}
         <div className="space-y-3">
           {options.map((item, idx) => {
             let btnStyle = isDark 
@@ -251,9 +259,9 @@ function ConversationQuizContent() {
 
             if (selectedOption) {
               if (item.text_ro === currentScenario.correctLine.text_ro) {
-                btnStyle = 'bg-emerald-500/20 border-emerald-500 text-emerald-400 font-extrabold';
-              } else if (item.text_ro === selectedOption.text_ro) {
-                btnStyle = 'bg-rose-500/20 border-rose-500 text-rose-400 font-extrabold';
+                btnStyle = 'bg-emerald-500/20 border-emerald-500 text-emerald-400 font-extrabold scale-[1.02] shadow-lg shadow-emerald-500/30';
+              } else if (item === selectedOption) {
+                btnStyle = 'bg-rose-500/20 border-rose-500 text-rose-400 font-extrabold animate-quiz-shake';
               }
             }
 
@@ -262,20 +270,19 @@ function ConversationQuizContent() {
                 key={idx}
                 onClick={() => handleSelect(item)}
                 disabled={selectedOption !== null}
-                className={`w-full p-4 rounded-2xl border-2 transition-all flex flex-col space-y-1 text-right ${btnStyle}`}
+                className={`w-full p-4 rounded-2xl border-2 transition-all text-right space-y-1 ${btnStyle}`}
               >
-                <div className="flex items-center justify-between w-full">
-                  <span className="text-xs font-bold text-rose-500">🗣️ {item.speaker_ro}</span>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-slate-400 font-bold">{item.speaker}:</span>
                   {selectedOption && item.text_ro === currentScenario.correctLine.text_ro && (
-                    <CheckCircle className="w-5 h-5 text-emerald-400" />
+                    <CheckCircle className="w-5 h-5 text-emerald-400 shrink-0" />
                   )}
                   {selectedOption === item && item.text_ro !== currentScenario.correctLine.text_ro && (
-                    <XCircle className="w-5 h-5 text-rose-400" />
+                    <XCircle className="w-5 h-5 text-rose-400 shrink-0" />
                   )}
                 </div>
-
-                <p className="text-sm font-bold leading-relaxed">{item.text_ro}</p>
-                <p className="text-xs text-slate-400">🇸🇦 {item.text_ar}</p>
+                <p className="text-sm font-bold">{item.text_ro}</p>
+                <p className="text-[11px] text-slate-400">🇸🇦 {item.text_ar}</p>
               </button>
             );
           })}

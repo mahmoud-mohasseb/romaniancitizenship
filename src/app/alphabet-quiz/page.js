@@ -19,6 +19,7 @@ import alphabetData from '../../data/romanian_alphabet.json';
 import Navbar from '../../components/Navbar';
 import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
+import { shuffleArray, triggerConfetti, playVictorySound, playOptionFeedbackSound } from '../../utils/quizUtils';
 
 function AlphabetQuizContent() {
   const { theme } = useTheme();
@@ -118,8 +119,7 @@ function AlphabetQuizContent() {
       }
     }
 
-    let allOptions = [correctLetter, ...wrongOptions];
-    allOptions.sort(() => Math.random() - 0.5);
+    const allOptions = shuffleArray([correctLetter, ...wrongOptions]);
 
     setCurrentLetter(correctLetter);
     setOptions(allOptions);
@@ -135,9 +135,13 @@ function AlphabetQuizContent() {
 
   const finishGame = () => {
     setIsFinished(true);
-    if (score > bestScore) {
-      setBestScore(score);
-      localStorage.setItem('alphabet_quiz_best', score.toString());
+    if (score > bestScore || score >= 7) {
+      if (score > bestScore) {
+        setBestScore(score);
+        localStorage.setItem('alphabet_quiz_best', score.toString());
+      }
+      triggerConfetti();
+      playVictorySound();
     }
   };
 
