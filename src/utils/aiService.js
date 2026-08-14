@@ -2,7 +2,6 @@ import questions from '../data/questions_ar.json';
 import grammarData from '../data/romanian_grammar.json';
 import conversationData from '../data/romanian_conversations.json';
 
-const DEFAULT_WEBLLAMA_URL = 'http://localhost:8080';
 const DEFAULT_MODEL = 'Llama-3.2-1B-Instruct-q4f16_1-MLC';
 
 let webLlmEngine = null;
@@ -26,39 +25,73 @@ export async function initWebLLMEngine(selectedModel = DEFAULT_MODEL, onProgress
     return webLlmEngine;
   } catch (error) {
     isInitializing = false;
-    console.log('[WebLLM Engine] Auto fallback to Hybrid Knowledge Engine:', error);
+    console.log('[WebLLM Engine] Fallback to Autonomous Knowledge Engine:', error);
     return null;
   }
 }
 
 /**
- * Online Wikipedia Search Fetcher
+ * Autonomous Online Wikipedia Knowledge Fetcher (Works in Installed PWA & Standalone Apps)
  */
 export async function searchOnlineKnowledge(topic, lang = 'ar') {
+  if (!topic) return null;
+
   try {
-    const searchLang = lang === 'ro' ? 'ro' : 'en';
-    const response = await fetch(`https://${searchLang}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(topic)}`);
-    if (response.ok) {
-      const data = await response.json();
-      if (data && data.extract) {
-        return {
-          title: data.title,
-          extract: data.extract,
-          url: data.content_urls?.desktop?.page || '',
-          thumbnail: data.thumbnail?.source || ''
-        };
+    const searchLangs = lang === 'ro' ? ['ro', 'en'] : ['en', 'ro'];
+
+    for (const searchLang of searchLangs) {
+      // 1. Try REST API Summary
+      try {
+        const response = await fetch(`https://${searchLang}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(topic)}`);
+        if (response.ok) {
+          const data = await response.json();
+          if (data && data.extract) {
+            return {
+              title: data.title,
+              extract: data.extract,
+              url: data.content_urls?.desktop?.page || `https://${searchLang}.wikipedia.org/wiki/${encodeURIComponent(topic)}`,
+              thumbnail: data.thumbnail?.source || ''
+            };
+          }
+        }
+      } catch (e) {
+        console.log(`REST API summary attempt failed for ${searchLang}:`, e);
+      }
+
+      // 2. Try MediaWiki API Query (Works everywhere with origin=*)
+      try {
+        const mwUrl = `https://${searchLang}.wikipedia.org/w/api.php?action=query&prop=extracts|pageimages&exintro=1&explaintext=1&piprop=thumbnail&pithumbsize=600&titles=${encodeURIComponent(topic)}&format=json&origin=*`;
+        const mwRes = await fetch(mwUrl);
+        if (mwRes.ok) {
+          const mwData = await mwRes.json();
+          const pages = mwData?.query?.pages;
+          if (pages) {
+            const pageKey = Object.keys(pages)[0];
+            const page = pages[pageKey];
+            if (page && page.extract && page.pageid > 0) {
+              return {
+                title: page.title,
+                extract: page.extract,
+                url: `https://${searchLang}.wikipedia.org/wiki/${encodeURIComponent(page.title)}`,
+                thumbnail: page.thumbnail?.source || ''
+              };
+            }
+          }
+        }
+      } catch (e) {
+        console.log(`MediaWiki query attempt failed for ${searchLang}:`, e);
       }
     }
   } catch (e) {
-    console.log('Online Wikipedia search error:', e);
+    console.log('Online search exception:', e);
   }
   return null;
 }
 
 /**
- * Main Smart AI Query Function with Instant Response Reversion
+ * Autonomous Smart AI Query Function (No WebLlama Server Required)
  */
-export async function queryWebLlama(prompt, model = DEFAULT_MODEL, webLlamaUrl = DEFAULT_WEBLLAMA_URL, lang = 'ar') {
+export async function queryWebLlama(prompt, model = DEFAULT_MODEL, webLlamaUrl = '', lang = 'ar') {
   const query = (prompt || '').trim();
   if (!query) return { success: false, text: '' };
 
@@ -76,46 +109,11 @@ export async function queryWebLlama(prompt, model = DEFAULT_MODEL, webLlamaUrl =
         return { success: true, text: replyText, source: 'webllm' };
       }
     } catch (e) {
-      console.log('[WebLLM Execution] Fallback to Online Smart AI Engine');
+      console.log('[WebLLM Execution] Fallback to Autonomous Knowledge Engine');
     }
   }
 
-  // 2. Try External WebLlama / OpenAI API Endpoint (if configured by user)
-  if (webLlamaUrl && !webLlamaUrl.includes('localhost')) {
-    try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 4000);
-      const endpoint = webLlamaUrl.endsWith('/') ? `${webLlamaUrl}v1/chat/completions` : `${webLlamaUrl}/v1/chat/completions`;
-
-      const response = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        signal: controller.signal,
-        body: JSON.stringify({
-          model: model || DEFAULT_MODEL,
-          messages: [
-            { role: 'system', content: 'You are an expert Romanian Citizenship Exam Tutor.' },
-            { role: 'user', content: query }
-          ],
-          stream: false,
-        }),
-      });
-
-      clearTimeout(timeoutId);
-
-      if (response.ok) {
-        const data = await response.json();
-        const replyText = data.choices?.[0]?.message?.content || data.response || data.text;
-        if (replyText) {
-          return { success: true, text: replyText, source: 'webllama' };
-        }
-      }
-    } catch (error) {
-      console.log('WebLlama endpoint unreachable, switching to Smart Knowledge Engine');
-    }
-  }
-
-  // 3. Search local citizenship datasets (469 Questions + Grammar + Conversations)
+  // 2. Search local citizenship datasets (469 Questions + Grammar + Conversations)
   const qLower = query.toLowerCase();
 
   // Search in 469 Citizenship Questions
@@ -192,10 +190,10 @@ export async function queryWebLlama(prompt, model = DEFAULT_MODEL, webLlamaUrl =
     };
   }
 
-  // 4. Perform Live Online Wikipedia Search for unmatched topics!
+  // 3. Perform Autonomous Live Online Search
   const onlineResult = await searchOnlineKnowledge(query, lang);
   if (onlineResult) {
-    let text = `🌐 **معلومات شاملة من موسوعة ويكيبيديا الرومانية (Live Wikipedia Smart Result):**\n\n` +
+    let text = `🌐 **معلومات شاملة وموثقة (Online Smart Knowledge Result):**\n\n` +
       `**الموضوع:** ${onlineResult.title}\n\n` +
       `${onlineResult.extract}\n\n` +
       `🔗 [اقرأ التقرير الكامل على Wikipedia](${onlineResult.url})`;
@@ -209,19 +207,19 @@ export async function queryWebLlama(prompt, model = DEFAULT_MODEL, webLlamaUrl =
     };
   }
 
-  // 5. Smart Fallback Response
+  // 4. Autonomous Smart Fallback Response
   if (lang === 'en') {
     return {
       success: true,
-      text: `🤖 **WebLLM Smart Citizenship Tutor:**\n\n` +
-        `Regarding "${query}": Romanian Citizenship exam focuses on Romanian History, Constitution (Article 1-148), Geography, and Language.\n\n` +
+      text: `🤖 **Smart Citizenship Tutor:**\n\n` +
+        `Regarding "${query}": The Romanian Citizenship oral interview focuses on Romanian History, Constitution (Article 1-148), Geography, and Language.\n\n` +
         `💡 Try asking: "Who was Stephen the Great?", "Form of government in Romania", or "What is the capital of Romania?".`,
       source: 'ai_tutor'
     };
   } else if (lang === 'ro') {
     return {
       success: true,
-      text: `🤖 **Asistent WebLLM AI Cetățenie:**\n\n` +
+      text: `🤖 **Asistent Smart AI Cetățenie:**\n\n` +
         `Cu privire la „${query}”: Examenul de cetățenie română se bazează pe istorie, constituție (articolele 1-148), geografie și limba română.\n\n` +
         `💡 Încearcă: „Cine a fost Ștefan cel Mare?”, „Forma de guvernământ”, sau „Fluviul Dunărea”.`,
       source: 'ai_tutor'
@@ -230,7 +228,7 @@ export async function queryWebLlama(prompt, model = DEFAULT_MODEL, webLlamaUrl =
 
   return {
     success: true,
-    text: `🤖 **مساعد WebLLM الذكي للجنسية الرومانية:**\n\n` +
+    text: `🤖 **مساعد الجنسية الذكي المدمج:**\n\n` +
       `بخصوص "${query}": يركز اختبار الجنسية الرومانية ANC على التاريخ الروماني، الدستور (المواد 1-148)، الجغرافيا، وقواعد اللغة الرومانية.\n\n` +
       `💡 جرب البحث عن: "من هو ستيفان تشيل ماري؟"، "شكل الحكومة في رومانيا"، أو "معلومات عن نهر الدانوب".`,
     source: 'ai_tutor'

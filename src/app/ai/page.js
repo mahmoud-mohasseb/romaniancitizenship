@@ -6,14 +6,12 @@ import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { 
   Sparkles, 
-  Settings, 
   Send, 
   Loader2, 
   Globe, 
   BookOpen, 
   GraduationCap, 
   ExternalLink,
-  Cpu,
   Zap,
   CheckCircle2
 } from 'lucide-react';
@@ -33,20 +31,12 @@ function AIContent() {
   const [inputQuery, setInputQuery] = useState(initialPrompt);
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [webLlamaUrl, setWebLlamaUrl] = useState('');
-  const [selectedModel, setSelectedModel] = useState('Llama-3.2-1B-Instruct-q4f16_1-MLC');
-  const [showConfig, setShowConfig] = useState(false);
   const [engineLoaded, setEngineLoaded] = useState(false);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const savedUrl = localStorage.getItem('webllama_url') || '';
-      const savedModel = localStorage.getItem('webllama_model') || 'Llama-3.2-1B-Instruct-q4f16_1-MLC';
-      setWebLlamaUrl(savedUrl);
-      setSelectedModel(savedModel);
-
-      // Auto initialize WebLLM engine in background for instant responses
-      initWebLLMEngine(savedModel).then((engine) => {
+      // Auto initialize WebLLM engine in background for installed PWA users
+      initWebLLMEngine('Llama-3.2-1B-Instruct-q4f16_1-MLC').then((engine) => {
         if (engine) setEngineLoaded(true);
       });
     }
@@ -56,10 +46,10 @@ function AIContent() {
         id: 1,
         sender: 'ai',
         text: appLang === 'ar' 
-          ? 'مرحباً بك! أنا مساعد WebLLM الذكي المخصص لاختبار الجنسية الرومانية 🇷🇴. المحرك جاهز لإجابة أي سؤال في منهج الـ 469 سؤالاً، التاريخ، الدستور، والبحث المباشر 🌐!'
+          ? 'مرحباً بك! أنا مساعدك الذكي المدمج لاختبار الجنسية الرومانية 🇷🇴. أعمل تلقائياً فور تثبيت التطبيق وبدون الحاجة لخادم أو إعدادات خافية ⚡ أبحث في منهج الـ 469 سؤالاً، القواعد، والإنترنت 🌐!'
           : appLang === 'en'
-          ? 'Welcome! I am your WebLLM AI Romanian Citizenship Tutor 🇷🇴. Ready to answer any questions about ANC curriculum, constitution, or geography 🌐!'
-          : 'Bine ai venit! Sunt asistentul tău WebLLM AI pentru cetățenia română 🇷🇴. Pregătit să răspund la orice întrebare!',
+          ? 'Welcome! I am your Autonomous AI Romanian Citizenship Tutor 🇷🇴. Works out-of-the-box for installed app users with 0 setup required ⚡ Powered by ANC curriculum & Live Search 🌐!'
+          : 'Bine ai venit! Sunt asistentul tău AI pentru cetățenia română 🇷🇴. Rulează automat fără nicio configurare!',
         time: 'Just now'
       }
     ]);
@@ -68,15 +58,6 @@ function AIContent() {
       handleSend(initialPrompt);
     }
   }, [appLang]);
-
-  const saveWebLlamaConfig = (newUrl, newModel) => {
-    setWebLlamaUrl(newUrl);
-    setSelectedModel(newModel);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('webllama_url', newUrl);
-      localStorage.setItem('webllama_model', newModel);
-    }
-  };
 
   const quickPrompts = appLang === 'ar' ? [
     'ما هو شكل الحكومة في رومانيا؟',
@@ -109,7 +90,7 @@ function AIContent() {
     setInputQuery('');
     setLoading(true);
 
-    const result = await queryWebLlama(q, selectedModel, webLlamaUrl, appLang);
+    const result = await queryWebLlama(q, 'Llama-3.2-1B-Instruct-q4f16_1-MLC', '', appLang);
 
     const aiMsg = {
       id: Date.now() + 1,
@@ -159,7 +140,7 @@ function AIContent() {
         return (
           <span className="inline-flex items-center space-x-1 space-x-reverse text-rose-400 font-bold">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>مساعد WebLLM الذكي المدمج 🤖</span>
+            <span>مساعد الجنسية الذكي المدمج 🤖</span>
           </span>
         );
     }
@@ -179,63 +160,30 @@ function AIContent() {
               <Sparkles className="w-5 h-5 text-amber-400 animate-pulse" />
               <div>
                 <h1 className="text-base font-black text-right">
-                  {strings.aiCardTitle || (appLang === 'ar' ? 'مساعد WebLLM الذكي للجنسية الرومانية' : 'WebLLM AI Citizenship Tutor')}
+                  {strings.aiCardTitle || (appLang === 'ar' ? 'المساعد الذكي للجنسية الرومانية' : 'AI Citizenship Tutor')}
                 </h1>
                 <p className="text-[11px] text-emerald-400 font-bold flex items-center space-x-1 space-x-reverse">
-                  <Zap className="w-3 h-3 fill-current" />
-                  <span>محرك ذكي يعود بالإجابة فوراً ويبحث في المنهج والإنترنت ⚡</span>
+                  <Globe className="w-3 h-3" />
+                  <span>يعمل أوتوماتيكياً لمستخدمي التطبيق المثبت أونلاين وأوفلاين ⚡</span>
                 </p>
               </div>
             </div>
 
             <div className="flex items-center space-x-2 space-x-reverse">
-              {engineLoaded && (
+              {engineLoaded ? (
                 <span className="px-2.5 py-1 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-black flex items-center space-x-1 space-x-reverse">
                   <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>WebLLM Ready</span>
+                  <span>WebLLM Active</span>
+                </span>
+              ) : (
+                <span className="px-2.5 py-1 rounded-xl bg-blue-500/20 text-blue-400 border border-blue-500/30 text-[10px] font-black flex items-center space-x-1 space-x-reverse">
+                  <Globe className="w-3.5 h-3.5" />
+                  <span>Online AI Active</span>
                 </span>
               )}
-
-              <button
-                onClick={() => setShowConfig(!showConfig)}
-                className={`p-2 rounded-xl border text-xs font-bold flex items-center space-x-1 space-x-reverse ${isDark ? 'bg-slate-900 border-slate-700 text-slate-300' : 'bg-slate-100 border-slate-200 text-slate-700'}`}
-              >
-                <Settings className="w-4 h-4" />
-              </button>
             </div>
           </div>
         </div>
-
-        {/* Optional WebLLM Settings Drawer */}
-        {showConfig && (
-          <div className={`p-4 rounded-2xl border space-y-3 shrink-0 text-xs ${isDark ? 'bg-slate-800 border-slate-700 text-slate-300' : 'bg-white border-slate-200 text-slate-700 shadow-sm'}`}>
-            <p className="font-bold text-emerald-500">⚙️ WebLLM In-Browser & Remote Server Settings:</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              <div>
-                <label className="block text-[11px] text-theme-sub mb-1">WebLLM Model (Wasm / WebGPU):</label>
-                <select 
-                  value={selectedModel} 
-                  onChange={(e) => saveWebLlamaConfig(webLlamaUrl, e.target.value)}
-                  className={`w-full border rounded-xl p-2 font-mono ${isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-slate-100 border-slate-200 text-slate-900'}`}
-                >
-                  <option value="Llama-3.2-1B-Instruct-q4f16_1-MLC">Llama 3.2 1B Instruct (Fast & Lightweight)</option>
-                  <option value="Llama-3.2-3B-Instruct-q4f16_1-MLC">Llama 3.2 3B Instruct (High Accuracy)</option>
-                  <option value="SmolLM2-360M-Instruct-q4f16_1-MLC">SmolLM2 360M (Ultra Fast Mobile)</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-[11px] text-theme-sub mb-1">Optional WebLlama Host URL:</label>
-                <input 
-                  type="text" 
-                  value={webLlamaUrl} 
-                  onChange={(e) => saveWebLlamaConfig(e.target.value, selectedModel)}
-                  className={`w-full border rounded-xl p-2 font-mono ${isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-slate-100 border-slate-200 text-slate-900'}`}
-                  placeholder="Leave empty for Hybrid Offline Engine"
-                />
-              </div>
-            </div>
-          </div>
-        )}
 
         {/* Quick Prompts Strip */}
         <div className="flex items-center space-x-2 space-x-reverse overflow-x-auto pb-1 no-scrollbar shrink-0">
@@ -307,7 +255,7 @@ function AIContent() {
           {loading && (
             <div className={`flex items-center space-x-2 space-x-reverse p-3.5 rounded-2xl border max-w-xs text-xs text-theme-sub ${isDark ? 'bg-slate-900/90 border-slate-700' : 'bg-slate-100 border-slate-200'}`}>
               <Loader2 className="w-4 h-4 animate-spin text-amber-400" />
-              <span className="font-bold">جاري المعالجة بواسطة WebLLM والمنهج... ⚡</span>
+              <span className="font-bold">جاري المعالجة والبحث المباشر... 🌐</span>
             </div>
           )}
         </div>
@@ -319,7 +267,7 @@ function AIContent() {
             value={inputQuery}
             onChange={(e) => setInputQuery(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-            placeholder={appLang === 'ar' ? 'اسأل WebLLM الذكي عن أي سؤال في منهج الجنسية أو التاريخ...' : appLang === 'en' ? 'Ask WebLLM AI any question about curriculum...' : 'Întreabă WebLLM AI despre programa de cetățenie...'}
+            placeholder={appLang === 'ar' ? 'اسأل الذكاء الاصطناعي عن أي سؤال في منهج الجنسية أو التاريخ...' : appLang === 'en' ? 'Ask AI Tutor any question about curriculum...' : 'Întreabă AI despre programa de cetățenie...'}
             className={`flex-1 border text-xs sm:text-sm rounded-xl px-4 py-3 focus:outline-none focus:border-rose-500 font-bold ${isDark ? 'bg-slate-900 border-slate-700/80 text-white placeholder-slate-500' : 'bg-slate-100 border-slate-200 text-slate-900 placeholder-slate-400'}`}
           />
           <button
@@ -337,7 +285,7 @@ function AIContent() {
 
 export default function AIPage() {
   return (
-    <Suspense fallback={<div className="p-8 text-center text-slate-400 font-bold">Loading WebLLM AI Assistant...</div>}>
+    <Suspense fallback={<div className="p-8 text-center text-slate-400 font-bold">Loading AI Assistant...</div>}>
       <AIContent />
     </Suspense>
   );
