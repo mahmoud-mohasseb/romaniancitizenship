@@ -18,6 +18,7 @@ import {
   MessageSquare, 
   Puzzle, 
   GraduationCap, 
+  Music,
   ChevronLeft, 
   ChevronRight 
 } from 'lucide-react';
@@ -35,6 +36,7 @@ export default function Navbar() {
     { href: '/', label: strings.homeNav, sub: appLang === 'ar' ? 'الصفحة الرئيسية' : appLang === 'en' ? 'Main Home Page' : 'Pagina Principală', icon: Home, color: 'text-rose-500' },
     { href: '/study', label: strings.studyNav, sub: appLang === 'ar' ? '469 سؤالاً مصوراً للجنسية' : appLang === 'en' ? '469 Visual Questions' : '469 Întrebări Ilustrate', icon: BookOpen, color: 'text-blue-400' },
     { href: '/quiz', label: strings.quizNav, sub: appLang === 'ar' ? 'اختبارات ومحاكاة الامتحان' : appLang === 'en' ? 'Exam & Quizzes' : 'Simulare Examen & Teste', icon: Trophy, color: 'text-amber-400' },
+    { href: '/anthem', label: appLang === 'ar' ? 'النشيد الوطني الروماني 🇷🇴' : appLang === 'en' ? 'National Anthem 🇷🇴' : 'Imnul Național 🇷🇴', sub: appLang === 'ar' ? 'الكلمات بالصوت والترجمة للدستور' : appLang === 'en' ? 'Lyrics with Audio & Translation' : 'Versuri cu Audio & Traducere', icon: Music, color: 'text-amber-400' },
     { href: '/conversations', label: strings.conversationsNav, sub: appLang === 'ar' ? 'حوارات الرومانية والمقابلة' : appLang === 'en' ? 'Daily Dialogues' : 'Dialoguri Zilnice', icon: MessageSquare, color: 'text-emerald-400' },
     { href: '/conversation-quiz', label: strings.conversationQuizNav, sub: appLang === 'ar' ? 'لعبة حوارات الحياة اليومية' : appLang === 'en' ? 'Conversation Quiz Game' : 'Joc de Conversații', icon: Gamepad2, color: 'text-indigo-400' },
     { href: '/grammar', label: strings.grammarNav || (appLang === 'ar' ? 'شرح قواعد الرومانية' : appLang === 'en' ? 'Romanian Grammar Guide' : 'Ghid de Gramatică'), sub: appLang === 'ar' ? 'الأجناس والضمائر والتصريفات' : appLang === 'en' ? 'Nouns, Articles & Conjugations' : 'Genuri, Articole & Conjugări', icon: GraduationCap, color: 'text-amber-400' },
@@ -49,9 +51,9 @@ export default function Navbar() {
     { href: '/', label: strings.homeNav, icon: Home },
     { href: '/study', label: strings.studyNav, icon: BookOpen },
     { href: '/quiz', label: strings.quizNav, icon: Trophy },
+    { href: '/anthem', label: appLang === 'ar' ? 'النشيد' : appLang === 'en' ? 'Anthem' : 'Imnul', icon: Music },
     { href: '/grammar', label: appLang === 'ar' ? 'القواعد' : appLang === 'en' ? 'Grammar' : 'Gramatică', icon: GraduationCap },
     { href: '/conversations', label: appLang === 'ar' ? 'المحادثات' : appLang === 'en' ? 'Dialogues' : 'Conversații', icon: MessageSquare },
-    { href: '/ai', label: appLang === 'ar' ? 'المساعد' : appLang === 'en' ? 'AI Tutor' : 'Asistent AI', icon: Sparkles },
   ];
 
   const sidebarContent = (
@@ -100,116 +102,123 @@ export default function Navbar() {
                 }`}
               >
                 <div className="flex items-center space-x-3 space-x-reverse">
-                  <div className={`p-2 rounded-xl ${isActive ? 'bg-white/20 text-white' : 'bg-slate-900/40 ' + link.color}`}>
-                    <Icon className="w-4 h-4" />
+                  <div className={`p-2 rounded-xl border ${
+                    isActive ? 'bg-white/20 border-white/30 text-white' : isDark ? 'bg-slate-900 border-slate-700/80' : 'bg-white border-slate-200 shadow-sm'
+                  }`}>
+                    <Icon className={`w-4 h-4 ${isActive ? 'text-white' : link.color}`} />
                   </div>
                   <div>
-                    <p className="text-xs font-bold leading-tight">{link.label}</p>
+                    <h4 className="text-xs font-bold leading-tight">{link.label}</h4>
                     <p className={`text-[10px] ${isActive ? 'text-rose-100' : 'text-slate-400'}`}>{link.sub}</p>
                   </div>
                 </div>
 
-                {isRtl ? <ChevronLeft className="w-4 h-4 opacity-70" /> : <ChevronRight className="w-4 h-4 opacity-70" />}
+                {isRtl ? (
+                  <ChevronLeft className={`w-4 h-4 ${isActive ? 'text-white' : 'text-slate-500'}`} />
+                ) : (
+                  <ChevronRight className={`w-4 h-4 ${isActive ? 'text-white' : 'text-slate-500'}`} />
+                )}
               </Link>
             );
           })}
         </div>
       </div>
 
-      {/* Sidebar Footer Controls */}
-      <div className="pt-3 border-t border-slate-700/60 space-y-3 shrink-0">
-        {/* 3-Language Selector */}
-        <div className="space-y-1.5">
-          <span className="text-[11px] font-bold text-slate-400 block">{strings.selectLangLabel}</span>
-          <div className="grid grid-cols-3 gap-1.5">
-            <button
-              onClick={() => setAppLang('ar')}
-              className={`py-2 rounded-xl text-xs font-extrabold transition-all ${
-                appLang === 'ar' ? 'bg-rose-600 text-white shadow' : isDark ? 'bg-slate-800 text-slate-400 hover:text-white' : 'bg-slate-100 text-slate-600'
-              }`}
-            >
-              🇸🇦 AR
-            </button>
-            <button
-              onClick={() => setAppLang('en')}
-              className={`py-2 rounded-xl text-xs font-extrabold transition-all ${
-                appLang === 'en' ? 'bg-rose-600 text-white shadow' : isDark ? 'bg-slate-800 text-slate-400 hover:text-white' : 'bg-slate-100 text-slate-600'
-              }`}
-            >
-              🇬🇧 EN
-            </button>
-            <button
-              onClick={() => setAppLang('ro')}
-              className={`py-2 rounded-xl text-xs font-extrabold transition-all ${
-                appLang === 'ro' ? 'bg-rose-600 text-white shadow' : isDark ? 'bg-slate-800 text-slate-400 hover:text-white' : 'bg-slate-100 text-slate-600'
-              }`}
-            >
-              🇷🇴 RO
-            </button>
-          </div>
+      {/* Sidebar Footer: Theme Toggle & Language Bar */}
+      <div className="pt-3 border-t border-slate-700/60 space-y-2">
+        <div className="flex items-center justify-between p-2.5 rounded-xl border bg-slate-900/60 border-slate-800 text-xs">
+          <span className="font-semibold text-slate-400">{appLang === 'ar' ? 'المظهر:' : 'Theme:'}</span>
+          <button
+            onClick={toggleTheme}
+            className="flex items-center space-x-1.5 space-x-reverse px-3 py-1.5 rounded-lg bg-rose-500/15 text-rose-400 border border-rose-500/20 font-bold hover:bg-rose-500/25 transition-all"
+          >
+            {isDark ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
+            <span>{isDark ? (appLang === 'ar' ? 'مضيء' : 'Light') : (appLang === 'ar' ? 'داكن' : 'Dark')}</span>
+          </button>
         </div>
 
-        {/* Theme Switcher Button */}
-        <button
-          onClick={toggleTheme}
-          className={`w-full py-2.5 px-3 rounded-xl border flex items-center justify-between text-xs font-bold transition-all ${
-            isDark 
-              ? 'bg-slate-800 border-slate-700 text-amber-400 hover:bg-slate-700' 
-              : 'bg-slate-100 border-slate-200 text-slate-700 hover:bg-slate-200'
-          }`}
-        >
-          <div className="flex items-center space-x-2 space-x-reverse">
-            {isDark ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-700" />}
-            <span>{isDark ? (appLang === 'ar' ? 'الوضع الفاتح ☀️' : appLang === 'en' ? 'Light Mode ☀️' : 'Mod Luminos ☀️') : (appLang === 'ar' ? 'الوضع الداكن 🌙' : appLang === 'en' ? 'Dark Mode 🌙' : 'Mod Întunecat 🌙')}</span>
-          </div>
-          <span>{isDark ? 'Dark' : 'Light'}</span>
-        </button>
+        <div className="grid grid-cols-3 gap-1 text-[11px] font-bold">
+          <button
+            onClick={() => setAppLang('ar')}
+            className={`py-1.5 rounded-lg border text-center transition-all ${
+              appLang === 'ar' ? 'bg-rose-600 text-white border-rose-600' : 'bg-slate-800 border-slate-700 text-slate-400'
+            }`}
+          >
+            🇸🇦 AR
+          </button>
+          <button
+            onClick={() => setAppLang('en')}
+            className={`py-1.5 rounded-lg border text-center transition-all ${
+              appLang === 'en' ? 'bg-rose-600 text-white border-rose-600' : 'bg-slate-800 border-slate-700 text-slate-400'
+            }`}
+          >
+            🇬🇧 EN
+          </button>
+          <button
+            onClick={() => setAppLang('ro')}
+            className={`py-1.5 rounded-lg border text-center transition-all ${
+              appLang === 'ro' ? 'bg-rose-600 text-white border-rose-600' : 'bg-slate-800 border-slate-700 text-slate-400'
+            }`}
+          >
+            🇷🇴 RO
+          </button>
+        </div>
       </div>
     </div>
   );
 
   return (
     <>
-      {/* Desktop Fixed Sidebar Drawer */}
-      <aside className={`hidden lg:block fixed top-0 bottom-0 w-72 z-40 ${
-        isRtl ? 'right-0 border-l' : 'left-0 border-r'
+      {/* Desktop Fixed Sidebar */}
+      <aside className={`hidden lg:block fixed top-0 bottom-0 w-72 z-30 ${
+        isRtl ? 'right-0' : 'left-0'
       }`}>
         {sidebarContent}
       </aside>
 
-      {/* Floating Mobile Sidebar Trigger Header Bar */}
-      <div className="lg:hidden sticky top-0 z-40 w-full px-4 py-2.5 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 flex items-center justify-between shadow-md">
-        <Link href="/" className="flex items-center space-x-2.5 space-x-reverse group">
-          <div className="relative w-8 h-8 rounded-xl overflow-hidden border border-rose-500 shrink-0 bg-slate-800 shadow-md group-hover:scale-105 transition-transform">
-            <Image src="/icon.png" alt="Romanian Citizenship Emblem" fill className="object-cover" />
-          </div>
-          <span className="text-sm font-extrabold text-white">Cetățenia Română</span>
-        </Link>
-
-        <div className="flex items-center space-x-2 space-x-reverse">
+      {/* Top Mobile Bar */}
+      <header className={`lg:hidden sticky top-0 z-40 border-b backdrop-blur-md p-3 flex items-center justify-between ${
+        isDark ? 'bg-slate-900/90 border-slate-800 text-white' : 'bg-white/90 border-slate-200 text-slate-900 shadow-sm'
+      }`}>
+        <div className="flex items-center space-x-3 space-x-reverse">
           <button
             onClick={() => setMobileSidebarOpen(true)}
-            className="px-3 py-1.5 bg-rose-600 hover:bg-rose-500 text-white rounded-xl text-xs font-bold flex items-center space-x-1.5 space-x-reverse shadow-md shadow-rose-600/30"
+            className="p-2 rounded-xl border border-slate-700 text-rose-500 hover:bg-slate-800 transition-colors"
           >
-            <Menu className="w-4 h-4" />
-            <span>{appLang === 'ar' ? 'القائمة ☰' : appLang === 'en' ? 'Menu ☰' : 'Meniu ☰'}</span>
+            <Menu className="w-5 h-5" />
           </button>
-        </div>
-      </div>
 
-      {/* Mobile Slide-Over Sidebar Drawer Overlay */}
+          <Link href="/" className="flex items-center space-x-2 space-x-reverse">
+            <div className="relative w-8 h-8 rounded-xl overflow-hidden border border-rose-500 shrink-0">
+              <Image src="/icon.png" alt="Romanian Citizenship Logo" fill className="object-cover" />
+            </div>
+            <span className="font-extrabold text-sm tracking-tight">Cetățenia Română</span>
+          </Link>
+        </div>
+
+        <button
+          onClick={toggleTheme}
+          className="p-2 rounded-xl border border-slate-700 text-amber-400 hover:bg-slate-800 transition-colors"
+        >
+          {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+        </button>
+      </header>
+
+      {/* Mobile Sidebar Overlay Drawer */}
       {mobileSidebarOpen && (
-        <div className="lg:hidden fixed inset-0 z-50 flex justify-start bg-black/80 backdrop-blur-sm transition-opacity">
-          <div className="w-80 max-w-[85vw] h-full shadow-2xl animate-fade-in-up">
+        <div className="lg:hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex">
+          <div className={`w-80 max-w-[85vw] h-full ${isRtl ? 'mr-auto' : 'ml-auto'}`}>
             {sidebarContent}
           </div>
           <div className="flex-1" onClick={() => setMobileSidebarOpen(false)} />
         </div>
       )}
 
-      {/* Mobile Bottom Navigation Bar with Premium High-Visibility Icons */}
-      <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-slate-900/95 backdrop-blur-lg border-t border-slate-800/80 px-2 py-1.5 shadow-2xl">
-        <div className="grid grid-cols-6 gap-1 text-center items-center">
+      {/* High-Visibility Sticky Mobile Bottom Navigation Bar */}
+      <nav className={`lg:hidden fixed bottom-0 left-0 right-0 z-40 border-t backdrop-blur-xl p-1.5 shadow-2xl ${
+        isDark ? 'bg-slate-950/95 border-slate-800' : 'bg-white/95 border-slate-200 shadow-xl'
+      }`}>
+        <div className="grid grid-cols-6 gap-1 max-w-md mx-auto">
           {bottomMobileTabs.map((tab) => {
             const Icon = tab.icon;
             const isActive = pathname === tab.href;
@@ -217,16 +226,18 @@ export default function Navbar() {
               <Link
                 key={tab.href}
                 href={tab.href}
-                className={`flex flex-col items-center py-1 rounded-xl transition-all relative ${
+                className={`flex flex-col items-center justify-center py-2 px-1 rounded-xl transition-all relative ${
                   isActive 
-                    ? 'text-rose-500 font-extrabold scale-105 bg-rose-500/10 border border-rose-500/30 shadow-sm' 
-                    : 'text-slate-400 hover:text-white hover:bg-slate-800/40'
+                    ? 'text-rose-500 font-extrabold bg-rose-500/10 border border-rose-500/30 shadow-sm scale-105 animate-bounce-subtle' 
+                    : isDark ? 'text-slate-400 hover:text-slate-200' : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
-                <Icon className={`w-5 h-5 mb-0.5 transition-transform ${isActive ? 'animate-bounce-subtle text-rose-500' : 'text-slate-400'}`} />
-                <span className="text-[10px] leading-tight truncate w-full px-0.5">{tab.label}</span>
+                <Icon className={`w-5 h-5 mb-0.5 ${isActive ? 'text-rose-500 stroke-[2.5]' : 'text-slate-400'}`} />
+                <span className="text-[10px] leading-tight font-bold truncate max-w-full">{tab.label}</span>
+
+                {/* Active Indicator Dot */}
                 {isActive && (
-                  <span className="absolute -bottom-0.5 w-2 h-0.5 bg-rose-500 rounded-full animate-pulse" />
+                  <span className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />
                 )}
               </Link>
             );

@@ -1,0 +1,95 @@
+{
+  "title_ro": "Deșteaptă-te, române!",
+  "title_ar": "نهضتك يا روماني! (النشيد الوطني الروماني الرسمي)",
+  "title_en": "Awaken Thee, Romanian! (Official Romanian National Anthem)",
+  "author": "Andrei Mureșanu (1848)",
+  "composer": "Anton Pann",
+  "citizenship_fact_ar": "النشيد الوطني هو أحد الرموز الوطنية المحددة في الدستور الروماني (المادة 12). كتب كلماته أندريه موريشانو عام 1848 وتم اعتماده رسمياً كنشيد وطني عام 1990.",
+  "citizenship_fact_en": "The national anthem is one of Romania's constitutional symbols (Article 12). Written by Andrei Mureșanu in 1848 and adopted officially in 1990.",
+  "stanzas": [
+    {
+      "number": 1,
+      "lines_ro": [
+        "Deșteaptă-te, române, din somnul cel de moarte,",
+        "În care te-adânciră barbarii de tirani!",
+        "Acum ori niciodată, croiește-ți altă soartă,",
+        "La care să se-nchine și cruzii tăi dușmani."
+      ],
+      "lines_ar": [
+        "استيقظ يا روماني من نوم الموت،",
+        "الذي أغرقك فيه الطغاة البرابرة!",
+        "الآن أو لا أبداً، اصنع لنفسك مصيراً آخر،",
+        "ينحني له حتى أعداؤك القساة."
+      ],
+      "lines_en": [
+        "Awaken thee, Romanian, from the sleep of death,",
+        "Into which barbarian tyrants have sunk thee!",
+        "Now or never, shape a new destiny for yourself,",
+        "To which even your cruel enemies shall bow."
+      ]
+    },
+    {
+      "number": 2,
+      "lines_ro": [
+        "Acum ori niciodată să dăm dovezi la lume",
+        "Că-n aceste mâini mai curge un sânge de roman,",
+        "Și că-n a noastre piepturi păstrăm cu fală-un nume",
+        "Triumfător în lupte, un nume de Traian!"
+      ],
+      "lines_ar": [
+        "الآن أو لا أبداً، لنقدم للعالم دليلاً،",
+        "على أن دماً رومائياً قديماً ما زال يجري في هذه العروق،",
+        "وأننا نفظ في صدورنا بفخر اسماً شامخاً،",
+        "منتصراً في المعارك، اسم تراجان!"
+      ],
+      "lines_en": [
+        "Now or never let us give proof to the world,",
+        "That in these veins still flows Roman blood,",
+        "And that in our chests we proudly hold a name,",
+        "Victorious in battles, the name of Trajan!"
+      ]
+    },
+    {
+      "number": 3,
+      "lines_ro": [
+        "Priviți, mărețe umbre, Mihai, Ștefan, Corvine,",
+        "Româna națiune, ai voștri strănepoți,",
+        "Cu brațele armate, cu focul vostru-n vine,",
+        "«Viață-n libertate ori moarte!» strigă toți."
+      ],
+      "lines_ar": [
+        "انظروا، أيتها الأرواح العظيمة: ميهاي، شتيفان، كورفين،",
+        "إلى الأمة الرومانية، أحفادكم،",
+        "بأذرعهم المسلحة وناركم في عروقهم،",
+        "«الحياة في حرية أو الموت!» يصرخ الجميع."
+      ],
+      "lines_en": [
+        "Behold, majestic shadows: Michael, Stephen, Corvinus,",
+        "The Romanian nation, your great-grandchildren,",
+        "With armed arms, with your fire in their veins,",
+        "«Life in freedom or death!» they all shout."
+      ]
+    },
+    {
+      "number": 4,
+      "lines_ro": [
+        "Preoți, cu crucea-n frunte! căci oastea e creștină,",
+        "Deviza-i libertate și scopul ei preasfânt.",
+        "Murim mai bine-n luptă, cu glorie deplină,",
+        "Decât să fim sclavi iarăși pe vechiul nost' pământ!"
+      ],
+      "lines_ar": [
+        "أيها الكهنة، بالصليب في المقدمة! لأن الجيش مسيحي،",
+        "شعاره الحرية وهدفه أقدس هدف.",
+        "نموت أفضل في المعركة، بمجد كامل،",
+        "على أن نكون عبيداً مرة أخرى على أرضنا القديمة!"
+      ],
+      "lines_en": [
+        "Priests, with the cross ahead! For the army is Christian,",
+        "Its motto is liberty and its purpose most holy.",
+        "Better to die in battle, with full glory,",
+        "Than to be slaves again on our ancient land!"
+      ]
+    }
+  ]
+}

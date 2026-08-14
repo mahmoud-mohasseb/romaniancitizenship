@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { 
   BookOpen, 
   Trophy, 
@@ -24,7 +25,8 @@ import {
   Globe, 
   Landmark, 
   Palette,
-  Download
+  Download,
+  Music
 } from 'lucide-react';
 import questions from '../data/questions_ar.json';
 import Navbar from '../components/Navbar';
@@ -83,7 +85,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen pb-20 bg-theme-main text-theme-main flex flex-col">
+    <div className="min-h-screen pb-28 sm:pb-24 bg-theme-main text-theme-main flex flex-col">
       {/* Sidebar Navigation */}
       <Navbar />
 
@@ -92,8 +94,13 @@ export default function HomePage() {
         isRtl ? 'lg:mr-72' : 'lg:ml-72'
       } ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
         
-        {/* Hero Banner */}
-        <div className="flex flex-col items-center text-center space-y-4 pt-2">
+        {/* Hero Banner with Framer Motion */}
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col items-center text-center space-y-4 pt-2"
+        >
           <div className="relative w-24 h-24 rounded-2xl overflow-hidden shadow-xl border-2 border-rose-500 bg-slate-800 animate-pulse-glow">
             <Image 
               src="/icon.png" 
@@ -185,10 +192,40 @@ export default function HomePage() {
               </button>
             </div>
           </div>
-        </div>
+        </motion.div>
+
+        {/* Romanian National Anthem Feature Card */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+        >
+          <Link
+            href="/anthem"
+            className="flex items-center justify-between p-5 bg-gradient-to-r from-amber-500 via-rose-600 to-rose-800 rounded-2xl border border-amber-500/40 shadow-xl hover:opacity-95 transition-all text-white group"
+          >
+            <div className="space-y-1">
+              <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-black bg-black/20 text-white border border-white/20">
+                🇷🇴 Deșteaptă-te, române! (Articolul 12 Constitutiv)
+              </span>
+              <h3 className="text-base sm:text-lg font-black">
+                {appLang === 'ar' ? 'النشيد الوطني الروماني والترجمة والملاحظات 🎶' : appLang === 'en' ? 'Romanian National Anthem & Lyrics 🎶' : 'Imnul Național al României 🎶'}
+              </h3>
+              <p className="text-xs text-amber-100/90 leading-relaxed">
+                {appLang === 'ar' ? 'استمع للمقاطع الأربعة بالصوت مع ترجمة السطور والملاحظات الدستورية' : 'Listen to 4 stanzas with audio, line translations & constitution notes'}
+              </p>
+            </div>
+            <Music className="w-9 h-9 text-white shrink-0 animate-bounce-subtle" />
+          </Link>
+        </motion.div>
 
         {/* FEATURED: 469 CITIZENSHIP QUESTIONS CATEGORIZED GRID */}
-        <div className="space-y-3 pt-2">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="space-y-3 pt-2"
+        >
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-extrabold flex items-center space-x-2 space-x-reverse">
               <BookOpen className="w-5 h-5 text-rose-500" />
@@ -238,7 +275,7 @@ export default function HomePage() {
               );
             })}
           </div>
-        </div>
+        </motion.div>
 
         {/* Learning Modules Grid (Grammar, Conversations, Quizzes) */}
         <div className="space-y-3 pt-2">

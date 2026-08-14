@@ -1,7 +1,7 @@
 {
   "name": "Cetățenia Română Prep - Romanian Citizenship",
   "short_name": "Cetățenia RO",
-  "description": "Comprehensive guide for Romanian Citizenship oral interview with photos, translations & AI tutor",
+  "description": "Comprehensive guide for Romanian Citizenship oral interview with photos, translations, grammar, national anthem, & AI tutor",
   "id": "/",
   "start_url": "/",
   "scope": "/",
@@ -18,10 +18,42 @@
       "purpose": "any maskable"
     },
     {
-      "src": "/favicon.png",
+      "src": "/icon.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/icon.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Romanian Citizenship Test Prep Application Home Screen"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Romanian Citizenship Test Prep Mobile View"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Study Citizenship Questions",
+      "short_name": "Study",
+      "description": "Practice official 469 ANC questions",
+      "url": "/study?category=all",
+      "icons": [{ "src": "/icon.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "National Anthem",
+      "short_name": "Anthem",
+      "description": "Listen to Romanian National Anthem with lyrics",
+      "url": "/anthem",
+      "icons": [{ "src": "/icon.png", "sizes": "192x192" }]
     }
   ]
 }
