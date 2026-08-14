@@ -111,37 +111,37 @@ function AIContent() {
     switch (source) {
       case 'webllm':
         return (
-          <span className="inline-flex items-center space-x-1 space-x-reverse text-emerald-400 font-bold">
-            <Zap className="w-3.5 h-3.5 fill-current" />
+          <span className="inline-flex items-center gap-1 text-emerald-400 font-bold">
+            <Zap className="w-3.5 h-3.5 fill-current shrink-0" />
             <span>WebLLM In-Browser AI (Offline WebGPU ⚡)</span>
           </span>
         );
       case 'online_search':
         return (
-          <span className="inline-flex items-center space-x-1 space-x-reverse text-blue-400 font-bold">
-            <Globe className="w-3.5 h-3.5" />
-            <span>بحث حي عبر الإنترنت (Live Wikipedia Search 🌐)</span>
+          <span className="inline-flex items-center gap-1 text-blue-400 font-bold">
+            <Globe className="w-3.5 h-3.5 shrink-0" />
+            <span>Live Wikipedia Search 🌐</span>
           </span>
         );
       case 'dataset_question':
         return (
-          <span className="inline-flex items-center space-x-1 space-x-reverse text-emerald-400 font-bold">
-            <BookOpen className="w-3.5 h-3.5" />
-            <span>منهج 469 سؤالاً للجنسية ANC</span>
+          <span className="inline-flex items-center gap-1 text-emerald-400 font-bold">
+            <BookOpen className="w-3.5 h-3.5 shrink-0" />
+            <span>469 ANC Questions 📚</span>
           </span>
         );
       case 'dataset_grammar':
         return (
-          <span className="inline-flex items-center space-x-1 space-x-reverse text-amber-400 font-bold">
-            <GraduationCap className="w-3.5 h-3.5" />
-            <span>دليل قواعد الرومانية 📚</span>
+          <span className="inline-flex items-center gap-1 text-amber-400 font-bold">
+            <GraduationCap className="w-3.5 h-3.5 shrink-0" />
+            <span>Romanian Grammar 📖</span>
           </span>
         );
       default:
         return (
-          <span className="inline-flex items-center space-x-1 space-x-reverse text-rose-400 font-bold">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>مساعد الجنسية الذكي المدمج 🤖</span>
+          <span className="inline-flex items-center gap-1 text-rose-400 font-bold">
+            <Bot className="w-3.5 h-3.5 shrink-0" />
+            <span>AI Tutor 🤖</span>
           </span>
         );
     }
@@ -157,46 +157,48 @@ function AIContent() {
         {/* Top Header */}
         <div className={`flex items-center justify-between p-3.5 rounded-2xl border shrink-0 ${isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-white border-slate-200 shadow-sm'}`}>
           <div className="text-center w-full flex items-center justify-between px-2">
-            <div className="flex items-center space-x-2 space-x-reverse">
-              <Sparkles className="w-5 h-5 text-amber-400 animate-pulse" />
+            <div className="flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-amber-400 animate-pulse shrink-0" />
               <div>
                 <h1 className="text-base font-black text-right">
                   {strings.aiCardTitle || (appLang === 'ar' ? 'المساعد الذكي للجنسية الرومانية' : 'AI Citizenship Tutor')}
                 </h1>
-                <p className="text-[11px] text-emerald-400 font-bold flex items-center space-x-1 space-x-reverse">
-                  <Globe className="w-3 h-3" />
+                <p className="text-[11px] text-emerald-400 font-bold flex items-center gap-1">
+                  <Globe className="w-3 h-3 shrink-0" />
                   <span>يعمل أوتوماتيكياً لمستخدمي التطبيق المثبت أونلاين وأوفلاين ⚡</span>
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center space-x-2 space-x-reverse">
+            <div className="flex items-center gap-2">
               {engineLoaded ? (
-                <span className="px-2.5 py-1 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-black flex items-center space-x-1 space-x-reverse">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
+                <span className="px-2.5 py-1 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-black flex items-center gap-1">
+                  <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
                   <span>WebLLM Active</span>
                 </span>
               ) : (
-                <span className="px-2.5 py-1 rounded-xl bg-blue-500/20 text-blue-400 border border-blue-500/30 text-[10px] font-black flex items-center space-x-1 space-x-reverse">
-                  <Globe className="w-3.5 h-3.5" />
-                  <span>Online AI Active</span>
+                <span className="px-2.5 py-1 rounded-xl bg-blue-500/20 text-blue-400 border border-blue-500/30 text-[10px] font-black flex items-center gap-1">
+                  <Globe className="w-3.5 h-3.5 shrink-0" />
+                  <span>Online / Offline Hybrid</span>
                 </span>
               )}
             </div>
           </div>
         </div>
 
-        {/* Quick Prompts Strip */}
-        <div className="flex items-center space-x-2 space-x-reverse overflow-x-auto pb-1 no-scrollbar shrink-0">
-          {quickPrompts.map((prompt, idx) => (
+        {/* Quick Question Chips */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar shrink-0">
+          {samplePrompts.map((p, idx) => (
             <button
               key={idx}
-              onClick={() => handleSend(prompt)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-semibold border whitespace-nowrap shrink-0 transition-colors ${
-                isDark ? 'bg-slate-800 hover:bg-slate-700 text-slate-300 border-slate-700/80' : 'bg-white hover:bg-slate-100 text-slate-700 border-slate-200 shadow-sm'
+              onClick={() => handleSend(p)}
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all border shrink-0 ${
+                isDark 
+                  ? 'bg-slate-800/90 text-slate-300 border-slate-700/80 hover:border-rose-500 hover:text-white' 
+                  : 'bg-white text-slate-700 border-slate-200 hover:border-rose-500 hover:text-rose-600 shadow-sm'
               }`}
             >
-              {prompt}
+              {p}
             </button>
           ))}
         </div>

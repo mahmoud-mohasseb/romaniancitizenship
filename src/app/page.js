@@ -127,8 +127,8 @@ export default function HomePage() {
 
           {/* Native PWA Installation Banner */}
           {isInstallable && (
-            <div className="w-full p-4 rounded-2xl bg-gradient-to-r from-rose-600 via-rose-700 to-amber-700 text-white shadow-xl flex items-center justify-between space-x-3 space-x-reverse border border-rose-400/40 animate-fade-in-up">
-              <div className="flex items-center space-x-3 space-x-reverse text-right">
+            <div className="w-full p-4 rounded-2xl bg-gradient-to-r from-rose-600 via-rose-700 to-amber-700 text-white shadow-xl flex items-center justify-between gap-3 border border-rose-400/40 animate-fade-in-up">
+              <div className="flex items-center gap-3 text-right">
                 <div className="w-10 h-10 rounded-xl bg-black/20 flex items-center justify-center shrink-0">
                   <Smartphone className="w-6 h-6 text-white animate-bounce-subtle" />
                 </div>
@@ -140,9 +140,9 @@ export default function HomePage() {
 
               <button
                 onClick={handleInstallPWA}
-                className="px-4 py-2.5 bg-white text-rose-700 hover:bg-rose-50 font-black rounded-xl text-xs shadow-md transition-all shrink-0 flex items-center space-x-1.5 space-x-reverse"
+                className="px-4 py-2.5 bg-white text-rose-700 hover:bg-rose-50 font-black rounded-xl text-xs shadow-md transition-all shrink-0 flex items-center gap-1.5"
               >
-                <Download className="w-4 h-4" />
+                <Download className="w-4 h-4 shrink-0" />
                 <span>{appLang === 'ar' ? 'تثبيت 📲' : appLang === 'en' ? 'Install 📲' : 'Instalează 📲'}</span>
               </button>
             </div>
@@ -158,7 +158,7 @@ export default function HomePage() {
             <div className="grid grid-cols-3 gap-2">
               <button
                 onClick={() => setAppLang('ar')}
-                className={`py-2.5 px-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center space-x-1.5 space-x-reverse ${
+                className={`py-2.5 px-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
                   appLang === 'ar' 
                     ? 'bg-rose-600 text-white shadow-md shadow-rose-600/30' 
                     : isDark ? 'bg-slate-900/60 text-slate-400 hover:text-white border-slate-700/50' : 'bg-slate-100 text-slate-600 border-slate-200'
@@ -170,7 +170,7 @@ export default function HomePage() {
 
               <button
                 onClick={() => setAppLang('en')}
-                className={`py-2.5 px-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center space-x-1.5 ${
+                className={`py-2.5 px-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
                   appLang === 'en' 
                     ? 'bg-rose-600 text-white shadow-md shadow-rose-600/30' 
                     : isDark ? 'bg-slate-900/60 text-slate-400 hover:text-white border-slate-700/50' : 'bg-slate-100 text-slate-600 border-slate-200'
@@ -182,7 +182,7 @@ export default function HomePage() {
 
               <button
                 onClick={() => setAppLang('ro')}
-                className={`py-2.5 px-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center space-x-1.5 ${
+                className={`py-2.5 px-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
                   appLang === 'ro' 
                     ? 'bg-rose-600 text-white shadow-md shadow-rose-600/30' 
                     : isDark ? 'bg-slate-900/60 text-slate-400 hover:text-white border-slate-700/50' : 'bg-slate-100 text-slate-600 border-slate-200'
@@ -228,16 +228,16 @@ export default function HomePage() {
           className="space-y-3 pt-2"
         >
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-extrabold flex items-center space-x-2 space-x-reverse">
-              <BookOpen className="w-5 h-5 text-rose-500" />
+            <h2 className="text-lg font-extrabold flex items-center gap-2">
+              <BookOpen className="w-5 h-5 text-rose-500 shrink-0" />
               <span>{strings.citizenshipSectionTitle || `أسئلة امتحان الجنسية (${questions.length} سؤالاً مصوراً)`}</span>
             </h2>
             <Link
               href="/study?category=all"
-              className="text-xs font-bold text-rose-500 hover:underline flex items-center space-x-1 space-x-reverse"
+              className="text-xs font-bold text-rose-500 hover:underline flex items-center gap-1"
             >
               <span>{strings.viewAllQuestions || 'عرض جميع الأسئلة'}</span>
-              {isRtl ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+              {isRtl ? <ChevronLeft className="w-4 h-4 shrink-0" /> : <ChevronRight className="w-4 h-4 shrink-0" />}
             </Link>
           </div>
 
@@ -254,7 +254,7 @@ export default function HomePage() {
                   }`}
                   style={{ borderLeftColor: cat.color }}
                 >
-                  <div className="flex items-center space-x-3 space-x-reverse">
+                  <div className="flex items-center gap-3">
                     <div 
                       className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
                       style={{ backgroundColor: cat.color + '20', color: cat.color }}
@@ -271,7 +271,7 @@ export default function HomePage() {
                       </span>
                     </div>
                   </div>
-                  {isRtl ? <ChevronLeft className="w-5 h-5 text-slate-400" /> : <ChevronRight className="w-5 h-5 text-slate-400" />}
+                  {isRtl ? <ChevronLeft className="w-5 h-5 text-slate-400 shrink-0" /> : <ChevronRight className="w-5 h-5 text-slate-400 shrink-0" />}
                 </Link>
               );
             })}
@@ -280,8 +280,8 @@ export default function HomePage() {
 
         {/* Learning Modules Grid (Grammar, Conversations, Quizzes) */}
         <div className="space-y-3 pt-2">
-          <h2 className="text-lg font-extrabold flex items-center space-x-2 space-x-reverse">
-            <GraduationCap className="w-5 h-5 text-amber-500" />
+          <h2 className="text-lg font-extrabold flex items-center gap-2">
+            <GraduationCap className="w-5 h-5 text-amber-500 shrink-0" />
             <span>{strings.learningModulesSectionTitle || 'وحدات تعلم اللغة والقواعد والمحادثات'}</span>
           </h2>
 

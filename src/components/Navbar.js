@@ -66,7 +66,7 @@ export default function Navbar() {
       {/* Sidebar Header: Logo & Brand Title */}
       <div className="space-y-4">
         <div className="flex items-center justify-between border-b border-slate-700/60 pb-4">
-          <Link href="/" className="flex items-center space-x-3 space-x-reverse group">
+          <Link href="/" className="flex items-center gap-3 group">
             <div className="relative w-11 h-11 rounded-2xl overflow-hidden border-2 border-rose-500 shadow-md animate-pulse-glow group-hover:scale-105 transition-transform shrink-0 bg-slate-800">
               <Image src="/icon.png" alt="Romanian Citizenship Emblem" fill className="object-cover" />
             </div>
@@ -103,8 +103,8 @@ export default function Navbar() {
                     : isDark ? 'bg-slate-800/80 border-slate-700/60 text-slate-300 hover:bg-slate-800 hover:text-white' : 'bg-slate-100/80 border-slate-200 text-slate-800 hover:bg-slate-200'
                 }`}
               >
-                <div className="flex items-center space-x-3 space-x-reverse">
-                  <div className={`p-2 rounded-xl border ${
+                <div className="flex items-center gap-3">
+                  <div className={`p-2 rounded-xl border shrink-0 ${
                     isActive ? 'bg-white/20 border-white/30 text-white' : isDark ? 'bg-slate-900 border-slate-700/80' : 'bg-white border-slate-200 shadow-sm'
                   }`}>
                     <Icon className={`w-4 h-4 ${isActive ? 'text-white' : link.color}`} />
@@ -116,9 +116,9 @@ export default function Navbar() {
                 </div>
 
                 {isRtl ? (
-                  <ChevronLeft className={`w-4 h-4 ${isActive ? 'text-white' : 'text-slate-500'}`} />
+                  <ChevronLeft className={`w-4 h-4 shrink-0 ${isActive ? 'text-white' : 'text-slate-500'}`} />
                 ) : (
-                  <ChevronRight className={`w-4 h-4 ${isActive ? 'text-white' : 'text-slate-500'}`} />
+                  <ChevronRight className={`w-4 h-4 shrink-0 ${isActive ? 'text-white' : 'text-slate-500'}`} />
                 )}
               </Link>
             );
@@ -135,7 +135,7 @@ export default function Navbar() {
           rel="noopener noreferrer"
           className="flex items-center justify-between p-3 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-rose-600 hover:opacity-95 text-white font-black shadow-lg shadow-blue-600/30 transition-all border border-blue-400/40 group animate-pulse-glow"
         >
-          <div className="flex items-center space-x-2.5 space-x-reverse">
+          <div className="flex items-center gap-2.5">
             <div className="p-2 rounded-xl bg-black/20 text-white border border-white/20 shrink-0">
               <Heart className="w-4 h-4 text-rose-300 fill-current animate-bounce-subtle" />
             </div>
@@ -144,7 +144,7 @@ export default function Navbar() {
                 {appLang === 'ar' ? 'دعم التطبيق عبر Revolut 💳' : appLang === 'en' ? 'Donate via Revolut 💳' : 'Donație prin Revolut 💳'}
               </h4>
               <p className="text-[10px] text-blue-100/90 font-medium">
-                {appLang === 'ar' ? 'ساهم في تطوير التطبيق' : appLang === 'en' ? 'Support app development' : 'Susține dezvoltarea aplicației'}
+                {appLang === 'ar' ? 'ساهم في تطوير التطبيق' : appLang === 'en' ? 'Support app development' : 'Susține تطوير التطبيق'}
               </p>
             </div>
           </div>
@@ -155,7 +155,7 @@ export default function Navbar() {
           <span className="font-semibold text-slate-400">{appLang === 'ar' ? 'المظهر:' : 'Theme:'}</span>
           <button
             onClick={toggleTheme}
-            className="flex items-center space-x-1.5 space-x-reverse px-3 py-1.5 rounded-lg bg-rose-500/15 text-rose-400 border border-rose-500/20 font-bold hover:bg-rose-500/25 transition-all"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-500/15 text-rose-400 border border-rose-500/20 font-bold hover:bg-rose-500/25 transition-all"
           >
             {isDark ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
             <span>{isDark ? (appLang === 'ar' ? 'مضيء' : 'Light') : (appLang === 'ar' ? 'داكن' : 'Dark')}</span>
@@ -205,7 +205,7 @@ export default function Navbar() {
       <header className={`lg:hidden sticky top-0 z-40 border-b backdrop-blur-md p-3 flex items-center justify-between ${
         isDark ? 'bg-slate-900/90 border-slate-800 text-white' : 'bg-white/90 border-slate-200 text-slate-900 shadow-sm'
       }`}>
-        <div className="flex items-center space-x-3 space-x-reverse">
+        <div className="flex items-center gap-3">
           <button
             onClick={() => setMobileSidebarOpen(true)}
             className="p-2 rounded-xl border border-slate-700 text-rose-500 hover:bg-slate-800 transition-colors"
@@ -213,7 +213,7 @@ export default function Navbar() {
             <Menu className="w-5 h-5" />
           </button>
 
-          <Link href="/" className="flex items-center space-x-2 space-x-reverse">
+          <Link href="/" className="flex items-center gap-2">
             <div className="relative w-8 h-8 rounded-xl overflow-hidden border border-rose-500 shrink-0">
               <Image src="/icon.png" alt="Romanian Citizenship Logo" fill className="object-cover" />
             </div>
@@ -221,14 +221,14 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <div className="flex items-center space-x-2 space-x-reverse">
+        <div className="flex items-center gap-2">
           <a
             href="https://revolut.me/mahmoulxzy"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-2.5 py-1.5 rounded-xl bg-gradient-to-r from-blue-600 to-rose-600 text-white text-[11px] font-black flex items-center space-x-1 space-x-reverse shadow-md"
+            className="px-2.5 py-1.5 rounded-xl bg-gradient-to-r from-blue-600 to-rose-600 text-white text-[11px] font-black flex items-center gap-1 shadow-md"
           >
-            <Heart className="w-3.5 h-3.5 fill-current animate-bounce-subtle" />
+            <Heart className="w-3.5 h-3.5 fill-current animate-bounce-subtle shrink-0" />
             <span>Revolut 💳</span>
           </a>
 
