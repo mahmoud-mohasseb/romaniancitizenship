@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mlc-ai/web-llm": "^0.2.84",
     "clsx": "^2.1.1",
     "framer-motion": "^13.1.0",
     "lucide-react": "^0.417.0",

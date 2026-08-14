@@ -13,12 +13,14 @@ import {
   BookOpen, 
   GraduationCap, 
   ExternalLink,
-  Cpu
+  Cpu,
+  Zap,
+  CheckCircle2
 } from 'lucide-react';
 import Navbar from '../../components/Navbar';
 import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
-import { queryWebLlama } from '../../utils/aiService';
+import { queryWebLlama, initWebLLMEngine } from '../../utils/aiService';
 
 function AIContent() {
   const searchParams = useSearchParams();
@@ -32,15 +34,18 @@ function AIContent() {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [webLlamaUrl, setWebLlamaUrl] = useState('');
-  const [webLlamaModel, setWebLlamaModel] = useState('webllama-3-8b');
+  const [selectedModel, setSelectedModel] = useState('Llama-3.2-1B-Instruct-q4f16_1-MLC');
   const [showConfig, setShowConfig] = useState(false);
+  const [isInitializingEngine, setIsInitializingEngine] = useState(false);
+  const [engineLoaded, setEngineLoaded] = useState(false);
+  const [initProgressText, setInitProgressText] = useState('');
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const savedUrl = localStorage.getItem('webllama_url') || '';
-      const savedModel = localStorage.getItem('webllama_model') || 'webllama-3-8b';
+      const savedModel = localStorage.getItem('webllama_model') || 'Llama-3.2-1B-Instruct-q4f16_1-MLC';
       setWebLlamaUrl(savedUrl);
-      setWebLlamaModel(savedModel);
+      setSelectedModel(savedModel);
     }
 
     setMessages([
@@ -48,10 +53,10 @@ function AIContent() {
         id: 1,
         sender: 'ai',
         text: appLang === 'ar' 
-          ? 'مرحباً بك! أنا مساعد WebLlama الذكي المخصص لاختبار الجنسية الرومانية 🇷🇴. يبحث محرك الذكاء الاصطناعي في منهج الـ 469 سؤالاً وقواعد اللغة كما يمكنه إجراء بحث حي عبر الإنترنت 🌐 لإجابة أي سؤال لديك!'
+          ? 'مرحباً بك! أنا مساعد WebLLM الذكي المخصص لاختبار الجنسية الرومانية 🇷🇴. يعمل المحرك مباشرة داخل المتصفح وجهازك بدون إنترنت بعد التثبيت ⚡ كما يبحث في منهج الـ 469 سؤالاً والإنترنت 🌐!'
           : appLang === 'en'
-          ? 'Welcome! I am your WebLlama AI Romanian Citizenship Tutor 🇷🇴. Powered by ANC Curriculum & Live Online Search 🌐 to answer any questions about Romanian history, constitution, or geography!'
-          : 'Bine ai venit! Sunt asistentul tău WebLlama AI pentru cetățenia română 🇷🇴. Caut în programa oficială de 469 întrebări și pot efectua căutări live pe internet 🌐!',
+          ? 'Welcome! I am your WebLLM AI Romanian Citizenship Tutor 🇷🇴. Runs 100% offline inside your browser after app installation ⚡ powered by WebGPU & ANC Curriculum 🌐!'
+          : 'Bine ai venit! Sunt asistentul tău WebLLM AI pentru cetățenia română 🇷🇴. Rulează 100% offline direct în browserul tău ⚡!',
         time: 'Just now'
       }
     ]);
@@ -61,9 +66,21 @@ function AIContent() {
     }
   }, [appLang]);
 
+  const handleInitWebLLM = async () => {
+    setIsInitializingEngine(true);
+    setInitProgressText('Loading WebLLM in-browser AI model...');
+    const engine = await initWebLLMEngine(selectedModel, (progress) => {
+      setInitProgressText(progress.text);
+    });
+    setIsInitializingEngine(false);
+    if (engine) {
+      setEngineLoaded(true);
+    }
+  };
+
   const saveWebLlamaConfig = (newUrl, newModel) => {
     setWebLlamaUrl(newUrl);
-    setWebLlamaModel(newModel);
+    setSelectedModel(newModel);
     if (typeof window !== 'undefined') {
       localStorage.setItem('webllama_url', newUrl);
       localStorage.setItem('webllama_model', newModel);
@@ -101,7 +118,7 @@ function AIContent() {
     setInputQuery('');
     setLoading(true);
 
-    const result = await queryWebLlama(q, webLlamaModel, webLlamaUrl, appLang);
+    const result = await queryWebLlama(q, selectedModel, webLlamaUrl, appLang);
 
     const aiMsg = {
       id: Date.now() + 1,
@@ -119,6 +136,13 @@ function AIContent() {
 
   const getSourceBadge = (source) => {
     switch (source) {
+      case 'webllm':
+        return (
+          <span className="inline-flex items-center space-x-1 space-x-reverse text-emerald-400 font-bold">
+            <Zap className="w-3.5 h-3.5 fill-current" />
+            <span>WebLLM In-Browser WebGPU AI (Offline) ⚡</span>
+          </span>
+        );
       case 'online_search':
         return (
           <span className="inline-flex items-center space-x-1 space-x-reverse text-blue-400 font-bold">
@@ -140,18 +164,11 @@ function AIContent() {
             <span>دليل قواعد الرومانية 📚</span>
           </span>
         );
-      case 'webllama':
-        return (
-          <span className="inline-flex items-center space-x-1 space-x-reverse text-rose-400 font-bold">
-            <Cpu className="w-3.5 h-3.5" />
-            <span>WebLlama Model ({webLlamaModel})</span>
-          </span>
-        );
       default:
         return (
           <span className="inline-flex items-center space-x-1 space-x-reverse text-rose-400 font-bold">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>مساعد WebLlama الذكي المدمج 🤖</span>
+            <span>مساعد WebLLM الذكي المدمج 🤖</span>
           </span>
         );
     }
@@ -171,53 +188,80 @@ function AIContent() {
               <Sparkles className="w-5 h-5 text-amber-400 animate-pulse" />
               <div>
                 <h1 className="text-base font-black text-right">
-                  {strings.aiCardTitle || (appLang === 'ar' ? 'مساعد WebLlama الذكي للجنسية الرومانية' : 'WebLlama AI Citizenship Tutor')}
+                  {strings.aiCardTitle || (appLang === 'ar' ? 'مساعد WebLLM الذكي للجنسية الرومانية' : 'WebLLM AI Citizenship Tutor')}
                 </h1>
                 <p className="text-[11px] text-emerald-400 font-bold flex items-center space-x-1 space-x-reverse">
-                  <Globe className="w-3 h-3" />
-                  <span>مدعوم بنموذج WebLlama والبحث الحي على الإنترنت 🌐</span>
+                  <Zap className="w-3 h-3 fill-current" />
+                  <span>يعمل 100% داخل المتصفح بدون إنترنت بعد التثبيت ⚡</span>
                 </p>
               </div>
             </div>
 
-            <button
-              onClick={() => setShowConfig(!showConfig)}
-              className={`p-2 rounded-xl border text-xs font-bold flex items-center space-x-1 space-x-reverse ${isDark ? 'bg-slate-900 border-slate-700 text-emerald-400' : 'bg-slate-100 border-slate-200 text-emerald-600'}`}
-            >
-              <Settings className="w-4 h-4" />
-              <span>WebLlama AI Settings</span>
-            </button>
+            <div className="flex items-center space-x-2 space-x-reverse">
+              {!engineLoaded ? (
+                <button
+                  onClick={handleInitWebLLM}
+                  disabled={isInitializingEngine}
+                  className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-xs font-black flex items-center space-x-1 space-x-reverse shadow-md hover:opacity-95 transition-all"
+                >
+                  {isInitializingEngine ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Zap className="w-3.5 h-3.5" />}
+                  <span>{isInitializingEngine ? 'تحميل المحرك...' : 'تفعيل WebLLM أوفلاين ⚡'}</span>
+                </button>
+              ) : (
+                <span className="px-2.5 py-1 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-black flex items-center space-x-1 space-x-reverse">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span>WebLLM Ready (Offline GPU)</span>
+                </span>
+              )}
+
+              <button
+                onClick={() => setShowConfig(!showConfig)}
+                className={`p-2 rounded-xl border text-xs font-bold flex items-center space-x-1 space-x-reverse ${isDark ? 'bg-slate-900 border-slate-700 text-slate-300' : 'bg-slate-100 border-slate-200 text-slate-700'}`}
+              >
+                <Settings className="w-4 h-4" />
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Optional WebLlama Remote Endpoint Settings Drawer */}
+        {/* In-Browser Progress Alert */}
+        {isInitializingEngine && (
+          <div className="p-3 rounded-xl bg-slate-900 border border-emerald-500/40 text-emerald-300 text-xs font-bold flex items-center space-x-2 space-x-reverse animate-pulse">
+            <Loader2 className="w-4 h-4 animate-spin text-emerald-400 shrink-0" />
+            <span className="truncate">{initProgressText || 'Downloading and initializing in-browser WebLLM model...'}</span>
+          </div>
+        )}
+
+        {/* Optional WebLLM Settings Drawer */}
         {showConfig && (
           <div className={`p-4 rounded-2xl border space-y-3 shrink-0 text-xs ${isDark ? 'bg-slate-800 border-slate-700 text-slate-300' : 'bg-white border-slate-200 text-slate-700 shadow-sm'}`}>
-            <p className="font-bold text-emerald-500">⚙️ Optional WebLlama AI Server Settings:</p>
+            <p className="font-bold text-emerald-500">⚙️ WebLLM In-Browser & Remote Server Settings:</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <div>
-                <label className="block text-[11px] text-theme-sub mb-1">WebLlama Host URL (e.g., http://localhost:8080):</label>
+                <label className="block text-[11px] text-theme-sub mb-1">WebLLM Model (Wasm / WebGPU):</label>
+                <select 
+                  value={selectedModel} 
+                  onChange={(e) => saveWebLlamaConfig(webLlamaUrl, e.target.value)}
+                  className={`w-full border rounded-xl p-2 font-mono ${isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-slate-100 border-slate-200 text-slate-900'}`}
+                >
+                  <option value="Llama-3.2-1B-Instruct-q4f16_1-MLC">Llama 3.2 1B Instruct (Fast & Lightweight)</option>
+                  <option value="Llama-3.2-3B-Instruct-q4f16_1-MLC">Llama 3.2 3B Instruct (High Accuracy)</option>
+                  <option value="SmolLM2-360M-Instruct-q4f16_1-MLC">SmolLM2 360M (Ultra Fast Mobile)</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-[11px] text-theme-sub mb-1">Optional WebLlama Host URL:</label>
                 <input 
                   type="text" 
                   value={webLlamaUrl} 
-                  onChange={(e) => saveWebLlamaConfig(e.target.value, webLlamaModel)}
+                  onChange={(e) => saveWebLlamaConfig(e.target.value, selectedModel)}
                   className={`w-full border rounded-xl p-2 font-mono ${isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-slate-100 border-slate-200 text-slate-900'}`}
-                  placeholder="Leave empty for WebLlama Hybrid Engine"
-                />
-              </div>
-              <div>
-                <label className="block text-[11px] text-theme-sub mb-1">Model Name:</label>
-                <input 
-                  type="text" 
-                  value={webLlamaModel} 
-                  onChange={(e) => saveWebLlamaConfig(webLlamaUrl, e.target.value)}
-                  className={`w-full border rounded-xl p-2 font-mono ${isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-slate-100 border-slate-200 text-slate-900'}`}
-                  placeholder="webllama-3-8b / llama-3-3b"
+                  placeholder="Leave empty for Hybrid Offline Engine"
                 />
               </div>
             </div>
             <p className="text-[10px] text-slate-400">
-              💡 WebLlama Hybrid Search automatically searches 469 ANC questions, grammar, and performs live Wikipedia searches if external server is empty!
+              💡 WebLLM runs quantized Llama 3 models directly inside your device browser using WebGPU for total privacy & offline use!
             </p>
           </div>
         )}
@@ -292,7 +336,7 @@ function AIContent() {
           {loading && (
             <div className={`flex items-center space-x-2 space-x-reverse p-3.5 rounded-2xl border max-w-xs text-xs text-theme-sub ${isDark ? 'bg-slate-900/90 border-slate-700' : 'bg-slate-100 border-slate-200'}`}>
               <Loader2 className="w-4 h-4 animate-spin text-amber-400" />
-              <span className="font-bold">جاري المعالجة بواسطة WebLlama AI والبحث المباشر... 🌐</span>
+              <span className="font-bold">جاري المعالجة بواسطة WebLLM والمنهج... ⚡</span>
             </div>
           )}
         </div>
@@ -304,7 +348,7 @@ function AIContent() {
             value={inputQuery}
             onChange={(e) => setInputQuery(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-            placeholder={appLang === 'ar' ? 'اسأل WebLlama AI عن أي سؤال في منهج الجنسية أو التاريخ...' : appLang === 'en' ? 'Ask WebLlama AI any question about curriculum...' : 'Întreabă WebLlama AI despre programa de cetățenie...'}
+            placeholder={appLang === 'ar' ? 'اسأل WebLLM الذكي عن أي سؤال في منهج الجنسية أو التاريخ...' : appLang === 'en' ? 'Ask WebLLM AI any question about curriculum...' : 'Întreabă WebLLM AI despre programa de cetățenie...'}
             className={`flex-1 border text-xs sm:text-sm rounded-xl px-4 py-3 focus:outline-none focus:border-rose-500 font-bold ${isDark ? 'bg-slate-900 border-slate-700/80 text-white placeholder-slate-500' : 'bg-slate-100 border-slate-200 text-slate-900 placeholder-slate-400'}`}
           />
           <button
@@ -322,7 +366,7 @@ function AIContent() {
 
 export default function AIPage() {
   return (
-    <Suspense fallback={<div className="p-8 text-center text-slate-400 font-bold">Loading WebLlama AI Assistant...</div>}>
+    <Suspense fallback={<div className="p-8 text-center text-slate-400 font-bold">Loading WebLLM AI Assistant...</div>}>
       <AIContent />
     </Suspense>
   );

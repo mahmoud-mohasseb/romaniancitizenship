@@ -3,7 +3,29 @@ import grammarData from '../data/romanian_grammar.json';
 import conversationData from '../data/romanian_conversations.json';
 
 const DEFAULT_WEBLLAMA_URL = 'http://localhost:8080';
-const DEFAULT_MODEL = 'webllama-3-8b';
+const DEFAULT_MODEL = 'Llama-3.2-1B-Instruct-q4f16_1-MLC';
+
+let webLlmEngine = null;
+
+/**
+ * Initialize WebLLM Client-Side In-Browser Engine (@mlc-ai/web-llm)
+ */
+export async function initWebLLMEngine(selectedModel = DEFAULT_MODEL, onProgress) {
+  if (typeof window === 'undefined') return null;
+  
+  try {
+    const { CreateMLCEngine } = await import('@mlc-ai/web-llm');
+    webLlmEngine = await CreateMLCEngine(selectedModel, {
+      initProgressCallback: (progress) => {
+        if (onProgress) onProgress(progress);
+      }
+    });
+    return webLlmEngine;
+  } catch (error) {
+    console.log('[WebLLM] WebGPU not supported or initialization error, falling back to Hybrid ANC Engine:', error);
+    return null;
+  }
+}
 
 /**
  * Online Wikipedia Search Fetcher
@@ -30,13 +52,31 @@ export async function searchOnlineKnowledge(topic, lang = 'ar') {
 }
 
 /**
- * Main Hybrid AI Query Function with WebLlama Support
+ * Main Hybrid AI Query Function with WebLLM + WebLlama Support
  */
 export async function queryWebLlama(prompt, model = DEFAULT_MODEL, webLlamaUrl = DEFAULT_WEBLLAMA_URL, lang = 'ar') {
   const query = (prompt || '').trim();
   if (!query) return { success: false, text: '' };
 
-  // 1. Try Local WebLlama Server (if reachable and configured by user)
+  // 1. Try In-Browser WebLLM Engine (Zero latency, 100% Offline GPU/Wasm execution)
+  if (webLlmEngine) {
+    try {
+      const reply = await webLlmEngine.chat.completions.create({
+        messages: [
+          { role: 'system', content: 'You are an expert Romanian Citizenship Exam Tutor. Answer concisely and accurately.' },
+          { role: 'user', content: query }
+        ]
+      });
+      const replyText = reply.choices[0]?.message?.content;
+      if (replyText) {
+        return { success: true, text: replyText, source: 'webllm' };
+      }
+    } catch (e) {
+      console.log('[WebLLM] Execution error, falling back to Hybrid Engine:', e);
+    }
+  }
+
+  // 2. Try WebLlama Server Endpoint (if configured by user)
   if (webLlamaUrl && !webLlamaUrl.includes('localhost')) {
     try {
       const controller = new AbortController();
@@ -72,7 +112,7 @@ export async function queryWebLlama(prompt, model = DEFAULT_MODEL, webLlamaUrl =
     }
   }
 
-  // 2. Search local citizenship datasets (469 Questions + Grammar + Conversations)
+  // 3. Search local citizenship datasets (469 Questions + Grammar + Conversations)
   const qLower = query.toLowerCase();
 
   // Search in 469 Citizenship Questions
@@ -149,7 +189,7 @@ export async function queryWebLlama(prompt, model = DEFAULT_MODEL, webLlamaUrl =
     };
   }
 
-  // 3. Perform Live Online Wikipedia Search for unmatched topics!
+  // 4. Perform Live Online Wikipedia Search for unmatched topics!
   const onlineResult = await searchOnlineKnowledge(query, lang);
   if (onlineResult) {
     let text = `🌐 **نتائج البحث الحي عبر الإنترنت / Online Live Search Result:**\n\n` +
@@ -166,11 +206,11 @@ export async function queryWebLlama(prompt, model = DEFAULT_MODEL, webLlamaUrl =
     };
   }
 
-  // 4. Default AI Citizenship Response
+  // 5. Default AI Citizenship Response
   if (lang === 'en') {
     return {
       success: true,
-      text: `🤖 **WebLlama AI Citizenship Tutor:**\n\n` +
+      text: `🤖 **WebLLM AI Citizenship Tutor:**\n\n` +
         `I am ready to answer any questions about Romanian Citizenship, History, Constitution, Geography, and Language Grammar!\n\n` +
         `💡 Try asking: "Who was Stephen the Great?", "Form of government in Romania", or "What is the capital of Romania?".`,
       source: 'ai_tutor'
@@ -178,7 +218,7 @@ export async function queryWebLlama(prompt, model = DEFAULT_MODEL, webLlamaUrl =
   } else if (lang === 'ro') {
     return {
       success: true,
-      text: `🤖 **Asistent WebLlama AI Cetățenie:**\n\n` +
+      text: `🤖 **Asistent WebLLM AI Cetățenie:**\n\n` +
         `Sunt pregătit să răspund la orice întrebare despre cetățenia română, istorie, constituție, geografie și gramatică!\n\n` +
         `💡 Încearcă: „Cine a fost Ștefan cel Mare?”, „Forma de guvernământ”, sau „Fluviul Dunărea”.`,
       source: 'ai_tutor'
@@ -187,12 +227,12 @@ export async function queryWebLlama(prompt, model = DEFAULT_MODEL, webLlamaUrl =
 
   return {
     success: true,
-    text: `🤖 **مساعد WebLlama الذكي للجنسية الرومانية:**\n\n` +
+    text: `🤖 **مساعد WebLLM الذكي للجنسية الرومانية:**\n\n` +
       `أنا مستعد لإجابتك عن أي سؤال يتعلق بالجنسية الرومانية، الدستور، التاريخ، الجغرافيا، أو قواعد اللغة!\n\n` +
       `💡 جرب البحث عن: "من هو ستيفان تشيل ماري؟"، "شكل الحكومة في رومانيا"، أو "معلومات عن نهر الدانوب".`,
     source: 'ai_tutor'
   };
 }
 
-// Backward compatibility alias for any caller
+// Backward compatibility aliases
 export const queryOllama = queryWebLlama;
