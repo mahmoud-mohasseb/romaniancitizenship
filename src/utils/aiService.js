@@ -2,8 +2,8 @@ import questions from '../data/questions_ar.json';
 import grammarData from '../data/romanian_grammar.json';
 import conversationData from '../data/romanian_conversations.json';
 
-const DEFAULT_OLLAMA_URL = 'http://localhost:11434';
-const DEFAULT_MODEL = 'llama3';
+const DEFAULT_WEBLLAMA_URL = 'http://localhost:8080';
+const DEFAULT_MODEL = 'webllama-3-8b';
 
 /**
  * Online Wikipedia Search Fetcher
@@ -30,25 +30,30 @@ export async function searchOnlineKnowledge(topic, lang = 'ar') {
 }
 
 /**
- * Main Hybrid AI Query Function
+ * Main Hybrid AI Query Function with WebLlama Support
  */
-export async function queryOllama(prompt, model = DEFAULT_MODEL, ollamaUrl = DEFAULT_OLLAMA_URL, lang = 'ar') {
+export async function queryWebLlama(prompt, model = DEFAULT_MODEL, webLlamaUrl = DEFAULT_WEBLLAMA_URL, lang = 'ar') {
   const query = (prompt || '').trim();
   if (!query) return { success: false, text: '' };
 
-  // 1. Try Local Ollama Server (if reachable and configured by user)
-  if (ollamaUrl && !ollamaUrl.includes('localhost')) {
+  // 1. Try Local WebLlama Server (if reachable and configured by user)
+  if (webLlamaUrl && !webLlamaUrl.includes('localhost')) {
     try {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 4000);
 
-      const response = await fetch(`${ollamaUrl}/api/generate`, {
+      const endpoint = webLlamaUrl.endsWith('/') ? `${webLlamaUrl}v1/chat/completions` : `${webLlamaUrl}/v1/chat/completions`;
+
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         signal: controller.signal,
         body: JSON.stringify({
           model: model || DEFAULT_MODEL,
-          prompt: `You are an expert Romanian Citizenship Exam Tutor. Help the student with their question about Romanian history, constitution, geography, culture, language, or citizenship interview: ${query}`,
+          messages: [
+            { role: 'system', content: 'You are an expert Romanian Citizenship Exam Tutor. Help the student with their question about Romanian history, constitution, geography, culture, language, or citizenship interview.' },
+            { role: 'user', content: query }
+          ],
           stream: false,
         }),
       });
@@ -57,12 +62,13 @@ export async function queryOllama(prompt, model = DEFAULT_MODEL, ollamaUrl = DEF
 
       if (response.ok) {
         const data = await response.json();
-        if (data && data.response) {
-          return { success: true, text: data.response, source: 'ollama' };
+        const replyText = data.choices?.[0]?.message?.content || data.response || data.text;
+        if (replyText) {
+          return { success: true, text: replyText, source: 'webllama' };
         }
       }
     } catch (error) {
-      console.log('Ollama custom URL unreachable, trying Hybrid Knowledge + Online Search');
+      console.log('WebLlama server unreachable, switching seamlessly to Hybrid Knowledge Engine');
     }
   }
 
@@ -164,7 +170,7 @@ export async function queryOllama(prompt, model = DEFAULT_MODEL, ollamaUrl = DEF
   if (lang === 'en') {
     return {
       success: true,
-      text: `🤖 **AI Citizenship Tutor:**\n\n` +
+      text: `🤖 **WebLlama AI Citizenship Tutor:**\n\n` +
         `I am ready to answer any questions about Romanian Citizenship, History, Constitution, Geography, and Language Grammar!\n\n` +
         `💡 Try asking: "Who was Stephen the Great?", "Form of government in Romania", or "What is the capital of Romania?".`,
       source: 'ai_tutor'
@@ -172,7 +178,7 @@ export async function queryOllama(prompt, model = DEFAULT_MODEL, ollamaUrl = DEF
   } else if (lang === 'ro') {
     return {
       success: true,
-      text: `🤖 **Asistent AI Cetățenie:**\n\n` +
+      text: `🤖 **Asistent WebLlama AI Cetățenie:**\n\n` +
         `Sunt pregătit să răspund la orice întrebare despre cetățenia română, istorie, constituție, geografie și gramatică!\n\n` +
         `💡 Încearcă: „Cine a fost Ștefan cel Mare?”, „Forma de guvernământ”, sau „Fluviul Dunărea”.`,
       source: 'ai_tutor'
@@ -181,9 +187,12 @@ export async function queryOllama(prompt, model = DEFAULT_MODEL, ollamaUrl = DEF
 
   return {
     success: true,
-    text: `🤖 **المساعد الذكي للجنسية الرومانية:**\n\n` +
+    text: `🤖 **مساعد WebLlama الذكي للجنسية الرومانية:**\n\n` +
       `أنا مستعد لإجابتك عن أي سؤال يتعلق بالجنسية الرومانية، الدستور، التاريخ، الجغرافيا، أو قواعد اللغة!\n\n` +
       `💡 جرب البحث عن: "من هو ستيفان تشيل ماري؟"، "شكل الحكومة في رومانيا"، أو "معلومات عن نهر الدانوب".`,
     source: 'ai_tutor'
   };
 }
+
+// Backward compatibility alias for any caller
+export const queryOllama = queryWebLlama;

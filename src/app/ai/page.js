@@ -12,12 +12,13 @@ import {
   Globe, 
   BookOpen, 
   GraduationCap, 
-  ExternalLink 
+  ExternalLink,
+  Cpu
 } from 'lucide-react';
 import Navbar from '../../components/Navbar';
 import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
-import { queryOllama } from '../../utils/aiService';
+import { queryWebLlama } from '../../utils/aiService';
 
 function AIContent() {
   const searchParams = useSearchParams();
@@ -30,16 +31,16 @@ function AIContent() {
   const [inputQuery, setInputQuery] = useState(initialPrompt);
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [ollamaUrl, setOllamaUrl] = useState('');
-  const [ollamaModel, setOllamaModel] = useState('llama3');
+  const [webLlamaUrl, setWebLlamaUrl] = useState('');
+  const [webLlamaModel, setWebLlamaModel] = useState('webllama-3-8b');
   const [showConfig, setShowConfig] = useState(false);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const savedUrl = localStorage.getItem('ollama_url') || '';
-      const savedModel = localStorage.getItem('ollama_model') || 'llama3';
-      setOllamaUrl(savedUrl);
-      setOllamaModel(savedModel);
+      const savedUrl = localStorage.getItem('webllama_url') || '';
+      const savedModel = localStorage.getItem('webllama_model') || 'webllama-3-8b';
+      setWebLlamaUrl(savedUrl);
+      setWebLlamaModel(savedModel);
     }
 
     setMessages([
@@ -47,10 +48,10 @@ function AIContent() {
         id: 1,
         sender: 'ai',
         text: appLang === 'ar' 
-          ? 'مرحباً بك! أنا مساعدك الذكي المخصص لاختبار الجنسية الرومانية 🇷🇴. يبحث محرك الذكاء الاصطناعي في منهج الـ 469 سؤالاً وقواعد اللغة كما يمكنه إجراء بحث حي عبر الإنترنت 🌐 إجابة أي سؤال لديك!'
+          ? 'مرحباً بك! أنا مساعد WebLlama الذكي المخصص لاختبار الجنسية الرومانية 🇷🇴. يبحث محرك الذكاء الاصطناعي في منهج الـ 469 سؤالاً وقواعد اللغة كما يمكنه إجراء بحث حي عبر الإنترنت 🌐 لإجابة أي سؤال لديك!'
           : appLang === 'en'
-          ? 'Welcome! I am your Romanian Citizenship AI Tutor 🇷🇴. Powered by ANC Curriculum & Live Online Search 🌐 to answer any questions about Romanian history, constitution, or geography!'
-          : 'Bine ai venit! Sunt asistentul tău AI pentru cetățenia română 🇷🇴. Caut în programa oficială de 469 întrebări și pot efectua căutări live pe internet 🌐!',
+          ? 'Welcome! I am your WebLlama AI Romanian Citizenship Tutor 🇷🇴. Powered by ANC Curriculum & Live Online Search 🌐 to answer any questions about Romanian history, constitution, or geography!'
+          : 'Bine ai venit! Sunt asistentul tău WebLlama AI pentru cetățenia română 🇷🇴. Caut în programa oficială de 469 întrebări și pot efectua căutări live pe internet 🌐!',
         time: 'Just now'
       }
     ]);
@@ -60,12 +61,12 @@ function AIContent() {
     }
   }, [appLang]);
 
-  const saveOllamaConfig = (newUrl, newModel) => {
-    setOllamaUrl(newUrl);
-    setOllamaModel(newModel);
+  const saveWebLlamaConfig = (newUrl, newModel) => {
+    setWebLlamaUrl(newUrl);
+    setWebLlamaModel(newModel);
     if (typeof window !== 'undefined') {
-      localStorage.setItem('ollama_url', newUrl);
-      localStorage.setItem('ollama_model', newModel);
+      localStorage.setItem('webllama_url', newUrl);
+      localStorage.setItem('webllama_model', newModel);
     }
   };
 
@@ -100,7 +101,7 @@ function AIContent() {
     setInputQuery('');
     setLoading(true);
 
-    const result = await queryOllama(q, ollamaModel, ollamaUrl, appLang);
+    const result = await queryWebLlama(q, webLlamaModel, webLlamaUrl, appLang);
 
     const aiMsg = {
       id: Date.now() + 1,
@@ -139,25 +140,25 @@ function AIContent() {
             <span>دليل قواعد الرومانية 📚</span>
           </span>
         );
-      case 'ollama':
+      case 'webllama':
         return (
           <span className="inline-flex items-center space-x-1 space-x-reverse text-rose-400 font-bold">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Ollama Local Model ({ollamaModel})</span>
+            <Cpu className="w-3.5 h-3.5" />
+            <span>WebLlama Model ({webLlamaModel})</span>
           </span>
         );
       default:
         return (
           <span className="inline-flex items-center space-x-1 space-x-reverse text-rose-400 font-bold">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>مساعد الجنسية الذكي المدمج 🤖</span>
+            <span>مساعد WebLlama الذكي المدمج 🤖</span>
           </span>
         );
     }
   };
 
   return (
-    <div className="min-h-screen pb-20 bg-theme-main text-theme-main flex flex-col">
+    <div className="min-h-screen pb-20 bg-theme-main text-theme-main flex flex-col font-cairo">
       <Navbar />
 
       <main className={`flex-1 w-full max-w-4xl mx-auto px-4 py-6 space-y-4 flex flex-col h-[82vh] ${
@@ -167,14 +168,14 @@ function AIContent() {
         <div className={`flex items-center justify-between p-3.5 rounded-2xl border shrink-0 ${isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-white border-slate-200 shadow-sm'}`}>
           <div className="text-center w-full flex items-center justify-between px-2">
             <div className="flex items-center space-x-2 space-x-reverse">
-              <Sparkles className="w-5 h-5 text-amber-400" />
+              <Sparkles className="w-5 h-5 text-amber-400 animate-pulse" />
               <div>
-                <h1 className="text-base font-extrabold text-right">
-                  {strings.aiCardTitle || (appLang === 'ar' ? 'المساعد الذكي للجنسية الرومانية' : 'AI Citizenship Tutor')}
+                <h1 className="text-base font-black text-right">
+                  {strings.aiCardTitle || (appLang === 'ar' ? 'مساعد WebLlama الذكي للجنسية الرومانية' : 'WebLlama AI Citizenship Tutor')}
                 </h1>
                 <p className="text-[11px] text-emerald-400 font-bold flex items-center space-x-1 space-x-reverse">
                   <Globe className="w-3 h-3" />
-                  <span>مدعوم بالبحث الحي على الإنترنت ومنهج 469 سؤالاً 🌐</span>
+                  <span>مدعوم بنموذج WebLlama والبحث الحي على الإنترنت 🌐</span>
                 </p>
               </div>
             </div>
@@ -184,39 +185,39 @@ function AIContent() {
               className={`p-2 rounded-xl border text-xs font-bold flex items-center space-x-1 space-x-reverse ${isDark ? 'bg-slate-900 border-slate-700 text-emerald-400' : 'bg-slate-100 border-slate-200 text-emerald-600'}`}
             >
               <Settings className="w-4 h-4" />
-              <span>Ollama Settings</span>
+              <span>WebLlama AI Settings</span>
             </button>
           </div>
         </div>
 
-        {/* Optional Ollama Remote Endpoint Settings Drawer */}
+        {/* Optional WebLlama Remote Endpoint Settings Drawer */}
         {showConfig && (
           <div className={`p-4 rounded-2xl border space-y-3 shrink-0 text-xs ${isDark ? 'bg-slate-800 border-slate-700 text-slate-300' : 'bg-white border-slate-200 text-slate-700 shadow-sm'}`}>
-            <p className="font-bold text-emerald-500">⚙️ Optional Ollama Remote/Local Server Settings:</p>
+            <p className="font-bold text-emerald-500">⚙️ Optional WebLlama AI Server Settings:</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <div>
-                <label className="block text-[11px] text-theme-sub mb-1">Ollama Host URL (e.g., http://192.168.1.10:11434):</label>
+                <label className="block text-[11px] text-theme-sub mb-1">WebLlama Host URL (e.g., http://localhost:8080):</label>
                 <input 
                   type="text" 
-                  value={ollamaUrl} 
-                  onChange={(e) => saveOllamaConfig(e.target.value, ollamaModel)}
+                  value={webLlamaUrl} 
+                  onChange={(e) => saveWebLlamaConfig(e.target.value, webLlamaModel)}
                   className={`w-full border rounded-xl p-2 font-mono ${isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-slate-100 border-slate-200 text-slate-900'}`}
-                  placeholder="Leave empty for Hybrid Search Engine"
+                  placeholder="Leave empty for WebLlama Hybrid Engine"
                 />
               </div>
               <div>
                 <label className="block text-[11px] text-theme-sub mb-1">Model Name:</label>
                 <input 
                   type="text" 
-                  value={ollamaModel} 
-                  onChange={(e) => saveOllamaConfig(ollamaUrl, e.target.value)}
+                  value={webLlamaModel} 
+                  onChange={(e) => saveWebLlamaConfig(webLlamaUrl, e.target.value)}
                   className={`w-full border rounded-xl p-2 font-mono ${isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-slate-100 border-slate-200 text-slate-900'}`}
-                  placeholder="llama3 / mistral / qwen"
+                  placeholder="webllama-3-8b / llama-3-3b"
                 />
               </div>
             </div>
             <p className="text-[10px] text-slate-400">
-              💡 Hybrid Search mode automatically searches 469 ANC questions, grammar, and performs live Wikipedia searches if Ollama is empty!
+              💡 WebLlama Hybrid Search automatically searches 469 ANC questions, grammar, and performs live Wikipedia searches if external server is empty!
             </p>
           </div>
         )}
@@ -246,8 +247,8 @@ function AIContent() {
               <div
                 className={`max-w-[90%] rounded-2xl p-4 text-xs sm:text-sm leading-relaxed ${
                   msg.sender === 'user'
-                    ? 'bg-rose-600 text-white rounded-br-none'
-                    : isDark ? 'bg-slate-900/90 text-slate-100 border border-slate-700/80 rounded-bl-none space-y-2' : 'bg-slate-100 text-slate-900 border border-slate-200 rounded-bl-none space-y-2'
+                    ? 'bg-rose-600 text-white rounded-br-none font-bold'
+                    : isDark ? 'bg-slate-900/90 text-slate-100 border border-slate-700/80 rounded-bl-none space-y-2 font-bold' : 'bg-slate-100 text-slate-900 border border-slate-200 rounded-bl-none space-y-2 font-bold'
                 }`}
               >
                 {msg.sender === 'ai' && (
@@ -291,7 +292,7 @@ function AIContent() {
           {loading && (
             <div className={`flex items-center space-x-2 space-x-reverse p-3.5 rounded-2xl border max-w-xs text-xs text-theme-sub ${isDark ? 'bg-slate-900/90 border-slate-700' : 'bg-slate-100 border-slate-200'}`}>
               <Loader2 className="w-4 h-4 animate-spin text-amber-400" />
-              <span className="font-bold">جاري البحث المباشر في المنهج والانترنت... 🌐</span>
+              <span className="font-bold">جاري المعالجة بواسطة WebLlama AI والبحث المباشر... 🌐</span>
             </div>
           )}
         </div>
@@ -303,8 +304,8 @@ function AIContent() {
             value={inputQuery}
             onChange={(e) => setInputQuery(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-            placeholder={appLang === 'ar' ? 'ابحث في منهج الجنسية أو جغرافياً أو تاريخياً...' : appLang === 'en' ? 'Search citizenship curriculum or history live...' : 'Caută în programa de cetățenie sau istorie...'}
-            className={`flex-1 border text-xs sm:text-sm rounded-xl px-4 py-3 focus:outline-none focus:border-rose-500 ${isDark ? 'bg-slate-900 border-slate-700/80 text-white placeholder-slate-500' : 'bg-slate-100 border-slate-200 text-slate-900 placeholder-slate-400'}`}
+            placeholder={appLang === 'ar' ? 'اسأل WebLlama AI عن أي سؤال في منهج الجنسية أو التاريخ...' : appLang === 'en' ? 'Ask WebLlama AI any question about curriculum...' : 'Întreabă WebLlama AI despre programa de cetățenie...'}
+            className={`flex-1 border text-xs sm:text-sm rounded-xl px-4 py-3 focus:outline-none focus:border-rose-500 font-bold ${isDark ? 'bg-slate-900 border-slate-700/80 text-white placeholder-slate-500' : 'bg-slate-100 border-slate-200 text-slate-900 placeholder-slate-400'}`}
           />
           <button
             onClick={() => handleSend()}
@@ -321,7 +322,7 @@ function AIContent() {
 
 export default function AIPage() {
   return (
-    <Suspense fallback={<div className="p-8 text-center text-slate-400">Loading AI Assistant Page...</div>}>
+    <Suspense fallback={<div className="p-8 text-center text-slate-400 font-bold">Loading WebLlama AI Assistant...</div>}>
       <AIContent />
     </Suspense>
   );
