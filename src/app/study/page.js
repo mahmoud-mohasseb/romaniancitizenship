@@ -153,20 +153,23 @@ function StudyContent() {
         <div className={`rounded-2xl border shadow-xl p-5 space-y-4 animate-scale-in ${
           isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'
         }`}>
-          {/* Question Image Preview */}
+          {/* Question Image Preview with Fallback */}
           {currentQ.image && (
-            <div className="relative w-full h-52 sm:h-64 rounded-xl overflow-hidden border border-slate-700/60 group cursor-pointer" onClick={() => setModalVisible(true)}>
+            <div className="relative w-full h-56 sm:h-72 rounded-2xl overflow-hidden border-2 border-slate-700/60 bg-slate-900 group cursor-pointer shadow-lg" onClick={() => setModalVisible(true)}>
               <img 
                 src={currentQ.image} 
                 alt={currentQ.question}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                onError={(e) => {
+                  e.currentTarget.src = '/icon.png';
+                }}
+                className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
               />
               <button 
                 onClick={() => setModalVisible(true)}
-                className="absolute bottom-2 right-2 p-2 bg-black/60 backdrop-blur-md text-white rounded-lg text-xs font-bold flex items-center space-x-1 space-x-reverse border border-white/20"
+                className="absolute bottom-3 right-3 p-2 bg-black/70 backdrop-blur-md text-white rounded-xl text-xs font-bold flex items-center space-x-1.5 space-x-reverse border border-white/30 shadow-md"
               >
-                <Maximize2 className="w-3.5 h-3.5" />
-                <span>{strings.zoomImage || 'عرض الصورة 🔍'}</span>
+                <Maximize2 className="w-4 h-4" />
+                <span>{strings.zoomImage || 'تكبير الصورة 🔍'}</span>
               </button>
             </div>
           )}
@@ -185,7 +188,7 @@ function StudyContent() {
             {!showAnswer ? (
               <button
                 onClick={() => setShowAnswer(true)}
-                className="w-full py-3 px-4 bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-500 hover:to-amber-500 text-white font-black rounded-xl text-xs sm:text-sm shadow-md shadow-rose-600/30 transition-all flex items-center justify-center space-x-2 space-x-reverse"
+                className="w-full py-3.5 px-4 bg-gradient-to-r from-rose-600 via-amber-600 to-rose-700 hover:opacity-95 text-white font-black rounded-xl text-xs sm:text-sm shadow-md shadow-rose-600/30 transition-all flex items-center justify-center space-x-2 space-x-reverse animate-pulse-glow"
               >
                 <Eye className="w-4 h-4" />
                 <span>{strings.showAnswer || 'عرض الإجابة والترجمة'}</span>
@@ -218,7 +221,7 @@ function StudyContent() {
           <button
             onClick={handlePrev}
             disabled={currentIndex === 0}
-            className={`py-3 px-4 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center space-x-2 space-x-reverse border transition-all disabled:opacity-40 ${
+            className={`py-3.5 px-4 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center space-x-2 space-x-reverse border transition-all disabled:opacity-40 ${
               isDark ? 'bg-slate-800 border-slate-700 text-white hover:bg-slate-700' : 'bg-white border-slate-200 text-slate-800 shadow-sm hover:bg-slate-100'
             }`}
           >
@@ -229,7 +232,7 @@ function StudyContent() {
           <button
             onClick={handleNext}
             disabled={currentIndex === filteredQuestions.length - 1}
-            className="py-3 px-4 bg-rose-600 hover:bg-rose-500 disabled:opacity-40 text-white font-bold text-xs sm:text-sm rounded-xl flex items-center justify-center space-x-2 space-x-reverse shadow-md shadow-rose-600/30 transition-all"
+            className="py-3.5 px-4 bg-rose-600 hover:bg-rose-500 disabled:opacity-40 text-white font-bold text-xs sm:text-sm rounded-xl flex items-center justify-center space-x-2 space-x-reverse shadow-md shadow-rose-600/30 transition-all"
           >
             <span>{strings.next || 'التالي'}</span>
             {isRtl ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
@@ -239,18 +242,19 @@ function StudyContent() {
 
       {/* Image Full Modal */}
       {modalVisible && currentQ.image && (
-        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4" onClick={() => setModalVisible(false)}>
+        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 animate-scale-in" onClick={() => setModalVisible(false)}>
           <div className="relative max-w-3xl max-h-[90vh] w-full h-full flex flex-col items-center justify-center">
             <button 
               onClick={() => setModalVisible(false)}
-              className="absolute top-4 right-4 p-2 bg-white/20 hover:bg-white/40 text-white rounded-full"
+              className="absolute top-4 right-4 p-2 bg-white/20 hover:bg-white/40 text-white rounded-full border border-white/30"
             >
               <X className="w-6 h-6" />
             </button>
             <img 
               src={currentQ.image} 
               alt={currentQ.question} 
-              className="max-w-full max-h-[80vh] object-contain rounded-xl shadow-2xl"
+              onError={(e) => { e.currentTarget.src = '/icon.png'; }}
+              className="max-w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl bg-slate-950 p-2 border border-slate-700/60"
             />
             <p className="text-white text-xs font-bold mt-4 text-center px-4">{currentQ.question}</p>
           </div>

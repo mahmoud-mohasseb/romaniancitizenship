@@ -2,7 +2,7 @@
   {
     "id": "gq-1",
     "type": "multiple_choice",
-    "question_ro": "Care este forma corectă de plural a cuvântului «Scaun» (محايد - neutru)?",
+    "question_ro": "Care este forma corectă de plural a cuvântului «Scaun» (neutru)?",
     "question_ar": "ما هو الجمع الصحيح لكلمة «Scaun» (كرسي - اسم محايد)؟",
     "question_en": "What is the correct plural form of neuter noun «Scaun» (chair)?",
     "category": "nouns",
@@ -34,7 +34,7 @@
   {
     "id": "gq-3",
     "type": "multiple_choice",
-    "question_ro": "Cum adaugi articolul hotărât la cuvântul masculin «Băiat» (ولد)?",
+    "question_ro": "Cum adaugi articolul hotărât la cuvântul masculin «Băiat»?",
     "question_ar": "كيف يضاف أداة التعريف المعرفة إلى كلمة «Băiat» (ولد - مذكر)؟",
     "question_en": "How do you add the definite article to masculine noun «Băiat» (boy)?",
     "category": "articles",
@@ -98,7 +98,7 @@
   {
     "id": "gq-7",
     "type": "fill_in_blank",
-    "question_ro": "Completați spațiul: Ieri eu _______ la film cu prietenii. (Past composite of a merge)",
+    "question_ro": "Completați spațiul: Ieri eu _______ la film cu prietenii. (Past composite)",
     "question_ar": "أكمل الفراغ: الأمس أنا _______ إلى الفيلم مع الأصدقاء. (الماضي المركب لـ a merge)",
     "question_en": "Fill in the blank: Ieri eu _______ la film (I went).",
     "category": "verbs",
@@ -146,7 +146,7 @@
   {
     "id": "gq-10",
     "type": "fill_in_blank",
-    "question_ro": "Completați spațiul: Mâine el _______ la București. (Future tense of a călători)",
+    "question_ro": "Completați spațiul: Mâine el _______ la București. (Future tense)",
     "question_ar": "أكمل الفراغ: غداً هو _______ إلى بوخارست. (المستقبل من يسافر)",
     "question_en": "Fill in the blank: Mâine el _______ la București (will travel).",
     "category": "verbs",
@@ -178,7 +178,7 @@
   {
     "id": "gq-12",
     "type": "fill_in_blank",
-    "question_ro": "Completați spațiul: Vreau _______ învăț limba română repede. (Subjunctive particle)",
+    "question_ro": "Completați spațiul: Vreau _______ învăț limba română repede.",
     "question_ar": "أكمل الفراغ: أريد _______ أتعلم اللغة الرومانية بسرعة. (أداة المنصوب)",
     "question_en": "Fill in the blank: Vreau _______ învăț limba română (to learn).",
     "category": "verbs",
@@ -201,7 +201,7 @@
     "correct_answer": "Aceasta este mașina mea",
     "options": [
       "Aceasta este mașina mea",
-      "Mașina mea este aceasta",
+      "Mașina mea este me",
       "Este mașina aceasta mea",
       "Mea mașina este aceasta"
     ],
@@ -210,9 +210,9 @@
   {
     "id": "gq-14",
     "type": "multiple_choice",
-    "question_ro": "Care este forma de plural feminin a adjectivului «Frumos» (جميل)?",
+    "question_ro": "Care este forma de plural feminin a adjectivului «Frumos» (جميل)؟",
     "question_ar": "ما هو جمع المؤنث للصفة «Frumos» (جميل)؟",
-    "question_en": "What is the plural feminine form of adjective «Frumos» (handsome/beautiful)?",
+    "question_en": "What is the plural feminine form of adjective «Frumos»?",
     "category": "nouns",
     "correct_answer": "Frumoase (fete frumoase)",
     "options": [
@@ -227,7 +227,7 @@
     "id": "gq-15",
     "type": "fill_in_blank",
     "question_ro": "Completați spațiul: Cartea este pe masă, am dat-o _______ Andrei.",
-    "question_ar": "أكمل الفراغ: الكتاب على الطاولة، أعطيته لـ أندريه. (حالة الجينيتيف للأعلم)",
+    "question_ar": "أكمل الفراغ: الكتاب على الطاولة، أعطيته لـ أندريه. (حالة الإضافة للأعلام)",
     "question_en": "Fill in the blank: Cartea este pe masă, am dat-o _______ Andrei.",
     "category": "articles",
     "correct_answer": "lui",
@@ -244,7 +244,7 @@
     "type": "multiple_choice",
     "question_ro": "Care este تصريف فعل الكينونة «A fi» مع الضمير (Tu / أنت)؟",
     "question_ar": "ما هو تصريف فعل الكينونة «A fi» مع الضمير (Tu / أنت)؟",
-    "question_en": "What is the present tense of «A fi» (to be) for 'Tu' (You singular)?",
+    "question_en": "What is the present tense of «A fi» (to be) for 'Tu'?",
     "category": "verbs",
     "correct_answer": "Tu ești",
     "options": [
@@ -283,14 +283,14 @@
       "Am mâncat o pizza bună",
       "O pizza bună am mâncat",
       "Mâncat am pizza o bună",
-      "Bunp o am mâncat pizza"
+      "Bună o am mâncat pizza"
     ],
     "explanation_ar": "الماضي المركب Am mâncat + أداة التنكير o + الاسم pizza + الصفة bună."
   },
   {
     "id": "gq-19",
     "type": "multiple_choice",
-    "question_ro": "Cum zici بصيغة الأمر المباشر «استمع!» (Imperative command to Tu)?",
+    "question_ro": "Cum zici بصيغة الأمر المباشر «استمع!» (Imperative command)?",
     "question_ar": "كيف تقول بصيغة الأمر المباشر «استمع!» (المفرد Tu)؟",
     "question_en": "How do you give imperative command 'Listen!' to single person (Tu)?",
     "category": "verbs",
@@ -306,7 +306,7 @@
   {
     "id": "gq-20",
     "type": "fill_in_blank",
-    "question_ro": "Completați spațiul: Nu am _______ problemă cu limba română. (Double negative pronoun)",
+    "question_ro": "Completați spațiul: Nu am _______ problemă cu limba română.",
     "question_ar": "أكمل الفراغ: ليس لدي _______ مشكلة في اللغة الرومانية. (ضمير النفي المزدوج)",
     "question_en": "Fill in the blank: Nu am _______ problemă (no problem).",
     "category": "nouns",
@@ -318,5 +318,85 @@
       "nimeni"
     ],
     "explanation_ar": "النفي المزدوج مع الاسم المؤنث المفرد problemă يأخذ (nicio problemă)."
+  },
+  {
+    "id": "gq-21",
+    "type": "multiple_choice",
+    "question_ro": "Care este forma de trecut pasiv a propozitiei: «Legea _______ de parlament»?",
+    "question_ar": "ما هي أداة المبني للمجهول في الماضي: القانون _______ من قبل البرلمان؟",
+    "question_en": "What is the passive past tense marker: 'Legea _______ de parlament'?",
+    "category": "verbs",
+    "correct_answer": "a fost adoptată",
+    "options": [
+      "a fost adoptată",
+      "este adoptat",
+      "va fi adoptat",
+      "să adopte"
+    ],
+    "explanation_ar": "المبني للمجهول في الماضي المفرد المؤنث (Legea) هو (a fost adoptată)."
+  },
+  {
+    "id": "gq-22",
+    "type": "fill_in_blank",
+    "question_ro": "Completați spațiul: Cartea este _______ masă. (Preposition of location)",
+    "question_ar": "أكمل الفراغ: الكتاب يقع _______ الطاولة. (حرف جر المكان)",
+    "question_en": "Fill in the blank: Cartea este _______ masă (on the table).",
+    "category": "articles",
+    "correct_answer": "pe",
+    "options": [
+      "pe",
+      "în",
+      "la",
+      "sub"
+    ],
+    "explanation_ar": "حرف الجر (pe) يعني فوق أو على السطح."
+  },
+  {
+    "id": "gq-23",
+    "type": "word_order",
+    "question_ro": "Ordonați cuvintele: [dorim / Vă / succes / mult!]",
+    "question_ar": "رتب الكلمات لتمني التوفيق: [Vă / dorim / mult / succes!]",
+    "question_en": "Order words to wish success: [dorim / Vă / succes / mult!]",
+    "category": "sentence_structure",
+    "correct_answer": "Vă dorim mult succes!",
+    "options": [
+      "Vă dorim mult succes!",
+      "Mult succes vă dorim!",
+      "Dorim vă succes mult!",
+      "Succes mult dorim vă!"
+    ],
+    "explanation_ar": "الترتيب الصحيح لتمني التوفيق: Vă dorim (نتمنى لكم) + mult succes (توفيقاً كبيراً)!"
+  },
+  {
+    "id": "gq-24",
+    "type": "multiple_choice",
+    "question_ro": "Care este اسم الموصول المناسب في: «Omul _______ vorbește este profesor»?",
+    "question_ar": "ما هو اسم الموصول المناسب: الرجل _______ يتحدث هو أستاذ؟",
+    "question_en": "Which relative pronoun fits: 'Omul _______ vorbește este profesor'?",
+    "category": "nouns",
+    "correct_answer": "care",
+    "options": [
+      "care",
+      "ce",
+      "cine",
+      "unde"
+    ],
+    "explanation_ar": "اسم الموصول (care) معناه الذي/التي ويستخدم للإشارة إلى الأشخاص والأشياء."
+  },
+  {
+    "id": "gq-25",
+    "type": "fill_in_blank",
+    "question_ro": "Completați spațiul: Mâine noi _______ la munte. (Future tense of a merge)",
+    "question_ar": "أكمل الفراغ: غداً نحن _______ إلى الجبل. (المستقبل من a merge)",
+    "question_en": "Fill in the blank: Mâine noi _______ la munte (will go).",
+    "category": "verbs",
+    "correct_answer": "vom merge",
+    "options": [
+      "vom merge",
+      "am mers",
+      "mergem",
+      "să mergem"
+    ],
+    "explanation_ar": "المستقبل مع الضمير Noi هو (vom merge)."
   }
 ]
