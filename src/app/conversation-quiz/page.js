@@ -36,7 +36,7 @@ function ConversationQuizContent() {
   const [isFinished, setIsFinished] = useState(false);
   const [isNewHighScore, setIsNewHighScore] = useState(false);
 
-  const TOTAL_QUESTIONS = 5;
+  const TOTAL_QUESTIONS = 10;
 
   useEffect(() => {
     const saved = localStorage.getItem('conversation_quiz_best');

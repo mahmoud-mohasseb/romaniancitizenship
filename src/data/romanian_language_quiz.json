@@ -148,5 +148,230 @@
       "البيض / Eggs"
     ],
     "explanation_ar": "Pâine تعني الخبز في اللغة الرومانية."
+  },
+  {
+    "id": 11,
+    "question_ro": "Cum saluți o persoană în mod politicos la plecare: «إلى اللقاء»؟",
+    "question_ar": "كيف تودع أحداً بشكل رسمي «إلى اللقاء» بالرومانية؟",
+    "question_en": "How do you politely say 'Goodbye' in Romanian?",
+    "category": "greetings",
+    "correct_answer": "La revedere",
+    "options": [
+      "Pa!",
+      "La revedere",
+      "Pe curând",
+      "Sărut mâna"
+    ],
+    "explanation_ar": "La revedere هي التحية الرسمية المعتمدة عند الوداع والمغادرة."
+  },
+  {
+    "id": 12,
+    "question_ro": "Care este diferența dintre «Apă plată» și «Apă minerală»?",
+    "question_ar": "ما هو الفرق بين «Apă plată» و «Apă minerală» في المطعم؟",
+    "question_en": "What is the difference between 'Apă plată' and 'Apă minerală'?",
+    "category": "vocabulary",
+    "correct_answer": "Apă plată = مياه عادية / Apă minerală = مياه غازية (فوارة)",
+    "options": [
+      "Apă plată = مياه عادية / Apă minerală = مياه غازية (فوارة)",
+      "Apă plată = مياه ساخنة / Apă minerală = مياه باردة",
+      "Apă plată = عصير فواكه / Apă minerală = مياه شرب",
+      "كلاهما نفس المعنى تماماً"
+    ],
+    "explanation_ar": "في المطاعم الرومانية: Apă plată تعني مياه شرب بدون غاز، و Apă minerală / carbogazoasă تعني مياه فوارة غازية."
+  },
+  {
+    "id": 13,
+    "question_ro": "Cum ceri nota de plată la restaurant: «الحساب من فضلك»؟",
+    "question_ar": "كيف تطلب الفاتورة / الحساب في المطعم الروماني؟",
+    "question_en": "How do you ask for the check/bill at a restaurant in Romanian?",
+    "category": "phrases",
+    "correct_answer": "Nota de plată, vă rog!",
+    "options": [
+      "Cât costă meniul?",
+      "Nota de plată, vă rog!",
+      "Aș dori meniul, vă rog",
+      "Unde este bucătăria?"
+    ],
+    "explanation_ar": "Nota de plată, vă rog تعني الفاتورة من فضلك."
+  },
+  {
+    "id": 14,
+    "question_ro": "Cum spui «قسم / قسم اليمين القانوني» باللغة الرومانية؟",
+    "question_ar": "ما هي الكلمة الرومانية لـ «اليمين / قسم الولاء للجنسية»؟",
+    "question_en": "What is the Romanian term for the 'Citizenship Oath'?",
+    "category": "citizenship",
+    "correct_answer": "Jurământul de credință",
+    "options": [
+      "Declarația de averi",
+      "Jurământul de credință",
+      "Pașaportul simplu",
+      "Certificatul de naștere"
+    ],
+    "explanation_ar": "Jurământul de credință față de România هو قسم الولاء لرومانيا المؤدى أمام اللجنة."
+  },
+  {
+    "id": 15,
+    "question_ro": "Care este traducerea cuvântului «Săptămână»?",
+    "question_ar": "ما هي ترجمة كلمة «Săptămână» باللغة العربية؟",
+    "question_en": "What is the English translation of «Săptămână»?",
+    "category": "vocabulary",
+    "correct_answer": "أسبوع / Week",
+    "options": [
+      "شهر / Month",
+      "أسبوع / Week",
+      "سنة / Year",
+      "يوم / Day"
+    ],
+    "explanation_ar": "Săptămână تعني أسبوع (Sfârșit de săptămână = عطلة نهاية الأسبوع)."
+  },
+  {
+    "id": 16,
+    "question_ro": "Cum exprimi «أنا لا أفهم» باللغة الرومانية إذا لم تسمع السؤال جيداً؟",
+    "question_ar": "كيف تقول لرئيس اللجنة «أنا لا أفهم / لم أفهم» بأسلوب مؤدب؟",
+    "question_en": "How do you politely say 'I don't understand' in Romanian?",
+    "category": "phrases",
+    "correct_answer": "Nu înțeleg, puteți repeta, vă rog?",
+    "options": [
+      "Nu știu nimic",
+      "Nu am timp",
+      "Nu înțeleg, puteți repeta, vă rog?",
+      "De ce mă întrebați?"
+    ],
+    "explanation_ar": "Nu înțeleg, puteți repeta, vă rog? (لا أفهم، هل يمكنك الإعادة من فضلك؟) تعبير رسمي ومحترم."
+  },
+  {
+    "id": 17,
+    "question_ro": "Care este traducerea cuvântului «Mâine»?",
+    "question_ar": "ما هي ترجمة كلمة «Mâine» باللغة العربية؟",
+    "question_en": "What is the English translation of «Mâine»?",
+    "category": "vocabulary",
+    "correct_answer": "غداً / Tomorrow",
+    "options": [
+      "اليوم / Today",
+      "أمس / Yesterday",
+      "غداً / Tomorrow",
+      "الآن / Now"
+    ],
+    "explanation_ar": "Mâine تعني غداً، بينما Astăzi تعني اليوم، و Ieri تعني أمس."
+  },
+  {
+    "id": 18,
+    "question_ro": "Cum ceri scuze în mod oficial: «عذراً / المعذرة»؟",
+    "question_ar": "كيف تعتذر بأسلوب رسمي باللغة الرومانية؟",
+    "question_en": "How do you say 'Excuse me / Sorry' politely in Romanian?",
+    "category": "phrases",
+    "correct_answer": "Scuzați-mă / Mă scuzați",
+    "options": [
+      "Păcat!",
+      "Nicio problemă",
+      "Scuzați-mă / Mă scuzați",
+      "Te rog"
+    ],
+    "explanation_ar": "Scuzați-mă أو Mă scuzați تستخدم للاعتذار الرسمي أو لطلب الانتباه."
+  },
+  {
+    "id": 19,
+    "question_ro": "Care este cuvântul românesc pentru «شاهد / شهادة الولادة»؟",
+    "question_ar": "ما هي التسمية الرومانية لـ «شهادة الميلاد»؟",
+    "question_en": "What is the Romanian document name for 'Birth Certificate'?",
+    "category": "citizenship",
+    "correct_answer": "Certificat de naștere",
+    "options": [
+      "Permis de conducere",
+      "Certificat de naștere",
+      "Contract de muncă",
+      "Certificat de căsătorie"
+    ],
+    "explanation_ar": "Certificat de naștere هو شهادة الميلاد الرسمية المطلوبة في ملف الجنسية."
+  },
+  {
+    "id": 20,
+    "question_ro": "Care este noul حرف «Î» أو «Â» în limba română?",
+    "question_ar": "كيف ينطق الحرف الروماني الخاص «Î» أو «Â»؟",
+    "question_en": "How are Romanian letters «Î» and «Â» pronounced?",
+    "category": "alphabet",
+    "correct_answer": "صوت حلقي عميق مغلق (مثل نطق حرف i في الكلمة الإنجليزية 'girl' أو 'bird')",
+    "options": [
+      "صوت الألف الممدودة (Aa)",
+      "صوت حلقي عميق مغلق (مثل نطق حرف i في الكلمة الإنجليزية 'girl' أو 'bird')",
+      "صوت الياء الخفيفة (Ee)",
+      "صوت الواو المضمومة (Oo)"
+    ],
+    "explanation_ar": "الحرفان Î و Â يمثلان نفس الصوت الحلقي المغلق، حيث يكتب Î في بداية الكلمة وخاطمتها و Â في وسطها."
+  },
+  {
+    "id": 21,
+    "question_ro": "Cum întrebi «Cât costă?» în limba română?",
+    "question_ar": "ماذا يعني السؤال «Cât costă?»؟",
+    "question_en": "What does the question 'Cât costă?' mean?",
+    "category": "phrases",
+    "correct_answer": "كم السعر / كم يكلف؟",
+    "options": [
+      "كم الساعة؟",
+      "أين المكان؟",
+      "كم السعر / كم يكلف؟",
+      "متى نصل؟"
+    ],
+    "explanation_ar": "Cât costă? يستعلم عن سعر البضائع أو الخدمات."
+  },
+  {
+    "id": 22,
+    "question_ro": "Care este traducerea cuvântului «Biserică»?",
+    "question_ar": "ما هي ترجمة كلمة «Biserică» باللغة العربية؟",
+    "question_en": "What is the English translation of «Biserică»?",
+    "category": "vocabulary",
+    "correct_answer": "كنيسة / Church",
+    "options": [
+      "مستشفى / Hospital",
+      "مدرسة / School",
+      "كنيسة / Church",
+      "متحف / Museum"
+    ],
+    "explanation_ar": "Biserică تعني كنيسة في الثقافة واللغة الرومانية."
+  },
+  {
+    "id": 23,
+    "question_ro": "Cum spui «عيد ميلاد سعيد» باللغة الرومانية؟",
+    "question_ar": "كيف تهنئ أحداً بـ «عيد ميلاد سعيد» بالرومانية؟",
+    "question_en": "How do you wish 'Happy Birthday' in Romanian?",
+    "category": "greetings",
+    "correct_answer": "La mulți ani!",
+    "options": [
+      "Sărbători fericite!",
+      "La mulți ani!",
+      "Drum bun!",
+      "Poftă bună!"
+    ],
+    "explanation_ar": "La mulți ani! هي التهنئة الشعبية والأكثر استخداماً في أعياد الميلاد والمناسبات السعيدة."
+  },
+  {
+    "id": 24,
+    "question_ro": "Care este cuvântul românesc pentru «عطلة / إجازة»؟",
+    "question_ar": "ما هي الكلمة الرومانية لـ «الإجازة / العطلة الصيفية»؟",
+    "question_en": "What is the Romanian word for 'Vacation / Holiday'?",
+    "category": "vocabulary",
+    "correct_answer": "Vacanță / Concediu",
+    "options": [
+      "Muncă",
+      "Vacanță / Concediu",
+      "Școală",
+      "Examen"
+    ],
+    "explanation_ar": "Vacanță تستخدم لعطلة الطلاب، و Concediu تستخدم لإجازة العمل المأجورة."
+  },
+  {
+    "id": 25,
+    "question_ro": "Cum spui «بالتوفيق / أتمنى لك النجاح» باللغة الرومانية؟",
+    "question_ar": "كيف تتمنى بالتوفيق والنجاح لأحد «Mult succes!»؟",
+    "question_en": "How do you say 'Good luck / Much success' in Romanian?",
+    "category": "greetings",
+    "correct_answer": "Mult succes! / Mult noroc!",
+    "options": [
+      "Sanătate!",
+      "Mult succes! / Mult noroc!",
+      "Condoleanțe!",
+      "Casă de piatră!"
+    ],
+    "explanation_ar": "Mult succes! (أتمنى لك نجاحاً باهراً) تقال للمتقدمين لاختبار الجنسية والامتحانات."
   }
 ]

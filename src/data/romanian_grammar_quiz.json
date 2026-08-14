@@ -478,5 +478,85 @@
       "Să obțin doresc română cetățenia"
     ],
     "explanation_ar": "الجملة النموذجية في لجنة الجنسية: Doresc (أرغب) + să obțin (أن أحصل) + cetățenia română (على الجنسية الرومانية)."
+  },
+  {
+    "id": "gq-31",
+    "type": "multiple_choice",
+    "question_ro": "Care este forma de plural a cuvântului «Om» (إنسان / رجل)؟",
+    "question_ar": "ما هو الجمع الجمع الشاذ لكلمة «Om» (شخص / إنسان)؟",
+    "question_en": "What is the irregular plural form of noun «Om» (person)?",
+    "category": "nouns",
+    "correct_answer": "Oameni",
+    "options": [
+      "Omi",
+      "Omuri",
+      "Oameni",
+      "Oamene"
+    ],
+    "explanation_ar": "الكلمة Om تجمع بشكل شاذ إلى Oameni (ناس / أشخاص)."
+  },
+  {
+    "id": "gq-32",
+    "type": "multiple_choice",
+    "question_ro": "Care este forma de plural a cuvântului «Soră» (أخت)؟",
+    "question_ar": "ما هو الجمع الشاذ لكلمة «Soră» (أخت)؟",
+    "question_en": "What is the irregular plural form of feminine noun «Soră» (sister)?",
+    "category": "nouns",
+    "correct_answer": "Surori",
+    "options": [
+      "Surori",
+      "Sore",
+      "Soruri",
+      "Sorăi"
+    ],
+    "explanation_ar": "تجمع كلمة Soră بشكل شاذ إلى Surori (أخوات)."
+  },
+  {
+    "id": "gq-33",
+    "type": "fill_in_blank",
+    "question_ro": "Completați spațiul: Eu _______ să vorbesc românește. (فعل الاستطاعة a putea)",
+    "question_ar": "أكمل الفراغ: أنا _______ التحدث بالرومانية. (فعل الاستطاعة a putea مع الضمير Eu)",
+    "question_en": "Fill in the blank: Eu _______ să vorbesc românește (can).",
+    "category": "verbs",
+    "correct_answer": "pot",
+    "options": [
+      "poți",
+      "poate",
+      "pot",
+      "putem"
+    ],
+    "explanation_ar": "تصريف الفعل a putea مع الضمير Eu هو (pot) ومع Tu هو (poți)."
+  },
+  {
+    "id": "gq-34",
+    "type": "multiple_choice",
+    "question_ro": "Care este forma corectă de plural a expresiei «O floare frumoasă»؟",
+    "question_ar": "ما هو الجمع الصحيح للتعبير «O floare frumoasă» (زهرة جميلة)؟",
+    "question_en": "What is the plural of 'O floare frumoasă' (a beautiful flower)?",
+    "category": "nouns",
+    "correct_answer": "Niște flori frumoase",
+    "options": [
+      "Niște florilor frumoși",
+      "Niște flori frumoase",
+      "Niște floare frumoase",
+      "Niște florile frumoasă"
+    ],
+    "explanation_ar": "جمع floare هو flori وجمع frumoasă هو frumoase، ومعهما أداة تنكير الجمع niște."
+  },
+  {
+    "id": "gq-35",
+    "type": "fill_in_blank",
+    "question_ro": "Completați spațiul: _______ place limba română foarte mult. (يعجبني - الضمير Dativ)",
+    "question_ar": "أكمل الفراغ بالضمير المناسب: _______ تعجبني اللغة الرومانية كثيراً (Îmi / Mie).",
+    "question_en": "Fill in the dative pronoun: _______ place limba română (I like).",
+    "category": "sentence_structure",
+    "correct_answer": "Îmi",
+    "options": [
+      "Eu",
+      "Mă",
+      "Îmi",
+      "Mie"
+    ],
+    "explanation_ar": "الفعل reflexive impersonal (a-i plăcea) يستلزم ضمير الداتيف النحوي Îmi place (يعجبني)."
   }
 ]
