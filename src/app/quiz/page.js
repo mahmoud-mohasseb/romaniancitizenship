@@ -25,17 +25,24 @@ import { getQuestionText, getAnswerText } from '../../utils/languageHelper';
 
 function QuizContent() {
   const searchParams = useSearchParams();
-  const quizMode = searchParams.get('mode') || 'quick';
-  const initialCategory = searchParams.get('category') || 'all';
 
   const { theme } = useTheme();
   const { appLang, strings, isRtl } = useLanguage();
   const isDark = theme === 'dark';
 
+  const [quizMode, setQuizMode] = useState('quick');
+  const [selectedCategory, setSelectedCategory] = useState('all');
+
+  useEffect(() => {
+    const mode = searchParams.get('mode');
+    const cat = searchParams.get('category');
+    if (mode) setQuizMode(mode);
+    if (cat) setSelectedCategory(cat);
+  }, [searchParams]);
+
   const totalQuestionsLimit = quizMode === 'exam' ? 25 : 10;
   const initialTimeSeconds = quizMode === 'exam' ? 20 * 60 : null;
 
-  const [selectedCategory, setSelectedCategory] = useState(initialCategory);
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [options, setOptions] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);

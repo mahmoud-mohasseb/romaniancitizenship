@@ -22,13 +22,12 @@ import { queryWebLlama, initWebLLMEngine } from '../../utils/aiService';
 
 function AIContent() {
   const searchParams = useSearchParams();
-  const initialPrompt = searchParams.get('q') || '';
 
   const { theme } = useTheme();
   const { appLang, strings, isRtl } = useLanguage();
   const isDark = theme === 'dark';
 
-  const [inputQuery, setInputQuery] = useState(initialPrompt);
+  const [inputQuery, setInputQuery] = useState('');
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [engineLoaded, setEngineLoaded] = useState(false);
@@ -54,10 +53,12 @@ function AIContent() {
       }
     ]);
 
+    const initialPrompt = searchParams.get('q');
     if (initialPrompt) {
+      setInputQuery(initialPrompt);
       handleSend(initialPrompt);
     }
-  }, [appLang]);
+  }, [appLang, searchParams]);
 
   const quickPrompts = appLang === 'ar' ? [
     'ما هو شكل الحكومة في رومانيا؟',

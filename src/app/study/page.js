@@ -26,17 +26,23 @@ import { getQuestionText, getAnswerText } from '../../utils/languageHelper';
 
 function StudyContent() {
   const searchParams = useSearchParams();
-  const initialCat = searchParams.get('category') || 'all';
 
   const { theme } = useTheme();
   const { appLang, setAppLang, strings, isRtl } = useLanguage();
   const isDark = theme === 'dark';
 
-  const [activeCategory, setActiveCategory] = useState(initialCat);
+  const [activeCategory, setActiveCategory] = useState('all');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+
+  useEffect(() => {
+    const cat = searchParams.get('category');
+    if (cat) {
+      setActiveCategory(cat);
+    }
+  }, [searchParams]);
 
   const filteredQuestions = activeCategory === 'all' 
     ? questions 
