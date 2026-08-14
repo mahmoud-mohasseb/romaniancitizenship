@@ -19,6 +19,8 @@ import {
   Puzzle, 
   GraduationCap, 
   Music,
+  Heart,
+  ExternalLink,
   ChevronLeft, 
   ChevronRight 
 } from 'lucide-react';
@@ -86,7 +88,7 @@ export default function Navbar() {
         </div>
 
         {/* Sidebar Navigation Links List */}
-        <div className="space-y-1.5 overflow-y-auto max-h-[62vh] no-scrollbar pr-0.5">
+        <div className="space-y-1.5 overflow-y-auto max-h-[56vh] no-scrollbar pr-0.5">
           {navLinks.map((link) => {
             const Icon = link.icon;
             const isActive = pathname === link.href;
@@ -124,8 +126,31 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Sidebar Footer: Theme Toggle & Language Bar */}
-      <div className="pt-3 border-t border-slate-700/60 space-y-2">
+      {/* Revolut Donation Link & Footer Settings */}
+      <div className="pt-2 border-t border-slate-700/60 space-y-2">
+        {/* Revolut Donation Button */}
+        <a
+          href="https://revolut.me/mahmoulxzy"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-between p-3 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-rose-600 hover:opacity-95 text-white font-black shadow-lg shadow-blue-600/30 transition-all border border-blue-400/40 group animate-pulse-glow"
+        >
+          <div className="flex items-center space-x-2.5 space-x-reverse">
+            <div className="p-2 rounded-xl bg-black/20 text-white border border-white/20 shrink-0">
+              <Heart className="w-4 h-4 text-rose-300 fill-current animate-bounce-subtle" />
+            </div>
+            <div>
+              <h4 className="text-xs font-black leading-tight">
+                {appLang === 'ar' ? 'دعم التطبيق عبر Revolut 💳' : appLang === 'en' ? 'Donate via Revolut 💳' : 'Donație prin Revolut 💳'}
+              </h4>
+              <p className="text-[10px] text-blue-100/90 font-medium">
+                {appLang === 'ar' ? 'ساهم في تطوير التطبيق' : appLang === 'en' ? 'Support app development' : 'Susține dezvoltarea aplicației'}
+              </p>
+            </div>
+          </div>
+          <ExternalLink className="w-4 h-4 text-white/80 group-hover:translate-x-0.5 transition-transform shrink-0" />
+        </a>
+
         <div className="flex items-center justify-between p-2.5 rounded-xl border bg-slate-900/60 border-slate-800 text-xs">
           <span className="font-semibold text-slate-400">{appLang === 'ar' ? 'المظهر:' : 'Theme:'}</span>
           <button
@@ -196,12 +221,24 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <button
-          onClick={toggleTheme}
-          className="p-2 rounded-xl border border-slate-700 text-amber-400 hover:bg-slate-800 transition-colors"
-        >
-          {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-        </button>
+        <div className="flex items-center space-x-2 space-x-reverse">
+          <a
+            href="https://revolut.me/mahmoulxzy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-2.5 py-1.5 rounded-xl bg-gradient-to-r from-blue-600 to-rose-600 text-white text-[11px] font-black flex items-center space-x-1 space-x-reverse shadow-md"
+          >
+            <Heart className="w-3.5 h-3.5 fill-current animate-bounce-subtle" />
+            <span>Revolut 💳</span>
+          </a>
+
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-xl border border-slate-700 text-amber-400 hover:bg-slate-800 transition-colors"
+          >
+            {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+          </button>
+        </div>
       </header>
 
       {/* Mobile Sidebar Overlay Drawer */}

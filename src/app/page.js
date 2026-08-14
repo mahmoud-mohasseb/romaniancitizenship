@@ -26,7 +26,8 @@ import {
   Landmark, 
   Palette,
   Download,
-  Music
+  Music,
+  Heart
 } from 'lucide-react';
 import questions from '../data/questions_ar.json';
 import Navbar from '../components/Navbar';
@@ -85,7 +86,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen pb-28 sm:pb-24 bg-theme-main text-theme-main flex flex-col">
+    <div className="min-h-screen pb-28 sm:pb-24 bg-theme-main text-theme-main flex flex-col font-cairo">
       {/* Sidebar Navigation */}
       <Navbar />
 
@@ -419,6 +420,34 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
+
+        {/* Revolut Support Banner */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4, delay: 0.2 }}
+          className="pt-2"
+        >
+          <a
+            href="https://revolut.me/mahmoulxzy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-between p-5 bg-gradient-to-r from-blue-600 via-indigo-600 to-rose-600 rounded-2xl border border-blue-400/40 shadow-xl hover:opacity-95 transition-all text-white group animate-pulse-glow"
+          >
+            <div className="space-y-1">
+              <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-black bg-black/20 text-white border border-white/20">
+                💳 Revolut Donation Support
+              </span>
+              <h3 className="text-base sm:text-lg font-black">
+                {appLang === 'ar' ? 'دعم وتطوير المنصة عبر Revolut 💳' : appLang === 'en' ? 'Support Platform via Revolut 💳' : 'Susține Platforma prin Revolut 💳'}
+              </h3>
+              <p className="text-xs text-blue-100/90 leading-relaxed">
+                {appLang === 'ar' ? 'إذا ساعدك التطبيق في التحضير للجنسية الرومانية، يمكنك مساندة المطور عبر Revolut' : 'If this app helps you prepare for Romanian citizenship, support developer on Revolut'}
+              </p>
+            </div>
+            <Heart className="w-9 h-9 text-white shrink-0 animate-bounce-subtle fill-current" />
+          </a>
+        </motion.div>
       </main>
     </div>
   );
