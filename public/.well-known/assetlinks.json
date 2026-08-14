@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.romaniancitizenship.app",
+      "sha256_cert_fingerprints": [
+        "14:6D:E9:7C:0B:4D:DF:ED:41:6B text:sha256:fingerprint:placeholder:replace:with:play:console:cert"
+      ]
+    }
+  }
+]
