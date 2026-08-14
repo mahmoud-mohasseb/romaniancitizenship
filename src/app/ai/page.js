@@ -36,9 +36,7 @@ function AIContent() {
   const [webLlamaUrl, setWebLlamaUrl] = useState('');
   const [selectedModel, setSelectedModel] = useState('Llama-3.2-1B-Instruct-q4f16_1-MLC');
   const [showConfig, setShowConfig] = useState(false);
-  const [isInitializingEngine, setIsInitializingEngine] = useState(false);
   const [engineLoaded, setEngineLoaded] = useState(false);
-  const [initProgressText, setInitProgressText] = useState('');
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -46,6 +44,11 @@ function AIContent() {
       const savedModel = localStorage.getItem('webllama_model') || 'Llama-3.2-1B-Instruct-q4f16_1-MLC';
       setWebLlamaUrl(savedUrl);
       setSelectedModel(savedModel);
+
+      // Auto initialize WebLLM engine in background for instant responses
+      initWebLLMEngine(savedModel).then((engine) => {
+        if (engine) setEngineLoaded(true);
+      });
     }
 
     setMessages([
@@ -53,10 +56,10 @@ function AIContent() {
         id: 1,
         sender: 'ai',
         text: appLang === 'ar' 
-          ? 'مرحباً بك! أنا مساعد WebLLM الذكي المخصص لاختبار الجنسية الرومانية 🇷🇴. يعمل المحرك مباشرة داخل المتصفح وجهازك بدون إنترنت بعد التثبيت ⚡ كما يبحث في منهج الـ 469 سؤالاً والإنترنت 🌐!'
+          ? 'مرحباً بك! أنا مساعد WebLLM الذكي المخصص لاختبار الجنسية الرومانية 🇷🇴. المحرك جاهز لإجابة أي سؤال في منهج الـ 469 سؤالاً، التاريخ، الدستور، والبحث المباشر 🌐!'
           : appLang === 'en'
-          ? 'Welcome! I am your WebLLM AI Romanian Citizenship Tutor 🇷🇴. Runs 100% offline inside your browser after app installation ⚡ powered by WebGPU & ANC Curriculum 🌐!'
-          : 'Bine ai venit! Sunt asistentul tău WebLLM AI pentru cetățenia română 🇷🇴. Rulează 100% offline direct în browserul tău ⚡!',
+          ? 'Welcome! I am your WebLLM AI Romanian Citizenship Tutor 🇷🇴. Ready to answer any questions about ANC curriculum, constitution, or geography 🌐!'
+          : 'Bine ai venit! Sunt asistentul tău WebLLM AI pentru cetățenia română 🇷🇴. Pregătit să răspund la orice întrebare!',
         time: 'Just now'
       }
     ]);
@@ -65,18 +68,6 @@ function AIContent() {
       handleSend(initialPrompt);
     }
   }, [appLang]);
-
-  const handleInitWebLLM = async () => {
-    setIsInitializingEngine(true);
-    setInitProgressText('Loading WebLLM in-browser AI model...');
-    const engine = await initWebLLMEngine(selectedModel, (progress) => {
-      setInitProgressText(progress.text);
-    });
-    setIsInitializingEngine(false);
-    if (engine) {
-      setEngineLoaded(true);
-    }
-  };
 
   const saveWebLlamaConfig = (newUrl, newModel) => {
     setWebLlamaUrl(newUrl);
@@ -140,7 +131,7 @@ function AIContent() {
         return (
           <span className="inline-flex items-center space-x-1 space-x-reverse text-emerald-400 font-bold">
             <Zap className="w-3.5 h-3.5 fill-current" />
-            <span>WebLLM In-Browser WebGPU AI (Offline) ⚡</span>
+            <span>WebLLM In-Browser AI (Offline WebGPU ⚡)</span>
           </span>
         );
       case 'online_search':
@@ -192,25 +183,16 @@ function AIContent() {
                 </h1>
                 <p className="text-[11px] text-emerald-400 font-bold flex items-center space-x-1 space-x-reverse">
                   <Zap className="w-3 h-3 fill-current" />
-                  <span>يعمل 100% داخل المتصفح بدون إنترنت بعد التثبيت ⚡</span>
+                  <span>محرك ذكي يعود بالإجابة فوراً ويبحث في المنهج والإنترنت ⚡</span>
                 </p>
               </div>
             </div>
 
             <div className="flex items-center space-x-2 space-x-reverse">
-              {!engineLoaded ? (
-                <button
-                  onClick={handleInitWebLLM}
-                  disabled={isInitializingEngine}
-                  className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-xs font-black flex items-center space-x-1 space-x-reverse shadow-md hover:opacity-95 transition-all"
-                >
-                  {isInitializingEngine ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Zap className="w-3.5 h-3.5" />}
-                  <span>{isInitializingEngine ? 'تحميل المحرك...' : 'تفعيل WebLLM أوفلاين ⚡'}</span>
-                </button>
-              ) : (
+              {engineLoaded && (
                 <span className="px-2.5 py-1 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-black flex items-center space-x-1 space-x-reverse">
                   <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>WebLLM Ready (Offline GPU)</span>
+                  <span>WebLLM Ready</span>
                 </span>
               )}
 
@@ -223,14 +205,6 @@ function AIContent() {
             </div>
           </div>
         </div>
-
-        {/* In-Browser Progress Alert */}
-        {isInitializingEngine && (
-          <div className="p-3 rounded-xl bg-slate-900 border border-emerald-500/40 text-emerald-300 text-xs font-bold flex items-center space-x-2 space-x-reverse animate-pulse">
-            <Loader2 className="w-4 h-4 animate-spin text-emerald-400 shrink-0" />
-            <span className="truncate">{initProgressText || 'Downloading and initializing in-browser WebLLM model...'}</span>
-          </div>
-        )}
 
         {/* Optional WebLLM Settings Drawer */}
         {showConfig && (
@@ -260,9 +234,6 @@ function AIContent() {
                 />
               </div>
             </div>
-            <p className="text-[10px] text-slate-400">
-              💡 WebLLM runs quantized Llama 3 models directly inside your device browser using WebGPU for total privacy & offline use!
-            </p>
           </div>
         )}
 

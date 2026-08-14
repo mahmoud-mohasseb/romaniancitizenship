@@ -6,23 +6,27 @@ const DEFAULT_WEBLLAMA_URL = 'http://localhost:8080';
 const DEFAULT_MODEL = 'Llama-3.2-1B-Instruct-q4f16_1-MLC';
 
 let webLlmEngine = null;
+let isInitializing = false;
 
 /**
- * Initialize WebLLM Client-Side In-Browser Engine (@mlc-ai/web-llm)
+ * Auto Initialize WebLLM Client-Side In-Browser Engine (@mlc-ai/web-llm)
  */
 export async function initWebLLMEngine(selectedModel = DEFAULT_MODEL, onProgress) {
-  if (typeof window === 'undefined') return null;
+  if (typeof window === 'undefined' || webLlmEngine || isInitializing) return webLlmEngine;
   
   try {
+    isInitializing = true;
     const { CreateMLCEngine } = await import('@mlc-ai/web-llm');
     webLlmEngine = await CreateMLCEngine(selectedModel, {
       initProgressCallback: (progress) => {
         if (onProgress) onProgress(progress);
       }
     });
+    isInitializing = false;
     return webLlmEngine;
   } catch (error) {
-    console.log('[WebLLM] WebGPU not supported or initialization error, falling back to Hybrid ANC Engine:', error);
+    isInitializing = false;
+    console.log('[WebLLM Engine] Auto fallback to Hybrid Knowledge Engine:', error);
     return null;
   }
 }
@@ -52,18 +56,18 @@ export async function searchOnlineKnowledge(topic, lang = 'ar') {
 }
 
 /**
- * Main Hybrid AI Query Function with WebLLM + WebLlama Support
+ * Main Smart AI Query Function with Instant Response Reversion
  */
 export async function queryWebLlama(prompt, model = DEFAULT_MODEL, webLlamaUrl = DEFAULT_WEBLLAMA_URL, lang = 'ar') {
   const query = (prompt || '').trim();
   if (!query) return { success: false, text: '' };
 
-  // 1. Try In-Browser WebLLM Engine (Zero latency, 100% Offline GPU/Wasm execution)
+  // 1. Try In-Browser WebLLM Engine if loaded
   if (webLlmEngine) {
     try {
       const reply = await webLlmEngine.chat.completions.create({
         messages: [
-          { role: 'system', content: 'You are an expert Romanian Citizenship Exam Tutor. Answer concisely and accurately.' },
+          { role: 'system', content: 'You are an expert Romanian Citizenship Exam Tutor. Provide a concise, clear, and encouraging answer.' },
           { role: 'user', content: query }
         ]
       });
@@ -72,16 +76,15 @@ export async function queryWebLlama(prompt, model = DEFAULT_MODEL, webLlamaUrl =
         return { success: true, text: replyText, source: 'webllm' };
       }
     } catch (e) {
-      console.log('[WebLLM] Execution error, falling back to Hybrid Engine:', e);
+      console.log('[WebLLM Execution] Fallback to Online Smart AI Engine');
     }
   }
 
-  // 2. Try WebLlama Server Endpoint (if configured by user)
+  // 2. Try External WebLlama / OpenAI API Endpoint (if configured by user)
   if (webLlamaUrl && !webLlamaUrl.includes('localhost')) {
     try {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 4000);
-
       const endpoint = webLlamaUrl.endsWith('/') ? `${webLlamaUrl}v1/chat/completions` : `${webLlamaUrl}/v1/chat/completions`;
 
       const response = await fetch(endpoint, {
@@ -91,7 +94,7 @@ export async function queryWebLlama(prompt, model = DEFAULT_MODEL, webLlamaUrl =
         body: JSON.stringify({
           model: model || DEFAULT_MODEL,
           messages: [
-            { role: 'system', content: 'You are an expert Romanian Citizenship Exam Tutor. Help the student with their question about Romanian history, constitution, geography, culture, language, or citizenship interview.' },
+            { role: 'system', content: 'You are an expert Romanian Citizenship Exam Tutor.' },
             { role: 'user', content: query }
           ],
           stream: false,
@@ -108,7 +111,7 @@ export async function queryWebLlama(prompt, model = DEFAULT_MODEL, webLlamaUrl =
         }
       }
     } catch (error) {
-      console.log('WebLlama server unreachable, switching seamlessly to Hybrid Knowledge Engine');
+      console.log('WebLlama endpoint unreachable, switching to Smart Knowledge Engine');
     }
   }
 
@@ -143,9 +146,9 @@ export async function queryWebLlama(prompt, model = DEFAULT_MODEL, webLlamaUrl =
     const top = matchingQuestions[0];
     let text = '';
     if (lang === 'en') {
-      text = `🇷🇴 **Official Citizenship Exam Question Match:**\n\n` +
+      text = `🇷🇴 **Official ANC Citizenship Question Match:**\n\n` +
         `**Question (RO):** ${top.question}\n` +
-        `**Model Answer:** ${top.answer}\n\n` +
+        `**Official Model Answer:** ${top.answer}\n\n` +
         `🇬🇧 **English:** ${top.question_en || top.question}\n` +
         `**Answer:** ${top.answer_en || top.answer}\n\n` +
         `🇸🇦 **Arabic:** ${top.question_ar}\n` +
@@ -177,10 +180,10 @@ export async function queryWebLlama(prompt, model = DEFAULT_MODEL, webLlamaUrl =
 
   if (matchingGrammar.length > 0) {
     const gTop = matchingGrammar[0];
-    let text = `📚 **درس قواعد ذو صلة / Grammar Topic Match:**\n\n` +
+    let text = `📚 **شرح من دليل قواعد الرومانية (Romanian Grammar):**\n\n` +
       `**الموضوع:** ${gTop.topic_ro}\n` +
-      `🇸🇦 **الشرح:** ${gTop.explanation_ar}\n\n` +
-      `💡 **نصيحة سريعة:** ${gTop.easy_tip_ar}`;
+      `🇸🇦 **الشرح بالتفصيل:** ${gTop.explanation_ar}\n\n` +
+      `💡 **مفتاح القاعدة:** ${gTop.easy_tip_ar}`;
 
     return {
       success: true,
@@ -192,10 +195,10 @@ export async function queryWebLlama(prompt, model = DEFAULT_MODEL, webLlamaUrl =
   // 4. Perform Live Online Wikipedia Search for unmatched topics!
   const onlineResult = await searchOnlineKnowledge(query, lang);
   if (onlineResult) {
-    let text = `🌐 **نتائج البحث الحي عبر الإنترنت / Online Live Search Result:**\n\n` +
+    let text = `🌐 **معلومات شاملة من موسوعة ويكيبيديا الرومانية (Live Wikipedia Smart Result):**\n\n` +
       `**الموضوع:** ${onlineResult.title}\n\n` +
       `${onlineResult.extract}\n\n` +
-      `🔗 [اقرأ المزيد على Wikipedia](${onlineResult.url})`;
+      `🔗 [اقرأ التقرير الكامل على Wikipedia](${onlineResult.url})`;
 
     return {
       success: true,
@@ -206,12 +209,12 @@ export async function queryWebLlama(prompt, model = DEFAULT_MODEL, webLlamaUrl =
     };
   }
 
-  // 5. Default AI Citizenship Response
+  // 5. Smart Fallback Response
   if (lang === 'en') {
     return {
       success: true,
-      text: `🤖 **WebLLM AI Citizenship Tutor:**\n\n` +
-        `I am ready to answer any questions about Romanian Citizenship, History, Constitution, Geography, and Language Grammar!\n\n` +
+      text: `🤖 **WebLLM Smart Citizenship Tutor:**\n\n` +
+        `Regarding "${query}": Romanian Citizenship exam focuses on Romanian History, Constitution (Article 1-148), Geography, and Language.\n\n` +
         `💡 Try asking: "Who was Stephen the Great?", "Form of government in Romania", or "What is the capital of Romania?".`,
       source: 'ai_tutor'
     };
@@ -219,7 +222,7 @@ export async function queryWebLlama(prompt, model = DEFAULT_MODEL, webLlamaUrl =
     return {
       success: true,
       text: `🤖 **Asistent WebLLM AI Cetățenie:**\n\n` +
-        `Sunt pregătit să răspund la orice întrebare despre cetățenia română, istorie, constituție, geografie și gramatică!\n\n` +
+        `Cu privire la „${query}”: Examenul de cetățenie română se bazează pe istorie, constituție (articolele 1-148), geografie și limba română.\n\n` +
         `💡 Încearcă: „Cine a fost Ștefan cel Mare?”, „Forma de guvernământ”, sau „Fluviul Dunărea”.`,
       source: 'ai_tutor'
     };
@@ -228,11 +231,10 @@ export async function queryWebLlama(prompt, model = DEFAULT_MODEL, webLlamaUrl =
   return {
     success: true,
     text: `🤖 **مساعد WebLLM الذكي للجنسية الرومانية:**\n\n` +
-      `أنا مستعد لإجابتك عن أي سؤال يتعلق بالجنسية الرومانية، الدستور، التاريخ، الجغرافيا، أو قواعد اللغة!\n\n` +
+      `بخصوص "${query}": يركز اختبار الجنسية الرومانية ANC على التاريخ الروماني، الدستور (المواد 1-148)، الجغرافيا، وقواعد اللغة الرومانية.\n\n` +
       `💡 جرب البحث عن: "من هو ستيفان تشيل ماري؟"، "شكل الحكومة في رومانيا"، أو "معلومات عن نهر الدانوب".`,
     source: 'ai_tutor'
   };
 }
 
-// Backward compatibility aliases
 export const queryOllama = queryWebLlama;
