@@ -11,8 +11,6 @@ import {
   ShieldCheck, 
   FileText, 
   BookOpen, 
-  ChevronRight, 
-  ChevronLeft, 
   ExternalLink, 
   CheckCircle2, 
   Clock, 
@@ -21,13 +19,14 @@ import {
   Globe, 
   UserCheck, 
   Award, 
-  HelpCircle, 
-  Layers, 
   X,
   Sparkles,
-  Info
+  Info,
+  ChevronUp,
+  Layers,
+  ArrowRight,
+  RotateCcw
 } from 'lucide-react';
-import Navbar from '../../components/Navbar';
 import RomanianMap from '../../components/RomanianMap';
 import mapLocationsData from '../../data/romanian_map_locations.json';
 import { useTheme } from '../../context/ThemeContext';
@@ -35,15 +34,15 @@ import { useLanguage } from '../../context/LanguageContext';
 
 export default function RomanianCitizenshipMapPage() {
   const { theme } = useTheme();
-  const { appLang, strings, isRtl } = useLanguage();
+  const { appLang, setAppLang, strings, isRtl } = useLanguage();
   const isDark = theme === 'dark';
 
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [detailsModalLocation, setDetailsModalLocation] = useState(null);
-  const [sidePanelOpen, setSidePanelOpen] = useState(true);
-  const [activeTimelineStage, setActiveTimelineStage] = useState(1);
+  const [activeInfoModal, setActiveInfoModal] = useState(null); // 'citizenship' | 'requirements' | 'descent' | 'restoration' | 'institutions' | 'locations'
+  const [showSearchDropdown, setShowSearchDropdown] = useState(false);
 
   // Filter locations by category & search query
   const filteredLocations = mapLocationsData.filter((loc) => {
@@ -59,523 +58,417 @@ export default function RomanianCitizenshipMapPage() {
     return matchesCategory && matchesSearch;
   });
 
-  // Handle location click from list or search
+  // Handle selecting a location from search dropdown or list
   const handleSelectLocation = (loc) => {
     setSelectedLocation(loc);
-  };
-
-  // Scroll smooth to Map section
-  const scrollToMap = () => {
-    const mapEl = document.getElementById('interactive-map-section');
-    if (mapEl) {
-      mapEl.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  // Scroll smooth to Requirements section
-  const scrollToRequirements = () => {
-    const reqEl = document.getElementById('citizenship-requirements-section');
-    if (reqEl) {
-      reqEl.scrollIntoView({ behavior: 'smooth' });
-    }
+    setShowSearchDropdown(false);
   };
 
   return (
-    <div className="min-h-screen pb-28 sm:pb-24 bg-theme-main text-theme-main flex flex-col font-latin">
-      <Navbar />
+    <div className="fixed inset-0 w-screen h-screen overflow-hidden bg-slate-950 text-slate-100 font-latin select-none">
+      
+      {/* 1. 100% EDGE-TO-EDGE FULL-SCREEN INTERACTIVE LEAFLET MAP */}
+      <div className="fixed inset-0 w-full h-full z-0">
+        <RomanianMap 
+          locations={filteredLocations}
+          selectedLocationId={selectedLocation?.id}
+          onSelectLocation={handleSelectLocation}
+          onOpenDetailsModal={setDetailsModalLocation}
+          appLang={appLang}
+          activeCategory={activeCategory}
+        />
+      </div>
 
-      <main className={`flex-1 w-full max-w-7xl mx-auto px-4 py-6 space-y-10 animate-fade-in-up ${
-        isRtl ? 'lg:mr-72' : 'lg:ml-72'
-      } ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
-
-        {/* 1. HERO SECTION WITH ROMANIAN TRICOLOR IMPULSE AURA */}
-        <section className={`relative rounded-3xl border overflow-hidden p-6 sm:p-10 shadow-2xl ${
-          isDark ? 'bg-slate-800/90 border-slate-700' : 'bg-white border-slate-200'
-        }`}>
-          {/* Background Imagery & Ambient Glow */}
-          <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
-            <Image 
-              src="https://images.unsplash.com/photo-1584646098378-0874589d76b1?q=80&w=1600&auto=format&fit=crop"
-              alt="Romanian Scenery Background"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/90 to-transparent" />
+      {/* 2. TOP FLOATING NAVIGATION & SEARCH BAR */}
+      <header className="fixed top-0 inset-x-0 z-30 px-3 sm:px-6 py-3 bg-slate-900/80 backdrop-blur-md border-b border-slate-700/80 shadow-2xl flex items-center justify-between gap-3">
+        
+        {/* Brand Logo & Name */}
+        <Link href="/" className="flex items-center gap-2 shrink-0 group">
+          <div className="w-9 h-9 rounded-2xl bg-gradient-to-tr from-rose-600 via-amber-400 to-blue-600 flex items-center justify-center shadow-lg border border-amber-400/40 group-hover:scale-105 transition-transform">
+            <MapPin className="w-5 h-5 text-white" />
           </div>
-
-          {/* Hero Content */}
-          <div className="relative z-10 space-y-4 max-w-3xl">
-            <div className="flex items-center gap-2">
-              <span className="px-3.5 py-1 rounded-full text-xs font-black bg-rose-500/20 text-rose-400 border border-rose-500/30 flex items-center gap-1.5 shadow-md">
-                <MapPin className="w-4 h-4 text-rose-400" />
-                <span>{appLang === 'ar' ? 'خريطة الجنسية الرومانية التفاعلية 🇷🇴' : 'Romanian Citizenship Interactive Map 🇷🇴'}</span>
-              </span>
-              <span className="text-xs font-extrabold text-amber-400 bg-amber-500/10 border border-amber-500/30 px-3 py-1 rounded-full">
-                Legea 21/1991 Official Data
-              </span>
-            </div>
-
-            <h1 className="text-2xl sm:text-4xl font-black tracking-tight leading-tight">
-              {appLang === 'ar' ? 'استكشف معلومات ومقرات الجنسية الرومانية عبر الخريطة 🗺️' : 'Discover Romanian Citizenship Information & Procedures 🗺️'}
+          <div className="hidden sm:block text-right">
+            <h1 className="text-sm font-black text-white tracking-tight flex items-center gap-1.5">
+              <span>{appLang === 'ar' ? 'خريطة الجنسية الرومانية 🗺️' : 'Romanian Citizenship Map 🗺️'}</span>
             </h1>
-            <p className="text-xs sm:text-base text-theme-sub font-semibold leading-relaxed">
-              {appLang === 'ar' 
-                ? 'دليل تفاعلي مصور لمقرات الهيئة الوطنية للجنسية (ANC)، مكاتب الجوازات، السجل المدني، وشروط القانون رقم 21/1991 في جميع أنحاء رومانيا.'
-                : 'Explore citizenship procedures, dossier submission hubs, passport offices, and official administrative institutions across Romania.'}
-            </p>
-
-            {/* Quick Action Buttons */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
-              <button
-                onClick={scrollToMap}
-                className="px-5 py-3 rounded-2xl bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-500 hover:to-amber-500 text-white font-black text-xs sm:text-sm shadow-xl transition-all flex items-center gap-2"
-              >
-                <MapPin className="w-4 h-4" />
-                <span>{appLang === 'ar' ? 'تصفح الخريطة التفاعلية 📍' : 'Explore the Map 📍'}</span>
-              </button>
-
-              <button
-                onClick={scrollToRequirements}
-                className="px-5 py-3 rounded-2xl bg-slate-900/80 hover:bg-slate-800 text-slate-200 border border-slate-700 font-black text-xs sm:text-sm shadow-md transition-all flex items-center gap-2"
-              >
-                <FileText className="w-4 h-4 text-emerald-400" />
-                <span>{appLang === 'ar' ? 'شروط وقوانين الجنسية 📜' : 'Citizenship Requirements 📜'}</span>
-              </button>
-            </div>
+            <p className="text-[10px] text-amber-400 font-bold">Legea 21/1991 Interactive Map</p>
           </div>
-        </section>
+        </Link>
 
-        {/* 2. SEARCH & CATEGORY FILTER CONTROL BAR */}
-        <section id="interactive-map-section" className="space-y-4">
-          <div className={`p-4 sm:p-5 rounded-3xl border shadow-xl flex flex-col md:flex-row items-center justify-between gap-4 ${
-            isDark ? 'bg-slate-800/90 border-slate-700' : 'bg-white border-slate-200'
+        {/* Floating Integrated Search Input */}
+        <div className="relative flex-1 max-w-md mx-2">
+          <div className={`relative flex items-center px-3.5 py-2 rounded-2xl border transition-all ${
+            showSearchDropdown ? 'bg-slate-900 border-rose-500 shadow-rose-900/30' : 'bg-slate-900/90 border-slate-700/90'
           }`}>
-            
-            {/* Search Input Box */}
-            <div className={`relative flex items-center w-full md:w-96 px-3.5 py-2.5 rounded-2xl border ${
-              isDark ? 'bg-slate-900 border-slate-700' : 'bg-slate-100 border-slate-200'
-            }`}>
-              <Search className="w-4 h-4 text-slate-400 shrink-0" />
-              <input 
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder={appLang === 'ar' ? 'ابحث عن مدينة، مقاطعة، أو مكتب ANC (مثال: Cluj, București, Art 11)...' : 'Search Romanian city, county, or ANC office...'}
-                className="flex-1 px-3 bg-transparent outline-none text-xs sm:text-sm font-semibold placeholder:text-slate-500"
-              />
-              {searchQuery && (
-                <button onClick={() => setSearchQuery('')} className="p-1 text-slate-400 hover:text-white">
-                  <X className="w-4 h-4" />
-                </button>
-              )}
-            </div>
-
-            {/* Category Filter Horizontal Pills */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-1 w-full md:w-auto no-scrollbar mobile-touch-scroll">
-              {[
-                { id: 'all', label_ar: 'الكل (11)', label_en: 'All (11)' },
-                { id: 'citizenship', label_ar: '🏛️ مقرات ANC للجنسية', label_en: '🏛️ ANC Citizenship' },
-                { id: 'passport', label_ar: '🛂 الجوازات والسكان', label_en: '🛂 Passports & Records' },
-                { id: 'civil_status', label_ar: '📄 الأحوال المدنية', label_en: '📄 Civil Status' },
-                { id: 'immigration', label_ar: '🛃 الهجرة والإقامة', label_en: '🛃 Immigration (IGI)' },
-              ].map((cat) => (
-                <button
-                  key={cat.id}
-                  onClick={() => setActiveCategory(cat.id)}
-                  className={`px-3.5 py-2 rounded-xl text-xs font-black whitespace-nowrap shrink-0 transition-all border ${
-                    activeCategory === cat.id
-                      ? 'bg-rose-600 text-white border-rose-600 shadow-md'
-                      : isDark ? 'bg-slate-900 text-slate-300 border-slate-700' : 'bg-white text-slate-700 border-slate-200'
-                  }`}
-                >
-                  {appLang === 'ar' ? cat.label_ar : cat.label_en}
-                </button>
-              ))}
-            </div>
-
-          </div>
-
-          {/* 3. MAIN INTERACTIVE MAP & SIDE INFORMATION PANEL */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
-            
-            {/* Interactive Leaflet Map Component (2 Columns on Large Screens) */}
-            <div className="lg:col-span-2 space-y-3">
-              <RomanianMap 
-                locations={filteredLocations}
-                selectedLocationId={selectedLocation?.id}
-                onSelectLocation={handleSelectLocation}
-                onOpenDetailsModal={setDetailsModalLocation}
-                appLang={appLang}
-                activeCategory={activeCategory}
-              />
-
-              <div className="flex items-center justify-between text-xs font-bold text-theme-sub px-2">
-                <span>{appLang === 'ar' ? `تم العثور على ${filteredLocations.length} موقع إداري رسمي` : `Found ${filteredLocations.length} official administrative hubs`}</span>
-                <span className="text-amber-400">انقر على العلامة لمعاينة الموقع 📍</span>
-              </div>
-            </div>
-
-            {/* Collapsible Side Information Panel */}
-            <div className={`p-5 rounded-3xl border shadow-xl space-y-4 ${
-              isDark ? 'bg-slate-800/90 border-slate-700' : 'bg-white border-slate-200'
-            }`}>
-              <div className="flex items-center justify-between border-b border-slate-700/60 pb-3">
-                <h3 className="text-base font-black flex items-center gap-2 text-theme-main">
-                  <Building2 className="w-5 h-5 text-rose-500" />
-                  <span>{appLang === 'ar' ? 'المقرات والمعلومات الرئيسية' : 'Key Administrative Cards'}</span>
-                </h3>
-
-                <button 
-                  onClick={() => setSidePanelOpen(!sidePanelOpen)} 
-                  className="text-xs text-rose-400 font-bold hover:underline lg:hidden"
-                >
-                  {sidePanelOpen ? 'إخفاء' : 'إظهار'}
-                </button>
-              </div>
-
-              {sidePanelOpen && (
-                <div className="space-y-3 max-h-[500px] overflow-y-auto pr-1 no-scrollbar">
-                  {[
-                    {
-                      id: 'art11',
-                      title_ro: 'Redobândirea Cetățeniei (Art. 11)',
-                      title_en: 'Reacquisition of Citizenship (Art. 11)',
-                      title_ar: 'استعادة الجنسية الرومانية (المادة 11)',
-                      icon: ShieldCheck,
-                      color: 'text-amber-400',
-                      desc_ar: 'المناسبة للمتحدرين من أصول رومانية حتى الدرجة الثالثة (الوالدين، الأجداد). تتطلب تقديم الملف في مقر ANC الرئيسي أو المكتب الإقليمي.'
-                    },
-                    {
-                      id: 'art8',
-                      title_ro: 'Cetățenia prin Naturalizare (Art. 8)',
-                      title_en: 'Citizenship by Naturalization (Art. 8)',
-                      title_ar: 'الجنسية عن طريق التجنيس والإقامة (المادة 8)',
-                      icon: UserCheck,
-                      color: 'text-blue-400',
-                      desc_ar: 'تتطلب الإقامة القانونية في رومانيا لمدة 8 سنوات (أو 5 سنوات في حال الزواج من مواطن روماني)، واجتياز امتحان اللغة والدستور.'
-                    },
-                    {
-                      id: 'dossier_prep',
-                      title_ro: 'Depunerea și Verificarea Dosarului ANC',
-                      title_en: 'ANC Dossier Filing & Verification',
-                      title_ar: 'تقديم وتوثيق الملف في الهيئة الوطنية ANC',
-                      icon: FileText,
-                      color: 'text-emerald-400',
-                      desc_ar: 'يتم حجز موعد مسبق إلكترونياً على موقع e-cetatenie، وتقديم الأوراق الأصلية المترجمة والمصدقة.'
-                    },
-                    {
-                      id: 'oath_cert',
-                      title_ro: 'Ședința de Jurământ și Certificatul',
-                      title_en: 'Oath Ceremony & Citizenship Certificate',
-                      title_ar: 'أداء قسم الولاء واستلام شهادة الجنسية',
-                      icon: Award,
-                      color: 'text-rose-400',
-                      desc_ar: 'بعد صدور القرار الوزاري (Ordin)، يتم أداء قسم الولاء في بوخارست أو القنصليات المعتمدة خلال 6 أشهر.'
-                    }
-                  ].map((card) => {
-                    const CardIcon = card.icon;
-                    return (
-                      <div 
-                        key={card.id} 
-                        className={`p-4 rounded-2xl border space-y-2 transition-all hover:scale-[1.01] ${
-                          isDark ? 'bg-slate-900/60 border-slate-700/80 hover:bg-slate-900' : 'bg-slate-50 border-slate-200 hover:bg-slate-100'
-                        }`}
-                      >
-                        <div className="flex items-center gap-2">
-                          <CardIcon className={`w-4 h-4 ${card.color} shrink-0`} />
-                          <h4 className="text-xs font-black text-theme-main">{appLang === 'ar' ? card.title_ar : card.title_ro}</h4>
-                        </div>
-                        <p className="text-[11px] text-theme-sub font-semibold leading-relaxed">{card.desc_ar}</p>
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-
-          </div>
-        </section>
-
-        {/* 4. CITIZENSHIP INFORMATION SECTION (LAW 21/1991 LEGAL OVERVIEW) */}
-        <section id="citizenship-requirements-section" className="space-y-6 pt-4">
-          <div className="text-center space-y-2 max-w-2xl mx-auto">
-            <span className="px-3.5 py-1 rounded-full text-xs font-black bg-rose-500/20 text-rose-400 border border-rose-500/30">
-              ⚖️ Legea Cetățeniei Române nr. 21/1991
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-black">
-              {appLang === 'ar' ? 'طرق الحصول على الجنسية الرومانية والشروط الرسمية' : 'Romanian Citizenship Pathways & Legal Requirements'}
-            </h2>
-            <p className="text-xs sm:text-sm text-theme-sub font-semibold">
-              {appLang === 'ar' ? 'ملخص ميسر للمواد القانونية النافذة في قانون الجنسية الرومانية مع توثيق المصادر الرسمية.' : 'Official legal pathways under Law 21/1991 as listed in the Romanian National Administrative Catalogue.'}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {[
-              {
-                title_ar: '1. الجنسية بالولادة (Prin Naștere)',
-                title_ro: 'Cetățenia prin Naștere (Art. 5)',
-                desc_ar: 'يعد مواطناً روماناً بالولادة كل طفل يولد لأب أو أم تحوز الجنسية الرومانية، سواء داخل رومانيا أو خارجها.',
-                badge: 'Art. 5 Law 21/1991'
-              },
-              {
-                title_ar: '2. استعادة الجنسية بالأصول (Art. 11)',
-                title_ro: 'Redobândirea Cetățeniei (Art. 11)',
-                desc_ar: 'تمنح للمواطنين السابقين أو أحفادهم حتى الدرجة 3 الذين فقدوا الجنسية لأسباب غير منسوبة إليهم دون الحاجة للإقامة برومانيا.',
-                badge: 'Art. 11 Law 21/1991'
-              },
-              {
-                title_ar: '3. التجنيس بالإقامة (Art. 8)',
-                title_ro: 'Acordarea la Cerere (Art. 8)',
-                desc_ar: 'تمنح لمن أقام قانونياً برومانيا لمدة 8 سنوات (أو 5 سنوات للزوج/الزوجة لمواطن روماني)، مع إثبات وسائل العيش واللغة.',
-                badge: 'Art. 8 Law 21/1991'
-              },
-              {
-                title_ar: '4. الأوراق والمستندات المطلوبة',
-                title_ro: 'Documente Necesare la Dosar',
-                desc_ar: 'شهادات الميلاد والزواج المترجمة والمصدقة، السجل العدلي (الفيش)، جواز السفر النافذ، والبيانات الشخصية المؤكدة.',
-                badge: 'Dosar Completo ANC'
-              },
-              {
-                title_ar: '5. إجراءات التقديم واللجنة',
-                title_ro: 'Procedura ANC & Comisia',
-                desc_ar: 'تقديم الطلب في مقرات ANC، فحص الملف من لجنة الجنسية، صدور القرار الوزاري (Ordin)، وأداء قسم الولاء.',
-                badge: 'Ordin Președinte ANC'
-              },
-              {
-                title_ar: '6. المؤسسات والجهات الرسمية',
-                title_ro: 'Instituții Oficiale Implicate',
-                desc_ar: 'الهيئة الوطنية للجنسية (ANC)، وزارة العدل، السفارات والقنصليات الرومانية في الخارج، ومديريات الأحوال المدنية والجوازات.',
-                badge: 'Ministerul Justiției'
-              }
-            ].map((item, idx) => (
-              <div 
-                key={idx} 
-                className={`p-6 rounded-3xl border shadow-xl space-y-3 relative overflow-hidden transition-all hover:-translate-y-1 ${
-                  isDark ? 'bg-slate-800/90 border-slate-700' : 'bg-white border-slate-200'
-                }`}
+            <Search className="w-4 h-4 text-rose-400 shrink-0" />
+            <input 
+              type="text"
+              value={searchQuery}
+              onFocus={() => setShowSearchDropdown(true)}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setShowSearchDropdown(true);
+              }}
+              placeholder={appLang === 'ar' ? 'ابحث عن مدينة، مقاطعة، أو مكتب ANC (مثل: Cluj, București)...' : 'Search cities, counties, or ANC offices...'}
+              className="w-full px-2.5 bg-transparent outline-none text-xs sm:text-sm font-semibold placeholder:text-slate-400 text-white"
+            />
+            {searchQuery && (
+              <button 
+                onClick={() => {
+                  setSearchQuery('');
+                  setShowSearchDropdown(false);
+                }} 
+                className="p-1 text-slate-400 hover:text-white"
               >
-                <div className="flex items-center justify-between border-b border-slate-700/60 pb-2">
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-rose-500/20 text-rose-400 border border-rose-500/30">
-                    {item.badge}
-                  </span>
-                  <ShieldCheck className="w-4 h-4 text-amber-400" />
-                </div>
-                <h3 className="text-sm font-black text-theme-main">{appLang === 'ar' ? item.title_ar : item.title_ro}</h3>
-                <p className="text-xs text-theme-sub font-semibold leading-relaxed">{item.desc_ar}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* 5. INTERACTIVE CITIZENSHIP JOURNEY (6-STAGE ANIMATED TIMELINE) */}
-        <section className={`p-6 sm:p-10 rounded-3xl border shadow-2xl space-y-6 ${
-          isDark ? 'bg-slate-800/90 border-slate-700' : 'bg-white border-slate-200'
-        }`}>
-          <div className="text-center space-y-2 max-w-xl mx-auto">
-            <span className="px-3.5 py-1 rounded-full text-xs font-black bg-amber-500/20 text-amber-400 border border-amber-500/30">
-              🛣️ Roadmap Cetățenie
-            </span>
-            <h2 className="text-2xl font-black">
-              {appLang === 'ar' ? 'خريطة خطوات التقديم للحصول على الجنسية' : 'Interactive Citizenship Journey Timeline'}
-            </h2>
-            <p className="text-xs text-theme-sub font-semibold">
-              المسار الزمني المعتمد المكون من 6 مراحل متتالية من تقديم الملف إلى أداء القسم واستلام شهادة الجنسية.
-            </p>
-          </div>
-
-          {/* Timeline Stage Switcher */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-            {[
-              { stage: 1, title_ar: '1. التحقق من الشروط', title_ro: '1. Eligibilitate' },
-              { stage: 2, title_ar: '2. تجهيز وتصديق الملف', title_ro: '2. Acte & Traduceri' },
-              { stage: 3, title_ar: '3. حجز وتقديم ANC', title_ro: '3. Depunere Dosar' },
-              { stage: 4, title_ar: '4. دراسة الملف واللجنة', title_ro: '4. Comisia ANC' },
-              { stage: 5, title_ar: '5. القرار الوزاري (Ordin)', title_ro: '5. Emitere Ordin' },
-              { stage: 6, title_ar: '6. القسم والشهادة', title_ro: '6. Jurământ & Pașaport' },
-            ].map((step) => (
-              <button
-                key={step.stage}
-                onClick={() => setActiveTimelineStage(step.stage)}
-                className={`p-3 rounded-2xl text-xs font-black transition-all border flex flex-col items-center justify-center gap-1.5 ${
-                  activeTimelineStage === step.stage
-                    ? 'bg-rose-600 text-white border-rose-600 shadow-xl scale-105'
-                    : isDark ? 'bg-slate-900/80 border-slate-700 text-slate-300' : 'bg-slate-100 border-slate-200 text-slate-700'
-                }`}
-              >
-                <span className="w-6 h-6 rounded-full bg-black/20 flex items-center justify-center text-[11px] font-black">
-                  {step.stage}
-                </span>
-                <span className="text-center">{appLang === 'ar' ? step.title_ar : step.title_ro}</span>
+                <X className="w-4 h-4" />
               </button>
-            ))}
-          </div>
-
-          {/* Timeline Detailed Stage Box */}
-          <div className={`p-6 rounded-3xl border space-y-3 ${
-            isDark ? 'bg-slate-900/90 border-slate-700' : 'bg-slate-50 border-slate-200'
-          }`}>
-            {activeTimelineStage === 1 && (
-              <div className="space-y-2">
-                <span className="text-xs font-black text-rose-400 block">المرحلة الأولى: التحقق من استيفاء الشروط القانونية</span>
-                <h4 className="text-base font-black">فحص المادة القانونية المناسبة (المادة 8 أو 11 من القانون 21/1991)</h4>
-                <p className="text-xs text-theme-sub font-semibold leading-relaxed">
-                  تحديد نوع الطلب؛ سواء استعادة جنسية عبر الأجداد (Art. 11) أو التجنيس عبر الإقامة الدائمة والزواج (Art. 8).
-                </p>
-              </div>
-            )}
-            {activeTimelineStage === 2 && (
-              <div className="space-y-2">
-                <span className="text-xs font-black text-amber-400 block">المرحلة الثانية: تجهيز وتصديق ملف المستندات الرسمية</span>
-                <h4 className="text-base font-black">ترجمة المستندات ولصق الأبوستيل (Apostille)</h4>
-                <p className="text-xs text-theme-sub font-semibold leading-relaxed">
-                  ترجمة شهادات الميلاد والزواج والفيش العدلي إلى اللغة الرومانية لدى مترجم محلف ومصادقتها أصولاً.
-                </p>
-              </div>
-            )}
-            {activeTimelineStage === 3 && (
-              <div className="space-y-2">
-                <span className="text-xs font-black text-emerald-400 block">المرحلة الثالثة: حجز الموعد الإلكتروني وتقديم الملف في ANC</span>
-                <h4 className="text-base font-black">الحصول على رقم الملف الرسمي (Număr DOSAR)</h4>
-                <p className="text-xs text-theme-sub font-semibold leading-relaxed">
-                  الحضور شخصياً إلى مقر ANC ببوخارست أو المكاتب الإقليمية، وتسليم الأوراق الأصلية للحصول على إيصال التقديم ورقم Dosar.
-                </p>
-              </div>
-            )}
-            {activeTimelineStage === 4 && (
-              <div className="space-y-2">
-                <span className="text-xs font-black text-blue-400 block">المرحلة الرابعة: دراسة الملف والتحقق من لجنة الجنسية</span>
-                <h4 className="text-base font-black">متابعة نشر مواعيد اللجنة عبر موقع ANC الإلكتروني</h4>
-                <p className="text-xs text-theme-sub font-semibold leading-relaxed">
-                  تقوم لجنة الجنسية (Comisia pentru Cetățenie) بفحص صحة المستندات ومخاطبة السلطات المختصة لإصدار التقارير.
-                </p>
-              </div>
-            )}
-            {activeTimelineStage === 5 && (
-              <div className="space-y-2">
-                <span className="text-xs font-black text-rose-400 block">المرحلة الخامسة: صدور القرار الرئاسي للهيئة (Ordin ANC)</span>
-                <h4 className="text-base font-black">نشر اسم المتقدم في القوائم الرسمية (Lista Ordine)</h4>
-                <p className="text-xs text-theme-sub font-semibold leading-relaxed">
-                  يصدر رئيس الهيئة الوطنية للجنسية قراراً رسمياً بالموافقة، ويتم إبلاغ الشخص عبر الرسائل الرسمية أو القنصلية.
-                </p>
-              </div>
-            )}
-            {activeTimelineStage === 6 && (
-              <div className="space-y-2">
-                <span className="text-xs font-black text-amber-400 block">المرحلة السادسة: أداء قسم الولاء واستلام شهادة الجنسية والجواز</span>
-                <h4 className="text-base font-black">أداء قسم الولاء باللغة الرومانية خلال 6 أشهر</h4>
-                <p className="text-xs text-theme-sub font-semibold leading-relaxed">
-                  حضور مراسم أداء القسم ببوخارست أو السفارة الرومانية، واستلام شهادة الجنسية الرسمية ثم التقديم على جواز السفر والبطاقة.
-                </p>
-              </div>
             )}
           </div>
-        </section>
 
-        {/* 6. LOCATION EXPLORER GRID (11 CITIES & ADMINISTRATIVE HUBS) */}
-        <section className="space-y-6">
-          <div className="flex items-center justify-between border-b border-slate-700/60 pb-3">
-            <div>
-              <h2 className="text-xl sm:text-2xl font-black">
-                {appLang === 'ar' ? 'دليل المراكز الإدارية الرسمية في رومانيا 📍' : 'Find Citizenship & Administrative Locations 📍'}
-              </h2>
-              <p className="text-xs text-theme-sub font-semibold">
-                انقر على أي مدينة للانتقال المباشر على الخريطة ومعاينة المستندات والعناوين الرسمية.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {mapLocationsData.map((loc) => {
-              const isSelected = selectedLocation?.id === loc.id;
-              return (
-                <div 
-                  key={loc.id} 
-                  className={`p-5 rounded-3xl border shadow-xl space-y-3 transition-all hover:scale-[1.02] cursor-pointer ${
-                    isSelected 
-                      ? 'bg-rose-950/40 border-rose-500 shadow-rose-950/40' 
-                      : isDark ? 'bg-slate-800/90 border-slate-700' : 'bg-white border-slate-200'
-                  }`}
-                  onClick={() => {
-                    handleSelectLocation(loc);
-                    scrollToMap();
-                  }}
-                >
-                  <div className="relative h-32 rounded-2xl overflow-hidden shadow-md">
-                    <Image 
-                      src={loc.image_url}
-                      alt={loc.name_ro}
-                      fill
-                      className="object-cover"
-                    />
-                    <span className="absolute top-2 right-2 px-3 py-0.5 rounded-full text-[10px] font-black bg-rose-600 text-white shadow-md">
+          {/* Search Live Dropdown Results */}
+          {showSearchDropdown && (
+            <div className="absolute top-12 inset-x-0 bg-slate-900/95 backdrop-blur-xl border border-slate-700/90 rounded-2xl shadow-2xl overflow-hidden max-h-64 overflow-y-auto z-50 divide-y divide-slate-800">
+              {filteredLocations.length === 0 ? (
+                <div className="p-4 text-center text-xs text-slate-400 font-bold">
+                  لم يتم العثور على نتائج تطابق البحث 🔍
+                </div>
+              ) : (
+                filteredLocations.map((loc) => (
+                  <button
+                    key={loc.id}
+                    onClick={() => handleSelectLocation(loc)}
+                    className="w-full p-3 text-right hover:bg-rose-900/30 transition-colors flex items-center justify-between gap-2"
+                  >
+                    <div className="space-y-0.5">
+                      <h4 className="text-xs font-black text-white">{appLang === 'ar' ? loc.name_ar : loc.name_ro}</h4>
+                      <p className="text-[10px] text-rose-400 font-bold">{appLang === 'ar' ? loc.county_ar : loc.county_ro}</p>
+                    </div>
+                    <span className="px-2 py-0.5 rounded-full text-[9px] font-black bg-rose-500/20 text-rose-300 border border-rose-500/30 shrink-0">
                       {appLang === 'ar' ? loc.category_label_ar : loc.category_label_en}
                     </span>
+                  </button>
+                ))
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Language Switcher & Home Navigation */}
+        <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center bg-slate-900/90 border border-slate-700 rounded-xl p-0.5 text-[11px] font-black">
+            <button
+              onClick={() => setAppLang('ar')}
+              className={`px-2 py-1 rounded-lg transition-all ${appLang === 'ar' ? 'bg-rose-600 text-white shadow-md' : 'text-slate-400 hover:text-white'}`}
+            >
+              AR
+            </button>
+            <button
+              onClick={() => setAppLang('ro')}
+              className={`px-2 py-1 rounded-lg transition-all ${appLang === 'ro' ? 'bg-rose-600 text-white shadow-md' : 'text-slate-400 hover:text-white'}`}
+            >
+              RO
+            </button>
+            <button
+              onClick={() => setAppLang('en')}
+              className={`px-2 py-1 rounded-lg transition-all ${appLang === 'en' ? 'bg-rose-600 text-white shadow-md' : 'text-slate-400 hover:text-white'}`}
+            >
+              EN
+            </button>
+          </div>
+
+          <Link
+            href="/"
+            className="p-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-slate-300 border border-slate-700 text-xs font-bold transition-all shrink-0 hidden sm:flex items-center gap-1"
+          >
+            <span>{appLang === 'ar' ? 'الرئيسية 🏠' : 'Home 🏠'}</span>
+          </Link>
+        </div>
+      </header>
+
+      {/* 3. TOP FLOATING HORIZONTAL INFORMATION CARDS OVERLAY */}
+      <div className="fixed top-16 sm:top-20 inset-x-0 z-20 px-3 sm:px-6 pointer-events-none">
+        <div className="flex items-center gap-2.5 overflow-x-auto no-scrollbar mobile-touch-scroll py-1.5 pointer-events-auto">
+          {[
+            {
+              id: 'citizenship',
+              title_ar: '🇷🇴 الجنسية الرومانية',
+              title_en: '🇷🇴 Romanian Citizenship',
+              subtitle_ar: 'نظرة عامة على قانون 21/1991',
+              subtitle_en: 'Overview & Law 21/1991',
+              badgeColor: 'from-rose-600 to-amber-600'
+            },
+            {
+              id: 'requirements',
+              title_ar: '📄 الشروط والمستندات',
+              title_en: '📄 Requirements & Dossier',
+              subtitle_ar: 'قائمة الأوراق والملف المطلوبة',
+              subtitle_en: 'Required document checklist',
+              badgeColor: 'from-amber-600 to-emerald-600'
+            },
+            {
+              id: 'descent',
+              title_ar: '⚖️ الجنسية بالأصول (Art 11)',
+              title_en: '⚖️ Citizenship by Descent',
+              subtitle_ar: 'استعادة الجنسية عبر الأجداد',
+              subtitle_en: 'Restoration through lineage',
+              badgeColor: 'from-emerald-600 to-teal-600'
+            },
+            {
+              id: 'restoration',
+              title_ar: '🔄 التجنيس بالإقامة (Art 8)',
+              title_en: '🔄 Naturalization (Art 8)',
+              subtitle_ar: 'شروط الإقامة والزواج',
+              subtitle_en: 'Residence & Marriage criteria',
+              badgeColor: 'from-blue-600 to-indigo-600'
+            },
+            {
+              id: 'institutions',
+              title_ar: '🏛️ مقرات الهيئة ANC',
+              title_en: '🏛️ ANC Institutions',
+              subtitle_ar: 'وزارة العدل والمقرات الرسمية',
+              subtitle_en: 'Ministry of Justice & Offices',
+              badgeColor: 'from-purple-600 to-rose-600'
+            },
+            {
+              id: 'locations',
+              title_ar: '📍 مواقع المدن والمحافظات',
+              title_en: '📍 Romanian Administrative Hubs',
+              subtitle_ar: '11 مدينة ومكتب رسمي برومانيا',
+              subtitle_en: '11 Official administrative hubs',
+              badgeColor: 'from-rose-600 to-amber-500'
+            }
+          ].map((card) => (
+            <button
+              key={card.id}
+              onClick={() => setActiveInfoModal(card.id)}
+              className="group p-3 sm:p-3.5 rounded-2xl bg-slate-900/85 hover:bg-slate-900 border border-slate-700/80 shadow-2xl backdrop-blur-md transition-all hover:scale-105 shrink-0 text-right space-y-0.5 min-w-[170px] sm:min-w-[190px]"
+            >
+              <h3 className="text-xs font-black text-white group-hover:text-amber-400 transition-colors">
+                {appLang === 'ar' ? card.title_ar : card.title_en}
+              </h3>
+              <p className="text-[10px] text-slate-400 font-bold truncate">
+                {appLang === 'ar' ? card.subtitle_ar : card.subtitle_en}
+              </p>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* 4. BOTTOM FLOATING CATEGORY FILTER PILLS BAR */}
+      <div className="fixed bottom-4 left-4 z-20 pointer-events-auto">
+        <div className="flex items-center gap-2 p-2 rounded-2xl bg-slate-900/90 backdrop-blur-lg border border-slate-700/90 shadow-2xl max-w-[calc(100vw-32px)] overflow-x-auto no-scrollbar mobile-touch-scroll">
+          {[
+            { id: 'all', label_ar: 'الكل (11)', label_en: 'All (11)' },
+            { id: 'citizenship', label_ar: '🏛️ ANC للجنسية', label_en: '🏛️ ANC Hubs' },
+            { id: 'passport', label_ar: '🛂 الجوازات والسكان', label_en: '🛂 Passports' },
+            { id: 'civil_status', label_ar: '📄 الأحوال المدنية', label_en: '📄 Civil Status' },
+            { id: 'immigration', label_ar: '🛃 الهجرة (IGI)', label_en: '🛃 Immigration' },
+          ].map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setActiveCategory(cat.id)}
+              className={`px-3 py-1.5 rounded-xl text-xs font-black whitespace-nowrap shrink-0 transition-all border ${
+                activeCategory === cat.id
+                  ? 'bg-rose-600 text-white border-rose-600 shadow-md'
+                  : 'bg-slate-800/80 text-slate-300 border-slate-700/70 hover:bg-slate-700'
+              }`}
+            >
+              {appLang === 'ar' ? cat.label_ar : cat.label_en}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* 5. MOBILE BOTTOM SHEET FOR CLICKED LOCATION MARKERS */}
+      {selectedLocation && (
+        <div className="fixed bottom-0 inset-x-0 z-40 p-4 bg-slate-900/95 backdrop-blur-xl border-t border-slate-700 rounded-t-3xl shadow-2xl space-y-3 animate-slide-up max-h-[80vh] overflow-y-auto font-latin">
+          <div className="flex items-center justify-between border-b border-slate-700/60 pb-2">
+            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-rose-600 text-white">
+              {appLang === 'ar' ? selectedLocation.category_label_ar : selectedLocation.category_label_en}
+            </span>
+            <button 
+              onClick={() => setSelectedLocation(null)}
+              className="p-1 rounded-full text-slate-400 hover:text-white"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <div className="relative w-20 h-20 rounded-2xl overflow-hidden shrink-0 shadow-md">
+              <Image 
+                src={selectedLocation.image_url} 
+                alt={selectedLocation.name_ro}
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="space-y-0.5 text-right flex-1">
+              <h3 className="text-sm font-black text-white">{appLang === 'ar' ? selectedLocation.name_ar : selectedLocation.name_ro}</h3>
+              <p className="text-[11px] font-black text-rose-400">{appLang === 'ar' ? selectedLocation.county_ar : selectedLocation.county_ro}</p>
+              <p className="text-[11px] text-slate-300 font-semibold line-clamp-2 leading-snug">{appLang === 'ar' ? selectedLocation.description_ar : selectedLocation.description_ro}</p>
+            </div>
+          </div>
+
+          <div className="pt-2 border-t border-slate-700/60 flex items-center justify-between text-xs font-bold">
+            <span className="text-slate-300 flex items-center gap-1">
+              <Phone className="w-3.5 h-3.5 text-blue-400" />
+              <span>{selectedLocation.phone}</span>
+            </span>
+
+            <button
+              onClick={() => setDetailsModalLocation(selectedLocation)}
+              className="px-4 py-2 rounded-xl bg-gradient-to-r from-rose-600 to-amber-600 text-white text-xs font-black shadow-md hover:from-rose-500 hover:to-amber-500 transition-all flex items-center gap-1.5"
+            >
+              <span>{appLang === 'ar' ? 'عرض التفاصيل الكاملة 🏛️' : 'View Full Details 🏛️'}</span>
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* 6. FLOATING MODALS OVERLAY (CITIZENSHIP, REQUIREMENTS, DESCENT, RESTORATION, INSTITUTIONS, LOCATIONS) */}
+      {activeInfoModal && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in font-latin select-text">
+          <div className="w-full max-w-2xl p-6 rounded-3xl bg-slate-900 border border-slate-700 text-white shadow-2xl space-y-4 max-h-[85vh] overflow-y-auto">
+            
+            {/* Modal Header */}
+            <div className="flex items-center justify-between border-b border-slate-700/60 pb-3">
+              <span className="px-3 py-1 rounded-full text-xs font-black bg-rose-500/20 text-rose-400 border border-rose-500/30">
+                Legea Cetățeniei Române 21/1991
+              </span>
+              <button 
+                onClick={() => setActiveInfoModal(null)}
+                className="p-1 rounded-full text-slate-400 hover:text-white"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Modal Content Switcher */}
+            {activeInfoModal === 'citizenship' && (
+              <div className="space-y-3">
+                <h3 className="text-lg font-black text-rose-400">🇷🇴 نظرة عامة على قانون الجنسية الرومانية (Law 21/1991)</h3>
+                <p className="text-xs text-slate-300 font-semibold leading-relaxed">
+                  يحدد قانون الجنسية الرومانية رقم 21/1991 الشروط القانونية النافذة للحصول على الجنسية أو استعادتها. وتخضع جميع الطلبات لدراسة الهيئة الوطنية للجنسية (ANC) التابعة لوزارة العدل ببوخارست.
+                </p>
+                <div className="p-4 rounded-2xl bg-slate-800 border border-slate-700 space-y-2 text-xs font-bold">
+                  <span className="text-amber-400 block font-black">• الطرق الرئيسية للحصول على الجنسية:</span>
+                  <ul className="list-disc list-inside space-y-1 text-slate-300">
+                    <li>الولادة (Art. 5): لأبناء المواطنين الرومان تلقائياً.</li>
+                    <li>استعادة الجنسية بالأصول (Art. 11): للمتحدرين من أصل روماني حتى الدرجة الثالثة.</li>
+                    <li>التجنيس بالإقامة (Art. 8): للإقامة القانونية برومانيا لمدة 8 سنوات (أو 5 سنوات للزوج).</li>
+                  </ul>
+                </div>
+              </div>
+            )}
+
+            {activeInfoModal === 'requirements' && (
+              <div className="space-y-3">
+                <h3 className="text-lg font-black text-amber-400">📄 قائمة الأوراق والمستندات المطلوبة (Dosar Completo)</h3>
+                <p className="text-xs text-slate-300 font-semibold leading-relaxed">
+                  يتطلب تقديم الملف في ANC أوراقاً أصلية مترجمة إلى اللغة الرومانية ومصادق عليها أصولاً لدى مترجم محلف وموثقة بالأبوستيل.
+                </p>
+                <div className="space-y-2 text-xs font-bold">
+                  <div className="p-3 rounded-xl bg-slate-800 border border-slate-700 flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span>جواز السفر النافذ مع ترجمة مصدقة وملاحظات الهوية.</span>
                   </div>
-
-                  <div className="space-y-1">
-                    <h3 className="text-sm font-black text-theme-main">{appLang === 'ar' ? loc.name_ar : loc.name_ro}</h3>
-                    <p className="text-[11px] font-extrabold text-rose-400">{appLang === 'ar' ? loc.county_ar : loc.county_ro}</p>
-                    <p className="text-xs text-theme-sub font-semibold line-clamp-2 leading-relaxed">{appLang === 'ar' ? loc.description_ar : loc.description_ro}</p>
+                  <div className="p-3 rounded-xl bg-slate-800 border border-slate-700 flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span>شهادة الميلاد الأصلية وشهادة الزواج (للأبوين والأجداد في حال Art. 11).</span>
                   </div>
-
-                  <div className="pt-2 border-t border-slate-700/50 flex items-center justify-between text-xs font-bold">
-                    <span className="text-slate-400 flex items-center gap-1">
-                      <Phone className="w-3.5 h-3.5 text-blue-400" />
-                      <span>{loc.phone}</span>
-                    </span>
-
-                    <button 
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setDetailsModalLocation(loc);
-                      }}
-                      className="px-3 py-1 rounded-xl bg-slate-900 border border-slate-700 text-white text-[11px] font-black hover:bg-rose-600 hover:border-rose-600 transition-all"
-                    >
-                      التفاصيل 🏛️
-                    </button>
+                  <div className="p-3 rounded-xl bg-slate-800 border border-slate-700 flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span>السجل العدلي (الفيش) من بلد الإقامة ومن رومانيا مؤكد الخلو من السوابق.</span>
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            )}
+
+            {activeInfoModal === 'descent' && (
+              <div className="space-y-3">
+                <h3 className="text-lg font-black text-emerald-400">⚖️ استعادة الجنسية الرومانية بالأصول (Art. 11)</h3>
+                <p className="text-xs text-slate-300 font-semibold leading-relaxed">
+                  تمنح المادة 11 من قانون الجنسية للأشخاص أو أحفادهم حتى الدرجة الثالثة الذين أزيلت عنهم الجنسية الرومانية لأسباب غير منسوبة إليهم، الحق في استعادتها مع الاحتفاظ بإقامتهم خارج رومانيا.
+                </p>
+                <div className="p-4 rounded-2xl bg-slate-800 border border-slate-700 text-xs font-bold text-slate-300 space-y-1">
+                  <span className="text-emerald-400 font-black block">• درجات القرابة المشمولة:</span>
+                  <p>الوالدان (الدرجة 1)، الأجداد (الدرجة 2)، وأجداد الأجداد (الدرجة 3).</p>
+                </div>
+              </div>
+            )}
+
+            {activeInfoModal === 'restoration' && (
+              <div className="space-y-3">
+                <h3 className="text-lg font-black text-blue-400">🔄 التجنيس عن طريق الإقامة والزواج (Art. 8)</h3>
+                <p className="text-xs text-slate-300 font-semibold leading-relaxed">
+                  تمنح المادة 8 الجنسية للمقيمين برومانيا إقامة قانونية متواصلة لمدة 8 سنوات، أو 5 سنوات متواصلة في حال الزواج من مواطن أو مواطنة رومانية.
+                </p>
+                <div className="p-4 rounded-2xl bg-slate-800 border border-slate-700 text-xs font-bold text-slate-300 space-y-1">
+                  <span className="text-blue-400 font-black block">• المتطلبات الإضافية:</span>
+                  <p>إثبات وسائل العيش الكافية، عدم ارتكاب جرائم، وإتقان اللغة الرومانية والدستور.</p>
+                </div>
+              </div>
+            )}
+
+            {activeInfoModal === 'institutions' && (
+              <div className="space-y-3">
+                <h3 className="text-lg font-black text-purple-400">🏛️ الهيئة الوطنية للجنسية (ANC) والجهات الرسمية</h3>
+                <p className="text-xs text-slate-300 font-semibold leading-relaxed">
+                  تتبع الهيئة الوطنية للجنسية (ANC) لوزارة العدل الرومانية وتختص بتسلم ودراسة الملفات وإصدار القرارات الرسمية وتنظيم أداء قسم الولاء.
+                </p>
+                <div className="space-y-2 text-xs font-bold">
+                  <div className="p-3 rounded-xl bg-slate-800 border border-slate-700">
+                    <span className="text-rose-400 font-black">المقر الرئيسي:</span> Str. Smârdan nr. 3, Sector 3, București.
+                  </div>
+                  <div className="p-3 rounded-xl bg-slate-800 border border-slate-700">
+                    <span className="text-amber-400 font-black">المكاتب الإقليمية:</span> Cluj-Napoca, Iași, Timișoara, Brașov, Suceava.
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {activeInfoModal === 'locations' && (
+              <div className="space-y-3">
+                <h3 className="text-lg font-black text-rose-400">📍 دليل المدن والمراكز الإدارية الـ 11 في رومانيا</h3>
+                <p className="text-xs text-slate-300 font-semibold leading-relaxed">
+                  استكشف جميع مكاتب ANC، مديريات الجوازات، والأحوال المدنية الموزعة على الخريطة التفاعلية.
+                </p>
+                <div className="grid grid-cols-2 gap-2 text-xs font-bold">
+                  {mapLocationsData.map((l) => (
+                    <button
+                      key={l.id}
+                      onClick={() => {
+                        setActiveInfoModal(null);
+                        handleSelectLocation(l);
+                      }}
+                      className="p-2.5 rounded-xl bg-slate-800 hover:bg-rose-900/40 text-right border border-slate-700 transition-colors"
+                    >
+                      <span className="text-white block font-black">{appLang === 'ar' ? l.name_ar : l.name_ro}</span>
+                      <span className="text-[10px] text-rose-400">{appLang === 'ar' ? l.county_ar : l.county_ro}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Modal Close Button */}
+            <div className="pt-2">
+              <button
+                onClick={() => setActiveInfoModal(null)}
+                className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-black shadow-md"
+              >
+                إغلاق
+              </button>
+            </div>
           </div>
-        </section>
+        </div>
+      )}
 
-        {/* 7. OFFICIAL DISCLAIMER & TRUST FOOTER */}
-        <section className="p-6 rounded-3xl bg-amber-500/10 border border-amber-500/30 text-xs font-semibold space-y-3">
-          <div className="flex items-center gap-2 text-amber-400 font-black">
-            <Info className="w-5 h-5 shrink-0" />
-            <span>إخلاء مسؤولية وتوثيق المصادر الرسمية (Legal Disclaimer):</span>
-          </div>
-          <p className="text-slate-300 leading-relaxed">
-            هذا الدليل والموقع الإلكتروني يقدم معلومات إسترشادية عامة ولا يحل محل الاستشارة القانونية الرسمية. معلومات وقوانين الجنسية الرومانية، الرسوم، والمستندات المطلوبة قد تتغير بقرارات وزارية. يُنصح دائماً بالتحقق المباشر من الموقع الرسمي للهيئة الوطنية للجنسية (ANC) وموقع وزارة العدل الرومانية.
-          </p>
-
-          <div className="pt-2 border-t border-amber-500/20 flex flex-wrap items-center gap-4 text-xs font-bold text-amber-300">
-            <span className="font-black text-white">المصادر الحكومية الرسمية:</span>
-            <a href="https://cetatenie.just.ro" target="_blank" rel="noopener noreferrer" className="hover:underline text-rose-400 flex items-center gap-1">
-              <span>Autoritatea Națională pentru Cetățenie (ANC)</span>
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
-            <a href="https://just.ro" target="_blank" rel="noopener noreferrer" className="hover:underline text-rose-400 flex items-center gap-1">
-              <span>Ministerul Justiției din România</span>
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
-            <a href="https://econsulat.ro" target="_blank" rel="noopener noreferrer" className="hover:underline text-rose-400 flex items-center gap-1">
-              <span>Portalul Consular Oficial (eConsulat)</span>
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
-          </div>
-        </section>
-
-      </main>
-
-      {/* 8. LOCATION DETAILS DEEP-DIVE POPUP MODAL */}
+      {/* 7. DEEP DIVE LOCATION DETAILS MODAL */}
       {detailsModalLocation && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in">
-          <div className={`w-full max-w-xl p-6 rounded-3xl border shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto ${
-            isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-white border-slate-200 text-slate-900'
-          }`}>
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in font-latin select-text">
+          <div className="w-full max-w-xl p-6 rounded-3xl bg-slate-900 border border-slate-700 text-white shadow-2xl space-y-4 max-h-[88vh] overflow-y-auto">
             {/* Modal Header */}
             <div className="flex items-center justify-between border-b border-slate-700/60 pb-3">
               <span className="px-3 py-1 rounded-full text-xs font-black bg-rose-600 text-white">
@@ -583,7 +476,7 @@ export default function RomanianCitizenshipMapPage() {
               </span>
               <button 
                 onClick={() => setDetailsModalLocation(null)}
-                className="p-1 rounded-full text-slate-400 hover:text-white hover:bg-slate-800"
+                className="p-1 rounded-full text-slate-400 hover:text-white"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -603,20 +496,7 @@ export default function RomanianCitizenshipMapPage() {
             <div className="space-y-1">
               <h3 className="text-lg font-black">{appLang === 'ar' ? detailsModalLocation.name_ar : detailsModalLocation.name_ro}</h3>
               <p className="text-xs font-black text-rose-400">{appLang === 'ar' ? detailsModalLocation.county_ar : detailsModalLocation.county_ro}</p>
-              <p className="text-xs text-theme-sub font-semibold leading-relaxed pt-1">{appLang === 'ar' ? detailsModalLocation.description_ar : detailsModalLocation.description_ro}</p>
-            </div>
-
-            {/* Modal Services Provided */}
-            <div className="space-y-2 pt-2 border-t border-slate-700/60">
-              <span className="text-xs font-black text-emerald-400 block">الخدمات والإجراءات المتاحة بالمقر:</span>
-              <ul className="space-y-1 text-xs font-bold text-slate-300">
-                {(appLang === 'ar' ? detailsModalLocation.services_ar : detailsModalLocation.services_en).map((srv, sIdx) => (
-                  <li key={sIdx} className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                    <span>{srv}</span>
-                  </li>
-                ))}
-              </ul>
+              <p className="text-xs text-slate-300 font-semibold leading-relaxed pt-1">{appLang === 'ar' ? detailsModalLocation.description_ar : detailsModalLocation.description_ro}</p>
             </div>
 
             {/* Modal Contact Info */}
@@ -661,6 +541,7 @@ export default function RomanianCitizenshipMapPage() {
           </div>
         </div>
       )}
+
     </div>
   );
 }

@@ -218,11 +218,11 @@ export default function RomanianMap({
   };
 
   return (
-    <div className={`relative rounded-3xl overflow-hidden shadow-2xl border-4 border-slate-700/60 bg-slate-900 transition-all ${
-      isFullscreen ? 'fixed inset-4 z-50 rounded-3xl' : 'w-full h-[480px] sm:h-[560px]'
+    <div className={`relative w-full h-full bg-slate-950 transition-all ${
+      isFullscreen ? 'fixed inset-0 z-50' : 'w-full h-full absolute inset-0'
     }`}>
       {/* Map Element Container */}
-      <div ref={mapContainerRef} className="w-full h-full z-10" />
+      <div ref={mapContainerRef} className="w-full h-full z-0" />
 
       {/* Leaflet CSS Link dynamically injected */}
       <link 
