@@ -39,7 +39,7 @@ export default function Navbar() {
     { href: '/', label: strings.homeNav, sub: appLang === 'ar' ? 'الصفحة الرئيسية' : appLang === 'en' ? 'Main Home Page' : 'Pagina Principală', icon: Home, color: 'text-rose-500' },
     { href: '/study', label: strings.studyNav, sub: appLang === 'ar' ? '469 سؤالاً مصوراً للجنسية' : appLang === 'en' ? '469 Visual Questions' : '469 Întrebări Ilustrate', icon: BookOpen, color: 'text-blue-400' },
     { href: '/quiz', label: strings.quizNav, sub: appLang === 'ar' ? 'اختبارات ومحاكاة الامتحان' : appLang === 'en' ? 'Exam & Quizzes' : 'Simulare Examen & Teste', icon: Trophy, color: 'text-amber-400' },
-    { href: '/anthem', label: appLang === 'ar' ? 'النشيد الوطني الروماني 🇷🇴' : appLang === 'en' ? 'National Anthem 🇷🇴' : 'Imnul Național 🇷🇴', sub: appLang === 'ar' ? 'الكلمات بالصوت والترجمة للدستور' : appLang === 'en' ? 'Lyrics with Audio & Translation' : 'Versuri cu Audio & Traducere', icon: Music, color: 'text-amber-400' },
+    { href: '/anthem', label: appLang === 'ar' ? 'النشيد الوطني الروماني 🇷🇴' : appLang === 'en' ? 'National Anthem 🇷🇴' : 'Imnul Național 🇷🇴', sub: appLang === 'ar' ? 'الكلمات بالفيديو والصوت والترجمة' : appLang === 'en' ? 'Lyrics with Video, Audio & Notes' : 'Versuri cu Video & Audio', icon: Music, color: 'text-amber-400' },
     { href: '/conversations', label: strings.conversationsNav, sub: appLang === 'ar' ? 'حوارات الرومانية والمقابلة' : appLang === 'en' ? 'Daily Dialogues' : 'Dialoguri Zilnice', icon: MessageSquare, color: 'text-emerald-400' },
     { href: '/conversation-quiz', label: strings.conversationQuizNav, sub: appLang === 'ar' ? 'لعبة حوارات الحياة اليومية' : appLang === 'en' ? 'Conversation Quiz Game' : 'Joc de Conversații', icon: Gamepad2, color: 'text-indigo-400' },
     { href: '/constitution-writing', label: strings.constitutionWritingNav || (appLang === 'ar' ? 'كتابة الدستور ✍️' : appLang === 'en' ? 'Constitution Writing ✍️' : 'Scriere Constituțională ✍️'), sub: appLang === 'ar' ? 'تدرب على كتابة وصياغة الإجابات الدستورية' : appLang === 'en' ? 'Practice writing constitutional responses' : 'Exersează redactarea răspunsurilor constituționale', icon: FileText, color: 'text-rose-400' },
@@ -61,7 +61,7 @@ export default function Navbar() {
   ];
 
   const sidebarContent = (
-    <div className={`h-full flex flex-col justify-between p-5 space-y-4 ${
+    <div className={`h-full p-5 flex flex-col justify-between overflow-y-auto backdrop-blur-xl ${
       isDark ? 'bg-slate-900 text-white border-r border-l border-slate-800' : 'bg-white text-slate-900 border-r border-l border-slate-200 shadow-xl'
     } ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
       
@@ -76,7 +76,7 @@ export default function Navbar() {
               <h2 className="text-base font-black tracking-tight leading-tight group-hover:text-rose-500 transition-colors">
                 Cetățenia Română
               </h2>
-              <span className="text-[10px] font-bold text-rose-500 block">Preparation Platform</span>
+              <span className="text-[10px] font-bold text-rose-500 block">ANC Preparation Platform</span>
             </div>
           </Link>
 
@@ -203,32 +203,36 @@ export default function Navbar() {
         {sidebarContent}
       </aside>
 
-      {/* Top Mobile Bar */}
-      <header className={`lg:hidden sticky top-0 z-40 border-b backdrop-blur-md p-3 flex items-center justify-between ${
-        isDark ? 'bg-slate-900/90 border-slate-800 text-white' : 'bg-white/90 border-slate-200 text-slate-900 shadow-sm'
+      {/* Top Mobile Bar - Ergonomic Padding & Clean Alignment */}
+      <header className={`lg:hidden sticky top-0 z-40 border-b backdrop-blur-md px-4 py-3 flex items-center justify-between shadow-md transition-all ${
+        isDark ? 'bg-slate-900/95 border-slate-800 text-white' : 'bg-white/95 border-slate-200 text-slate-900 shadow-sm'
       }`}>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5 sm:gap-3">
           <button
             onClick={() => setMobileSidebarOpen(true)}
-            className="p-2 rounded-xl border border-slate-700 text-rose-500 hover:bg-slate-800 transition-colors"
+            className="p-2.5 rounded-xl border border-slate-700/80 text-rose-500 hover:bg-slate-800 transition-colors flex items-center justify-center shrink-0 min-h-[44px] min-w-[44px]"
+            aria-label="Open Navigation Menu"
           >
             <Menu className="w-5 h-5" />
           </button>
 
-          <Link href="/" className="flex items-center gap-2">
-            <div className="relative w-8 h-8 rounded-xl overflow-hidden border border-rose-500 shrink-0">
+          <Link href="/" className="flex items-center gap-2 group shrink-0">
+            <div className="relative w-9 h-9 rounded-xl overflow-hidden border-2 border-rose-500 shadow-sm shrink-0 bg-slate-800">
               <Image src="/icon.png" alt="Romanian Citizenship Logo" fill className="object-cover" />
             </div>
-            <span className="font-extrabold text-sm tracking-tight">Cetățenia Română</span>
+            <div className="flex flex-col">
+              <span className="font-black text-xs sm:text-sm tracking-tight leading-tight group-hover:text-rose-500 transition-colors">Cetățenia Română</span>
+              <span className="text-[9px] font-bold text-rose-500 leading-none">ANC Preparation</span>
+            </div>
           </Link>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           <a
             href="https://revolut.me/mahmoulxzy"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-2.5 py-1.5 rounded-xl bg-gradient-to-r from-blue-600 to-rose-600 text-white text-[11px] font-black flex items-center gap-1 shadow-md"
+            className="px-3 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-rose-600 text-white text-[11px] font-black flex items-center gap-1 shadow-md hover:opacity-95 transition-all min-h-[44px]"
           >
             <Heart className="w-3.5 h-3.5 fill-current animate-bounce-subtle shrink-0" />
             <span>Revolut 💳</span>
@@ -236,9 +240,10 @@ export default function Navbar() {
 
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-xl border border-slate-700 text-amber-400 hover:bg-slate-800 transition-colors"
+            className="p-2.5 rounded-xl border border-slate-700/80 text-amber-400 hover:bg-slate-800 transition-colors flex items-center justify-center shrink-0 min-h-[44px] min-w-[44px]"
+            aria-label="Toggle Dark Light Theme"
           >
-            {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            {isDark ? <Sun className="w-4.5 h-4.5" /> : <Moon className="w-4.5 h-4.5" />}
           </button>
         </div>
       </header>
@@ -254,10 +259,10 @@ export default function Navbar() {
       )}
 
       {/* High-Visibility Sticky Mobile Bottom Navigation Bar */}
-      <nav className={`lg:hidden fixed bottom-0 left-0 right-0 z-40 border-t backdrop-blur-xl p-1.5 shadow-2xl ${
-        isDark ? 'bg-slate-950/95 border-slate-800' : 'bg-white/95 border-slate-200 shadow-xl'
+      <nav className={`lg:hidden fixed bottom-0 left-0 right-0 z-40 border-t backdrop-blur-xl px-2 py-1.5 shadow-2xl ${
+        isDark ? 'bg-slate-950/95 border-slate-800/80' : 'bg-white/95 border-slate-200 shadow-2xl'
       }`}>
-        <div className="grid grid-cols-6 gap-1 max-w-md mx-auto">
+        <div className="grid grid-cols-6 gap-1 max-w-md mx-auto items-center">
           {bottomMobileTabs.map((tab) => {
             const Icon = tab.icon;
             const isActive = pathname === tab.href;
@@ -265,14 +270,14 @@ export default function Navbar() {
               <Link
                 key={tab.href}
                 href={tab.href}
-                className={`flex flex-col items-center justify-center py-2 px-1 rounded-xl transition-all relative ${
+                className={`flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-all relative min-h-[44px] ${
                   isActive 
-                    ? 'text-rose-500 font-extrabold bg-rose-500/10 border border-rose-500/30 shadow-sm scale-105 animate-bounce-subtle' 
+                    ? 'text-rose-500 font-black bg-rose-500/10 border border-rose-500/30 shadow-sm scale-105 animate-bounce-subtle' 
                     : isDark ? 'text-slate-400 hover:text-slate-200' : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
                 <Icon className={`w-5 h-5 mb-0.5 ${isActive ? 'text-rose-500 stroke-[2.5]' : 'text-slate-400'}`} />
-                <span className="text-[10px] leading-tight font-bold truncate max-w-full">{tab.label}</span>
+                <span className="text-[10px] leading-tight font-extrabold truncate max-w-full">{tab.label}</span>
 
                 {/* Active Indicator Dot */}
                 {isActive && (
