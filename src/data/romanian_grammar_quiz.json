@@ -2,19 +2,14 @@
   {
     "id": "gq-1",
     "type": "multiple_choice",
-    "question_ro": "Care este forma corectă de plural a cuvântului «Scaun» (neutru)?",
+    "question_ro": "Care este forma corectă de plural a cuvântului neutru «Scaun»?",
     "question_ar": "ما هو الجمع الصحيح لكلمة «Scaun» (كرسي - اسم محايد)؟",
     "question_en": "What is the correct plural form of neuter noun «Scaun» (chair)?",
     "category": "nouns",
     "image": "https://images.unsplash.com/photo-1580481072645-022f9a6d8310?auto=format&fit=crop&w=800&q=80",
     "correct_answer": "Scaune",
-    "options": [
-      "Scaunuri",
-      "Scaune",
-      "Scauni",
-      "Scaunele"
-    ],
-    "explanation_ar": "الأسماء المحايدة (Neutru) تجمع بالحرف (-e) مثل scaun -> scaune أو (-uri) مثل drum -> drumuri."
+    "options": ["Scaunuri", "Scaune", "Scauni", "Scaunele"],
+    "explanation_ar": "الأسماء المحايدة (Neutru) تجمع بالحرف (-e) مثل scaun -> scaune."
   },
   {
     "id": "gq-2",
@@ -25,13 +20,8 @@
     "category": "verbs",
     "image": "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=800&q=80",
     "correct_answer": "merg",
-    "options": [
-      "mergi",
-      "merge",
-      "merg",
-      "mergem"
-    ],
-    "explanation_ar": "تصريف الفعل a merge مع الضمير Eu هو (merg)."
+    "options": ["mergi", "merge", "merg", "mergem"],
+    "explanation_ar": "تصريف الفعل a merge مع الضمير Eu في زمن الحاضر هو (merg)."
   },
   {
     "id": "gq-3",
@@ -42,30 +32,20 @@
     "category": "articles",
     "image": "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=800&q=80",
     "correct_answer": "Băiatul",
-    "options": [
-      "Băiata",
-      "Băiatul",
-      "Băiatle",
-      "Băiatun"
-    ],
+    "options": ["Băiata", "Băiatul", "Băiatle", "Băiatun"],
     "explanation_ar": "الأسماء المذكرة المنتهية بحرف ساكن تشكل المعرفة بإضافة اللاحقة (-ul) لتصبح Băiatul."
   },
   {
     "id": "gq-4",
     "type": "multiple_choice",
-    "question_ro": "Alegeți adjectivul acordat corect: «O casă _______» (mare/frumos)",
+    "question_ro": "Alegeți adjectivul acordat corect: «O casă _______» (frumos)",
     "question_ar": "اختر الصفة المطابقة بشكل صحيح: «O casă _______» (بيت جميل)؟",
     "question_en": "Select the correct adjective form: «O casă _______» (beautiful house)?",
     "category": "adjectives",
     "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80",
     "correct_answer": "frumoasă",
-    "options": [
-      "frumos",
-      "frumoasă",
-      "frumoși",
-      "frumoase"
-    ],
-    "explanation_ar": "اسم casă هو اسم مؤنث مفرد، وبالتالي تأخذ الصفة صيغة المؤنث المفرد frumoasă."
+    "options": ["frumos", "frumoasă", "frumoși", "frumoase"],
+    "explanation_ar": "اسم casă اسم مؤنث مفرد، وبالتالي تأخذ الصفة صيغة المؤنث المفرد frumoasă."
   },
   {
     "id": "gq-5",
@@ -76,12 +56,7 @@
     "category": "verbs",
     "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
     "correct_answer": "am învățat",
-    "options": [
-      "am învățat",
-      "ai învățat",
-      "a învățat",
-      "au învățat"
-    ],
+    "options": ["am învățat", "ai învățat", "a învățat", "au învățat"],
     "explanation_ar": "في الماضي المركب مع الضمير Eu نستخدم الفعل المساعد am لتصبح am învățat (تعلمتُ)."
   },
   {
@@ -93,12 +68,7 @@
     "category": "prepositions",
     "image": "https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=800&q=80",
     "correct_answer": "la",
-    "options": [
-      "la",
-      "în fața de",
-      "pe",
-      "cu"
-    ],
+    "options": ["la", "în fața de", "pe", "cu"],
     "explanation_ar": "نستخدم حرف الجر la للتعبير عن المكان أومقر الهيئة la sediul ANC."
   },
   {
@@ -107,15 +77,226 @@
     "question_ro": "Care este forma de conjunctiv «să» pentru: «Doresc (a fi) cetățean român»?",
     "question_ar": "ما هي صيغة المنصوب Conjunctiv للجملة: «Doresc (a fi) cetățean român»؟",
     "question_en": "What is the subjunctive form for: «Doresc (a fi) cetățean român»?",
-    "category": "verbs",
+    "category": "subjunctive",
     "image": "https://images.unsplash.com/photo-1526470608268-f674ce90ebd4?auto=format&fit=crop&w=800&q=80",
     "correct_answer": "să fiu",
-    "options": [
-      "să fiu",
-      "să ești",
-      "să este",
-      "să fim"
-    ],
+    "options": ["să fiu", "să ești", "să este", "să fim"],
     "explanation_ar": "تصريف فعل الكينونة a fi في صيغة المنصوب مع الضمير Eu هو (să fiu)."
+  },
+  {
+    "id": "gq-8",
+    "type": "multiple_choice",
+    "question_ro": "Alegeți pronumele reflexiv corect: «Eu ___ numesc Alexandru.»",
+    "question_ar": "اختر الضمير المنعكس المناسب: «Eu ___ numesc Alexandru.»؟",
+    "question_en": "Select the correct reflexive pronoun: «Eu ___ numesc Alexandru.»?",
+    "category": "pronouns",
+    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+    "correct_answer": "mă",
+    "options": ["mă", "te", "se", "ne"],
+    "explanation_ar": "مع الضمير Eu (أنا)، نستخدم الضمير المنعكس mă لتصبح Eu mă numesc."
+  },
+  {
+    "id": "gq-9",
+    "type": "multiple_choice",
+    "question_ro": "Care este forma de viitor oficial pentru: «Eu (a respecta) Constituția»?",
+    "question_ar": "ما هي صيغة المستقبل الرسمي للجملة: «Eu (a respecta) Constituția»؟",
+    "question_en": "What is the formal future form for: «Eu (a respecta) Constituția»?",
+    "category": "verbs",
+    "image": "https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80",
+    "correct_answer": "voi respecta",
+    "options": ["voi respecta", "am respectat", "o să respect", "respectăm"],
+    "explanation_ar": "المستقبل الرسمي يتكون من voi + المصدر (voi respecta - سأحترم)."
+  },
+  {
+    "id": "gq-10",
+    "type": "multiple_choice",
+    "question_ro": "Care este articolul genitival corect: «Drapelul ___ României»?",
+    "question_ar": "ما هي أداة الإضافة الصحيحة للجملة: «Drapelul ___ României» (علم رومانيا)؟",
+    "question_en": "What is the correct genitive article for: «Drapelul ___ României»?",
+    "category": "articles",
+    "image": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=800&q=80",
+    "correct_answer": "al",
+    "options": ["al", "a", "ai", "ale"],
+    "explanation_ar": "كلمة Drapelul مذكر مفرد، لذا تأخذ أداة الإضافة المذكرة al."
+  },
+  {
+    "id": "gq-11",
+    "type": "multiple_choice",
+    "question_ro": "Alegeți forma de plural feminin: «O țară ___ » (două ...)?",
+    "question_ar": "اختر جمع الكلمة المؤنثة: «O țară» (دولة - جمعها دُول)؟",
+    "question_en": "Select the correct plural form of feminine noun «O țară» (country)?",
+    "category": "nouns",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=800&q=80",
+    "correct_answer": "țări",
+    "options": ["țări", "țăre", "țăruri", "țările"],
+    "explanation_ar": "جمع كلمة țară المؤنثة هو țări (دول)."
+  },
+  {
+    "id": "gq-12",
+    "type": "multiple_choice",
+    "question_ro": "Care este forma de prezent pentru «Noi (a fi) cetățeni»?",
+    "question_ar": "ما هو تصريف الحاضر للجملة: «Noi (a fi) cetățeni»؟",
+    "question_en": "What is the present tense for: «Noi (a fi) cetățeni»?",
+    "category": "verbs",
+    "image": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80",
+    "correct_answer": "suntem",
+    "options": ["suntem", "sunteți", "sunt", "este"],
+    "explanation_ar": "تصريف فعل الكينونة a fi مع الضمير Noi (نحن) هو suntem."
+  },
+  {
+    "id": "gq-13",
+    "type": "multiple_choice",
+    "question_ro": "Cum adaugi articolul hotărât la cuvântul feminin «Lege»?",
+    "question_ar": "كيف تضاف أداة التعريف المعرفة إلى الكلمة المؤنثة «Lege» (قانون)؟",
+    "question_en": "How do you add the definite article to feminine noun «Lege» (law)?",
+    "category": "articles",
+    "image": "https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?auto=format&fit=crop&w=800&q=80",
+    "correct_answer": "Legea",
+    "options": ["Legea", "Legeul", "Legele", "Legeun"],
+    "explanation_ar": "الكلمات المؤنثة المنتهية بحرف e تشكل المعرفة بإضافة اللاحقة (-a) لتصبح Legea."
+  },
+  {
+    "id": "gq-14",
+    "type": "multiple_choice",
+    "question_ro": "Alegeți adjectivul corect: «Limba ___ este limba oficială.» (român)",
+    "question_ar": "اختر الصفة الصحيحة: «Limba ___ este limba oficială.»؟",
+    "question_en": "Select the correct adjective form: «Limba ___ este limba oficială.»?",
+    "category": "adjectives",
+    "image": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=800&q=80",
+    "correct_answer": "română",
+    "options": ["română", "român", "români", "române"],
+    "explanation_ar": "كلمة Limba مؤنثة مفردة فتأخذ الصفة المؤنثة المفردة română."
+  },
+  {
+    "id": "gq-15",
+    "type": "multiple_choice",
+    "question_ro": "Alegeți prepoziția corectă de genitiv: «În fața ___ (comisie)»",
+    "question_ar": "اختر صيغة المضاف إليه الصحيحة: «În fața ___» (أمام لجنة التجنيس)؟",
+    "question_en": "Select the correct genitive case preposition form: «În fața ___»?",
+    "category": "prepositions",
+    "image": "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80",
+    "correct_answer": "comisiei",
+    "options": ["comisiei", "comisie", "comisia", "comisiile"],
+    "explanation_ar": "التعبير în fața يتطلب حالة المضاف إليه (Genitiv) فتصبح comisie -> comisiei."
+  },
+  {
+    "id": "gq-16",
+    "type": "multiple_choice",
+    "question_ro": "Care este expresia solemnă oficială depusă la cetățenie?",
+    "question_ar": "ما هو الاسم الرسمي لقسم اليمين المؤدى عند الحصول على الجنسية الرومانية؟",
+    "question_en": "What is the official solemn pledge taken at the citizenship ceremony?",
+    "category": "interview",
+    "image": "https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=800&q=80",
+    "correct_answer": "Jurământul de credință",
+    "options": ["Jurământul de credință", "Certificatul de naștere", "Buletinul de vot", "Pașaportul simplu"],
+    "explanation_ar": "Jurământul de credință هو يمين الولاء الرسمي المنصوص عليه في القانون 21/1991."
+  },
+  {
+    "id": "gq-17",
+    "type": "multiple_choice",
+    "question_ro": "Care este conjunctivul verbului «a respecta»: «Jur să ___ legile»?",
+    "question_ar": "ما هو تصريف المنصوب للجملة: «Jur să ___ legile» (أقسم أن أحترم القوانين)؟",
+    "question_en": "What is the subjunctive verb form in: «Jur să ___ legile»?",
+    "category": "subjunctive",
+    "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
+    "correct_answer": "respect",
+    "options": ["respect", "respectăm", "respectat", "respecta"],
+    "explanation_ar": "مع الضمير Eu في صيغة المنصوب să respect (أن أحترم)."
+  },
+  {
+    "id": "gq-18",
+    "type": "multiple_choice",
+    "question_ro": "Care este pluralul masculin al adjectivului «democrat»?",
+    "question_ar": "ما هو جمع المذكر للصفة «democrat» (ديمقراطي)؟",
+    "question_en": "What is the masculine plural of adjective «democrat»?",
+    "category": "adjectives",
+    "image": "https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&w=800&q=80",
+    "correct_answer": "democrați",
+    "options": ["democrați", "democratice", "democrată", "democrație"],
+    "explanation_ar": "جمع المذكر للصفة democrat هو democrați (ديمقراطيون)."
+  },
+  {
+    "id": "gq-19",
+    "type": "multiple_choice",
+    "question_ro": "Alegeți forma corectă a verbului «a avea» la prezent (Noi ...)?",
+    "question_ar": "ما هو تصريف الفعل «a avea» (يمتلك) في الحاضر مع الضمير Noi؟",
+    "question_en": "Select the correct present form of 'a avea' for 'Noi' (we)?",
+    "category": "verbs",
+    "image": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80",
+    "correct_answer": "avem",
+    "options": ["avem", "aveți", "au", "am"],
+    "explanation_ar": "تصريف الفعل a avea مع الضمير Noi هو avem (نحن نملك)."
+  },
+  {
+    "id": "gq-20",
+    "type": "multiple_choice",
+    "question_ro": "Cum adaugi articolul hotărât plural la cuvântul masculin «Bărbați»?",
+    "question_ar": "كيف يضاف أداة التعريف في الجمع إلى كلمة «Bărbați» (رجال)؟",
+    "question_en": "How do you add the plural definite article to «Bărbați»?",
+    "category": "articles",
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+    "correct_answer": "Bărbații",
+    "options": ["Bărbații", "Bărbațile", "Bărbațiul", "Bărbațiun"],
+    "explanation_ar": "جمع المذكر ينتهي بـ -i ويشكل التعريف بإضافة حرف i آخر لتصبح Bărbații (الرجال)."
+  },
+  {
+    "id": "gq-21",
+    "type": "multiple_choice",
+    "question_ro": "Alegeți pronumele personal corect: «___ suntem cetățeni ai României.»",
+    "question_ar": "اختر الضمير الشخصي المناسب: «___ suntem cetățeni ai României.»؟",
+    "question_en": "Select the correct personal pronoun for: «___ suntem cetățeni»?",
+    "category": "pronouns",
+    "image": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80",
+    "correct_answer": "Noi",
+    "options": ["Noi", "Eu", "Tu", "Voi"],
+    "explanation_ar": "الفعل suntem يتطلب الضمير المتكلم الجمع Noi (نحن)."
+  },
+  {
+    "id": "gq-22",
+    "type": "multiple_choice",
+    "question_ro": "Care este trecutul verbului «a fi» (persoana I singular)?",
+    "question_ar": "ما هو الماضي المركب لفعل الكينونة a fi مع الضمير Eu؟",
+    "question_en": "What is the past tense of 'a fi' for 1st person singular?",
+    "category": "verbs",
+    "image": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=800&q=80",
+    "correct_answer": "am fost",
+    "options": ["am fost", "ai fost", "a fost", "au fost"],
+    "explanation_ar": "الماضي المركب للضمير Eu مع فعل الكينونة هو am fost (كنتُ)."
+  },
+  {
+    "id": "gq-23",
+    "type": "multiple_choice",
+    "question_ro": "Alegeți formularea politicoasă de adresare la interviul ANC:",
+    "question_ar": "ما هي صيغة المخاطبة الرسمية المؤدبة المعتمدة أمام رئيس لجنة التجنيس؟",
+    "question_en": "What is the polite formal address used during the ANC interview?",
+    "category": "interview",
+    "image": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
+    "correct_answer": "Domnule Președinte",
+    "options": ["Domnule Președinte", "Buna prietene", "Hei salut", "Tovarășe"],
+    "explanation_ar": "تطلب لجنة التجنيس أسلوب المخاطبة الرسمي Domnule Președinte (سيادة الرئيس)."
+  },
+  {
+    "id": "gq-24",
+    "type": "multiple_choice",
+    "question_ro": "Care este adjectivul feminin plural pentru «drept fundamental»?",
+    "question_ar": "ما هو جمع المؤنث للصفة fundamental في عبارة «Drepturi ...»؟",
+    "question_en": "What is the plural form of 'fundamental' in 'Drepturi ...'?",
+    "category": "adjectives",
+    "image": "https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80",
+    "correct_answer": "fundamentale",
+    "options": ["fundamentale", "fundamentali", "fundamentală", "fundamental"],
+    "explanation_ar": "كلمة Drepturi هي جمع محايد فيعامل معاملة المؤنث الجمع وتأخذ الصفة fundamentale."
+  },
+  {
+    "id": "gq-25",
+    "type": "multiple_choice",
+    "question_ro": "Care este articolul nehotărât feminin singular în limba română?",
+    "question_ar": "ما هي أداة التنكير للمؤنث المفرد في اللغة الرومانية (مثال: دولة)؟",
+    "question_en": "What is the feminine singular indefinite article in Romanian?",
+    "category": "articles",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=800&q=80",
+    "correct_answer": "o",
+    "options": ["o", "un", "niște", "unui"],
+    "explanation_ar": "تستخدم أداة التنكير o للمؤنث المفرد مثل o țară (دولة ما) أو o lege (قانون ما)."
   }
 ]

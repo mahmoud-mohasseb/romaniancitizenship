@@ -36,7 +36,7 @@ function GrammarQuizContent() {
   const { appLang, strings, isRtl } = useLanguage();
   const isDark = theme === 'dark';
 
-  const [activeTechnique, setActiveTechnique] = useState('all');
+  const [activeCategory, setActiveCategory] = useState('all');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [shuffledOptions, setShuffledOptions] = useState([]);
@@ -45,18 +45,21 @@ function GrammarQuizContent() {
   const [bestScore, setBestScore] = useState(0);
   const [isAnswered, setIsAnswered] = useState(false);
   const [quizFinished, setQuizFinished] = useState(false);
-  const [isNewHighScore, setIsNewHighScore] = useState(false);
-  const [showXpPopup, setShowXpPopup] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
-  const techniques = [
-    { id: 'all', label_ar: `🌐 جميع القواعد (${grammarQuizData.length} درساً)`, label_en: `🌐 All ${grammarQuizData.length} Lessons`, label_ro: `🌐 Toate ${grammarQuizData.length} Lecțiile` },
-    { id: 'multiple_choice', label_ar: '🎯 اختيارات متعددة', label_en: '🎯 Multiple Choice', label_ro: '🎯 Opțiuni Multiple' },
-    { id: 'fill_in_blank', label_ar: '✍️ إكمال الفراغ', label_en: '✍️ Fill in the Blank', label_ro: '✍️ Completează Spațiul' },
+  const categories = [
+    { id: 'all', label_ar: `🌐 جميع الأسئلة (${grammarQuizData.length})`, label_en: `🌐 All ${grammarQuizData.length} Questions` },
+    { id: 'nouns', label_ar: '🏷️ الأسئلة عن الأسئلة والأجناس (Nouns)', label_en: '🏷️ Nouns & Genders' },
+    { id: 'verbs', label_ar: '⚡ تصريف الأفعال (Verbs)', label_en: '⚡ Verbs & Tenses' },
+    { id: 'articles', label_ar: '📌 أدوات التعريف والتنكير (Articles)', label_en: '📌 Articles' },
+    { id: 'adjectives', label_ar: '🎨 الصفات والمطابقة (Adjectives)', label_en: '🎨 Adjectives' },
+    { id: 'prepositions', label_ar: '📍 حروف الجر والحالات (Prepositions)', label_en: '📍 Prepositions' },
+    { id: 'subjunctive', label_ar: '✨ صيغة المنصوب (Subjunctive să)', label_en: '✨ Subjunctive să' },
+    { id: 'interview', label_ar: '🏛️ قواعد مقابلة التجنيس (Interview)', label_en: '🏛️ ANC Interview Rules' },
   ];
 
   const filteredQuestions = grammarQuizData.filter(q => 
-    activeTechnique === 'all' || q.type === activeTechnique
+    activeCategory === 'all' || q.category === activeCategory
   );
 
   const currentQuestion = filteredQuestions[currentIndex] || filteredQuestions[0];
@@ -65,7 +68,7 @@ function GrammarQuizContent() {
     const saved = localStorage.getItem('grammar_quiz_best');
     if (saved) setBestScore(parseInt(saved, 10));
     loadQuestion(0);
-  }, [activeTechnique]);
+  }, [activeCategory]);
 
   const loadQuestion = (index) => {
     if (index >= filteredQuestions.length) {
@@ -84,7 +87,6 @@ function GrammarQuizContent() {
     setQuizFinished(true);
     const saved = parseInt(localStorage.getItem('grammar_quiz_best') || '0', 10);
     const isNewBest = finalScore > saved;
-    setIsNewHighScore(isNewBest);
 
     if (isNewBest) {
       setBestScore(finalScore);
@@ -111,8 +113,6 @@ function GrammarQuizContent() {
       const newStreak = streak + 1;
       setScore(newScore);
       setStreak(newStreak);
-      setShowXpPopup(true);
-      setTimeout(() => setShowXpPopup(false), 1200);
 
       if (newStreak % 5 === 0) {
         triggerConfetti();
@@ -137,7 +137,6 @@ function GrammarQuizContent() {
     setStreak(0);
     setCurrentIndex(0);
     setQuizFinished(false);
-    setIsNewHighScore(false);
     loadQuestion(0);
   };
 
@@ -165,7 +164,7 @@ function GrammarQuizContent() {
               {streak > 1 && (
                 <span className="px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/40 text-xs font-black flex items-center gap-1 animate-pulse">
                   <Flame className="w-4 h-4 fill-current text-amber-400" />
-                  <span>{streak} 🔥 {appLang === 'ar' ? 'سلسلة إجابات' : 'Streak'}</span>
+                  <span>{streak} 🔥 {appLang === 'ar' ? 'سلسلة متتالية' : 'Streak'}</span>
                 </span>
               )}
               <span className="text-xs font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1 rounded-full">
@@ -175,12 +174,12 @@ function GrammarQuizContent() {
           </div>
 
           <h1 className="text-xl sm:text-2xl font-black tracking-tight leading-tight">
-            {appLang === 'ar' ? 'اختبار قواعد الرومانية التفاعلي المصور 📚' : 'Interactive Illustrated Grammar Quiz 📚'}
+            {appLang === 'ar' ? 'اختبار قواعد الرومانية التفاعلي الشامل (25 سؤالاً مصوراً) 📚' : 'Interactive Romanian Grammar Quiz (25 Visual Questions) 📚'}
           </h1>
           <p className="text-xs sm:text-sm text-theme-sub font-semibold leading-relaxed">
             {appLang === 'ar' 
-              ? 'اختبر مهاراتك في تصريف الأفعال، الأجناس، أدوات التعريف، وأساسيات القواعد لمقابلة الجنسية.' 
-              : 'Test your skills in verb conjugations, noun genders, articles, and grammar rules for ANC.'}
+              ? 'اختبر مهاراتك في تصريف الأفعال، الأجناس، أدوات التعريف، والتعابير الرسمية لمقابلة الجنسية.' 
+              : 'Test your skills in verb conjugations, noun genders, articles, and formal interview rules.'}
           </p>
 
           {/* Progress Bar */}
@@ -192,24 +191,24 @@ function GrammarQuizContent() {
           </div>
         </div>
 
-        {/* Technique Switcher */}
+        {/* Category Horizontal Filter Switcher */}
         <div className="flex items-center gap-2 overflow-x-auto pb-2 no-scrollbar">
-          {techniques.map((t) => (
+          {categories.map((c) => (
             <button
-              key={t.id}
-              onClick={() => setActiveTechnique(t.id)}
+              key={c.id}
+              onClick={() => setActiveCategory(c.id)}
               className={`px-3.5 py-2 rounded-xl text-xs font-black whitespace-nowrap shrink-0 transition-all border ${
-                activeTechnique === t.id
+                activeCategory === c.id
                   ? 'bg-rose-600 text-white border-rose-600 shadow-md'
                   : isDark ? 'bg-slate-800 text-slate-300 border-slate-700' : 'bg-white text-slate-700 border-slate-200 shadow-sm'
               }`}
             >
-              {appLang === 'ar' ? t.label_ar : t.label_en}
+              {appLang === 'ar' ? c.label_ar : c.label_en}
             </button>
           ))}
         </div>
 
-        {/* Main Quiz Game Interface */}
+        {/* Main Quiz Game Card */}
         {!quizFinished && currentQuestion && (
           <div className="space-y-4">
             <motion.div
@@ -330,7 +329,7 @@ function GrammarQuizContent() {
             }`}
           >
             <PartyPopper className="w-16 h-16 text-amber-400 mx-auto animate-bounce" />
-            <h2 className="text-2xl font-black">أحسنت! أكملت تحدي القواعد 🎉</h2>
+            <h2 className="text-2xl font-black">أحسنت! أكملت تحدي قواعد الرومانية 🎉</h2>
             <p className="text-sm font-extrabold text-emerald-400">
               نتيجتك النهائية: {score} من أصل {filteredQuestions.length} إجابة صحيحة!
             </p>
