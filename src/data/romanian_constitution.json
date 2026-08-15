@@ -1,0 +1,320 @@
+{
+  "constitution": {
+    "title_ro": "Constituția României",
+    "title_en": "Constitution of Romania",
+    "title_ar": "دستور رومانيا الرسمية",
+    "version": "Official Revised 2003 Edition",
+    "categories": [
+      {
+        "id": "general_principles",
+        "title_ro": "Titlul I - Principii Generale",
+        "title_en": "Title I - General Principles",
+        "title_ar": "الباب الأول - المبادئ العامة للدولة",
+        "image": "https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=1000&q=80",
+        "articles": [
+          {
+            "article_number": 1,
+            "title_ro": "Statul român",
+            "title_en": "The Romanian State",
+            "title_ar": "الدولة الرومانية",
+            "official_text_ro": "Art. 1 (1) România este stat național, suveran și independent, unitar și indivizibil. (2) Forma de guvernământ a statului român este republică. (3) România este stat de drept, democratic și social, în care demnitatea omului, drepturile și libertățile cetățenilor, libera dezvoltare a personalității umane, dreptatea și pluralismul politic reprezintă valori supreme și sunt garantate.",
+            "official_text_en": "Art. 1 (1) Romania is a national, sovereign and independent, unitary and indivisible state. (2) The form of government of the Romanian state is republic. (3) Romania is a democratic and social state governed by the rule of law, in which human dignity, citizens' rights and freedoms, the free development of human personality, justice and political pluralism represent supreme values.",
+            "official_text_ar": "المادة 1 (1) رومانيا دولة وطنية، سيادية ومستقلة، موحدة وغير قابلة للتجزئة. (2) شكل الحكم في الدولة الرومانية هو جمهورية. (3) رومانيا دولة قانون، ديمقراطية واجتماعية، تمثل فيها الكرامة الإنسانية وحقوق المواطنين وحرياتهم والتعددية السياسية قيماً عليا ومضمونة.",
+            "simplified_explanation_ro": "România este o republică unitară și independentă. Statul garantează drepturile omului, democrația și justiția.",
+            "simplified_explanation_en": "Romania is a sovereign, indivisible republic governed by the rule of law, protecting human rights, democracy, and equality.",
+            "simplified_explanation_ar": "رومانيا جمهورية موحدة ومستقلة تقوم على سيادة القانون والديمقراطية والتعددية السياسية وحماية حقوق الإنسان.",
+            "vocabulary": [
+              { "ro": "stat național și unitar", "en": "national & unitary state", "ar": "دولة وطنية وموحدة" },
+              { "ro": "stat de drept", "en": "rule of law state", "ar": "دولة قانون" },
+              { "ro": "indivizibil", "en": "indivisible", "ar": "غير قابلة للتجزئة" }
+            ],
+            "why_it_matters_ar": "هذه المادة هي حجر الزاوية في مقابلة الجنسية، حيث يُسأل المتقدم عن وصف الدولة الرومانية وشكل حكمها.",
+            "why_it_matters_en": "Fundamental question in the ANC citizenship interview regarding state form and governance.",
+            "related_quiz_question_ids": [1, 97],
+            "related_writing_topic_id": "art_1_statul_roman"
+          },
+          {
+            "article_number": 2,
+            "title_ro": "Suveranitatea",
+            "title_en": "Sovereignty",
+            "title_ar": "السيادة الوطنية",
+            "official_text_ro": "Art. 2 (1) Suveranitatea națională aparține poporului român, care o exercită prin organele sale reprezentative, constituite prin alegeri libere, periodice și corecte, precum și prin referendum. (2) Nicio grupare și nicio persoană nu poate exercita suveranitatea în nume propriu.",
+            "official_text_en": "Art. 2 (1) National sovereignty belongs to the Romanian people, who shall exercise it through their representative bodies, elected by free, periodic and fair elections, as well as by referendum. (2) No group or person may exercise sovereignty in their own name.",
+            "official_text_ar": "المادة 2 (1) تعود السيادة الوطنية للشعب الروماني، ويمارسها من خلال هيئاته التمثيلية المنتخبة بانتخابات حرة ودورية ونزيهة، وكذلك عن طريق الاستفتاء. (2) لا يجوز لأي شخص أو مجموعة ممارسة السيادة باسمهم الخاص.",
+            "simplified_explanation_ro": "Poporul exercită suveranitatea prin alegeri libere și referendum. Nimeni nu poate prelua puterea în mod ilicit.",
+            "simplified_explanation_en": "Sovereignty belongs to the people, exercised via democratic elections and referendums.",
+            "simplified_explanation_ar": "السيادة ملك للشعب يمارسها بالانتخابات الديمقراطية والاستفتاء، ولا يحق لأحد اغتصاب السلطة.",
+            "vocabulary": [
+              { "ro": "suveranitate națională", "en": "national sovereignty", "ar": "السيادة الوطنية" },
+              { "ro": "aleceri libere", "en": "free elections", "ar": "انتخابات حرة" },
+              { "ro": "referendum", "en": "referendum", "ar": "استفتاء شعبي" }
+            ],
+            "why_it_matters_ar": "توضح مفهوم الديمقراطية والانتخابات والاستفتاء في رومانيا.",
+            "why_it_matters_en": "Defines democratic legitimacy and elections in Romania.",
+            "related_quiz_question_ids": [2],
+            "related_writing_topic_id": "art_2_suveranitatea"
+          },
+          {
+            "article_number": 3,
+            "title_ro": "Teritoriul",
+            "title_en": "The Territory",
+            "title_ar": "الإقليم الإداري والجغرافي",
+            "official_text_ro": "Art. 3 (1) Teritoriul României este inalienabil. (2) Frontierele țării sunt consfințite prin lege organică, cu respectarea principiilor și a celorlalte norme general admise ale dreptului internațional. (3) Teritoriul este organizat, sub aspect administrativ, în comune, orașe și județe. În condițiile legii, unele orașe sunt declarate municipii.",
+            "official_text_en": "Art. 3 (1) The territory of Romania is inalienable. (2) The frontiers of the country are established by organic law. (3) Under administrative aspect, the territory is organized into communes, towns and counties. Under the law, some towns are declared municipalities.",
+            "official_text_ar": "المادة 3 (1) إقليم رومانيا غير قابل للتصرف فيه. (2) تُحدد حدود البلاد بموجب قانون تنظيمي. (3) يُنظم الإقليم إدارياً في بلديات ومدن ومقاطعات (Județe). وتُعلن بعض المدن كمقاطعات رئيسية بموجب القانون.",
+            "simplified_explanation_ro": "Teritoriul nu poate fi înstrăinat. Administrativ, România este împărțită în comune, orașe și 41 de județe plus municipiul București.",
+            "simplified_explanation_en": "Romania's territory cannot be ceded. Administratively divided into communes, towns, and 41 counties + Bucharest.",
+            "simplified_explanation_ar": "إقليم رومانيا لا يمكن التنازل عنه. ويقسم إدارياً إلى بلديات ومدن و41 مقاطعة بالإضافة للعاصمة بوخارست.",
+            "vocabulary": [
+              { "ro": "inalienabil", "en": "inalienable", "ar": "غير قابل للتنازل" },
+              { "ro": "județe", "en": "counties", "ar": "المقاطعات (41)" },
+              { "ro": "municipiu", "en": "municipality", "ar": "بلدية رئيسية" }
+            ],
+            "why_it_matters_ar": "يربط بشكل مباشر بين الجغرافيا والدستور التقسيم الإداري لـ 41 مقاطعة.",
+            "why_it_matters_en": "Directly links geography with constitutional administrative divisions.",
+            "related_quiz_question_ids": [3, 9],
+            "related_writing_topic_id": "art_3_teritoriul"
+          },
+          {
+            "article_number": 12,
+            "title_ro": "Simboluri naționale",
+            "title_en": "National Symbols",
+            "title_ar": "الرموز الوطنية للدولة",
+            "official_text_ro": "Art. 12 (1) Drapelul României este tricolor; culorile sunt așezate vertical, în ordinea următoare de la lance: albastru, galben, roșu. (2) Ziua națională a României este 1 Decembrie. (3) Imnul național al României este 'Deșteaptă-te, române!'. (4) Stema țării și sigiliul statului sunt stabilite prin legi organice.",
+            "official_text_en": "Art. 12 (1) The flag of Romania is tricolor; the colors are arranged vertically: blue, yellow, red. (2) The National Day of Romania is December 1st. (3) The national anthem of Romania is 'Deșteaptă-te, române!'. (4) The coat of arms and state seal are established by organic laws.",
+            "official_text_ar": "المادة 12 (1) علم رومانيا ثلاثي الألوان مرتبة رأسياً: الأزرق، الأصفر، والأحمر. (2) اليوم الوطني لرومانيا هو 1 ديسمبر. (3) النشيد الوطني لرومانيا هو 'استيقظ أيها الروماني!'. (4) يُحدد الشعار والخاتم بموجب قوانين.",
+            "simplified_explanation_ro": "Simbolurile oficiale sunt: Drapelul tricolor (albastru, galben, roșu), Ziua Națională (1 Decembrie) și Imnul 'Deșteaptă-te, române!'.",
+            "simplified_explanation_en": "Official state symbols: Tricolor Flag (Blue, Yellow, Red), December 1st National Day, and National Anthem.",
+            "simplified_explanation_ar": "الرموز الرسمية للدولة: العلم الثلاثي الألوان، اليوم الوطني (1 ديسمبر)، والنشيد الوطني.",
+            "vocabulary": [
+              { "ro": "drapelul tricolor", "en": "tricolor flag", "ar": "العلم الثلاثي الألوان" },
+              { "ro": "Ziua Națională (1 Decembrie)", "en": "National Day (Dec 1)", "ar": "اليوم الوطني (1 ديسمبر)" },
+              { "ro": "Imnul Național", "en": "National Anthem", "ar": "النشيد الوطني" }
+            ],
+            "why_it_matters_ar": "سؤال حتمي في مقابلة منح الجنسية الرومانية يخص العلم والنشيد واليوم الوطني.",
+            "why_it_matters_en": "Mandatory topic in ANC citizenship interview.",
+            "related_quiz_question_ids": [12, 15],
+            "related_writing_topic_id": "art_12_simboluri_nationale"
+          }
+        ]
+      },
+      {
+        "id": "fundamental_rights",
+        "title_ro": "Titlul II - Drepturile și libertățile fundamentale",
+        "title_en": "Title II - Fundamental Rights & Duties",
+        "title_ar": "الباب الثاني - الحقوق والحريات والواجبات الأساسية",
+        "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1000&q=80",
+        "articles": [
+          {
+            "article_number": 15,
+            "title_ro": "Universaliatea drepturilor",
+            "title_en": "Universality of Rights",
+            "title_ar": "شمولية الحقوق والواجبات",
+            "official_text_ro": "Art. 15 (1) Cetățenii beneficiază de drepturile și de libertățile consacrate prin Constituție și prin alte legi și au îndatoririle prevăzute de acestea. (2) Legea dispune numai pentru viitor, cu excepția legii penale sau contravenționale mai favorabile.",
+            "official_text_en": "Art. 15 (1) Citizens enjoy the rights and freedoms consecrated by the Constitution and other laws, and have the duties stipulated therein. (2) The law acts only for the future, with the exception of more favorable penal law.",
+            "official_text_ar": "المادة 15 (1) يتمتع المواطنون بالحقوق والحريات المنصوص عليها في الدستور والقوانين، وعليهم الالتزام بالواجبات. (2) يسري القانون على المستقبل فقط، باستثناء القانون الجنائي الأكثر فائدة للمتهم.",
+            "simplified_explanation_ro": "Toti cetățenii au drepturi și îndatoriri. Legea nu se aplică retroactiv (doar pentru viitor).",
+            "simplified_explanation_en": "Citizens enjoy constitutional rights and duties. Laws do not apply retroactively.",
+            "simplified_explanation_ar": "جميع المواطنين يتمتعون بالحقوق والواجبات، والقوانين لا تطبق بأثر رجعي.",
+            "vocabulary": [
+              { "ro": "drepturi și îndatoriri", "en": "rights & duties", "ar": "الحقوق والواجبات" },
+              { "ro": "neretroactivitatea legii", "en": "non-retroactivity of law", "ar": "عدم رجعية القوانين" }
+            ],
+            "why_it_matters_ar": "توضح التوازن القانوني بين حقوق المواطنة والواجبات المترتبة عليها.",
+            "why_it_matters_en": "Defines balance of citizenship rights and legal duties.",
+            "related_quiz_question_ids": [15, 16],
+            "related_writing_topic_id": "art_15_universalitate"
+          },
+          {
+            "article_number": 16,
+            "title_ro": "Egalitatea în drepturi",
+            "title_en": "Equality of Rights",
+            "title_ar": "المساواة أمام القانون",
+            "official_text_ro": "Art. 16 (1) Cetățenii sunt egali în fața legii și a autorităților publice, fără privilegii și fără discriminări. (2) Nimeni nu este mai presus de lege. (3) Funcțiile și demnitățile publice, civile sau militare, pot fi ocupate, în condițiile legii, de persoanele care au cetățenia română și domiciliul în țară.",
+            "official_text_en": "Art. 16 (1) Citizens are equal before the law and public authorities, without privileges and without discrimination. (2) No one is above the law. (3) Public offices may be held by persons having Romanian citizenship and domicile in the country.",
+            "official_text_ar": "المادة 16 (1) المواطنون متساوون أمام القانون والسلطات العامة، دون امتيازات ودون تمييز. (2) لا أحد فوق القانون. (3) الوظائف والمناصب العامة يمكن أن يشغلها من يحمل الجنسية الرومانية ومقيم في البلاد.",
+            "simplified_explanation_ro": "Toți cetățenii sunt egali. Nimeni nu este mai presus de lege. Funcțiile publice necesită cetățenie română.",
+            "simplified_explanation_en": "All citizens are equal without privileges or discrimination. Nobody is above the law.",
+            "simplified_explanation_ar": "جميع المواطنين متساوون أمام القانون دون تمييز، ولا أحد فوق القانون.",
+            "vocabulary": [
+              { "ro": "egalitate în fața legii", "en": "equality before law", "ar": "المساواة أمام القانون" },
+              { "ro": "nimeni nu este mai presus de lege", "en": "nobody above the law", "ar": "لا أحد فوق القانون" }
+            ],
+            "why_it_matters_ar": "مبدأ سيادة القانون وسيادة المساواة بين كافة المواطنين.",
+            "why_it_matters_en": "Core democratic principle of equality before the law.",
+            "related_quiz_question_ids": [16, 97],
+            "related_writing_topic_id": "art_16_egalitate"
+          },
+          {
+            "article_number": 54,
+            "title_ro": "Fidelitatea față de țară",
+            "title_en": "Fidelity to the Country",
+            "title_ar": "الولاء للوطن والرومانية",
+            "official_text_ro": "Art. 54 (1) Fidelitatea față de țară este sacră. (2) Cetățenii cărora le sunt încredințate funcții publice, precum și militarii, răspund de îndeplinirea cu credință a obligațiilor ce le revin și, în acest scop, vor depune jurământul cerut de lege.",
+            "official_text_en": "Art. 54 (1) Fidelity to the country is sacred. (2) Citizens entrusted with public offices and military personnel are accountable for faithful fulfillment of obligations and shall take the legal oath.",
+            "official_text_ar": "المادة 54 (1) الولاء للوطن مقدس. (2) المواطنون المكلّفون بمهام عامة والعسكريون مسؤولون عن أداء التزاماتهم بإخلاص، وعليهم أداء قسم الولاء المحدد بموجب القانون.",
+            "simplified_explanation_ro": "Fidelitatea față de România este o îndatorire sacră pentru toți cetățenii, confirmată prin depunerea jurământului de cetățenie.",
+            "simplified_explanation_en": "Loyalty to Romania is sacred. New citizens solemnly affirm this by taking the oath of allegiance.",
+            "simplified_explanation_ar": "الولاء لرومانيا واجب مقدس على كل مواطن، ويتجسد بأداء قسم اليمين للحصول على الجنسية.",
+            "vocabulary": [
+              { "ro": "fidelitatea este sacră", "en": "fidelity is sacred", "ar": "الولاء مقدس" },
+              { "ro": "jurământul de credință", "en": "oath of allegiance", "ar": "قسم الولاء للوطن" }
+            ],
+            "why_it_matters_ar": "مبدأ قسم الولاء لرومانيا الذي يؤديه المتقدم عند الحصول على شهادة الجنسية.",
+            "why_it_matters_en": "Direct constitutional reference to the citizenship oath of fidelity.",
+            "related_quiz_question_ids": [54, 100],
+            "related_writing_topic_id": "art_54_fidelitate"
+          }
+        ]
+      },
+      {
+        "id": "public_authorities",
+        "title_ro": "Titlul III - Autoritățile Publice",
+        "title_en": "Title III - Public Authorities",
+        "title_ar": "الباب الثالث - السلطات العامة والمؤسسات",
+        "image": "https://images.unsplash.com/photo-1572949645841-094f3a9c4c94?auto=format&fit=crop&w=1000&q=80",
+        "articles": [
+          {
+            "article_number": 61,
+            "title_ro": "Rolul Parlamentului",
+            "title_en": "Role of Parliament",
+            "title_ar": "دور البرلمان الروماني",
+            "official_text_ro": "Art. 61 (1) Parlamentul este organul reprezentativ suprem al poporului român și unica autoritate legislativă a țării. (2) Parlamentul este alcătuit din Camera Deputaților și Senat.",
+            "official_text_en": "Art. 61 (1) Parliament is the supreme representative body of the Romanian people and sole legislative authority of the country. (2) Parliament consists of the Chamber of Deputies and Senate.",
+            "official_text_ar": "المادة 61 (1) البرلمان هو الهيئة التمثيلية العليا للشعب الروماني والسلطة التشريعية الوحيدة في البلاد. (2) يتكون البرلمان من مجلس النواب ومجلس الشيوخ.",
+            "simplified_explanation_ro": "Parlamentul este singura autoritate care adoptă legi și este compuesto din 2 camere: Camera Deputaților și Senat.",
+            "simplified_explanation_en": "Parliament is the sole law-making authority, composed of the Senate and Chamber of Deputies.",
+            "simplified_explanation_ar": "البرلمان هو السلطة التشريعية الوحيدة المسؤولة عن سن القوانين، ويتألف من مجلسين.",
+            "vocabulary": [
+              { "ro": "organ reprezentativ suprem", "en": "supreme representative body", "ar": "الهيئة التمثيلية العليا" },
+              { "ro": "unica autoritate legislativă", "en": "sole legislative authority", "ar": "السلطة التشريعية الوحيدة" },
+              { "ro": "Camera Deputaților și Senat", "en": "Chamber of Deputies & Senate", "ar": "مجلس النواب ومجلس الشيوخ" }
+            ],
+            "why_it_matters_ar": "سؤال أساسي ومكرر في المقابلة حول بنية ودور البرلمان الروماني.",
+            "why_it_matters_en": "Core ANC question regarding legislative structure.",
+            "related_quiz_question_ids": [61, 95],
+            "related_writing_topic_id": "art_61_parlament"
+          },
+          {
+            "article_number": 80,
+            "title_ro": "Rolul Președintelui",
+            "title_en": "Role of the President",
+            "title_ar": "دور رئيس الجمهورية",
+            "official_text_ro": "Art. 80 (1) Președintele României reprezintă statul român și este garantul independenței naționale, al unității și al integrității teritoriale a țării. (2) Președintele României veghează la respectarea Constituției și la buna funcționare a autorităților publice. În acest scop, Președintele exercită funcția de mediere între puterile statului, precum și între stat și societate.",
+            "official_text_en": "Art. 80 (1) The President of Romania represents the Romanian state and is the guarantor of national independence, unity and territorial integrity of the country. (2) The President sees to the observance of the Constitution and proper functioning of public authorities.",
+            "official_text_ar": "المادة 80 (1) يمثل رئيس رومانيا الدولة الرومانية، وهو الضامن للاستقلال الوطني والوحدة والسلامة الإقليمية للبلاد. (2) يسهر الرئيس على احترام الدستور وحسن سير السلطات العامة ويمارس الوساطة بين سلطات الدولة.",
+            "simplified_explanation_ro": "Președintele reprezintă statul, garantează independența națională și mediază între puterile statului.",
+            "simplified_explanation_en": "The President represents the state, guarantees independence, and mediates between powers of state.",
+            "simplified_explanation_ar": "الرئيس يمثل الدولة ويضمن الاستقلال والسلامة الوطنية ويمارس الوساطة بين السلطات.",
+            "vocabulary": [
+              { "ro": "garantul independenței", "en": "guarantor of independence", "ar": "ضامن الاستقلال الوطني" },
+              { "ro": "funcția de mediere", "en": "mediation function", "ar": "وظيفة الوساطة بين السلطات" }
+            ],
+            "why_it_matters_ar": "تحدد الصلاحيات الدستورية ورسالة رئيس الدولة في رومانيا.",
+            "why_it_matters_en": "Defines constitutional role and mandate of the President.",
+            "related_quiz_question_ids": [80, 81],
+            "related_writing_topic_id": "art_80_presedinte"
+          },
+          {
+            "article_number": 102,
+            "title_ro": "Rolul Guvernului",
+            "title_en": "Role of the Government",
+            "title_ar": "دور الحكومة التنفيذي",
+            "official_text_ro": "Art. 102 (1) Guvernul, potrivit programului său de guvernare acceptat de Parlament, asigură realizarea politicii interne și externe a țării și exercită conducerea generală a administrației publice. (2) În îndeplinirea atribuțiilor sale, Guvernul cooperează cu organismele sociale interesate.",
+            "official_text_en": "Art. 102 (1) Government, according to its governing program accepted by Parliament, ensures implementation of domestic and foreign policy and exercises general management of public administration.",
+            "official_text_ar": "المادة 102 (1) تضمن الحكومة، وفق برنامجها الحكومي المقر من البرلمان، تنفيذ السياسة الداخلية والخرجية للبلاد وتتولى الإدارة العامة.",
+            "simplified_explanation_ro": "Guvernul este conducerea executivă a țării, condus de Primul-Ministru, responsabil de politica internă și externă.",
+            "simplified_explanation_en": "Government is the executive authority headed by the Prime Minister, responsible for administration and policy implementation.",
+            "simplified_explanation_ar": "الحكومة هي السلطة التنفيذية برئاسة رئيس الوزراء، وتنفذ السياسة الداخلية والخرجية للبلاد.",
+            "vocabulary": [
+              { "ro": "politica internă și externă", "en": "domestic & foreign policy", "ar": "السياسة الداخلية والخرجية" },
+              { "ro": "conducerea administrației", "en": "administration management", "ar": "إدارة السلطة التنفيذية" }
+            ],
+            "why_it_matters_ar": "توضح الفرق بين السلطة التشريعية والسلطة التنفيذية في رومانيا.",
+            "why_it_matters_en": "Clarifies executive branch duties in the ANC interview.",
+            "related_quiz_question_ids": [96, 102],
+            "related_writing_topic_id": "art_102_guvern"
+          },
+          {
+            "article_number": 124,
+            "title_ro": "Înfăptuirea justiției",
+            "title_en": "Administration of Justice",
+            "title_ar": "السلطة القضائية وعدالة المحاكم",
+            "official_text_ro": "Art. 124 (1) Justiția se înfăptuiește în numele legii. (2) Justiția este unică, imparțială și egală pentru toți. (3) Judecătorii sunt independenți și se supun numai legii.",
+            "official_text_en": "Art. 124 (1) Justice shall be administered in the name of the law. (2) Justice is single, impartial and equal for all. (3) Judges are independent and subject only to the law.",
+            "official_text_ar": "المادة 124 (1) تُقام العدالة باسم القانون. (2) القضاء موحد، محايد ومتساوٍ للجميع. (3) القضاة مستقلون ولا يخضعون إلا للقانون.",
+            "simplified_explanation_ro": "Judecătorii sunt independenți, iar justiția este egală pentru toți cetățenii.",
+            "simplified_explanation_en": "Justice is impartial and equal for all. Judges are independent and answerable only to the law.",
+            "simplified_explanation_ar": "القضاء محايد ومستقل، وجميع القضاة يخضعون فقط لسلطان القانون.",
+            "vocabulary": [
+              { "ro": "imparțială și egală", "en": "impartial & equal", "ar": "محايدة ومتساوية للجميع" },
+              { "ro": "judecători independenți", "en": "independent judges", "ar": "قضاة مستقلون" }
+            ],
+            "why_it_matters_ar": "تحدد مبدأ استقلال القضاء في رومانيا.",
+            "why_it_matters_en": "Principle of judicial independence and fair trial.",
+            "related_quiz_question_ids": [124],
+            "related_writing_topic_id": "art_124_justitie"
+          }
+        ]
+      },
+      {
+        "id": "constitutional_court",
+        "title_ro": "Titlul V - Curtea Constituțională",
+        "title_en": "Title V - Constitutional Court",
+        "title_ar": "الباب الخامس - المحكمة الدستورية",
+        "image": "https://images.unsplash.com/photo-1436450412740-6b988f486c6b?auto=format&fit=crop&w=1000&q=80",
+        "articles": [
+          {
+            "article_number": 142,
+            "title_ro": "Structura și rolul",
+            "title_en": "Structure & Mandate",
+            "title_ar": "تشكيل وهيكلية المحكمة الدستورية",
+            "official_text_ro": "Art. 142 (1) Curtea Constituțională este garantul supremației Constituției. (2) Curtea Constituțională se compune din 9 judecători, numiți pentru un mandat de 9 ani, care nu poate fi prelungit sau reînnoit. (3) Trei judecători sunt numiți de Camera Deputaților, trei de Senat și trei de Președintele României.",
+            "official_text_en": "Art. 142 (1) Constitutional Court is the guarantor of constitutional supremacy. (2) Consists of 9 judges appointed for a 9-year non-renewable term. (3) Three appointed by Chamber of Deputies, three by Senate, and three by President.",
+            "official_text_ar": "المادة 142 (1) المحكمة الدستورية هي ضامنة سمو الدستور. (2) تتكون المحكمة الدستورية من 9 قضاة، يُعينون لمدة 9 سنوات غير قابلة للتجديد. (3) يعين مجلس النواب 3 قضاة، ومجلس الشيوخ 3 قضاة، ورئيس الجمهورية 3 قضاة.",
+            "simplified_explanation_ro": "Curtea Constituțională are 9 judecători (numiți pe 9 ani) și garantează că toate legile respectă Constituția.",
+            "simplified_explanation_en": "The Constitutional Court protects constitutional supremacy with 9 judges serving 9-year terms.",
+            "simplified_explanation_ar": "تضمن المحكمة الدستورية سمو الدستور وتأليفها من 9 قضاة لمدة 9 سنوات غير قابلة للتمديد.",
+            "vocabulary": [
+              { "ro": "garantul supremației Constituției", "en": "guarantor of constitutional supremacy", "ar": "ضامنة سمو الدستور" },
+              { "ro": "9 judecători pe 9 ani", "en": "9 judges for 9 years", "ar": "9 قضاة لمدة 9 سنوات" }
+            ],
+            "why_it_matters_ar": "من أشهر الأسئلة الدستورية في المقابلة حول عدد قضاة المحكمة الدستورية ومدة ولايتهم.",
+            "why_it_matters_en": "Famous ANC question regarding 9 judges and 9-year non-renewable term.",
+            "related_quiz_question_ids": [142],
+            "related_writing_topic_id": "art_142_curtea_constitutionala"
+          }
+        ]
+      },
+      {
+        "id": "euroatlantic_integration",
+        "title_ro": "Titlul VI - Integrarea Euroatlantică",
+        "title_en": "Title VI - Euro-Atlantic Integration",
+        "title_ar": "الباب السادس - التكامل الأوروبي الأطلسي",
+        "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=80",
+        "articles": [
+          {
+            "article_number": 148,
+            "title_ro": "Integrarea în Uniunea Europeană",
+            "title_en": "Integration into the European Union",
+            "title_ar": "الانضمام إلى الاتحاد الأوروبي",
+            "official_text_ro": "Art. 148 (1) Aderarea României la tratatele constitutive ale Uniunii Europene se face prin lege adoptată în ședința comună a Camerei Deputaților și Senatului, cu o majoritate de două treimi. (2) Ca urmare a aderării, prevederile tratatelor constitutive ale UE au prioritate față de dispozițiile contrare din legile interne.",
+            "official_text_en": "Art. 148 (1) Accession of Romania to the founding treaties of the European Union takes place by law passed in joint session of Parliament by a two-thirds majority. (2) EU treaty provisions take precedence over contrary internal laws.",
+            "official_text_ar": "المادة 148 (1) يتم انضمام رومانيا للمعاهدات المؤسسة للاتحاد الأوروبي بموجب قانون يُعتمد بأغلبية ثلثي البرلمان. (2) أحكام معاهدات الاتحاد الأوروبي لها الأولوية على الأحكام الوطنية المخالفة.",
+            "simplified_explanation_ro": "România este membru al Uniunii Europene (din 2007), iar dreptul european are prioritate față de legile interne.",
+            "simplified_explanation_en": "Romania joined the EU in 2007, and EU law takes precedence over conflicting national laws.",
+            "simplified_explanation_ar": "رومانيا عضو في الاتحاد الأوروبي منذ 2007، وللقانون الأوروبي الأولوية على القوانين الوطنية المخالفة.",
+            "vocabulary": [
+              { "ro": "aderarea la Uniunea Europeană (2007)", "en": "EU Accession (2007)", "ar": "الانضمام للاتحاد الأوروبي (2007)" },
+              { "ro": "prioritatea dreptului european", "en": "precedence of EU law", "ar": "أولوية القانون الأوروبي" }
+            ],
+            "why_it_matters_ar": "تؤكد انضمام رومانيا للاتحاد الأوروبي عام 2007 وهو من الأسئلة الأساسية.",
+            "why_it_matters_en": "Confirms 2007 EU Accession status in the citizenship test.",
+            "related_quiz_question_ids": [148],
+            "related_writing_topic_id": "art_148_ue"
+          }
+        ]
+      }
+    ]
+  }
+}

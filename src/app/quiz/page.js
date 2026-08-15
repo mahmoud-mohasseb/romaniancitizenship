@@ -315,9 +315,20 @@ function QuizContent() {
                       <p className="text-emerald-400">الإجابة الصحيحة: {item.correctAnswer}</p>
                     </div>
                     {(item.question.explanation_ar || item.question.explanation_en) && (
-                      <p className="text-[11px] text-slate-300 pt-1 border-t border-slate-700/40 leading-relaxed font-semibold">
-                        💡 {appLang === 'ar' ? item.question.explanation_ar : item.question.explanation_en}
-                      </p>
+                      <div className="pt-2 border-t border-slate-700/40 space-y-2">
+                        <p className="text-[11px] text-slate-300 leading-relaxed font-semibold">
+                          💡 {appLang === 'ar' ? item.question.explanation_ar : item.question.explanation_en}
+                        </p>
+                        {item.question.category === 'constitution' && (
+                          <Link
+                            href="/constitution"
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-600/20 border border-emerald-500/30 text-emerald-400 text-xs font-bold hover:bg-emerald-600/30 transition-all"
+                          >
+                            <BookOpen className="w-3.5 h-3.5" />
+                            <span>اقرأ مواد الدستور ذات الصلة 📖</span>
+                          </Link>
+                        )}
+                      </div>
                     )}
                   </div>
                 ))}

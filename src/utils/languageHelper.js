@@ -28,6 +28,8 @@ export const UI_STRINGS = {
     conversationQuizNav: 'لعبة المحادثات',
     grammarNav: 'شرح القواعد',
     grammarQuizNav: 'لعبة القواعد',
+    constitutionReaderNav: 'قراءة الدستور الروماني 📖',
+    constitutionWritingNav: 'كتابة وتطبيق الدستور ✍️',
     aiNav: 'WebLlama AI 🤖',
     studyNow: 'ابدأ المذاكرة المصورة',
     testYourself: 'اختبر نفسك في الامتحان 🏆',

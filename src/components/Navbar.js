@@ -21,6 +21,7 @@ import {
   Music,
   Heart,
   FileText,
+  ShieldCheck,
   ExternalLink,
   ChevronLeft, 
   ChevronRight 
@@ -42,6 +43,7 @@ export default function Navbar() {
     { href: '/anthem', label: appLang === 'ar' ? 'النشيد الوطني الروماني 🇷🇴' : appLang === 'en' ? 'National Anthem 🇷🇴' : 'Imnul Național 🇷🇴', sub: appLang === 'ar' ? 'الكلمات بالفيديو والصوت والترجمة' : appLang === 'en' ? 'Lyrics with Video, Audio & Notes' : 'Versuri cu Video & Audio', icon: Music, color: 'text-amber-400' },
     { href: '/conversations', label: strings.conversationsNav, sub: appLang === 'ar' ? 'حوارات الرومانية والمقابلة' : appLang === 'en' ? 'Daily Dialogues' : 'Dialoguri Zilnice', icon: MessageSquare, color: 'text-emerald-400' },
     { href: '/conversation-quiz', label: strings.conversationQuizNav, sub: appLang === 'ar' ? 'لعبة حوارات الحياة اليومية' : appLang === 'en' ? 'Conversation Quiz Game' : 'Joc de Conversații', icon: Gamepad2, color: 'text-indigo-400' },
+    { href: '/constitution', label: appLang === 'ar' ? 'قراءة الدستور الروماني 📖' : appLang === 'en' ? 'Romanian Constitution 📖' : 'Constituția României 📖', sub: appLang === 'ar' ? 'تصفح مواد وأبواب الدستور الرسمي الشاملة' : appLang === 'en' ? 'Browse Official Articles & Titles' : 'Răsfoiește Articolele & Titlurile Oficiale', icon: ShieldCheck, color: 'text-emerald-400' },
     { href: '/constitution-writing', label: strings.constitutionWritingNav || (appLang === 'ar' ? 'كتابة الدستور ✍️' : appLang === 'en' ? 'Constitution Writing ✍️' : 'Scriere Constituțională ✍️'), sub: appLang === 'ar' ? 'تدرب على كتابة وصياغة الإجابات الدستورية' : appLang === 'en' ? 'Practice writing constitutional responses' : 'Exersează redactarea răspunsurilor constituționale', icon: FileText, color: 'text-rose-400' },
     { href: '/grammar', label: strings.grammarNav || (appLang === 'ar' ? 'شرح قواعد الرومانية' : appLang === 'en' ? 'Romanian Grammar Guide' : 'Ghid de Gramatică'), sub: appLang === 'ar' ? 'الأجناس والضمائر والتصريفات' : appLang === 'en' ? 'Nouns, Articles & Conjugations' : 'Genuri, Articole & Conjugări', icon: GraduationCap, color: 'text-amber-400' },
     { href: '/grammar-quiz', label: strings.grammarQuizNav || (appLang === 'ar' ? 'لعبة اختبار القواعد' : appLang === 'en' ? 'Grammar Quiz Game' : 'Joc de Gramatică'), sub: appLang === 'ar' ? 'تحدي القواعد والتصريفات' : appLang === 'en' ? 'Grammar Challenges' : 'Sfidări de Gramatică', icon: Gamepad2, color: 'text-rose-400' },
