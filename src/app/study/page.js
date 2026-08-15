@@ -14,7 +14,8 @@ import {
   Maximize2, 
   X, 
   ChevronRight, 
-  ChevronLeft 
+  ChevronLeft,
+  Lightbulb
 } from 'lucide-react';
 import questions from '../../data/questions_ar.json';
 import Navbar from '../../components/Navbar';
@@ -50,6 +51,7 @@ function StudyContent() {
 
   const currentQ = filteredQuestions[currentIndex] || questions[0];
   const categoryMeta = getCategoryMeta(currentQ.category || activeCategory);
+  const imageSrc = currentQ?.image || currentQ?.image_url;
 
   useEffect(() => {
     setCurrentIndex(0);
@@ -101,7 +103,7 @@ function StudyContent() {
   };
 
   return (
-    <div className="min-h-screen pb-28 sm:pb-24 bg-theme-main text-theme-main flex flex-col font-cairo">
+    <div className="min-h-screen pb-28 sm:pb-24 bg-theme-main text-theme-main flex flex-col font-latin">
       <Navbar />
 
       <main className={`flex-1 w-full max-w-4xl mx-auto px-4 py-6 space-y-4 animate-fade-in-up ${
@@ -157,19 +159,19 @@ function StudyContent() {
         </div>
 
         {/* Question & Answer Main Flashcard */}
-        <div className={`rounded-2xl border shadow-xl p-5 space-y-4 animate-scale-in ${
+        <div className={`rounded-3xl border shadow-xl p-5 space-y-4 animate-scale-in ${
           isDark ? 'bg-slate-800/90 border-slate-700/80 text-white' : 'bg-white border-slate-200 text-slate-900'
         }`}>
           {/* Question Image Preview with Fallback */}
-          {currentQ.image && (
+          {imageSrc && (
             <div className="relative w-full h-56 sm:h-72 rounded-2xl overflow-hidden border-2 border-slate-700/60 bg-slate-950 group cursor-pointer shadow-lg" onClick={() => setModalVisible(true)}>
               <img 
-                src={currentQ.image} 
+                src={imageSrc} 
                 alt={currentQ.question}
                 onError={(e) => {
                   e.currentTarget.src = '/icon.png';
                 }}
-                className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
               <button 
                 onClick={() => setModalVisible(true)}
@@ -195,29 +197,46 @@ function StudyContent() {
             {!showAnswer ? (
               <button
                 onClick={() => setShowAnswer(true)}
-                className="w-full py-3.5 px-4 bg-gradient-to-r from-rose-600 via-amber-600 to-rose-700 hover:opacity-95 text-white font-black rounded-xl text-xs sm:text-sm shadow-md shadow-rose-600/30 transition-all flex items-center justify-center space-x-2 space-x-reverse animate-pulse-glow"
+                className="w-full py-3.5 px-4 bg-gradient-to-r from-rose-600 via-amber-600 to-rose-700 hover:opacity-95 text-white font-black rounded-2xl text-xs sm:text-sm shadow-md shadow-rose-600/30 transition-all flex items-center justify-center space-x-2 space-x-reverse animate-pulse-glow"
               >
                 <Eye className="w-4 h-4" />
                 <span>{strings.showAnswer || 'عرض الإجابة والترجمة'}</span>
               </button>
             ) : (
-              <div className={`p-4 rounded-xl border space-y-2 animate-fade-in-up ${
-                isDark ? 'bg-slate-900/90 border-emerald-500/40 text-slate-100' : 'bg-emerald-50 border-emerald-200 text-slate-900'
-              }`}>
-                <div className="flex items-center justify-between border-b border-emerald-500/30 pb-2">
-                  <span className="text-[10px] font-bold text-emerald-400">🇷🇴 Răspuns Model Oficial:</span>
-                  <button
-                    onClick={() => speakText(currentQ.answer)}
-                    className="text-xs font-bold text-emerald-400 hover:underline flex items-center space-x-1 space-x-reverse"
-                  >
-                    <Volume2 className="w-3.5 h-3.5" />
-                    <span>استمع للإجابة 🔊</span>
-                  </button>
+              <div className="space-y-3 animate-fade-in-up">
+                <div className={`p-4 rounded-2xl border space-y-2 ${
+                  isDark ? 'bg-slate-900/90 border-emerald-500/40 text-slate-100' : 'bg-emerald-50 border-emerald-200 text-slate-900'
+                }`}>
+                  <div className="flex items-center justify-between border-b border-emerald-500/30 pb-2">
+                    <span className="text-[10px] font-bold text-emerald-400">🇷🇴 Răspuns Model Oficial:</span>
+                    <button
+                      onClick={() => speakText(currentQ.answer)}
+                      className="text-xs font-bold text-emerald-400 hover:underline flex items-center space-x-1 space-x-reverse"
+                    >
+                      <Volume2 className="w-3.5 h-3.5" />
+                      <span>استمع للإجابة 🔊</span>
+                    </button>
+                  </div>
+                  <p className="text-sm sm:text-base font-extrabold text-emerald-400 leading-snug">{currentQ.answer}</p>
+                  <p className="text-xs sm:text-sm text-theme-sub pt-1 leading-relaxed font-bold">
+                    🇸🇦 {getAnswerText(currentQ, appLang)}
+                  </p>
                 </div>
-                <p className="text-sm sm:text-base font-extrabold text-emerald-400 leading-snug">{currentQ.answer}</p>
-                <p className="text-xs sm:text-sm text-theme-sub pt-1 leading-relaxed font-bold">
-                  🇸🇦 {getAnswerText(currentQ, appLang)}
-                </p>
+
+                {/* Factually Accurate Educational & Context Insights Card */}
+                {(currentQ.explanation_ar || currentQ.explanation_en) && (
+                  <div className={`p-4 rounded-2xl border-2 space-y-1.5 ${
+                    isDark ? 'bg-amber-500/10 border-amber-500/30 text-amber-200' : 'bg-amber-50 border-amber-300 text-amber-950'
+                  }`}>
+                    <span className="text-[11px] font-black text-amber-400 flex items-center gap-1.5">
+                      <Lightbulb className="w-4 h-4 text-amber-400 shrink-0" />
+                      <span>{appLang === 'ar' ? 'توضيح ومعلومات إضافية للمقابلة:' : 'Educational Insight & Interview Note:'}</span>
+                    </span>
+                    <p className="text-xs sm:text-sm font-bold leading-relaxed">
+                      {appLang === 'ar' ? currentQ.explanation_ar : (currentQ.explanation_en || currentQ.explanation_ar)}
+                    </p>
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -228,7 +247,7 @@ function StudyContent() {
           <button
             onClick={handlePrev}
             disabled={currentIndex === 0}
-            className={`py-3.5 px-4 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center space-x-2 space-x-reverse border transition-all disabled:opacity-40 ${
+            className={`py-3.5 px-4 rounded-2xl font-bold text-xs sm:text-sm flex items-center justify-center space-x-2 space-x-reverse border transition-all disabled:opacity-40 ${
               isDark ? 'bg-slate-800 border-slate-700 text-white hover:bg-slate-700' : 'bg-white border-slate-200 text-slate-800 shadow-sm hover:bg-slate-100'
             }`}
           >
@@ -239,7 +258,7 @@ function StudyContent() {
           <button
             onClick={handleNext}
             disabled={currentIndex === filteredQuestions.length - 1}
-            className="py-3.5 px-4 bg-rose-600 hover:bg-rose-500 disabled:opacity-40 text-white font-bold text-xs sm:text-sm rounded-xl flex items-center justify-center space-x-2 space-x-reverse shadow-md shadow-rose-600/30 transition-all"
+            className="py-3.5 px-4 bg-rose-600 hover:bg-rose-500 disabled:opacity-40 text-white font-bold text-xs sm:text-sm rounded-2xl flex items-center justify-center space-x-2 space-x-reverse shadow-md shadow-rose-600/30 transition-all"
           >
             <span>{strings.next || 'التالي'}</span>
             {isRtl ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
@@ -251,7 +270,7 @@ function StudyContent() {
       <ImageModal 
         isOpen={modalVisible}
         onClose={() => setModalVisible(false)}
-        imageUrl={currentQ?.image}
+        imageUrl={imageSrc}
         title={currentQ?.question}
         caption={getQuestionText(currentQ, appLang)}
       />
