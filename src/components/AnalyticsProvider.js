@@ -36,8 +36,9 @@ export default function AnalyticsProvider({ children }) {
   const pathname = usePathname();
   const { appLang } = useLanguage();
   const lastTrackedPathRef = useRef(null);
+  const lastHeartbeatTimeRef = useRef(0);
 
-  // 1. Route Change & Page View Tracking
+  // 1. SPA Route Change & Page View Tracking (Deduplicated against React StrictMode)
   useEffect(() => {
     if (!pathname) return;
     if (lastTrackedPathRef.current === pathname) return; // Prevent duplicate SPA tracking
@@ -61,10 +62,15 @@ export default function AnalyticsProvider({ children }) {
     }).catch(() => {});
   }, [pathname, appLang]);
 
-  // 2. Periodic 45s Activity Heartbeat (Active User Tracking)
+  // 2. Periodic 45s Activity Heartbeat & Interaction Throttle
   useEffect(() => {
     const sendHeartbeat = () => {
       if (typeof document !== 'undefined' && document.visibilityState !== 'visible') return;
+
+      const now = Date.now();
+      // Throttle heartbeats to minimum 30 seconds interval
+      if (now - lastHeartbeatTimeRef.current < 30000) return;
+      lastHeartbeatTimeRef.current = now;
 
       const anonymousId = getOrCreateAnonymousId();
       const sessionId = getOrCreateSessionId();
@@ -83,14 +89,30 @@ export default function AnalyticsProvider({ children }) {
       }).catch(() => {});
     };
 
-    // Initial heartbeat after 5s
-    const initialTimer = setTimeout(sendHeartbeat, 5000);
+    // Initial heartbeat after 3s
+    const initialTimer = setTimeout(sendHeartbeat, 3000);
     // Periodic heartbeat every 45s
     const heartbeatInterval = setInterval(sendHeartbeat, 45000);
+
+    // Listen to user interaction signals (click, scroll, keydown)
+    const handleUserInteraction = () => {
+      sendHeartbeat();
+    };
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('click', handleUserInteraction, { passive: true });
+      window.addEventListener('keydown', handleUserInteraction, { passive: true });
+      window.addEventListener('scroll', handleUserInteraction, { passive: true });
+    }
 
     return () => {
       clearTimeout(initialTimer);
       clearInterval(heartbeatInterval);
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('click', handleUserInteraction);
+        window.removeEventListener('keydown', handleUserInteraction);
+        window.removeEventListener('scroll', handleUserInteraction);
+      }
     };
   }, [pathname, appLang]);
 

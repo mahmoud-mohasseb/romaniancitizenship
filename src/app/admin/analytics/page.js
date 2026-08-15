@@ -17,7 +17,8 @@ import {
   Layers, 
   ArrowLeft,
   FileText,
-  CheckCircle2
+  CheckCircle2,
+  Calendar
 } from 'lucide-react';
 import Navbar from '../../../components/Navbar';
 import { useTheme } from '../../../context/ThemeContext';
@@ -55,6 +56,11 @@ function AdminAnalyticsContent() {
     const timer = setInterval(fetchMetrics, 10000);
     return () => clearInterval(timer);
   }, []);
+
+  // Compute maximum count for SVG chart scaling
+  const maxChartCount = metrics?.visitorsOverTime 
+    ? Math.max(...metrics.visitorsOverTime.map(d => d.count), 1)
+    : 1;
 
   return (
     <div className="min-h-screen pb-28 sm:pb-24 bg-theme-main text-theme-main flex flex-col font-latin">
@@ -179,7 +185,40 @@ function AdminAnalyticsContent() {
 
             </div>
 
-            {/* 2. REAL-TIME ACTIVE USERS BREAKDOWN (By Page, Language, Device) */}
+            {/* 2. VISITORS OVER TIME CHART */}
+            <div className={`p-6 rounded-3xl border shadow-xl space-y-4 ${
+              isDark ? 'bg-slate-800/90 border-slate-700' : 'bg-white border-slate-200'
+            }`}>
+              <div className="flex items-center justify-between">
+                <h3 className="text-base font-black flex items-center gap-2">
+                  <TrendingUp className="w-5 h-5 text-rose-500" />
+                  <span>الزوار عبر الوقت (Visitors Over Time — Last 7 Days)</span>
+                </h3>
+                <span className="text-xs font-bold text-theme-sub">Daily Trend</span>
+              </div>
+
+              <div className="h-44 flex items-end justify-between gap-2 pt-6 px-2 border-b border-slate-700/50 pb-2">
+                {(metrics.visitorsOverTime || []).map((item, idx) => {
+                  const heightPct = Math.max(Math.round((item.count / maxChartCount) * 100), 12);
+                  return (
+                    <div key={idx} className="flex-1 flex flex-col items-center gap-2 group h-full justify-end">
+                      <span className="text-[10px] font-black text-rose-400 group-hover:scale-110 transition-transform">
+                        {item.count}
+                      </span>
+                      <div 
+                        className="w-full max-w-[36px] bg-gradient-to-t from-rose-600 to-amber-500 rounded-t-xl transition-all group-hover:from-rose-500 group-hover:to-amber-400 shadow-md"
+                        style={{ height: `${heightPct}%` }}
+                      />
+                      <span className="text-[10px] font-bold text-slate-400 font-latin truncate w-full text-center">
+                        {item.date.substring(5)}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* 3. REAL-TIME ACTIVE USERS BREAKDOWN (By Page, Language, Device) */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               
               {/* Active By Page */}
@@ -260,7 +299,7 @@ function AdminAnalyticsContent() {
 
             </div>
 
-            {/* 3. POPULAR PAGES TABLE */}
+            {/* 4. POPULAR PAGES TABLE */}
             <div className={`p-6 rounded-3xl border shadow-xl space-y-4 ${
               isDark ? 'bg-slate-800/90 border-slate-700' : 'bg-white border-slate-200'
             }`}>
@@ -294,7 +333,7 @@ function AdminAnalyticsContent() {
               </div>
             </div>
 
-            {/* 4. DEFINITIONS DOCUMENTATION CARD */}
+            {/* 5. DEFINITIONS DOCUMENTATION CARD */}
             <div className="p-5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-xs font-bold space-y-2">
               <span className="text-amber-400 font-black block">📖 تعريفات المقاييس المعتمدة في النظام:</span>
               <ul className="list-disc list-inside space-y-1 text-slate-300">
