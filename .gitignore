@@ -17,5 +17,6 @@ node_modules/
 
 # Logs
 npm-debug.log*
-yarn-debug.log*
+# Analytics runtime database
+.analytics_db.json
 yarn-error.log*

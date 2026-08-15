@@ -89,6 +89,7 @@ export default function Navbar() {
         { href: '/alphabet-quiz', label: strings.alphabetQuizNav, sub: appLang === 'ar' ? 'لعبة نطق واستماع الحروف' : appLang === 'en' ? 'Alphabet Audio Game' : 'Joc Audio Alfabet', icon: Gamepad2, color: 'text-rose-400' },
         { href: '/language-quiz', label: appLang === 'ar' ? 'اختبار المفردات والجمل' : appLang === 'en' ? 'Vocabulary Quiz' : 'Test de Vocabular', sub: appLang === 'ar' ? 'تحدي كلمات وجمل اللغة' : appLang === 'en' ? 'Vocabulary & Grammar Quiz' : 'Test Vocabular & Expresii', icon: Puzzle, color: 'text-teal-400' },
         { href: '/ai', label: strings.aiNav, sub: appLang === 'ar' ? 'المساعد الذكي Hybrid AI' : appLang === 'en' ? 'AI Citizenship Tutor' : 'Asistent AI Cetățenie', icon: Sparkles, color: 'text-amber-300' },
+        { href: '/admin/analytics', label: appLang === 'ar' ? 'لوحة تحكم التحليلات 📊' : appLang === 'en' ? 'Admin Analytics 📊' : 'Panou Analitică 📊', sub: appLang === 'ar' ? 'إحصائيات الزوار والمستخدمين النشطين' : appLang === 'en' ? 'Visitors & Active Users Metrics' : 'Analitică Vizitatori & Utilizatori', icon: GraduationCap, color: 'text-emerald-400' },
       ]
     }
   ];
