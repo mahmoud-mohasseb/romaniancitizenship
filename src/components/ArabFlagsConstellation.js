@@ -1,65 +1,121 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { useTheme } from '../context/ThemeContext';
-import { Globe, Sparkles } from 'lucide-react';
+import { Sparkles, Globe, Heart } from 'lucide-react';
 
 // All 22 Arab League Member State Flags with native AR & EN names
 const ARAB_COUNTRIES = [
-  { code: 'SA', name_ar: 'السعودية', name_en: 'Saudi Arabia', flag: '🇸🇦' },
-  { code: 'EG', name_ar: 'مصر', name_en: 'Egypt', flag: '🇪🇬' },
-  { code: 'AE', name_ar: 'الإمارات', name_en: 'UAE', flag: '🇦🇪' },
-  { code: 'MA', name_ar: 'المغرب', name_en: 'Morocco', flag: '🇲🇦' },
-  { code: 'DZ', name_ar: 'الجزائر', name_en: 'Algeria', flag: '🇩🇿' },
-  { code: 'IQ', name_ar: 'العراق', name_en: 'Iraq', flag: '🇮🇶' },
-  { code: 'JO', name_ar: 'الأردن', name_en: 'Jordan', flag: '🇯🇴' },
-  { code: 'KW', name_ar: 'الكويت', name_en: 'Kuwait', flag: '🇰🇼' },
-  { code: 'LB', name_ar: 'لبنان', name_en: 'Lebanon', flag: '🇱🇧' },
-  { code: 'LY', name_ar: 'ليبيا', name_en: 'Libya', flag: '🇱🇾' },
-  { code: 'OM', name_ar: 'عُمان', name_en: 'Oman', flag: '🇴🇲' },
-  { code: 'PS', name_ar: 'فلسطين', name_en: 'Palestine', flag: '🇵🇸' },
-  { code: 'QA', name_ar: 'قطر', name_en: 'Qatar', flag: '🇶🇦' },
-  { code: 'SY', name_ar: 'سوريا', name_en: 'Syria', flag: '🇸🇾' },
-  { code: 'TN', name_ar: 'تونس', name_en: 'Tunisia', flag: '🇹🇳' },
-  { code: 'YE', name_ar: 'اليمن', name_en: 'Yemen', flag: '🇾🇪' },
-  { code: 'BH', name_ar: 'البحرين', name_en: 'Bahrain', flag: '🇧🇭' },
-  { code: 'SD', name_ar: 'السودان', name_en: 'Sudan', flag: '🇸🇩' },
-  { code: 'SO', name_ar: 'الصومال', name_en: 'Somalia', flag: '🇸🇴' },
-  { code: 'MR', name_ar: 'موريتانيا', name_en: 'Mauritania', flag: '🇲🇷' },
-  { code: 'DJ', name_ar: 'جيبوتي', name_en: 'Djibouti', flag: '🇩🇯' },
-  { code: 'KM', name_ar: 'جزر القمر', name_en: 'Comoros', flag: '🇰🇲' },
+  { code: 'SA', name_ar: 'المملكة العربية السعودية', name_en: 'Saudi Arabia', flag: '🇸🇦' },
+  { code: 'EG', name_ar: 'جمهورية مصر العربية', name_en: 'Egypt', flag: '🇪🇬' },
+  { code: 'AE', name_ar: 'الإمارات العربية المتحدة', name_en: 'United Arab Emirates', flag: '🇦🇪' },
+  { code: 'MA', name_ar: 'المملكة المغربية', name_en: 'Morocco', flag: '🇲🇦' },
+  { code: 'DZ', name_ar: 'الجمهورية الجزائرية', name_en: 'Algeria', flag: '🇩🇿' },
+  { code: 'IQ', name_ar: 'جمهورية العراق', name_en: 'Iraq', flag: '🇮🇶' },
+  { code: 'JO', name_ar: 'المملكة الأردنية الهاشمية', name_en: 'Jordan', flag: '🇯🇴' },
+  { code: 'KW', name_ar: 'دولة الكويت', name_en: 'Kuwait', flag: '🇰🇼' },
+  { code: 'LB', name_ar: 'الجمهورية اللبنانية', name_en: 'Lebanon', flag: '🇱🇧' },
+  { code: 'LY', name_ar: 'دولة ليبيا', name_en: 'Libya', flag: '🇱🇾' },
+  { code: 'OM', name_ar: 'سلطنة عُمان', name_en: 'Oman', flag: '🇴🇲' },
+  { code: 'PS', name_ar: 'دولة فلسطين', name_en: 'Palestine', flag: '🇵🇸' },
+  { code: 'QA', name_ar: 'دولة قطر', name_en: 'Qatar', flag: '🇶🇦' },
+  { code: 'SY', name_ar: 'الجمهورية العربية السورية', name_en: 'Syria', flag: '🇸🇾' },
+  { code: 'TN', name_ar: 'الجمهورية التونسية', name_en: 'Tunisia', flag: '🇹🇳' },
+  { code: 'YE', name_ar: 'الجمهورية اليمنية', name_en: 'Yemen', flag: '🇾🇪' },
+  { code: 'BH', name_ar: 'مملكة البحرين', name_en: 'Bahrain', flag: '🇧🇭' },
+  { code: 'SD', name_ar: 'جمهورية السودان', name_en: 'Sudan', flag: '🇸🇩' },
+  { code: 'SO', name_ar: 'جمهورية الصومال', name_en: 'Somalia', flag: '🇸🇴' },
+  { code: 'MR', name_ar: 'الجمهورية الإسلامية الموريتانية', name_en: 'Mauritania', flag: '🇲🇷' },
+  { code: 'DJ', name_ar: 'جمهورية جيبوتي', name_en: 'Djibouti', flag: '🇩🇯' },
+  { code: 'KM', name_ar: 'جمهورية جزر القمر', name_en: 'Comoros', flag: '🇰🇲' },
 ];
 
 export default function ArabFlagsConstellation() {
-  const { appLang, setAppLang, strings } = useLanguage();
+  const { appLang, setAppLang } = useLanguage();
   const { theme } = useTheme();
   const isDark = theme === 'dark';
   const shouldReduceMotion = useReducedMotion();
 
-  const [hoveredCountry, setHoveredCountry] = useState(null);
-  const [mobileGroupIndex, setMobileGroupIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
-  // Mobile rotation logic: rotate through subsets of flags smoothly
+  // Timer loop: advances to next Arab country flag every 2.2 seconds
   useEffect(() => {
-    if (shouldReduceMotion) return;
+    if (isPaused || shouldReduceMotion) return;
+    
     const interval = setInterval(() => {
-      setMobileGroupIndex((prev) => (prev + 1) % Math.ceil(ARAB_COUNTRIES.length / 6));
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [shouldReduceMotion]);
+      setCurrentIndex((prev) => (prev + 1) % ARAB_COUNTRIES.length);
+    }, 2200);
 
-  // Trigonometric orbital layout calculation for desktop constellation
-  const getOrbitalPosition = (index, total) => {
-    const angle = (index / total) * 2 * Math.PI - Math.PI / 2;
-    // Elliptical radii for desktop
-    const rx = 180;
-    const ry = 95;
-    const x = Math.cos(angle) * rx;
-    const y = Math.sin(angle) * ry;
-    return { x, y };
+    return () => clearInterval(interval);
+  }, [isPaused, shouldReduceMotion]);
+
+  const activeCountry = ARAB_COUNTRIES[currentIndex];
+
+  // 4 Cinematic Motion Trajectories (orbiting, scale zoom, rotation)
+  const trajectoryType = currentIndex % 4;
+
+  const getMotionVariant = (type) => {
+    switch (type) {
+      case 0:
+        // Top-Right Arc Orbit to Bottom-Left
+        return {
+          initial: { x: 120, y: -90, scale: 0.3, opacity: 0, rotate: 18 },
+          animate: { 
+            x: [120, 20, -110], 
+            y: [-90, -35, 75], 
+            scale: [0.3, 1.45, 0.4], 
+            opacity: [0, 1, 0], 
+            rotate: [18, -6, -24] 
+          },
+          transition: { duration: 2.1, ease: [0.16, 1, 0.3, 1] }
+        };
+      case 1:
+        // Bottom-Left Swoop Orbit to Top-Right
+        return {
+          initial: { x: -130, y: 85, scale: 0.3, opacity: 0, rotate: -22 },
+          animate: { 
+            x: [-130, -25, 115], 
+            y: [85, 25, -75], 
+            scale: [0.3, 1.5, 0.4], 
+            opacity: [0, 1, 0], 
+            rotate: [-22, 8, 22] 
+          },
+          transition: { duration: 2.1, ease: [0.16, 1, 0.3, 1] }
+        };
+      case 2:
+        // Top-Left Curve Orbit to Bottom-Right
+        return {
+          initial: { x: -115, y: -85, scale: 0.3, opacity: 0, rotate: -16 },
+          animate: { 
+            x: [-115, 35, 110], 
+            y: [-85, 20, 85], 
+            scale: [0.3, 1.4, 0.4], 
+            opacity: [0, 1, 0], 
+            rotate: [-16, 5, 20] 
+          },
+          transition: { duration: 2.1, ease: [0.16, 1, 0.3, 1] }
+        };
+      case 3:
+      default:
+        // Direct Center Perspective Zoom Burst
+        return {
+          initial: { x: 0, y: 70, scale: 0.2, opacity: 0, rotate: 0 },
+          animate: { 
+            x: [0, 0, 0], 
+            y: [70, 0, -70], 
+            scale: [0.2, 1.55, 0.3], 
+            opacity: [0, 1, 0], 
+            rotate: [0, 0, 0] 
+          },
+          transition: { duration: 2.1, ease: [0.16, 1, 0.3, 1] }
+        };
+    }
   };
+
+  const currentVariant = getMotionVariant(trajectoryType);
 
   return (
     <div className={`w-full relative rounded-3xl p-6 border shadow-2xl overflow-hidden transition-all backdrop-blur-md ${
@@ -67,144 +123,99 @@ export default function ArabFlagsConstellation() {
         ? 'bg-gradient-to-b from-slate-900/90 via-slate-800/80 to-slate-900/90 border-slate-700/80' 
         : 'bg-gradient-to-b from-white via-rose-50/40 to-white border-slate-200'
     }`}>
-      {/* Ambient background glow layer */}
-      <div className="absolute inset-0 bg-gradient-to-r from-rose-500/5 via-amber-500/5 to-blue-500/5 pointer-events-none" />
+      {/* Ambient Radial Background Glow */}
+      <div className="absolute inset-0 bg-gradient-to-r from-rose-500/10 via-amber-500/10 to-rose-500/10 pointer-events-none" />
 
-      {/* Header Label */}
-      <div className="text-center space-y-1 relative z-10 mb-4">
+      {/* Top Header Badge */}
+      <div className="text-center relative z-10 mb-3">
         <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-[11px] font-black bg-rose-500/15 text-rose-400 border border-rose-500/20">
           <Globe className="w-3.5 h-3.5 text-rose-400" />
-          <span>{appLang === 'ar' ? 'دعم كامل باللغة العربية لكل الدول العربية 🌍' : 'Full Arabic Support Across the Arab World 🌍'}</span>
+          <span>{activeCountry.flag} {activeCountry.name_ar} • ({currentIndex + 1} / 22)</span>
         </span>
       </div>
 
-      {/* DESKTOP & TABLET CONSTELLATION VIEW (Hidden on small mobile screens) */}
-      <div className="hidden sm:flex relative min-h-[260px] items-center justify-center py-6 z-10">
-        {/* Central Arabic Language Centerpiece Button */}
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.6, cubicBezier: [0.16, 1, 0.3, 1] }}
-          className="relative z-20 text-center"
+      {/* CINEMATIC SINGLE-FLAG SPOTLIGHT ORBITER */}
+      <div className="relative min-h-[200px] flex items-center justify-center py-4 z-10">
+        {/* Central Anchor: Arabic Language Button */}
+        <motion.div 
+          className="relative z-20 text-center cursor-pointer"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => setAppLang('ar')}
         >
-          <button
-            onClick={() => setAppLang('ar')}
-            className={`px-6 py-3.5 rounded-2xl font-black text-sm sm:text-base flex items-center gap-2.5 shadow-xl transition-all border ${
-              appLang === 'ar'
-                ? 'bg-gradient-to-r from-rose-600 via-amber-600 to-rose-600 text-white border-rose-400/50 shadow-rose-600/30 scale-105 animate-pulse-glow'
-                : isDark ? 'bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700' : 'bg-white text-slate-800 border-slate-300 shadow-md hover:bg-slate-100'
-            }`}
-          >
-            <span className="text-lg">🇸🇦</span>
-            <span>العربية</span>
-            <Sparkles className="w-4 h-4 text-amber-300 animate-spin-slow" />
-          </button>
+          <div className={`px-7 py-3.5 rounded-2xl font-black text-sm sm:text-base flex items-center gap-3 shadow-2xl border transition-all ${
+            appLang === 'ar'
+              ? 'bg-gradient-to-r from-rose-600 via-amber-600 to-rose-600 text-white border-rose-400/50 shadow-rose-600/40 animate-pulse-glow'
+              : isDark ? 'bg-slate-800 text-slate-200 border-slate-700 hover:bg-slate-700' : 'bg-white text-slate-800 border-slate-300 shadow-md hover:bg-slate-100'
+          }`}>
+            <span className="text-xl">🇸🇦</span>
+            <div className="text-right">
+              <span className="block leading-tight font-black">العربية</span>
+              <span className="text-[10px] text-rose-200 font-bold block">تعلم واختبر بلغة الضاد</span>
+            </div>
+            <Sparkles className="w-4 h-4 text-amber-300 animate-spin-slow shrink-0" />
+          </div>
         </motion.div>
 
-        {/* Floating Constellation Flags Array */}
-        {ARAB_COUNTRIES.map((country, idx) => {
-          const { x, y } = getOrbitalPosition(idx, ARAB_COUNTRIES.length);
-          const isHovered = hoveredCountry?.code === country.code;
-
-          // Varied unique animation duration & offset for dynamic micro-floating
-          const floatDuration = 4.5 + (idx % 5) * 0.6;
-          const floatDelay = (idx % 7) * 0.15;
-          const entranceDelay = 0.2 + idx * 0.04;
-
-          return (
+        {/* Dynamic Single-Flag Orbiting Spotlight */}
+        {!shouldReduceMotion && (
+          <AnimatePresence mode="wait">
             <motion.div
-              key={country.code}
-              initial={{ opacity: 0, scale: 0.5, x: 0, y: 0 }}
-              animate={{ 
-                opacity: 1, 
-                scale: 1,
-                x: shouldReduceMotion ? x : [x - 3, x + 3, x - 3],
-                y: shouldReduceMotion ? y : [y - 4, y + 4, y - 4],
-                rotate: shouldReduceMotion ? 0 : [-2, 2, -2]
-              }}
-              transition={{
-                opacity: { duration: 0.5, delay: entranceDelay },
-                scale: { duration: 0.5, delay: entranceDelay },
-                x: { duration: floatDuration, repeat: Infinity, ease: 'easeInOut', delay: floatDelay },
-                y: { duration: floatDuration + 0.5, repeat: Infinity, ease: 'easeInOut', delay: floatDelay },
-                rotate: { duration: floatDuration + 1, repeat: Infinity, ease: 'easeInOut', delay: floatDelay }
-              }}
-              whileHover={{ scale: 1.25, zIndex: 30 }}
-              onHoverStart={() => setHoveredCountry(country)}
-              onHoverEnd={() => setHoveredCountry(null)}
-              className="absolute cursor-pointer group"
-              style={{
-                left: `calc(50% + ${x}px - 20px)`,
-                top: `calc(50% + ${y}px - 20px)`,
-              }}
-            >
-              <div className={`w-10 h-10 rounded-2xl flex items-center justify-center text-xl shadow-lg border backdrop-blur-md transition-all ${
-                isDark 
-                  ? 'bg-slate-800/90 border-slate-700/80 hover:border-rose-500/80 shadow-slate-950/50' 
-                  : 'bg-white/90 border-slate-200/80 hover:border-rose-500/80 shadow-slate-300/40'
-              }`}>
-                <span>{country.flag}</span>
-              </div>
-
-              {/* Interactive Tooltip showing Country Name */}
-              <AnimatePresence>
-                {isHovered && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 8, scale: 0.9 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 5, scale: 0.9 }}
-                    transition={{ duration: 0.15 }}
-                    className={`absolute bottom-12 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-xl text-[11px] font-black whitespace-nowrap shadow-xl border z-40 pointer-events-none ${
-                      isDark ? 'bg-slate-900 text-white border-rose-500/40' : 'bg-slate-900 text-white border-rose-500/40'
-                    }`}
-                  >
-                    <span>{country.flag} {country.name_ar}</span>
-                    <span className="text-[9px] opacity-75 block text-center">({country.name_en})</span>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          );
-        })}
-      </div>
-
-      {/* MOBILE COMPACT ROTATING CAROUSEL VIEW */}
-      <div className="flex sm:hidden flex-col items-center space-y-4 py-3 z-10">
-        {/* Central Arabic Language Centerpiece Button */}
-        <button
-          onClick={() => setAppLang('ar')}
-          className={`w-full py-3 rounded-2xl font-black text-sm flex items-center justify-center gap-2 shadow-lg border transition-all ${
-            appLang === 'ar'
-              ? 'bg-gradient-to-r from-rose-600 to-amber-600 text-white border-rose-500/40 shadow-rose-600/30'
-              : isDark ? 'bg-slate-800 text-slate-300 border-slate-700' : 'bg-white text-slate-800 border-slate-200'
-          }`}
-        >
-          <span>🇸🇦</span>
-          <span>العربية (دعم كامل لجميع الدول)</span>
-        </button>
-
-        {/* Mobile Rotating Flag Grid Subset */}
-        <div className="grid grid-cols-6 gap-2 w-full pt-1">
-          {ARAB_COUNTRIES.slice(mobileGroupIndex * 6, mobileGroupIndex * 6 + 6).map((country, idx) => (
-            <motion.div
-              key={country.code}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: idx * 0.05 }}
+              key={activeCountry.code}
+              initial={currentVariant.initial}
+              animate={currentVariant.animate}
+              exit={{ opacity: 0, scale: 0.2 }}
+              transition={currentVariant.transition}
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
               onClick={() => setAppLang('ar')}
-              className={`p-2 rounded-xl border flex flex-col items-center justify-center shadow-md transition-all cursor-pointer ${
-                isDark ? 'bg-slate-800/90 border-slate-700/80' : 'bg-white border-slate-200'
-              }`}
+              className="absolute z-30 cursor-pointer pointer-events-auto"
             >
-              <span className="text-xl">{country.flag}</span>
-              <span className="text-[9px] font-bold text-theme-sub truncate w-full text-center mt-0.5">{country.name_ar}</span>
+              <div className={`px-4 py-2 rounded-2xl border shadow-2xl backdrop-blur-md flex items-center gap-2.5 transition-all group ${
+                isDark 
+                  ? 'bg-slate-900/95 border-rose-500/60 shadow-rose-500/20 text-white' 
+                  : 'bg-white/95 border-rose-500/60 shadow-rose-500/20 text-slate-900'
+              }`}>
+                <span className="text-2xl sm:text-3xl drop-shadow-md">{activeCountry.flag}</span>
+                <div className="text-right">
+                  <span className="block text-xs sm:text-sm font-black text-rose-400 leading-tight">
+                    {activeCountry.name_ar}
+                  </span>
+                  <span className="text-[10px] text-slate-400 font-bold block leading-tight">
+                    {activeCountry.name_en}
+                  </span>
+                </div>
+              </div>
             </motion.div>
-          ))}
-        </div>
+          </AnimatePresence>
+        )}
+
+        {/* Reduced Motion Static Fallback */}
+        {shouldReduceMotion && (
+          <div className="absolute top-2 right-4 text-2xl">
+            {activeCountry.flag}
+          </div>
+        )}
       </div>
 
-      {/* All 3 Language Buttons Selector Bar */}
-      <div className="grid grid-cols-3 gap-2 pt-3 border-t border-slate-700/40 relative z-10">
+      {/* Progress Dots Indicator bar for all 22 Arab countries */}
+      <div className="flex items-center justify-center gap-1 pt-3 border-t border-slate-700/40 relative z-10 overflow-x-auto no-scrollbar">
+        {ARAB_COUNTRIES.map((c, i) => (
+          <button
+            key={c.code}
+            onClick={() => setCurrentIndex(i)}
+            title={`${c.flag} ${c.name_ar}`}
+            className={`w-2 h-2 rounded-full transition-all ${
+              i === currentIndex 
+                ? 'bg-rose-500 w-5 shadow-md shadow-rose-500/40' 
+                : isDark ? 'bg-slate-700 hover:bg-slate-600' : 'bg-slate-300 hover:bg-slate-400'
+            }`}
+          />
+        ))}
+      </div>
+
+      {/* 3 Language Quick Selector Bar */}
+      <div className="grid grid-cols-3 gap-2 pt-3 relative z-10">
         <button
           onClick={() => setAppLang('ar')}
           className={`py-2 px-2 rounded-xl text-xs font-black transition-all border flex items-center justify-center gap-1 ${
