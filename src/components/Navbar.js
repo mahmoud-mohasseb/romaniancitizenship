@@ -203,47 +203,54 @@ export default function Navbar() {
         {sidebarContent}
       </aside>
 
-      {/* Top Mobile Bar - Ergonomic Padding & Clean Alignment */}
-      <header className={`lg:hidden sticky top-0 z-40 border-b backdrop-blur-md px-4 py-3 flex items-center justify-between shadow-md transition-all ${
+      {/* Top Mobile Bar - Compact & Mobile Optimized */}
+      <header className={`lg:hidden sticky top-0 z-40 border-b backdrop-blur-md px-3 sm:px-4 py-2.5 flex items-center justify-between shadow-md transition-all ${
         isDark ? 'bg-slate-900/95 border-slate-800 text-white' : 'bg-white/95 border-slate-200 text-slate-900 shadow-sm'
       }`}>
-        <div className="flex items-center gap-2.5 sm:gap-3">
+        {/* Start: Menu Toggle & Brand Logo Title */}
+        <div className="flex items-center gap-2 sm:gap-3 min-w-0">
           <button
             onClick={() => setMobileSidebarOpen(true)}
-            className="p-2.5 rounded-xl border border-slate-700/80 text-rose-500 hover:bg-slate-800 transition-colors flex items-center justify-center shrink-0 min-h-[44px] min-w-[44px]"
+            className="p-2 rounded-xl border border-slate-700/80 text-rose-500 hover:bg-slate-800 transition-colors flex items-center justify-center shrink-0 min-h-[40px] min-w-[40px]"
             aria-label="Open Navigation Menu"
           >
             <Menu className="w-5 h-5" />
           </button>
 
-          <Link href="/" className="flex items-center gap-2 group shrink-0">
-            <div className="relative w-9 h-9 rounded-xl overflow-hidden border-2 border-rose-500 shadow-sm shrink-0 bg-slate-800">
+          <Link href="/" className="flex items-center gap-2 group min-w-0">
+            <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-xl overflow-hidden border-2 border-rose-500 shadow-sm shrink-0 bg-slate-800">
               <Image src="/icon.png" alt="Romanian Citizenship Logo" fill className="object-cover" />
             </div>
-            <div className="flex flex-col">
-              <span className="font-black text-xs sm:text-sm tracking-tight leading-tight group-hover:text-rose-500 transition-colors">Cetățenia Română</span>
-              <span className="text-[9px] font-bold text-rose-500 leading-none">ANC Preparation</span>
+            <div className="flex flex-col min-w-0">
+              <span className="font-black text-xs sm:text-sm tracking-tight leading-tight truncate group-hover:text-rose-500 transition-colors">
+                Cetățenia Română
+              </span>
+              <span className="text-[9px] font-extrabold text-rose-500 leading-none truncate">
+                ANC Prep
+              </span>
             </div>
           </Link>
         </div>
 
-        <div className="flex items-center gap-1.5 sm:gap-2">
+        {/* End: Compact Revolut Heart Badge & Theme Toggle */}
+        <div className="flex items-center gap-1.5 shrink-0">
           <a
             href="https://revolut.me/mahmoulxzy"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-3 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-rose-600 text-white text-[11px] font-black flex items-center gap-1 shadow-md hover:opacity-95 transition-all min-h-[44px]"
+            title="Donate via Revolut"
+            className="p-2 px-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-rose-600 text-white text-xs font-black flex items-center justify-center gap-1 shadow-md hover:opacity-95 transition-all min-h-[40px] shrink-0"
           >
-            <Heart className="w-3.5 h-3.5 fill-current animate-bounce-subtle shrink-0" />
-            <span>Revolut 💳</span>
+            <Heart className="w-4 h-4 fill-current animate-bounce-subtle shrink-0 text-rose-300" />
+            <span className="hidden xs:inline text-[10px]">Revolut</span>
           </a>
 
           <button
             onClick={toggleTheme}
-            className="p-2.5 rounded-xl border border-slate-700/80 text-amber-400 hover:bg-slate-800 transition-colors flex items-center justify-center shrink-0 min-h-[44px] min-w-[44px]"
+            className="p-2 rounded-xl border border-slate-700/80 text-amber-400 hover:bg-slate-800 transition-colors flex items-center justify-center shrink-0 min-h-[40px] min-w-[40px]"
             aria-label="Toggle Dark Light Theme"
           >
-            {isDark ? <Sun className="w-4.5 h-4.5" /> : <Moon className="w-4.5 h-4.5" />}
+            {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
           </button>
         </div>
       </header>
