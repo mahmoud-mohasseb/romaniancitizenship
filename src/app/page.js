@@ -135,18 +135,82 @@ export default function HomePage() {
           transition={{ duration: 0.45, ease: 'easeOut' }}
           className="flex flex-col items-center text-center space-y-4 pt-2"
         >
-          <motion.div 
-            whileHover={{ scale: 1.08, rotate: 2 }}
-            whileTap={{ scale: 0.95 }}
-            className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-3xl overflow-hidden shadow-2xl border-4 border-rose-500 bg-slate-800 animate-pulse-glow cursor-pointer"
-          >
-            <Image 
-              src="/icon.png" 
-              alt="Romanian Citizenship Emblem Logo" 
-              fill 
-              className="object-cover"
+          {/* Outward Zooming Impulse Waves from Logo in Romanian Flag Colors (🔵 Blue -> 🟡 Yellow -> 🔴 Red) */}
+          <div className="relative flex items-center justify-center my-6 py-2">
+            
+            {/* 🔵 Impulse Wave 1 (Blue) - Zooms Out from Logo */}
+            <motion.div
+              animate={{
+                scale: [0.9, 2.2],
+                opacity: [0.95, 0],
+              }}
+              transition={{
+                duration: 2.7,
+                repeat: Infinity,
+                ease: [0.215, 0.61, 0.355, 1],
+                delay: 0,
+              }}
+              className="absolute w-24 h-24 sm:w-28 sm:h-28 rounded-3xl border-2 sm:border-3 border-blue-500 bg-blue-600/20 shadow-xl shadow-blue-500/40 pointer-events-none"
             />
-          </motion.div>
+
+            {/* 🟡 Impulse Wave 2 (Yellow/Gold) - Zooms Out from Logo (0.9s delay) */}
+            <motion.div
+              animate={{
+                scale: [0.9, 2.2],
+                opacity: [0.95, 0],
+              }}
+              transition={{
+                duration: 2.7,
+                repeat: Infinity,
+                ease: [0.215, 0.61, 0.355, 1],
+                delay: 0.9,
+              }}
+              className="absolute w-24 h-24 sm:w-28 sm:h-28 rounded-3xl border-2 sm:border-3 border-amber-400 bg-amber-400/20 shadow-xl shadow-amber-400/50 pointer-events-none"
+            />
+
+            {/* 🔴 Impulse Wave 3 (Red) - Zooms Out from Logo (1.8s delay) */}
+            <motion.div
+              animate={{
+                scale: [0.9, 2.2],
+                opacity: [0.95, 0],
+              }}
+              transition={{
+                duration: 2.7,
+                repeat: Infinity,
+                ease: [0.215, 0.61, 0.355, 1],
+                delay: 1.8,
+              }}
+              className="absolute w-24 h-24 sm:w-28 sm:h-28 rounded-3xl border-2 sm:border-3 border-rose-600 bg-rose-600/20 shadow-xl shadow-rose-600/50 pointer-events-none"
+            />
+
+            {/* 🇷🇴 Soft Glowing Tricolor Glow Behind Logo */}
+            <motion.div
+              animate={{
+                scale: [1, 1.12, 1],
+                opacity: [0.7, 0.9, 0.7],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+              className="absolute w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-gradient-to-tr from-blue-600 via-amber-400 to-rose-600 blur-lg pointer-events-none opacity-80"
+            />
+
+            {/* Central Interactive Emblem Logo */}
+            <motion.div 
+              whileHover={{ scale: 1.12, rotate: 3 }}
+              whileTap={{ scale: 0.94 }}
+              className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-3xl overflow-hidden shadow-2xl border-4 border-white dark:border-amber-400 bg-slate-800 cursor-pointer z-10 shadow-rose-950/60"
+            >
+              <Image 
+                src="/icon.png" 
+                alt="Romanian Citizenship Emblem Logo" 
+                fill 
+                className="object-cover"
+              />
+            </motion.div>
+          </div>
 
           <div className="space-y-2">
             <span className={`inline-block px-4 py-1.5 rounded-full text-xs font-black border ${
