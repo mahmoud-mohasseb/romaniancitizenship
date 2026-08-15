@@ -246,7 +246,7 @@ export default function Navbar() {
       {/* Mobile Sidebar Overlay Drawer */}
       {mobileSidebarOpen && (
         <div className="lg:hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex">
-          <div className={`w-80 max-w-[85vw] h-full ${isRtl ? 'mr-auto' : 'ml-auto'}`}>
+          <div className={`w-80 max-w-[85vw] h-full ${isRtl ? 'ml-auto mr-0' : 'mr-auto ml-0'}`}>
             {sidebarContent}
           </div>
           <div className="flex-1" onClick={() => setMobileSidebarOpen(false)} />

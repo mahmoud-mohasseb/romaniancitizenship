@@ -129,6 +129,34 @@ function StudyContent() {
           })}
         </div>
 
+        {/* Enriched Category Overview & Key Interview Facts Banner */}
+        {categoryMeta && categoryMeta.key_facts_ar && (
+          <div className={`p-4 rounded-3xl border space-y-2 text-xs sm:text-sm font-bold animate-fade-in-up ${
+            isDark ? 'bg-slate-800/90 border-slate-700/80 text-white' : 'bg-white border-slate-200 text-slate-900 shadow-md'
+          }`}>
+            <div className="flex items-center justify-between border-b border-slate-700/50 pb-2">
+              <span className="text-[11px] font-black text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
+                <Sparkles className="w-4 h-4 text-amber-400" />
+                <span>{appLang === 'ar' ? 'أهم حقائق وملاحظات هذا القسم للمقابلة:' : 'Key Interview Facts for this Category:'}</span>
+              </span>
+              <span className="text-[10px] font-black px-2 py-0.5 rounded-md bg-rose-500/20 text-rose-400 border border-rose-500/30">
+                {filteredQuestions.length} {strings.questionsBadge || 'أسئلة'}
+              </span>
+            </div>
+            <p className="text-theme-sub text-xs leading-relaxed font-semibold">
+              {appLang === 'ar' ? categoryMeta.description_ar : categoryMeta.description_en || categoryMeta.description_ro}
+            </p>
+            <ul className="space-y-1.5 pt-1 text-xs">
+              {(appLang === 'ar' ? categoryMeta.key_facts_ar : (categoryMeta.key_facts_en || categoryMeta.key_facts_ar)).map((fact, fIdx) => (
+                <li key={fIdx} className="flex items-start gap-2 text-amber-300 font-bold">
+                  <span className="text-amber-500 font-black">•</span>
+                  <span>{fact}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         {/* Question Counter & Meta Card */}
         <div className={`p-4 rounded-2xl border flex items-center justify-between shadow-sm ${
           isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-white border-slate-200'
