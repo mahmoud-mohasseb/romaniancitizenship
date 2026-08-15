@@ -21,6 +21,7 @@ import {
   ShieldCheck,
   Award
 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import questions from '../../data/questions_ar.json';
 import Navbar from '../../components/Navbar';
 import ImageModal from '../../components/ImageModal';

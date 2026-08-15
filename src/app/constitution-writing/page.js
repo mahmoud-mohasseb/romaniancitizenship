@@ -16,6 +16,7 @@ import {
   ChevronRight,
   ChevronLeft
 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from '../../components/Navbar';
 import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';

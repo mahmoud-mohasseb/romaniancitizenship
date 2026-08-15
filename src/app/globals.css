@@ -188,3 +188,18 @@ html[lang="ro"] body {
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
 }
+
+/* Touch Target Standard for Mobile Ergonomics */
+button, a {
+  min-height: 44px;
+}
+
+/* Reduced Motion Accessibility Overrides */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
