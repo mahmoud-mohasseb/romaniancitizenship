@@ -109,7 +109,11 @@ export default function RomaniaExploreMap({
 
       // Render City Markers
       citiesData.forEach((city) => {
-        const cityName = appLang === 'ar' ? city.name_ar : appLang === 'en' ? city.name_en : city.name_ro;
+        const lat = city.basic_info?.lat || city.lat;
+        const lng = city.basic_info?.lng || city.lng;
+        const cityName = appLang === 'ar' ? city.basic_info?.name_ar || city.name_ar : appLang === 'en' ? city.basic_info?.name_en || city.name_en : city.basic_info?.name_ro || city.name_ro;
+        const countyName = appLang === 'ar' ? city.basic_info?.county_ar || city.county_ar : city.basic_info?.county_ro || city.county_ro;
+        const heroImg = city.hero_image?.url || city.image_url;
         const introText = appLang === 'ar' ? city.intro_ar : appLang === 'en' ? city.intro_en : city.intro_ro;
 
         const cityHtmlIcon = L.divIcon({
@@ -130,21 +134,21 @@ export default function RomaniaExploreMap({
           popupAnchor: [0, -20]
         });
 
-        const cityMarker = L.marker([city.lat, city.lng], { icon: cityHtmlIcon }).addTo(map);
+        const cityMarker = L.marker([lat, lng], { icon: cityHtmlIcon }).addTo(map);
 
         // Build City Popup Card
         const cityPopupContent = document.createElement('div');
         cityPopupContent.className = 'p-1 font-latin text-right max-w-[280px] space-y-2';
         cityPopupContent.innerHTML = `
           <div class="rounded-2xl overflow-hidden relative shadow-md">
-            <img src="${city.image_url}" alt="${city.name_ro}" class="w-full h-28 object-cover" />
+            <img src="${heroImg}" alt="${cityName}" class="w-full h-28 object-cover" />
             <span class="absolute top-2 right-2 px-2.5 py-0.5 rounded-full text-[10px] font-black bg-rose-600 text-white shadow-md">
-              ${city.county_ro}
+              ${countyName}
             </span>
           </div>
           <div class="space-y-1">
             <h4 class="text-sm font-black text-slate-900 leading-snug">${cityName}</h4>
-            <p class="text-[11px] text-slate-600 font-semibold line-clamp-2 leading-relaxed">${introText}</p>
+            <p class="text-[11px] text-slate-600 font-semibold line-clamp-2 leading-relaxed">${introText || ''}</p>
           </div>
         `;
 
@@ -235,7 +239,9 @@ export default function RomaniaExploreMap({
     if (!selectedCityId || !mapInstanceRef.current) return;
     const targetCity = citiesData.find(c => c.id === selectedCityId);
     if (targetCity) {
-      mapInstanceRef.current.flyTo([targetCity.lat, targetCity.lng], 13, { duration: 1.5 });
+      const lat = targetCity.basic_info?.lat || targetCity.lat;
+      const lng = targetCity.basic_info?.lng || targetCity.lng;
+      mapInstanceRef.current.flyTo([lat, lng], 13, { duration: 1.5 });
       const targetMarker = cityMarkersRef.current[targetCity.id];
       if (targetMarker) targetMarker.openPopup();
     }

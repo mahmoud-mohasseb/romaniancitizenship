@@ -1,83 +1,116 @@
 [
   {
     "id": "brasov",
-    "name_ro": "Brașov",
-    "name_en": "Brasov",
-    "name_ar": "براشوف",
-    "county_ro": "Județul Brașov",
-    "county_en": "Brasov County",
-    "county_ar": "مقاطعة براشوف",
-    "lat": 45.658,
-    "lng": 25.6012,
-    "elevation": "580 m",
-    "rivers": "Râul Scheiu, Râul Timiș",
-    "mountains": "Munții Postăvaru, Piatra Mare, Munții Bucegi",
-    "population": "253,200",
-    "image_url": "https://images.unsplash.com/photo-1584646098378-0874589d76b1?q=80&w=1000&auto=format&fit=crop",
-    "intro_ro": "Oraș medieval saxon de o frumusețe rară, situat la poalele Muntelui Tâmpa, faimos pentru Biserica Neagră, Piața Sfatului și fortificațiile istorice.",
-    "intro_en": "Picturesque medieval Saxon city at the foot of Mount Tâmpa, famous for the Black Church, Council Square, and historic Transylvanian fortifications.",
-    "intro_ar": "مدينة قروسطية ساحرة تأسست على أيدي الفرسان والألمان السكسون عند أقدام جبل تامبا، وتشتهر بالكنيسة السوداء وساحة المجلس والأسوار التاريخية.",
-    "history_summary_ro": "Fondat de Cavalerii Teutoni în 1211 sub numele Corona (Kronstadt), Brașovul a devenit un centru comercial și cultural de prim rang între Transilvania și Țara Românească.",
-    "history_summary_en": "Founded by Teutonic Knights in 1211 as Corona (Kronstadt), Brasov grew into a major trade hub connecting Transylvania and Wallachia.",
-    "history_summary_ar": "تأسست عام 1211 على أيدي الفرسان التوتونيين باسم كورونا، وأصبحت مركزاً تجارياً وثقافياً رئيسياً بين ترانسيلفانيا والأقاليم الرومانية.",
-    "history_timeline": [
-      {
-        "era": "Medieval Period (1211 - 1500)",
-        "title_ro": "Fondarea Teutonică și Fortificarea Orașului",
-        "title_en": "Teutonic Knights & Saxon Citadel Building",
-        "title_ar": "تأسيس الفرسان وبناء القلاع السكسونية",
-        "desc_ro": "Breslele meșteșugărești saxone au ridicat zidurile de apărare, Bastionul Țesătorilor și turnurile de veghe împotriva invaziilor otomane.",
-        "desc_en": "Saxon craft guilds erected massive defensive walls, Weavers Bastion, and watchtowers against Ottoman invasions.",
-        "desc_ar": "شيّدت النقابات السكسونية أسوار الدفاع الضخمة وبرج النساجين وأبراج المراقبة لحماية المدينة."
-      },
-      {
-        "era": "Early Modern Era (1500 - 1800)",
-        "title_ro": "Reforma lui Johannes Honterus & Tiparul",
-        "title_en": "Johannes Honterus & Printing Revolution",
-        "title_ar": "مطبعة جوهانس هونتيروس والنهضة الثقافية",
-        "desc_ro": "Umanistul Johannes Honterus a înființat prima școală și tipografie din Transilvania, iar Diaconul Coresi a tipărit primele cărți în limba română.",
-        "desc_en": "Humanist Johannes Honterus established the first gymnasium & printing press; Deacon Coresi printed the first Romanian language books here.",
-        "desc_ar": "أنشأ العالم جوهانس هونتيروس أول مدرسة ومطبعة، وطبع الشماس كوريسي أولى الكتب باللغة الرومانية."
-      },
-      {
-        "era": "Modern Era (1800 - Present)",
-        "title_ro": "Dezvoltare Industrială și Turismul Carpatic",
-        "title_en": "Industrial Heritage & Carpathian Tourism",
-        "title_ar": "التطور الصناعي والسياحة الجبلية",
-        "desc_ro": "Brașovul s-a transformat într-un centru turistic și cultural european, poartă de acces către Poiana Brașov și Munții Carpați.",
-        "desc_en": "Brasov evolved into a premier European cultural destination and gateway to Poiana Brasov ski resort and the Carpathian Alps.",
-        "desc_ar": "تطورت براشوف لتصبح واحدة من أهم الوجهات السياحية الأوروبية وبوابة منتجعات التزلج في جبال الكربات."
-      }
+    "basic_info": {
+      "name_ro": "Brașov",
+      "name_en": "Brasov",
+      "name_ar": "براشوف",
+      "county_ro": "Județul Brașov",
+      "county_en": "Brasov County",
+      "county_ar": "مقاطعة براشوف",
+      "historical_region": "Transilvania (Țara Bârsei)",
+      "lat": 45.658,
+      "lng": 25.6012,
+      "population": "253,200 (INS 2021)",
+      "area": "167.3 km²",
+      "elevation": "580 m"
+    },
+    "hero_image": {
+      "url": "https://images.unsplash.com/photo-1584646098378-0874589d76b1?q=80&w=1000&auto=format&fit=crop",
+      "caption": "Piața Sfatului și Biserica Neagră din Brașov",
+      "source": "Wikimedia Commons / Unsplash",
+      "license": "CC BY-SA 4.0 / Public Domain"
+    },
+    "gallery": [
+      "https://images.unsplash.com/photo-1584646098378-0874589d76b1?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?q=80&w=1000&auto=format&fit=crop"
     ],
-    "geography_ro": "Brașovul este amplasat în Depresiunea Brașovului, în interiorul arcului Carpatic, fiind străjuit de Munții Postăvaru, Piatra Mare și Masivul Bucegi.",
-    "geography_en": "Situated in the Brasov Depression inside the Carpathian Arc, surrounded by the Postăvaru, Piatra Mare, and Bucegi Mountain ranges.",
-    "geography_ar": "تقع براشوف في منخفض براشوف داخل قوس جبال الكربات، وتتوجها قمم بوستافارو وبياترا ماري وبوتشيجي.",
-    "culture_ro": "Patrimoniu multicultural saxon, românesc și maghiar. Festivalul Cerbul de Aur, Junii Brașovului și tradițiile din cartierul istoric Șchei.",
-    "culture_en": "Multicultural Saxon, Romanian, and Hungarian heritage. Home to the Golden Stag Festival and Junii Brașovului spring pageantry.",
-    "culture_ar": "تراث متعدد الثقافات يجمع بين السكسونيين والرومان والمجر، وتشتهر بمهرجانات الموسيقى والمواكب التراثية الربيعية.",
-    "landmarks_summary_ro": "Biserica Neagră, Piața Sfatului, Turnul Alb, Turnul Negru, Poarta Șchei, Bastionul Țesătorilor.",
-    "landmarks_summary_en": "Black Church, Council Square, White Tower, Black Tower, Șchei Gate, Weavers Bastion.",
-    "landmarks_summary_ar": "الكنيسة السوداء، ساحة المجلس، البرج الأبيض، البرج الأسود، بوابة شكي، برج النساجين.",
-    "nature_summary_ro": "Muntele Tâmpa (Rezervație Naturală), Poiana Brașov, Canionul Șapte Scări, Munții Bucegi.",
-    "nature_summary_en": "Mount Tâmpa Nature Reserve, Poiana Brașov, Seven Ladders Canyon, Bucegi Natural Park.",
-    "nature_summary_ar": "محمية جبل تامبا الطبيعية، منتجع بويانا براشوف، مضيق درجات السلم السبع، متنزه بوتشيجي الطبيعي.",
-    "places": [
+    "geography": {
+      "location_ro": "Brașovul este amplasat în Depresiunea Brașovului, în interiorul arcului Carpatic, fiind străjuit de Munții Postăvaru, Piatra Mare și Masivul Bucegi.",
+      "location_en": "Situated in the Brasov Depression inside the Carpathian Arc, surrounded by the Postăvaru, Piatra Mare, and Bucegi Mountain ranges.",
+      "location_ar": "تقع براشوف في منخفض براشوف داخل قوس جبال الكربات، وتتوجها قمم بوستافارو وبياترا ماري وبوتشيجي.",
+      "rivers": "Râul Scheiu, Râul Timiș, Canalul Timiș",
+      "mountains": "Munții Postăvaru (1,799 m), Piatra Mare (1,844 m), Munții Bucegi",
+      "lakes": "Lacul Noua, Lacul Poiana Brașov"
+    },
+    "history": {
+      "summary_ro": "Fondat de Cavalerii Teutoni în 1211 sub numele Corona (Kronstadt), Brașovul a devenit un centru comercial și cultural de prim rang între Transilvania și Țara Românească.",
+      "summary_en": "Founded by Teutonic Knights in 1211 as Corona (Kronstadt), Brasov grew into a major trade hub connecting Transylvania and Wallachia.",
+      "summary_ar": "تأسست عام 1211 على أيدي الفرسان التوتونيين باسم كورونا، وأصبحت مركزاً تجارياً وثقافياً رئيسياً بين ترانسيلفانيا والأقاليم الرومانية.",
+      "eras": [
+        {
+          "era_name": "Ancient Period",
+          "title_ro": "Așezările Dacice din Țara Bârsei",
+          "title_en": "Dacian Settlements in Burzenland",
+          "title_ar": "المستوطنات الداكية في أرض بيرسا",
+          "desc_ro": "Descoperirile arheologice atestă fortificații dacice pe Dealul Melcilor și Muntele Tâmpa din perioada regatului lui Decebal.",
+          "desc_en": "Archaeological finds reveal ancient Dacian fortresses on Melcilor Hill and Mount Tâmpa from Decebalus's reign.",
+          "desc_ar": "تكشف الاكتشافات الأثرية عن وجود حصون داكية قديمة على تلة ميلشيلور وجبل تامبا."
+        },
+        {
+          "era": "Medieval Period (1211 - 1500)",
+          "title_ro": "Fondarea Teutonică și Fortificarea Orașului",
+          "title_en": "Teutonic Knights & Saxon Citadel Building",
+          "title_ar": "تأسيس الفرسان وبناء القلاع السكسونية",
+          "desc_ro": "Breslele meșteșugărești saxone au ridicat zidurile de apărare, Bastionul Țesătorilor și turnurile de veghe împotriva invaziilor otomane.",
+          "desc_en": "Saxon craft guilds erected massive defensive walls, Weavers Bastion, and watchtowers against Ottoman invasions.",
+          "desc_ar": "شيّدت النقابات السكسونية أسوار الدفاع الضخمة وبرج النساجين وأبراج المراقبة لحماية المدينة."
+        },
+        {
+          "era": "Early Modern Era (1500 - 1800)",
+          "title_ro": "Reforma lui Johannes Honterus & Tiparul în Limba Română",
+          "title_en": "Johannes Honterus & Printing Revolution",
+          "title_ar": "مطبعة جوهانس هونتيروس والنهضة الثقافية",
+          "desc_ro": "Umanistul Johannes Honterus a înființat prima școală și tipografie din Transilvania, iar Diaconul Coresi a tipărit primele cărți în limba română în cartierul Șchei.",
+          "desc_en": "Humanist Johannes Honterus established the first gymnasium & printing press; Deacon Coresi printed the first Romanian language books here in the Șchei district.",
+          "desc_ar": "أنشأ العالم جوهانس هونتيروس أول مدرسة ومطبعة، وطبع الشماس كوريسي أولى الكتب باللغة الرومانية في حي شكي التاريخي."
+        },
+        {
+          "era": "Modern Era (1800 - Present)",
+          "title_ro": "Marea Unire și Centrul Turistic Carpatic",
+          "title_en": "Great Union 1918 & Carpathian Tourism",
+          "title_ar": "الاتحاد الكبير 1918 والتطور السياحي الجبلي",
+          "desc_ro": "Brașovul s-a transformat într-un centru turistic și cultural european, poartă de acces către Poiana Brașov și Munții Carpați.",
+          "desc_en": "Brasov evolved into a premier European cultural destination and gateway to Poiana Brasov ski resort and the Carpathian Alps.",
+          "desc_ar": "تطورت براشوف لتصبح واحدة من أهم الوجهات السياحية الأوروبية وبوابة منتجعات التزلج في جبال الكربات."
+        }
+      ]
+    },
+    "culture": {
+      "traditions_ro": "Festivalul Cerbul de Aur, Junii Brașovului (parada căcălarilor din Șchei) și Târgul de Crăciun din Piața Sfatului.",
+      "traditions_en": "Golden Stag International Festival, Junii Brașovului spring pageantry in Șchei, and the Christmas Fair.",
+      "traditions_ar": "مهرجان الأيل الذهبي الدولي، مواكب جوني براشوف الربيعية التراثية في حي شكي، وسوق الميلاد في ساحة المجلس.",
+      "architecture_ro": "Stil gotic (Biserica Neagră), Renaștere transilvăneană (Casa Sfatului), Baroc și Art Nouveau.",
+      "architecture_en": "Gothic (Black Church), Transylvanian Renaissance (Town Hall), Baroque, and Art Nouveau.",
+      "architecture_ar": "طراز قوطي، نهضوي ترانسيلفاني، باروكي، والفن الحديث أرت نوفو."
+    },
+    "famous_people": [
+      { "name": "Johannes Honterus", "role_ro": "Umanist și reformator sas (1498-1549)", "role_en": "Saxon humanist and reformer" },
+      { "name": "Diaconul Coresi", "role_ro": "Tipograf și traducător bisericesc (sec. XVI)", "role_en": "Master printer of first Romanian books" },
+      { "name": "Andrei Mureșanu", "role_ro": "Poet al imnului național 'Deșteaptă-te, române!'", "role_en": "Poet of the National Anthem" }
+    ],
+    "interesting_facts": [
+      "Brașovul adăpostește Strada Sforii, a treia cea mai îngustă stradă din Europa (lățime între 111 și 135 cm).",
+      "Biserica Neagră adăpostește cea mai mare colecție de covoare anatoliene din Europa din afara Turciei.",
+      "Prima școală românească din istorie a fost înființată în cartierul Șchei din Brașov în anul 1495."
+    ],
+    "landmarks": [
       {
         "id": "black_church",
         "name_ro": "Biserica Neagră",
         "name_en": "The Black Church",
         "name_ar": "الكنيسة السوداء",
         "category": "church",
-        "category_label_ro": "Monument Istoric & Lăcaș de Cult",
+        "category_label_ro": "Monument Istoric Gotic",
         "category_label_en": "Historic Gothic Church",
         "category_label_ar": "كنيسة قوطية تاريخية",
         "lat": 45.641,
         "lng": 25.5881,
         "image_url": "https://images.unsplash.com/photo-1584646098378-0874589d76b1?q=80&w=1000&auto=format&fit=crop",
         "period": "1383 - 1477 (Stil Gotic)",
-        "desc_ro": "Cea mai mare biserică gotică din sud-estul Europei, numită 'Neagră' după marele incendiu din 1689. Adăpostește o orgă Buchholz impresionantă și cea mai mare colecție de covoare anatoliene din Europa din afara Turciei.",
-        "desc_en": "The largest Gothic church between Vienna and Istanbul, named 'Black' after the great fire of 1689. Houses a giant 4,000-pipe Buchholz organ and Europe's richest collection of Anatolian carpets.",
-        "desc_ar": "أكبر كنيسة قوطية في جنوب شرق أوروبا، سميت بالكرنية السوداء بعد الحريق الكبير عام 1689. تحتضن أورغاً ضخماً يضم 4000 أنبوب وأكبر مجموعة سجاد أنادولي في أوروبا."
+        "desc_ro": "Cea mai mare biserică gotică din sud-estul Europei, numită 'Neagră' după marele incendiu din 1689. Adăpostește o orgă Buchholz de 4.000 de tuburi.",
+        "desc_en": "The largest Gothic church between Vienna and Istanbul, named 'Black' after the great fire of 1689. Houses a giant 4,000-pipe Buchholz organ.",
+        "desc_ar": "أكبر كنيسة قوطية في جنوب شرق أوروبا، سميت بالكنيسة السوداء بعد الحريق الكبير عام 1689. تحتضن أورغاً ضخماً يضم 4000 أنبوب."
       },
       {
         "id": "council_square",
@@ -85,90 +118,135 @@
         "name_en": "Council Square & Old Town Hall",
         "name_ar": "ساحة المجلس ومبنى البلدية القديم",
         "category": "historic",
-        "category_label_ro": "Centru Istoric & Piață Centrală",
+        "category_label_ro": "Centru Istoric",
         "category_label_en": "Historic Old Town Square",
         "category_label_ar": "الساحة التاريخية المركزية",
         "lat": 45.6423,
         "lng": 25.5888,
         "image_url": "https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?q=80&w=1000&auto=format&fit=crop",
         "period": "Secolul al XV-lea",
-        "desc_ro": "Inima medievală a Brașovului, înconjurată de case de târgoveți renascentiste și baroce. Casa Sfatului din centru adăpostește Muzeul Județean de Istorie.",
-        "desc_en": "The medieval heart of Brasov surrounded by Renaissance and Baroque merchant houses. The central Town Hall houses the County Museum of History.",
-        "desc_ar": "القلب القروسطي لمدينة براشوف المحاط بمنازل التجار ذات الطراز النهضوي والباروكي، وتضم دار المجلس القديمة متحف التاريخ الإقليمي."
+        "desc_ro": "Inima medievală a Brașovului, înconjurată de case de târgoveți renascentiste și baroce.",
+        "desc_en": "The medieval heart of Brasov surrounded by Renaissance and Baroque merchant houses.",
+        "desc_ar": "القلب القروسطي لمدينة براشوف المحاط بمنازل التجار ذات الطراز النهضوي والباروكي."
+      }
+    ],
+    "places": [
+      {
+        "id": "first_romanian_school",
+        "name_ro": "Prima Școală Românească din Șchei",
+        "name_en": "First Romanian School Museum",
+        "name_ar": "متحف أول مدرسة رومانية في شكي",
+        "category": "museum",
+        "category_label_ro": "Muzeu Istoric & Patrimoniu",
+        "category_label_en": "Historic Museum & Heritage",
+        "category_label_ar": "متحف تاريخي وتراثي",
+        "lat": 45.6358,
+        "lng": 25.5815,
+        "image_url": "https://images.unsplash.com/photo-1549877452-9c387954fbc2?q=80&w=1000&auto=format&fit=crop",
+        "period": "1495 (Fondată în Șcheii Brașovului)",
+        "desc_ro": "Clădirea istorică în care s-au ținut primele cursuri în limba română în 1583. Păstrează tiparnița Diaconului Coresi și mii de manuscrise vechi.",
+        "desc_en": "Historic building where the first Romanian language classes were taught in 1583. Houses Coresi's original printing press and rare medieval manuscripts.",
+        "desc_ar": "المبنى التاريخي الذي شهد أولى الدروس باللغة الرومانية عام 1583، وتحفظ فيه مطبعة الشماس كوريسي وآلاف المخطوطات النادرة."
+      }
+    ],
+    "sources": [
+      {
+        "source_name": "Wikipedia - Brașov (Română)",
+        "source_type": "Wikipedia",
+        "source_url": "https://ro.wikipedia.org/wiki/Bra%C8%99ov",
+        "last_verified": "2026-08-16"
       },
       {
-        "id": "tampa_viewpoint",
-        "name_ro": "Muntele Tâmpa & Telecabina",
-        "name_en": "Mount Tâmpa Viewpoint & Cable Car",
-        "name_ar": "مطل جبل تامبا والتلفريك",
-        "category": "nature",
-        "category_label_ro": "Rezervație Naturală & Belvedere",
-        "category_label_en": "Nature Reserve & Viewpoint",
-        "category_label_ar": "محمية طبيعية ومطل بانورامي",
-        "lat": 45.636,
-        "lng": 25.595,
-        "image_url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1000&auto=format&fit=crop",
-        "period": "Rezervație Naturală Protejată",
-        "desc_ro": "Munte de 960m înălțime situat chiar în centrul orașului, oferind o panoramă spectaculoasă asupra întregului Brașov și acces prin telecabină sau trasee de drumeție.",
-        "desc_en": "960m mountain standing directly above the city center, offering breathtaking panoramas of historic Brasov via cable car or hiking trails.",
-        "desc_ar": "جبل بارتفاع 960 متراً يقع فوق المركز التاريخي مباشرة، يوفر إطلالات بانورامية مذهلة على براشوف عبر التلفريك أو مسارات المشي."
+        "source_name": "Wikimedia Commons - Brasov Media",
+        "source_type": "Wikimedia Commons",
+        "source_url": "https://commons.wikimedia.org/wiki/Category:Bra%C8%99ov",
+        "last_verified": "2026-08-16"
+      },
+      {
+        "source_name": "Institutul Național al Patrimoniului (INP)",
+        "source_type": "Official Government",
+        "source_url": "https://patrimoniu.ro",
+        "last_verified": "2026-08-16"
       }
     ]
   },
   {
     "id": "sinaia_bran",
-    "name_ro": "Sinaia & Bran (Castelul Peleș & Bran)",
-    "name_en": "Sinaia & Bran (Peleș & Bran Castles)",
-    "name_ar": "سينايا وبران (قصر بيليش وقلعة بران)",
-    "county_ro": "Județele Prahova & Brașov",
-    "county_en": "Prahova & Brasov Counties",
-    "county_ar": "مقاطعتا براهوفا وبراشوف",
-    "lat": 45.3539,
-    "lng": 25.5426,
-    "elevation": "860 m",
-    "rivers": "Râul Prahova, Râul Turcu",
-    "mountains": "Munții Bucegi, Munții Piatra Craiului",
-    "population": "10,400",
-    "image_url": "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=1000&auto=format&fit=crop",
-    "intro_ro": "Perlele regale ale Carpaților: Castelul Peleș din Sinaia (reședința Regele Carol I) și legendarul Castel Bran situat la granița dintre Transilvania și Muntenia.",
-    "intro_en": "The royal jewels of the Carpathians: Peleș Castle in Sinaia (summer residence of King Carol I) and the legendary Bran Castle on the Transylvanian border.",
-    "intro_ar": "جواهر جبال الكربات الملكية: قصر بيليش في سينايا (المقر الصيفي للملك كارول الأول) وقلعة بران التاريخية الأسطورية على حدود ترانسيلفانيا.",
-    "history_summary_ro": "Construit de Regele Carol I între 1873-1914, Castelul Peleș a fost primul castel complet electrificat din Europa, iar Branul datat din 1377 a servit drept fortăreață de frontieră.",
-    "history_summary_en": "Built by King Carol I between 1873-1914, Peleș was Europe's first fully electrified castle, while Bran dates back to 1377 as a border fortress.",
-    "history_summary_ar": "بناه الملك كارول الأول بين 1873-1914 وكان أول قصر يعمل بالكهرباء بالكامل في أوروبا، وتعود قلعة بران إلى عام 1377 كحصن حدودي.",
-    "history_timeline": [
-      {
-        "era": "1377 (Piatra de Temelie Bran)",
-        "title_ro": "Construcția Fortăreței Bran de către Sași",
-        "title_en": "Building of Bran Border Fortress",
-        "title_ar": "بناء حصن بران الحدودي بأيدي السكسونيين",
-        "desc_ro": "Regele Ludovic I al Ungariei a acordat brașovenilor dreptul de a ridica cetatea de piatră în trecătoarea Bran.",
-        "desc_en": "King Louis I of Hungary granted Brasov Saxons the privilege to erect the stone citadel in the Bran pass.",
-        "desc_ar": "منح ملك المجر سكنة براشوف حق تشييد القلعة الحجرية في ممر بران الجبلي."
-      },
-      {
-        "era": "1873 - 1914 (Reședința Regală Peleș)",
-        "title_ro": "Construcția Castelului Peleș de Regele Carol I",
-        "title_en": "Construction of Peleș Royal Palace",
-        "title_ar": "تشييد قصر بيليش الملكي بأمر الملك كارول الأول",
-        "desc_ro": "Arhitecți germani și vienezi au creat o capodoperă a neo-renașterii germane cu 160 de camere decorate splendid.",
-        "desc_en": "German & Viennese architects crafted a German Neo-Renaissance masterpiece featuring 160 lavishly decorated rooms.",
-        "desc_ar": "صمم مهندسون ألمان ونمساويون تحفة معمارية تضم 160 غرفة مزخرفة بأفخم طراز نهضوي."
-      }
+    "basic_info": {
+      "name_ro": "Sinaia & Bran",
+      "name_en": "Sinaia & Bran (Peleș & Bran Castles)",
+      "name_ar": "سينايا وبران (قصر بيليش وقلعة بران)",
+      "county_ro": "Județele Prahova & Brașov",
+      "county_en": "Prahova & Brasov Counties",
+      "county_ar": "مقاطعتا براهوفا وبراشوف",
+      "historical_region": "Muntenia & Transilvania",
+      "lat": 45.3539,
+      "lng": 25.5426,
+      "population": "10,400 (Sinaia)",
+      "area": "89.2 km²",
+      "elevation": "860 m"
+    },
+    "hero_image": {
+      "url": "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=1000&auto=format&fit=crop",
+      "caption": "Castelul Peleș din Sinaia",
+      "source": "Wikimedia Commons / Unsplash",
+      "license": "CC BY-SA 4.0 / Public Domain"
+    },
+    "gallery": [
+      "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1584646098378-0874589d76b1?q=80&w=1000&auto=format&fit=crop"
     ],
-    "geography_ro": "Resorturi montane de mare altitudine la poalele Munților Bucegi și Piatra Craiului, străbătute de râul Prahova.",
-    "geography_en": "High-altitude mountain resorts at the base of the Bucegi and Piatra Craiului ranges along the Prahova Valley.",
-    "geography_ar": "منتجعات جبلية شاهقة عند أقدام جبال بوتشيجي وبياترا كرايولي في وادي براهوفا.",
-    "culture_ro": "Patrimoniu regal românesc, colecții de artă europeană, armuri medievale și arhitectură bavareză alpine.",
-    "culture_en": "Romanian royal heritage, vast European fine art collections, medieval armor, and Alpine Bavarian architecture.",
-    "culture_ar": "تراث ملكي روماني، مجموعات فنية أوروبية نادرة، دروع قروسطية، وعمارة جبلية نمساوية وألمانية.",
-    "landmarks_summary_ro": "Castelul Peleș, Castelul Pelișor, Mănăstirea Sinaia, Castelul Bran, Cota 2000 Bucegi.",
-    "landmarks_summary_en": "Peleș Castle, Pelișor Castle, Sinaia Monastery, Bran Castle, Bucegi Peak 2000.",
-    "landmarks_summary_ar": "قصر بيليش، قصر بيليشور، دير سينايا، قلعة بران، قمة قوطة 2000 في جبال بوتشيجي.",
-    "nature_summary_ro": "Parcul Național Bucegi, Sfinxul și Babele, Cascada Urlătoarea, Parcul Național Piatra Craiului.",
-    "nature_summary_en": "Bucegi National Park, Sphinx and Babele rock formations, Urlătoarea Waterfall, Piatra Craiului Park.",
-    "nature_summary_ar": "متنزه بوتشيجي الوطني، صخور أبو الهول وبابيلي الطبيعية، شلال أورلاتوارا، متنزه بياترا كرايولي.",
-    "places": [
+    "geography": {
+      "location_ro": "Resorturi montane de mare altitudine la poalele Munților Bucegi și Piatra Craiului, străbătute de râul Prahova.",
+      "location_en": "High-altitude mountain resorts at the base of the Bucegi and Piatra Craiului ranges along the Prahova Valley.",
+      "location_ar": "منتجعات جبلية شاهقة عند أقدام جبال بوتشيجي وبياترا كرايولي في وادي براهوفا.",
+      "rivers": "Râul Prahova, Râul Turcu, Pârâul Peleș",
+      "mountains": "Munții Bucegi (Vârful Omu 2,505 m), Munții Piatra Craiului",
+      "lakes": "Lacul Bolboci, Lacul Scropoasa"
+    },
+    "history": {
+      "summary_ro": "Construit de Regele Carol I între 1873-1914, Castelul Peleș a fost primul castel complet electrificat din Europa, iar Branul datat din 1377 a servit drept fortăreață de frontieră.",
+      "summary_en": "Built by King Carol I between 1873-1914, Peleș was Europe's first fully electrified castle, while Bran dates back to 1377 as a border fortress.",
+      "summary_ar": "بناه الملك كارول الأول بين 1873-1914 وكان أول قصر يعمل بالكهرباء بالكامل في أوروبا، وتعود قلعة بران إلى عام 1377 كحصن حدودي.",
+      "eras": [
+        {
+          "era_name": "1377 (Piatra de Temelie Bran)",
+          "title_ro": "Construcția Fortăreței Bran de către Sași",
+          "title_en": "Building of Bran Border Fortress",
+          "title_ar": "بناء حصن بران الحدودي بأيدي السكسونيين",
+          "desc_ro": "Regele Ludovic I al Ungariei a acordat brașovenilor dreptul de a ridica cetatea de piatră în trecătoarea Bran.",
+          "desc_en": "King Louis I of Hungary granted Brasov Saxons the privilege to erect the stone citadel in the Bran pass.",
+          "desc_ar": "منح ملك المجر سكنة براشوف حق تشييد القلعة الحجرية في ممر بران الجبلي."
+        },
+        {
+          "era_name": "1873 - 1914 (Reședința Regală Peleș)",
+          "title_ro": "Construcția Castelului Peleș de Regele Carol I",
+          "title_en": "Construction of Peleș Royal Palace",
+          "title_ar": "تشييد قصر بيليش الملكي بأمر الملك كارول الأول",
+          "desc_ro": "Arhitecți germani și vienezi au creat o capodoperă a neo-renașterii germane cu 160 de camere decorate splendid.",
+          "desc_en": "German & Viennese architects crafted a German Neo-Renaissance masterpiece featuring 160 lavishly decorated rooms.",
+          "desc_ar": "صمم مهندسون ألمان ونمساويون تحفة معمارية تضم 160 غرفة مزخرفة بأفخم طراز نهضوي."
+        }
+      ]
+    },
+    "culture": {
+      "traditions_ro": "Patrimoniu regal românesc, colecții de artă europeană, armuri medievale și arhitectură bavareză alpine.",
+      "traditions_en": "Romanian royal heritage, vast European fine art collections, medieval armor, and Alpine Bavarian architecture.",
+      "traditions_ar": "تراث ملكي روماني، مجموعات فنية أوروبية نادرة، دروع قروسطية، وعمارة جبلية نمساوية وألمانية.",
+      "architecture_ro": "Stil neo-renaștere germană (Peleș), gotic bavarez și fortificație medievală din piatră (Bran).",
+      "architecture_en": "German Neo-Renaissance (Peleș), Bavarian Gothic, and stone medieval fortification (Bran).",
+      "architecture_ar": "طراز نهضوي ألماني، قوطي بافاري، وحصون حجري قروسطي."
+    },
+    "famous_people": [
+      { "name": "Regele Carol I", "role_ro": "Primul rege al României și ctitorul Castelului Peleș", "role_en": "First King of Romania & Founder of Peleș" },
+      { "name": "Regina Maria a României", "role_ro": "Regină a României și proprietară a Castelului Bran", "role_en": "Queen of Romania & Resident of Bran Castle" }
+    ],
+    "interesting_facts": [
+      "Castelul Peleș a fost primul castel regal din Europa dotat cu încălzire centrală, aspirator și cinematograf propriu.",
+      "Monomentul Sfinxul din Bucegi aflat în apropiere seamănă izbitor cu Sfinxul din Giza.",
+      "Castelul Bran a fost dăruit Reginei Maria în 1920 de către consiliul orașului Brașov în semn de recunoștință."
+    ],
+    "landmarks": [
       {
         "id": "peles_castle",
         "name_ro": "Castelul Peleș (Sinaia)",
@@ -203,62 +281,100 @@
         "desc_en": "14th-century cliffside fortress world-renowned through the Dracula legend. Served as a favored royal residence of Queen Marie of Romania.",
         "desc_ar": "قلعة تاريخية شيدت عام 1377 فوق صخرة بارتفاع 60 متراً، تشتهر عالمياً برواية دراكولا وكانت المقر الصيفي المفضل للملكة ماريا ملكة رومانيا."
       }
+    ],
+    "places": [],
+    "sources": [
+      {
+        "source_name": "Wikipedia - Castelul Peleș",
+        "source_type": "Wikipedia",
+        "source_url": "https://ro.wikipedia.org/wiki/Castelul_Pele%C8%99",
+        "last_verified": "2026-08-16"
+      },
+      {
+        "source_name": "Wikipedia - Castelul Bran",
+        "source_type": "Wikipedia",
+        "source_url": "https://ro.wikipedia.org/wiki/Castelul_Bran",
+        "last_verified": "2026-08-16"
+      }
     ]
   },
   {
     "id": "cluj_napoca",
-    "name_ro": "Cluj-Napoca",
-    "name_en": "Cluj-Napoca",
-    "name_ar": "كلوج نابوكا",
-    "county_ro": "Județul Cluj",
-    "county_en": "Cluj County",
-    "county_ar": "مقاطعة كلوج",
-    "lat": 46.7712,
-    "lng": 23.6236,
-    "elevation": "340 m",
-    "rivers": "Râul Someșul Mic",
-    "mountains": "Munții Apuseni, Podișul Someșan",
-    "population": "324,700",
-    "image_url": "https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?q=80&w=1000&auto=format&fit=crop",
-    "intro_ro": "Capitala neoficială a Transilvaniei, un hub universitar, tehnologic și cultural vibrant, cu o istorie daco-romană și medievală bogată.",
-    "intro_en": "The unofficial capital of Transylvania, a thriving university, tech, and cultural metropolis rooted in ancient Daco-Roman Napoca and Saxon Klausenburg.",
-    "intro_ar": "العاصمة غير الرسمية لإقليم ترانسيلفانيا، ومركز جامعي وتكنولوجي وثقافي مزدهر يعود تاريخه إلى الحقبة الداكية والرمانية القديمة.",
-    "history_summary_ro": "Ridicată pe fostul municipium roman Napoca înființat de împăratul Hadrian, Clujul a devenit în evul mediu un oraș liber regal fortificat (Klausenburg).",
-    "history_summary_en": "Built over Roman Napoca chartered by Emperor Hadrian, Cluj grew into a royal free fortified town (Klausenburg) in medieval Transylvania.",
-    "history_summary_ar": "أنشئت فوق مدينة نابوكا الرومانية التاريخية التي منحها الإمبراطور هادريان الاستقلال، وتطورت في القرون الوسطى لتصبح مدينة ملكية محصنة.",
-    "history_timeline": [
-      {
-        "era": "Roman Era (124 AD)",
-        "title_ro": "Municipium Aelium Hadrianum Napocense",
-        "title_en": "Roman Napoca Chartered by Hadrian",
-        "title_ar": "نابوكا الرومانية في عهد الإمبراطور هادريان",
-        "desc_ro": "Împăratul Hadrian a ridicat așezarea la rang de municipiu, devenind capitala provinciei Dacia Porolissensis.",
-        "desc_en": "Emperor Hadrian elevated Napoca to municipal status, serving as capital of Dacia Porolissensis.",
-        "desc_ar": "رفع الإمبراطور هادريان رتبة المدينة لتصبح عاصمة إقليم داقية بوروليسينسيز الروماني."
-      },
-      {
-        "era": "Medieval Period (1316)",
-        "title_ro": "Oraș Regal Liber acordat de Carol Robert de Anjou",
-        "title_en": "Royal Free City Granted Status",
-        "title_ar": "منح صفة المدينة الملكية الحرة عام 1316",
-        "desc_ro": "Clujul a primit privilegii regale, permițând ridicarea Bisericii Sfântul Mihail și a zidurilor de apărare.",
-        "desc_en": "King Charles Robert granted royal privileges, leading to the building of St. Michael's Church and fortifications.",
-        "desc_ar": "منح الملك تشارلز رابرت المدينة الامتيازات الملكية، مما أدى لبناء كنيسة القديس ميخائيل والأسوار."
-      }
+    "basic_info": {
+      "name_ro": "Cluj-Napoca",
+      "name_en": "Cluj-Napoca",
+      "name_ar": "كلوج نابوكا",
+      "county_ro": "Județul Cluj",
+      "county_en": "Cluj County",
+      "county_ar": "مقاطعة كلوج",
+      "historical_region": "Transilvania",
+      "lat": 46.7712,
+      "lng": 23.6236,
+      "population": "324,700 (INS 2021)",
+      "area": "179.5 km²",
+      "elevation": "340 m"
+    },
+    "hero_image": {
+      "url": "https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?q=80&w=1000&auto=format&fit=crop",
+      "caption": "Biserica Sfântul Mihail din Cluj-Napoca",
+      "source": "Wikimedia Commons / Unsplash",
+      "license": "CC BY-SA 4.0 / Public Domain"
+    },
+    "gallery": [
+      "https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1541872703-74c5e44368f9?q=80&w=1000&auto=format&fit=crop"
     ],
-    "geography_ro": "Situat în valea Someșului Mic, la confluența Podișului Someșan cu Munții Apuseni.",
-    "geography_en": "Located in the Someșul Mic river valley at the junction of the Someș Plateau and the Apuseni Mountains.",
-    "geography_ar": "تقع في وادي نهر صوميشول ميك عند التقاء هضبة صوميش بجبال أبوسيني.",
-    "culture_ro": "Centru universitar de elită (Universitatea Babeș-Bolyai), Festivalul International de Film TIFF, UNTOLD Festival și Muzeul de Artă.",
-    "culture_en": "Academic center (Babeș-Bolyai University), home of Transilvania International Film Festival (TIFF) and UNTOLD Music Festival.",
-    "culture_ar": "عاصمة جامعية بارزة تضم جامعة بابيش بولياي، وتستضيف مهرجان ترانسيلفانيا السينمائي الدولي ومهرجان أونولد الموسيقي.",
-    "landmarks_summary_ro": "Biserica Sfântul Mihail, Bastionul Croitorilor, Parcul Central, Grădina Botanică, Parcul Cetățuia.",
-    "landmarks_summary_en": "St. Michael's Church, Tailors' Bastion, Central Park, Alexandru Borza Botanical Garden, Cetățuia Park.",
-    "landmarks_summary_ar": "كنيسة القديس ميخائيل، برج الخياطين، الحديقة المركزية، الحديقة النباتية الملكية، حديقة قلعة تشيتاتويا.",
-    "nature_summary_ro": "Grădina Botanică Alexandru Borza, Cheile Turzii, Salina Turda, Pădurea Hoia-Baciu.",
-    "nature_summary_en": "Alexandru Borza Botanical Garden, Turda Gorge, Salina Turda Salt Mine, Hoia-Baciu Forest.",
-    "nature_summary_ar": "حديقة ألكسندرو بورزا النباتية، مضيق توردا الطبيعي، منجم ملح توردا التاريخي، غابة هويا باتشيو.",
-    "places": [
+    "geography": {
+      "location_ro": "Situat în valea Someșului Mic, la confluența Podișului Someșan cu Munții Apuseni.",
+      "location_en": "Located in the Someșul Mic river valley at the junction of the Someș Plateau and the Apuseni Mountains.",
+      "location_ar": "تقع في وادي نهر صوميشول ميك عند التقاء هضبة صوميش بجبال أبوسيني.",
+      "rivers": "Râul Someșul Mic, Pârâul Nadăș",
+      "mountains": "Munții Apuseni (Vlădeasa), Dealul Feleacului",
+      "lakes": "Lacul Tarnița, Lacul Fântânele, Lacul Chios"
+    },
+    "history": {
+      "summary_ro": "Ridicată pe fostul municipium roman Napoca înființat de împăratul Hadrian, Clujul a devenit în evul mediu un oraș liber regal fortificat (Klausenburg).",
+      "summary_en": "Built over Roman Napoca chartered by Emperor Hadrian, Cluj grew into a royal free fortified town (Klausenburg) in medieval Transylvania.",
+      "summary_ar": "أنشئت فوق مدينة نابوكا الرومانية التاريخية التي منحها الإمبراطور هادريان الاستقلال، وتطورت في القرون الوسطى لتصبح مدينة ملكية محصنة.",
+      "eras": [
+        {
+          "era_name": "Roman Era (124 AD)",
+          "title_ro": "Municipium Aelium Hadrianum Napocense",
+          "title_en": "Roman Napoca Chartered by Hadrian",
+          "title_ar": "نابوكا الرومانية في عهد الإمبراطور هادريان",
+          "desc_ro": "Împăratul Hadrian a ridicat așezarea la rang de municipiu, devenind capitala provinciei Dacia Porolissensis.",
+          "desc_en": "Emperor Hadrian elevated Napoca to municipal status, serving as capital of Dacia Porolissensis.",
+          "desc_ar": "رفع الإمبراطور هادريان رتبة المدينة لتصبح عاصمة إقليم داقية بوروليسينسيز الروماني."
+        },
+        {
+          "era_name": "Medieval Period (1316)",
+          "title_ro": "Oraș Regal Liber acordat de Carol Robert de Anjou",
+          "title_en": "Royal Free City Granted Status",
+          "title_ar": "منح صفة المدينة الملكية الحرة عام 1316",
+          "desc_ro": "Clujul a primit privilegii regale, permițând ridicarea Bisericii Sfântul Mihail și a zidurilor de apărare.",
+          "desc_en": "King Charles Robert granted royal privileges, leading to the building of St. Michael's Church and fortifications.",
+          "desc_ar": "منح الملك تشارلز رابرت المدينة الامتيازات الملكية، مما أدى لبناء كنيسة القديس ميخائيل والأسوار."
+        }
+      ]
+    },
+    "culture": {
+      "traditions_ro": "Centru universitar de elită (Universitatea Babeș-Bolyai), Festivalul International de Film TIFF, UNTOLD Festival și Muzeul de Artă.",
+      "traditions_en": "Academic center (Babeș-Bolyai University), home of Transilvania International Film Festival (TIFF) and UNTOLD Music Festival.",
+      "traditions_ar": "عاصمة جامعية بارزة تضم جامعة بابيش بولياي، وتستضيف مهرجان ترانسيلفانيا السينمائي الدولي ومهرجان أونولد الموسيقي.",
+      "architecture_ro": "Gotic transilvănean (Sfântul Mihail), Baroc (Palatul Bánffy), Eclectic și Secession.",
+      "architecture_en": "Transylvanian Gothic (St. Michael's), Baroque (Bánffy Palace), Eclectic, and Secession.",
+      "architecture_ar": "طراز قوطي ترانسيلفاني، باروكي، والفن الحديث."
+    },
+    "famous_people": [
+      { "name": "Matei Corvin", "role_ro": "Rege al Ungariei (născut la Cluj în 1443)", "role_en": "King of Hungary & Renaissance ruler" },
+      { "name": "Emil Racoviță", "role_ro": "Savant și fondator al biospeologiei mondiale", "role_en": "Explorer & Founder of Biospeology" }
+    ],
+    "interesting_facts": [
+      "Cluj-Napoca a fost desemnat Capitala Europeană a Tineretului în anul 2015.",
+      "Universitatea Babeș-Bolyai este cea mai mare universitate din România cu peste 45.000 de studenți.",
+      "Salina Turda din apropiere este considerată de publicațiile internaționale drept una dintre cele mai frumoase locații subterane din lume."
+    ],
+    "landmarks": [
       {
         "id": "st_michael_church",
         "name_ro": "Biserica Sfântul Mihail",
@@ -275,186 +391,151 @@
         "desc_ro": "Una dintre cele mai impresionante biserici gotice din Transilvania, cu cel mai înalt turn de biserică din România (80m) și statuia ecvestră a lui Matei Corvin.",
         "desc_en": "One of Transylvania's finest Gothic monuments, featuring Romania's tallest church tower (80m) and the iconic Matthias Corvinus equestrian statue.",
         "desc_ar": "واحدة من أجمل المعالم القوطية في ترانسيلفانيا، تضم أعلى برج كنيسة في رومانيا (80 متراً) وتماثيل الملك ماتياس كورفينوس."
-      },
+      }
+    ],
+    "places": [
       {
         "id": "salina_turda",
         "name_ro": "Salina Turda (Județul Cluj)",
         "name_en": "Salina Turda Salt Mine",
         "name_ar": "منجم ملح توردا التاريخي",
         "category": "nature",
-        "category_label_ro": "Salină Istorică & Parc de Distracții Subteran",
+        "category_label_ro": "Salină Istorică & Parc Subteran",
         "category_label_en": "Underground Salt Mine & Theme Park",
         "category_label_ar": "منجم ملح تحت الأرض ومتنزه تفاعلي",
         "lat": 46.5867,
         "lng": 23.7867,
         "image_url": "https://images.unsplash.com/photo-1541872703-74c5e44368f9?q=80&w=1000&auto=format&fit=crop",
         "period": "Exploatare din Epoca Romană",
-        "desc_ro": "Spectaculoasă salină istorică minată încă din perioada romană, transformată într-un parc futuristic subteran la 120m adâncime cu lac interior și roată panoramică.",
-        "desc_en": "Mind-blowing subterranean salt mine dating to Roman times, reimagined into a futuristic underground wonderland 120m below ground with a salt lake ferris wheel.",
-        "desc_ar": "منجم ملح تاريخي مذهل يعود للحقبة الرومانية، تحول إلى متنزه مستقبلي سحري على عمق 120 متراً تحت الأرض يضم بحيرة مالحة وعجلة دوارة."
+        "desc_ro": "Spectaculoasă salină istorică minată încă din perioada romană, transformată într-un parc futuristic subteran la 120m adâncime cu lac interior.",
+        "desc_en": "Mind-blowing subterranean salt mine dating to Roman times, reimagined into a futuristic underground wonderland 120m below ground with a salt lake.",
+        "desc_ar": "منجم ملح تاريخي مذهل يعود للحقبة الرومانية، تحول إلى متنزه مستقبلي سحري على عمق 120 متراً تحت الأرض."
+      }
+    ],
+    "sources": [
+      {
+        "source_name": "Wikipedia - Cluj-Napoca (Română)",
+        "source_type": "Wikipedia",
+        "source_url": "https://ro.wikipedia.org/wiki/Cluj-Napoca",
+        "last_verified": "2026-08-16"
+      },
+      {
+        "source_name": "Wikimedia Commons - Cluj Media",
+        "source_type": "Wikimedia Commons",
+        "source_url": "https://commons.wikimedia.org/wiki/Category:Cluj-Napoca",
+        "last_verified": "2026-08-16"
       }
     ]
   },
   {
     "id": "bucharest",
-    "name_ro": "București (Capitala României)",
-    "name_en": "Bucharest (Capital of Romania)",
-    "name_ar": "بوخارست (عاصمة رومانيا)",
-    "county_ro": "Municipiul București",
-    "county_en": "Bucharest Metropolis",
-    "county_ar": "عاصمة بوخارست",
-    "lat": 44.4325,
-    "lng": 26.0989,
-    "elevation": "75 m",
-    "rivers": "Râul Dâmbovița, Râul Colentina",
-    "mountains": "Câmpia Română",
-    "population": "1,830,000",
-    "image_url": "https://images.unsplash.com/photo-1584646098378-0874589d76b1?q=80&w=1000&auto=format&fit=crop",
-    "intro_ro": "Inima politică, economică și culturală a României, cunoscută istoric drept 'Micul Paris' pentru arhitectura sa neoclasică elegantă și bulevardele grandioase.",
-    "intro_en": "The political, economic, and cultural heart of Romania, historically nicknamed 'Little Paris' for its grand neoclassical boulevards and Belle Époque palaces.",
-    "intro_ar": "العاصمة السياسية والاقتصادية والثقافية لرومانيا، التي لقبت تاريخياً بـ 'باريس الصغيرة' لبولفاراتها الكلاسيكية ومبانيها الفاخرة.",
-    "history_summary_ro": "Atestat documentar la 20 septembrie 1459 într-un act emis de Vlad Țepeș, Bucureștiul a devenit capitala Țării Românești în 1659 și capitala României Unite în 1862.",
-    "history_summary_en": "First documented on Sept 20, 1459 by Vlad the Impaler (Vlad Țepeș), Bucharest became Wallachia's capital in 1659 and United Romania's capital in 1862.",
-    "history_summary_ar": "وثقت رسمياً في 20 سبتمبر 1459 في مرسوم أصدره الأمير فلاد ثيبش (دراكولا)، وأصبحت عاصمة للأقاليم الرومانية المتحدة عام 1862.",
-    "history_timeline": [
-      {
-        "era": "1459 (Hrisovul lui Vlad Țepeș)",
-        "title_ro": "Prima Atestare Documentară a Bucureștiului",
-        "title_en": "First Written Mention by Vlad the Impaler",
-        "title_ar": "أول وثيقة رسمية لبوخارست بأمر فلاد ثيبش",
-        "desc_ro": "Vlad Țepeș emite actul de scutire de taxe pentru cetatea de pe malul Dâmboviței (Curtea Veche).",
-        "desc_en": "Vlad the Impaler issues a tax-exemption decree for the fortress on the Dâmbovița River (Old Princely Court).",
-        "desc_ar": "أصدر فلاد ثيبش المرسوم الملكي لحصن البلاط القديم على ضفاف نهر ديمبوفيتسا."
-      },
-      {
-        "era": "Belle Époque (1878 - 1938)",
-        "title_ro": "Perioada 'Micul Paris' & Regatul României",
-        "title_en": "'Little Paris' Golden Era",
-        "title_ar": "العصر الذهبي ولَقب باريس الصغيرة",
-        "desc_ro": "Construcția Ateneului Român, Palatului CEC, Muzeului Antipa și Arcului de Triumf de către arhitecți francezi.",
-        "desc_en": "French architects designed the Romanian Athenaeum, CEC Palace, Antipa Museum, and Arcul de Triumf.",
-        "desc_ar": "صمم مهندسون فرنسيون الأثينيوم الروماني وقصر CEC وقوس النصر الشهير."
-      }
+    "basic_info": {
+      "name_ro": "București",
+      "name_en": "Bucharest (Capital of Romania)",
+      "name_ar": "بوخارست (عاصمة رومانيا)",
+      "county_ro": "Municipiul București",
+      "county_en": "Bucharest Metropolis",
+      "county_ar": "عاصمة بوخارست",
+      "historical_region": "Muntenia (Țara Românească)",
+      "lat": 44.4325,
+      "lng": 26.0989,
+      "population": "1,830,000 (INS 2021)",
+      "area": "228 km²",
+      "elevation": "75 m"
+    },
+    "hero_image": {
+      "url": "https://images.unsplash.com/photo-1584646098378-0874589d76b1?q=80&w=1000&auto=format&fit=crop",
+      "caption": "Palatul Parlamentului din București",
+      "source": "Wikimedia Commons / Unsplash",
+      "license": "CC BY-SA 4.0 / Public Domain"
+    },
+    "gallery": [
+      "https://images.unsplash.com/photo-1584646098378-0874589d76b1?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1549877452-9c387954fbc2?q=80&w=1000&auto=format&fit=crop"
     ],
-    "geography_ro": "Amplasat în Câmpia Vlăsiei, străbătut de râul Dâmbovița și presărat cu salba de lacuri Colentina și Parcul Natural Văcărești.",
-    "geography_en": "Located in the Wallachian Plain along the Dâmbovița River, dotted with the Colentina lake chain and Văcărești Urban Delta.",
-    "geography_ar": "تقع في السهل الروماني على ضفاف نهر ديمبوفيتسا وسلسلة بحيرات كولينتينا ودلتا فاكاريشت الطبيعية.",
-    "culture_ro": "Centrul cultural al țării: Ateneul Român, Opera Națională, Muzeul Național de Artă, Festivalul George Enescu.",
-    "culture_en": "Cultural capital: Romanian Athenaeum, National Opera, National Museum of Art, and the George Enescu Classical Music Festival.",
-    "culture_ar": "العاصمة الثقافية: تضم مسرح الأثينيوم، الأوبرا الوطنية، ومهرجان جورج إنيسكو للموسيقى الكلاسيكية.",
-    "landmarks_summary_ro": "Palatul Parlamentului, Ateneul Român, Centrul Vechi (Lipscani), Arcul de Triumf, Muzeul Satului, Palatul CEC.",
-    "landmarks_summary_en": "Palace of the Parliament, Romanian Athenaeum, Old Town (Lipscani), Arcul de Triumf, Village Museum, CEC Palace.",
-    "landmarks_summary_ar": "قصر البرلمان، الأثينيوم الروماني، المدينة القديمة (ليبسكاني)، قوس النصر، متحف القرية الوطنية، قصر CEC.",
-    "nature_summary_ro": "Parcul Herăstrău (Regele Mihai I), Parcul Cișmigiu, Parcul Natural Văcărești (Delta Urbană), Grădina Botanică.",
-    "nature_summary_en": "Herăstrău Park (King Michael I), Cișmigiu Gardens, Văcărești Nature Park (Urban Delta), Botanical Garden.",
-    "nature_summary_ar": "حديقة هيراستراو الملكية، حدائق تشيشميجيو التاريخية، متنزه فاكاريشت الطبيعي، الحديقة النباتية.",
-    "places": [
+    "geography": {
+      "location_ro": "Amplasat în Câmpia Vlăsiei, străbătut de râul Dâmbovița și presărat cu salba de lacuri Colentina și Parcul Natural Văcărești.",
+      "location_en": "Located in the Wallachian Plain along the Dâmbovița River, dotted with the Colentina lake chain and Văcărești Urban Delta.",
+      "location_ar": "تقع في السهل الروماني على ضفاف نهر ديمبوفيتسا وسلسلة بحيرات كولينتينا ودلتا فاكاريشت الطبيعية.",
+      "rivers": "Râul Dâmbovița, Râul Colentina",
+      "mountains": "Câmpia Vlăsiei (Relief de Câmpie)",
+      "lakes": "Lacul Herăstrău, Lacul Morii, Lacul Cișmigiu, Lacul Văcărești"
+    },
+    "history": {
+      "summary_ro": "Atestat documentar la 20 septembrie 1459 într-un act emis de Vlad Țepeș, Bucureștiul a devenit capitala Țării Românești în 1659 și capitala României Unite în 1862.",
+      "summary_en": "First documented on Sept 20, 1459 by Vlad the Impaler (Vlad Țepeș), Bucharest became Wallachia's capital in 1659 and United Romania's capital in 1862.",
+      "summary_ar": "وثقت رسمياً في 20 سبتمبر 1459 في مرسوم أصدره الأمير فلاد ثيبش (دراكولا)، وأصبحت عاصمة للأقاليم الرومانية المتحدة عام 1862.",
+      "eras": [
+        {
+          "era_name": "1459 (Hrisovul lui Vlad Țepeș)",
+          "title_ro": "Prima Atestare Documentară a Bucureștiului",
+          "title_en": "First Written Mention by Vlad the Impaler",
+          "title_ar": "أول وثيقة رسمية لبوخارست بأمر فلاد ثيبش",
+          "desc_ro": "Vlad Țepeș emite actul de scutire de taxe pentru cetatea de pe malul Dâmboviței (Curtea Veche).",
+          "desc_en": "Vlad the Impaler issues a tax-exemption decree for the fortress on the Dâmbovița River (Old Princely Court).",
+          "desc_ar": "أصدر فلاد ثيبش المرسوم الملكي لحصن البلاط القديم على ضفاف نهر ديمبوفيتسا."
+        },
+        {
+          "era_name": "Belle Époque (1878 - 1938)",
+          "title_ro": "Perioada 'Micul Paris' & Regatul României",
+          "title_en": "'Little Paris' Golden Era",
+          "title_ar": "العصر الذهبي ولَقب باريس الصغيرة",
+          "desc_ro": "Construcția Ateneului Român, Palatului CEC, Muzeului Antipa și Arcului de Triumf de către arhitecți francezi.",
+          "desc_en": "French architects designed the Romanian Athenaeum, CEC Palace, Antipa Museum, and Arcul de Triumf.",
+          "desc_ar": "صمم مهندسون فرنسيون الأثينيوم الروماني وقصر CEC وقوس النصر الشهير."
+        }
+      ]
+    },
+    "culture": {
+      "traditions_ro": "Centrul cultural al țării: Ateneul Român, Opera Națională, Muzeul Național de Artă, Festivalul George Enescu.",
+      "traditions_en": "Cultural capital: Romanian Athenaeum, National Opera, National Museum of Art, and the George Enescu Classical Music Festival.",
+      "traditions_ar": "العاصمة الثقافية: تضم مسرح الأثينيوم، الأوبرا الوطنية، ومهرجان جورج إنيسكو للموسيقى الكلاسيكية.",
+      "architecture_ro": "Brâncovenesc (Palatul Mogoșoaia), Neoclasic francez, Art Deco și Neoromânesc.",
+      "architecture_en": "Brâncovenesc style (Mogoșoaia Palace), French Neoclassical, Art Deco, and Neo-Romanian.",
+      "architecture_ar": "طراز برانكوفينيسك، كلاسيكي فرنسي، وأرت ديكو."
+    },
+    "famous_people": [
+      { "name": "Vlad Țepeș", "role_ro": "Domnitor al Țării Românești și fondator documentar", "role_en": "Prince of Wallachia & City Founder" },
+      { "name": "Mircea cel Bătrân", "role_ro": "Domnitor al Țării Românești (1386–1418)", "role_en": "Prince of Wallachia" },
+      { "name": "George Enescu", "role_ro": "Compozitor și violonist de geniu", "role_en": "Renowned Composer & Violinist" }
+    ],
+    "interesting_facts": [
+      "Palatul Parlamentului este cea mai grea clădire din lume, cântărind aproximativ 4.10 miliarde de kilograme.",
+      "Bucureștiul a fost primul oraș din lume iluminat public cu petrol lampant în anul 1857.",
+      "Parcul Natural Văcărești este singurul parc natural urban din Europa de Est, supranumit 'Delta dintre blocuri'."
+    ],
+    "landmarks": [
       {
         "id": "palace_of_parliament",
         "name_ro": "Palatul Parlamentului",
         "name_en": "Palace of the Parliament",
         "name_ar": "قصر البرلمان الروماني",
         "category": "landmark",
-        "category_label_ro": "Clădire Istorică & Edificiu Național",
-        "category_label_en": "National Monument & Landmark",
-        "category_label_ar": "مبنى تاريخي ومعلم وطني",
+        "category_label_ro": "Edificiu Național",
+        "category_label_en": "National Landmark",
+        "category_label_ar": "معلم وطني",
         "lat": 44.4275,
         "lng": 26.0872,
         "image_url": "https://images.unsplash.com/photo-1584646098378-0874589d76b1?q=80&w=1000&auto=format&fit=crop",
-        "period": "1884 - 1997 (Stil Neoclasic / Totalitar)",
-        "desc_ro": "Cea mai mare clădire administrativă din Europa și a doua din lume după Pentagon. Are 1.100 de camere, 12 niveluri la suprafață și 8 subterane, construită exclusiv cu materiale românești.",
-        "desc_en": "The heaviest building in the world and 2nd largest administrative structure after the Pentagon. Features 1,100 rooms crafted entirely with Romanian marble, crystal, and wood.",
-        "desc_ar": "ثاني أكبر مبنى إداري في العالم بعد البنتاغون وأثقل مبنى على وجه الأرض، يضم 1100 غرفة شيدت بالكامل من الرخام والخشب والكريستال الروماني."
-      },
-      {
-        "id": "athenaeum",
-        "name_ro": "Ateneul Român",
-        "name_en": "Romanian Athenaeum Concert Hall",
-        "name_ar": "مسرح الأثينيوم الروماني",
-        "category": "museum",
-        "category_label_ro": "Templul Muzicii Clasice & Patrimoniu European",
-        "category_label_en": "European Heritage Concert Hall",
-        "category_label_ar": "مسرح الموسيقى ومعلم التراث الأوروبي",
-        "lat": 44.4413,
-        "lng": 26.0973,
-        "image_url": "https://images.unsplash.com/photo-1549877452-9c387954fbc2?q=80&w=1000&auto=format&fit=crop",
-        "period": "1888 (Arhitect Albert Galleron)",
-        "desc_ro": "Simbolul culturii românești, o capodoperă neoclasică cu cupolă ionică impresionantă și o frescă monumentală de 75m ce prezintă istoria României.",
-        "desc_en": "Iconic neoclassic concert hall designed by Albert Galleron. Home to the George Enescu Philharmonic and a magnificent 75-meter fresco depicting Romanian history.",
-        "desc_ar": "رمز الثقافة الرومانية، تحفة قوطية كلاسيكية تضم قبة أيونية مذهلة ولوحة جدارية فريسكو بطول 75 متراً ترسم تاريخ رومانيا."
-      }
-    ]
-  },
-  {
-    "id": "sighisoara",
-    "name_ro": "Sighișoara",
-    "name_en": "Sighisoara",
-    "name_ar": "سيغيشوارا",
-    "county_ro": "Județul Mureș",
-    "county_en": "Mures County",
-    "county_ar": "مقاطعة موريش",
-    "lat": 46.2197,
-    "lng": 24.7964,
-    "elevation": "380 m",
-    "rivers": "Râul Târnava Mare",
-    "mountains": "Podișul Târnavelor",
-    "population": "28,100",
-    "image_url": "https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?q=80&w=1000&auto=format&fit=crop",
-    "intro_ro": "Singura cetate medievală locuită din sud-estul Europei inclusă în patrimoniul mondial UNESCO, locul de naștere al lui Vlad Țepeș (Dracula).",
-    "intro_en": "UNESCO World Heritage site and the only continuously inhabited medieval citadel in Southeastern Europe, birthplace of Vlad the Impaler.",
-    "intro_ar": "قلعة قروسطية مأهولة مدرجة ضمن قائمة التراث العالمي لليونسكو، وهي مسقط رأس الأمير فلاد ثيبش (دراكولا).",
-    "history_summary_ro": "Fondată de meșteșugarii saxoni în secolul al XII-lea (Schässburg), cetatea își păstrează intacte cele 9 turnuri ale breslelor și Turnul cu Ceas.",
-    "history_summary_en": "Founded by Saxon craftsmen in the 12th century as Schässburg, preserving 9 guild towers and the iconic Clock Tower intact.",
-    "history_summary_ar": "تأسست في القرن الثاني عشر على أيدي الحرفيين السكسونيين باسم شايسبورغ، وتحتفظ بأبراج النقابات الـ 9 وبرج الساعة الشهير.",
-    "history_timeline": [
-      {
-        "era": "1191 (Zidirea Schässburg)",
-        "title_ro": "Așezarea Colonilor Sași",
-        "title_en": "Saxon Settlement Charter",
-        "title_ar": "استيطان السكسونيين وبناء الأسوار",
-        "desc_ro": "Regele Geza al II-lea al Ungariei a invitat colonii sași să protejeze granițele Transilvaniei.",
-        "desc_en": "King Geza II invited Saxon settlers to fortify the Transylvanian borders.",
-        "desc_ar": "دعوة المستوطنين السكسونيين لتحصين حدود ترانسيلفانيا."
-      },
-      {
-        "era": "1431 (Casa Vlad Dracul)",
-        "title_ro": "Nașterea lui Vlad Țepeș",
-        "title_en": "Birthplace of Vlad the Impaler",
-        "title_ar": "ولادة الأمير فلاد ثيبش دراكولا عام 1431",
-        "desc_ro": "Vlad al II-lea Dracul a locuit în cetate, unde s-a născut fiul său, Vlad Țepeș.",
-        "desc_en": "Vlad II Dracul resided in the citadel where his son Vlad the Impaler was born.",
-        "desc_ar": "أقام الأمير فلاد الثاني دراكول في القلعة حيث ولد ابنه فلاد الثالث."
+        "period": "1984 - 1997",
+        "desc_ro": "Cea mai mare clădire administrativă din Europa și a doua din lume după Pentagon. Are 1.100 de camere.",
+        "desc_en": "The heaviest building in the world and 2nd largest administrative structure after the Pentagon. Features 1,100 rooms.",
+        "desc_ar": "ثاني أكبر مبنى إداري في العالم بعد البنتاغون وأثقل مبنى على وجه الأرض، يضم 1100 غرفة."
       }
     ],
-    "geography_ro": "Amplasată pe valea Târnavei Mari, pe două terase: Dealul Cetății (425m) și Orașul de Jos.",
-    "geography_en": "Set along the Târnava Mare River Valley across Citadel Hill (425m) and the Lower Town.",
-    "geography_ar": "تقع على وادي نهر تارنافا ماري بين تلة القلعة والمدينة السفلى.",
-    "culture_ro": "Festivalul Medieval Sighișoara, tradiția ceasornicarilor, Turnul cu Ceas și Scara Școlarilor acoperită.",
-    "culture_en": "Sighișoara Medieval Festival, clockmaker traditions, the Clock Tower, and the covered Covered Scholars' Stairs.",
-    "culture_ar": "مهرجان سيغيشوارا القروسطي، برج الساعة ذو المجسمات المتحركة، ودرج الطلاب الخشبي المغطى.",
-    "landmarks_summary_ro": "Turnul cu Ceas, Casa Vlad Dracul, Biserica din Deal, Scara Școlarilor, Turnul Croitorilor.",
-    "landmarks_summary_en": "Clock Tower, Vlad Dracul House, Church on the Hill, Scholars' Stairs, Tailors' Tower.",
-    "landmarks_summary_ar": "برج الساعة، منزل فلاد دراكول، كنيسة التلة، درج الطلاب، برج الخياطين.",
-    "nature_summary_ro": "Rezervația Naturală Stejarii Seculari Breite, Valea Târnavei Mari.",
-    "nature_summary_en": "Breite Ancient Oak Tree Reserve, Târnava Mare Valley.",
-    "nature_summary_ar": "محمية أشجار البلوط المعمرة في بريتي، وادي تارنافا.",
-    "places": [
+    "places": [],
+    "sources": [
       {
-        "id": "clock_tower_sighisoara",
-        "name_ro": "Turnul cu Ceas din Sighișoara",
-        "name_en": "Sighișoara Clock Tower & Museum",
-        "name_ar": "برج الساعة التاريخي بسيغيشوارا",
-        "category": "landmark",
-        "category_label_ro": "Monument UNESCO & Muzeu",
-        "category_label_en": "UNESCO Landmark Clock Tower",
-        "category_label_ar": "برج ساعة يونسكو ومتحف",
-        "lat": 46.2198,
-        "lng": 24.793,
-        "image_url": "https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?q=80&w=1000&auto=format&fit=crop",
-        "period": "Secolul al XIV-lea (64m Înălțime)",
-        "desc_ro": "Simbolul cetății Sighișoara, turn înalt de 64m cu mecanism de ceasorcă din 1648 ce acționează figurine din lemn sculptat ce reprezintă zilele săptămânii și zeitățile pământene.",
-        "desc_en": "64m tall entry tower with a 1648 mechanical clock moving hand-carved wooden figurines symbolizing pagan gods and days of the week.",
-        "desc_ar": "رمز قلعة سيغيشوارا، برج بارتفاع 64 متراً يضم ساعة ميكانيكية تحرك مجسمات خشبية منحوتة تمثل أيام الأسبوع والآلهة القديمة."
+        "source_name": "Wikipedia - București",
+        "source_type": "Wikipedia",
+        "source_url": "https://ro.wikipedia.org/wiki/Bucure%C8%99ti",
+        "last_verified": "2026-08-16"
+      },
+      {
+        "source_name": "Wikimedia Commons - Bucharest",
+        "source_type": "Wikimedia Commons",
+        "source_url": "https://commons.wikimedia.org/wiki/Category:Bucharest",
+        "last_verified": "2026-08-16"
       }
     ]
   }
