@@ -34,6 +34,7 @@ import {
 } from 'lucide-react';
 import questions from '../data/questions_ar.json';
 import Navbar from '../components/Navbar';
+import ArabFlagsConstellation from '../components/ArabFlagsConstellation';
 import { useTheme } from '../context/ThemeContext';
 import { useLanguage } from '../context/LanguageContext';
 import { CATEGORIES_LIST } from '../utils/categories';
@@ -151,56 +152,8 @@ export default function HomePage() {
             </div>
           )}
 
-          {/* 3-Language Selector Bar with Animated Arabic Indicator */}
-          <div className={`w-full backdrop-blur-md rounded-2xl p-3 border shadow-lg ${
-            isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-white border-slate-200'
-          }`}>
-            <p className="text-xs font-bold text-theme-sub text-center mb-2">
-              {strings.selectLangLabel}
-            </p>
-            <div className="grid grid-cols-3 gap-2">
-              {/* Animated Arabic Language Indicator Badge */}
-              <motion.button
-                onClick={() => setAppLang('ar')}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className={`py-2.5 px-2 rounded-xl text-xs font-black transition-all flex items-center justify-center gap-1.5 relative overflow-hidden ${
-                  appLang === 'ar' 
-                    ? 'bg-gradient-to-r from-rose-600 via-amber-600 to-rose-600 text-white shadow-md shadow-rose-600/30' 
-                    : isDark ? 'bg-slate-900/60 text-slate-400 hover:text-white border-slate-700/50' : 'bg-slate-100 text-slate-600 border-slate-200'
-                }`}
-              >
-                <span className="relative z-10 text-sm">🇸🇦</span>
-                <span className="relative z-10">العربية</span>
-                {/* Subtle Professional Glow Animation */}
-                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer pointer-events-none" />
-              </motion.button>
-
-              <button
-                onClick={() => setAppLang('en')}
-                className={`py-2.5 px-2 rounded-xl text-xs font-black transition-all flex items-center justify-center gap-1.5 ${
-                  appLang === 'en' 
-                    ? 'bg-rose-600 text-white shadow-md shadow-rose-600/30' 
-                    : isDark ? 'bg-slate-900/60 text-slate-400 hover:text-white border-slate-700/50' : 'bg-slate-100 text-slate-600 border-slate-200'
-                }`}
-              >
-                <span>🇬🇧</span>
-                <span>English</span>
-              </button>
-
-              <button
-                onClick={() => setAppLang('ro')}
-                className={`py-2.5 px-2 rounded-xl text-xs font-black transition-all flex items-center justify-center gap-1.5 ${
-                  appLang === 'ro' 
-                    ? 'bg-rose-600 text-white shadow-md shadow-rose-600/30' 
-                    : isDark ? 'bg-slate-900/60 text-slate-400 hover:text-white border-slate-700/50' : 'bg-slate-100 text-slate-600 border-slate-200'
-                }`}
-              >
-                <span>🇷🇴</span>
-                <span>Română</span>
-              </button>
-            </div>
-          </div>
+          {/* Animated Arab Country Flags & Language Constellation */}
+          <ArabFlagsConstellation />
         </motion.div>
 
         {/* THREE CORE LEARNING PATHWAYS */}
