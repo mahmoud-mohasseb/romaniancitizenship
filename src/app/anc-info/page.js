@@ -21,6 +21,7 @@ import {
   HelpCircle,
   Clock,
   Award,
+  Download,
   ChevronRight,
   ChevronLeft
 } from 'lucide-react';
@@ -38,7 +39,7 @@ function ANCInfoContent() {
   const { appLang, strings, isRtl } = useLanguage();
   const isDark = theme === 'dark';
 
-  const [activeTab, setActiveTab] = useState('overview'); // 'overview', 'eligibility', 'dossier', 'roadmap', 'oath', 'faq'
+  const [activeTab, setActiveTab] = useState('overview'); // 'overview', 'eligibility', 'interview', 'downloads', 'dossier', 'roadmap', 'oath', 'faq'
   const [searchQuery, setSearchQuery] = useState('');
   const [checkedDocs, setCheckedDocs] = useState([]);
 
@@ -61,6 +62,8 @@ function ANCInfoContent() {
   const roadmap = ancData.application_roadmap;
   const oath = ancData.official_oath;
   const faqs = ancData.official_faqs;
+  const interviewGuide = ancData.interview_guide;
+  const downloads = ancData.official_forms_and_downloads;
 
   const docProgressPct = Math.round((checkedDocs.length / Math.max(docs.length, 1)) * 100);
 
@@ -98,8 +101,8 @@ function ANCInfoContent() {
           </h1>
           <p className="text-xs sm:text-sm text-theme-sub font-semibold leading-relaxed">
             {appLang === 'ar' 
-              ? 'الشروط القانونية بموجب القانون رقم 21/1991، قائمة مستندات الملف، خطوات التقديم والمتابعة، ونص قسم اليمين الرسمي.' 
-              : 'Legal framework under Law No. 21/1991, mandatory dossier document checklists, application roadmaps, and official oath text.'}
+              ? 'الشروط القانونية بموجب القانون رقم 21/1991، محاور مقابلة لجنة الجنسية، قائمة مستندات الملف، والنماذج الرسمية للتحميل.' 
+              : 'Legal framework under Law No. 21/1991, ANC interview evaluation axes, dossier checklists, and official forms.'}
           </p>
 
           <div className="p-3 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold flex items-start gap-2">
@@ -117,7 +120,7 @@ function ANCInfoContent() {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder={appLang === 'ar' ? 'ابحث في الشروط، المستندات، قسم اليمين، أو المواد (مثال: Cazier، Articolul 8)...' : 'Search requirements, documents, oath, or articles...'}
+            placeholder={appLang === 'ar' ? 'ابحث في الشروط، المقابلة، المستندات، أو الاستمارات (مثال: Cazier، Articolul 8)...' : 'Search requirements, interview, documents, or forms...'}
             className="flex-1 px-3 bg-transparent outline-none text-xs sm:text-sm font-semibold placeholder:text-slate-500"
           />
         </div>
@@ -127,6 +130,8 @@ function ANCInfoContent() {
           {[
             { id: 'overview', label_ar: '🏛️ نظرة عامة والقانون', label_en: 'Overview & Law' },
             { id: 'eligibility', label_ar: '⚖️ شروط المواد 8، 10، 11', label_en: 'Articles 8, 10, 11' },
+            { id: 'interview', label_ar: '🎯 دليل مقابلة لجنة ANC', label_en: 'ANC Interview Guide' },
+            { id: 'downloads', label_ar: '📥 الاستمارات الرسمية', label_en: 'Official Forms' },
             { id: 'dossier', label_ar: '📄 قائمة مستندات الملف', label_en: 'Dossier Checklist' },
             { id: 'roadmap', label_ar: '🛣️ خريطة خطوات التقديم', label_en: 'Application Roadmap' },
             { id: 'oath', label_ar: '📜 قسم الولاء الرسمي', label_en: 'Oath of Allegiance' },
@@ -206,7 +211,7 @@ function ANCInfoContent() {
                 <p className="text-xs text-theme-sub font-semibold">{appLang === 'ar' ? path.summary_ar : path.summary_en}</p>
 
                 <div className="pt-2 space-y-1.5">
-                  <span className="text-xs font-black text-emerald-400 block">الشروط والمتطلبات الأساسية:</span>
+                  <span className="text-xs font-black text-emerald-400 block">الشروط ومتطلبات الاستحقاق:</span>
                   <ul className="space-y-1 text-xs font-bold text-slate-300">
                     {(appLang === 'ar' ? path.eligibility_criteria_ar : path.eligibility_criteria_en).map((crit, cIdx) => (
                       <li key={cIdx} className="flex items-start gap-2">
@@ -221,7 +226,64 @@ function ANCInfoContent() {
           </div>
         )}
 
-        {/* Tab 3: Required Dossier Checklist */}
+        {/* Tab 3: ANC Commission Interview Guide */}
+        {activeTab === 'interview' && (
+          <div className="space-y-4 animate-fade-in-up">
+            <div className={`p-5 sm:p-6 rounded-3xl border space-y-4 shadow-xl ${
+              isDark ? 'bg-slate-800/90 border-slate-700' : 'bg-white border-slate-200'
+            }`}>
+              <div className="border-b border-slate-700/60 pb-3">
+                <span className="px-3 py-1 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-black">
+                  🎯 ANC Interview Standard
+                </span>
+                <h3 className="text-base font-black mt-2">{interviewGuide.title_ar}</h3>
+                <p className="text-xs text-theme-sub font-semibold pt-1">{interviewGuide.summary_ar}</p>
+              </div>
+
+              <div className="space-y-3">
+                {interviewGuide.evaluation_areas_ar.map((area, aIdx) => (
+                  <div key={aIdx} className="p-4 rounded-2xl bg-slate-900/80 border border-slate-700 space-y-1 text-right">
+                    <span className="text-xs font-black text-rose-400 block">{area.area_ro} • {area.area_ar}</span>
+                    <p className="text-xs text-slate-300 font-semibold leading-relaxed">{area.details_ar}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tab 4: Downloadable Official Forms */}
+        {activeTab === 'downloads' && (
+          <div className="space-y-3 animate-fade-in-up">
+            {downloads.map((dl, dIdx) => (
+              <div key={dIdx} className={`p-4 rounded-2xl border flex items-center justify-between shadow-sm ${
+                isDark ? 'bg-slate-800/90 border-slate-700' : 'bg-white border-slate-200'
+              }`}>
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 rounded-xl bg-rose-500/20 text-rose-400 border border-rose-500/30">
+                    <Download className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="text-xs sm:text-sm font-black">{dl.name_ar}</h4>
+                    <span className="text-[10px] text-slate-400 font-mono">{dl.name_ro}</span>
+                  </div>
+                </div>
+
+                <a
+                  href={dl.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3.5 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-black text-xs flex items-center gap-1 shadow-md transition-all"
+                >
+                  <span>تحميل من cetatenie.just.ro</span>
+                  <ExternalLink className="w-3.5 h-3.5 shrink-0" />
+                </a>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Tab 5: Required Dossier Checklist */}
         {activeTab === 'dossier' && (
           <div className="space-y-4 animate-fade-in-up">
             <div className={`p-4 rounded-2xl border flex items-center justify-between shadow-sm ${
@@ -263,7 +325,7 @@ function ANCInfoContent() {
           </div>
         )}
 
-        {/* Tab 4: Application Roadmap */}
+        {/* Tab 6: Application Roadmap */}
         {activeTab === 'roadmap' && (
           <div className="space-y-4 animate-fade-in-up">
             {roadmap.map((step) => (
@@ -280,7 +342,7 @@ function ANCInfoContent() {
           </div>
         )}
 
-        {/* Tab 5: Official Oath of Allegiance */}
+        {/* Tab 7: Official Oath of Allegiance */}
         {activeTab === 'oath' && (
           <div className="space-y-4 animate-fade-in-up">
             <div className={`p-6 rounded-3xl border space-y-4 text-center shadow-xl ${
@@ -316,7 +378,7 @@ function ANCInfoContent() {
           </div>
         )}
 
-        {/* Tab 6: Official FAQs */}
+        {/* Tab 8: Official FAQs */}
         {activeTab === 'faq' && (
           <div className="space-y-3 animate-fade-in-up">
             {faqs.map((faq, fIdx) => (

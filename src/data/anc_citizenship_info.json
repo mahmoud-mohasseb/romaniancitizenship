@@ -83,10 +83,59 @@
         "إثبات السجل الجنائي النظيف والولاء."
       ],
       "eligibility_criteria_en": [
-        "Persons deprived of citizenship without consent and descendants up to 3rd degree.",
-        "Maintain current foreign residence if desired."
+        "Persons deprived of citizenship without consent and descendants up to 3rd degree."
       ],
       "source_url": "https://cetatenie.just.ro/articolul-11/"
+    }
+  ],
+  "interview_guide": {
+    "title_ro": "Ghidul Interviului la Comisia pentru Cetățenie (ANC)",
+    "title_en": "ANC Commission Interview Evaluation Guide",
+    "title_ar": "دليل اختبار ومقابلة لجنة الجنسية بـ ANC",
+    "summary_ar": "تختبر لجنة الجنسية المتقدم في خمسة محاور رئيسية لضمان اندماجه الكامل في المجتمع الروماني.",
+    "evaluation_areas_ar": [
+      {
+        "area_ro": "Limba Română (Citit, Scris și Vorbit)",
+        "area_ar": "إتقان اللغة الرومانية (القراءة والتحدث والتعبير)",
+        "details_ar": "قراءة نص روماني رسمي، فهم التوجيهات، والإجابة عن الأسئلة بطلاقة دون تردد."
+      },
+      {
+        "area_ro": "Constituția României",
+        "area_ar": "الدستور الروماني والسلطات الثلاث",
+        "details_ar": "أسئلة عن المادة 1 (شكل الدولة)، المادة 12 (الرموز)، دور البرلمان، والرئيس والحكومة والمحكمة الدستورية."
+      },
+      {
+        "area_ro": "Istoria României",
+        "area_ar": "التاريخ والأحداث والشخصيات الوطنية",
+        "details_ar": "نشأة الشعب الروماني، الوحدة الكبرى 1 ديسمبر 1918، الملوك، وثورة 1989."
+      },
+      {
+        "area_ro": "Geografia și Organizarea Administrativă",
+        "area_ar": "الجغرافيا والتضاريس والتقسيم الإداري",
+        "details_ar": "جبال الكاربات، قمة مولدوفيانو، نهر الدانوب، والـ 41 مقاطعة بالإضافة لبوخارست."
+      },
+      {
+        "area_ro": "Imnul Național 'Deșteaptă-te, române!'",
+        "area_ar": "النشيد الوطني ورموز الدولة",
+        "details_ar": "نطق وطلاقة أبيات النشيد الوطني ومعرفة ألوان العلم وشعار الدولة."
+      }
+    ]
+  },
+  "official_forms_and_downloads": [
+    {
+      "name_ro": "Formular Cerere Acordare Cetățenie (Art. 8)",
+      "name_ar": "استمارة طلب منح الجنسية (المادة 8)",
+      "url": "https://cetatenie.just.ro/formulare-tipizat-art-8/"
+    },
+    {
+      "name_ro": "Formular Cerere Redobândire Cetățenie (Art. 11)",
+      "name_ar": "استمارة طلب استعادة الجنسية (المادة 11)",
+      "url": "https://cetatenie.just.ro/formulare-tipizat-art-11/"
+    },
+    {
+      "name_ro": "Declarație pe propria răspundere",
+      "name_ar": "نموذج الإقرار الشخصي الرسمي",
+      "url": "https://cetatenie.just.ro/formulare/"
     }
   ],
   "dossier_requirements": [
@@ -96,7 +145,6 @@
       "name_en": "Passport & Identity Documents",
       "name_ar": "جواز السفر ووثائق الهوية الرسمية",
       "details_ar": "جواز السفر الأصلي الساري المفعول مع صورة مترجمة ومصدقة رسمياً (legalizată) باللغة الرومانية.",
-      "details_en": "Valid passport with legalized Romanian translation.",
       "mandatory": true
     },
     {
@@ -105,7 +153,6 @@
       "name_en": "Civil Status Certificates (Birth, Marriage)",
       "name_ar": "شهادات الأحوال المدنية (الميلاد، الزواج)",
       "details_ar": "شهادة الميلاد وشهادة الزواج (إن وجدت) مصدقة بختم الأبوستيل (Apostilă) أو التصديق القنصلي، ومترجمة وموثقة بالرومانية.",
-      "details_en": "Birth certificate and marriage certificate (if applicable) with Apostille/legalization and translated into Romanian.",
       "mandatory": true
     },
     {
@@ -114,7 +161,6 @@
       "name_en": "Criminal Record Certificate (Romania & Origin Country)",
       "name_ar": "شهادة السجل الجنائي (من رومانيا ومن بلد المنشأ)",
       "details_ar": "شهادة السجل الجنائي الصادرة من رومانيا (Cazier judiciar) بالإضافة إلى شهادة السجل الجنائي الصادرة من بلد المنشأ الأصلي مصدقة ومترجمة.",
-      "details_en": "Clean criminal record certificate issued in Romania and from the country of origin.",
       "mandatory": true
     },
     {
@@ -123,7 +169,6 @@
       "name_en": "Proof of Domicile & Legal Income",
       "name_ar": "إثبات الإقامة والسكن والدخل المالي القانوني",
       "details_ar": "عقد ملكية أو إيجار السكن في رومانيا، وإثبات الدخل المالي القانوني (عقد عمل، شهادة كشف راتب، أو إقرار ضريبي).",
-      "details_en": "Housing ownership/lease contract in Romania, along with proof of lawful income (employment contract/tax report).",
       "mandatory": true
     },
     {
@@ -132,7 +177,6 @@
       "name_en": "Solemn Declaration of Loyalty",
       "name_ar": "إقرار رسمي شخصي بالولاء وعدم الإضرار بالأمن",
       "details_ar": "إقرار موثق لدى الكاتب العدل (Notar public) يثبت الولاء لرومانيا وعدم دعم أي أفعال ضد الأمن القومي.",
-      "details_en": "Notarized declaration of loyalty to Romania and non-engagement in anti-state activities.",
       "mandatory": true
     }
   ],
