@@ -24,6 +24,7 @@ import {
   ShieldCheck,
   Building2,
   ExternalLink,
+  MapPin,
   ChevronLeft, 
   ChevronRight,
   ChevronDown,
@@ -63,7 +64,8 @@ export default function Navbar() {
         { href: '/quiz', label: strings.quizNav, sub: appLang === 'ar' ? 'اختبارات ومحاكاة الامتحان' : appLang === 'en' ? 'Exam & Quizzes' : 'Simulare Examen & Teste', icon: Trophy, color: 'text-amber-400' },
         { href: '/constitution', label: appLang === 'ar' ? 'قراءة الدستور الروماني 📖' : appLang === 'en' ? 'Romanian Constitution 📖' : 'Constituția României 📖', sub: appLang === 'ar' ? 'تصفح مواد وأبواب الدستور الرسمي' : appLang === 'en' ? 'Browse Official Articles' : 'Răsfoiește Articolele', icon: ShieldCheck, color: 'text-emerald-400' },
         { href: '/anc-info', label: appLang === 'ar' ? 'إجراءات ومستندات ANC 🏛️' : appLang === 'en' ? 'ANC Official Procedures 🏛️' : 'Proceduri Oficiale ANC 🏛️', sub: appLang === 'ar' ? 'قانون 21/1991 والمستندات وقسم اليمين' : appLang === 'en' ? 'Law 21/1991, Dossier & Oath' : 'Legea 21/1991, Dosar & Jurământ', icon: Building2, color: 'text-amber-400' },
-        { href: '/constitution-writing', label: strings.constitutionWritingNav || (appLang === 'ar' ? 'كتابة الدستور ✍️' : appLang === 'en' ? 'Constitution Writing ✍️' : 'Scriere Constituțională ✍️'), sub: appLang === 'ar' ? 'تدرب على كتابة الإجابات وقسم اليمين' : appLang === 'en' ? 'Practice writing responses & oath' : 'Exersează redactarea răspunsurilor', icon: FileText, color: 'text-rose-400' },
+        { href: '/map', label: appLang === 'ar' ? 'خريطة الجنسية التفاعلية 🗺️' : appLang === 'en' ? 'Citizenship Map 🗺️' : 'Harta Cetățeniei 🗺️', sub: appLang === 'ar' ? 'خريطة تفاعلية لمقرات ANC والمحافظات' : appLang === 'en' ? 'Interactive Map & ANC Hubs' : 'Hartă Interactivă ANC', icon: MapPin, color: 'text-rose-400' },
+        { href: '/constitution-writing', label: strings.constitutionWritingNav || (appLang === 'ar' ? 'كتابة الدستور ✍️' : appLang === 'en' ? 'Constitution Writing ✍️' : 'Scriere Constituțională ✍️'), sub: appLang === 'ar' ? 'تدرب على كتابة الإجابات وقسم اليمين' : appLang === 'en' ? 'Practice writing responses & oath' : 'Exersează redactarea răspunsurilor', icon: FileText, color: 'text-amber-400' },
       ]
     },
     {
