@@ -20,10 +20,12 @@ import {
 import questions from '../../data/questions_ar.json';
 import Navbar from '../../components/Navbar';
 import ImageModal from '../../components/ImageModal';
+import AudioPlayerButton from '../../components/AudioPlayerButton';
 import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { CATEGORIES_LIST, getCategoryMeta } from '../../utils/categories';
 import { getQuestionText, getAnswerText } from '../../utils/languageHelper';
+import { stopSpeech } from '../../utils/speechHelper';
 
 function StudyContent() {
   const searchParams = useSearchParams();
@@ -35,7 +37,6 @@ function StudyContent() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
-  const [isSpeaking, setIsSpeaking] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
@@ -56,20 +57,14 @@ function StudyContent() {
   useEffect(() => {
     setCurrentIndex(0);
     setShowAnswer(false);
-    if (typeof window !== 'undefined' && window.speechSynthesis) {
-      window.speechSynthesis.cancel();
-    }
-    setIsSpeaking(false);
+    stopSpeech();
   }, [activeCategory]);
 
   const handleNext = () => {
     if (currentIndex < filteredQuestions.length - 1) {
       setCurrentIndex(prev => prev + 1);
       setShowAnswer(false);
-      if (typeof window !== 'undefined' && window.speechSynthesis) {
-        window.speechSynthesis.cancel();
-      }
-      setIsSpeaking(false);
+      stopSpeech();
     }
   };
 
@@ -77,29 +72,8 @@ function StudyContent() {
     if (currentIndex > 0) {
       setCurrentIndex(prev => prev - 1);
       setShowAnswer(false);
-      if (typeof window !== 'undefined' && window.speechSynthesis) {
-        window.speechSynthesis.cancel();
-      }
-      setIsSpeaking(false);
+      stopSpeech();
     }
-  };
-
-  const speakText = (text) => {
-    if (typeof window === 'undefined' || !window.speechSynthesis) return;
-
-    if (isSpeaking) {
-      window.speechSynthesis.cancel();
-      setIsSpeaking(false);
-      return;
-    }
-
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'ro-RO';
-    utterance.rate = 0.85;
-    utterance.onend = () => setIsSpeaking(false);
-    utterance.onerror = () => setIsSpeaking(false);
-    setIsSpeaking(true);
-    window.speechSynthesis.speak(utterance);
   };
 
   return (
@@ -171,18 +145,11 @@ function StudyContent() {
           </div>
 
           <div className="flex items-center space-x-2 space-x-reverse">
-            <button
-              onClick={() => speakText(currentQ.question)}
-              className={`p-2.5 rounded-xl border font-bold text-xs flex items-center space-x-1 space-x-reverse transition-all ${
-                isSpeaking 
-                  ? 'bg-rose-600 text-white border-rose-600 animate-pulse' 
-                  : isDark ? 'bg-slate-900 border-slate-700 text-rose-400 hover:bg-slate-800' : 'bg-slate-100 border-slate-200 text-rose-600 hover:bg-slate-200'
-              }`}
-              title="Ascultă întrebarea în română 🔊"
-            >
-              {isSpeaking ? <Square className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-              <span className="hidden sm:inline">{strings.playAudio || 'استمع'}</span>
-            </button>
+            <AudioPlayerButton 
+              text={currentQ.question}
+              lang="ro"
+              label={strings.playAudio || 'استمع بالرومانية'}
+            />
           </div>
         </div>
 
@@ -237,13 +204,11 @@ function StudyContent() {
                 }`}>
                   <div className="flex items-center justify-between border-b border-emerald-500/30 pb-2">
                     <span className="text-[10px] font-bold text-emerald-400">🇷🇴 Răspuns Model Oficial:</span>
-                    <button
-                      onClick={() => speakText(currentQ.answer)}
-                      className="text-xs font-bold text-emerald-400 hover:underline flex items-center space-x-1 space-x-reverse"
-                    >
-                      <Volume2 className="w-3.5 h-3.5" />
-                      <span>استمع للإجابة 🔊</span>
-                    </button>
+                    <AudioPlayerButton 
+                      text={currentQ.answer}
+                      lang="ro"
+                      label="استمع للإجابة 🔊"
+                    />
                   </div>
                   <p className="text-sm sm:text-base font-extrabold text-emerald-400 leading-snug">{currentQ.answer}</p>
                   <p className="text-xs sm:text-sm text-theme-sub pt-1 leading-relaxed font-bold">
@@ -253,13 +218,20 @@ function StudyContent() {
 
                 {/* Factually Accurate Educational & Context Insights Card */}
                 {(currentQ.explanation_ar || currentQ.explanation_en) && (
-                  <div className={`p-4 rounded-2xl border-2 space-y-1.5 ${
+                  <div className={`p-4 rounded-2xl border-2 space-y-2 ${
                     isDark ? 'bg-amber-500/10 border-amber-500/30 text-amber-200' : 'bg-amber-50 border-amber-300 text-amber-950'
                   }`}>
-                    <span className="text-[11px] font-black text-amber-400 flex items-center gap-1.5">
-                      <Lightbulb className="w-4 h-4 text-amber-400 shrink-0" />
-                      <span>{appLang === 'ar' ? 'توضيح ومعلومات إضافية للمقابلة:' : 'Educational Insight & Interview Note:'}</span>
-                    </span>
+                    <div className="flex items-center justify-between">
+                      <span className="text-[11px] font-black text-amber-400 flex items-center gap-1.5">
+                        <Lightbulb className="w-4 h-4 text-amber-400 shrink-0" />
+                        <span>{appLang === 'ar' ? 'توضيح ومعلومات إضافية للمقابلة:' : 'Educational Insight & Interview Note:'}</span>
+                      </span>
+                      <AudioPlayerButton 
+                        text={currentQ.explanation_ar || currentQ.explanation_en}
+                        lang={appLang === 'ar' ? 'ar' : 'en'}
+                        label="استمع للتوضيح"
+                      />
+                    </div>
                     <p className="text-xs sm:text-sm font-bold leading-relaxed">
                       {appLang === 'ar' ? currentQ.explanation_ar : (currentQ.explanation_en || currentQ.explanation_ar)}
                     </p>

@@ -23,6 +23,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from '../../components/Navbar';
 import ImageModal from '../../components/ImageModal';
+import AudioPlayerButton from '../../components/AudioPlayerButton';
 import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
 import constitutionDb from '../../data/romanian_constitution.json';
@@ -273,9 +274,16 @@ function ConstitutionContent() {
                   <div className={`p-4 rounded-2xl border space-y-2 ${
                     isDark ? 'bg-slate-900/90 border-slate-700/80 text-slate-100' : 'bg-slate-50 border-slate-200 text-slate-900'
                   }`}>
-                    <span className="text-[10px] font-black text-rose-500 uppercase tracking-wider block">
-                      🇷🇴 Textul Oficial din Constituția României:
-                    </span>
+                    <div className="flex items-center justify-between border-b border-slate-800/80 pb-2">
+                      <span className="text-[10px] font-black text-rose-500 uppercase tracking-wider block">
+                        🇷🇴 Textul Oficial din Constituția României:
+                      </span>
+                      <AudioPlayerButton 
+                        text={art.official_text_ro}
+                        lang="ro"
+                        label="استمع للنص الرسمي"
+                      />
+                    </div>
                     <p className="text-xs sm:text-sm font-extrabold leading-relaxed text-rose-400">
                       {art.official_text_ro}
                     </p>
@@ -293,10 +301,17 @@ function ConstitutionContent() {
                   <div className={`p-4 rounded-2xl border-2 space-y-2 ${
                     isDark ? 'bg-amber-500/10 border-amber-500/30 text-amber-200' : 'bg-amber-50 border-amber-300 text-amber-950'
                   }`}>
-                    <span className="text-[11px] font-black text-amber-400 flex items-center gap-1.5">
-                      <Lightbulb className="w-4 h-4 text-amber-400 shrink-0" />
-                      <span>{appLang === 'ar' ? 'الشرح والمفهوم التعليمي الميسّر للمقابلة:' : 'Simplified Educational Concept for ANC Interview:'}</span>
-                    </span>
+                    <div className="flex items-center justify-between">
+                      <span className="text-[11px] font-black text-amber-400 flex items-center gap-1.5">
+                        <Lightbulb className="w-4 h-4 text-amber-400 shrink-0" />
+                        <span>{appLang === 'ar' ? 'الشرح والمفهوم التعليمي الميسّر للمقابلة:' : 'Simplified Educational Concept for ANC Interview:'}</span>
+                      </span>
+                      <AudioPlayerButton 
+                        text={appLang === 'ar' ? art.simplified_explanation_ar : art.simplified_explanation_en}
+                        lang={appLang === 'ar' ? 'ar' : 'en'}
+                        label="استمع للشرح"
+                      />
+                    </div>
                     <p className="text-xs sm:text-sm font-bold leading-relaxed">
                       {appLang === 'ar' ? art.simplified_explanation_ar : art.simplified_explanation_en}
                     </p>
