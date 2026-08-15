@@ -22,6 +22,37 @@
   --input-bg: #FFFFFF;
 }
 
+.light-theme .bg-slate-950 {
+  background-color: #F8FAFC !important;
+  color: #0F172A !important;
+}
+
+.light-theme .bg-slate-900 {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+  border-color: #E2E8F0 !important;
+}
+
+.light-theme .bg-slate-800 {
+  background-color: #F1F5F9 !important;
+  color: #0F172A !important;
+  border-color: #CBD5E1 !important;
+}
+
+.light-theme .text-white {
+  color: #0F172A !important;
+}
+
+.light-theme .text-slate-300,
+.light-theme .text-slate-400 {
+  color: #475569 !important;
+}
+
+.light-theme .border-slate-700,
+.light-theme .border-slate-800 {
+  border-color: #E2E8F0 !important;
+}
+
 /* Master Typography System: Cairo for Arabic, Plus Jakarta Sans & Outfit for English & Romanian */
 body {
   background-color: var(--bg-primary);
