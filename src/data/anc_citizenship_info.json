@@ -1,0 +1,203 @@
+{
+  "authority_meta": {
+    "name_ro": "Autoritatea Națională pentru Cetățenie (ANC)",
+    "name_en": "National Authority for Citizenship (ANC)",
+    "name_ar": "الهيئة الوطنية للجنسية الرومانية (ANC)",
+    "parent_ministry_ro": "Ministerul Justiției din România",
+    "parent_ministry_en": "Ministry of Justice of Romania",
+    "parent_ministry_ar": "وزارة العدل الرومانية",
+    "official_website": "https://cetatenie.just.ro/",
+    "headquarters_address": "Strada Smârdan nr. 3, Sector 3, București, România",
+    "territorial_offices": ["București", "Galați", "Iași", "Suceava"],
+    "last_verified_date": "2026-08-15",
+    "disclaimer_ro": "Această secțiune oferă informații ghidate de pregătire. Pentru depunerea oficială și decizii juridice, consultați întotdeauna portalul oficial cetatenie.just.ro.",
+    "disclaimer_en": "This section provides educational guidance. For official filing and legal determinations, always refer to cetatenie.just.ro.",
+    "disclaimer_ar": "يوفر هذا القسم دليلاً معلوماتياً وإرشادياً للمتقدمين. بالنسبة للطلبات والإجراءات الرسمية، يرجى دائماً مراجعة الموقع الرسمي للهيئة cetatenie.just.ro."
+  },
+  "legal_framework": {
+    "primary_law_ro": "Legea Cetățeniei Române nr. 21/1991 (republicată, cu modificările și completările ulterioare)",
+    "primary_law_en": "Romanian Citizenship Law No. 21/1991 (republished, amended)",
+    "primary_law_ar": "قانون الجنسية الرومانية رقم 21/1991 (المُعاد نشره والمُعدّل)"
+  },
+  "citizenship_pathways": [
+    {
+      "id": "art_8_naturalization",
+      "article_law": "Articolul 8",
+      "title_ro": "Acordarea cetățeniei la cerere (Acordare generală)",
+      "title_en": "Granting Citizenship upon Request (General Naturalization)",
+      "title_ar": "منح الجنسية الرومانية بناءً على الطلب (التجنيس العادي)",
+      "summary_ro": "Pentru persoanele care au domiciliul legal în România de cel puțin 8 ani (sau 5 ani dacă sunt căsătorite cu un cetățean român).",
+      "summary_en": "For individuals legally residing in Romania for at least 8 years (or 5 years if married to a Romanian citizen).",
+      "summary_ar": "للأفراد المقيمين بشكل قانوني في رومانيا لمدة 8 سنوات على الأقل (أو 5 سنوات في حال الزواج من مواطن روماني).",
+      "eligibility_criteria_ar": [
+        "أن يكون المتقدم قد بلغ سن 18 عاماً.",
+        "الإقامة القانونية في رومانيا لمدة 8 سنوات، أو 5 سنوات إذا كان متزوجاً من مواطن روماني.",
+        "إثبات الولاء للدولة والشعب الروماني وعدم القيام بأفعال تضر بالأمن القومي.",
+        "سجل جنائي نظيف (cazier judiciar) في رومانيا وموطنه الأصلي.",
+        "إثبات الدخل المالي المباشر والإقامة الدائمة القانونية.",
+        "معرفة اللغة الرومانية والدستور والنشيد الوطني والتاريخ والجغرافيا الثقافية."
+      ],
+      "eligibility_criteria_en": [
+        "At least 18 years of age.",
+        "Legal residence in Romania for 8 years (or 5 years if married to a Romanian citizen).",
+        "Loyalty to the Romanian state and people.",
+        "Clean criminal record in Romania and country of origin.",
+        "Proof of legal income and housing.",
+        "Knowledge of Romanian language, Constitution, Anthem, history, and geography."
+      ],
+      "source_url": "https://cetatenie.just.ro/articolul-8/"
+    },
+    {
+      "id": "art_10_reacquisition",
+      "article_law": "Articolul 10",
+      "title_ro": "Redobândirea cetățeniei de către foștii cetățeni (Gradul I și II)",
+      "title_en": "Re-acquisition of Citizenship (1st & 2nd Degree Descendants)",
+      "title_ar": "إعادة استعادة الجنسية للرومانيين السابقين (الدرجة الأولى والثانية)",
+      "summary_ro": "Pentru persoanele care au pierdut cetățenia română și descendenții acestora până la gradul II.",
+      "summary_en": "For individuals who lost Romanian citizenship and their descendants up to the 2nd degree.",
+      "summary_ar": "للأشخاص الذين فقدوا الجنسية الرومانية وأحفادهم حتى الدرجة الثانية.",
+      "eligibility_criteria_ar": [
+        "المواطنون الرومانيون السابقون وأبناؤهم وأحفادهم حتى الدرجة الثانية.",
+        "إمكانية الاحتفاظ بالمواطنة والإقامة في الخارج.",
+        "إثبات الولاء وعدم ارتكاب جرائم ضد الأمن القومي."
+      ],
+      "eligibility_criteria_en": [
+        "Former Romanian citizens and descendants up to 2nd degree.",
+        "Option to maintain domicile abroad.",
+        "Loyalty to Romanian state and clean criminal record."
+      ],
+      "source_url": "https://cetatenie.just.ro/articolul-10/"
+    },
+    {
+      "id": "art_11_reacquisition_territory",
+      "article_law": "Articolul 11",
+      "title_ro": "Redobândirea cetățeniei pentru fostele teritorii (Gradul I, II și III)",
+      "title_en": "Re-acquisition of Citizenship for Historic Territories (Up to 3rd Degree)",
+      "title_ar": "إعادة استعادة الجنسية للأراضي التاريخية (حتى الدرجة الثالثة)",
+      "summary_ro": "Pentru persoanele care au pierdut cetățenia română din motive neimputabile lor și descendenții acestora până la gradul III.",
+      "summary_en": "For individuals who lost Romanian citizenship without their fault and descendants up to 3rd degree.",
+      "summary_ar": "للأشخاص الذين فقدوا الجنسية دون إرادتهم ولأحفادهم حتى الدرجة الثالثة.",
+      "eligibility_criteria_ar": [
+        "الأشخاص الذين جردوا من الجنسية دون إرادتهم وأحفادهم حتى الدرجة الثالثة.",
+        "إمكانية الاحتفاظ بالإقامة في بلد الإقامة الأصلي.",
+        "إثبات السجل الجنائي النظيف والولاء."
+      ],
+      "eligibility_criteria_en": [
+        "Persons deprived of citizenship without consent and descendants up to 3rd degree.",
+        "Maintain current foreign residence if desired."
+      ],
+      "source_url": "https://cetatenie.just.ro/articolul-11/"
+    }
+  ],
+  "dossier_requirements": [
+    {
+      "id": "doc_identity",
+      "name_ro": "Pașaport și Acte de Identitate",
+      "name_en": "Passport & Identity Documents",
+      "name_ar": "جواز السفر ووثائق الهوية الرسمية",
+      "details_ar": "جواز السفر الأصلي الساري المفعول مع صورة مترجمة ومصدقة رسمياً (legalizată) باللغة الرومانية.",
+      "details_en": "Valid passport with legalized Romanian translation.",
+      "mandatory": true
+    },
+    {
+      "id": "doc_civil_status",
+      "name_ro": "Certificate de Stare Civilă (Naștere, Căsătorie)",
+      "name_en": "Civil Status Certificates (Birth, Marriage)",
+      "name_ar": "شهادات الأحوال المدنية (الميلاد، الزواج)",
+      "details_ar": "شهادة الميلاد وشهادة الزواج (إن وجدت) مصدقة بختم الأبوستيل (Apostilă) أو التصديق القنصلي، ومترجمة وموثقة بالرومانية.",
+      "details_en": "Birth certificate and marriage certificate (if applicable) with Apostille/legalization and translated into Romanian.",
+      "mandatory": true
+    },
+    {
+      "id": "doc_criminal_record",
+      "name_ro": "Cazier Judiciar din România și din Țara de Origine",
+      "name_en": "Criminal Record Certificate (Romania & Origin Country)",
+      "name_ar": "شهادة السجل الجنائي (من رومانيا ومن بلد المنشأ)",
+      "details_ar": "شهادة السجل الجنائي الصادرة من رومانيا (Cazier judiciar) بالإضافة إلى شهادة السجل الجنائي الصادرة من بلد المنشأ الأصلي مصدقة ومترجمة.",
+      "details_en": "Clean criminal record certificate issued in Romania and from the country of origin.",
+      "mandatory": true
+    },
+    {
+      "id": "doc_domicile_income",
+      "name_ro": "Dovada Domiciliului și a Veniturilor Legale",
+      "name_en": "Proof of Domicile & Legal Income",
+      "name_ar": "إثبات الإقامة والسكن والدخل المالي القانوني",
+      "details_ar": "عقد ملكية أو إيجار السكن في رومانيا، وإثبات الدخل المالي القانوني (عقد عمل، شهادة كشف راتب، أو إقرار ضريبي).",
+      "details_en": "Housing ownership/lease contract in Romania, along with proof of lawful income (employment contract/tax report).",
+      "mandatory": true
+    },
+    {
+      "id": "doc_loyalty_statement",
+      "name_ro": "Declarație pe propria răspundere de fidelitate",
+      "name_en": "Solemn Declaration of Loyalty",
+      "name_ar": "إقرار رسمي شخصي بالولاء وعدم الإضرار بالأمن",
+      "details_ar": "إقرار موثق لدى الكاتب العدل (Notar public) يثبت الولاء لرومانيا وعدم دعم أي أفعال ضد الأمن القومي.",
+      "details_en": "Notarized declaration of loyalty to Romania and non-engagement in anti-state activities.",
+      "mandatory": true
+    }
+  ],
+  "application_roadmap": [
+    {
+      "step_number": 1,
+      "title_ro": "Pregătirea Dosarului și Traducerile",
+      "title_en": "Dossier Preparation & Translations",
+      "title_ar": "الخطوة 1: تجهيز الملف والترجمات والتصديقات",
+      "description_ar": "جمع كافة الوثائق الرسمية، الحصول على الأبوستيل (Apostilă)، وترجمة المستندات لدى مترجم معتمد وتوثيقها عند الكاتب العدل (Notar)."
+    },
+    {
+      "step_number": 2,
+      "title_ro": "Programarea și Depunerea Dosarului",
+      "title_en": "Appointment & Dossier Submission",
+      "title_ar": "الخطوة 2: حجز الموعد وإيداع الملف لدى ANC",
+      "description_ar": "حجز موعد إلكتروني عبر البوابة، وتقديم الملف شخصياً بمقر الهيئة الوطنية للجنسية (ANC București) أو المكاتب الإقليمية، والحصول على رقم الملف (Număr dosar)."
+    },
+    {
+      "step_number": 3,
+      "title_ro": "Urmărirea Stadiului Dosarului",
+      "title_en": "Dossier Status Tracking online",
+      "title_ar": "الخطوة 3: متابعة حالة الملف إلكترونياً",
+      "description_ar": "متابعة التقارير الدورية المنشورة على موقع ANC برقم الملف والتاريخ (Stadiu dosar)."
+    },
+    {
+      "step_number": 4,
+      "title_ro": "Interviul și Examenul de Cetățenie",
+      "title_en": "ANC Citizenship Interview & Exam",
+      "title_ar": "الخطوة 4: المقابلة الشفهية واختبار اللغة والدستور",
+      "description_ar": "حضور المقابلة الشفهية أمام اللجنة المختصة بـ ANC لاختبار معرفة اللغة الرومانية والدستور والتاريخ والجغرافيا والنشيد الوطني."
+    },
+    {
+      "step_number": 5,
+      "title_ro": "Emiterea Ordinului și Depunerea Jurământului",
+      "title_en": "ANC Order Issue & Oath Ceremony",
+      "title_ar": "الخطوة 5: صدور القرار الوزاري وأداء قسم اليمين",
+      "description_ar": "بعد صدور القرار الوزاري (Ordinul președintelui ANC)، يتوجب أداء قسم الولاء (Jurământul de credință) خلال 6 أشهر واستلام شهادة المواطنة (Certificat de cetățenie)."
+    }
+  ],
+  "official_oath": {
+    "title_ro": "Jurământul de credință față de România",
+    "title_en": "Oath of Allegiance to Romania",
+    "title_ar": "قسم الولاء والإخلاص لرومانيا",
+    "text_ro": "Jur să fiu devotat patriei și poporului român, să apăr drepturile și interesele naționale, să respect Constituția și legile României.",
+    "text_en": "I swear to be devoted to the homeland and the Romanian people, to defend national rights and interests, to respect the Constitution and laws of Romania.",
+    "text_ar": "أقسم أن أكون مخلصاً للوطن وللشعب الروماني، وأن أدافع عن الحقوق والمصالح الوطنية، وأن أحترم دستور رومانيا وقوانينها.",
+    "phonetic_guide": "ژور سى فيو ديفوتات پاتريي شى پوپورولوى رومان، سى اپىر درپتوريله شى إنتريسيلي ناتسيوناله، سى ريسپيكت كونستيتوتسيا شى ليجيله رومانيلوى."
+  },
+  "official_faqs": [
+    {
+      "question_ro": "Cum pot verifica stadiul dosarului meu de cetățenie?",
+      "question_en": "How can I check the status of my citizenship application?",
+      "question_ar": "كيف يمكنني متابعة حالة ملف التجنيس الخاص بي؟",
+      "answer_ro": "Puteți verifica stadiul dosarului pe site-ul oficial cetatenie.just.ro în secțiunea Ordine Art. 8 / Art. 11 după numărul dosarului și anul depunerii.",
+      "answer_en": "You can check the dossier progress directly on cetatenie.just.ro under Orders Art. 8 / Art. 11 using your file number and filing year.",
+      "answer_ar": "يمكنك متابعة حالة الملف مباشرة عبر موقع cetatenie.just.ro في قسم التقارير والقرارات برقم الملف وسنة التقديم."
+    },
+    {
+      "question_ro": "În cât timp de la aprobare trebuie depus jurământul?",
+      "question_en": "Within what timeframe must the oath be taken after approval?",
+      "question_ar": "ما هي المهلة المحددة لأداء قسم اليمين بعد صدور القرار؟",
+      "answer_ro": "Jurământul de credință trebuie depus în termen de 6 luni de la data comunicării ordinului președintelui ANC.",
+      "answer_en": "The oath of allegiance must be taken within 6 months from the notification date of the ANC president's order.",
+      "answer_ar": "يجب أداء قسم الولاء خلال مهلة 6 أشهر من تاريخ إبلاغ قرار رئيس الهيئة الوطنية للجنسية."
+    }
+  ]
+}
