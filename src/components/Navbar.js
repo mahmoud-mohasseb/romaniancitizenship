@@ -78,6 +78,7 @@ export default function Navbar() {
         { href: '/conversations', label: strings.conversationsNav, sub: appLang === 'ar' ? 'حوارات الرومانية والمقابلة' : appLang === 'en' ? 'Daily Dialogues' : 'Dialoguri Zilnice', icon: MessageSquare, color: 'text-emerald-400' },
         { href: '/conversation-quiz', label: strings.conversationQuizNav, sub: appLang === 'ar' ? 'لعبة حوارات الحياة اليومية' : appLang === 'en' ? 'Conversation Quiz Game' : 'Joc de Conversații', icon: Gamepad2, color: 'text-indigo-400' },
         { href: '/anthem', label: appLang === 'ar' ? 'النشيد الوطني الروماني 🇷🇴' : appLang === 'en' ? 'National Anthem 🇷🇴' : 'Imnul Național 🇷🇴', sub: appLang === 'ar' ? 'الكلمات بالفيديو والصوت والترجمة' : appLang === 'en' ? 'Lyrics with Video, Audio & Notes' : 'Versuri cu Video & Audio', icon: Music, color: 'text-amber-400' },
+        { href: '/explore-romania', label: appLang === 'ar' ? 'أطلس استكشاف رومانيا 🗺️' : appLang === 'en' ? 'Explore Romania Atlas 🗺️' : 'Atlas Explorează România 🗺️', sub: appLang === 'ar' ? 'التاريخ والجغرافيا والمعالم لكل مدينة' : appLang === 'en' ? 'History, Geography & Landmarks' : 'Istorie, Geografie & Monumente', icon: MapPin, color: 'text-emerald-400' },
       ]
     },
     {
