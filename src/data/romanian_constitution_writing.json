@@ -1,0 +1,134 @@
+[
+  {
+    "id": "const-1",
+    "mode": "guided",
+    "topic_ro": "Forma de guvernământ și trăsăturile statului român (Articolul 1)",
+    "topic_en": "Form of Government & State Characteristics (Article 1)",
+    "topic_ar": "شكل الحكم ومميزات الدولة الرومانية (المادة 1)",
+    "official_text_ro": "Art. 1 (1) România este stat de drept, democratic și social, în care demnitatea omului, drepturile și libertățile cetățenilor, libera dezvoltare a personalității umane, dreptatea și pluralismul politic reprezintă valori supreme. (2) Forma de guvernământ a statului român este republică. (3) România este stat național, suveran și independent, unitar și indivizibil.",
+    "simplified_explanation_en": "Article 1 defines Romania as a democratic republic and a unitary, sovereign, independent, national, and indivisible state based on the rule of law.",
+    "simplified_explanation_ar": "تحدد المادة 1 رومانيا كجمهورية ديمقراطية ودولة موحدة وسيدة ومستقلة ووطنية وغير قابلة للتقسيم تقوم على سيادة القانون.",
+    "vocabulary": [
+      { "ro": "stat de drept", "en": "rule of law", "ar": "دولة القانون" },
+      { "ro": "suveran și indivizibil", "en": "sovereign & indivisible", "ar": "ذات سيادة وغير قابلة للتقسيم" },
+      { "ro": "republică", "en": "republic", "ar": "جمهورية" }
+    ],
+    "writing_prompt_ro": "Descrieți în 2-3 propoziții trăsăturile principale ale statului român și forma sa de guvernământ conform Articolului 1 din Constituție.",
+    "writing_prompt_en": "Describe in 2-3 sentences the main characteristics of the Romanian state and its form of government according to Article 1.",
+    "writing_prompt_ar": "أكتب في 2-3 جمل المميزات الرئيسية للدولة الرومانية وشكل حكمها وفقاً للمادة 1 من الدستور.",
+    "key_concepts_expected": ["republică", "stat național", "suveran", "unitar", "indivizibil", "stat de drept"],
+    "suggested_answer_ro": "România este o republică și un stat național, suveran, independent, unitar și indivizibil. De asemenea, România este un stat de drept, democratic și social în care drepturile cetățenilor reprezintă valori supreme.",
+    "suggested_answer_en": "Romania is a republic and a national, sovereign, independent, unitary, and indivisible state. It is also a democratic state based on the rule of law.",
+    "suggested_answer_ar": "رومانيا هي جمهورية ودولة وطنية ذات سيادة ومستقلة وموحدة وغير قابلة للتقسيم. كما أنها دولة قانون ديمقراطية تمثل فيها حقوق المواطنين قيماً عليا."
+  },
+  {
+    "id": "const-2",
+    "mode": "questions",
+    "topic_ro": "Suveranitatea națională și reprezentarea poporului (Articolul 2)",
+    "topic_en": "National Sovereignty & Popular Representation (Article 2)",
+    "topic_ar": "السيادة الوطنية وتمثيل الشعب (المادة 2)",
+    "official_text_ro": "Art. 2 (1) Suveranitatea națională aparține poporului român, care o exercită prin organele sale reprezentative, constituite prin alegeri libere, periodice și corecte, precum și prin referendum. (2) Nicio grupare și nicio persoană nu poate exercita suveranitatea în nume propriu.",
+    "simplified_explanation_en": "National sovereignty belongs to the Romanian people and is exercised through freely elected representative bodies or by referendum.",
+    "simplified_explanation_ar": "السيادة الوطنية ملك للشعب الروماني ويمارسها عبر هيئاته التمثيلية المنتخبة أو عبر الاستفتاء الشعبي.",
+    "vocabulary": [
+      { "ro": "poporul român", "en": "Romanian people", "ar": "الشعب الروماني" },
+      { "ro": "alegeri libere", "en": "free elections", "ar": "انتخابات حرة" },
+      { "ro": "referendum", "en": "referendum", "ar": "استفتاء شعبي" }
+    ],
+    "writing_prompt_ro": "Cui aparține suveranitatea națională și prin ce modalități o exercită poporul român?",
+    "writing_prompt_en": "To whom does national sovereignty belong and how do the Romanian people exercise it?",
+    "writing_prompt_ar": "لمن تعود السيادة الوطنية وكيف يمارسها الشعب الروماني؟",
+    "key_concepts_expected": ["poporul român", "organe reprezentative", "alegeri libere", "referendum"],
+    "suggested_answer_ro": "Suveranitatea națională aparține poporului român. Poporul o exercită prin organele sale reprezentative alese prin alegeri libere și periodice, precum și prin referendum.",
+    "suggested_answer_en": "National sovereignty belongs to the Romanian people. They exercise it through representative bodies elected in free periodic elections and through referendums.",
+    "suggested_answer_ar": "تعود السيادة الوطنية للشعب الروماني. ويمارسها الشعب من خلال هيئاته التمثيلية المنتخبة عبر انتخابات حرة ودورية ومن خلال الاستفتاء الشعبي."
+  },
+  {
+    "id": "const-3",
+    "mode": "article",
+    "topic_ro": "Simbolurile naționale ale României (Articolul 12)",
+    "topic_en": "National Symbols of Romania (Article 12)",
+    "topic_ar": "الرموز الوطنية لرمانيا (المادة 12)",
+    "official_text_ro": "Art. 12 (1) Drapelul României este tricolor: roșu, galben și albastru. (2) Ziua națională a României este 1 Decembrie. (3) Imnul național al României este «Deșteaptă-te, române!». (4) Stema țării și sigiliul statului sunt stabilite prin lege organică.",
+    "simplified_explanation_en": "Lists the official symbols: tricolor flag (red, yellow, blue), National Day (December 1st), National Anthem ('Deșteaptă-te, române!'), and national coat of arms.",
+    "simplified_explanation_ar": "تحدد الرموز الرسمية: العلم الثلاثي الألوان، اليوم الوطني (1 ديسمبر)، النشيد الوطني، وشعار الدولة.",
+    "vocabulary": [
+      { "ro": "drapel tricolor", "en": "tricolor flag", "ar": "العلم الثلاثي الألوان" },
+      { "ro": "Ziua Națională", "en": "National Day", "ar": "اليوم الوطني" },
+      { "ro": "Imnul Național", "en": "National Anthem", "ar": "النشيد الوطني" }
+    ],
+    "writing_prompt_ro": "Enumerați cele 4 simboluri naționale ale României așa cum sunt stabilite în Articolul 12 din Constituție.",
+    "writing_prompt_en": "List the 4 national symbols of Romania as defined in Article 12 of the Constitution.",
+    "writing_prompt_ar": "اذكر الرموز الوطنية الأربعة لرومانيا كما هي محددة في المادة 12 من الدستور.",
+    "key_concepts_expected": ["drapelul", "roșu galben albastru", "1 Decembrie", "Deșteaptă-te române", "stema țării"],
+    "suggested_answer_ro": "Simbolurile naționale ale României sunt: drapelul tricolor (roșu, galben și albastru), ziua națională (1 Decembrie), imnul național («Deșteaptă-te, române!») și stema țării.",
+    "suggested_answer_en": "The national symbols of Romania are: the tricolor flag (red, yellow, blue), National Day (December 1st), the national anthem ('Deșteaptă-te, române!'), and the coat of arms.",
+    "suggested_answer_ar": "الرموز الوطنية لرومانيا هي: العلم الثلاثي (الأحمر والأصفر والأزرق)، اليوم الوطني (1 ديسمبر)، النشيد الوطني ('Deșteaptă-te, române!') وشعار الدولة."
+  },
+  {
+    "id": "const-4",
+    "mode": "guided",
+    "topic_ro": "Separația puterilor în stat (Articolul 1 alineatul 4)",
+    "topic_en": "Separation of Powers (Article 1 paragraph 4)",
+    "topic_ar": "فصل السلطات في الدولة (المادة 1 البند 4)",
+    "official_text_ro": "Art. 1 (4) Statul se organizează potrivit principiului separației și echilibrului puterilor - legislativă, executivă și judecătorească - în cadrul democrației constituționale.",
+    "simplified_explanation_en": "Romania is organized according to the principle of separation and balance of the three powers: Legislative, Executive, and Judicial.",
+    "simplified_explanation_ar": "تنظم رومانيا وفقاً لمبدأ الفصل والتوازن بين السلطات الثلاث: التشريعية والتنفيذية والقضائية.",
+    "vocabulary": [
+      { "ro": "puterea legislativă", "en": "legislative power", "ar": "السلطة التشريعية" },
+      { "ro": "puterea executivă", "en": "executive power", "ar": "السلطة التنفيذية" },
+      { "ro": "puterea judecătorească", "en": "judicial power", "ar": "السلطة القضائية" }
+    ],
+    "writing_prompt_ro": "Care sunt cele trei puteri în statul român și cum se numeste principiul care le reglementează?",
+    "writing_prompt_en": "What are the three powers in the Romanian state and what principle governs them?",
+    "writing_prompt_ar": "ما هي السلطات الثلاث في الدولة الرومانية وما هو المبدأ الذي ينظمها؟",
+    "key_concepts_expected": ["puterea legislativă", "executivă", "judecătorească", "separația puterilor"],
+    "suggested_answer_ro": "Cele trei puteri în statul român sunt: puterea legislativă (Parlamentul), puterea executivă (Guvernul și Președintele) și puterea judecătorească (instanțele judecătorești). Ele sunt reglementate prin principiul separației și echilibrului puterilor în stat.",
+    "suggested_answer_en": "The three powers are: legislative (Parliament), executive (Government & President), and judicial (Courts of Law). They are governed by the principle of separation and balance of powers.",
+    "suggested_answer_ar": "السلطات الثلاث هي: التشريعية (البرلمان)، التنفيذية (الحكومة والرئيس)، والقضائية (المحاكم). وينظمها مبدأ الفصل والتوازن بين السلطات."
+  },
+  {
+    "id": "const-5",
+    "mode": "questions",
+    "topic_ro": "Rolul Președintelui României (Articolul 80)",
+    "topic_en": "Role of the President of Romania (Article 80)",
+    "topic_ar": "دور رئيس رومانيا (المادة 80)",
+    "official_text_ro": "Art. 80 (1) Președintele României reprezintă statul român și este garantul independenței naționale, al unității și al integrității teritoriale a țării. (2) Președintele României veghează la respectarea Constituției și la buna funcționare a autorităților publice.",
+    "simplified_explanation_en": "The President represents the state, guarantees national independence & territorial integrity, and ensures proper functioning of public authorities.",
+    "simplified_explanation_ar": "يمثل رئيس الدولة الدولة الرومانية ويضمن الاستقلال الوطني وسلامة الأراضي ويسهر على احترام الدستور.",
+    "vocabulary": [
+      { "ro": "garantul independenței", "en": "guarantor of independence", "ar": "ضامن الاستقلال" },
+      { "ro": "integritate teritorială", "en": "territorial integrity", "ar": "سلامة الأراضي" },
+      { "ro": "autorități publice", "en": "public authorities", "ar": "السلطات العامة" }
+    ],
+    "writing_prompt_ro": "Care este rolul principal al Președintelui României conform Articolului 80 din Constituție?",
+    "writing_prompt_en": "What is the main role of the President of Romania according to Article 80?",
+    "writing_prompt_ar": "ما هو الدور الرئيسي لرئيس رومانيا وفقاً للمادة 80 من الدستور؟",
+    "key_concepts_expected": ["reprezintă statul", "garantul independenței", "integritatea teritorială", "respectarea Constituției"],
+    "suggested_answer_ro": "Președintele României reprezintă statul român și este garantul independenței naționale, al unității și integrității teritoriale. De asemenea, el veghează la respectarea Constituției și medierea între puterile statului.",
+    "suggested_answer_en": "The President of Romania represents the state and is the guarantor of national independence and territorial integrity. He ensures respect for the Constitution.",
+    "suggested_answer_ar": "يمثل رئيس رومانيا الدولة وهو ضامن الاستقلال الوطني وسلامة الأراضي. ويسهر على احترام الدستور والتنسيق بين سلطات الدولة."
+  },
+  {
+    "id": "const-6",
+    "mode": "article",
+    "topic_ro": "Rolul Parlamentului României (Articolul 61)",
+    "topic_en": "Role of the Romanian Parliament (Article 61)",
+    "topic_ar": "دور البرلمان الروماني (المادة 61)",
+    "official_text_ro": "Art. 61 (1) Parlamentul este organul reprezentativ suprem al poporului român și unica autoritate legislativă a țării. (2) Parlamentul este alcătuit din Camera Deputaților și Senat.",
+    "simplified_explanation_en": "Parliament is the supreme representative body and sole legislative authority, composed of two chambers: the Chamber of Deputies and the Senate.",
+    "simplified_explanation_ar": "البرلمان هو الهيئة التمثيلية العليا والسلطة التشريعية الوحيدة، ويتكون من مجلسين: مجلس النواب ومجلس الشيوخ.",
+    "vocabulary": [
+      { "ro": "organ reprezentativ suprem", "en": "supreme representative body", "ar": "الهيئة التمثيلية العليا" },
+      { "ro": "unica autoritate legislativă", "en": "sole legislative authority", "ar": "السلطة التشريعية الوحيدة" },
+      { "ro": "Camera Deputaților și Senat", "en": "Chamber of Deputies & Senate", "ar": "مجلس النواب ومجلس الشيوخ" }
+    ],
+    "writing_prompt_ro": "Care este statutul Parlamentului României și din ce camere este alcătuit?",
+    "writing_prompt_en": "What is the status of the Romanian Parliament and what chambers compose it?",
+    "writing_prompt_ar": "ما هي مكانة البرلمان الروماني ومما يتكون؟",
+    "key_concepts_expected": ["organ reprezentativ suprem", "unica autoritate legislativă", "Camera Deputaților", "Senat"],
+    "suggested_answer_ro": "Parlamentul este organul reprezentativ suprem al poporului român și unica autoritate legislativă a țării. Este alcătuit din două camere: Camera Deputaților și Senat.",
+    "suggested_answer_en": "Parliament is the supreme representative body of the Romanian people and sole legislative authority. It is composed of the Chamber of Deputies and the Senate.",
+    "suggested_answer_ar": "البرلمان هو الهيئة التمثيلية العليا للشعب الروماني والسلطة التشريعية الوحيدة في البلاد. ويتكون من مجلسين: مجلس النواب ومجلس الشيوخ."
+  }
+]

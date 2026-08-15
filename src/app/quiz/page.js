@@ -14,7 +14,12 @@ import {
   Maximize2, 
   X, 
   Timer,
-  PartyPopper
+  PartyPopper,
+  Flag,
+  BookOpen,
+  ArrowRight,
+  ShieldCheck,
+  Award
 } from 'lucide-react';
 import questions from '../../data/questions_ar.json';
 import Navbar from '../../components/Navbar';
@@ -23,7 +28,15 @@ import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { getCategoryMeta, CATEGORIES_LIST } from '../../utils/categories';
 import { getQuestionText, getAnswerText } from '../../utils/languageHelper';
-import { shuffleArray, triggerConfetti, playVictorySound, playOptionFeedbackSound } from '../../utils/quizUtils';
+import { 
+  shuffleArray, 
+  triggerConfetti, 
+  playVictorySound, 
+  playOptionFeedbackSound,
+  getQuestionPoolForLevel,
+  generateLevelOptions,
+  generatePersonalizedRecommendations
+} from '../../utils/quizUtils';
 
 function QuizContent() {
   const searchParams = useSearchParams();
@@ -34,12 +47,19 @@ function QuizContent() {
 
   const [quizMode, setQuizMode] = useState('quick');
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [difficultyLevel, setDifficultyLevel] = useState('easy'); // 'easy', 'medium', 'hard'
+
+  const [flaggedIds, setFlaggedIds] = useState([]);
 
   useEffect(() => {
     const mode = searchParams.get('mode');
     const cat = searchParams.get('category');
+    const diff = searchParams.get('difficulty');
     if (mode) setQuizMode(mode);
     if (cat) setSelectedCategory(cat);
+    if (diff && (diff === 'easy' || diff === 'medium' || diff === 'hard')) {
+      setDifficultyLevel(diff);
+    }
   }, [searchParams]);
 
   const totalQuestionsLimit = quizMode === 'exam' ? 25 : 10;
@@ -58,13 +78,11 @@ function QuizContent() {
 
   const timerRef = useRef(null);
 
-  const questionPool = selectedCategory === 'all' 
-    ? questions 
-    : questions.filter(q => q.category === selectedCategory);
+  const questionPool = getQuestionPoolForLevel(questions, difficultyLevel, selectedCategory);
 
   useEffect(() => {
     resetQuiz();
-  }, [selectedCategory, quizMode]);
+  }, [selectedCategory, quizMode, difficultyLevel]);
 
   useEffect(() => {
     if (quizMode === 'exam' && !isFinished && timeLeft !== null) {
@@ -87,22 +105,14 @@ function QuizContent() {
       return;
     }
 
-    const randomIdx = Math.floor(Math.random() * questionPool.length);
-    const correctQ = questionPool[randomIdx];
+    const availablePool = questionPool.length > 0 ? questionPool : questions;
+    const randomIdx = Math.floor(Math.random() * availablePool.length);
+    const correctQ = availablePool[randomIdx];
     
-    let wrongOptions = [];
-    while (wrongOptions.length < 3) {
-      const wrongIdx = Math.floor(Math.random() * questions.length);
-      const wrongAns = questions[wrongIdx].answer;
-      if (wrongAns && wrongAns !== correctQ.answer && !wrongOptions.includes(wrongAns)) {
-        wrongOptions.push(wrongAns);
-      }
-    }
-
-    const allOptions = shuffleArray([correctQ.answer, ...wrongOptions]);
+    const levelOptions = generateLevelOptions(correctQ, questions, difficultyLevel);
 
     setCurrentQuestion(correctQ);
-    setOptions(allOptions);
+    setOptions(levelOptions);
     setSelectedOption(null);
     setQuestionCount(prev => prev + 1);
   };
@@ -130,17 +140,22 @@ function QuizContent() {
       } else {
         generateQuestion();
       }
-    }, 1200);
+    }, 1400);
+  };
+
+  const toggleFlag = (id) => {
+    setFlaggedIds(prev => 
+      prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
+    );
   };
 
   const finishQuiz = () => {
     setIsFinished(true);
-    const finalScore = score + (selectedOption === currentQuestion.answer ? 0 : 0);
-    const pct = Math.round((finalScore / totalQuestionsLimit) * 100);
+    const pct = Math.round((score / totalQuestionsLimit) * 100);
 
     const saved = parseInt(localStorage.getItem('anc_quiz_best') || '0', 10);
-    if (finalScore > saved) {
-      localStorage.setItem('anc_quiz_best', finalScore.toString());
+    if (score > saved) {
+      localStorage.setItem('anc_quiz_best', score.toString());
     }
 
     if (pct >= 75) {
@@ -166,33 +181,48 @@ function QuizContent() {
     return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
-  const percentage = Math.round((score / totalQuestionsLimit) * 100);
-  const isPassed = percentage >= 75;
+  const percentage = Math.round((score / Math.max(totalQuestionsLimit, 1)) * 100);
+  const passThreshold = difficultyLevel === 'hard' ? 80 : difficultyLevel === 'medium' ? 70 : 60;
+  const isPassed = percentage >= passThreshold;
+  const recommendations = generatePersonalizedRecommendations(wrongAnswers.map(w => w.question), score, totalQuestionsLimit);
 
   if (isFinished) {
     const categoryMeta = getCategoryMeta(selectedCategory);
 
     return (
-      <div className="min-h-screen pb-28 sm:pb-24 bg-theme-main text-theme-main flex flex-col font-cairo">
+      <div className="min-h-screen pb-28 sm:pb-24 bg-theme-main text-theme-main flex flex-col font-latin">
         <Navbar />
 
-        <main className={`flex-1 max-w-lg mx-auto w-full px-4 py-8 space-y-6 animate-scale-in ${
+        <main className={`flex-1 max-w-xl mx-auto w-full px-4 py-8 space-y-6 animate-scale-in ${
           isRtl ? 'lg:mr-72' : 'lg:ml-72'
         } ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
-          <div className={`p-6 rounded-2xl border text-center space-y-6 shadow-xl relative overflow-hidden ${isDark ? 'bg-slate-800/90 border-slate-700' : 'bg-white border-slate-200'}`}>
+          <div className={`p-6 rounded-3xl border text-center space-y-6 shadow-xl relative overflow-hidden ${
+            isDark ? 'bg-slate-800/90 border-slate-700' : 'bg-white border-slate-200'
+          }`}>
             {isPassed && (
               <div className="bg-gradient-to-r from-emerald-500 via-teal-500 to-rose-600 text-white text-xs font-black py-1.5 px-6 rounded-full inline-flex items-center space-x-2 space-x-reverse shadow-lg animate-bounce-subtle">
                 <PartyPopper className="w-4 h-4" />
-                <span>🏆 OFFICIAL ANC PASS & CERTIFIED HIGH SCORE! 🎉</span>
+                <span>🏆 TEST PASSED CERTIFIED! 🎉</span>
               </div>
             )}
 
-            <div className={`w-24 h-24 mx-auto rounded-full flex items-center justify-center border-4 shadow-2xl animate-pulse-glow ${isPassed ? 'bg-gradient-to-tr from-emerald-500 to-teal-500 border-emerald-300 text-white' : 'bg-rose-500/20 border-rose-500 text-rose-400'}`}>
+            <div className={`w-24 h-24 mx-auto rounded-full flex items-center justify-center border-4 shadow-2xl animate-pulse-glow ${
+              isPassed ? 'bg-gradient-to-tr from-emerald-500 to-teal-500 border-emerald-300 text-white' : 'bg-rose-500/20 border-rose-500 text-rose-400'
+            }`}>
               <Trophy className="w-12 h-12 animate-bounce-subtle" />
             </div>
 
             <div className="space-y-1">
-              <h2 className="text-2xl font-extrabold">
+              <span className={`inline-block px-3 py-1 rounded-full text-xs font-black border ${
+                difficultyLevel === 'hard' 
+                  ? 'bg-rose-500/20 text-rose-400 border-rose-500/30' 
+                  : difficultyLevel === 'medium'
+                  ? 'bg-amber-500/20 text-amber-400 border-amber-500/30'
+                  : 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30'
+              }`}>
+                {difficultyLevel === 'hard' ? strings.level3Hard : difficultyLevel === 'medium' ? strings.level2Medium : strings.level1Easy}
+              </span>
+              <h2 className="text-2xl font-extrabold pt-1">
                 {isPassed ? strings.passedExam : strings.failedExam}
               </h2>
               <p className="text-xs text-theme-sub font-bold">
@@ -204,16 +234,41 @@ function QuizContent() {
               <p className={`text-4xl font-extrabold ${isPassed ? 'text-emerald-400' : 'text-rose-400'}`}>
                 {score} / {totalQuestionsLimit}
               </p>
-              <p className="text-xs font-bold text-theme-sub">{strings.score}: {percentage}%</p>
-              <p className={`text-xs font-extrabold ${isPassed ? 'text-emerald-400' : 'text-rose-400'}`}>
-                {isPassed ? (appLang === 'ar' ? '✅ ناجح (مستوف لشروط المقابلة الرسمية)' : appLang === 'en' ? '✅ Passed Official Standard' : '✅ Promovat Standard Oficial') : (appLang === 'ar' ? '❌ غير ناجح (الحد الأدنى 75%)' : appLang === 'en' ? '❌ Below Pass Mark (75% Minimum)' : '❌ Nepromovat (Minim 75%)')}
-              </p>
+              <p className="text-xs font-bold text-theme-sub">{strings.score}: {percentage}% (Pass Mark: {passThreshold}%)</p>
             </div>
+
+            {/* Personalized Recommendations Section */}
+            {recommendations.length > 0 && (
+              <div className="p-4 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-left space-y-2.5 text-right">
+                <span className="text-xs font-black text-rose-400 block">
+                  {strings.learningRecommendations || 'توصيات المذاكرة والمراجعة بناءً على أدائك:'}
+                </span>
+                <div className="space-y-2">
+                  {recommendations.map((rec, rIdx) => (
+                    <Link
+                      key={rIdx}
+                      href={rec.href}
+                      className="p-3 rounded-xl bg-black/20 border border-white/10 hover:border-rose-400 transition-all flex items-center justify-between group"
+                    >
+                      <div className="space-y-0.5">
+                        <h4 className="text-xs font-bold text-white group-hover:text-rose-400 transition-colors">
+                          {appLang === 'ar' ? rec.title_ar : rec.title_en}
+                        </h4>
+                        <p className="text-[10px] text-slate-400">{rec.desc_ar}</p>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-rose-400 shrink-0" />
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {wrongAnswers.length > 0 && (
               <button
                 onClick={() => setShowReviewModal(true)}
-                className={`w-full py-3 text-amber-500 font-extrabold rounded-xl border border-amber-500/40 flex items-center justify-center space-x-2 space-x-reverse transition-colors text-xs ${isDark ? 'bg-slate-900 hover:bg-slate-800' : 'bg-amber-50 hover:bg-amber-100'}`}
+                className={`w-full py-3 text-amber-500 font-extrabold rounded-xl border border-amber-500/40 flex items-center justify-center space-x-2 space-x-reverse transition-colors text-xs ${
+                  isDark ? 'bg-slate-900 hover:bg-slate-800' : 'bg-amber-50 hover:bg-amber-100'
+                }`}
               >
                 <AlertCircle className="w-4 h-4" />
                 <span>{strings.reviewWrong} ({wrongAnswers.length})</span>
@@ -231,7 +286,9 @@ function QuizContent() {
 
               <Link
                 href="/"
-                className={`block w-full py-3.5 font-bold rounded-xl border text-xs sm:text-sm transition-all text-center ${isDark ? 'bg-slate-900 border-slate-700 hover:bg-slate-800 text-white' : 'bg-slate-100 border-slate-200 hover:bg-slate-200 text-slate-900'}`}
+                className={`block w-full py-3.5 font-bold rounded-xl border text-xs sm:text-sm transition-all text-center ${
+                  isDark ? 'bg-slate-900 border-slate-700 hover:bg-slate-800 text-white' : 'bg-slate-100 border-slate-200 hover:bg-slate-200 text-slate-900'
+                }`}
               >
                 {strings.backHome}
               </Link>
@@ -245,16 +302,58 @@ function QuizContent() {
   if (!currentQuestion) return null;
 
   const categoryMeta = getCategoryMeta(currentQuestion.category);
+  const isFlagged = flaggedIds.includes(currentQuestion.id);
 
   return (
-    <div className="min-h-screen pb-28 sm:pb-24 bg-theme-main text-theme-main flex flex-col font-cairo">
+    <div className="min-h-screen pb-28 sm:pb-24 bg-theme-main text-theme-main flex flex-col font-latin">
       <Navbar />
 
       <main className={`flex-1 max-w-4xl mx-auto w-full px-4 py-6 space-y-4 animate-fade-in-up ${
         isRtl ? 'lg:mr-72' : 'lg:ml-72'
       } ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
+        
+        {/* 3 Difficulty Level Selector Tabs */}
+        <div className={`p-3 rounded-2xl border flex items-center justify-between gap-2 ${
+          isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-white border-slate-200 shadow-sm'
+        }`}>
+          <button
+            onClick={() => setDifficultyLevel('easy')}
+            className={`flex-1 py-2 px-2 rounded-xl text-xs font-bold transition-all border text-center ${
+              difficultyLevel === 'easy'
+                ? 'bg-emerald-600 text-white border-emerald-600 shadow-md shadow-emerald-600/30'
+                : isDark ? 'bg-slate-900/60 text-slate-400 border-slate-700/50' : 'bg-slate-100 text-slate-600 border-slate-200'
+            }`}
+          >
+            {strings.level1Easy || 'المستوى 1 — سهل 🟢'}
+          </button>
+
+          <button
+            onClick={() => setDifficultyLevel('medium')}
+            className={`flex-1 py-2 px-2 rounded-xl text-xs font-bold transition-all border text-center ${
+              difficultyLevel === 'medium'
+                ? 'bg-amber-600 text-white border-amber-600 shadow-md shadow-amber-600/30'
+                : isDark ? 'bg-slate-900/60 text-slate-400 border-slate-700/50' : 'bg-slate-100 text-slate-600 border-slate-200'
+            }`}
+          >
+            {strings.level2Medium || 'المستوى 2 — متوسط 🟡'}
+          </button>
+
+          <button
+            onClick={() => setDifficultyLevel('hard')}
+            className={`flex-1 py-2 px-2 rounded-xl text-xs font-bold transition-all border text-center ${
+              difficultyLevel === 'hard'
+                ? 'bg-rose-600 text-white border-rose-600 shadow-md shadow-rose-600/30'
+                : isDark ? 'bg-slate-900/60 text-slate-400 border-slate-700/50' : 'bg-slate-100 text-slate-600 border-slate-200'
+            }`}
+          >
+            {strings.level3Hard || 'المستوى 3 — صعب 🔴'}
+          </button>
+        </div>
+
         {/* Quiz Top Header Bar */}
-        <div className={`flex items-center justify-between p-3 rounded-2xl border ${isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-white border-slate-200 shadow-sm'}`}>
+        <div className={`flex items-center justify-between p-3.5 rounded-2xl border ${
+          isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-white border-slate-200 shadow-sm'
+        }`}>
           <Link href="/" className="p-2 hover:opacity-75 rounded-xl">
             <X className="w-5 h-5" />
           </Link>
@@ -268,16 +367,30 @@ function QuizContent() {
             </p>
           </div>
 
-          {quizMode === 'exam' ? (
-            <div className="flex items-center space-x-1.5 space-x-reverse text-xs font-mono font-black text-rose-500 bg-rose-500/10 border border-rose-500/20 px-2.5 py-1 rounded-xl">
-              <Timer className="w-4 h-4 animate-pulse" />
-              <span>{formatTimer(timeLeft)}</span>
-            </div>
-          ) : (
-            <div className="text-xs font-black text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-xl">
-              {strings.score}: {score}
-            </div>
-          )}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => toggleFlag(currentQuestion.id)}
+              className={`p-2 rounded-xl border text-xs font-bold flex items-center gap-1 transition-all ${
+                isFlagged 
+                  ? 'bg-amber-500/20 text-amber-400 border-amber-500/30' 
+                  : isDark ? 'bg-slate-900 border-slate-700 text-slate-400' : 'bg-slate-100 border-slate-200 text-slate-600'
+              }`}
+              title={strings.flagQuestion || 'علامة مراجعة 🚩'}
+            >
+              <Flag className={`w-4 h-4 ${isFlagged ? 'fill-current text-amber-400' : ''}`} />
+            </button>
+
+            {quizMode === 'exam' ? (
+              <div className="flex items-center space-x-1.5 space-x-reverse text-xs font-mono font-black text-rose-500 bg-rose-500/10 border border-rose-500/20 px-2.5 py-1 rounded-xl">
+                <Timer className="w-4 h-4 animate-pulse" />
+                <span>{formatTimer(timeLeft)}</span>
+              </div>
+            ) : (
+              <div className="text-xs font-black text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-xl">
+                {strings.score}: {score}
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Progress Bar */}
@@ -289,7 +402,9 @@ function QuizContent() {
         </div>
 
         {/* Question Flashcard */}
-        <div className={`p-5 rounded-2xl border space-y-4 shadow-xl animate-scale-in ${isDark ? 'bg-slate-800/90 border-slate-700/80 text-white' : 'bg-white border-slate-200 text-slate-900'}`}>
+        <div className={`p-5 rounded-3xl border space-y-4 shadow-xl animate-scale-in ${
+          isDark ? 'bg-slate-800/90 border-slate-700/80 text-white' : 'bg-white border-slate-200 text-slate-900'
+        }`}>
           {currentQuestion.image && (
             <div className="relative w-full h-48 sm:h-64 rounded-2xl overflow-hidden border-2 border-slate-700/60 bg-slate-950 group cursor-pointer shadow-md" onClick={() => setImageModalVisible(true)}>
               <img 
@@ -303,7 +418,7 @@ function QuizContent() {
                 className="absolute bottom-2.5 right-2.5 p-2 bg-black/70 backdrop-blur-md text-white rounded-xl text-xs font-bold flex items-center space-x-1.5 space-x-reverse border border-white/20 shadow-md"
               >
                 <Maximize2 className="w-3.5 h-3.5" />
-                <span>تكبير الصورة 🔍</span>
+                <span>{strings.zoomImage || 'تكبير الصورة 🔍'}</span>
               </button>
             </div>
           )}
@@ -311,7 +426,7 @@ function QuizContent() {
           <div className="space-y-1 border-b border-slate-700/60 pb-3">
             <span className="text-[10px] font-bold text-rose-500">🇷🇴 Limba Română:</span>
             <h2 className="text-base sm:text-lg font-black leading-snug">{currentQuestion.question}</h2>
-            <p className="text-xs text-theme-sub font-bold">🇸🇦 {getQuestionText(currentQuestion, appLang)}</p>
+            <p className="text-xs text-theme-sub font-bold pt-1">🇸🇦 {getQuestionText(currentQuestion, appLang)}</p>
           </div>
 
           {/* Options Grid */}
@@ -335,7 +450,7 @@ function QuizContent() {
                   key={idx}
                   disabled={selectedOption !== null}
                   onClick={() => handleOptionSelect(option)}
-                  className={`w-full p-3.5 rounded-xl border text-xs sm:text-sm text-right font-bold transition-all flex items-center justify-between ${btnStyle}`}
+                  className={`w-full p-3.5 rounded-2xl border text-xs sm:text-sm text-right font-bold transition-all flex items-center justify-between ${btnStyle}`}
                 >
                   <span className="leading-snug">{option}</span>
                   {selectedOption !== null && (
@@ -349,6 +464,21 @@ function QuizContent() {
               );
             })}
           </div>
+
+          {/* Explanation Banner After Selection */}
+          {selectedOption !== null && (
+            <div className={`p-4 rounded-2xl border text-xs font-bold space-y-1 animate-fade-in-up ${
+              selectedOption === currentQuestion.answer 
+                ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300' 
+                : 'bg-rose-500/10 border-rose-500/30 text-rose-300'
+            }`}>
+              <span className="block font-black">
+                {selectedOption === currentQuestion.answer ? 'إجابة صحيحة! 🎉' : 'الإجابة النموذجية:'}
+              </span>
+              <p className="text-white font-latin">{currentQuestion.answer}</p>
+              <p className="text-slate-300 text-[11px]">🇸🇦 {getAnswerText(currentQuestion, appLang)}</p>
+            </div>
+          )}
         </div>
       </main>
 

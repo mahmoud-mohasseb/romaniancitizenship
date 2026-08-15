@@ -20,6 +20,7 @@ import {
   GraduationCap, 
   Music,
   Heart,
+  FileText,
   ExternalLink,
   ChevronLeft, 
   ChevronRight 
@@ -41,6 +42,7 @@ export default function Navbar() {
     { href: '/anthem', label: appLang === 'ar' ? 'النشيد الوطني الروماني 🇷🇴' : appLang === 'en' ? 'National Anthem 🇷🇴' : 'Imnul Național 🇷🇴', sub: appLang === 'ar' ? 'الكلمات بالصوت والترجمة للدستور' : appLang === 'en' ? 'Lyrics with Audio & Translation' : 'Versuri cu Audio & Traducere', icon: Music, color: 'text-amber-400' },
     { href: '/conversations', label: strings.conversationsNav, sub: appLang === 'ar' ? 'حوارات الرومانية والمقابلة' : appLang === 'en' ? 'Daily Dialogues' : 'Dialoguri Zilnice', icon: MessageSquare, color: 'text-emerald-400' },
     { href: '/conversation-quiz', label: strings.conversationQuizNav, sub: appLang === 'ar' ? 'لعبة حوارات الحياة اليومية' : appLang === 'en' ? 'Conversation Quiz Game' : 'Joc de Conversații', icon: Gamepad2, color: 'text-indigo-400' },
+    { href: '/constitution-writing', label: strings.constitutionWritingNav || (appLang === 'ar' ? 'كتابة الدستور ✍️' : appLang === 'en' ? 'Constitution Writing ✍️' : 'Scriere Constituțională ✍️'), sub: appLang === 'ar' ? 'تدرب على كتابة وصياغة الإجابات الدستورية' : appLang === 'en' ? 'Practice writing constitutional responses' : 'Exersează redactarea răspunsurilor constituționale', icon: FileText, color: 'text-rose-400' },
     { href: '/grammar', label: strings.grammarNav || (appLang === 'ar' ? 'شرح قواعد الرومانية' : appLang === 'en' ? 'Romanian Grammar Guide' : 'Ghid de Gramatică'), sub: appLang === 'ar' ? 'الأجناس والضمائر والتصريفات' : appLang === 'en' ? 'Nouns, Articles & Conjugations' : 'Genuri, Articole & Conjugări', icon: GraduationCap, color: 'text-amber-400' },
     { href: '/grammar-quiz', label: strings.grammarQuizNav || (appLang === 'ar' ? 'لعبة اختبار القواعد' : appLang === 'en' ? 'Grammar Quiz Game' : 'Joc de Gramatică'), sub: appLang === 'ar' ? 'تحدي القواعد والتصريفات' : appLang === 'en' ? 'Grammar Challenges' : 'Sfidări de Gramatică', icon: Gamepad2, color: 'text-rose-400' },
     { href: '/alphabet', label: strings.alphabetNav, sub: appLang === 'ar' ? '31 حرفاً مع النطق والأمثلة' : appLang === 'en' ? '31 Letters with Audio' : '31 Litere cu Audio', icon: Type, color: 'text-purple-400' },
