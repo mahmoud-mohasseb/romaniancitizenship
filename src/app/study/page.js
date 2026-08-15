@@ -84,7 +84,7 @@ function StudyContent() {
         isRtl ? 'lg:mr-72' : 'lg:ml-72'
       } ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
         {/* Category Horizontal Switcher */}
-        <div className="flex items-center space-x-2 space-x-reverse overflow-x-auto pb-2 no-scrollbar">
+        <div className="flex items-center gap-2 overflow-x-auto pb-2.5 px-0.5 no-scrollbar mobile-touch-scroll">
           {CATEGORIES_LIST.map((cat) => {
             const isActive = activeCategory === cat.id;
             return (

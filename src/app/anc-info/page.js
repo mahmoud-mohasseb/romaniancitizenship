@@ -126,7 +126,7 @@ function ANCInfoContent() {
         </div>
 
         {/* Section Tabs Switcher */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 no-scrollbar">
+        <div className="flex items-center gap-2 overflow-x-auto pb-2.5 px-0.5 no-scrollbar mobile-touch-scroll">
           {[
             { id: 'overview', label_ar: '🏛️ نظرة عامة والقانون', label_en: 'Overview & Law' },
             { id: 'eligibility', label_ar: '⚖️ شروط المواد 8، 10، 11', label_en: 'Articles 8, 10, 11' },

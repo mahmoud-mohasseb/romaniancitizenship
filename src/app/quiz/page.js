@@ -41,7 +41,6 @@ import {
   generateLevelOptions,
   generatePersonalizedRecommendations
 } from '../../utils/quizUtils';
-import { recordQuestionAnswered } from '../../utils/analyticsCounter';
 
 function QuizContent() {
   const searchParams = useSearchParams();
@@ -124,7 +123,6 @@ function QuizContent() {
     if (selectedOption !== null) return;
 
     setSelectedOption(option);
-    recordQuestionAnswered();
     const isCorrect = option === currentQuestion.answer;
     playOptionFeedbackSound(isCorrect);
 

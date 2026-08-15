@@ -166,7 +166,7 @@ function ConstitutionContent() {
         </div>
 
         {/* Section Navigation Tabs */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 no-scrollbar">
+        <div className="flex items-center gap-2 overflow-x-auto pb-2.5 px-0.5 no-scrollbar mobile-touch-scroll">
           {[
             { id: 'official', label_ar: '📜 المواد الدستورية النافذة', label_en: 'Official Articles In-Force' },
             { id: 'citizenship_notes', label_ar: '💡 ملاحظات مهمة للمقابلة', label_en: 'Citizenship Exam Notes' },

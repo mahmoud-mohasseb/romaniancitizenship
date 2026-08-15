@@ -194,6 +194,26 @@ button, a {
   min-height: 44px;
 }
 
+/* Mobile-Friendly Touch Horizontal Scroll Utilities */
+.mobile-touch-scroll,
+.no-scrollbar {
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x pan-y;
+  overscroll-behavior-x: contain;
+  scroll-behavior: smooth;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Reduced Motion Accessibility Overrides */
+
 /* Reduced Motion Accessibility Overrides */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {

@@ -192,7 +192,7 @@ function GrammarQuizContent() {
         </div>
 
         {/* Category Horizontal Filter Switcher */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 no-scrollbar">
+        <div className="flex items-center gap-2 overflow-x-auto pb-2.5 px-0.5 no-scrollbar mobile-touch-scroll">
           {categories.map((c) => (
             <button
               key={c.id}
