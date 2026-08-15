@@ -22,10 +22,11 @@
   --input-bg: #FFFFFF;
 }
 
+/* Master Typography System: Cairo for Arabic, Plus Jakarta Sans & Outfit for English & Romanian */
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  font-family: 'Plus Jakarta Sans', 'Outfit', 'Cairo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: 'Cairo', 'Plus Jakarta Sans', 'Outfit', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   margin: 0;
   padding: 0;
   min-height: 100vh;
@@ -35,35 +36,35 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Language specific font cascades */
-html[lang="ar"] body {
-  font-family: 'Cairo', 'Plus Jakarta Sans', 'Outfit', system-ui, -apple-system, sans-serif;
+/* Automatic Font Cascade Based on Language & Document Direction */
+html[dir="rtl"] body {
+  font-family: 'Cairo', 'Plus Jakarta Sans', 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
 }
 
+html[dir="ltr"] body,
 html[lang="en"] body,
 html[lang="ro"] body {
-  font-family: 'Plus Jakarta Sans', 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Outfit', 'Cairo', 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-.font-cairo {
+/* Precise Language Font Classes */
+.font-cairo, [lang="ar"] {
   font-family: 'Cairo', 'Plus Jakarta Sans', 'Outfit', system-ui, -apple-system, sans-serif;
 }
 
-.font-latin,
-.font-en,
-.font-ro {
-  font-family: 'Plus Jakarta Sans', 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
+.font-latin, .font-en, [lang="en"] {
+  font-family: 'Plus Jakarta Sans', 'Outfit', 'Inter', 'Cairo', system-ui, -apple-system, sans-serif;
   letter-spacing: -0.011em;
 }
 
-.font-display {
-  font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
-  letter-spacing: -0.015em;
+.font-ro, .romanian-text, [lang="ro"] {
+  font-family: 'Plus Jakarta Sans', 'Outfit', 'Inter', 'Cairo', system-ui, -apple-system, sans-serif;
+  letter-spacing: -0.01em;
 }
 
-.romanian-text, .lang-ro {
-  font-family: 'Plus Jakarta Sans', 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
-  letter-spacing: -0.01em;
+.font-display {
+  font-family: 'Outfit', 'Plus Jakarta Sans', 'Cairo', system-ui, sans-serif;
+  letter-spacing: -0.015em;
 }
 
 .bg-theme-main {
