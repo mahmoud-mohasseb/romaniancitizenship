@@ -40,7 +40,6 @@ import questions from '../data/questions_ar.json';
 import Navbar from '../components/Navbar';
 import ArabFlagsConstellation from '../components/ArabFlagsConstellation';
 import AudioPlayerButton from '../components/AudioPlayerButton';
-import VisitorCounter from '../components/VisitorCounter';
 import { useTheme } from '../context/ThemeContext';
 import { useLanguage } from '../context/LanguageContext';
 import { CATEGORIES_LIST } from '../utils/categories';
@@ -193,9 +192,6 @@ export default function HomePage() {
           {/* Animated Arab Country Flags & Language Constellation */}
           <ArabFlagsConstellation />
         </motion.div>
-
-        {/* ANIMATED VISITOR & LIVE LEARNER COUNTER BADGE */}
-        <VisitorCounter />
 
         {/* INTERACTIVE QUESTION OF THE DAY CARD */}
         <motion.div 
