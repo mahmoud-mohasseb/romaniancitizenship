@@ -19,7 +19,10 @@ import {
   BookOpen,
   ArrowRight,
   ShieldCheck,
-  Award
+  Award,
+  ChevronLeft,
+  ChevronRight,
+  Lightbulb
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import questions from '../../data/questions_ar.json';
@@ -63,9 +66,11 @@ function QuizContent() {
     }
   }, [searchParams]);
 
-  const totalQuestionsLimit = quizMode === 'exam' ? 25 : 10;
-  const initialTimeSeconds = quizMode === 'exam' ? 20 * 60 : null;
+  // Exact 25 Questions per difficulty level test session
+  const totalQuestionsLimit = 25;
+  const initialTimeSeconds = quizMode === 'exam' ? 25 * 60 : null;
 
+  const [sessionQuestions, setSessionQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [options, setOptions] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -78,8 +83,6 @@ function QuizContent() {
   const [showReviewModal, setShowReviewModal] = useState(false);
 
   const timerRef = useRef(null);
-
-  const questionPool = getQuestionPoolForLevel(questions, difficultyLevel, selectedCategory);
 
   useEffect(() => {
     resetQuiz();
@@ -100,22 +103,20 @@ function QuizContent() {
     };
   }, [timeLeft, isFinished, quizMode]);
 
-  const generateQuestion = () => {
-    if (questionCount >= totalQuestionsLimit || questionPool.length === 0) {
-      setIsFinished(true);
+  const loadQuestionAtIndex = (index, pool) => {
+    const qList = pool || sessionQuestions;
+    if (index >= totalQuestionsLimit || index >= qList.length) {
+      finishQuiz();
       return;
     }
 
-    const availablePool = questionPool.length > 0 ? questionPool : questions;
-    const randomIdx = Math.floor(Math.random() * availablePool.length);
-    const correctQ = availablePool[randomIdx];
-    
-    const levelOptions = generateLevelOptions(correctQ, questions, difficultyLevel);
+    const currentQ = qList[index];
+    const levelOpts = generateLevelOptions(currentQ, questions, difficultyLevel);
 
-    setCurrentQuestion(correctQ);
-    setOptions(levelOptions);
+    setCurrentQuestion(currentQ);
+    setOptions(levelOpts);
     setSelectedOption(null);
-    setQuestionCount(prev => prev + 1);
+    setQuestionCount(index + 1);
   };
 
   const handleOptionSelect = (option) => {
@@ -136,12 +137,12 @@ function QuizContent() {
     }
 
     setTimeout(() => {
-      if (questionCount >= totalQuestionsLimit) {
+      if (questionCount >= totalQuestionsLimit || questionCount >= sessionQuestions.length) {
         finishQuiz();
       } else {
-        generateQuestion();
+        loadQuestionAtIndex(questionCount, sessionQuestions);
       }
-    }, 1400);
+    }, 1800);
   };
 
   const toggleFlag = (id) => {
@@ -172,7 +173,15 @@ function QuizContent() {
     setWrongAnswers([]);
     setTimeLeft(initialTimeSeconds);
     setShowReviewModal(false);
-    generateQuestion();
+
+    const pool = getQuestionPoolForLevel(questions, difficultyLevel, selectedCategory);
+    const shuffledPool = shuffleArray(pool.length >= totalQuestionsLimit ? pool : questions);
+    const selected25 = shuffledPool.slice(0, totalQuestionsLimit);
+    setSessionQuestions(selected25);
+
+    if (selected25.length > 0) {
+      loadQuestionAtIndex(0, selected25);
+    }
   };
 
   const formatTimer = (seconds) => {
@@ -203,7 +212,7 @@ function QuizContent() {
             {isPassed && (
               <div className="bg-gradient-to-r from-emerald-500 via-teal-500 to-rose-600 text-white text-xs font-black py-1.5 px-6 rounded-full inline-flex items-center space-x-2 space-x-reverse shadow-lg animate-bounce-subtle">
                 <PartyPopper className="w-4 h-4" />
-                <span>🏆 TEST PASSED CERTIFIED! 🎉</span>
+                <span>🏆 EXAM PASSED CERTIFIED! 🎉</span>
               </div>
             )}
 
@@ -221,7 +230,7 @@ function QuizContent() {
                   ? 'bg-amber-500/20 text-amber-400 border-amber-500/30'
                   : 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30'
               }`}>
-                {difficultyLevel === 'hard' ? strings.level3Hard : difficultyLevel === 'medium' ? strings.level2Medium : strings.level1Easy}
+                {difficultyLevel === 'hard' ? strings.level3Hard : difficultyLevel === 'medium' ? strings.level2Medium : strings.level1Easy} (25 Questions)
               </span>
               <h2 className="text-2xl font-extrabold pt-1">
                 {isPassed ? strings.passedExam : strings.failedExam}
@@ -233,14 +242,14 @@ function QuizContent() {
 
             <div className={`p-6 rounded-2xl border-2 space-y-2 ${isDark ? 'bg-slate-900/80' : 'bg-slate-50'} ${isPassed ? 'border-emerald-500' : 'border-rose-500'}`}>
               <p className={`text-4xl font-extrabold ${isPassed ? 'text-emerald-400' : 'text-rose-400'}`}>
-                {score} / {totalQuestionsLimit}
+                {score} / 25
               </p>
               <p className="text-xs font-bold text-theme-sub">{strings.score}: {percentage}% (Pass Mark: {passThreshold}%)</p>
             </div>
 
             {/* Personalized Recommendations Section */}
             {recommendations.length > 0 && (
-              <div className="p-4 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-left space-y-2.5 text-right">
+              <div className="p-4 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-right space-y-2.5">
                 <span className="text-xs font-black text-rose-400 block">
                   {strings.learningRecommendations || 'توصيات المذاكرة والمراجعة بناءً على أدائك:'}
                 </span>
@@ -249,245 +258,265 @@ function QuizContent() {
                     <Link
                       key={rIdx}
                       href={rec.href}
-                      className="p-3 rounded-xl bg-black/20 border border-white/10 hover:border-rose-400 transition-all flex items-center justify-between group"
+                      className="p-3 rounded-xl bg-slate-900/80 border border-rose-500/20 flex items-center justify-between text-xs font-bold text-white hover:border-rose-500 transition-all"
                     >
-                      <div className="space-y-0.5">
-                        <h4 className="text-xs font-bold text-white group-hover:text-rose-400 transition-colors">
-                          {appLang === 'ar' ? rec.title_ar : rec.title_en}
-                        </h4>
-                        <p className="text-[10px] text-slate-400">{rec.desc_ar}</p>
+                      <div className="flex items-center gap-2">
+                        <Award className="w-4 h-4 text-amber-400 shrink-0" />
+                        <span>{rec.title_ar}</span>
                       </div>
-                      <ArrowRight className="w-4 h-4 text-rose-400 shrink-0" />
+                      {isRtl ? <ChevronLeft className="w-4 h-4 text-rose-400" /> : <ChevronRight className="w-4 h-4 text-rose-400" />}
                     </Link>
                   ))}
                 </div>
               </div>
             )}
 
+            {/* Wrong Answers Review Drawer Toggle */}
             {wrongAnswers.length > 0 && (
               <button
                 onClick={() => setShowReviewModal(true)}
-                className={`w-full py-3 text-amber-500 font-extrabold rounded-xl border border-amber-500/40 flex items-center justify-center space-x-2 space-x-reverse transition-colors text-xs ${
-                  isDark ? 'bg-slate-900 hover:bg-slate-800' : 'bg-amber-50 hover:bg-amber-100'
-                }`}
+                className="w-full py-3 px-4 rounded-2xl border border-rose-500/40 text-xs font-bold text-rose-400 hover:bg-rose-500/10 transition-all flex items-center justify-center gap-2"
               >
                 <AlertCircle className="w-4 h-4" />
-                <span>{strings.reviewWrong} ({wrongAnswers.length})</span>
+                <span>مراجعة الأسئلة الخاطئة ({wrongAnswers.length} أسئلة)</span>
               </button>
             )}
 
-            <div className="space-y-2">
-              <button
-                onClick={resetQuiz}
-                className="w-full py-3.5 bg-rose-600 hover:bg-rose-500 text-white font-black rounded-xl text-xs sm:text-sm shadow-md shadow-rose-600/30 transition-all flex items-center justify-center space-x-2 space-x-reverse"
-              >
-                <RotateCcw className="w-4 h-4" />
-                <span>{strings.retakeQuiz}</span>
-              </button>
-
-              <Link
-                href="/"
-                className={`block w-full py-3.5 font-bold rounded-xl border text-xs sm:text-sm transition-all text-center ${
-                  isDark ? 'bg-slate-900 border-slate-700 hover:bg-slate-800 text-white' : 'bg-slate-100 border-slate-200 hover:bg-slate-200 text-slate-900'
-                }`}
-              >
-                {strings.backHome}
-              </Link>
-            </div>
+            <button
+              onClick={resetQuiz}
+              className="w-full py-3.5 bg-gradient-to-r from-rose-600 via-rose-700 to-amber-600 hover:opacity-95 text-white font-extrabold rounded-2xl flex items-center justify-center space-x-2 space-x-reverse shadow-xl text-sm transition-all"
+            >
+              <RotateCcw className="w-4 h-4" />
+              <span>{strings.retryQuiz || 'إعادة الاختبار (25 سؤالاً جديداً)'}</span>
+            </button>
           </div>
         </main>
+
+        {/* Incorrect Questions Review Modal */}
+        {showReviewModal && (
+          <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+            <div className={`max-w-2xl w-full max-h-[85vh] rounded-3xl p-6 border shadow-2xl overflow-y-auto space-y-4 ${
+              isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-white border-slate-200 text-slate-900'
+            }`}>
+              <div className="flex items-center justify-between border-b border-slate-700 pb-3">
+                <h3 className="text-base font-black text-rose-500">مراجعة الإجابات الخاطئة ({wrongAnswers.length})</h3>
+                <button onClick={() => setShowReviewModal(false)} className="p-2 rounded-xl border border-slate-700">
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <div className="space-y-4">
+                {wrongAnswers.map((item, wIdx) => (
+                  <div key={wIdx} className="p-4 rounded-2xl border border-slate-700/60 bg-slate-800/40 space-y-2 text-right">
+                    <p className="text-xs font-bold text-white font-latin">{item.question.question}</p>
+                    <p className="text-xs font-bold text-amber-300">🇸🇦 {getQuestionText(item.question, appLang)}</p>
+                    <div className="pt-1 space-y-1 text-xs font-bold">
+                      <p className="text-rose-400">إجابتك: {item.userAnswer}</p>
+                      <p className="text-emerald-400">الإجابة الصحيحة: {item.correctAnswer}</p>
+                    </div>
+                    {(item.question.explanation_ar || item.question.explanation_en) && (
+                      <p className="text-[11px] text-slate-300 pt-1 border-t border-slate-700/40 leading-relaxed font-semibold">
+                        💡 {appLang === 'ar' ? item.question.explanation_ar : item.question.explanation_en}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     );
   }
 
   if (!currentQuestion) return null;
 
-  const categoryMeta = getCategoryMeta(currentQuestion.category);
   const isFlagged = flaggedIds.includes(currentQuestion.id);
+  const imageSrc = currentQuestion.image || currentQuestion.image_url;
 
   return (
     <div className="min-h-screen pb-28 sm:pb-24 bg-theme-main text-theme-main flex flex-col font-latin">
       <Navbar />
 
-      <main className={`flex-1 max-w-4xl mx-auto w-full px-4 py-6 space-y-4 animate-fade-in-up ${
+      <main className={`flex-1 w-full max-w-4xl mx-auto px-4 py-6 space-y-5 animate-fade-in-up ${
         isRtl ? 'lg:mr-72' : 'lg:ml-72'
       } ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
         
-        {/* 3 Difficulty Level Selector Tabs */}
-        <div className={`p-3 rounded-2xl border flex items-center justify-between gap-2 ${
-          isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-white border-slate-200 shadow-sm'
-        }`}>
+        {/* Difficulty Level Selector Tabs (Easy 🟢, Medium 🟡, Hard 🔴) */}
+        <div className="grid grid-cols-3 gap-2">
           <button
             onClick={() => setDifficultyLevel('easy')}
-            className={`flex-1 py-2 px-2 rounded-xl text-xs font-bold transition-all border text-center ${
+            className={`py-2.5 px-2 rounded-2xl text-xs font-black border transition-all flex items-center justify-center gap-1.5 ${
               difficultyLevel === 'easy'
                 ? 'bg-emerald-600 text-white border-emerald-600 shadow-md shadow-emerald-600/30'
-                : isDark ? 'bg-slate-900/60 text-slate-400 border-slate-700/50' : 'bg-slate-100 text-slate-600 border-slate-200'
+                : isDark ? 'bg-slate-800 text-slate-300 border-slate-700' : 'bg-white text-slate-700 border-slate-200'
             }`}
           >
-            {strings.level1Easy || 'المستوى 1 — سهل 🟢'}
+            <span>🟢</span>
+            <span>{strings.level1Easy || 'سهل (25)'}</span>
           </button>
 
           <button
             onClick={() => setDifficultyLevel('medium')}
-            className={`flex-1 py-2 px-2 rounded-xl text-xs font-bold transition-all border text-center ${
+            className={`py-2.5 px-2 rounded-2xl text-xs font-black border transition-all flex items-center justify-center gap-1.5 ${
               difficultyLevel === 'medium'
                 ? 'bg-amber-600 text-white border-amber-600 shadow-md shadow-amber-600/30'
-                : isDark ? 'bg-slate-900/60 text-slate-400 border-slate-700/50' : 'bg-slate-100 text-slate-600 border-slate-200'
+                : isDark ? 'bg-slate-800 text-slate-300 border-slate-700' : 'bg-white text-slate-700 border-slate-200'
             }`}
           >
-            {strings.level2Medium || 'المستوى 2 — متوسط 🟡'}
+            <span>🟡</span>
+            <span>{strings.level2Medium || 'متوسط (25)'}</span>
           </button>
 
           <button
             onClick={() => setDifficultyLevel('hard')}
-            className={`flex-1 py-2 px-2 rounded-xl text-xs font-bold transition-all border text-center ${
+            className={`py-2.5 px-2 rounded-2xl text-xs font-black border transition-all flex items-center justify-center gap-1.5 ${
               difficultyLevel === 'hard'
                 ? 'bg-rose-600 text-white border-rose-600 shadow-md shadow-rose-600/30'
-                : isDark ? 'bg-slate-900/60 text-slate-400 border-slate-700/50' : 'bg-slate-100 text-slate-600 border-slate-200'
+                : isDark ? 'bg-slate-800 text-slate-300 border-slate-700' : 'bg-white text-slate-700 border-slate-200'
             }`}
           >
-            {strings.level3Hard || 'المستوى 3 — صعب 🔴'}
+            <span>🔴</span>
+            <span>{strings.level3Hard || 'صعب (25)'}</span>
           </button>
         </div>
 
-        {/* Quiz Top Header Bar */}
-        <div className={`flex items-center justify-between p-3.5 rounded-2xl border ${
-          isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-white border-slate-200 shadow-sm'
+        {/* Top Control Bar: Progress Indicator & Flag */}
+        <div className={`p-4 rounded-2xl border flex items-center justify-between shadow-sm ${
+          isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-white border-slate-200'
         }`}>
-          <Link href="/" className="p-2 hover:opacity-75 rounded-xl">
-            <X className="w-5 h-5" />
-          </Link>
+          <div className="space-y-1">
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-extrabold px-2.5 py-0.5 rounded-md bg-rose-500/15 text-rose-500 border border-rose-500/20">
+                {strings.question} {questionCount} / 25
+              </span>
+              <span className="text-xs font-black text-emerald-400">
+                {score} {strings.correctBadge || 'صحيحة'}
+              </span>
+            </div>
 
-          <div className="text-center">
-            <p className="text-sm font-extrabold">
-              {strings.question} {questionCount} {strings.of} {totalQuestionsLimit}
-            </p>
-            <p className="text-[11px] font-bold" style={{ color: categoryMeta.color }}>
-              {appLang === 'ar' ? categoryMeta.name_ar : appLang === 'en' ? categoryMeta.name_en : categoryMeta.name_ro}
-            </p>
+            {/* Progress Bar */}
+            <div className="w-48 sm:w-64 h-2 bg-slate-700/50 rounded-full overflow-hidden">
+              <div 
+                className="h-full bg-gradient-to-r from-rose-500 via-amber-500 to-emerald-500 transition-all duration-300"
+                style={{ width: `${(questionCount / 25) * 100}%` }}
+              />
+            </div>
           </div>
 
           <div className="flex items-center gap-2">
             <button
               onClick={() => toggleFlag(currentQuestion.id)}
-              className={`p-2 rounded-xl border text-xs font-bold flex items-center gap-1 transition-all ${
+              className={`p-2.5 rounded-xl border transition-all ${
                 isFlagged 
-                  ? 'bg-amber-500/20 text-amber-400 border-amber-500/30' 
-                  : isDark ? 'bg-slate-900 border-slate-700 text-slate-400' : 'bg-slate-100 border-slate-200 text-slate-600'
+                  ? 'bg-amber-500 text-slate-950 border-amber-400 font-bold' 
+                  : isDark ? 'bg-slate-900 border-slate-700 text-slate-400 hover:text-amber-400' : 'bg-slate-100 border-slate-200 text-slate-600'
               }`}
-              title={strings.flagQuestion || 'علامة مراجعة 🚩'}
+              title="علم السؤال للمراجعة 🚩"
             >
-              <Flag className={`w-4 h-4 ${isFlagged ? 'fill-current text-amber-400' : ''}`} />
+              <Flag className={`w-4 h-4 ${isFlagged ? 'fill-current' : ''}`} />
             </button>
 
-            {quizMode === 'exam' ? (
-              <div className="flex items-center space-x-1.5 space-x-reverse text-xs font-mono font-black text-rose-500 bg-rose-500/10 border border-rose-500/20 px-2.5 py-1 rounded-xl">
+            {quizMode === 'exam' && (
+              <div className="px-3 py-2 rounded-xl bg-rose-500/20 border border-rose-500/30 text-rose-400 font-mono font-bold text-xs flex items-center gap-1.5">
                 <Timer className="w-4 h-4 animate-pulse" />
                 <span>{formatTimer(timeLeft)}</span>
-              </div>
-            ) : (
-              <div className="text-xs font-black text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-xl">
-                {strings.score}: {score}
               </div>
             )}
           </div>
         </div>
 
-        {/* Progress Bar */}
-        <div className="w-full bg-slate-700/30 h-2.5 rounded-full overflow-hidden">
-          <div 
-            className="bg-gradient-to-r from-rose-600 to-amber-500 h-full transition-all duration-300 rounded-full animate-shimmer"
-            style={{ width: `${(questionCount / totalQuestionsLimit) * 100}%` }}
-          />
-        </div>
-
-        {/* Question Flashcard */}
-        <div className={`p-5 rounded-3xl border space-y-4 shadow-xl animate-scale-in ${
+        {/* Main Question Flashcard */}
+        <div className={`p-5 sm:p-6 rounded-3xl border space-y-4 shadow-xl animate-scale-in ${
           isDark ? 'bg-slate-800/90 border-slate-700/80 text-white' : 'bg-white border-slate-200 text-slate-900'
         }`}>
-          {currentQuestion.image && (
-            <div className="relative w-full h-48 sm:h-64 rounded-2xl overflow-hidden border-2 border-slate-700/60 bg-slate-950 group cursor-pointer shadow-md" onClick={() => setImageModalVisible(true)}>
+          {imageSrc && (
+            <div 
+              className="relative w-full h-48 sm:h-64 rounded-2xl overflow-hidden border-2 border-slate-700/60 bg-slate-950 cursor-pointer shadow-lg group"
+              onClick={() => setImageModalVisible(true)}
+            >
               <img 
-                src={currentQuestion.image} 
+                src={imageSrc} 
                 alt={currentQuestion.question}
-                onError={(e) => { e.currentTarget.src = '/icon.png'; }}
-                className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+                onError={(e) => {
+                  e.currentTarget.src = '/icon.png';
+                }}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
-              <button 
-                onClick={() => setImageModalVisible(true)}
-                className="absolute bottom-2.5 right-2.5 p-2 bg-black/70 backdrop-blur-md text-white rounded-xl text-xs font-bold flex items-center space-x-1.5 space-x-reverse border border-white/20 shadow-md"
-              >
-                <Maximize2 className="w-3.5 h-3.5" />
-                <span>{strings.zoomImage || 'تكبير الصورة 🔍'}</span>
-              </button>
             </div>
           )}
 
-          <div className="space-y-1 border-b border-slate-700/60 pb-3">
-            <span className="text-[10px] font-bold text-rose-500">🇷🇴 Limba Română:</span>
+          <div className="space-y-1.5 border-b border-slate-700/60 pb-3">
+            <span className="text-[10px] font-bold text-rose-500">🇷🇴 Întrebarea #{currentQuestion.id}:</span>
             <h2 className="text-base sm:text-lg font-black leading-snug">{currentQuestion.question}</h2>
-            <p className="text-xs text-theme-sub font-bold pt-1">🇸🇦 {getQuestionText(currentQuestion, appLang)}</p>
+            <p className="text-xs text-theme-sub font-bold pt-1">
+              🇸🇦 {getQuestionText(currentQuestion, appLang)}
+            </p>
           </div>
 
-          {/* Options Grid */}
+          {/* Plausible Distractor Options List */}
           <div className="space-y-2.5 pt-1">
-            <p className="text-xs font-bold text-theme-sub">{strings.chooseCorrectAns}</p>
             {options.map((option, idx) => {
+              const optionLabels = ['A', 'B', 'C', 'D'];
+              const isSelected = selectedOption === option;
+              const isCorrectOpt = option === currentQuestion.answer;
               let btnStyle = isDark 
-                ? 'bg-slate-900/90 border-slate-700/80 hover:border-rose-500 text-slate-100' 
-                : 'bg-slate-50 border-slate-200 hover:border-rose-500 text-slate-900';
+                ? 'bg-slate-900/90 border-slate-700 hover:border-amber-500 text-slate-200' 
+                : 'bg-slate-50 border-slate-200 hover:border-amber-500 text-slate-800 shadow-sm';
 
               if (selectedOption !== null) {
-                if (option === currentQuestion.answer) {
-                  btnStyle = 'bg-emerald-600 text-white border-emerald-600 animate-quiz-pop font-black';
-                } else if (option === selectedOption) {
-                  btnStyle = 'bg-rose-600 text-white border-rose-600 animate-quiz-shake font-black';
+                if (isCorrectOpt) {
+                  btnStyle = 'bg-emerald-600 text-white border-emerald-600 font-black scale-[1.01] shadow-lg shadow-emerald-600/30';
+                } else if (isSelected) {
+                  btnStyle = 'bg-rose-600 text-white border-rose-600 font-black';
                 }
               }
 
               return (
-                <button
+                <motion.button
                   key={idx}
+                  whileHover={{ scale: selectedOption === null ? 1.01 : 1 }}
+                  whileTap={{ scale: selectedOption === null ? 0.98 : 1 }}
                   disabled={selectedOption !== null}
                   onClick={() => handleOptionSelect(option)}
-                  className={`w-full p-3.5 rounded-2xl border text-xs sm:text-sm text-right font-bold transition-all flex items-center justify-between ${btnStyle}`}
+                  className={`w-full p-4 rounded-2xl border-2 transition-all flex items-center justify-between text-right font-bold text-xs sm:text-sm ${btnStyle}`}
                 >
-                  <span className="leading-snug">{option}</span>
-                  {selectedOption !== null && (
-                    option === currentQuestion.answer ? (
-                      <CheckCircle className="w-5 h-5 text-white shrink-0" />
-                    ) : option === selectedOption ? (
-                      <XCircle className="w-5 h-5 text-white shrink-0" />
-                    ) : null
-                  )}
-                </button>
+                  <span className="w-6 h-6 rounded-lg bg-black/20 text-white border border-white/20 flex items-center justify-center font-mono text-xs shrink-0">
+                    {optionLabels[idx]}
+                  </span>
+                  <span className="flex-1 px-3 leading-relaxed font-bold">{option}</span>
+                </motion.button>
               );
             })}
           </div>
 
-          {/* Explanation Banner After Selection */}
-          {selectedOption !== null && (
-            <div className={`p-4 rounded-2xl border text-xs font-bold space-y-1 animate-fade-in-up ${
-              selectedOption === currentQuestion.answer 
-                ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300' 
-                : 'bg-rose-500/10 border-rose-500/30 text-rose-300'
-            }`}>
-              <span className="block font-black">
-                {selectedOption === currentQuestion.answer ? 'إجابة صحيحة! 🎉' : 'الإجابة النموذجية:'}
+          {/* Explanation Banner on Option Selection */}
+          {selectedOption !== null && (currentQuestion.explanation_ar || currentQuestion.explanation_en) && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className={`p-4 rounded-2xl border-2 text-xs font-bold space-y-1 shadow-inner ${
+                selectedOption === currentQuestion.answer
+                  ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-300'
+                  : 'bg-rose-500/15 border-rose-500/30 text-rose-300'
+              }`}
+            >
+              <span className="flex items-center gap-1.5 font-black text-amber-400">
+                <Lightbulb className="w-4 h-4 text-amber-400 shrink-0" />
+                <span>{selectedOption === currentQuestion.answer ? 'إجابة صحيحة! التوضيح 💡' : 'الإجابة الصحيحة هي: ' + currentQuestion.answer}</span>
               </span>
-              <p className="text-white font-latin">{currentQuestion.answer}</p>
-              <p className="text-slate-300 text-[11px]">🇸🇦 {getAnswerText(currentQuestion, appLang)}</p>
-            </div>
+              <p className="text-slate-300 leading-relaxed font-semibold">
+                {appLang === 'ar' ? currentQuestion.explanation_ar : (currentQuestion.explanation_en || currentQuestion.explanation_ar)}
+              </p>
+            </motion.div>
           )}
         </div>
       </main>
 
-      {/* Universal Fullscreen Image Review Modal */}
       <ImageModal 
         isOpen={imageModalVisible}
         onClose={() => setImageModalVisible(false)}
-        imageUrl={currentQuestion?.image}
+        imageUrl={imageSrc}
         title={currentQuestion?.question}
         caption={getQuestionText(currentQuestion, appLang)}
       />
@@ -497,7 +526,7 @@ function QuizContent() {
 
 export default function QuizPage() {
   return (
-    <Suspense fallback={<div className="p-8 text-center text-slate-400 font-bold">Loading Quiz Page...</div>}>
+    <Suspense fallback={<div className="p-8 text-center text-slate-400 font-bold">Loading Citizenship Quiz...</div>}>
       <QuizContent />
     </Suspense>
   );
