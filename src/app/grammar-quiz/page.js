@@ -229,6 +229,9 @@ function GrammarQuizContent() {
                   <img 
                     src={currentQuestion.image} 
                     alt={currentQuestion.question_ro}
+                    onError={(e) => {
+                      e.currentTarget.src = '/icon.png';
+                    }}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <button 
