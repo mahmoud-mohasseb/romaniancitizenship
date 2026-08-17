@@ -43,10 +43,10 @@ function ConversationsContent() {
   }, [activeCategory, searchQuery]);
 
   const categories = [
-    { id: 'all', label_ar: 'جميع المحادثات', label_en: 'All Dialogues', label_ro: 'Toate Dialogurile' },
-    { id: 'citizenship', label_ar: '🏛️ مقابلة الجنسية الرسمية', label_en: '🏛️ Citizenship Interview', label_ro: '🏛️ Interviu Cetățenie' },
-    { id: 'greetings', label_ar: '🤝 التعارف والتقديم', label_en: '🤝 Greetings & Introductions', label_ro: '🤝 Saluturi & Prezentare' },
-    { id: 'daily_life', label_ar: '🛒 الحياة اليومية والتسوق', label_en: '🛒 Daily Life & Shopping', label_ro: '🛒 Viața de Zi cu Zi' },
+    { id: 'all', label_ar: `جميع المحادثات (${conversationsData.length})`, label_en: `All Dialogues (${conversationsData.length})`, label_ro: `Toate Dialogurile (${conversationsData.length})` },
+    { id: 'citizenship', label_ar: `🏛️ مقابلة الجنسية والوثائق (${conversationsData.filter(c => c.category === 'citizenship').length})`, label_en: `🏛️ Citizenship & Documents (${conversationsData.filter(c => c.category === 'citizenship').length})`, label_ro: `🏛️ Interviu Cetățenie (${conversationsData.filter(c => c.category === 'citizenship').length})` },
+    { id: 'greetings', label_ar: `🤝 التعارف والعمل (${conversationsData.filter(c => c.category === 'greetings').length})`, label_en: `🤝 Greetings & Work (${conversationsData.filter(c => c.category === 'greetings').length})`, label_ro: `🤝 Saluturi & Muncă (${conversationsData.filter(c => c.category === 'greetings').length})` },
+    { id: 'daily_life', label_ar: `🛒 الحياة اليومية والتسوق (${conversationsData.filter(c => c.category === 'daily_life').length})`, label_en: `🛒 Daily Life & Errands (${conversationsData.filter(c => c.category === 'daily_life').length})`, label_ro: `🛒 Viața de Zi cu Zi (${conversationsData.filter(c => c.category === 'daily_life').length})` },
   ];
 
   const filteredConversations = conversationsData.filter((item) => {

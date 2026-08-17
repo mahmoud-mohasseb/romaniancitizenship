@@ -49,13 +49,13 @@ function GrammarQuizContent() {
 
   const categories = [
     { id: 'all', label_ar: `🌐 جميع الأسئلة (${grammarQuizData.length})`, label_en: `🌐 All ${grammarQuizData.length} Questions` },
-    { id: 'nouns', label_ar: '🏷️ الأسئلة عن الأسئلة والأجناس (Nouns)', label_en: '🏷️ Nouns & Genders' },
-    { id: 'verbs', label_ar: '⚡ تصريف الأفعال (Verbs)', label_en: '⚡ Verbs & Tenses' },
-    { id: 'articles', label_ar: '📌 أدوات التعريف والتنكير (Articles)', label_en: '📌 Articles' },
-    { id: 'adjectives', label_ar: '🎨 الصفات والمطابقة (Adjectives)', label_en: '🎨 Adjectives' },
-    { id: 'prepositions', label_ar: '📍 حروف الجر والحالات (Prepositions)', label_en: '📍 Prepositions' },
-    { id: 'subjunctive', label_ar: '✨ صيغة المنصوب (Subjunctive să)', label_en: '✨ Subjunctive să' },
-    { id: 'interview', label_ar: '🏛️ قواعد مقابلة التجنيس (Interview)', label_en: '🏛️ ANC Interview Rules' },
+    { id: 'nouns', label_ar: `🏷️ الأسماء والأجناس (${grammarQuizData.filter(q => q.category === 'nouns').length})`, label_en: `🏷️ Nouns & Genders (${grammarQuizData.filter(q => q.category === 'nouns').length})` },
+    { id: 'verbs', label_ar: `⚡ تصريف الأفعال (${grammarQuizData.filter(q => q.category === 'verbs').length})`, label_en: `⚡ Verbs & Tenses (${grammarQuizData.filter(q => q.category === 'verbs').length})` },
+    { id: 'articles', label_ar: `📌 أدوات التعريف (${grammarQuizData.filter(q => q.category === 'articles').length})`, label_en: `📌 Articles (${grammarQuizData.filter(q => q.category === 'articles').length})` },
+    { id: 'adjectives', label_ar: `🎨 الصفات والمطابقة (${grammarQuizData.filter(q => q.category === 'adjectives').length})`, label_en: `🎨 Adjectives (${grammarQuizData.filter(q => q.category === 'adjectives').length})` },
+    { id: 'prepositions', label_ar: `📍 حروف الجر والحالات (${grammarQuizData.filter(q => q.category === 'prepositions').length})`, label_en: `📍 Prepositions (${grammarQuizData.filter(q => q.category === 'prepositions').length})` },
+    { id: 'subjunctive', label_ar: `✨ صيغة المنصوب (${grammarQuizData.filter(q => q.category === 'subjunctive').length})`, label_en: `✨ Subjunctive să (${grammarQuizData.filter(q => q.category === 'subjunctive').length})` },
+    { id: 'interview', label_ar: `🏛️ أسئلة المقابلة الرسمية (${grammarQuizData.filter(q => q.category === 'interview').length})`, label_en: `🏛️ ANC Interview (${grammarQuizData.filter(q => q.category === 'interview').length})` },
   ];
 
   const filteredQuestions = grammarQuizData.filter(q => 
