@@ -2,6 +2,8 @@ import './globals.css';
 import { ThemeProvider } from '../context/ThemeContext';
 import { LanguageProvider } from '../context/LanguageContext';
 
+import GlobalSpeechCleanup from '../components/GlobalSpeechCleanup';
+
 export const metadata = {
   title: 'Cetățenia Română Prep - Romanian Citizenship Learning App',
   description: 'Comprehensive guide for Romanian Citizenship oral interview with photos, bilingual translations, quizzes, & AI tutor',
@@ -38,6 +40,7 @@ export default function RootLayout({ children }) {
       <body className="min-h-screen flex flex-col selection:bg-rose-500 selection:text-white font-latin">
         <LanguageProvider>
           <ThemeProvider>
+            <GlobalSpeechCleanup />
             {children}
           </ThemeProvider>
         </LanguageProvider>

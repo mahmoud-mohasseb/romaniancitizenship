@@ -90,30 +90,46 @@ export function speakText(text, lang = 'ro', rate = 1.0, onStart = null, onEnd =
     utterance.voice = nativeVoice;
   }
 
+  currentUtterance = utterance;
+
   utterance.onstart = () => {
-    currentUtterance = utterance;
-    if (onStart) onStart();
+    if (currentUtterance === utterance && onStart) {
+      onStart();
+    }
   };
 
   utterance.onend = () => {
-    currentUtterance = null;
-    if (onEnd) onEnd();
+    if (currentUtterance === utterance) {
+      currentUtterance = null;
+      if (onEnd) onEnd();
+    }
   };
 
   utterance.onerror = () => {
-    currentUtterance = null;
-    if (onEnd) onEnd();
+    if (currentUtterance === utterance) {
+      currentUtterance = null;
+      if (onEnd) onEnd();
+    }
   };
 
   window.speechSynthesis.speak(utterance);
 }
 
-// Immediately stop current audio
+// Immediately stop current audio and clear callbacks
 export function stopSpeech() {
   if (typeof window !== 'undefined' && window.speechSynthesis) {
-    window.speechSynthesis.cancel();
+    try {
+      if (currentUtterance) {
+        currentUtterance.onstart = null;
+        currentUtterance.onend = null;
+        currentUtterance.onerror = null;
+        currentUtterance = null;
+      }
+      window.speechSynthesis.cancel();
+    } catch (e) {
+      // Safe fallback if window.speechSynthesis error occurs
+    }
   }
-  currentUtterance = null;
 }
 
 // Pre-warm browser voices list

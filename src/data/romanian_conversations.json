@@ -898,5 +898,515 @@
         "text_en": "King Carol I of the Hohenzollern dynasty, who built Peleș Castle."
       }
     ]
+  },
+  {
+    "id": 21,
+    "title_ro": "Ceremonia Depunerii Jurământului de Credință",
+    "title_ar": "مراسم أداء يمين الولاء الرسمي للجنسية",
+    "title_en": "ANC Official Citizenship Oath Ceremony",
+    "category": "citizenship",
+    "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "الحوار الرسمي الصارم أثناء تلاوة ييمين الولاء واستلام شهادة المواطنة",
+    "description_en": "Official protocol dialogue during the oath recitation & certificate award",
+    "dialogue": [
+      {
+        "speaker_ro": "Președintele ANC",
+        "text_ro": "Domnule candidat, sunteți pregătit să depuneți jurământul de credință față de România?",
+        "text_ar": "سيدي المتقدم، هل أنت مستعد لأداء يمين الولاء لدولة رومانيا؟",
+        "text_en": "Dear candidate, are you ready to take the oath of allegiance to Romania?"
+      },
+      {
+        "speaker_ro": "Candidat",
+        "text_ro": "Da, domnule președinte, sunt pregătit și onorat.",
+        "text_ar": "نعم سيدي الرئيس، أنا مستعد ومشرّف بذلك.",
+        "text_en": "Yes, Mr. President, I am ready and honored."
+      },
+      {
+        "speaker_ro": "Președintele ANC",
+        "text_ro": "Vă rog să ridicați mâna dreaptă și să citiți textul oficial al jurământului.",
+        "text_ar": "من فضلك ارفع يدك اليمنى واقرأ النص الرسمي لليمين.",
+        "text_en": "Please raise your right hand and read the official text of the oath."
+      },
+      {
+        "speaker_ro": "Candidat",
+        "text_ro": "Jur să fiu devotat patriei și poporului român, să apăr drepturile și interesele naționale, să respect Constituția și legile României.",
+        "text_ar": "أقسم أن أكون مخلصاً للوطن والشعب الروماني، وأن أدافع عن الحقوق والمصالح الوطنية، وأن أحترم دستور وقوانين رومانيا.",
+        "text_en": "I swear to be devoted to the homeland and the Romanian people, to defend national rights and interests, to respect the Constitution and laws of Romania."
+      },
+      {
+        "speaker_ro": "Președintele ANC",
+        "text_ro": "Felicitări! Din acest moment sunteți cetățean român. Poftim certificatul de cetățenie!",
+        "text_ar": "تهانينا! من هذه اللحظة أنت مواطن روماني. تفضل شهادة الجنسية!",
+        "text_en": "Congratulations! From this moment you are a Romanian citizen. Here is your citizenship certificate!"
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "title_ro": "La Inspectoratul General pentru Imigrări (IGI)",
+    "title_ar": "في دائرة الهجرة والجمارك (IGI) لتجديد الإقامة",
+    "title_en": "At the General Inspectorate for Immigration",
+    "category": "citizenship",
+    "image": "https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "حوار تمديد إقامة العمل واستلام كرت الإقامة الإلكتروني",
+    "description_en": "Applying for residence permit renewal & document verification at IGI",
+    "dialogue": [
+      {
+        "speaker_ro": "Ofițer IGI",
+        "text_ro": "Bună ziua! Prezentați pasaportul și permisul actual de ședere.",
+        "text_ar": "مرحباً! يرجى إبراز جواز السفر وإقامتك الحالية.",
+        "text_en": "Good day! Present your passport and current residence permit."
+      },
+      {
+        "speaker_ro": "Solicitant",
+        "text_ro": "Poftim documentele și chitanța pentru taxa de eliberare a permisului.",
+        "text_ar": "تفضل الوثائق وإيصال دفع رسوم إصدار التصريح.",
+        "text_en": "Here are the documents and receipt for the permit fee."
+      },
+      {
+        "speaker_ro": "Ofițer IGI",
+        "text_ro": "Contractul de muncă este înregistrat în REVISAL?",
+        "text_ar": "هل عقد العمل مسجل في نظام REVISAL الرسمي؟",
+        "text_en": "Is your employment contract registered in REVISAL?"
+      },
+      {
+        "speaker_ro": "Solicitant",
+        "text_ro": "Da, am atașat și adeverința de la angajator cu salariul net.",
+        "text_ar": "نعم، أرفقت أيضاً شهادة العمل من صاحب العمل موضحاً فيها الراتب الصافي.",
+        "text_en": "Yes, I also attached the employer certificate stating the net salary."
+      },
+      {
+        "speaker_ro": "Ofițer IGI",
+        "text_ro": "Totul este în ordine. Ridicarea noului card se face peste 30 de zile.",
+        "text_ar": "كل شيء مكتمل. استلام بطاقة الإقامة الجديدة يكون بعد 30 يوماً.",
+        "text_en": "Everything is in order. Pickup of your new card will be in 30 days."
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "title_ro": "La Primărie - Înregistrare Adresă și Taxe",
+    "title_ar": "في البلدية - التسجيل العقاري والضرائب المحلية",
+    "title_en": "At the Town Hall (Primăria) - Address & Taxes",
+    "category": "citizenship",
+    "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "استخراج شهادة عدم وجود ديون وطباعة السجل المدني",
+    "description_en": "Paying local taxes & obtaining tax clearance certificate at Primărie",
+    "dialogue": [
+      {
+        "speaker_ro": "Funcționar Primărie",
+        "text_ro": "Bună ziua! Cu ce vă pot ajuta la Direcția de Impozite și Taxe?",
+        "text_ar": "مرحباً! كيف أساعدك في إدارة الضرائب والرسوم؟",
+        "text_en": "Hello! How can I help you at the Tax Department?"
+      },
+      {
+        "speaker_ro": "Cetățean",
+        "text_ro": "Doresc un certificat de atestare fiscală pentru dosarul de cetățenie.",
+        "text_ar": "أود الحصول على شهادة براءة ذمة مالية لملف التجنيس.",
+        "text_en": "I need a tax clearance certificate for my citizenship application file."
+      },
+      {
+        "speaker_ro": "Funcționar Primărie",
+        "text_ro": "Aveți taxe locale restante pe proprietate sau mașină?",
+        "text_ar": "هل لديك أي متأخرات ضرائب محلية على العقار أو السيارة؟",
+        "text_en": "Do you have any overdue local taxes on property or car?"
+      },
+      {
+        "speaker_ro": "Cetățean",
+        "text_ro": "Nu, am plătit toate impozitele la începutul anului online.",
+        "text_ar": "لا، لقد دفعت جميع الضرائب في بداية العام عبر الإنترنت.",
+        "text_en": "No, I paid all taxes online at the beginning of the year."
+      },
+      {
+        "speaker_ro": "Funcționar Primărie",
+        "text_ro": "Foarte bine. Certificatul este gata și semnat electronic.",
+        "text_ar": "ممتاز جداً. الشهادة جاهزة وموقعة إلكترونياً.",
+        "text_en": "Very good. The certificate is ready and electronically signed."
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "title_ro": "Vizită la Medicul de Familie",
+    "title_ar": "في العيادة الطبية وعند طبيب الأسرة",
+    "title_en": "At the Family Doctor (Medicul de Familie)",
+    "category": "daily_life",
+    "image": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "حوار شرح الأعراض الصحية والحصول على وصفة طبية",
+    "description_en": "Describing symptoms, getting prescriptions & health insurance checkup",
+    "dialogue": [
+      {
+        "speaker_ro": "Doctor",
+        "text_ro": "Bună ziua! Ce simptome aveți și de când vă simțiți rău?",
+        "text_ar": "مرحباً! ما هي الأعراض التي تعاني منها ومذ متى تشعر بالتعب؟",
+        "text_en": "Hello! What symptoms do you have and how long have you felt unwell?"
+      },
+      {
+        "speaker_ro": "Pacient",
+        "text_ro": "De două zile am febră, tuse și mă doare capul tare.",
+        "text_ar": "منذ يومين يعاودني ارتفاع الحرارة والسعال وصداع شديد في الرأس.",
+        "text_en": "For two days I have had fever, cough, and a severe headache."
+      },
+      {
+        "speaker_ro": "Doctor",
+        "text_ro": "Vă voi asculta plămânii și vă iau tensiunea arterială.",
+        "text_ar": "سأفحص الرئتين بالسماعة وأقيس ضغط الدم.",
+        "text_en": "I will listen to your lungs and check your blood pressure."
+      },
+      {
+        "speaker_ro": "Pacient",
+        "text_ro": "Am nevoie de o rețetă compensată pentru farmacie?",
+        "text_ar": "هل أحتاج إلى وصفة مدعومة للصيدلية؟",
+        "text_en": "Do I need a subsidized prescription for the pharmacy?"
+      },
+      {
+        "speaker_ro": "Doctor",
+        "text_ro": "Da, vă prescriu un antibiotic și paracetamol. Luați câte o pastilă la 8 ore.",
+        "text_ar": "نعم، أكتب لك مضاداً حيوياً وباراسيتامول. تناول حبة كل 8 ساعات.",
+        "text_en": "Yes, I am prescribing an antibiotic and paracetamol. Take one tablet every 8 hours."
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "title_ro": "Închirierea unui Apartament în București",
+    "title_ar": "استئجار شقة سكنية وعقد الإيجار",
+    "title_en": "Renting an Apartment in Bucharest",
+    "category": "daily_life",
+    "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "حوار التفاوض على قيمة الإيجار والخدمات والضمان",
+    "description_en": "Negotiating rent price, security deposit & utility bills with landlord",
+    "dialogue": [
+      {
+        "speaker_ro": "Chiriaș",
+        "text_ro": "Bună ziua! Am văzut anunțul pentru apartamentul cu două camere.",
+        "text_ar": "مرحباً! رأيت إعلان الشقة المكونة من غرفتين.",
+        "text_en": "Hello! I saw the listing for the two-room apartment."
+      },
+      {
+        "speaker_ro": "Proprietar",
+        "text_ro": "Da, este complet mobilat, renovat recent și aproape de metrou.",
+        "text_ar": "نعم، هي مفروشة بالكامل ومجددة حديثاً وقريبة من المترو.",
+        "text_en": "Yes, it is fully furnished, recently renovated, and near the metro."
+      },
+      {
+        "speaker_ro": "Chiriaș",
+        "text_ro": "Cât este chiria lunară și ce garanție solicitați?",
+        "text_ar": "كم قيمة الإيجار الشهرية وما المبلغ المطلوب كضمان؟",
+        "text_en": "How much is the monthly rent and what security deposit do you ask?"
+      },
+      {
+        "speaker_ro": "Proprietar",
+        "text_ro": "Chiria este 450 de euro pe lună, plus o lună garanție în avans.",
+        "text_ar": "الإيجار 450 يورو شهرياً، بالإضافة إلى شهر واحد تأمين مقدماً.",
+        "text_en": "Rent is 450 euros per month, plus one month deposit in advance."
+      },
+      {
+        "speaker_ro": "Chiriaș",
+        "text_ro": "Înregistrăm contractul de închiriere la ANAF?",
+        "text_ar": "هل نسجل عقد الإيجار رسمياً في مصلحة الضرائب ANAF؟",
+        "text_en": "Shall we register the rental contract with ANAF?"
+      },
+      {
+        "speaker_ro": "Proprietar",
+        "text_ro": "Da, obligatoriu înregistrăm contractul legal.",
+        "text_ar": "نعم، نسجل العقد قانونياً بشكل إجباري.",
+        "text_en": "Yes, we mandatory register the legal contract."
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "title_ro": "Interviu de Angajare și Experiență Profesională",
+    "title_ar": "مقابلة عمل وتوضيح الخبرة المهنية",
+    "title_en": "Job Interview & Career Background",
+    "category": "greetings",
+    "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "حوار شرح المهارات المهنية والخبرات في الشركات الرومانية",
+    "description_en": "Describing professional experience & technical skills to HR manager",
+    "dialogue": [
+      {
+        "speaker_ro": "Manager HR",
+        "text_ro": "Descrieți-ne experiența dumneavoastră profesională anterioară.",
+        "text_ar": "اشرح لنا خبرتك المهنية السابقة من فضلك.",
+        "text_en": "Please describe your previous professional experience to us."
+      },
+      {
+        "speaker_ro": "Candidat",
+        "text_ro": "Lucrez de 6 ani ca inginer IT, coordonând proiecte de dezvoltare software.",
+        "text_ar": "أعمل منذ 6 سنوات كمهندس تقنية معلومات، وأنسق مشاريع تطوير البرمجيات.",
+        "text_en": "I have been working for 6 years as an IT engineer, coordinating software projects."
+      },
+      {
+        "speaker_ro": "Manager HR",
+        "text_ro": "Cum vă adaptați la lucrul într-o echipă multiculturală?",
+        "text_ar": "كيف تتكيف مع العمل في فريق متعدد الثقافات؟",
+        "text_en": "How do you adapt to working in a multicultural team?"
+      },
+      {
+        "speaker_ro": "Candidat",
+        "text_ro": "Comunic deschis, vorbesc fluent româna și engleza și respect colegii.",
+        "text_ar": "أتواصل بشكل مفتوح، وأتحدث الرومانية والإنجليزية بطلاقة وأحترم زملائي.",
+        "text_en": "I communicate openly, speak fluent Romanian and English, and respect colleagues."
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "title_ro": "Discuție despre Eroii Naționali și Istorie",
+    "title_ar": "نقاش حول الأبطال الوطنيين لتاريخ رومانيا",
+    "title_en": "Discussion on National History Heroes",
+    "category": "citizenship",
+    "image": "https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "أسئلة وإجابات المقابلة عن ستيفان تشيل ماري وميهاي فيتيازول",
+    "description_en": "Interview prep on historical rulers Ștefan cel Mare & Mihai Viteazul",
+    "dialogue": [
+      {
+        "speaker_ro": "Membru Comisie",
+        "text_ro": "Cine a fost Mihai Viteazul și de ce este important în istorie?",
+        "text_ar": "من هو ميهاي الجريء (Mihai Viteazul) ولماذا هو مهم في التاريخ؟",
+        "text_en": "Who was Mihai Viteazul and why is he important in history?"
+      },
+      {
+        "speaker_ro": "Candidat",
+        "text_ro": "Mihai Viteazul a fost domnitorul care a realizat prima unire a celor trei țări române în anul 1600.",
+        "text_ar": "ميهاي الجريء هو الحاكم الذي حقق أول اتحاد للدول الرومانية الثلاث في عام 1600.",
+        "text_en": "Mihai Viteazul was the ruler who achieved the first union of the three Romanian principalities in 1600."
+      },
+      {
+        "speaker_ro": "Membru Comisie",
+        "text_ro": "Dar Ștefan cel Mare unde a domnit?",
+        "text_ar": "وأين حكم ستيفان الكبير (Ștefan cel Mare)؟",
+        "text_en": "And where did Stephen the Great reign?"
+      },
+      {
+        "speaker_ro": "Candidat",
+        "text_ro": "Ștefan cel Mare a fost domnitorul Moldovei timp de 47 de ani și a apărat țara în numeroase bătălii.",
+        "text_ar": "ستيفان الكبير كان حاكم مولدوفا لمدة 47 عاماً ودافع عن البلاد في معارك عديدة.",
+        "text_en": "Stephen the Great was the ruler of Moldavia for 47 years and defended the land in numerous battles."
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "title_ro": "Geografia României - Munții Carpați și Dunărea",
+    "title_ar": "جغرافية رومانيا - جبال الكاربات ونهر الدانوب",
+    "title_en": "Romanian Geography - Carpathians & Danube",
+    "category": "citizenship",
+    "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "أسئلة واجابات الجغرافيا عن الحدود والجبال والأنهار والخصائص الطبيعية",
+    "description_en": "Geography dialogue on Carpathian mountains, Black Sea & Danube Delta",
+    "dialogue": [
+      {
+        "speaker_ro": "Membru Comisie",
+        "text_ro": "Care este cel mai înalt vârf muntos din România și ce înălțime are?",
+        "text_ar": "ما هي أعلى قمة جبلية في رومانيا وما هو ارتفاعها؟",
+        "text_en": "What is the highest mountain peak in Romania and its height?"
+      },
+      {
+        "speaker_ro": "Candidat",
+        "text_ro": "Vârful Moldoveanu din Munții Făgăraș, cu o înălțime de 2544 metri.",
+        "text_ar": "قمة مولدوفينو في جبال فاغاراش، بارتفاع يبلغ 2544 متراً.",
+        "text_en": "Moldoveanu Peak in Făgăraș Mountains, with a height of 2544 meters."
+      },
+      {
+        "speaker_ro": "Membru Comisie",
+        "text_ro": "Unde se varsă fluviul Dunărea?",
+        "text_ar": "أين يصب نهر الدانوب؟",
+        "text_en": "Where does the Danube river empty?"
+      },
+      {
+        "speaker_ro": "Candidat",
+        "text_ro": "Dunărea se varsă în Marea Neagră prin Delta Dunării.",
+        "text_ar": "يصب الدانوب في البحر الأسود عبر دلتا الدانوب الشهيرة.",
+        "text_en": "The Danube empties into the Black Sea through the Danube Delta."
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "title_ro": "La Piața Tradițională de Legume și Fructe",
+    "title_ar": "في سوق الخضار والفاكهة المحلي",
+    "title_en": "At the Local Farmers Market (Piața)",
+    "category": "daily_life",
+    "image": "https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "حوار الشراء والحديث مع المزارعين المحليين بالرومانية",
+    "description_en": "Buying fresh vegetables & fruits from local Romanian farmers",
+    "dialogue": [
+      {
+        "speaker_ro": "Cumpărător",
+        "text_ro": "Bună ziua! Cât costă un kilogram de roșii românești?",
+        "text_ar": "مرحباً! كم سعر كيلو الطماطم الرومانية؟",
+        "text_en": "Hello! How much is a kilo of local Romanian tomatoes?"
+      },
+      {
+        "speaker_ro": "Producător local",
+        "text_ro": "Roșiile sunt 8 lei kilogramul, foarte dulci și proaspăt culese.",
+        "text_ar": "الطماطم بـ 8 لي للكيلو، حلوة جداً ومقطوفة حديثاً.",
+        "text_en": "Tomatoes are 8 lei per kilo, very sweet and freshly picked."
+      },
+      {
+        "speaker_ro": "Cumpărător",
+        "text_ro": "Puneți-mi două kilograme de roșii și un kilogram de mere.",
+        "text_ar": "ضع لي كيلو جرامين من الطماطم وكيلو تفاح من فضلك.",
+        "text_en": "Please give me two kilos of tomatoes and one kilo of apples."
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "title_ro": "Cumpărarea Biletelor de Tren la Gara de Nord",
+    "title_ar": "شراء تذاكر السفر في محطة القطارات الرئيسية",
+    "title_en": "Buying Train Tickets at Gara de Nord",
+    "category": "daily_life",
+    "image": "https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "حوار حجز رحلة قطار الإنترريجيو مع الاستفسار عن المواعيد",
+    "description_en": "Inquiring train schedules & seat reservations at Bucharest central station",
+    "dialogue": [
+      {
+        "speaker_ro": "Călător",
+        "text_ro": "Doresc două bilete la trenul InterRegio spre Constanța.",
+        "text_ar": "أريد تذكرتين في قطار إنترريجيو متجهاً إلى كونستانتسا.",
+        "text_en": "I would like two tickets on the InterRegio train to Constanța."
+      },
+      {
+        "speaker_ro": "Casier",
+        "text_ro": "Aveți reducere pentru studenți sau pensionari?",
+        "text_ar": "هل لديك تخفيض للطلاب أو المتقاعدين؟",
+        "text_en": "Do you have a discount for students or seniors?"
+      },
+      {
+        "speaker_ro": "Călător",
+        "text_ro": "Nu, două bilete la preț întreg cu locuri alăturate.",
+        "text_ar": "لا، تذكرتان بالسعر الكامل بمقعدين متجاورين.",
+        "text_en": "No, two full-price tickets with adjacent seats."
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "title_ro": "Apel de Urgență la Numărul 112",
+    "title_ar": "إجراء مكالمة طوارئ بالرقم 112",
+    "title_en": "Emergency 112 Phone Call",
+    "category": "daily_life",
+    "image": "https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "حوار الإبلاغ عن حادث مرور أو حالة صحية طارئة",
+    "description_en": "Reporting a traffic accident or medical emergency to 112 operator",
+    "dialogue": [
+      {
+        "speaker_ro": "Operator 112",
+        "text_ro": "112, ce urgență aveți? Poliția, Pompierii sau Ambulanța?",
+        "text_ar": "112 للطوارئ، ما هي حالتك؟ الشرطة أم الإطفاء أم الإسعاف؟",
+        "text_en": "112 Emergency, what is your status? Police, Fire department, or Ambulance?"
+      },
+      {
+        "speaker_ro": "Apelant",
+        "text_ro": "Ambulanța, vă rog! Un pieton a fost lovit de o mașină pe Bulevardul Magheru.",
+        "text_ar": "الإسعاف من فضلك! صُدم مشاة بحدث سيارة في شارع ماغيرو.",
+        "text_en": "Ambulance, please! A pedestrian was hit by a car on Magheru Boulevard."
+      },
+      {
+        "speaker_ro": "Operator 112",
+        "text_ro": "Este persoana conștientă? Trimitem o echipă SMURD imediat.",
+        "text_ar": "هل الشخص في وعيه؟ سنرسل فريق إسعاف SMURD فوراً.",
+        "text_en": "Is the person conscious? We are sending a SMURD team immediately."
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "title_ro": "Sărbători și Tradiții Românești",
+    "title_ar": "الأعياد والتقاليد الثقافية الرومانية",
+    "title_en": "Romanian Holidays & Cultural Traditions",
+    "category": "citizenship",
+    "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "مناقشة عادات 1 مارس (Mărțișor) والأعياد الوطنية",
+    "description_en": "Dialogue on Mărțișor spring festival, Easter & Christmas customs",
+    "dialogue": [
+      {
+        "speaker_ro": "Profesor",
+        "text_ro": "Ce se oferă femeilor pe data de 1 Martie în România?",
+        "text_ar": "ماذا يُقدّم للنساء في 1 مارس في رومانيا؟",
+        "text_en": "What is given to women on March 1st in Romania?"
+      },
+      {
+        "speaker_ro": "Student",
+        "text_ro": "Se oferă Mărțișorul, un șnur alb-roșu simbolizând primăvara și speranța.",
+        "text_ar": "يُقدم المارتشيشور (Mărțișor)، وهو خيط أحمر وأبيض يرمز للربيع والأمل.",
+        "text_en": "Mărțișor is offered, a red-and-white string symbolizing spring and hope."
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "title_ro": "Ședința cu Părinții la Școală",
+    "title_ar": "اجتماع أولياء الأمور في المدرسة الرومانية",
+    "title_en": "Parent-Teacher Conference at School",
+    "category": "daily_life",
+    "image": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "حوار الاستفسار عن نتائج الأبناء الدراسية والسلوك",
+    "description_en": "Inquiring about child's academic progress & behavior with teacher",
+    "dialogue": [
+      {
+        "speaker_ro": "Profesor",
+        "text_ro": "Bună ziua! Fiul dumneavoastră are note foarte bune la matematică și română.",
+        "text_ar": "مرحباً! ابنك لديه درجات ممتازة جداً في الرياضيات واللغة الرومانية.",
+        "text_en": "Hello! Your son has very good grades in mathematics and Romanian."
+      },
+      {
+        "speaker_ro": "Părinte",
+        "text_ro": "Mulțumim! Exersăm acasă zilnic lectura și scrierea.",
+        "text_ar": "شكراً جزيلاً! نتدرب يومياً في المنزل على القراءة والكتابة.",
+        "text_en": "Thank you! We practice reading and writing daily at home."
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "title_ro": "La Bancă - Deschidere Cont și Card Bancar",
+    "title_ar": "في البنك - فتح حساب مصرفي وإصدار بطاقة",
+    "title_en": "At the Bank - Opening an Account",
+    "category": "daily_life",
+    "image": "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "حوار فتح حساب بالروماني واليورو واستلام الخدمة الإلكترونية",
+    "description_en": "Opening RON & EUR bank accounts & setting up online mobile banking app",
+    "dialogue": [
+      {
+        "speaker_ro": "Ofițer bancar",
+        "text_ro": "Bună ziua! Doriți deschiderea unui cont în lei sau în euro?",
+        "text_ar": "مرحباً! هل ترغب في فتح حساب بالعملة المحلية (اللي) أم باليورو؟",
+        "text_en": "Good day! Would you like to open an account in RON or EUR?"
+      },
+      {
+        "speaker_ro": "Client",
+        "text_ro": "Doresc un cont curent multicurrency cu aplicație de Mobile Banking.",
+        "text_ar": "أريد حساباً جارياً متعدد العملات مع تطبيق الخدمات المصرفية عبر الهاتف.",
+        "text_en": "I would like a multi-currency current account with mobile banking app."
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "title_ro": "Explicarea Drepturilor și Îndatoririlor Constituționale",
+    "title_ar": "شرح الحقوق والواجبات الدستورية للمواطن",
+    "title_en": "Explaining Constitutional Rights & Duties",
+    "category": "citizenship",
+    "image": "https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80",
+    "description_ar": "حوار متقدم عن واجب الدفاع عن الوطن ودفع الضرائب والتصويت",
+    "description_en": "Advanced dialogue on mandatory civic duties, paying taxes & voting rights",
+    "dialogue": [
+      {
+        "speaker_ro": "Președintele Comisiei",
+        "text_ro": "Care sunt principalele îndatoriri fundamentale ale cetățenilor români?",
+        "text_ar": "ما هي الواجبات الأساسية الرئيسية للمواطنين الرومان؟",
+        "text_en": "What are the main fundamental duties of Romanian citizens?"
+      },
+      {
+        "speaker_ro": "Candidat",
+        "text_ro": "Fidelitatea față de țară, apărarea patriei, contribuția financiară prin impozite și respectarea Constituției.",
+        "text_ar": "الولاء للوطن، الدفاع عن البلاد، المساهمة المالية عبر الضرائب، واحترام الدستور والقوانين.",
+        "text_en": "Fidelity to the country, defense of the homeland, financial contribution through taxes, and respecting the Constitution."
+      }
+    ]
   }
 ]

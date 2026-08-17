@@ -14,9 +14,11 @@ export default function AudioPlayerButton({ text, lang = 'ro', label = 'استم
 
   useEffect(() => {
     return () => {
-      stopSpeech();
+      if (isPlaying) {
+        stopSpeech();
+      }
     };
-  }, []);
+  }, [isPlaying]);
 
   const handleTogglePlay = () => {
     if (isPlaying) {

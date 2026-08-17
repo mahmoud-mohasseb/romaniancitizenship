@@ -40,6 +40,12 @@ function StudyContent() {
   const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
+    return () => {
+      stopSpeech();
+    };
+  }, []);
+
+  useEffect(() => {
     const cat = searchParams.get('category');
     if (cat) {
       setActiveCategory(cat);

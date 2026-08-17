@@ -22,6 +22,7 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import grammarData from '../../data/romanian_grammar.json';
+import grammarQuizData from '../../data/romanian_grammar_quiz.json';
 import Navbar from '../../components/Navbar';
 import AudioPlayerButton from '../../components/AudioPlayerButton';
 import { useTheme } from '../../context/ThemeContext';
@@ -70,7 +71,7 @@ function GrammarContent() {
           isDark ? 'bg-slate-800/90 border-slate-700/80 text-white' : 'bg-white border-slate-200 text-slate-900'
         }`}>
           <span className="inline-block px-4 py-1.5 rounded-full text-xs font-black bg-amber-500/20 text-amber-400 border border-amber-500/30">
-            📚 Sistemul Progresiv de Gramatică Română (10 Lecții Consolidate)
+            📚 Sistemul Progresiv de Gramatică Română ({grammarData.length} Lecții Consolidate)
           </span>
           <h1 className="text-2xl sm:text-3xl font-black">
             {strings.grammarTitle || 'دليل قواعد اللغة الرومانية والتصريفات الشامل 📚'}
@@ -85,7 +86,7 @@ function GrammarContent() {
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-amber-500 via-rose-600 to-amber-600 text-white font-black rounded-2xl text-xs shadow-lg hover:opacity-95 transition-all"
             >
               <Trophy className="w-4 h-4" />
-              <span>جرب لعبة اختبار القواعد المصورة (25 سؤالاً) 🎮</span>
+              <span>جرب لعبة اختبار القواعد المصورة ({grammarQuizData.length} أسئلة) 🎮</span>
             </Link>
           </div>
         </div>

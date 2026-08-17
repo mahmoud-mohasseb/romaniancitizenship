@@ -14,6 +14,7 @@ import alphabetData from '../../data/romanian_alphabet.json';
 import Navbar from '../../components/Navbar';
 import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
+import { speakText as speakTTS, stopSpeech } from '../../utils/speechHelper';
 
 function AlphabetContent() {
   const { theme } = useTheme();
@@ -23,6 +24,17 @@ function AlphabetContent() {
   const [activeFilter, setActiveFilter] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [isSpeakingId, setIsSpeakingId] = useState(null);
+
+  React.useEffect(() => {
+    return () => {
+      stopSpeech();
+    };
+  }, []);
+
+  React.useEffect(() => {
+    stopSpeech();
+    setIsSpeakingId(null);
+  }, [activeFilter, searchQuery]);
 
   const filters = [
     { id: 'all', label_ar: 'الكل (31 حرفاً)', label_en: 'All (31 Letters)', label_ro: 'Toate (31 Litere)' },
@@ -44,22 +56,19 @@ function AlphabetContent() {
   });
 
   const speakText = (id, text) => {
-    if (typeof window === 'undefined' || !window.speechSynthesis) return;
-
     if (isSpeakingId === id) {
-      window.speechSynthesis.cancel();
+      stopSpeech();
       setIsSpeakingId(null);
       return;
     }
 
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'ro-RO';
-    utterance.rate = 0.8;
-    utterance.onend = () => setIsSpeakingId(null);
-    utterance.onerror = () => setIsSpeakingId(null);
-    setIsSpeakingId(id);
-    window.speechSynthesis.speak(utterance);
+    speakTTS(
+      text,
+      'ro',
+      0.8,
+      () => setIsSpeakingId(id),
+      () => setIsSpeakingId(null)
+    );
   };
 
   return (

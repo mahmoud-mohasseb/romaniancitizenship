@@ -20,6 +20,7 @@ import Navbar from '../../components/Navbar';
 import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { shuffleArray, triggerConfetti, playVictorySound, playOptionFeedbackSound } from '../../utils/quizUtils';
+import { speakText as speakTTS, stopSpeech } from '../../utils/speechHelper';
 
 function AlphabetQuizContent() {
   const { theme } = useTheme();
@@ -40,6 +41,16 @@ function AlphabetQuizContent() {
   const speedTimerRef = useRef(null);
 
   const TOTAL_QUESTIONS = gameMode === 'speed' ? 99 : 10;
+
+  useEffect(() => {
+    return () => {
+      stopSpeech();
+    };
+  }, []);
+
+  useEffect(() => {
+    stopSpeech();
+  }, [gameMode, questionCount, isFinished]);
 
   useEffect(() => {
     const savedBest = localStorage.getItem('alphabet_quiz_best');
@@ -146,12 +157,7 @@ function AlphabetQuizContent() {
   };
 
   const speakAudio = (text) => {
-    if (typeof window === 'undefined' || !window.speechSynthesis) return;
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'ro-RO';
-    utterance.rate = 0.8;
-    window.speechSynthesis.speak(utterance);
+    speakTTS(text, 'ro', 0.8);
   };
 
   const handleSelect = (item) => {

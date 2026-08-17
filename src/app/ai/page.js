@@ -23,6 +23,7 @@ import Navbar from '../../components/Navbar';
 import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { queryAITutor } from '../../utils/aiService';
+import { speakText as speakTTS, stopSpeech } from '../../utils/speechHelper';
 
 function AIContent() {
   const { theme } = useTheme();
@@ -33,6 +34,12 @@ function AIContent() {
   const [loading, setLoading] = useState(false);
   const [copiedIdx, setCopiedIdx] = useState(null);
   const [playingIdx, setPlayingIdx] = useState(null);
+
+  useEffect(() => {
+    return () => {
+      stopSpeech();
+    };
+  }, []);
 
   const samplePrompts = {
     ar: [
@@ -127,20 +134,19 @@ function AIContent() {
   };
 
   const speakAudio = (text, idx) => {
-    if (typeof window === 'undefined' || !window.speechSynthesis) return;
-    window.speechSynthesis.cancel();
     if (playingIdx === idx) {
+      stopSpeech();
       setPlayingIdx(null);
       return;
     }
     const cleanText = text.replace(/[*_#`[\]()]/g, ' ');
-    const utterance = new SpeechSynthesisUtterance(cleanText);
-    utterance.lang = 'ro-RO';
-    utterance.rate = 0.85;
-    utterance.onend = () => setPlayingIdx(null);
-    utterance.onerror = () => setPlayingIdx(null);
-    setPlayingIdx(idx);
-    window.speechSynthesis.speak(utterance);
+    speakTTS(
+      cleanText,
+      'ro',
+      0.85,
+      () => setPlayingIdx(idx),
+      () => setPlayingIdx(null)
+    );
   };
 
   const copyToClipboard = (text, idx) => {

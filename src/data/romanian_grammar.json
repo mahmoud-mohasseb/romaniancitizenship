@@ -59,327 +59,1075 @@
     "title_ar": "2. أدوات التعريف والتنكير في اللغة الرومانية",
     "category": "Articles",
     "level": "Beginner",
-    "rule_ro": "Articolul hotărât se atașează la sfârșitul substantivului (enclitic): -ul (bărbatul), -a (fata), -le (câinele). Articolul nehotărât stă în fața substantivului: un, o, niște.",
-    "rule_en": "Definite articles are attached to the end of nouns (-ul, -a, -le). Indefinite articles precede nouns (un, o, niște).",
-    "rule_ar": "أداة التعريف في الرومانية تلتصق بنهاية الاسم (enclitic): -ul (المذكر والمحايد)، -a (المؤنث)، -le (الجمع). بينما تأتي أدوات التنكير قبل الاسم: un, o, niște.",
-    "example_ro": "un om -> omul | o lege -> legea | niște drepturi -> drepturile",
-    "example_en": "a man -> the man | a law -> the law | some rights -> the rights",
-    "example_ar": "رجل -> الرجل | قانون -> القانون | حقوق -> الحقوق",
-    "why_rule_ro": "Articolul hotărât este folosit frecvent în întrebările despre Constituție («Drapelul României», «Stema țării»).",
-    "why_rule_en": "Definite articles are constantly used in legal & constitutional terms ('Drapelul', 'Constituția').",
-    "why_rule_ar": "تستخدم أدوات التعريف بشكل مكثف في المصطلحات الدستورية (Drapelul, Constituția).",
+    "rule_ro": "Spre deosebire de alte limbi, articolul hotărât în română se adaugă la sfârșitul cuvântului (enclitic): băiat -> băiatul, casă -> casa, câine -> câinele. Articolul nehotărât stă în fața cuvântului: un băiat, o casă.",
+    "rule_en": "Unlike English, the Romanian definite article attaches to the end of the noun: băiat -> băiatul, casă -> casa. Indefinite articles stay before: un băiat, o casă.",
+    "rule_ar": "على عكس اللغات الأخرى، أداة التعريف في الرومانية تلتصق بنهاية الكلمة (enclitic): băiat -> băiatul (الولد)، casă -> casa (البيت). أما أداة التنكير فأتت قبل الاسم: un băiat، o casă.",
+    "example_ro": "Băiat -> Băiatul (M.sg) | Casă -> Casa (F.sg) | Oraș -> Orașul (N.sg)",
+    "example_en": "Boy -> The boy | House -> The house | City -> The city",
+    "example_ar": "ولد -> الولد | بيت -> البيت | مدينة -> المدينة",
+    "why_rule_ro": "Formele articulate hotărât sunt cerute la interviu la întrebări precum «Care este capitala României?» (Bucureștiul).",
+    "why_rule_en": "Definite forms are required in interview answers like 'Care este capitala României?' (Bucureștiul).",
+    "why_rule_ar": "أشكال التعريف مطلوبة في إجابات المقابلة مثل السؤال عن العاصمة والرموز الوطنية.",
     "try_it": {
-      "question_ro": "Care este forma articulată hotărât a substantivului «Constituție»?",
-      "question_en": "What is the definite form of the noun 'Constituție'?",
-      "question_ar": "ما هي صيغة المعرفة لكلمة 'Constituție'؟",
-      "options": ["Constituția", "Constituțiul", "Constituțiea"],
-      "correct_answer": "Constituția",
-      "explanation_ro": "Corect! Substantivele feminine terminate în «-ie» primesc «-a» devin «Constituția».",
-      "explanation_en": "Correct! Feminine nouns ending in '-ie' take '-a' becoming 'Constituția'.",
-      "explanation_ar": "صحيح! الكلمات المؤنثة المنتهية بـ -ie تأخذ -a لتصبح Constituția."
+      "question_ro": "Care este forma articulată hotărât a cuvântului «președinte»?",
+      "question_en": "What is the definite form of 'președinte'?",
+      "question_ar": "ما هي صيغة المعرفة لكلمة 'președinte' (رئيس)؟",
+      "options": ["Președintele", "Președinteul", "Președinta", "Președințiul"],
+      "correct_answer": "Președintele",
+      "explanation_ro": "Corect! Cuvintele masculine care se termină în «-e» primesc articolul «-le» -> Președintele.",
+      "explanation_en": "Correct! Masculine nouns ending in '-e' take the article '-le' -> Președintele.",
+      "explanation_ar": "صحيح! الكلمات المذكرة المنتهية بالحرف -e تأخذ أداة التعريف -le لتصبح Președintele."
     },
-    "common_mistake_ro": "Greșeală: «Constituțiea». Corect: «Constituția».",
-    "common_mistake_en": "Mistake: 'Constituțiea'. Correct: 'Constituția'.",
-    "common_mistake_ar": "خطأ شائع: كتابة Constituțiea. التصحيح: Constituția.",
+    "common_mistake_ro": "Greșeală: «președinteul» sau «omulul». Corect: «președintele», «omul».",
+    "common_mistake_en": "Mistake: 'președinteul'. Correct: 'președintele'.",
+    "common_mistake_ar": "خطأ شائع: إضافة -ul بدلاً من -le للكلمات المنتهية بالحرف e. التصحيح: Președintele.",
     "rules": [
       {
-        "gender": "Masculin (M)",
-        "singular_ro": "bărbat -> bărbatul",
+        "gender": "Masculin Sing. (-consoană / -e)",
+        "singular_ro": "băiat -> băiatul / frate -> fratele",
         "plural_ro": "bărbați -> bărbații",
-        "rule_ar": "يضاف -ul في المفرد و -ii في الجمع",
-        "rule_en": "Adds -ul in singular and -ii in plural"
+        "rule_ar": "تضاف -ul أو -le في المفرد و -i في الجمع",
+        "rule_en": "Adds -ul or -le in singular and -i in plural"
       },
       {
-        "gender": "Feminin (F)",
-        "singular_ro": "țară -> țara",
-        "plural_ro": "țări -> țările",
-        "rule_ar": "يضاف -a في المفرد و -le في الجمع",
-        "rule_en": "Adds -a in singular and -le in plural"
+        "gender": "Feminin Sing. (-ă / -e)",
+        "singular_ro": "fată -> fata / carte -> cartea",
+        "plural_ro": "fete -> fetele",
+        "rule_ar": "تستبدل -ă بـ -a، وتضاف -a أو -le في الجمع",
+        "rule_en": "Replaces -ă with -a; adds -le in plural"
+      },
+      {
+        "gender": "Neutru Sing. (-consoană / -u)",
+        "singular_ro": "oraș -> orașul / lucru -> lucrul",
+        "plural_ro": "orașe -> orașele",
+        "rule_ar": "تضاف -ul في المفرد و -le في الجمع",
+        "rule_en": "Adds -ul in singular and -le in plural"
       }
     ]
   },
   {
     "id": "personal_pronouns",
-    "title_ro": "3. Pronumele Personale și Reflexive",
-    "title_en": "3. Personal & Reflexive Pronouns",
-    "title_ar": "3. الضمائر الشخصية والضمائر المنعكسة",
+    "title_ro": "3. Pronumele Personale și Formele de Politețe",
+    "title_en": "3. Personal Pronouns and Polite Forms",
+    "title_ar": "3. الضمائر الشخصية وصيغ الاحترام والتأدب (Dumneavoastră)",
     "category": "Pronouns",
     "level": "Beginner",
-    "rule_ro": "Pronumele personale (Eu, Tu, El/Ea, Noi, Voi, Ei/Ele) indică persoana. Pronumele reflexive (mă, te, se, ne, vă) se folosesc cu verbe reflexive precum «a se numi».",
-    "rule_en": "Personal pronouns (Eu, Tu, El/Ea...) indicate subject. Reflexive pronouns (mă, te, se...) accompany reflexive verbs like 'a se numi'.",
-    "rule_ar": "الضمائر الشخصية (Eu - أنا، Tu - أنت، El/Ea - هو/هي، Noi - نحن...) تحدد الفاعل. والضمائر المنعكسة (mă, te, se...) تستخدم مع أفعال الانعكاس مثل 'a se numi' (يُسمى).",
-    "example_ro": "Eu mă numesc Alexandru. / El se numește Ion.",
-    "example_en": "My name is Alexandru. / His name is Ion.",
-    "example_ar": "أنا اسمي ألكسندرو. / هو اسمه إيون.",
-    "why_rule_ro": "Primele întrebări la interviul ANC încep cu «Cum vă numiți?» și «Unde locuiți?».",
-    "why_rule_en": "First interview questions start with 'Cum vă numiți?' and 'Unde locuiți?'.",
-    "why_rule_ar": "تبدأ أولى أسئلة مقابلة التجنيس بـ 'Cum vă numiți?' (ما اسمكم؟).",
+    "rule_ro": "Pronumele personale sunt: Eu, Tu, El, Ea, Noi, Voi, Ei, Ele. La interviul oficial de cetățenie se folosește obligatoriu forma de politețe «Dumneavoastră» (pentru persoana a II-a) și «Dânsul / Dânsa» (pentru persoana a III-a).",
+    "rule_en": "Personal pronouns: Eu, Tu, El, Ea, Noi, Voi, Ei, Ele. In the citizenship interview, polite forms 'Dumneavoastră' (You, formal) and 'Dânsul/Dânsa' (He/She, formal) are required.",
+    "rule_ar": "الضمائر الشخصية: Eu (أنا)، Tu (أنت)، El (هو)، Ea (هي)، Noi (نحن)، Voi (أنتم)، Ei (هم - مذكر)، Ele (هن - مؤنث). في المقابلة الرسمية يجب استخدام صيغة الاحترام Dumneavoastră (حضرتكم).",
+    "example_ro": "Eu învăț limba română. | Dumneavoastră sunteți domnul președinte?",
+    "example_en": "I learn Romanian. | Are you the honorable president?",
+    "example_ar": "أنا أتعلم اللغة الرومانية. | هل حضرتكم السيد الرئيس؟",
+    "why_rule_ro": "Adresarea cu «Dumneavoastră» arată respect profund față de membrii Comisiei Naționale pentru Cetățenie (ANC).",
+    "why_rule_en": "Addressing committee members with 'Dumneavoastră' shows deep respect during the ANC interview.",
+    "why_rule_ar": "مخاطبة أضاء اللجنة بـ Dumneavoastră تظهر الاحترام اللائق في مقابلة التجنيس.",
     "try_it": {
-      "question_ro": "Completați propoziția: «Eu ___ numesc Maria.»",
-      "question_en": "Complete the sentence: 'Eu ___ numesc Maria.'",
-      "question_ar": "أكمل الجملة: 'Eu ___ numesc Maria.'",
-      "options": ["mă", "te", "se"],
-      "correct_answer": "mă",
-      "explanation_ro": "Corect! Pentru persoana I singular (Eu), pronumele reflexiv este «mă».",
-      "explanation_en": "Correct! For 1st person singular (Eu), reflexive pronoun is 'mă'.",
-      "explanation_ar": "صحيح! مع الضمير Eu (أنا)، الضمير المنعكس المناسب هو mă."
+      "question_ro": "Cum vă adresați politicos unui membru al comisiei ANC?",
+      "question_en": "How do you politely address an ANC committee member?",
+      "question_ar": "كيف تخاطب أدبياً واحداً من أعضاء لجنة التجنيس؟",
+      "options": ["Dumneavoastră", "Tu", "Voi", "El"],
+      "correct_answer": "Dumneavoastră",
+      "explanation_ro": "Corect! «Dumneavoastră» este singura formă oficială de politețe recomandată la interviu.",
+      "explanation_en": "Correct! 'Dumneavoastră' is the official polite form recommended in formal interviews.",
+      "explanation_ar": "صحيح! 'Dumneavoastră' هي صيغة الاحترام الرسمية الوحيدة المطلوبة أمام اللجنة."
     },
+    "common_mistake_ro": "Greșeală: Adresarea cu «Tu» către comisie. Corect: «Dumneavoastră doriți pașaportul?»",
+    "common_mistake_en": "Mistake: Addressing the board with 'Tu'. Correct: Use 'Dumneavoastră'.",
+    "common_mistake_ar": "خطأ شائع: استخدام Tu عند التحدث مع الأعضاء. التصحيح: استخدام Dumneavoastră دائماً.",
     "rules": [
       {
-        "gender": "Persoana I (Singular)",
-        "singular_ro": "Eu",
-        "plural_ro": "mă / mi",
-        "rule_ar": "أنا (Eu mă numesc)",
-        "rule_en": "I (Eu mă numesc)"
+        "gender": "Persoana I (Sing. / Plur.)",
+        "singular_ro": "Eu (أنا)",
+        "plural_ro": "Noi (نحن)",
+        "rule_ar": "تستخدم للتحدث عن النفس أو المجموعة",
+        "rule_en": "First person singular and plural"
       },
       {
-        "gender": "Persoana II (Singular)",
-        "singular_ro": "Tu",
-        "plural_ro": "te / ți",
-        "rule_ar": "أنت (Tu te numești)",
-        "rule_en": "You (Tu te numești)"
+        "gender": "Persoana II (Sing. / Plur. / Politețe)",
+        "singular_ro": "Tu (أنتَ/أنتِ)",
+        "plural_ro": "Voi (أنتم) / Dumneavoastră (حضرتكم)",
+        "rule_ar": "Dumneavoastră تأخذ تصريف الجمع mereu",
+        "rule_en": "Dumneavoastră takes 2nd person plural verb agreement"
+      },
+      {
+        "gender": "Persoana III (Politețe)",
+        "singular_ro": "Dânsul (هو المحترم) / Dânsa (هي المحترمة)",
+        "plural_ro": "Dânșii / Dânsele (هم/هن المحترمون)",
+        "rule_ar": "صيغة احترام الغائب في الحديث الرسمي",
+        "rule_en": "Polite 3rd person forms used in formal discourse"
       }
     ]
   },
   {
     "id": "verbs_present_tense",
-    "title_ro": "4. Verbele și Conjugările la Prezent",
-    "title_en": "4. Present Tense Verbs (Groups I-IV)",
-    "title_ar": "4. تصريف الأفعال في زمن الحاضر (المجموعات الأربع والأفعال الشاذة)",
+    "title_ro": "4. Conjugarea Verbelor la Prezent (Cele 4 Conjugări și Verbele cu -ez / -esc)",
+    "title_en": "4. Present Tense Conjugation (4 Groups & -ez/-esc Verbs)",
+    "title_ar": "4. تصريف الأفعال في زمن الحاضر (المجموعات الأربع والأفعال التي تأخذ -ez و -esc)",
     "category": "Verbs",
-    "level": "Intermediate",
-    "rule_ro": "Verbele în limba română se împart în 4 conjugări după terminata de infinitiv: I (-ar/-a: a lucra), II (-ea: a avea), III (-e: a face), IV (-i/-î: a citi). Verbele neregulate principale sunt «a fi» și «a avea».",
-    "rule_en": "Romanian verbs split into 4 conjugations: I (-a), II (-ea), III (-e), IV (-i/-î). Main irregular verbs are 'a fi' (to be) & 'a avea' (to have).",
-    "rule_ar": "تنقسم الأفعال الرومانية إلى 4 مجموعات حسب نهاية المصدر: الأولى (-a)، الثانية (-ea)، الثالثة (-e)، والرابعة (-i/-î). وأهم الأفعال الشاذة هما 'a fi' (يكون) و 'a avea' (يملك).",
-    "example_ro": "a fi: eu sunt, tu ești, el este, noi suntem, voi sunteți, ei sunt.",
-    "example_en": "a fi: I am, you are, he is, we are, you are, they are.",
-    "example_ar": "فعل الكينونة a fi: أنا أكون (sunt)، أنت تكون (ești)، هو يكون (este)...",
-    "why_rule_ro": "Verbul «a fi» se folosește în întrebări precum «Care este capitala României?» (București este capitala).",
-    "why_rule_en": "'A fi' is used in key interview questions like 'Care este capitala României?'.",
-    "why_rule_ar": "يستخدم فعل الكينونة في إجابة أسئلة الهيئة مثل 'Care este capitala României?'.",
+    "level": "Beginner",
+    "rule_ro": "Verbele în română se împart în 4 conjugări în funcție de terminativul de infinitiv (-a, -ea, -e, -i/-î). Multe verbe din grupa I primesc sufixul -ez (lucra -> lucrez) iar cele din grupa a IV-a primesc -esc (locui -> locuiesc).",
+    "rule_en": "Romanian verbs split into 4 conjugations (-a, -ea, -e, -i/-î). Group I often uses '-ez' (lucrez), Group IV often uses '-esc' (locuiesc).",
+    "rule_ar": "تنقسم الأفعال إلى 4 مجموعات حسب نهاية المصدر (-a, -ea, -e, -i/-î). أفعال المجموعة الأولى تضيف -ez (lucrez)، وأفعال المجموعة الرابعة تضيف -esc (locuiesc).",
+    "example_ro": "A lucra: Eu lucrez, Tu lucrezi, El lucrează | A locui: Eu locuiesc, Noi locuim",
+    "example_en": "To work: I work, You work | To live: I live, We live",
+    "example_ar": "عمل: أنا أعمل، أنت تعمل | سكن: أنا أسكن، نحن نسكن",
+    "why_rule_ro": "Formele de prezent «locuiesc», «lucrez», «știu» apar în primele 3 minute ale interviului de cetățenie.",
+    "why_rule_en": "Present tense forms like 'locuiesc', 'lucrez', 'știu' appear in the first 3 minutes of the ANC interview.",
+    "why_rule_ar": "أفعال الحاضر مثل locuiesc و lucrez تُسأل في الدقائق الأولى من مقابلة التجنيس.",
     "try_it": {
-      "question_ro": "Care este forma corectă pentru «Noi (a fi) cetățeni români»?",
-      "question_en": "What is the correct present form for 'Noi (a fi) cetățeni români'?",
-      "question_ar": "ما هي الصيغة الصحيحة للجملة 'Noi (a fi) cetățeni români'؟",
-      "options": ["suntem", "sunteți", "sunt"],
-      "correct_answer": "suntem",
-      "explanation_ro": "Corect! Pentru «Noi» (persoana I plural), verbul «a fi» este «suntem».",
-      "explanation_en": "Correct! For 'Noi' (we), 'a fi' becomes 'suntem'.",
-      "explanation_ar": "صحيح! مع الضمير Noi (نحن)، يصبح الفعل suntem."
+      "question_ro": "Care este forma corectă pentru «Eu (a locui) în București»?",
+      "question_en": "What is the correct form for 'Eu (a locui) în București'?",
+      "question_ar": "ما هو التصريف الصحيح للجملة: «Eu (a locui) în București»؟",
+      "options": ["locuiesc", "locuies", "locuim", "locuiește"],
+      "correct_answer": "locuiesc",
+      "explanation_ro": "Corect! Verbul «a locui» primește sufixul «-esc» la persoana I singular -> locuiesc.",
+      "explanation_en": "Correct! 'A locui' takes the '-esc' suffix for 1st person singular -> locuiesc.",
+      "explanation_ar": "صحيح! الفعل a locui يضيف اللاحقة -esc مع الضمير Eu ليصبح locuiesc (أسكن)."
     },
+    "common_mistake_ro": "Greșeală: «Eu locui în România». Corect: «Eu locuiesc în România».",
+    "common_mistake_en": "Mistake: 'Eu locui'. Correct: 'Eu locuiesc'.",
+    "common_mistake_ar": "خطأ شائع: قول Eu locui بدون اللاحقة. التصحيح: Eu locuiesc.",
     "rules": [
       {
-        "gender": "a fi (to be)",
-        "singular_ro": "eu sunt / tu ești / el este",
-        "plural_ro": "noi suntem / voi sunteți / ei sunt",
-        "rule_ar": "فعل الكينونة الأساسي",
-        "rule_en": "Essential auxiliary verb 'to be'"
+        "gender": "Conj. I (-a cu -ez)",
+        "singular_ro": "A lucrea -> lucrez, lucrezi, lucrează",
+        "plural_ro": "lucrăm, lucrați, lucrează",
+        "rule_ar": "أمثلة: a lucrez, a vizita, a uita",
+        "rule_en": "Examples: to work, to visit, to forget"
       },
       {
-        "gender": "a avea (to have)",
-        "singular_ro": "eu am / tu ai / el are",
-        "plural_ro": "noi avem / voi aveți / ei au",
-        "rule_ar": "فعل الملكية الأساسي",
-        "rule_en": "Essential auxiliary verb 'to have'"
+        "gender": "Conj. IV (-i cu -esc)",
+        "singular_ro": "A locui -> locuiesc, locuiești, locuiește",
+        "plural_ro": "locuim, locuiți, locuiesc",
+        "rule_ar": "أمثلة: a locui, a citi, a vorbi",
+        "rule_en": "Examples: to live, to read, to speak"
+      },
+      {
+        "gender": "Verbe Neregulate Esențiale",
+        "singular_ro": "A fi: sunt, ești, este / A avea: am, ai, are",
+        "plural_ro": "suntem, sunteți, sunt / avem, aveți, au",
+        "rule_ar": "أهم فعلين في اللغة: الكينونة a fi والملكية a avea",
+        "rule_en": "Core auxiliary verbs 'to be' and 'to have'"
       }
     ]
   },
   {
     "id": "past_tense",
-    "title_ro": "5. Trecutul - Perfectul Compus și Imperfectul",
-    "title_en": "5. Past Tense - Perfect Compus & Imperfect",
-    "title_ar": "5. الزمن الماضي (الماضي المركب Perfectul Compus والمستمر Imperfectul)",
+    "title_ro": "5. Trecutul - Perfectul Compus (am învățat, ai fost, a făcut)",
+    "title_en": "5. Past Compound Tense (Perfect Compus)",
+    "title_ar": "5. زمن الماضي المركب (Perfectul Compus: am învățat, ai fost)",
     "category": "Verbs",
     "level": "Intermediate",
-    "rule_ro": "Perfectul compus exprimă acțiuni trecute și încheiate (am fost, am depus, am învățat). Se formează cu auxiliarul verbului «a avea» + participiu.",
-    "rule_en": "Perfect compus expresses completed past actions (am fost, am depus). Formed with auxiliary 'a avea' + past participle.",
-    "rule_ar": "الماضي المركب (Perfectul Compus) يعبر عن أفعال مكتملة في الماضي (am fost - كنت، am depus - قدمت الملف). يتكون من الفعل المساعد a avea + اسم المفعول.",
-    "example_ro": "Eu am depus dosarul la ANC. / Noi am învățat Constituția.",
-    "example_en": "I filed the dossier at ANC. / We learned the Constitution.",
-    "example_ar": "أنا أودعت الملف لدى الهيئة. / نحن تعلمنا الدستور.",
-    "why_rule_ro": "Formularea «Am depus dosarul în anul...» este obligatorie când comisia întreabă despre stadiul dosarului.",
-    "why_rule_en": "Phrasing like 'Am depus dosarul' is mandatory when answering ANC dossier questions.",
-    "why_rule_ar": "صيغة الماضي المركب 'Am depus dosarul' (أودعت الملف) ضرورية عند إجابة أسئلة اللجنة.",
+    "rule_ro": "Perfectul compus exprimă o acțiune încheiată în trecut. Se formează din verbul auxiliar «a avea» (am, ai, a, am, ați, au) + participiul verbului de bază (învățat, fost, făcut, depus).",
+    "rule_en": "Perfect compus expresses completed past actions. Formed by auxiliary 'a avea' (am, ai, a, am, ați, au) + past participle (învățat, fost, făcut).",
+    "rule_ar": "يعبر الماضي المركب عن حدث مكتمل في الماضي. يتكون من الفعل المساعد a avea (am, ai, a, am, ați, au) متبوعاً بالتصريف الثالث اسم المفعول (Participiu).",
+    "example_ro": "Am depus dosarul în anul 2021. | Ați vizitat Castelul Bran?",
+    "example_en": "I submitted the file in 2021. | Have you visited Bran Castle?",
+    "example_ar": "قدمتُ الملف في عام 2021. | هل زرتم قلعة بران؟",
+    "why_rule_ro": "Întrebările despre istoricul venirii în România folosesc întotdeauna perfectul compus.",
+    "why_rule_en": "Questions regarding your personal timeline in Romania strictly use the compound past tense.",
+    "why_rule_ar": "الأسئلة المتعلقة بتاريخ وصولك وإقامتك تستخدم دائماً زمن الماضي المركب.",
     "try_it": {
-      "question_ro": "Completați propoziția: «Eu (a depune) ___ dosarul anul trecut.»",
-      "question_en": "Complete the sentence: 'Eu (a depune) ___ dosarul anul trecut.'",
-      "question_ar": "أكمل الجملة: 'Eu (a depune) ___ dosarul anul trecut.'",
-      "options": ["am depus", "au depus", "ați depus"],
-      "correct_answer": "am depus",
-      "explanation_ro": "Corect! Pentru «Eu» la trecut perfect compus se folosește «am depus».",
-      "explanation_en": "Correct! For 'Eu' (I) in past tense, use 'am depus'.",
-      "explanation_ar": "صحيح! مع الضمير Eu في الماضي المركب نستخدم am depus."
+      "question_ro": "Care este varianta corectă: «Noi (a depus) dosarul de cetățenie»?",
+      "question_en": "What is the correct form for 'Noi (a depus) dosarul'?",
+      "question_ar": "ما هي الصياغة الصحيحة لجملة: «Noi (a depus) dosarul de cetățenie»؟",
+      "options": ["Am depus", "Ați depus", "Au depus", "Ai depus"],
+      "correct_answer": "Am depus",
+      "explanation_ro": "Corect! Pentru subiectul «Noi», auxiliarul este «am» -> Noi am depus.",
+      "explanation_en": "Correct! For subject 'Noi' (we), the auxiliary is 'am' -> Noi am depus.",
+      "explanation_ar": "صحيح! مع الضمير Noi (نحن) نستخدم الفعل المساعد am لتصبح Noi am depus (قدمنا)."
     },
+    "common_mistake_ro": "Greșeală: «Eu a făcut dosarul». Corect: «Eu am făcut dosarul».",
+    "common_mistake_en": "Mistake: 'Eu a făcut'. Correct: 'Eu am făcut'.",
+    "common_mistake_ar": "خطأ شائع: استخدام الفعل المساعد a بدلاً من am مع Eu. التصحيح: Eu am făcut.",
     "rules": [
       {
-        "gender": "Auxiliarul 'a avea'",
-        "singular_ro": "eu am / tu ai / el a",
-        "plural_ro": "noi am / voi ați / ei au",
-        "rule_ar": "أدوات الفعل المساعد للماضي المركب",
-        "rule_en": "Auxiliary forms for perfect compus"
+        "gender": "Participiu în -at (Verbe în -a)",
+        "singular_ro": "a învăța -> învățat / a lucra -> lucrat",
+        "plural_ro": "Am învățat Constituția.",
+        "rule_ar": "ينتهي اسم المفعول بـ -at",
+        "rule_en": "Past participle ending in -at"
+      },
+      {
+        "gender": "Participiu în -ut (Verbe în -e / -ea)",
+        "singular_ro": "a trece -> trecut / a avea -> avut",
+        "plural_ro": "Am trecut examenul.",
+        "rule_ar": "ينتهي اسم المفعول بـ -ut",
+        "rule_en": "Past participle ending in -ut"
+      },
+      {
+        "gender": "Participiu în -it/-ât (Verbe în -i / -î)",
+        "singular_ro": "a citi -> citit / a hotărî -> hotărât",
+        "plural_ro": "Am citit textul jurământului.",
+        "rule_ar": "ينتهي اسم المفعول بـ -it أو -ât",
+        "rule_en": "Past participle ending in -it or -ât"
+      }
+    ]
+  },
+  {
+    "id": "imperfect_tense",
+    "title_ro": "6. Trecutul - Imperfectul (eram, făceam, locuiam - Acțiuni continue din trecut)",
+    "title_en": "6. Imperfect Tense (Past Ongoing Actions & Habits)",
+    "title_ar": "6. زمن الماضي المستمر (Imperfectul: eram, făceam, locuiam)",
+    "category": "Verbs",
+    "level": "Intermediate",
+    "rule_ro": "Imperfectul exprimă o acțiune trecută care s-a desfășurat în mod continuu sau repetat (obicei). Se formează adăugând sufixele (-am, -ai, -a, -am, -ați, -au) sau (-eam, -eai, -ea, -eam, -eați, -eau) la rădăcina verbului.",
+    "rule_en": "Imperfect expresses past continuous or habitual actions. Formed by adding endings (-am, -ai, -a...) or (-eam, -eai, -ea...) to the verb stem.",
+    "rule_ar": "يعبر زمن الماضي المستمر (Imperfectul) عن حدث كان يتكرر أو يستمر في الماضي (مثل: كنتُ أسكن، كنتُ أعمل). يضاف للمصدر النهايات -am, -ai, -a, -am, -ați, -au.",
+    "example_ro": "Când locuiam la Iași, învățam în fiecare seară. | Pe vremea aceea, el era student.",
+    "example_en": "When I lived in Iași, I studied every evening. | At that time, he was a student.",
+    "example_ar": "عندما كنتُ أسكن في ياش، كنتُ أدرس كل مساء. | في ذلك الوقت، كان هو طالباً.",
+    "why_rule_ro": "La interviu se folosește la descrierea vieții anterioare în România: «Unde locuiați înainte?»",
+    "why_rule_en": "Used in the interview when describing your ongoing background in Romania: 'Unde locuiați înainte?'",
+    "why_rule_ar": "يستخدم في المقابلة عند وصف حياتك السابقة في رومانيا والأحداث المستمرة.",
+    "try_it": {
+      "question_ro": "Care este forma corectă de imperfect pentru «Eu (a fi) foarte emoționat»?",
+      "question_en": "What is the imperfect form for 'Eu (a fi) foarte emoționat'?",
+      "question_ar": "ما هي صيغة الماضي المستمر لجملة: «Eu (a fi) foarte emoționat»؟",
+      "options": ["eram", "fost", "am fost", "eam"],
+      "correct_answer": "eram",
+      "explanation_ro": "Corect! Imperfectul verbului «a fi» la persoana I este «eram» (كنتُ).",
+      "explanation_en": "Correct! The imperfect of 'a fi' (to be) for 'Eu' is 'eram'.",
+      "explanation_ar": "صحيح! تصريف فعل a fi في زمن Imperfect مع Eu هو eram (كنتُ)."
+    },
+    "common_mistake_ro": "Greșeală: «Când eram mic, am locuit la Cluj în fiecare an». Corect: «...locuiam la Cluj...» (obicei).",
+    "common_mistake_en": "Mistake: Using Perfect Compus for habitual past. Fix: Use Imperfect.",
+    "common_mistake_ar": "خطأ شائع: استخدام الماضي المركب للأحداث المتكررة بدلاً من Imperfect. التصحيح: locuiam.",
+    "rules": [
+      {
+        "gender": "A fi (Imperfect)",
+        "singular_ro": "eram, erai, era",
+        "plural_ro": "eram, erați, erau",
+        "rule_ar": "فعل الكينونة في الماضي المستمر (كنتُ، كنتَ...)",
+        "rule_en": "Imperfect conjugation of 'to be'"
+      },
+      {
+        "gender": "A avea (Imperfect)",
+        "singular_ro": "aveam, aveai, avea",
+        "plural_ro": "aveam, aveați, aveau",
+        "rule_ar": "فعل الملكية في الماضي المستمر (كان لدي...)",
+        "rule_en": "Imperfect conjugation of 'to have'"
+      },
+      {
+        "gender": "Verbe în -a (A locui / A învăța)",
+        "singular_ro": "învățam, învățai, învăța",
+        "plural_ro": "învățam, învățați, învățau",
+        "rule_ar": "إضافة اللاحقة -am, -ai, -a...",
+        "rule_en": "Adding endings -am, -ai, -a to verb stem"
       }
     ]
   },
   {
     "id": "future_tense",
-    "title_ro": "6. Viitorul - Formele de Viitor",
-    "title_en": "6. Future Tense Forms",
-    "title_ar": "6. زمن المستقبل وصيغه المختلفة في اللغة الرومانية",
+    "title_ro": "7. Viitorul Standard și Colocvial (voi face, o să fac, am să fac)",
+    "title_en": "7. Future Tense Forms (Standard & Colloquial)",
+    "title_ar": "7. زمن المستقبل الرسمي والعامي (voi face, o să fac, am să fac)",
     "category": "Verbs",
     "level": "Intermediate",
-    "rule_ro": "Viitorul literar se formează cu auxiliarul «a voi» + infinitiv (voi respecta, vei depune). În vorbirea curentă se folosește «o să» + conjunctiv (o să depun jurământul).",
-    "rule_en": "Formal future is formed with 'voi/vei/va' + infinitive (voi respecta). Conversational future uses 'o să' + subjunctive (o să depun).",
-    "rule_ar": "المستقبل الرسمي يتكون من المساعد voi/vei/va + المصدر (voi respecta - سأحترم). وفي المحادثات اليومية يستخدم o să + المنصوب (o să depun - سأؤدي قسم اليمين).",
-    "example_ro": "Voi respecta Constituția României. / O să depun jurământul.",
-    "example_en": "I will respect the Constitution of Romania. / I will take the oath.",
-    "example_ar": "سأحترم دستور رومانيا. / سأؤدي قسم اليمين.",
-    "why_rule_ro": "La jurământ se folosește expresia solemnă «Jur să fiu devotat... și voi respecta legile».",
-    "why_rule_en": "Formal future is used in solemn oaths and commitments to Romania.",
-    "why_rule_ar": "يستخدم المستقبل الرسمي في نصوص اليمين والتعهد باحترام قوانين الدولة.",
+    "rule_ro": "Limba română are 3 forme de viitor: 1. Viitorul Literar/Oficial (voi, vei, va, vom, veți, vor + infinitiv: voi depune), 2. Viitorul Colocvial cu «o să» (o să depun), 3. Viitorul cu «a avea» + conjunctiv (am să depun).",
+    "rule_en": "Romanian has 3 future tense structures: 1. Standard (voi + infinitive), 2. Colloquial (o să + subjunctive), 3. Alternate (am să + subjunctive).",
+    "rule_ar": "يوجد في الرومانية 3 أشكال للمستقبل: 1. الرسمي (voi face)، 2. الشائع مع o să (o să fac)، 3. البديل مع am să (am să fac). في المقابلة يفضل استخدام الصياغة الرسمية.",
+    "example_ro": "Voi respecta Constituția României. | O să învăț toate răspunsurile.",
+    "example_en": "I will respect the Constitution of Romania. | I will learn all answers.",
+    "example_ar": "سأحترم دستور رومانيا. | سأتعلم جميع الإجابات.",
+    "why_rule_ro": "Textul oficial al jurământului conține forma strictă de viitor: «Voi fi devotat patriei...».",
+    "why_rule_en": "The official oath of allegiance requires strict formal future tense: 'Voi fi devotat...'.",
+    "why_rule_ar": "النص الرسمي ليمين الولاء يتضمن صيغة المستقبل الرسمية: Voi fi devotat patriei.",
     "try_it": {
-      "question_ro": "Care este forma de viitor oficial pentru «Eu (a respecta) Constituția»?",
-      "question_en": "What is the official future form for 'Eu (a respecta) Constituția'?",
-      "question_ar": "ما هي صيغة المستقبل الرسمي للجملة 'Eu (a respecta) Constituția'؟",
-      "options": ["voi respecta", "am respectat", "respectăm"],
-      "correct_answer": "voi respecta",
-      "explanation_ro": "Corect! «Voi respecta» este viitorul oficial pentru persoana I singular.",
-      "explanation_en": "Correct! 'Voi respecta' is official 1st person future tense.",
-      "explanation_ar": "صحيح! Voi respecta هي صيغة المستقبل الرسمي المتكلم المفرد."
+      "question_ro": "Care este varianta oficială de viitor pentru «Eu (a respecta) legile României»?",
+      "question_en": "What is the official future tense form for 'Eu (a respecta) legile'?",
+      "question_ar": "ما هي صيغة المستقبل الرسمية لجملة: «Eu (a respecta) legile României»؟",
+      "options": ["Voi respecta", "O să respect", "Am să respect", "Respectat"],
+      "correct_answer": "Voi respecta",
+      "explanation_ro": "Corect! Viitorul oficial se formează cu auxiliarul «voi» + infinitivul verbului.",
+      "explanation_en": "Correct! Official future uses auxiliary 'voi' + verb infinitive.",
+      "explanation_ar": "صحيح! المستقبل الرسمي يتكون من الفعل المساعد voi متبوعاً بالمصدر: Voi respecta."
     },
+    "common_mistake_ro": "Greșeală: «Eu voi respectat legile». Corect: «Eu voi respecta legile» (infinitiv, nu participiu).",
+    "common_mistake_en": "Mistake: Using past participle after 'voi'. Correct: Use infinitive.",
+    "common_mistake_ar": "خطأ شائع: استخدام اسم المفعول بعد voi بدلاً من المصدر. التصحيح: Voi respecta.",
     "rules": [
       {
-        "gender": "Viitor Oficial (voi)",
-        "singular_ro": "eu voi / tu vei / el va",
-        "plural_ro": "noi vom / voi veți / ei vor",
-        "rule_ar": "صيغة المستقبل الرسمي للمستندات واليمين",
-        "rule_en": "Formal future for oaths & legal commitments"
+        "gender": "Viitor Literar / Oficial (Voi + Infinitiv)",
+        "singular_ro": "voi face, vei face, va face",
+        "plural_ro": "vom face, veți face, vor face",
+        "rule_ar": "الصيغة الأكثر رسمية وتستخدم في النصوص والمقابلات",
+        "rule_en": "Official standard form used in oaths and interviews"
+      },
+      {
+        "gender": "Viitor Popolar / Colocvial (O să + Conjunctiv)",
+        "singular_ro": "o să fac, o să faci, o să facă",
+        "plural_ro": "o să facem, o să faceți, o să facă",
+        "rule_ar": "الصيغة الأكثر استخداماً في الحادثات اليومية",
+        "rule_en": "Most common spoken future tense structure"
+      },
+      {
+        "gender": "Viitor cu A Avea (Am să + Conjunctiv)",
+        "singular_ro": "am să fac, ai să faci, are să facă",
+        "plural_ro": "avem să facem, aveți să faceți, au să facă",
+        "rule_ar": "صيغة مستقبل عامية إضافية",
+        "rule_en": "Regional spoken alternative"
       }
     ]
   },
   {
     "id": "adjectives_agreement",
-    "title_ro": "7. Adjectivele și Acordul cu Substantivul",
-    "title_en": "7. Adjective Agreement with Nouns",
-    "title_ar": "7. الصفات ومطابقتها للاسم في الجنس والعدد",
+    "title_ro": "8. Acordul Adjectivelor (Forme cu 4, 3 și 2 terminații)",
+    "title_en": "8. Adjective Agreement (4, 3 & 2 Ending Forms)",
+    "title_ar": "8. مطابقة الصفات في الجنس والعدد (الصفوف ذات 4 و3 و2 نهايات)",
     "category": "Adjectives",
     "level": "Intermediate",
-    "rule_ro": "Adjectivul se acordă în gen, număr și caz cu substantivul pe care îl determină. Adjectivele au 2, 3 sau 4 forme flexionare (ex: român, română, români, române).",
-    "rule_en": "Adjectives agree in gender, number, and case with the noun they modify. Most have up to 4 inflectional forms.",
-    "rule_ar": "تطابق الصفة الاسم الذي تصفه في الجنس (مذكر/مؤنث/محايد) والعدد (مفرد/جمع). ومعظم الصفات تملك 4 صيغ مختلفة (مثل: român, română, români, române).",
-    "example_ro": "Cetățean român (M.Sg) -> Cetățeană română (F.Sg) | Cetățeni români (M.Pl) -> Cetățene române (F.Pl)",
-    "example_en": "Romanian citizen (M) -> Romanian citizen (F) | Romanian citizens (M.Pl -> F.Pl)",
-    "example_ar": "مواطن روماني -> مواطنة رومانية | مواطنون رومانيون -> مواطنات رومانيات",
-    "why_rule_ro": "Acordul adjectivului este cel mai analizat detaliu de către comisia ANC la proba de vorbire.",
-    "why_rule_en": "Adjective agreement is heavily checked by the ANC Commission during oral interviews.",
-    "why_rule_ar": "مطابقة الصفة هي أكثر التفاصيل التي تدقق فيها لجنة التجنيس أثناء المقابلة الشفهية.",
+    "rule_ro": "Adjectivul se acordă obligatoriu în gen, număr și caz cu substantivul pe care îl determină. Adjectivele pot avea 4 forme (bun, bună, buni, bune), 3 forme (nou, nouă, noi) sau 2 forme (mare, mari).",
+    "rule_en": "Adjectives must agree in gender, number, and case with the noun. They can have 4 endings (bun/bună/buni/bune), 3, or 2 (mare/mari).",
+    "rule_ar": "تتطابق الصفة وجوباً مع الاسم في الجنس والعدد والحالة. تنقسم الصفات إلى صفات ذات 4 أشكال (bun, bună, buni, bune) أو 3 أشكال أو شكلين (mare, mari).",
+    "example_ro": "Un steag frumos -> Steaguri frumoase | O lege importantă -> Legi importante",
+    "example_en": "A beautiful flag -> Beautiful flags | An important law -> Important laws",
+    "example_ar": "علم جميل -> أعلام جميلة | قانون هام -> قوانين هامة",
+    "why_rule_ro": "Greșelile de acord adjectival arată o stăpânire insuficientă a limbii în fața comisiei.",
+    "why_rule_en": "Adjective agreement errors show weak language mastery during the evaluation.",
+    "why_rule_ar": "أخطاء مطابقة الصفات تظهر ضعفاً في التمكن اللغوي أمام لجنة الامتحان.",
     "try_it": {
-      "question_ro": "Care este forma corectă: «Limba ___ este limba oficială a României»?",
-      "question_en": "What is the correct form: 'Limba ___ este limba oficială a României'?",
-      "question_ar": "ما هي الصيغة الصحيحة: 'Limba ___ este limba oficială a României'؟",
-      "options": ["română", "român", "români"],
-      "correct_answer": "română",
-      "explanation_ro": "Corect! «Limba» este feminin singular, deci adjectivul este «română».",
-      "explanation_en": "Correct! 'Limba' is feminine singular, so the adjective must be 'română'.",
-      "explanation_ar": "صحيح! كلمة Limba مؤنثة مفردة، لذا تأخذ الصفة المؤنثة română."
+      "question_ro": "Alegeți adjectivul corect: «Constituția României este _______» (sfânt).",
+      "question_en": "Select the correct adjective form: 'Constituția este _______' (sacred).",
+      "question_ar": "اختر الشكل الصحيح للصفة: «Constituția României este _______» (مقدس)؟",
+      "options": ["sfântă", "sfânt", "sfânte", "sfânți"],
+      "correct_answer": "sfântă",
+      "explanation_ro": "Corect! «Constituția» este feminin singular, deci adjectivul devine «sfântă».",
+      "explanation_en": "Correct! 'Constituția' is feminine singular, so the adjective becomes 'sfântă'.",
+      "explanation_ar": "صحيح! كلمة Constituția مؤنث مفرد، وبالتالي تأخذ الصفة صيغة المؤنث المفرد sfântă."
     },
+    "common_mistake_ro": "Greșeală: «Steaguri frumos». Corect: «Steaguri frumoase» (Neutru plural = Feminin plural).",
+    "common_mistake_en": "Mistake: 'Steaguri frumos'. Correct: 'Steaguri frumoase'.",
+    "common_mistake_ar": "خطأ شائع: عدم مطابقة الصفة مع جمع الكلمات المحايدة. التصحيح: Steaguri frumoase.",
     "rules": [
       {
-        "gender": "Masculin vs Feminin",
-        "singular_ro": "stat democrat / țară democratică",
-        "plural_ro": "state democratice",
-        "rule_ar": "مطابقة صفة ديمقراطي للمذكر والمؤنث",
-        "rule_en": "Adjective agreement for democratic"
+        "gender": "Adjective cu 4 terminații (bun)",
+        "singular_ro": "bun (M) / bună (F)",
+        "plural_ro": "buni (M) / bune (F/N)",
+        "rule_ar": "شكل مستقل لكل حالة (مذكر/مؤنث مفرد وجمع)",
+        "rule_en": "4 distinct forms for M/F singular and plural"
+      },
+      {
+        "gender": "Adjective cu 3 terminații (nou)",
+        "singular_ro": "nou (M) / nouă (F)",
+        "plural_ro": "noi (M/F/N)",
+        "rule_ar": "الجمع المذكر والمؤنث يتشاركان نفس الشكل (noi)",
+        "rule_en": "Plural is identical for masculine and feminine (noi)"
+      },
+      {
+        "gender": "Adjective cu 2 terminații (mare)",
+        "singular_ro": "mare (M/F)",
+        "plural_ro": "mari (M/F/N)",
+        "rule_ar": "شكل واحد للمفرد (mare) وشكل واحد للجمع (mari)",
+        "rule_en": "Only 2 forms: singular 'mare' and plural 'mari'"
       }
     ]
   },
   {
     "id": "prepositions_cases",
-    "title_ro": "8. Prepozițiile și Cazurile (Acuzativ, Genitiv, Dativ)",
-    "title_en": "8. Prepositions & Noun Cases (Accusative, Genitive, Dative)",
-    "title_ar": "8. حروف الجر وحالات الإعراب (المنصوب، المجرور، والمضاف إليه)",
+    "title_ro": "9. Prepozițiile și Regimul lor de Caz (Acuzativ, Genitiv, Dativ)",
+    "title_en": "9. Prepositions and Case Governance (Accusative, Genitive, Dative)",
+    "title_ar": "9. حروف الجر وحالات الإعراب المرتبطة بها (Acuzativ, Genitiv, Dativ)",
     "category": "Prepositions",
-    "level": "Advanced",
-    "rule_ro": "Prepozițiile cer anumite cazuri: Acuzativ (în, la, cu, pentru, din), Genitiv (contra, asupra, în fața) și Dativ (datorită, mulțumită). Articolul posesiv-genitival este al, a, ai, ale.",
-    "rule_en": "Prepositions govern specific cases: Accusative (în, la, cu, pentru), Genitive (contra, în fața), and Dative (datorită). Possessive article is al/a/ai/ale.",
-    "rule_ar": "تتطلب حروف الجر حالات إعرابية محددة: المنصوب (în - في، la - إلى/عند، cu - مع، pentru - لأجل)، المضاف إليه (în fața - أمام، contra - ضد)، والمجرور (datorită - بفضل). وأداة الإضافة هي al, a, ai, ale.",
-    "example_ro": "Drapelul al României (Genitiv) / În fața comisiei (Genitiv) / Cu respect (Acuzativ)",
-    "example_en": "Flag of Romania (Genitive) / In front of the commission (Genitive) / With respect (Accusative)",
-    "example_ar": "علم رومانيا (مضاف إليه) / أمام اللجنة (مضاف إليه) / بكل احترام (منصوب)",
-    "why_rule_ro": "Structura «În fața comisiei ANC» folosește cazul Genitiv și apare frecvent la examen.",
-    "why_rule_en": "The phrase 'În fața comisiei ANC' uses the Genitive case and appears frequently.",
-    "why_rule_ar": "عبارة 'În fața comisiei ANC' (أمام لجنة التجنيس) تستخدم حالة المضاف إليه وتتكرر في الاختبار.",
+    "level": "Intermediate",
+    "rule_ro": "Majoritatea prepozițiilor cer cazul Acuzativ (în, la, cu, din, pentru, pe). Un grup restrâns cere Genitivul (în contra, în fața, în spatele, împotriva) sau Dativul (datorită, mulțumită, conform, potrivit).",
+    "rule_en": "Most prepositions govern the Accusative case (în, la, cu, pentru). Specific ones require Genitive (în fața, împotriva) or Dative (datorită, conform).",
+    "rule_ar": "معظم حروف الجر تأخذ حالة المنصوب/المجرور العادي Acuzativ (مثل în, la, cu, pentru). بينما تطلب حروف خاصة حالة الإضافة Genitiv (مثل în fața) أو حالة المجرور باللام Dativ (مثل datorită, conform).",
+    "example_ro": "Merg la ANC (Acuzativ). | Stau în fața comisiei (Genitiv). | Conform legii (Dativ).",
+    "example_en": "I go to ANC (Acc.). | I stand in front of the board (Gen.). | According to the law (Dat.).",
+    "example_ar": "أذهب إلى ANC | أقوف أمام اللجنة | وفقاً للقانون",
+    "why_rule_ro": "Comisia testează folosirea corectă a prepozițiilor constituționale precum «Conform Constituției».",
+    "why_rule_en": "The board checks preposition accuracy in constitutional quotes like 'Conform Constituției'.",
+    "why_rule_ar": "تختبر اللجنة الاستخدام الصحيح لحروف الجر في العبارات الرسمية مثل Conform Constituției.",
     "try_it": {
-      "question_ro": "Alegeți forma genitivală corectă: «Constituția ___ României»",
-      "question_en": "Select the correct genitive article: 'Constituția ___ României'",
-      "question_ar": "اختر أداة الإضافة الصحيحة: 'Constituția ___ României'",
-      "options": ["a", "al", "ai"],
-      "correct_answer": "a",
-      "explanation_ro": "Corect! «Constituția» este feminin singular, deci articolul genitival este «a».",
-      "explanation_en": "Correct! 'Constituția' is feminine singular, so genitive article is 'a'.",
-      "explanation_ar": "صحيح! كلمة Constituția مؤنثة مفردة فتأخذ أداة الإضافة a."
+      "question_ro": "Completati spatiul: «Am depus jurământul conform _______» (legea).",
+      "question_en": "Fill in: 'Am depus jurământul conform _______' (law).",
+      "question_ar": "أكمل الفراغ: «Am depus jurământul conform _______» (القانون)؟",
+      "options": ["legii", "legea", "o lege", "lege"],
+      "correct_answer": "legii",
+      "explanation_ro": "Corect! Prepoziția «conform» cere cazul Dativ -> legii.",
+      "explanation_en": "Correct! The preposition 'conform' requires the Dative case -> legii.",
+      "explanation_ar": "صحيح! حرف الجر conform يطلب حالة Dativ لتصبح كلمة legea -> legii (وفقاً للقانون)."
     },
+    "common_mistake_ro": "Greșeală: «Conform legea». Corect: «Conform legii» (Dativ).",
+    "common_mistake_en": "Mistake: 'Conform legea'. Correct: 'Conform legii'.",
+    "common_mistake_ar": "خطأ شائع: قول Conform legea بدون حالة Dativ. التصحيح: Conform legii.",
     "rules": [
       {
-        "gender": "Articolul Genitival (al, a, ai, ale)",
-        "singular_ro": "al (M.Sg) / a (F.Sg)",
-        "plural_ro": "ai (M.Pl) / ale (F.Pl)",
-        "rule_ar": "أدوات الإضافة حسب جنس الكلمة المملوكة",
-        "rule_en": "Genitive possessive articles by gender"
+        "gender": "Prepoziții de Acuzativ (în, la, cu, pentru, din)",
+        "singular_ro": "Locuiesc în România. / Vorbesc cu domnul.",
+        "plural_ro": "Am răspuns la întrebări.",
+        "rule_ar": "تأخذ الاسم في صياغته العادية بدون تغيير معقد",
+        "rule_en": "Standard case with simple noun forms"
+      },
+      {
+        "gender": "Prepoziții de Genitiv (în fața, în spatele, împotriva)",
+        "singular_ro": "În fața comisiei / Împotriva statului",
+        "plural_ro": "În fața legilor",
+        "rule_ar": "تتطلب صياغة الملكية/الإضافة (Genitiv)",
+        "rule_en": "Requires Genitive noun forms"
+      },
+      {
+        "gender": "Prepoziții de Dativ (conform, potrivit, datorită, mulțumită)",
+        "singular_ro": "Conform legii / Datorită efortului",
+        "plural_ro": "Mulțumită profesorilor",
+        "rule_ar": "تتطلب صياغة المجرور باللام (Dativ)",
+        "rule_en": "Requires Dative noun forms"
+      }
+    ]
+  },
+  {
+    "id": "genitive_dative_cases",
+    "title_ro": "10. Cazurile Genitiv și Dativ (Articolul Genitival al/a/ai/ale și Terminațiile -ului, -ei, -lor)",
+    "title_en": "10. Genitive and Dative Cases (Possessive Article al/a/ai/ale)",
+    "title_ar": "10. حالتا الإضافة والمجرور (Genitiv و Dativ وأداة الإضافة al/a/ai/ale)",
+    "category": "Cases",
+    "level": "Advanced",
+    "rule_ro": "Cazul Genitiv (posesie) și Dativ (obiect indirect) au aceleași forme. Masculin/Neutru singular primesc articolul «-ului» (băiatului, orașului), Feminin singular primește «-ei / -i» (fetei, țării), iar Pluralul primește «-lor» (cetățenilor). Articolul genitival este: al (M.sg), a (F.sg), ai (M.pl), ale (F/N.pl).",
+    "rule_en": "Genitive (possession) & Dative (indirect object) share forms: M/N sg adds '-ului', F sg adds '-ei/-i', Plural adds '-lor'. Possessive article: al (M.sg), a (F.sg), ai (M.pl), ale (F/N.pl).",
+    "rule_ar": "حالة الإضافة Genitiv والمجرور Dativ تتشاركان نفس الأشكال: المذكر والمحايد المفرد يضيفان -ului، المؤنث المفرد يضيف -ei/-i، والجمع يضيف -lor. أداة الإضافة هي al, a, ai, ale.",
+    "example_ro": "Capitala României (F.gen) | Drepturile cetățenilor (Pl.gen) | Imnul este al țării.",
+    "example_en": "The capital of Romania | The rights of citizens | The anthem belongs to the country.",
+    "example_ar": "عاصمة رومانيا | حقوق المواطنين | النشيد الوطني للدولة",
+    "why_rule_ro": "Formulările juridice oficiale conțin numeroase structuri în genitiv/dativ.",
+    "why_rule_en": "Official legal and constitutional statements strictly rely on Genitive/Dative structures.",
+    "why_rule_ar": "الصياغات القانونية الرسمية في المقابلة تستخدم بكثرة حالتي Genitiv و Dativ.",
+    "try_it": {
+      "question_ro": "Care este varianta corectă: «Acesta este drapelul _______» (România)?",
+      "question_en": "What is the correct form: 'Acesta este drapelul _______' (Romania)?",
+      "question_ar": "ما هي الصياغة الصحيحة لجملة: «Acesta este drapelul _______» (رومانيا)؟",
+      "options": ["României", "România", "Românieiul", "Românie"],
+      "correct_answer": "României",
+      "explanation_ro": "Corect! Numele feminin «România» devine «României» în cazul Genitiv.",
+      "explanation_en": "Correct! Feminine noun 'România' becomes 'României' in Genitive.",
+      "explanation_ar": "صحيح! الاسم المؤنث România يصبح României في حالة الإضافة Genitiv (عَلَمُ رومانيا)."
+    },
+    "common_mistake_ro": "Greșeală: «Drapelul de România» sau «Drapelul România». Corect: «Drapelul României».",
+    "common_mistake_en": "Mistake: 'Drapelul România'. Correct: 'Drapelul României'.",
+    "common_mistake_ar": "خطأ شائع: قول Drapelul România بدون حالة الإضافة. التصحيح: Drapelul României.",
+    "rules": [
+      {
+        "gender": "Masculin / Neutru Singular (-ului)",
+        "singular_ro": "băiat -> băiatului / oraș -> orașului",
+        "plural_ro": "bărbați -> bărbaților",
+        "rule_ar": "إضافة -ului في المفرد المذكر والمحايد",
+        "rule_en": "Adds -ului to M/N singular nouns"
+      },
+      {
+        "gender": "Feminin Singular (-ei / -i)",
+        "singular_ro": "țară -> țării / femeie -> femeii",
+        "plural_ro": "țări -> țărilor",
+        "rule_ar": "إضافة -ei أو -i للمفرد المؤنث",
+        "rule_en": "Adds -ei or -i to F singular nouns"
+      },
+      {
+        "gender": "Articol Genitival Possesiv (al, a, ai, ale)",
+        "singular_ro": "al țării (M.sg) / a țării (F.sg)",
+        "plural_ro": "ai țării (M.pl) / ale țării (F/N.pl)",
+        "rule_ar": "تتطابق الأداة مع الاسم المملوك وليس المالك",
+        "rule_en": "Matches the possessed object, not the owner"
       }
     ]
   },
   {
     "id": "subjunctive_mood",
-    "title_ro": "9. Modul Subjonctiv (Conjunctivul «să»)",
-    "title_en": "9. Subjunctive Mood (Conjunctivul 'să')",
-    "title_ar": "9. صيغة المنصوب والمصدر المقترن بـ 'să' (Modul Conjunctiv)",
+    "title_ro": "11. Modul Conjunctiv (Formarea cu «să»: să învăț, să fie, să aibă)",
+    "title_en": "11. Subjunctive Mood (Formation with 'să')",
+    "title_ar": "11. صيغة المنصوب والمضارع المقترن (Modul Conjunctiv مع أن/să)",
     "category": "Verbs",
-    "level": "Advanced",
-    "rule_ro": "Conjunctivul exprimă o dorință, o intenție أو o obligație și se formează cu particula «să» + forma de prezent (să fiu, să înveți, să respectăm).",
-    "rule_en": "Subjunctive mood expresses desire, intention, or obligation using particle 'să' + present form (să fiu, să respectăm).",
-    "rule_ar": "تعبر صيغة المنصوب (Conjunctivul) عن الرغبة أو النية أو الواجب، وتصاغ باستخدام الأداة 'să' + مضارع الفعل (să fiu - أن أكون، să respectăm - أن نحترم).",
-    "example_ro": "Doresc să obțin cetățenia română. / Jur să respect legile.",
-    "example_en": "I wish to obtain Romanian citizenship. / I swear to respect the laws.",
-    "example_ar": "أرغب في الحصول على الجنسية الرومانية. / أقسم أن أحترم القوانين.",
-    "why_rule_ro": "Textul jurământului de credință începe cu conjunctivul: «Jur să fiu devotat... și să apăr drepturile».",
-    "why_rule_en": "The official oath text starts with the subjunctive: 'Jur să fiu devotat...'.",
-    "why_rule_ar": "يبدأ نص قسم الولاء الرسمي بصيغة المنصوب: 'Jur să fiu devotat...' (أقسم أن أكون مخلصاً...).",
+    "level": "Intermediate",
+    "rule_ro": "Conjunctivul exprimă o dorință, intenție, obligație sau posibilitate. Se formează cu particula «să» + prezentul verbului (cu modificare la pers. III-a singular și plural: să fie, să aibă, să facă).",
+    "rule_en": "Subjunctive expresses desire, intention, or necessity. Formed with 'să' + verb (modified 3rd person: să fie, să aibă, să facă).",
+    "rule_ar": "تعبير المنصوب (Conjunctiv) يعبر عن الرغبة، النية، أو الوجوب. يتكون من أداة «să» (أن) متبوعة بالتصريف مع تعديل في الضمير الثالث (să fie, să aibă, să facă).",
+    "example_ro": "Vreau să obțin cetățenia română. | Trebuie să cunoașteți legea.",
+    "example_en": "I want to obtain Romanian citizenship. | You must know the law.",
+    "example_ar": "أريد أن أحصل على الجنسية الرومانية. | يجب أن تعرفوا القانون.",
+    "why_rule_ro": "Verbele modale «vreau să...», «trebuie să...», «doresc să...» sunt folosite la fiecare răspuns de la interviu.",
+    "why_rule_en": "Modal triggers 'vreau să', 'trebuie să', 'doresc să' occur in almost every interview response.",
+    "why_rule_ar": "الأفعال المتبوعة بـ să مثل أريد أن، يجب أن، يرغب أن تُستخدم في كل إجابة تقريباً.",
     "try_it": {
-      "question_ro": "Completați textul jurământului: «Jur ___ fiu devotat patriei...»",
-      "question_en": "Complete the oath text: 'Jur ___ fiu devotat patriei...'",
-      "question_ar": "أكمل نص اليمين: 'Jur ___ fiu devotat patriei...'",
-      "options": ["să", "ca", "de"],
-      "correct_answer": "să",
-      "explanation_ro": "Corect! «Jur să fiu» este formula oficială a jurământului de credință.",
-      "explanation_en": "Correct! 'Jur să fiu' is the official oath phrasing.",
-      "explanation_ar": "صحيح! Jur să fiu هي الصيغة الرسمية المعتمده في نص اليمين."
+      "question_ro": "Completați spațiul: «Doresc _______ cetățenia română» (a obține).",
+      "question_en": "Fill in: 'Doresc _______ cetățenia română' (to obtain).",
+      "question_ar": "أكمل الفراغ: «Doresc _______ cetățenia română» (أن أحصل على)؟",
+      "options": ["să obțin", "să obține", "să obținut", "să obținem"],
+      "correct_answer": "să obțin",
+      "explanation_ro": "Corect! Pentru persoana I singular «Eu», forma este «să obțin».",
+      "explanation_en": "Correct! For 1st person singular 'Eu', the subjunctive form is 'să obțin'.",
+      "explanation_ar": "صحيح! مع الضمير Eu تكون الصياغة الصحيحة să obțin (أن أحصل على)."
     },
+    "common_mistake_ro": "Greșeală: «Vreau la obțin cetățenia». Corect: «Vreau să obțin cetățenia».",
+    "common_mistake_en": "Mistake: 'Vreau la...'. Correct: 'Vreau să...'.",
+    "common_mistake_ar": "خطأ شائع: استخدام la بدلاً من să بعد الأفعال. التصحيح: Vreau să.",
     "rules": [
       {
-        "gender": "Conjunctivul verbului 'a fi'",
-        "singular_ro": "să fiu / să fii / să fie",
-        "plural_ro": "să fim / să fiți / să fie",
-        "rule_ar": "تصريف فعل الكينونة في صيغة المنصوب să",
-        "rule_en": "Subjunctive forms of 'to be' with 'să'"
+        "gender": "Persoana I & II (Eu / Tu / Noi / Voi)",
+        "singular_ro": "să învăț, să învăți",
+        "plural_ro": "să învățăm, să învățați",
+        "rule_ar": "نفس تصريف زمن الحاضر مسبوقاً بـ să",
+        "rule_en": "Same as present tense preceded by 'să'"
+      },
+      {
+        "gender": "Persoana III (El / Ea / Ei / Ele - Modificare)",
+        "singular_ro": "să învețe (a învăța) / să aibă (a avea)",
+        "plural_ro": "să fie (a fi) / să facă (a face)",
+        "rule_ar": "تتغير نهاية الضمير الثالث إلى -e أو -ă خاصة",
+        "rule_en": "3rd person changes ending vowel (e.g. să învețe)"
+      },
+      {
+        "gender": "Verbul A FI la Conjunctiv",
+        "singular_ro": "să fiu, să fii, să fie",
+        "plural_ro": "să fim, să fiți, să fie",
+        "rule_ar": "تصريف خاص ومهم جداً لفعل الكينونة",
+        "rule_en": "Essential irregular subjunctive of 'to be'"
+      }
+    ]
+  },
+  {
+    "id": "imperative_mood",
+    "title_ro": "12. Modul Imperativ (Comenzi, Instrucțiuni și Formulări de Politețe)",
+    "title_en": "12. Imperative Mood (Commands & Official Instructions)",
+    "title_ar": "12. صيغة الأمر والتعليمات الرسمية (Modul Imperativ: ascultați, spuneți)",
+    "category": "Verbs",
+    "level": "Intermediate",
+    "rule_ro": "Imperativul se folosește pentru comenzi, îndemnuri și instrucțiuni. Are forme doar pentru pers. a II-a singular (Tu!) și plural/politețe (Voi! / Dumneavoastră!). Imperativul negativ la singular folosește «Nu» + infinitiv: Nu face! Nu vorbi!",
+    "rule_en": "Imperative is used for commands and instructions. Negative singular uses 'Nu' + infinitive: Nu face! Nu vorbi!",
+    "rule_ar": "تستخدم صيغة الأمر للتعليمات والتوجيهات. توجد فقط للضمير الثاني (Tu و Voi/Dumneavoastră). الأمر المنفي في المفرد يتكون من Nu متبوعاً بالمصدر: Nu face!",
+    "example_ro": "Extrageți un bilet! (Politețe) | Spuneți jurământul! | Nu ezitați!",
+    "example_en": "Draw a ticket! | Recite the oath! | Do not hesitate!",
+    "example_ar": "اسحب ورقة السؤال! | قل ييمين الولاء! | لا تردد!",
+    "why_rule_ro": "Membrii comisiei ANC folosesc imperativul de politețe la instrucțiuni: «Luați loc!», «Citiți articolul!»",
+    "why_rule_en": "ANC board members strictly use polite imperative for exam commands: 'Luați loc!', 'Citiți articolul!'.",
+    "why_rule_ar": "أعضاء اللجنة يستخدمون صيغة الأمر الأدبي في التعليمات: Luați loc (تفضلوا بالجلوس)، Citiți (اقرأوا).",
+    "try_it": {
+      "question_ro": "Care este comanda politicoasă de la comisie pentru «a lua loc»?",
+      "question_en": "What is the polite command for 'to take a seat'?",
+      "question_ar": "ما هو الأمر المؤدب من اللجنة للجلوس (a lua loc)؟",
+      "options": ["Luați loc!", "Iei loc!", "Iau loc!", "Luat loc!"],
+      "correct_answer": "Luați loc!",
+      "explanation_ro": "Corect! «Luați loc!» este imperativul de politețe pentru persoana a II-a plural / Dumneavoastră.",
+      "explanation_en": "Correct! 'Luați loc!' is the polite 2nd person plural imperative form.",
+      "explanation_ar": "صحيح! الصياغة المؤدبة الرسمية للجلوس هي Luați loc!"
+    },
+    "common_mistake_ro": "Greșeală la negativ singular: «Nu faci asta!». Corect: «Nu face asta!» (Nu + infinitiv).",
+    "common_mistake_en": "Mistake in negative singular: 'Nu faci'. Correct: 'Nu face'.",
+    "common_mistake_ar": "خطأ شائع في الأمر المنفي المفرد: قول Nu faci. التصحيح: Nu face.",
+    "rules": [
+      {
+        "gender": "Imperativ Afirmativ Politețe (Voi / Dumneavoastră)",
+        "singular_ro": "Citiți! / Ascultați! / Semnați!",
+        "plural_ro": "Extrageți biletul!",
+        "rule_ar": "نفس تصريف الحاضر مع الضمير Voi",
+        "rule_en": "Matches 2nd person plural present tense form"
+      },
+      {
+        "gender": "Imperativ Afirmativ Singular (Tu)",
+        "singular_ro": "Citește! / Ascultă! / Semnează!",
+        "plural_ro": "Fă! / Zi! / Du!",
+        "rule_ar": "يوافق تصريف الضمير الثالث singular في الحاضر غالباً",
+        "rule_en": "Often matches 3rd person singular present form"
+      },
+      {
+        "gender": "Imperativ Negativ Singular (Nu + Infinitiv)",
+        "singular_ro": "Nu face! / Nu vorbi! / Nu pleca!",
+        "plural_ro": "Nu faceți! / Nu vorbiți! (Plural)",
+        "rule_ar": "في المفرد المنفي نستخدم Nu + المصدر الأصلي",
+        "rule_en": "Negative singular requires 'Nu' + full infinitive"
+      }
+    ]
+  },
+  {
+    "id": "object_clitics",
+    "title_ro": "13. Pronumele Personale Clitice în Acuzativ și Dativ (mă, te, îl, o / îmi, îți, îi)",
+    "title_en": "13. Direct & Indirect Object Pronouns (Clitics)",
+    "title_ar": "13. الضمائر المتصلة للمفعول به المباشر وغير المباشر (mă, te, îl, o / îmi, îți, îi)",
+    "category": "Pronouns",
+    "level": "Advanced",
+    "rule_ro": "Pronumele personale neaccentuate (clitice) stau de obicei în fața verbului. Acuzativ (pe cine?): mă, te, îl/l-, o/o-, ne, vă, îi/i-, le. Dativ (cui?): îmi/mi-, îți/ți-, îi/i-, ne, vă, le/le-.",
+    "rule_en": "Unstressed personal pronouns (clitics) sit before the verb. Accusative (Direct): mă, te, îl, o. Dative (Indirect): îmi, îți, îi, ne, vă, le.",
+    "rule_ar": "الضمائر المتصلة غير المشددة تسبق الفعل عادةً. المفعول به المباشر Acuzativ: mă (ني)، te (ك)، îl (ه)، o (ها). المفعول غير المباشر Dativ: îmi (لي)، îți (لك)، îi (له/لها).",
+    "example_ro": "Comisia mă întreabă (Acuzativ). | Domnul președinte îmi dă certificat (Dativ).",
+    "example_en": "The board asks me. | The chairman gives me a certificate.",
+    "example_ar": "اللجنة تسألني. | السيد الرئيس يعطيني الشهادة.",
+    "why_rule_ro": "Folosirea corectă a cliticelor «mă numesc», «îmi pare bine» este semn de fluență nativă.",
+    "why_rule_en": "Correct use of clitics like 'mă numesc', 'îmi pare bine' signals native-like fluency.",
+    "why_rule_ar": "الاستخدام الصحيح للضمائر المتصلة مثل mă numesc و îmi pare bine يظهر طلاقة عالية.",
+    "try_it": {
+      "question_ro": "Alegeți forma corectă: «Membrii comisiei _______ ascultă cu atenție» (pe mine).",
+      "question_en": "Select the correct clitic form: 'Membrii comisiei _______ ascultă' (me).",
+      "question_ar": "اختر الضمير المتصل الصحيح: «Membrii comisiei _______ ascultă» (يسمعونني)؟",
+      "options": ["mă", "îmi", "pe mine", "îl"],
+      "correct_answer": "mă",
+      "explanation_ro": "Corect! Pentru obiect direct «pe mine» (Acuzativ), cliticul corect este «mă».",
+      "explanation_en": "Correct! For direct object 'pe mine' (Accusative), the clitic is 'mă'.",
+      "explanation_ar": "صحيح! للمفعول المباشر (يسمعونني أنا) نستخدم الضمير المتصل mă."
+    },
+    "common_mistake_ro": "Greșeală: «Comisia întreabă pe mine». Corect: «Comisia mă întreabă pe mine».",
+    "common_mistake_en": "Mistake: Omitting the required clitic before the verb.",
+    "common_mistake_ar": "خطأ شائع: إهمال الضمير المتصل قبل الفعل. التصحيح: Comisia mă întreabă.",
+    "rules": [
+      {
+        "gender": "Acuzativ Direct (mă, te, îl, o, ne, vă, îi, le)",
+        "singular_ro": "Mă vede / Îl cunosc / O ajut",
+        "plural_ro": "Ne cheamă / Vă salută / Îi respect",
+        "rule_ar": "تستخدم مع المفعول به المباشر (إجابة عن سؤال Pe cine?)",
+        "rule_en": "Direct object clitics answering 'Pe cine?'"
+      },
+      {
+        "gender": "Dativ Indirect (îmi, îți, îi, ne, vă, le)",
+        "singular_ro": "Îmi place / Îți spun / Îi dau",
+        "plural_ro": "Ne oferă / Vă dorește / Le mulțumesc",
+        "rule_ar": "تستخدم مع المفعول به غير المباشر (إجابة عن سؤال Cui?)",
+        "rule_en": "Indirect object clitics answering 'Cui?'"
+      },
+      {
+        "gender": "Eliziunea cu Liniuță (m-a, i-a, le-a)",
+        "singular_ro": "M-a întrebat (mă + a) / I-am spus (îi + am)",
+        "plural_ro": "Le-am arătat documentele",
+        "rule_ar": "تدمج مع الفعل المساعد في الماضي باستعمال الوصلة (-)",
+        "rule_en": "Hyphenated contraction before past auxiliary verbs"
+      }
+    ]
+  },
+  {
+    "id": "reflexive_verbs",
+    "title_ro": "14. Verbele Reflexive și Pronumele Reflexiv (a se numi, a se afla, a-și aminti)",
+    "title_en": "14. Reflexive Verbs & Pronouns (a se numi, a se afla)",
+    "title_ar": "14. الأفعال الانعكاسية والضمائر الانعكاسية (a se numi, a se afla)",
+    "category": "Verbs",
+    "level": "Intermediate",
+    "rule_ro": "Verbele reflexive exprimă o acțiune care se răsfrânge asupra subiectului. Folosesc pronumele reflexive în Acuzativ (mă, te, se, ne, vă, se) sau Dativ (îmi, îți, își, ne, vă, își).",
+    "rule_en": "Reflexive verbs show actions reflected back onto the subject. Uses reflexive pronouns (mă, te, se, ne, vă, se) or Dative variants (îmi, îți, își).",
+    "rule_ar": "الأفعال الانعكاسية تعبر عن حدث يعود على الفاعل نفسه. تتطلب ضمائر انعكاسية: mă, te, se, ne, vă, se في المنصوب، أو îmi, îți, își في المجرور.",
+    "example_ro": "Mă numesc Mahmoud. | Guvernul se află la Palatul Victoria. | Îmi amintesc data.",
+    "example_en": "My name is Mahmoud. | The Government is located at Victoria Palace. | I remember the date.",
+    "example_ar": "اسمي محمود. | تقع الحكومة في قصر فيكتوريا. | أتذكر التاريخ.",
+    "why_rule_ro": "Formula de introducere «Mă numesc...» este prima frază pe care o rostiți la examen.",
+    "why_rule_en": "The self-introduction formula 'Mă numesc...' is the very first sentence spoken in the exam.",
+    "why_rule_ar": "عبارة التقديم Mă numesc... هي أول جملة تنطق بها أمام لجنة التجنيس.",
+    "try_it": {
+      "question_ro": "Care este forma corectă pentru «Cum _______ numiți?» (Politețe/Dumneavoastră)?",
+      "question_en": "What is the correct reflexive form for 'Cum _______ numiți?' (Polite)?",
+      "question_ar": "ما هو الضمير الانعكاسي الصحيح للجملة: «Cum _______ numiți?» (حضرتكم)؟",
+      "options": ["vă", "se", "te", "mă"],
+      "correct_answer": "vă",
+      "explanation_ro": "Corect! Pentru politețe / persoana a II-a plural, pronumele reflexiv este «vă» -> Cum vă numiți?",
+      "explanation_en": "Correct! For polite address (Dumneavoastră), the reflexive pronoun is 'vă'.",
+      "explanation_ar": "صحيح! مع صيغة الاحترام Dumneavoastră نستخدم الضمير الانعكاسي vă لتصبح Cum vă numiți؟"
+    },
+    "common_mistake_ro": "Greșeală: «Eu numesc Mahmoud». Corect: «Eu mă numesc Mahmoud» (cu reflexivul «mă»).",
+    "common_mistake_en": "Mistake: Omitting 'mă' in 'Mă numesc'. Correct: Include 'mă'.",
+    "common_mistake_ar": "خطأ شائع: حذف mă عند التقديم. التصحيح: Eu mă numesc.",
+    "rules": [
+      {
+        "gender": "Reflexiv Acuzativ (Mă, Te, Se, Ne, Vă, Se)",
+        "singular_ro": "Eu mă numesc / Tu te afli / El se numește",
+        "plural_ro": "Noi ne aflăm / Vă numiți / Se numesc",
+        "rule_ar": "الأكثر استخداماً مع أفعال الاسم والمكان واللبس",
+        "rule_en": "Most common form for names, locations, and grooming"
+      },
+      {
+        "gender": "Reflexiv Dativ (Îmi, Îți, Își, Ne, Vă, Își)",
+        "singular_ro": "Eu îmi amintesc / El își spală mâinile",
+        "plural_ro": "Noi ne amintim / Ei își asumă răspunderea",
+        "rule_ar": "تستخدم عندما يكون الفعل لمصلحة الفاعل الذاتية",
+        "rule_en": "Used for actions done for oneself"
+      },
+      {
+        "gender": "Verbe Reflexive Exclusiv",
+        "singular_ro": "a se afla, a se bucura, a se gândi, a se mândri",
+        "plural_ro": "Mă mândresc cu România.",
+        "rule_ar": "أفعال لا تأتي إلا مع الضمير الانعكاسي",
+        "rule_en": "Verbs that only exist in reflexive form"
+      }
+    ]
+  },
+  {
+    "id": "possessive_pronouns",
+    "title_ro": "15. Pronumele și Adjectivele Posesive (al meu, a mea, ai mei, ale mele)",
+    "title_en": "15. Possessive Pronouns & Adjectives (al meu, a mea)",
+    "title_ar": "15. ضمائر وصفات الملكية (al meu, a mea, ai mei, ale mele)",
+    "category": "Pronouns",
+    "level": "Intermediate",
+    "rule_ro": "Posesivele se acordă atât cu obiectul posedat (gen și număr) cât și cu posesorul. Forme: M.sg (al meu, al tău, al său), F.sg (a mea, a ta, a sa), M.pl (ai mei, ai tăi, ai săi), F/N.pl (ale mele, ale tale, ale sale). La pluralul nostru/vostru: al nostru, a noastră, ai noștri, ale noastre.",
+    "rule_en": "Possessives agree with the possessed object in gender & number. Formed with semi-possessive article (al/a/ai/ale) + possessive adjective.",
+    "rule_ar": "تتطابق صفات وضمائر الملكية مع الشيء المملوك جنس وعدداً. تتكون من أداة الملكية (al/a/ai/ale) متبوعة بصفة الملكية (meu, mea, mei, mele...).",
+    "example_ro": "Dosarul meu este complet. | Țara noastră este România. | Acesta este dreptul tău.",
+    "example_en": "My file is complete. | Our country is Romania. | This is your right.",
+    "example_ar": "ملفي مكتمل. | بلدنا هو رومانيا. | هذا حقك.",
+    "why_rule_ro": "Fraze precum «familia mea», «copiii mei», «obligația noastră» se folosesc des la interviu.",
+    "why_rule_en": "Phrases like 'familia mea', 'copiii mei', 'țara noastră' occur throughout personal questions.",
+    "why_rule_ar": "عبارات مثل familia mea (عائلتي)، țara noastră (بلدنا) تتكرر في أسئلة المقابلة.",
+    "try_it": {
+      "question_ro": "Care este forma corectă pentru «România este țara _______» (Noi)?",
+      "question_en": "What is the correct possessive for 'România este țara _______' (our)?",
+      "question_ar": "ما هي صفة الملكية الصحيحة لجملة: «România este țara _______» (بلدنا)؟",
+      "options": ["noastră", "nostru", "noștri", "noastre"],
+      "correct_answer": "noastră",
+      "explanation_ro": "Corect! «Țara» este feminin singular, deci forma de posesiv este «noastră».",
+      "explanation_en": "Correct! 'Țara' is feminine singular, so the possessive is 'noastră'.",
+      "explanation_ar": "صحيح! كلمة țara مؤنث مفرد، بالتالي تأخذ صفة الملكية المؤنثة noastră."
+    },
+    "common_mistake_ro": "Greșeală: «Țara nostru». Corect: «Țara noastră» (Feminin).",
+    "common_mistake_en": "Mistake: 'Țara nostru'. Correct: 'Țara noastră'.",
+    "common_mistake_ar": "خطأ شائع: استخدام nostru مع اسم مؤنث. التصحيح: Țara noastră.",
+    "rules": [
+      {
+        "gender": "Persoana I Singular (Eu -> meu / mea / mei / mele)",
+        "singular_ro": "pașaportul meu (M/N) / țara mea (F)",
+        "plural_ro": "copiii mei (M) / actele mele (F/N)",
+        "rule_ar": "ياء الملكية الخاصة بـ (أنا)",
+        "rule_en": "My / mine forms"
+      },
+      {
+        "gender": "Persoana I Plural (Noi -> nostru / noastră / noștri / noastre)",
+        "singular_ro": "drapelul nostru (M/N) / patria noastră (F)",
+        "plural_ro": "strămoșii noștri (M) / legile noastre (F/N)",
+        "rule_ar": "نا الملكية الخاصة بـ (نحن)",
+        "rule_en": "Our / ours forms"
+      },
+      {
+        "gender": "Persoana III (Lui / Ei / Lor)",
+        "singular_ro": "casa lui (his) / casa ei (hers)",
+        "plural_ro": "drepturile lor (their)",
+        "rule_ar": "استخدام Genitiv الضمير الشخصي للملكية غير المتغيرة",
+        "rule_en": "Unchanging 3rd person possessive pronoun forms"
+      }
+    ]
+  },
+  {
+    "id": "demonstrative_pronouns",
+    "title_ro": "16. Pronumele și Adjectivele Demonstrative (acesta/aceasta, acest/această, acela/aceea)",
+    "title_en": "16. Demonstrative Pronouns & Adjectives (This & That)",
+    "title_ar": "16. أسماء وصفات الإشارة (هذا، هذه، هؤلاء، ذلك، تلك: acesta, aceasta, acest, această)",
+    "category": "Pronouns",
+    "level": "Intermediate",
+    "rule_ro": "Adjectivele demonstrative stau în fața substantivului: acest bărbat, această țară, acești oameni, aceste legi. Pronumele demonstrative stau singure: acesta (M.sg), aceasta (F.sg), aceștia (M.pl), acestea (F/N.pl). Pentru depărtare: acela / aceea.",
+    "rule_en": "Demonstrative adjectives pre-modify nouns: acest bărbat, această țară. Pronouns stand alone: acesta, aceasta, acela, aceea.",
+    "rule_ar": "صفات الإشارة تسبق الاسم: acest bărbat (هذا الرجل)، această țară (هذه الدولة). أسماء الإشارة تقف بمفردها: acesta (هذا)، aceasta (هذه)، acela (ذلك)، aceea (تلك).",
+    "example_ro": "Acest document este valabil. | Aceasta este Constituția României.",
+    "example_en": "This document is valid. | This is the Constitution of Romania.",
+    "example_ar": "هذه الوثيقة صالحة. | هذا هو دستور رومانيا.",
+    "why_rule_ro": "La prezentarea actelor la comisie se folosește fraza: «Acesta este pașaportul meu».",
+    "why_rule_en": "When handing documents to the committee, candidates say: 'Acesta este pașaportul meu'.",
+    "why_rule_ar": "عند تسليم المستندات للجنة تقول العبارة الشهيرة: Acesta este pașaportul meu.",
+    "try_it": {
+      "question_ro": "Alegeți demonstrativul corect: «_______ este jurământul de credință» (Feminin - aceasta/acesta)?",
+      "question_en": "Select the correct demonstrative for 'jurământul' (Neuter sg)?",
+      "question_ar": "اختر اسم الإشارة الصحيح لجملة: «_______ este jurământul de credință» (محايد مفرد)؟",
+      "options": ["Acesta", "Aceasta", "Aceștia", "Acestea"],
+      "correct_answer": "Acesta",
+      "explanation_ro": "Corect! «Jurământul» este neutru singular (comportament de masculin), deci se folosește «Acesta».",
+      "explanation_en": "Correct! 'Jurământul' is neuter singular (masculine form), so we use 'Acesta'.",
+      "explanation_ar": "صحيح! كلمة Jurământul محايد مفرد (يعامل كالمذكر في المفرد)، وبالتالي يأخذ اسم الإشارة Acesta."
+    },
+    "common_mistake_ro": "Greșeală: «Aceasta este pașaportul». Corect: «Acesta este pașaportul» (Neutru sg = Masculin).",
+    "common_mistake_en": "Mistake: 'Aceasta este pașaportul'. Correct: 'Acesta este pașaportul'.",
+    "common_mistake_ar": "خطأ شائع: استخدام Aceasta مع اسم محايد مفرد. التصحيح: Acesta este pașaportul.",
+    "rules": [
+      {
+        "gender": "Apropiere - Adjectiv (în fața substantivului)",
+        "singular_ro": "acest oraș (M/N) / această lege (F)",
+        "plural_ro": "acești cetățeni (M) / aceste drepturi (F/N)",
+        "rule_ar": "صفة إشارة توضع قبل الاسم وتطابقه",
+        "rule_en": "Pre-nominal demonstrative adjective forms"
+      },
+      {
+        "gender": "Apropiere - Pronume (sine stătător)",
+        "singular_ro": "acesta (M/N) / aceasta (F)",
+        "plural_ro": "aceștia (M) / acestea (F/N)",
+        "rule_ar": "اسم إشارة قائم بذاته بدون اسم بعده",
+        "rule_en": "Standalone demonstrative pronoun forms"
+      },
+      {
+        "gender": "Depărtare (Acela / Aceea)",
+        "singular_ro": "acel moment / acela (M) | aceea (F)",
+        "plural_ro": "acei oameni / aceia (M) | acele legi / acelea (F/N)",
+        "rule_ar": "للإشارة إلى البعيد (ذلك، تلك، أولئك)",
+        "rule_en": "Distant demonstrative forms ('that' / 'those')"
+      }
+    ]
+  },
+  {
+    "id": "adverbs_comparison",
+    "title_ro": "17. Adverbele și Gradele de Comparație (bine - mai bine - cel mai bine)",
+    "title_en": "17. Adverbs and Degrees of Comparison (well, better, best)",
+    "title_ar": "17. الظروف ودرجات المقارنة (bine, mai bine, cel mai bine)",
+    "category": "Adverbs",
+    "level": "Intermediate",
+    "rule_ro": "Adverbele modifică verbe sau adjective și sunt invariabile (bine, repede, departe, acum). Grade de comparație: Pozitiv (bine), Comparativ de superioritate (mai bine), Superlativ relativ (cel mai bine), Superlativ absolut (foarte bine).",
+    "rule_en": "Adverbs modify verbs or adjectives and are invariable. Comparison: Pozitiv (bine), Comparative (mai bine), Superlative (cel mai bine), Absolute (foarte bine).",
+    "rule_ar": "الظروف تعدل الأفعال والصفات وتلزم حالة واحدة غير متغيرة (bine, repede). درجات المقارنة: Pozitiv (جيد)، Comparativ (أفضل/mai bine)، Superlativ (الأفضل/cel mai bine).",
+    "example_ro": "Vorbesc bine românește. | Astăzi vorbesc mai bine decât anul trecut. | Vorbesc foarte bine.",
+    "example_en": "I speak Romanian well. | Today I speak better than last year. | I speak very well.",
+    "example_ar": "أتحدث الرومانية بشكل جيد. | اليوم أتحدث أفضل من العام الماضي. | أتحدث بشكل ممتاز جداً.",
+    "why_rule_ro": "Exprimarea progresului lingvistic «Vorbesc mai bine acum» creează o impresie excelentă.",
+    "why_rule_en": "Expressing linguistic progress using 'Vorbesc mai bine acum' leaves a great impression.",
+    "why_rule_ar": "توضيح التطور في اللغة باستخدام Vorbesc mai bine يعطي انطباعاً إيجابياً ممتازاً.",
+    "try_it": {
+      "question_ro": "Care este forma de comparativ de superioritate pentru adverbul «bine»?",
+      "question_en": "What is the comparative form of 'bine' (well)?",
+      "question_ar": "ما هي صيغة المقارنة للأفضلية للظرف «bine» (بشكل جيد)؟",
+      "options": ["mai bine", "cel mai bine", "foarte bine", "bines"],
+      "correct_answer": "mai bine",
+      "explanation_ro": "Corect! Comparativul de superioritate se formează cu adverbul «mai» -> mai bine (أفضل).",
+      "explanation_en": "Correct! Comparative of superiority adds 'mai' -> mai bine.",
+      "explanation_ar": "صحيح! درجة المقارنة تتكون من إضافة mai لتصبح mai bine (أفضل)."
+    },
+    "common_mistake_ro": "Greșeală: «Vorbesc cel bine». Corect: «Vorbesc mai bine» sau «cel mai bine».",
+    "common_mistake_en": "Mistake: 'cel bine'. Correct: 'mai bine' / 'cel mai bine'.",
+    "common_mistake_ar": "خطأ شائع: قول cel bine بدون mai. التصحيح: mai bine أو cel mai bine.",
+    "rules": [
+      {
+        "gender": "Pozitiv (Forma simplă)",
+        "singular_ro": "bine / repede / ușor / departe",
+        "plural_ro": "Înțeleg ușor întrebările.",
+        "rule_ar": "الظرف في حالته الأصلية العادية",
+        "rule_en": "Base adverb form"
+      },
+      {
+        "gender": "Comparativ de Superioritate (Mai + Adverb)",
+        "singular_ro": "mai bine / mai repede / mai ușor",
+        "plural_ro": "Citesc mai repede decât înainte.",
+        "rule_ar": "إضافة كلمة mai قبل الظرف للمقارنة",
+        "rule_en": "Comparative form using 'mai'"
+      },
+      {
+        "gender": "Superlativ Relativ & Absolut (Cel mai / Foarte)",
+        "singular_ro": "cel mai bine / foarte bine / extrem de ușor",
+        "plural_ro": "Cunoaște cel mai bine legea.",
+        "rule_ar": "cel mai للأفضل إطلاقاً، و foarte للكثرة الشديدة",
+        "rule_en": "Relative superlative 'cel mai' and absolute 'foarte'"
+      }
+    ]
+  },
+  {
+    "id": "numbers_ordinals",
+    "title_ro": "18. Numerele Cardinale și Ordinale (primul/prima, al doilea/a doua)",
+    "title_en": "18. Cardinal and Ordinal Numbers",
+    "title_ar": "18. الأعداد الأصلية والترتيبية (primul, prima, al doilea, a doua)",
+    "category": "Numbers",
+    "level": "Intermediate",
+    "rule_ro": "Numerele cardinale: unu/una, doi/două, trei... douăzeci și unu. Numerele ordinale exprimă ordinea: primul / prima (1-ul), al doilea / a doua (2-lea), al treilea / a treia (3-lea), al zecelea / a zecea (10-lea).",
+    "rule_en": "Cardinal: unu/una, doi/două. Ordinal (rank): primul/prima (1st), al doilea/a doua (2nd), al treilea/a treia (3rd).",
+    "rule_ar": "الأعداد الأصلية: unu/una, doi/două. الأعداد الترتيبية: primul/prima (الأول/الأولى)، al doilea/a doua (الثاني/الثانية)، al treilea/a treia (الثالث/الثالثة).",
+    "example_ro": "Articolul 1 (întâi / primul articol) | A doua zi | 1 Decembrie (Ziua Națională).",
+    "example_en": "Article 1 (The first article) | The second day | December 1st (National Day).",
+    "example_ar": "المادة الأولى | اليوم الثاني | 1 ديسمبر (اليوم الوطني).",
+    "why_rule_ro": "Întrebările despre articole din Constituție (Articolul 1, Articolul 2) cer cunoașterea numerelor ordinale.",
+    "why_rule_en": "Constitutional article questions (Article 1, Article 2) require precise ordinal numbers.",
+    "why_rule_ar": "أسئلة مواد الدستور (المادة الأولى، المادة الثانية) تتطلب معرفة دقيقة بالأرقام الترتيبية.",
+    "try_it": {
+      "question_ro": "Cum se spune corect în română «المادة الأولى من الدستور»?",
+      "question_en": "How do you correctly say 'Article 1 of the Constitution'?",
+      "question_ar": "كيف تقال صحيحة بالرومانية «المادة الأولى من الدستور»؟",
+      "options": ["Articolul întâi", "Articolul unu", "Articolul o", "Articolul doi"],
+      "correct_answer": "Articolul întâi",
+      "explanation_ro": "Corect! Pentru articolul 1 din legi se folosește forma ordinală «întâi» sau «primul articol».",
+      "explanation_en": "Correct! For Article 1 in legal codes, the ordinal form 'întâi' or 'primul' is used.",
+      "explanation_ar": "صحيح! للمادة الأولى في القوانين نستخدم الكلمة الترتيبية întâi لتصبح Articolul întâi."
+    },
+    "common_mistake_ro": "Greșeală: «Doi femei» sau «Articolul unu». Corect: «Două femei», «Articolul întâi».",
+    "common_mistake_en": "Mistake: 'Doi femei'. Correct: 'Două femei' (Feminine number agreement).",
+    "common_mistake_ar": "خطأ شائع: قول doi مع الجمع المؤنث. التصحيح: două femei.",
+    "rules": [
+      {
+        "gender": "Acordul Numărului 2 (Doi M / Două F&N)",
+        "singular_ro": "doi bărbați (M)",
+        "plural_ro": "două țări (F) / două orașe (N)",
+        "rule_ar": "الرقم 2 يتطابق في الجنس: doi للمذكر، و două للمؤنث والمحايد",
+        "rule_en": "'Doi' for masculine, 'două' for feminine and neuter"
+      },
+      {
+        "gender": "Numere Ordinale Masculin (al + nr. + lea)",
+        "singular_ro": "primul / al doilea / al treilea / al zecelea",
+        "plural_ro": "Articolul al treilea din Constituție.",
+        "rule_ar": "الصيغة الترتيبية للمذكر والمحايد",
+        "rule_en": "Masculine ordinal structure"
+      },
+      {
+        "gender": "Numere Ordinale Feminin (a + nr. + a)",
+        "singular_ro": "prima / a doua / a treia / a zecea",
+        "plural_ro": "A doua cameră a Parlamentului.",
+        "rule_ar": "الصيغة الترتيبية للمؤنث",
+        "rule_en": "Feminine ordinal structure"
+      }
+    ]
+  },
+  {
+    "id": "conditional_mood",
+    "title_ro": "19. Modul Condițional-Optativ (aș dori, ai putea, ar fi, dacă aș avea...)",
+    "title_en": "19. Conditional-Optative Mood (Hypothetical & Polite Requests)",
+    "title_ar": "19. الصيغة الشرطية والتمنّي (aș dori, ai putea, ar fi - إذا كان لدي...)",
+    "category": "Verbs",
+    "level": "Advanced",
+    "rule_ro": "Condiționalul exprimă o acțiune ipotetică sau o cerere politicoasă. Formare: auxiliari speciali (aș, ai, ar, am, ați, ar) + infinitivul verbului. Ex: aș dori, ai putea, ar fi.",
+    "rule_en": "Conditional expresses hypothetical conditions or polite requests. Formed with auxiliaries (aș, ai, ar, am, ați, ar) + verb infinitive.",
+    "rule_ar": "الشرط والتمني يعبر عن حدث افتراضي أو طلب شديد الأدب. يتكون من أفعال مساعدة خاصة (aș, ai, ar, am, ați, ar) متبوعة بمصدر الفعل الرئيسي.",
+    "example_ro": "Aș dori să răspund la întrebare. | Dacă aș fi cetățean, ar fi o mare onoare.",
+    "example_en": "I would like to answer the question. | If I were a citizen, it would be a great honor.",
+    "example_ar": "أود أن أجيب على السؤال. | لو كنتُ مواطناً، لكان ذلك شرفاً كبيراً.",
+    "why_rule_ro": "Utilizarea formulei «Aș dori să...» dovedește cel mai înalt nivel de politețe la comisie.",
+    "why_rule_en": "Using 'Aș dori să...' represents the highest tier of diplomatic politeness before the board.",
+    "why_rule_ar": "استخدام عبارة Aș dori să... يعطي أرقى درجات الدبلوماسية والأدب أمام اللجنة.",
+    "try_it": {
+      "question_ro": "Care este formularea politicoasă de condițional pentru «Eu (a dori) să încep»?",
+      "question_en": "What is the polite conditional form for 'Eu (a dori) să încep'?",
+      "question_ar": "ما هي الصياغة الشرطية المؤدبة لجملة: «Eu (a dori) să încep» (أود أن أبدأ)؟",
+      "options": ["Aș dori", "Am dori", "Ar dori", "Ai dori"],
+      "correct_answer": "Aș dori",
+      "explanation_ro": "Corect! Pentru «Eu», auxiliarul de condițional este «aș» -> Aș dori.",
+      "explanation_en": "Correct! For 1st person 'Eu', the conditional auxiliary is 'aș' -> Aș dori.",
+      "explanation_ar": "صحيح! مع الضمير Eu نستخدم الفعل المساعد الشرطي aș لتصبح Aș dori (أود أن)."
+    },
+    "common_mistake_ro": "Greșeală: «Eu am dori să spun». Corect: «Eu aș dori să spun» (aș pentru Eu, am pentru Noi).",
+    "common_mistake_en": "Mistake: 'Eu am dori'. Correct: 'Eu aș dori'.",
+    "common_mistake_ar": "خطأ شائع: استخدام am بدلاً من aș مع Eu في الشرط. التصحيح: Eu aș dori.",
+    "rules": [
+      {
+        "gender": "Auxiliari Condițional (aș, ai, ar, am, ați, ar)",
+        "singular_ro": "Eu aș dori / Tu ai dori / El/Ea ar dori",
+        "plural_ro": "Noi am dori / Voi ați dori / Ei/Ele ar dori",
+        "rule_ar": "الأفعال المساعدة الخاصة بالصيغة الشرطية",
+        "rule_en": "Conditional auxiliary set"
+      },
+      {
+        "gender": "Formule Ipotetice (Dacă aș fi / Dacă aș avea)",
+        "singular_ro": "Dacă aș avea timp, aș citi mai mult.",
+        "plural_ro": "Dacă ați întreba, comisia ar răspunde.",
+        "rule_ar": "تراكيب الجمل الشرطية (إذا... لـ...)",
+        "rule_en": "Hypothetical 'If I were / If I had' sentence patterns"
+      },
+      {
+        "gender": "Condițional Trecut (aș fi fost / aș fi dorit)",
+        "singular_ro": "Aș fi vrut să vin mai devreme.",
+        "plural_ro": "Ar fi fost bine.",
+        "rule_ar": "الشرط في الماضي للتعبير عن الندم أو الافتراض السالف",
+        "rule_en": "Past conditional expressing past regrets or unfulfilled conditions"
+      }
+    ]
+  },
+  {
+    "id": "passive_voice",
+    "title_ro": "20. Vocea Pasivă și Pasivul Reflexiv (este condus de..., se vorbește, se consideră)",
+    "title_en": "20. Passive Voice & Reflexive Passive",
+    "title_ar": "20. المبني للمجهول والماضي غير الفاعل (este condus de..., se vorbește)",
+    "category": "Syntax",
+    "level": "Advanced",
+    "rule_ro": "Pasivul analitic se formează cu verbul «a fi» + participiul acordat al verbului principal + prepoziția «de / de către». Pasivul reflexiv folosește marca «se» (se vorbește, se consideră, se votează).",
+    "rule_en": "Analytical passive: 'a fi' + agreed participle + 'de către'. Reflexive passive: 'se' + verb (se vorbește = it is spoken).",
+    "rule_ar": "المبني للمجهول يتكون إما من فعل الكينونة a fi + اسم المفعول المطابق + de către (من قِبل)، أو باستخدام Pasiv Reflexiv بوضع se قبل الفعل (se vorbește = يُتحدث بها).",
+    "example_ro": "România este condusă de Președinte. | În România se vorbește limba română.",
+    "example_en": "Romania is led by the President. | Romanian is spoken in Romania.",
+    "example_ar": "رومانيا يُقاد من قِبل الرئيس. | يُتحدث باللغة الرومانية في رومانيا.",
+    "why_rule_ro": "Definițiile din Dreptul Constituțional folosesc intensiv pasivul: «Puterile sunt exercitate de...».",
+    "why_rule_en": "Constitutional definitions strictly use the passive voice to state government powers.",
+    "why_rule_ar": "تعريفات القانون الدستوري تسخدم المبني للمجهول في شرح السلطات والقوانين.",
+    "try_it": {
+      "question_ro": "Care este varianta corectă de pasiv: «Limba română _______ în toate școlile»?",
+      "question_en": "Select the correct passive form: 'Limba română _______ în școli'?",
+      "question_ar": "اختر صيغة المبني للمجهول الصحيحة: «Limba română _______ în toate școlile» (تُدرّس)؟",
+      "options": ["se predă", "predă", "predau", "predat"],
+      "correct_answer": "se predă",
+      "explanation_ro": "Corect! Pasivul reflexiv «se predă» înseamnă «este predată / تُدرّس».",
+      "explanation_en": "Correct! Reflexive passive 'se predă' translates to 'is taught'.",
+      "explanation_ar": "صحيح! المبني للمجهول الانعكاسي se predă يعني يُدرّس / تُدرس."
+    },
+    "common_mistake_ro": "Greșeală: «România este condus de președinte». Corect: «...condusă...» (acord cu femininul România).",
+    "common_mistake_en": "Mistake: 'România este condus'. Correct: 'România este condusă' (Feminine agreement).",
+    "common_mistake_ar": "خطأ شائع: عدم مطابقة اسم المفعول في المبني للمجهول مع المؤنث. التصحيح: condusă.",
+    "rules": [
+      {
+        "gender": "Pasiv Analitic (A fi + Participiu acordat + de către)",
+        "singular_ro": "Legea este votată de Parlament.",
+        "plural_ro": "Legile sunt adoptate de Camera Deputaților.",
+        "rule_ar": "فعل الكينونة + اسم مفعول مطابق + de către",
+        "rule_en": "Formal passive with 'to be' + participle + 'by'"
+      },
+      {
+        "gender": "Pasiv Reflexiv cu SE (Se + Verb)",
+        "singular_ro": "Se sărbătorește Ziua Națională la 1 Decembrie.",
+        "plural_ro": "Se consideră că statul este suveran.",
+        "rule_ar": "استخدام se للتعبير عن الشمول والمبني للمجهول الأسلوبي",
+        "rule_en": "Impersonal reflexive passive with 'se'"
+      },
+      {
+        "gender": "Complement de Agent (de către / de)",
+        "singular_ro": "de către comisie / de către Guvern",
+        "plural_ro": "de către cetățeni",
+        "rule_ar": "حرف الجر الرسمي المحدد للفاعل الأصلي في المبني للمجهول",
+        "rule_en": "Agent preposition 'de către' (by)"
+      }
+    ]
+  },
+  {
+    "id": "conjunctions_syntax",
+    "title_ro": "21. Conjuncțiile și Structura Propoziției Complexe (pentru că, deoarece, deși, dacă, încât)",
+    "title_en": "21. Conjunctions & Complex Sentence Syntax",
+    "title_ar": "21. أدوات الربط وتركيب الجمل المركبة المعقدة (pentru că, deoarece, deși, dacă)",
+    "category": "Syntax",
+    "level": "Advanced",
+    "rule_ro": "Conjuncțiile leagă propoziții: Cauzale (pentru că, deoarece, fiindcă), Concesive (deși, cu toate că), Condiționale (dacă), Finale (pentru ca... să), Consecutive (încât, așa încât). Order: Subiect + Verb + Obiect.",
+    "rule_en": "Conjunctions link clauses: Causal (pentru că, deoarece), Concessive (deși), Conditional (dacă), Final (pentru ca... să).",
+    "rule_ar": "أدوات الربط تربط الجمل: السببية (pentru că, deoarece لأن)، الاستثنائية (deși برغم أن)، الشرطية (dacă إذا)، الهدفية (pentru ca... să لكي).",
+    "example_ro": "Doresc cetățenia deoarece iubesc România. | Deși este greu, învăț zilnic.",
+    "example_en": "I desire citizenship because I love Romania. | Although it is hard, I study daily.",
+    "example_ar": "أريد الحصول على الجنسية لأنني أحب رومانيا. | برغم أنها صعبة، أدرس يومياً.",
+    "why_rule_ro": "Conectorii logici «deoarece», «pentru că» sunt esențiali când justificați de ce doriți cetățenia.",
+    "why_rule_en": "Logical connectors like 'deoarece' elevate your motivation arguments during the interview.",
+    "why_rule_ar": "أدوات الربط المنطقية مثل deoarece تعزز قوة إجابتك عندما تشرح سبب طلبك للجنسية.",
+    "try_it": {
+      "question_ro": "Alegeți conjuncția corectă: «Învăț Constituția _______ vreau să trec examenul» (لأنني).",
+      "question_en": "Select the correct conjunction: 'Învăț Constituția _______ vreau...' (because)?",
+      "question_ar": "اختر أداة الربط الصحيحة لجملة: «Învăț Constituția _______ vreau să trec» (لأنني)؟",
+      "options": ["pentru că", "deși", "dacă", "dar"],
+      "correct_answer": "pentru că",
+      "explanation_ro": "Corect! «Pentru că» arată cauza / motivul (لأنني).",
+      "explanation_en": "Correct! 'Pentru că' expresses cause/reason (because).",
+      "explanation_ar": "صحيح! أداة الربط pentru că تعبر عن السبب (لأنني أدرس)."
+    },
+    "common_mistake_ro": "Greșeală: «Deși învăț, dar nu știu». Corect: «Deși învăț, încă am emoții» (fără dublarea lui «dar»).",
+    "common_mistake_en": "Mistake: Combining 'deși' with 'dar' in the same sentence.",
+    "common_mistake_ar": "خطأ شائع: الجمع بين deși (برغم) و dar (لكن) في نفس الجملة. التصحيح: استخدام أداة واحدة.",
+    "rules": [
+      {
+        "gender": "Conjuncții Cauzale (pentru că, deoarece, fiindcă)",
+        "singular_ro": "Am venit în România deoarece am găsit un loc de muncă.",
+        "plural_ro": "Respect legile pentru că sunt cetățean responsabil.",
+        "rule_ar": "أدوات تعليل الأسباب (لأن، بسبب أن)",
+        "rule_en": "Causal conjunctions (because, since)"
+      },
+      {
+        "gender": "Conjuncții Concesive (deși, cu toate că)",
+        "singular_ro": "Deși nu s-a născut aici, vorbește fluent.",
+        "plural_ro": "Cu toate că a fost greu, a depus dosarul.",
+        "rule_ar": "أدوات التناقض والاستثناء (بالرغم من)",
+        "rule_en": "Concessive conjunctions (although, even though)"
+      },
+      {
+        "gender": "Conjuncții Finale (pentru ca... să / ca să)",
+        "singular_ro": "Exersăm zilnic pentru ca să vorbim corect.",
+        "plural_ro": "Am depus actele ca să obțin pasaportul.",
+        "rule_ar": "أدوات الغاية والهدف (من أجل أن / لكي)",
+        "rule_en": "Purpose conjunctions (in order that / so that)"
       }
     ]
   },
   {
     "id": "anc_interview_rules",
-    "title_ro": "10. Expresii Formale și Reguli de Vorbire pentru Interviul ANC",
-    "title_en": "10. Formal Expressions & Speech Rules for ANC Interview",
-    "title_ar": "10. قواعد التحدث العالية والعبارات الرسمية لمقابلة لجنة الجنسية ANC",
-    "category": "Interview Prep",
+    "title_ro": "22. Formulări Gramaticale Oficiale pentru Interviul ANC și Jurământ",
+    "title_en": "22. Official ANC Citizenship Interview & Oath Grammar Rules",
+    "title_ar": "22. القواعد والصياغات اللغوية الرسمية الخاصة بمقابلة التجنيس واليمين",
+    "category": "Official ANC",
     "level": "Advanced",
-    "rule_ro": "La interviul ANC se cere utilizarea formulelor de politețe (Domnule Președinte, Doamnă Membru) și a limbajului administrativ-constituțional formal.",
-    "rule_en": "The ANC interview requires polite formal titles (Domnule Președinte) and precise administrative terminology.",
-    "rule_ar": "تتطلب مقابلة لجنة التجنيس استخدام ألقاب الاحترام الرسمية (Domnule Președinte - سيادة الرئيس، Doamnă Membru - سيادة العضو) واستخدام لغة فصيحة ورسمية.",
-    "example_ro": "Domnule Președinte, am depus dosarul în anul 2024. / Jur să fiu devotat patriei.",
-    "example_en": "Mr. President, I submitted the dossier in 2024. / I swear allegiance to the homeland.",
-    "example_ar": "سيادة الرئيس، أودعت الملف عام 2024. / أقسم أن أكون مخلصاً للوطن.",
-    "why_rule_ro": "Răspunsurile în fața comisiei trebuie să folosească expresii formale precum «stat de drept», «suveranitate», «drepturi fundamentale».",
-    "why_rule_en": "Interview answers require formal civic terms like 'rule of law', 'sovereignty', and 'fundamental rights'.",
-    "why_rule_ar": "الإجابات أمام اللجنة تتطلب مصطلحات رسمية مثل دولة القانون، السيادة الوطنية، والحقوق الأساسية.",
+    "rule_ro": "La interviul ANC, răspunsurile trebuie formulate complet, folosind registrul formal de limbă. Se recomandă verbe la persoana I singular la prezent sau perfect compus (am depus, mă numesc, declar), acorduri exacte de genitiv (României, Constituției) și formule de politețe (Domnule Președinte, Dumneavoastră).",
+    "rule_en": "In ANC interview, answers must be fully formed sentences using formal register. Use 1st person singular present/past, correct genitive endings, and honorifics (Domnule Președinte, Dumneavoastră).",
+    "rule_ar": "في مقابلة التجنيس، يجب صياغة الإجابات بلغة رسمية كاملة ومحترمة. يُنصح بتصريف الأفعال مع المتكلم (declar, am depus)، واستخدام الإضافة الدقيقة (României) وألقاب الاحترام الرسمية.",
+    "example_ro": "Jur să fiu devotat patriei și poporului român, să apăr drepturile și interesele naționale, să respect Constituția și legile României.",
+    "example_en": "I swear to be devoted to the homeland and the Romanian people, to defend national rights and interests, to respect the Constitution and laws of Romania.",
+    "example_ar": "أقسم أن أكون مخلصاً للوطن والشعب الروماني، وأن أدافع عن الحقوق والمصالح الوطنية، وأن أحترم دستور وقوانين رومانيا.",
+    "why_rule_ro": "Textul jurământului (Articolul 20 din Legea 21/1991) trebuie recitat impecabil, fără greșeli de gramatică sau pronunție.",
+    "why_rule_en": "The oath text (Article 20 of Law 21/1991) must be recited flawlessly without grammatical or phonetic errors.",
+    "why_rule_ar": "نص اليمين (المادة 20 من قانون الجنسية) يجب تلاوته بطلاقة تامة ودون أي خطأ نطق أو إعراب.",
     "try_it": {
       "question_ro": "Cum se numește actul solemn prin care un cetățean își asumă loialitatea față de statul român?",
       "question_en": "What is the solemn ceremony by which a citizen pledges loyalty to the Romanian state?",
@@ -400,6 +1148,20 @@
         "plural_ro": "Drepturile fundamentale / Îndatoririle cetățenești",
         "rule_ar": "مصطلحات أساسية تتكرر في كافة أسئلة الامتحان",
         "rule_en": "Core vocabulary repeated in interview questions"
+      },
+      {
+        "gender": "Formule de Jurământ (Jur să...)",
+        "singular_ro": "Jur să fiu devotat patriei...",
+        "plural_ro": "Să apăr drepturile și interesele naționale...",
+        "rule_ar": "صيغ اليمين الدستوري بحسب القانون 21/1991",
+        "rule_en": "Legal oath text according to Law 21/1991"
+      },
+      {
+        "gender": "Formula de Adresare Oficială",
+        "singular_ro": "Stimate Domnule Președinte / Onorată Comisie",
+        "plural_ro": "Stimați Membri ai Comisiei",
+        "rule_ar": "الصياغات البروتوكولية لمخاطبة رئيس وأعضاء اللجنة",
+        "rule_en": "Protocol forms of address to board president and members"
       }
     ]
   }

@@ -21,6 +21,7 @@ import anthemData from '../../data/romanian_anthem.json';
 import Navbar from '../../components/Navbar';
 import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
+import { speakText as speakTTS, stopSpeech } from '../../utils/speechHelper';
 
 function AnthemContent() {
   const { theme } = useTheme();
@@ -30,59 +31,58 @@ function AnthemContent() {
   const [activeStanza, setActiveStanza] = useState(null);
   const [isPlayingAll, setIsPlayingAll] = useState(false);
 
-  const speakStanza = (stanzaIndex, textList) => {
-    if (typeof window === 'undefined' || !window.speechSynthesis) return;
+  React.useEffect(() => {
+    return () => {
+      stopSpeech();
+    };
+  }, []);
 
+  const speakStanza = (stanzaIndex, textList) => {
     if (activeStanza === stanzaIndex) {
-      window.speechSynthesis.cancel();
+      stopSpeech();
       setActiveStanza(null);
       setIsPlayingAll(false);
       return;
     }
 
-    window.speechSynthesis.cancel();
     const fullText = textList.join('. ');
-    const utterance = new SpeechSynthesisUtterance(fullText);
-    utterance.lang = 'ro-RO';
-    utterance.rate = 0.85;
-    utterance.onend = () => {
-      setActiveStanza(null);
-      setIsPlayingAll(false);
-    };
-    utterance.onerror = () => {
-      setActiveStanza(null);
-      setIsPlayingAll(false);
-    };
-    setActiveStanza(stanzaIndex);
-    window.speechSynthesis.speak(utterance);
+    speakTTS(
+      fullText,
+      'ro',
+      0.85,
+      () => {
+        setActiveStanza(stanzaIndex);
+        setIsPlayingAll(false);
+      },
+      () => {
+        setActiveStanza(null);
+        setIsPlayingAll(false);
+      }
+    );
   };
 
   const playFullAnthem = () => {
-    if (typeof window === 'undefined' || !window.speechSynthesis) return;
-
     if (isPlayingAll) {
-      window.speechSynthesis.cancel();
+      stopSpeech();
       setIsPlayingAll(false);
       setActiveStanza(null);
       return;
     }
 
-    window.speechSynthesis.cancel();
     const allLines = anthemData.stanzas.flatMap(s => s.lines_ro).join('. ');
-    const utterance = new SpeechSynthesisUtterance(allLines);
-    utterance.lang = 'ro-RO';
-    utterance.rate = 0.85;
-    utterance.onend = () => {
-      setIsPlayingAll(false);
-      setActiveStanza(null);
-    };
-    utterance.onerror = () => {
-      setIsPlayingAll(false);
-      setActiveStanza(null);
-    };
-    setIsPlayingAll(true);
-    setActiveStanza(0);
-    window.speechSynthesis.speak(utterance);
+    speakTTS(
+      allLines,
+      'ro',
+      0.85,
+      () => {
+        setIsPlayingAll(true);
+        setActiveStanza(0);
+      },
+      () => {
+        setIsPlayingAll(false);
+        setActiveStanza(null);
+      }
+    );
   };
 
   return (

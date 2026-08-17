@@ -20,6 +20,7 @@ import Navbar from '../../components/Navbar';
 import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { shuffleArray, triggerConfetti, playVictorySound, playOptionFeedbackSound } from '../../utils/quizUtils';
+import { speakText as speakTTS, stopSpeech } from '../../utils/speechHelper';
 
 function ConversationQuizContent() {
   const { theme } = useTheme();
@@ -35,6 +36,16 @@ function ConversationQuizContent() {
   const [selectedOption, setSelectedOption] = useState(null);
   const [isFinished, setIsFinished] = useState(false);
   const [isNewHighScore, setIsNewHighScore] = useState(false);
+
+  useEffect(() => {
+    return () => {
+      stopSpeech();
+    };
+  }, []);
+
+  useEffect(() => {
+    stopSpeech();
+  }, [questionCount, isFinished]);
 
   const TOTAL_QUESTIONS = 10;
 
@@ -101,12 +112,7 @@ function ConversationQuizContent() {
   };
 
   const speakAudio = (text) => {
-    if (typeof window === 'undefined' || !window.speechSynthesis) return;
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'ro-RO';
-    utterance.rate = 0.85;
-    window.speechSynthesis.speak(utterance);
+    speakTTS(text, 'ro', 0.85);
   };
 
   const handleSelect = (item) => {

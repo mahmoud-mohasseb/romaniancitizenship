@@ -54,6 +54,12 @@ export default function StudyScreen({ route, navigation }) {
   const categoryMeta = getCategoryMeta(currentQ.category || activeCategory);
 
   useEffect(() => {
+    return () => {
+      Speech.stop();
+    };
+  }, []);
+
+  useEffect(() => {
     setCurrentIndex(0);
     setShowAnswer(false);
     Speech.stop();

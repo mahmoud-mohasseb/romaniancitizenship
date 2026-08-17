@@ -18,6 +18,7 @@ import Navbar from '../../components/Navbar';
 import ImageModal from '../../components/ImageModal';
 import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
+import { speakText as speakTTS, stopSpeech } from '../../utils/speechHelper';
 
 function ConversationsContent() {
   const { theme } = useTheme();
@@ -29,6 +30,17 @@ function ConversationsContent() {
   const [showTranslations, setShowTranslations] = useState(true);
   const [isSpeakingId, setIsSpeakingId] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
+
+  React.useEffect(() => {
+    return () => {
+      stopSpeech();
+    };
+  }, []);
+
+  React.useEffect(() => {
+    stopSpeech();
+    setIsSpeakingId(null);
+  }, [activeCategory, searchQuery]);
 
   const categories = [
     { id: 'all', label_ar: 'جميع المحادثات', label_en: 'All Dialogues', label_ro: 'Toate Dialogurile' },
@@ -48,22 +60,19 @@ function ConversationsContent() {
   });
 
   const speakLine = (id, text) => {
-    if (typeof window === 'undefined' || !window.speechSynthesis) return;
-
     if (isSpeakingId === id) {
-      window.speechSynthesis.cancel();
+      stopSpeech();
       setIsSpeakingId(null);
       return;
     }
 
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'ro-RO';
-    utterance.rate = 0.85;
-    utterance.onend = () => setIsSpeakingId(null);
-    utterance.onerror = () => setIsSpeakingId(null);
-    setIsSpeakingId(id);
-    window.speechSynthesis.speak(utterance);
+    speakTTS(
+      text,
+      'ro',
+      0.85,
+      () => setIsSpeakingId(id),
+      () => setIsSpeakingId(null)
+    );
   };
 
   return (
