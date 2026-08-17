@@ -35,11 +35,11 @@ export default function HeroArabFlagPulse() {
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Cycle through 2 flags at a time every 3.6 seconds
+  // Cycle through 2 flags at a time every 3.5 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 2) % ARAB_COUNTRIES.length);
-    }, 3600);
+    }, 3500);
 
     return () => clearInterval(timer);
   }, []);
@@ -49,45 +49,45 @@ export default function HeroArabFlagPulse() {
 
   return (
     <>
-      {/* Flag 1: Floating Zoom-In / Zoom-Out on Top Left of Logo */}
-      <div className="absolute -top-4 -left-2 sm:-left-8 z-30 pointer-events-none">
+      {/* Flag 1: Floating Zoom-In / Zoom-Out on Top-Left/Center of Logo */}
+      <div className="absolute -top-5 left-1/2 -translate-x-[90%] sm:-translate-x-full sm:-left-4 z-30 pointer-events-none">
         <AnimatePresence mode="wait">
           <motion.div
             key={flag1.code}
-            initial={{ scale: 0.2, opacity: 0, y: 15 }}
+            initial={{ scale: 0.15, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.2, opacity: 0, y: -15 }}
-            transition={{ duration: 0.55, ease: [0.34, 1.56, 0.64, 1] }}
+            exit={{ scale: 0.15, opacity: 0, y: -20 }}
+            transition={{ duration: 0.5, ease: [0.34, 1.56, 0.64, 1] }}
           >
-            <div className={`px-3 py-1.5 rounded-full text-xs font-black border backdrop-blur-md shadow-xl flex items-center gap-1.5 transition-all ${
+            <div className={`px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-black border backdrop-blur-md shadow-xl flex items-center gap-1.5 whitespace-nowrap transition-all ${
               isDark 
-                ? 'bg-slate-900/90 text-amber-300 border-amber-500/50 shadow-amber-950/40' 
-                : 'bg-white/95 text-slate-900 border-amber-400 shadow-amber-500/20'
+                ? 'bg-slate-900/95 text-amber-300 border-amber-500/60 shadow-amber-950/60' 
+                : 'bg-white/95 text-slate-900 border-amber-500 shadow-amber-500/30'
             }`}>
-              <span className="text-sm sm:text-base animate-pulse">{flag1.flag}</span>
-              <span className="tracking-wide text-[11px] sm:text-xs">{flag1.name_en}</span>
+              <span className="text-xs sm:text-sm animate-pulse shrink-0">{flag1.flag}</span>
+              <span className="tracking-wide text-[10px] sm:text-xs font-black">{flag1.name_en}</span>
             </div>
           </motion.div>
         </AnimatePresence>
       </div>
 
-      {/* Flag 2: Floating Zoom-In / Zoom-Out on Bottom Right of Logo */}
-      <div className="absolute -bottom-4 -right-2 sm:-right-8 z-30 pointer-events-none">
+      {/* Flag 2: Floating Zoom-In / Zoom-Out on Bottom-Right/Center of Logo */}
+      <div className="absolute -bottom-5 right-1/2 translate-x-[90%] sm:translate-x-full sm:-right-4 z-30 pointer-events-none">
         <AnimatePresence mode="wait">
           <motion.div
             key={flag2.code}
-            initial={{ scale: 0.2, opacity: 0, y: -15 }}
+            initial={{ scale: 0.15, opacity: 0, y: -20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.2, opacity: 0, y: 15 }}
-            transition={{ duration: 0.55, ease: [0.34, 1.56, 0.64, 1], delay: 0.15 }}
+            exit={{ scale: 0.15, opacity: 0, y: 20 }}
+            transition={{ duration: 0.5, ease: [0.34, 1.56, 0.64, 1], delay: 0.12 }}
           >
-            <div className={`px-3 py-1.5 rounded-full text-xs font-black border backdrop-blur-md shadow-xl flex items-center gap-1.5 transition-all ${
+            <div className={`px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-black border backdrop-blur-md shadow-xl flex items-center gap-1.5 whitespace-nowrap transition-all ${
               isDark 
-                ? 'bg-slate-900/90 text-rose-300 border-rose-500/50 shadow-rose-950/40' 
-                : 'bg-white/95 text-slate-900 border-rose-400 shadow-rose-500/20'
+                ? 'bg-slate-900/95 text-rose-300 border-rose-500/60 shadow-rose-950/60' 
+                : 'bg-white/95 text-slate-900 border-rose-500 shadow-rose-500/30'
             }`}>
-              <span className="text-sm sm:text-base animate-pulse">{flag2.flag}</span>
-              <span className="tracking-wide text-[11px] sm:text-xs">{flag2.name_en}</span>
+              <span className="text-xs sm:text-sm animate-pulse shrink-0">{flag2.flag}</span>
+              <span className="tracking-wide text-[10px] sm:text-xs font-black">{flag2.name_en}</span>
             </div>
           </motion.div>
         </AnimatePresence>

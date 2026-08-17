@@ -218,50 +218,50 @@ export default function HomePage() {
 
             {/* Floating Orbit Feature Badges Around Pulsing Central Logo */}
             <motion.div 
-              animate={{ y: [-4, 4, -4] }}
+              animate={{ y: [-3, 3, -3] }}
               transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -top-3 left-2 sm:left-6 z-20"
+              className="absolute -top-3 left-0 sm:left-4 z-20"
             >
-              <span className={`px-3 py-1.5 rounded-full text-[11px] font-black border backdrop-blur-md shadow-lg flex items-center gap-1.5 ${
+              <span className={`px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full text-[10px] sm:text-[11px] font-black border backdrop-blur-md shadow-lg flex items-center gap-1 sm:gap-1.5 whitespace-nowrap ${
                 isDark ? 'bg-slate-900/90 text-amber-300 border-amber-500/40' : 'bg-white/90 text-slate-800 border-amber-400'
               }`}>
                 <span>🇬🇧 🇷🇴</span>
-                <span>{appLang === 'en' ? 'Bilingual English Prep' : appLang === 'ro' ? 'Pregătire Bilingvă' : 'إعداد ثنائي اللغة بالإنجليزي والرومايني'}</span>
+                <span>{appLang === 'en' ? 'Bilingual English Prep' : appLang === 'ro' ? 'Pregătire Bilingvă' : 'إعداد ثنائي اللغة'}</span>
               </span>
             </motion.div>
 
             <motion.div 
-              animate={{ y: [4, -4, 4] }}
+              animate={{ y: [3, -3, 3] }}
               transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-              className="absolute -top-3 right-2 sm:right-6 z-20"
+              className="absolute -top-3 right-0 sm:right-4 z-20"
             >
-              <span className={`px-3 py-1.5 rounded-full text-[11px] font-black border backdrop-blur-md shadow-lg flex items-center gap-1.5 ${
+              <span className={`px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full text-[10px] sm:text-[11px] font-black border backdrop-blur-md shadow-lg flex items-center gap-1 sm:gap-1.5 whitespace-nowrap ${
                 isDark ? 'bg-slate-900/90 text-rose-300 border-rose-500/40' : 'bg-white/90 text-slate-800 border-rose-300'
               }`}>
                 <span>🇪🇺 🏛️</span>
-                <span>{appLang === 'en' ? 'EU Passport & Laws' : appLang === 'ro' ? 'Pașaport UE & Legislație' : 'جواز السفر الأوروبي والقوانين'}</span>
+                <span>{appLang === 'en' ? 'EU Passport & Laws' : appLang === 'ro' ? 'Pașaport UE & Legi' : 'جواز السفر والقوانين'}</span>
               </span>
             </motion.div>
 
             <motion.div 
               animate={{ y: [-3, 3, -3] }}
               transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-              className="absolute -bottom-3 left-2 sm:left-6 z-20"
+              className="absolute -bottom-3 left-0 sm:left-4 z-20"
             >
-              <span className={`px-3 py-1.5 rounded-full text-[11px] font-black border backdrop-blur-md shadow-lg flex items-center gap-1.5 ${
+              <span className={`px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full text-[10px] sm:text-[11px] font-black border backdrop-blur-md shadow-lg flex items-center gap-1 sm:gap-1.5 whitespace-nowrap ${
                 isDark ? 'bg-slate-900/90 text-blue-300 border-blue-500/40' : 'bg-white/90 text-slate-800 border-blue-300'
               }`}>
                 <span>🗣️ 🔊</span>
-                <span>{appLang === 'en' ? 'Native Audio & AI Tutor' : appLang === 'ro' ? 'Audio Nativ & Tutor AI' : 'صوت نقي ومدرس ذكي'}</span>
+                <span>{appLang === 'en' ? 'Native Audio & AI Tutor' : appLang === 'ro' ? 'Audio Nativ & AI' : 'صوت نقي ومدرس ذكي'}</span>
               </span>
             </motion.div>
 
             <motion.div 
               animate={{ y: [3, -3, 3] }}
               transition={{ duration: 3.4, repeat: Infinity, ease: 'easeInOut', delay: 1.4 }}
-              className="absolute -bottom-3 right-2 sm:right-6 z-20"
+              className="absolute -bottom-3 right-0 sm:right-4 z-20"
             >
-              <span className={`px-3 py-1.5 rounded-full text-[11px] font-black border backdrop-blur-md shadow-lg flex items-center gap-1.5 ${
+              <span className={`px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full text-[10px] sm:text-[11px] font-black border backdrop-blur-md shadow-lg flex items-center gap-1 sm:gap-1.5 whitespace-nowrap ${
                 isDark ? 'bg-slate-900/90 text-emerald-300 border-emerald-500/40' : 'bg-white/90 text-slate-800 border-emerald-300'
               }`}>
                 <span>🎮 ⚡</span>
