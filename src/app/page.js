@@ -38,7 +38,6 @@ import {
 } from 'lucide-react';
 import questions from '../data/questions_ar.json';
 import Navbar from '../components/Navbar';
-import ArabFlagsConstellation from '../components/ArabFlagsConstellation';
 import AudioPlayerButton from '../components/AudioPlayerButton';
 import { useTheme } from '../context/ThemeContext';
 import { useLanguage } from '../context/LanguageContext';
@@ -135,81 +134,193 @@ export default function HomePage() {
           transition={{ duration: 0.45, ease: 'easeOut' }}
           className="flex flex-col items-center text-center space-y-4 pt-2"
         >
-          {/* Outward Zooming Impulse Waves from Logo in Romanian Flag Colors (🔵 Blue -> 🟡 Yellow -> 🔴 Red) */}
-          <div className="relative flex items-center justify-center my-6 py-2">
+          {/* Outward Zooming Impulse Waves from Logo in Romanian Flag Colors (🔵 Blue -> 🟡 Yellow -> 🔴 Red -> 🟢 Emerald) */}
+          <div className="relative flex items-center justify-center my-8 py-4 w-full max-w-lg mx-auto min-h-[220px]">
             
-            {/* 🔵 Impulse Wave 1 (Blue) - Zooms Out from Logo */}
+            {/* 🔵 Impulse Wave 1 (Cobalt Blue) - Zooms Out from Logo */}
             <motion.div
               animate={{
-                scale: [0.9, 2.2],
-                opacity: [0.95, 0],
+                scale: [0.85, 2.4],
+                opacity: [0.9, 0],
               }}
               transition={{
-                duration: 2.7,
+                duration: 2.8,
                 repeat: Infinity,
                 ease: [0.215, 0.61, 0.355, 1],
                 delay: 0,
               }}
-              className="absolute w-24 h-24 sm:w-28 sm:h-28 rounded-3xl border-2 sm:border-3 border-blue-500 bg-blue-600/20 shadow-xl shadow-blue-500/40 pointer-events-none"
+              className="absolute w-28 h-28 sm:w-32 sm:h-32 rounded-3xl border-2 sm:border-3 border-blue-500 bg-blue-600/15 shadow-2xl shadow-blue-500/50 pointer-events-none"
             />
 
-            {/* 🟡 Impulse Wave 2 (Yellow/Gold) - Zooms Out from Logo (0.9s delay) */}
+            {/* 🟡 Impulse Wave 2 (Chrome Gold/Yellow) - Zooms Out from Logo (0.9s delay) */}
             <motion.div
               animate={{
-                scale: [0.9, 2.2],
-                opacity: [0.95, 0],
+                scale: [0.85, 2.4],
+                opacity: [0.9, 0],
               }}
               transition={{
-                duration: 2.7,
+                duration: 2.8,
                 repeat: Infinity,
                 ease: [0.215, 0.61, 0.355, 1],
-                delay: 0.9,
+                delay: 0.93,
               }}
-              className="absolute w-24 h-24 sm:w-28 sm:h-28 rounded-3xl border-2 sm:border-3 border-amber-400 bg-amber-400/20 shadow-xl shadow-amber-400/50 pointer-events-none"
+              className="absolute w-28 h-28 sm:w-32 sm:h-32 rounded-3xl border-2 sm:border-3 border-amber-400 bg-amber-400/15 shadow-2xl shadow-amber-400/50 pointer-events-none"
             />
 
-            {/* 🔴 Impulse Wave 3 (Red) - Zooms Out from Logo (1.8s delay) */}
+            {/* 🔴 Impulse Wave 3 (Ruby Red) - Zooms Out from Logo (1.86s delay) */}
             <motion.div
               animate={{
-                scale: [0.9, 2.2],
-                opacity: [0.95, 0],
+                scale: [0.85, 2.4],
+                opacity: [0.9, 0],
               }}
               transition={{
-                duration: 2.7,
+                duration: 2.8,
                 repeat: Infinity,
                 ease: [0.215, 0.61, 0.355, 1],
-                delay: 1.8,
+                delay: 1.86,
               }}
-              className="absolute w-24 h-24 sm:w-28 sm:h-28 rounded-3xl border-2 sm:border-3 border-rose-600 bg-rose-600/20 shadow-xl shadow-rose-600/50 pointer-events-none"
+              className="absolute w-28 h-28 sm:w-32 sm:h-32 rounded-3xl border-2 sm:border-3 border-rose-600 bg-rose-600/15 shadow-2xl shadow-rose-600/50 pointer-events-none"
             />
 
-            {/* 🇷🇴 Soft Glowing Tricolor Glow Behind Logo */}
+            {/* 🟢 Impulse Wave 4 (Emerald Outer Halo) */}
             <motion.div
               animate={{
-                scale: [1, 1.12, 1],
-                opacity: [0.7, 0.9, 0.7],
+                scale: [0.85, 2.8],
+                opacity: [0.65, 0],
               }}
               transition={{
-                duration: 2,
+                duration: 3.4,
                 repeat: Infinity,
-                ease: 'easeInOut',
+                ease: [0.215, 0.61, 0.355, 1],
+                delay: 0.45,
               }}
-              className="absolute w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-gradient-to-tr from-blue-600 via-amber-400 to-rose-600 blur-lg pointer-events-none opacity-80"
+              className="absolute w-28 h-28 sm:w-32 sm:h-32 rounded-3xl border border-emerald-400/40 bg-emerald-500/10 pointer-events-none"
             />
+
+            {/* 🇷🇴 Soft Glowing Tricolor Ambient Blur Behind Logo */}
+            <motion.div
+              animate={{
+                scale: [1, 1.15, 1],
+                opacity: [0.75, 0.95, 0.75],
+                rotate: [0, 180, 360],
+              }}
+              transition={{
+                duration: 12,
+                repeat: Infinity,
+                ease: 'linear',
+              }}
+              className="absolute w-28 h-28 sm:w-32 sm:h-32 rounded-3xl bg-gradient-to-tr from-blue-600 via-amber-400 to-rose-600 blur-xl pointer-events-none opacity-80"
+            />
+
+            {/* Floating Orbit Feature Badges Around Pulsing Central Logo */}
+            <motion.div 
+              animate={{ y: [-4, 4, -4] }}
+              transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
+              className="absolute -top-3 left-2 sm:left-6 z-20"
+            >
+              <span className={`px-3 py-1.5 rounded-full text-[11px] font-black border backdrop-blur-md shadow-lg flex items-center gap-1.5 ${
+                isDark ? 'bg-slate-900/90 text-amber-300 border-amber-500/40' : 'bg-white/90 text-slate-800 border-amber-400'
+              }`}>
+                <span>🇬🇧 🇷🇴</span>
+                <span>{appLang === 'en' ? 'Bilingual English Prep' : appLang === 'ro' ? 'Pregătire Bilingvă' : 'إعداد ثنائي اللغة بالإنجليزي والرومايني'}</span>
+              </span>
+            </motion.div>
+
+            <motion.div 
+              animate={{ y: [4, -4, 4] }}
+              transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+              className="absolute -top-3 right-2 sm:right-6 z-20"
+            >
+              <span className={`px-3 py-1.5 rounded-full text-[11px] font-black border backdrop-blur-md shadow-lg flex items-center gap-1.5 ${
+                isDark ? 'bg-slate-900/90 text-rose-300 border-rose-500/40' : 'bg-white/90 text-slate-800 border-rose-300'
+              }`}>
+                <span>🇪🇺 🏛️</span>
+                <span>{appLang === 'en' ? 'EU Passport & Laws' : appLang === 'ro' ? 'Pașaport UE & Legislație' : 'جواز السفر الأوروبي والقوانين'}</span>
+              </span>
+            </motion.div>
+
+            <motion.div 
+              animate={{ y: [-3, 3, -3] }}
+              transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+              className="absolute -bottom-3 left-2 sm:left-6 z-20"
+            >
+              <span className={`px-3 py-1.5 rounded-full text-[11px] font-black border backdrop-blur-md shadow-lg flex items-center gap-1.5 ${
+                isDark ? 'bg-slate-900/90 text-blue-300 border-blue-500/40' : 'bg-white/90 text-slate-800 border-blue-300'
+              }`}>
+                <span>🗣️ 🔊</span>
+                <span>{appLang === 'en' ? 'Native Audio & AI Tutor' : appLang === 'ro' ? 'Audio Nativ & Tutor AI' : 'صوت نقي ومدرس ذكي'}</span>
+              </span>
+            </motion.div>
+
+            <motion.div 
+              animate={{ y: [3, -3, 3] }}
+              transition={{ duration: 3.4, repeat: Infinity, ease: 'easeInOut', delay: 1.4 }}
+              className="absolute -bottom-3 right-2 sm:right-6 z-20"
+            >
+              <span className={`px-3 py-1.5 rounded-full text-[11px] font-black border backdrop-blur-md shadow-lg flex items-center gap-1.5 ${
+                isDark ? 'bg-slate-900/90 text-emerald-300 border-emerald-500/40' : 'bg-white/90 text-slate-800 border-emerald-300'
+              }`}>
+                <span>🎮 ⚡</span>
+                <span>{appLang === 'en' ? 'Interactive Quizzes' : appLang === 'ro' ? 'Teste Interactive' : 'اختبارات تفاعلية ذكية'}</span>
+              </span>
+            </motion.div>
 
             {/* Central Interactive Emblem Logo */}
             <motion.div 
               whileHover={{ scale: 1.12, rotate: 3 }}
               whileTap={{ scale: 0.94 }}
-              className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-3xl overflow-hidden shadow-2xl border-4 border-white dark:border-amber-400 bg-slate-800 cursor-pointer z-10 shadow-rose-950/60"
+              className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-3xl overflow-hidden shadow-2xl border-4 border-white dark:border-amber-400 bg-slate-800 cursor-pointer z-10 shadow-rose-950/70"
             >
               <Image 
                 src="/icon.png" 
                 alt="Romanian Citizenship Emblem Logo" 
                 fill 
                 className="object-cover"
+                priority
               />
             </motion.div>
+          </div>
+
+          {/* Interactive Language Selector Buttons with Flags */}
+          <div className="flex items-center justify-center gap-2 pt-1 pb-2">
+            <button
+              type="button"
+              onClick={() => setAppLang('en')}
+              className={`px-3.5 py-1.5 rounded-xl border text-xs font-black transition-all flex items-center gap-1.5 ${
+                appLang === 'en'
+                  ? 'bg-blue-600 text-white border-blue-500 shadow-md shadow-blue-600/30 scale-105'
+                  : isDark ? 'bg-slate-800/80 text-slate-300 border-slate-700 hover:bg-slate-700' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'
+              }`}
+            >
+              <span>🇬🇧</span>
+              <span>English</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setAppLang('ro')}
+              className={`px-3.5 py-1.5 rounded-xl border text-xs font-black transition-all flex items-center gap-1.5 ${
+                appLang === 'ro'
+                  ? 'bg-rose-600 text-white border-rose-500 shadow-md shadow-rose-600/30 scale-105'
+                  : isDark ? 'bg-slate-800/80 text-slate-300 border-slate-700 hover:bg-slate-700' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'
+              }`}
+            >
+              <span>🇷🇴</span>
+              <span>Română</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setAppLang('ar')}
+              className={`px-3.5 py-1.5 rounded-xl border text-xs font-black transition-all flex items-center gap-1.5 ${
+                appLang === 'ar'
+                  ? 'bg-amber-600 text-white border-amber-500 shadow-md shadow-amber-600/30 scale-105'
+                  : isDark ? 'bg-slate-800/80 text-slate-300 border-slate-700 hover:bg-slate-700' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'
+              }`}
+            >
+              <span>🇸🇦</span>
+              <span>العربية</span>
+            </button>
           </div>
 
           <div className="space-y-2">
@@ -252,9 +363,6 @@ export default function HomePage() {
               </button>
             </motion.div>
           )}
-
-          {/* Animated Arab Country Flags & Language Constellation */}
-          <ArabFlagsConstellation />
         </motion.div>
 
         {/* INTERACTIVE QUESTION OF THE DAY CARD */}
