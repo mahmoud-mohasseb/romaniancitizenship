@@ -39,6 +39,7 @@ import {
 import questions from '../data/questions_ar.json';
 import Navbar from '../components/Navbar';
 import AudioPlayerButton from '../components/AudioPlayerButton';
+import HeroArabFlagPulse from '../components/HeroArabFlagPulse';
 import { useTheme } from '../context/ThemeContext';
 import { useLanguage } from '../context/LanguageContext';
 import { CATEGORIES_LIST } from '../utils/categories';
@@ -211,6 +212,9 @@ export default function HomePage() {
               }}
               className="absolute w-28 h-28 sm:w-32 sm:h-32 rounded-3xl bg-gradient-to-tr from-blue-600 via-amber-400 to-rose-600 blur-xl pointer-events-none opacity-80"
             />
+
+            {/* Dynamic Zoom In/Out Arab Country Flags (1 or 2 at a time with English names) */}
+            <HeroArabFlagPulse />
 
             {/* Floating Orbit Feature Badges Around Pulsing Central Logo */}
             <motion.div 
