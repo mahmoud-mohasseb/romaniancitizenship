@@ -38,6 +38,7 @@ import {
 } from 'lucide-react';
 import questions from '../data/questions_ar.json';
 import Navbar from '../components/Navbar';
+import PwaInstallBanner from '../components/PwaInstallBanner';
 import AudioPlayerButton from '../components/AudioPlayerButton';
 import HeroArabFlagPulse from '../components/HeroArabFlagPulse';
 import { useTheme } from '../context/ThemeContext';
@@ -341,32 +342,8 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Native PWA Installation Banner */}
-          {isInstallable && (
-            <motion.div 
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="w-full p-4 rounded-2xl bg-gradient-to-r from-rose-600 via-rose-700 to-amber-700 text-white shadow-xl flex items-center justify-between gap-3 border border-rose-400/40"
-            >
-              <div className="flex items-center gap-3 text-right">
-                <div className="w-10 h-10 rounded-xl bg-black/20 flex items-center justify-center shrink-0">
-                  <Smartphone className="w-6 h-6 text-white animate-bounce-subtle" />
-                </div>
-                <div>
-                  <h3 className="text-sm font-black">{appLang === 'ar' ? 'تثبيت التطبيق على جهازك 📲' : appLang === 'en' ? 'Install App on Your Phone 📲' : 'Instalează Aplicația pe Telefon 📲'}</h3>
-                  <p className="text-[11px] text-rose-100">{appLang === 'ar' ? 'احصل على تجربة تطبيق هاتف كاملة بدون إنترنت!' : 'Get a full standalone app experience offline!'}</p>
-                </div>
-              </div>
-
-              <button
-                onClick={handleInstallPWA}
-                className="px-4 py-2.5 bg-white text-rose-700 hover:bg-rose-50 font-black rounded-xl text-xs shadow-md transition-all shrink-0 flex items-center gap-1.5"
-              >
-                <Download className="w-4 h-4 shrink-0" />
-                <span>{appLang === 'ar' ? 'تثبيت 📲' : appLang === 'en' ? 'Install 📲' : 'Instalează 📲'}</span>
-              </button>
-            </motion.div>
-          )}
+          {/* Universal Cross-Browser PWA Installation Banner */}
+          <PwaInstallBanner inline={true} />
         </motion.div>
 
         {/* INTERACTIVE QUESTION OF THE DAY CARD */}
