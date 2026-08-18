@@ -24,10 +24,12 @@ import {
   Eye,
   FileText,
   X,
-  ExternalLink
+  ExternalLink,
+  Library
 } from 'lucide-react';
 import grammarData from '../../data/romanian_grammar.json';
 import grammarQuizData from '../../data/romanian_grammar_quiz.json';
+import textbookExamplesData from '../../data/textbook_grammar_examples.json';
 import Navbar from '../../components/Navbar';
 import AudioPlayerButton from '../../components/AudioPlayerButton';
 import { useTheme } from '../../context/ThemeContext';
@@ -42,6 +44,7 @@ function GrammarContent() {
   const [searchQuery, setSearchQuery] = useState('');
   const [exerciseAnswers, setExerciseAnswers] = useState({});
   const [selectedPdf, setSelectedPdf] = useState(null);
+  const [selectedTbCategory, setSelectedTbCategory] = useState('all');
 
   const filteredGrammar = grammarData.filter((item) => {
     const itemLevel = (item.level || 'beginner').toLowerCase();
@@ -55,6 +58,18 @@ function GrammarContent() {
     const matchesSearch = !q || titleRo.includes(q) || titleAr.includes(q) || titleEn.includes(q);
     
     return matchesLevel && matchesSearch;
+  });
+
+  // Flatten all textbook examples for filtering
+  const allTbExamples = Object.keys(textbookExamplesData).reduce((acc, catKey) => {
+    return acc.concat(textbookExamplesData[catKey] || []);
+  }, []);
+
+  const filteredTbExamples = allTbExamples.filter((ex) => {
+    const matchesCat = selectedTbCategory === 'all' || ex.category === selectedTbCategory;
+    const q = searchQuery.toLowerCase().trim();
+    const matchesQ = !q || ex.ro.toLowerCase().includes(q) || ex.en.toLowerCase().includes(q);
+    return matchesCat && matchesQ;
   });
 
   const handleSelectOption = (moduleId, option) => {
@@ -108,10 +123,10 @@ function GrammarContent() {
               </span>
               <div>
                 <h2 className="text-base sm:text-lg font-black">
-                  {appLang === 'ar' ? '📚 كتب ومراجع قواعد اللغة الرومانية المعتمدة (PDF للتحميل)' : appLang === 'ro' ? '📚 Manuale de Gramatică Română Descărcabile (PDF)' : '📚 Downloadable Official Romanian Grammar PDFs'}
+                  {appLang === 'ar' ? '📚 كتب ومراجع قواعد اللغة الرومانية المعتمدة (PDF للتحميل والقراءة)' : appLang === 'ro' ? '📚 Manuale de Gramatică Română Descărcabile (PDF)' : '📚 Downloadable Official Romanian Grammar PDFs'}
                 </h2>
                 <p className="text-xs text-theme-sub font-bold">
-                  {appLang === 'ar' ? 'تصفح وحمّل المراجع والأمثلة المستخرجة مباشرة من الكتب الأكاديمية:' : 'Download or view the official reference textbooks used in our grammar modules:'}
+                  {appLang === 'ar' ? 'تصفح وحمّل المراجع والأمثلة المستخرجة بواسطة مكتبة pdf2json:' : 'Download or view the official reference textbooks used in our grammar modules:'}
                 </p>
               </div>
             </div>
@@ -194,6 +209,87 @@ function GrammarContent() {
           </div>
         </div>
 
+        {/* EXTENSIVE TEXTBOOK EXAMPLES LIBRARY (Extracted via pdf2json) */}
+        <div className={`p-5 rounded-3xl border shadow-xl space-y-4 ${
+          isDark ? 'bg-slate-800/90 border-slate-700/80 text-white' : 'bg-white border-slate-200 text-slate-900 shadow-md'
+        }`}>
+          <div className="flex items-center justify-between border-b border-slate-700/50 pb-3">
+            <div className="flex items-center gap-2">
+              <span className="p-2 rounded-xl bg-rose-500/20 text-rose-400">
+                <Library className="w-5 h-5" />
+              </span>
+              <div>
+                <h2 className="text-base sm:text-lg font-black text-rose-400">
+                  {appLang === 'ar' ? `📖 مكتبة الأمثلة المستخرجة من الكتب (${filteredTbExamples.length} مثالاً مقتبساً)` : `📖 Extensive Textbook Examples Library (${filteredTbExamples.length} examples)`}
+                </h2>
+                <p className="text-xs text-slate-400 font-bold">
+                  {appLang === 'ar' ? 'أمثلة وجمل عملية مصنفة ومستخرجة بواسطة pdf2json من مرجع Routledge و Teach Yourself:' : 'Categorized textbook examples extracted via pdf2json:'}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Category Filter Pills for Textbook Examples */}
+          <div className="flex flex-wrap gap-1.5 pb-2">
+            {[
+              { id: 'all', label_ar: 'الكل 🌐', label_en: 'All' },
+              { id: 'nouns', label_ar: 'الأسماء 🏷️', label_en: 'Nouns' },
+              { id: 'articles', label_ar: 'أدوات التعريف 📌', label_en: 'Articles' },
+              { id: 'adjectives', label_ar: 'الصفات 🎨', label_en: 'Adjectives' },
+              { id: 'pronouns', label_ar: 'الضمائر 👤', label_en: 'Pronouns' },
+              { id: 'verbs', label_ar: 'الأفعال ⚡', label_en: 'Verbs' },
+              { id: 'prepositions', label_ar: 'حروف الجر 📍', label_en: 'Prepositions' },
+              { id: 'conjunctions', label_ar: 'أدوات الربط 🔗', label_en: 'Conjunctions' },
+              { id: 'numerals', label_ar: 'الأرقام 🔢', label_en: 'Numerals' },
+              { id: 'socializing', label_ar: 'المحادثات 🤝', label_en: 'Socializing' },
+            ].map((cat) => (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => setSelectedTbCategory(cat.id)}
+                className={`px-3 py-1.5 rounded-xl text-xs font-black border transition-all ${
+                  selectedTbCategory === cat.id
+                    ? 'bg-amber-500 text-slate-900 border-amber-400 shadow-md scale-105'
+                    : isDark ? 'bg-slate-900/60 text-slate-300 border-slate-700/80 hover:bg-slate-700' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200'
+                }`}
+              >
+                <span>{appLang === 'ar' ? cat.label_ar : cat.label_en}</span>
+              </button>
+            ))}
+          </div>
+
+          {/* Textbook Examples Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[420px] overflow-y-auto pr-1">
+            {filteredTbExamples.map((ex, idx) => (
+              <div 
+                key={ex.id || idx}
+                className={`p-3.5 rounded-2xl border space-y-2 flex flex-col justify-between ${
+                  isDark ? 'bg-slate-900/60 border-slate-700/60' : 'bg-slate-50 border-slate-200 shadow-sm'
+                }`}
+              >
+                <div className="space-y-1">
+                  <div className="flex items-center justify-between gap-1">
+                    <span className="px-2 py-0.5 rounded-full text-[9px] font-black bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 uppercase">
+                      {ex.category}
+                    </span>
+                    <AudioPlayerButton text={ex.ro} lang="ro" />
+                  </div>
+                  <p className="text-xs sm:text-sm font-black text-emerald-300 font-latin leading-snug">
+                    🇹🇩 {ex.ro}
+                  </p>
+                  <p className="text-[11px] font-bold text-slate-300 leading-snug">
+                    🇬🇧 {ex.en}
+                  </p>
+                </div>
+                <div className="pt-1.5 border-t border-slate-700/40 text-[9px] font-bold text-amber-400/90 flex items-center justify-between">
+                  <span>📖 {ex.source}</span>
+                  <span className="text-slate-500">pdf2json</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Level Selector & Search */}
         <div className="space-y-3">
           <div className="grid grid-cols-4 gap-2">
@@ -251,7 +347,7 @@ function GrammarContent() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder={appLang === 'ar' ? 'ابحث في القواعد (مثال: الجمع، أداة التعريف، a fi...)' : 'Search grammar rules...'}
+              placeholder={appLang === 'ar' ? 'ابحث في القواعد والأمثلة (مثال: الجمع، أداة التعريف، a fi...)' : 'Search grammar rules & textbook examples...'}
               className={`w-full border rounded-2xl px-4 py-3 text-xs sm:text-sm pl-10 focus:outline-none focus:border-amber-500 font-bold ${
                 isDark ? 'bg-slate-800 border-slate-700/80 text-white placeholder-slate-500' : 'bg-white border-slate-200 text-slate-900 shadow-sm placeholder-slate-400'
               }`}

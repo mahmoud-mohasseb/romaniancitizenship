@@ -1,0 +1,582 @@
+{
+  "nouns": [
+    {
+      "id": "tb-n4",
+      "category": "nouns",
+      "ro": "Formarea femininului: profesor -> profesoară, elev -> elevă.",
+      "en": "Feminine noun formation: teacher (M) -> teacher (F).",
+      "source": "Routledge Essential Grammar (P.19)"
+    },
+    {
+      "id": "tb-n3",
+      "category": "nouns",
+      "ro": "Un pașaport valabil – două pașapoarte valabile.",
+      "en": "A valid passport – two valid passports.",
+      "source": "Routledge Essential Grammar (P.22)"
+    },
+    {
+      "id": "tb-n2",
+      "category": "nouns",
+      "ro": "O femeie politicoasă – două femei politicoase.",
+      "en": "A polite woman – two polite women.",
+      "source": "Routledge Essential Grammar (P.18)"
+    },
+    {
+      "id": "tb-n1",
+      "category": "nouns",
+      "ro": "Un bărbat înalt – doi bărbați înalți.",
+      "en": "A tall man – two tall men.",
+      "source": "Routledge Essential Grammar (P.15)"
+    },
+    {
+      "id": "ex-nouns-1",
+      "ro": "unde\t          nu\t         fum",
+      "en": "Textbook grammar example from Routledge Essential Grammar",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "nouns"
+    },
+    {
+      "id": "ex-nouns-2",
+      "ro": "They appear in adjacent syllables and are pronounced separately.",
+      "en": "Textbook grammar example from Routledge Essential Grammar",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "nouns"
+    },
+    {
+      "id": "ex-nouns-3",
+      "ro": "The following nouns are considered masculine:",
+      "en": "Textbook grammar example from Routledge Essential Grammar",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "nouns"
+    },
+    {
+      "id": "ex-nouns-4",
+      "ro": "Neuter nouns are generally inanimate:",
+      "en": "Textbook grammar example from Routledge Essential Grammar",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "nouns"
+    },
+    {
+      "id": "ex-nouns-5",
+      "ro": "they are generally inanimate and neologisms. The endings are as follows:",
+      "en": "Neuter nouns have the same endings in the singular as masculine nouns, but",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "nouns"
+    },
+    {
+      "id": "ex-nouns-6",
+      "ro": "There is also a variety of other words that are feminine:",
+      "en": "from\t                                                                                             a",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "nouns"
+    },
+    {
+      "id": "ex-nouns-7",
+      "ro": "There are masculine nouns that derive from feminine nouns. They take the",
+      "en": "Textbook grammar example from Routledge Essential Grammar",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "nouns"
+    },
+    {
+      "id": "ex-nouns-8",
+      "ro": "The following nouns are considered irregular:",
+      "en": "Textbook grammar example from Routledge Essential Grammar",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "nouns"
+    },
+    {
+      "id": "ex-nouns-9",
+      "ro": "Some  proper  nouns  are  grammatically  in  the  plural  and  consequently  are",
+      "en": "Anglia\t               Angliei\t                Spania\t                Spaniei",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "nouns"
+    },
+    {
+      "id": "ex-nouns-10",
+      "ro": "According  to  their  ending,  these  names  are  considered  feminine  (if  they",
+      "en": "Textbook grammar example from Routledge Essential Grammar",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "nouns"
+    },
+    {
+      "id": "ex-nouns-11",
+      "ro": "if  they  are  spelled  as  one  word.  If  they  are  spelled  as  two  words,  they",
+      "en": "words. When we decline the compound nouns, they behave like any noun",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "nouns"
+    },
+    {
+      "id": "ex-nouns-12",
+      "ro": "Nouns  are  expressed  in  the  vocative  case  (V)  when  we  address  someone",
+      "en": "Textbook grammar example from Routledge Essential Grammar",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "nouns"
+    },
+    {
+      "id": "ex-nouns-13",
+      "ro": "genders. Here are some examples:",
+      "en": "Textbook grammar example from Routledge Essential Grammar",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "nouns"
+    },
+    {
+      "id": "ex-nouns-14",
+      "ro": "There  are  a  number  of  nouns  and  adjectives  which  form  fixed  phrases  in",
+      "en": "Textbook grammar example from Routledge Essential Grammar",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "nouns"
+    },
+    {
+      "id": "ex-nouns-15",
+      "ro": "If  there  are  several  nouns  in  different  numbers  in  one  sentence  which  are",
+      "en": "Textbook grammar example from Routledge Essential Grammar",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "nouns"
+    }
+  ],
+  "articles": [
+    {
+      "id": "tb-a4",
+      "category": "articles",
+      "ro": "Articolul posesiv: al meu, a mea, ai mei, ale mele.",
+      "en": "Possessive article: mine (M/F singular & plural).",
+      "source": "Routledge Essential Grammar (P.42)"
+    },
+    {
+      "id": "tb-a3",
+      "category": "articles",
+      "ro": "Articolul adjectival: cel mare, cea frumoasă, cei buni, cele vechi.",
+      "en": "Demonstrative/adjectival article: the big one, the beautiful one.",
+      "source": "Routledge Essential Grammar (P.41)"
+    },
+    {
+      "id": "tb-a2",
+      "category": "articles",
+      "ro": "Fata a depus jurământul oficial.",
+      "en": "The girl took the official oath.",
+      "source": "Routledge Essential Grammar (P.38)"
+    },
+    {
+      "id": "tb-a1",
+      "category": "articles",
+      "ro": "Băiatul citește Constituția României.",
+      "en": "The boy reads the Constitution of Romania.",
+      "source": "Routledge Essential Grammar (P.36)"
+    },
+    {
+      "id": "ex-articles-1",
+      "ro": "I\t                    am\t                                                      a\t                          Romanian.",
+      "en": "Textbook grammar example from Routledge Essential Grammar",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "articles"
+    },
+    {
+      "id": "ex-articles-2",
+      "ro": "the masculine plural and feminine plural forms are the same:",
+      "en": "A smaller number of adjectives have only three forms. For these adjectives,",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "articles"
+    }
+  ],
+  "adjectives": [
+    {
+      "id": "tb-adj3",
+      "category": "adjectives",
+      "ro": "Poziția adjectivului: de obicei după substantiv (o casă frumoasă).",
+      "en": "Adjective position: usually follows the noun.",
+      "source": "Routledge Essential Grammar (P.50)"
+    },
+    {
+      "id": "tb-adj2",
+      "category": "adjectives",
+      "ro": "Grade de comparație: mare -> mai mare -> cel mai mare.",
+      "en": "Degrees of comparison: big -> bigger -> the biggest.",
+      "source": "Routledge Essential Grammar (P.46)"
+    },
+    {
+      "id": "tb-adj1",
+      "category": "adjectives",
+      "ro": "Un cetățean responsabil – o cetățeană responsabilă – cetățeni responsabili.",
+      "en": "A responsible citizen (M) – (F) – responsible citizens.",
+      "source": "Routledge Essential Grammar (P.48)"
+    },
+    {
+      "id": "ex-adjectives-1",
+      "ro": "masculine plural and feminine plural forms are the same. Here the feminine",
+      "en": "Types\t                                                                                                            of",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "adjectives"
+    },
+    {
+      "id": "ex-adjectives-2",
+      "ro": "There are adjectives which cannot receive a degree of comparison because",
+      "en": "Textbook grammar example from Routledge Essential Grammar",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "adjectives"
+    },
+    {
+      "id": "ex-adjectives-3",
+      "ro": "forms in the nominative and accusative. However, there are plural forms in",
+      "en": "This  adjective  has  a  feminine,  singular  form  but  it  does  not  have  plural",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "adjectives"
+    },
+    {
+      "id": "ex-adjectives-4",
+      "ro": "These  adjectives  are  usually  used  in  opposition  with  the  following  two",
+      "en": "Textbook grammar example from Routledge Essential Grammar",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "adjectives"
+    },
+    {
+      "id": "ex-adjectives-5",
+      "ro": "the singular, unless they are used as proper adjectives and not as indefinite",
+      "en": "Textbook grammar example from Routledge Essential Grammar",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "adjectives"
+    },
+    {
+      "id": "ex-adjectives-6",
+      "ro": "These  adjectives  are  invariable  in  the  nominative/accusative  cases  but",
+      "en": "Textbook grammar example from Routledge Essential Grammar",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "adjectives"
+    },
+    {
+      "id": "ex-adjectives-7",
+      "ro": "They are similar to the indefinite adjectives. (See 4.6.5 for comparison.)",
+      "en": "Textbook grammar example from Routledge Essential Grammar",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "adjectives"
+    }
+  ],
+  "pronouns": [
+    {
+      "id": "tb-p4",
+      "category": "pronouns",
+      "ro": "Niciunul dintre ei nu a lipsit.",
+      "en": "Not one of them was absent.",
+      "source": "Routledge Essential Grammar (P.67)"
+    },
+    {
+      "id": "tb-p3",
+      "category": "pronouns",
+      "ro": "Unul vrea să meargă, altul nu vrea.",
+      "en": "One wants to go, another one doesn't.",
+      "source": "Routledge Essential Grammar (P.68)"
+    },
+    {
+      "id": "tb-p2",
+      "category": "pronouns",
+      "ro": "Dânsul este domnul președinte al comisiei.",
+      "en": "He (polite) is the president of the commission.",
+      "source": "Routledge Essential Grammar (P.65)"
+    },
+    {
+      "id": "tb-p1",
+      "category": "pronouns",
+      "ro": "Dumneavoastră cunoașteți legile țării.",
+      "en": "You (formal polite) know the laws of the country.",
+      "source": "Routledge Essential Grammar (P.64)"
+    }
+  ],
+  "verbs": [
+    {
+      "id": "tb-v7",
+      "category": "verbs",
+      "ro": "În România se vorbește limba română.",
+      "en": "Romanian is spoken in Romania (Reflexive Passive).",
+      "source": "Routledge Essential Grammar (P.126)"
+    },
+    {
+      "id": "tb-v6",
+      "category": "verbs",
+      "ro": "Am multe documente de pregătit pentru dosar.",
+      "en": "I have many documents to prepare for the file (Supine).",
+      "source": "Routledge Essential Grammar (P.125)"
+    },
+    {
+      "id": "tb-v5",
+      "category": "verbs",
+      "ro": "Văzându-mă, m-a salutat respectuos.",
+      "en": "Seeing me, he greeted me respectfully (Gerund + Clitic).",
+      "source": "Routledge Essential Grammar (P.123)"
+    },
+    {
+      "id": "tb-v4",
+      "category": "verbs",
+      "ro": "Aș dori să adaug o precizare importantă.",
+      "en": "I would like to add an important clarification (Conditional).",
+      "source": "Routledge Essential Grammar (P.115)"
+    },
+    {
+      "id": "tb-v3",
+      "category": "verbs",
+      "ro": "Trebuie ca noi să cunoaștem drepturile cetățenești.",
+      "en": "We must know civic rights (Subjunctive să).",
+      "source": "Routledge Essential Grammar (P.110)"
+    },
+    {
+      "id": "tb-v2",
+      "category": "verbs",
+      "ro": "Când eram mic, locuiam la Iași.",
+      "en": "When I was young, I used to live in Iași.",
+      "source": "Routledge Essential Grammar (P.92)"
+    },
+    {
+      "id": "tb-v1",
+      "category": "verbs",
+      "ro": "Eu am învățat limba română pentru examenul ANC.",
+      "en": "I learned the Romanian language for the ANC exam.",
+      "source": "Routledge Essential Grammar (P.83)"
+    },
+    {
+      "id": "ex-verbs-1",
+      "ro": "All comments are welcome. Any errors in the book are entirely the fault of",
+      "en": "readers will enjoy it and find it as useful as my students do.",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "verbs"
+    },
+    {
+      "id": "ex-verbs-2",
+      "ro": "The explanations are short and clear but without being too specialized, as",
+      "en": "grammar.",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "verbs"
+    },
+    {
+      "id": "ex-verbs-3",
+      "ro": "They are also used in sentences without a verb, especially in answers:",
+      "en": "Textbook grammar example from Routledge Essential Grammar",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "verbs"
+    },
+    {
+      "id": "ex-verbs-4",
+      "ro": "person, which are highlighted in italic bold in the table.",
+      "en": "common to several other conjugations as well. There are endings for each",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "verbs"
+    },
+    {
+      "id": "ex-verbs-5",
+      "ro": "common to several other conjugations as well. There are endings for each",
+      "en": "Textbook grammar example from Routledge Essential Grammar",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "verbs"
+    },
+    {
+      "id": "ex-verbs-6",
+      "ro": "the  infinitive.  They  are  called  zero  suffix  (Ø)  verbs,  i.e.  there  is  no  suffix",
+      "en": "Textbook grammar example from Routledge Essential Grammar",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "verbs"
+    },
+    {
+      "id": "ex-verbs-7",
+      "ro": "Here  are  some  verbs  that  have  some  irregularities  in  the  conjugation,  i.e.",
+      "en": "ascultă\t             adună",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "verbs"
+    },
+    {
+      "id": "ex-verbs-8",
+      "ro": "Here  are  three  verbs  which  have  several  irregularities  in  their  conjugation",
+      "en": "cercetează\t          cinează",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "verbs"
+    },
+    {
+      "id": "ex-verbs-9",
+      "ro": "There  are  very  few  verbs  belonging  to  this  conjugation.  Here  are  some",
+      "en": "Ø                               suffix when conjugated.",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "verbs"
+    },
+    {
+      "id": "ex-verbs-10",
+      "ro": "There are other verbs that follow these two examples:",
+      "en": "Textbook grammar example from Routledge Essential Grammar",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "verbs"
+    },
+    {
+      "id": "ex-verbs-11",
+      "ro": "sunt\t             au\t                 vor\t               dau\t              stau",
+      "en": "sunteţi\t         aveţi\t             vreţi\t             daţi\t              staţi",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "verbs"
+    },
+    {
+      "id": "ex-verbs-12",
+      "ro": "este\t              are\t               vrea\t             dă\t                 stă",
+      "en": "ești\t               ai\t                  vrei\t              dai\t                stai",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "verbs"
+    },
+    {
+      "id": "ex-verbs-13",
+      "ro": "ești\t               ai\t                  vrei\t              dai\t                stai",
+      "en": "sunt\t             am\t               vreau\t           dau\t              stau",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "verbs"
+    },
+    {
+      "id": "ex-verbs-14",
+      "ro": "sunt\t             am\t               vreau\t           dau\t              stau",
+      "en": "Textbook grammar example from Routledge Essential Grammar",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "verbs"
+    },
+    {
+      "id": "ex-verbs-15",
+      "ro": "There are a number of irregular verbs which are listed below.",
+      "en": "Textbook grammar example from Routledge Essential Grammar",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "verbs"
+    }
+  ],
+  "prepositions": [
+    {
+      "id": "tb-pr3",
+      "category": "prepositions",
+      "ro": "Datorită sprijinului familiei, am reușit.",
+      "en": "Thanks to family support (Dative), I succeeded.",
+      "source": "Routledge Essential Grammar (P.140)"
+    },
+    {
+      "id": "tb-pr2",
+      "category": "prepositions",
+      "ro": "În fața comisiei, am răspuns la toate întrebările.",
+      "en": "In front of the commission (Genitive), I answered all questions.",
+      "source": "Routledge Essential Grammar (P.139)"
+    },
+    {
+      "id": "tb-pr1",
+      "category": "prepositions",
+      "ro": "Conform legii, dreptul la vot este garantat.",
+      "en": "According to the law (Dative), voting right is guaranteed.",
+      "source": "Routledge Essential Grammar (P.139)"
+    },
+    {
+      "id": "ex-prepositions-1",
+      "ro": "exception. Many prepositions have several meanings. They are used before",
+      "en": "They  express  the  idea  of  place,  time,  manner,  condition,  cause,  scope,",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "prepositions"
+    },
+    {
+      "id": "ex-prepositions-2",
+      "ro": "prepositional phrase are always in the definite form:",
+      "en": "2                                                          Nouns in the genitive and dative preceded by a preposition or a",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "prepositions"
+    }
+  ],
+  "cases": [],
+  "adverbs": [],
+  "conjunctions": [
+    {
+      "id": "tb-c2",
+      "category": "conjunctions",
+      "ro": "Deși a fost greu, am completat dosarul.",
+      "en": "Although it was hard, I completed the application file.",
+      "source": "Routledge Essential Grammar (P.145)"
+    },
+    {
+      "id": "tb-c1",
+      "category": "conjunctions",
+      "ro": "Învăț zilnic deoarece vreau să trec examenul.",
+      "en": "I study daily because I want to pass the exam.",
+      "source": "Routledge Essential Grammar (P.144)"
+    },
+    {
+      "id": "ex-conjunctions-1",
+      "ro": "Commands that are formed using the subjunctive may be translated as",
+      "en": "a demand or a request in a softer way than by using the imperative.",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "conjunctions"
+    },
+    {
+      "id": "ex-conjunctions-2",
+      "ro": "I am writing the book although I don’t have time.",
+      "en": "Textbook grammar example from Routledge Essential Grammar",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "conjunctions"
+    },
+    {
+      "id": "ex-conjunctions-3",
+      "ro": "I am writing to you in order to invite you to my wedding.",
+      "en": "Textbook grammar example from Routledge Essential Grammar",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "conjunctions"
+    },
+    {
+      "id": "ex-conjunctions-4",
+      "ro": "Besides the fact that you are late, you are also difficult.",
+      "en": "Textbook grammar example from Routledge Essential Grammar",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "conjunctions"
+    }
+  ],
+  "numerals": [
+    {
+      "id": "tb-num2",
+      "category": "numerals",
+      "ro": "Ziua Națională a României este pe 1 Decembrie.",
+      "en": "National Day of Romania is on December 1st.",
+      "source": "Routledge Essential Grammar (P.78)"
+    },
+    {
+      "id": "tb-num1",
+      "category": "numerals",
+      "ro": "Primul articol din Constituție definește statul.",
+      "en": "The first article in the Constitution defines the state.",
+      "source": "Routledge Essential Grammar (P.81)"
+    },
+    {
+      "id": "ex-numerals-1",
+      "ro": "The compound numerals are all the other numbers:",
+      "en": "Textbook grammar example from Routledge Essential Grammar",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "numerals"
+    },
+    {
+      "id": "ex-numerals-2",
+      "ro": "Numbers  can  be  simple  or  compound.  The  simple  numerals  are  numbers",
+      "en": "6.1.1\t   Numbers",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "numerals"
+    },
+    {
+      "id": "ex-numerals-3",
+      "ro": "Collective  numerals  are  used  to  express  the  idea  of  two  or  more  objects",
+      "en": "Textbook grammar example from Routledge Essential Grammar",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "numerals"
+    },
+    {
+      "id": "ex-numerals-4",
+      "ro": "Phrases where ordinal numerals are used:",
+      "en": "Textbook grammar example from Routledge Essential Grammar",
+      "source": "Routledge - Romanian: An Essential Grammar",
+      "category": "numerals"
+    }
+  ],
+  "socializing": [
+    {
+      "id": "tb-soc2",
+      "category": "socializing",
+      "ro": "În opinia mea, respectarea normelor este esențială.",
+      "en": "In my opinion, respecting rules is essential.",
+      "source": "Routledge Essential Grammar (P.181)"
+    },
+    {
+      "id": "tb-soc1",
+      "category": "socializing",
+      "ro": "Buna ziua! Îmi pare bine de cunoștință.",
+      "en": "Good day! Pleased to meet you.",
+      "source": "Teach Yourself Romanian (Unit 1)"
+    }
+  ]
+}
