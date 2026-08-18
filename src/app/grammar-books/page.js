@@ -26,7 +26,9 @@ import {
   X,
   ExternalLink,
   Library,
-  ArrowLeft
+  ArrowLeft,
+  Bookmark,
+  Compass
 } from 'lucide-react';
 import textbookExamplesData from '../../data/textbook_grammar_examples.json';
 import Navbar from '../../components/Navbar';
@@ -71,6 +73,76 @@ function GrammarBooksContent() {
     { id: 'socializing', label_ar: `🤝 التعبير عن الرأي والتواصل (${textbookExamplesData.socializing?.length || 0})`, label_en: `🤝 Socializing (${textbookExamplesData.socializing?.length || 0})` },
   ];
 
+  // Structured Chapter Reference Guides extracted from Routledge & Teach Yourself
+  const chapterGuides = [
+    {
+      title_ro: 'Capitolu 1: Sunete, Litere și Diftongi',
+      title_ar: 'الباب الأول: الأصوات والأحرف والأدغام (Diphthongs & Triphthongs)',
+      summary_ar: 'يشرح الأبجدية الرومانية المكونة من 31 حرفاً، والأصوات الخاصة (ă, î, ș, ț, â) والمجموعات الصوتية (ea, oa, ia, ua, iau).',
+      examples: [
+        { ro: 'Diftongi: țăran (ea), soare (oa), iarbă (ia), ziua (ua).', en: 'Diphthongs: farmer (ea), sun (oa), grass (ia), day (ua).' },
+        { ro: 'Triftongi: voiau (iau), doreau (eau).', en: 'Triphthongs: they wanted (iau), they wished (eau).' }
+      ]
+    },
+    {
+      title_ro: 'Capitolu 2: Genul și Pluralul Substantivelor',
+      title_ar: 'الباب الثاني: أجناس الأسماء وتكوين الجمع (Masculin, Feminin, Neutru)',
+      summary_ar: 'تقسم الأسماء إلى 3 أجناس. الجنس المحايد (Neutru) يأخذ un في المفرد و două في الجمع (un scaun - două scaune).',
+      examples: [
+        { ro: 'Masculin: un om - doi oameni | un bărbat - doi bărbați.', en: 'Masculine: a man - two men | a man - two men.' },
+        { ro: 'Feminin: o femeie - două femei | o țară - două țări.', en: 'Feminine: a woman - two women | a country - two countries.' },
+        { ro: 'Neutru: un pașaport - două pașapoarte | un drept - două drepturi.', en: 'Neuter: a passport - two passports | a right - two rights.' }
+      ]
+    },
+    {
+      title_ro: 'Capitolu 3: Sistemul Complex al Articolelor',
+      title_ar: 'الباب الثالث: أدوات التعريف والتنكير والأدوات الإشارية والمالكة',
+      summary_ar: 'تشمل أداة التعريف اللاحقة (-ul, -a, -le, -ii)، والأداة المالكة (al, a, ai, ale) والأداة النعتية (cel, cea, cei, cele).',
+      examples: [
+        { ro: 'Articol Hotărât: omul, fata, pașaportul, băieții, fetele.', en: 'Definite Article: the man, the girl, the passport, the boys, the girls.' },
+        { ro: 'Articol Posesiv: steagul al României, o prietenă a mea.', en: 'Possessive Article: flag of Romania, a friend of mine.' },
+        { ro: 'Articol Adjectival: cel mai bun cetățean, cea mai frumoasă țară.', en: 'Adjectival Article: the best citizen, the most beautiful country.' }
+      ]
+    },
+    {
+      title_ro: 'Capitolu 4: Clasificarea și Acordul Adjectivelor',
+      title_ar: 'الباب الرابع: أنواع الصفات ومطابقتها ودرجات التفضيل',
+      summary_ar: 'تطابق الصفة الموصوف في الجنس والعدد والحالة. وتقسم إلى 4 نهايات (bun), 3 نهايات (mic), و 2 نهايات (mare, dulce).',
+      examples: [
+        { ro: '4 Forme: bun (M.Sg), bună (F.Sg), buni (M.Pl), bune (F.Pl).', en: '4 forms adjective: good (M/F sg & pl).' },
+        { ro: 'Comparație: mare -> mai mare -> cel mai mare.', en: 'Comparison: big -> bigger -> the biggest.' }
+      ]
+    },
+    {
+      title_ro: 'Capitolu 5: Pronumele și Formele de Politețe',
+      title_ar: 'الباب الخامس: الضمائر وصيغ الاحترام والتأكيد والإشارة',
+      summary_ar: 'تتميز الرومانية بضمائر احترام رسمية مثل Dumneavoastră (أنتم/حضرتكم)، Dânsul (هو المحترم)، و Dânsa (هي المحترمة).',
+      examples: [
+        { ro: 'Politețe: Dumneavoastră vorbiți limba română.', en: 'You (formal polite) speak the Romanian language.' },
+        { ro: 'Pronume Clitice: Văzându-mă, i-am dat dosarul.', en: 'Clitics: Seeing me, I gave him the dossier.' }
+      ]
+    },
+    {
+      title_ro: 'Capitolu 7: Verbele și Cele 11 Conjugări (Moduri și Timpuri)',
+      title_ar: 'الباب السابع: تصريف الأفعال عبر 11 مجموعة والصيغ غير المصرفة (Gerunziu, Supin)',
+      summary_ar: 'يغطي الماضي المركب (am învățat)، الماضي المستمر (eram)، المنصوب (să fie)، الشرط (aș dori)، والـ Gerund (văzându-l) والـ Supine (de făcut).',
+      examples: [
+        { ro: 'Perfect Compus: Eu am depus jurământul de credință.', en: 'Past Perfect: I took the oath of allegiance.' },
+        { ro: 'Subiectiv / Conjunctiv: Doresc ca noi să fim cetățeni responsabili.', en: 'Subjunctive să: I wish that we be responsible citizens.' },
+        { ro: 'Gerunziu & Supin: Amintindu-mi-o, am trimis felicitarea. | Am de pregătit acte.', en: 'Gerund & Supine: Remembering her, I sent the card. | I have documents to prepare.' }
+      ]
+    },
+    {
+      title_ro: 'Capitolu 9: Prepozițiile și Regimul de Caz (Acuzativ, Genitiv, Dativ)',
+      title_ar: 'الباب التاسع: حروف الجر وحالات الإعراب (Accusative, Genitive, Dative)',
+      summary_ar: 'تتطلب بعض حروف الجر حالة Dative (conform legii, datorită sprijinului) أو Genitive (în fața comisiei, contra legii).',
+      examples: [
+        { ro: 'Dativ: Conform legii, dreptul la vot este garantat.', en: 'Dative: According to law, voting right is guaranteed.' },
+        { ro: 'Genitiv: În fața președintelui comisiei, am jurat credință.', en: 'Genitive: In front of the commission president, I swore allegiance.' }
+      ]
+    }
+  ];
+
   return (
     <div className="min-h-screen pb-28 sm:pb-24 bg-theme-main text-theme-main flex flex-col font-latin">
       <Navbar />
@@ -103,13 +175,13 @@ function GrammarBooksContent() {
           isDark ? 'bg-slate-800/90 border-slate-700/80 text-white' : 'bg-white border-slate-200 text-slate-900'
         }`}>
           <span className="inline-block px-4 py-1.5 rounded-full text-xs font-black bg-rose-500/20 text-rose-400 border border-rose-500/30">
-            📖 Biblioteca de Manuale Oficiale & Exemple Extrase (pdf2json)
+            📖 Biblioteca Master de Manuale & Ghiduri Extrase (Routledge & Teach Yourself)
           </span>
           <h1 className="text-2xl sm:text-3xl font-black">
-            {appLang === 'ar' ? 'مكتبة كتب ومراجع قواعد اللغة الرومانية والشروح المقتبسة 📚' : appLang === 'ro' ? 'Biblioteca Manualelor de Gramatică & Exemple Extrase 📚' : 'Official Romanian Grammar Books & Extracted Examples Library 📚'}
+            {appLang === 'ar' ? 'المكتبة الشاملة لكتب ومراجع قواعد اللغة الرومانية والأمثلة المقتبسة 📚' : appLang === 'ro' ? 'Biblioteca Master de Manuale Oficiale & Ghiduri Extrase 📚' : 'Master Romanian Grammar Books & Extracted Examples Library 📚'}
           </h1>
           <p className="text-xs sm:text-sm text-theme-sub max-w-xl mx-auto leading-relaxed font-bold">
-            {appLang === 'ar' ? 'تصفح وحمّل الكتب الرسمية المعتمدة (Routledge & Teach Yourself) واستكشف مئات الجمل والأمثلة المقتبسة والمصنفة مع النطق الصوتي والترجمة.' : 'Download or read official reference textbooks (Routledge & Teach Yourself) and explore categorized grammar examples with audio.'}
+            {appLang === 'ar' ? 'تصفح وحمّل المراجع الرسمية المعتمدة الكاملة، واستكشف شروح الأبواب وقواعد التصريف والأمثلة التطبيقية المقتبسة بواسطة pdf2json مع الصوت والترجمة.' : 'Download or read official reference textbooks (Routledge & Teach Yourself) and explore detailed chapter guides & extracted examples with audio.'}
           </p>
         </div>
 
@@ -210,6 +282,51 @@ function GrammarBooksContent() {
           </div>
         </div>
 
+        {/* CHAPTER-BY-CHAPTER MASTER REFERENCE GUIDES */}
+        <div className="space-y-4">
+          <div className="flex items-center gap-2 border-b border-slate-700/50 pb-2">
+            <Bookmark className="w-5 h-5 text-amber-400" />
+            <h2 className="text-base sm:text-lg font-black text-amber-400">
+              {appLang === 'ar' ? '📖 ملخصات وأبواب الكتاب المعتمد (Chapter Summaries & Paradigms)' : '📖 Chapter Reference Summaries & Paradigms'}
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4">
+            {chapterGuides.map((guide, idx) => (
+              <div 
+                key={idx}
+                className={`p-5 rounded-3xl border space-y-3 shadow-lg ${
+                  isDark ? 'bg-slate-800/90 border-slate-700/80 text-white' : 'bg-white border-slate-200 text-slate-900 shadow-md'
+                }`}
+              >
+                <div className="space-y-1 border-b border-slate-700/40 pb-2">
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-amber-500/20 text-amber-400 border border-amber-500/30 uppercase">
+                    Capitolul {idx + 1}
+                  </span>
+                  <h3 className="text-sm sm:text-base font-black text-rose-400">{guide.title_ro}</h3>
+                  <p className="text-xs font-bold text-amber-300">{guide.title_ar}</p>
+                </div>
+
+                <p className="text-xs leading-relaxed text-slate-300 font-bold bg-slate-900/60 p-3 rounded-2xl border border-slate-700/60">
+                  {guide.summary_ar}
+                </p>
+
+                <div className="space-y-1.5 pt-1">
+                  <span className="text-[11px] font-black text-emerald-400 block">أمثلة تطبيقية من هذا الباب:</span>
+                  <div className="space-y-1.5">
+                    {guide.examples.map((exItem, exIdx) => (
+                      <div key={exIdx} className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-xs font-bold space-y-0.5">
+                        <p className="text-emerald-300 font-latin">🇹🇩 {exItem.ro}</p>
+                        <p className="text-slate-300">🇬🇧 {exItem.en}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* EXTENSIVE TEXTBOOK EXAMPLES ENGINE (pdf2json Extracted) */}
         <div className={`p-6 rounded-3xl border shadow-xl space-y-4 ${
           isDark ? 'bg-slate-800/90 border-slate-700/80 text-white' : 'bg-white border-slate-200 text-slate-900 shadow-md'
@@ -263,7 +380,7 @@ function GrammarBooksContent() {
           </div>
 
           {/* Examples Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[550px] overflow-y-auto pr-1">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[600px] overflow-y-auto pr-1">
             {filteredExamples.length === 0 ? (
               <div className="col-span-2 p-8 text-center text-slate-400 font-bold space-y-2">
                 <BookOpen className="w-8 h-8 mx-auto text-slate-500 opacity-60" />
@@ -348,7 +465,7 @@ function GrammarBooksContent() {
 
 export default function GrammarBooksPage() {
   return (
-    <Suspense fallback={<div className="p-8 text-center text-slate-400 font-bold">Loading Grammar Books Library...</div>}>
+    <Suspense fallback={<div className="p-8 text-center text-slate-400 font-bold">Loading Master Grammar Books Library...</div>}>
       <GrammarBooksContent />
     </Suspense>
   );
