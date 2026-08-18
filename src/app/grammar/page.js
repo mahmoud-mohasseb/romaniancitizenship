@@ -29,7 +29,6 @@ import {
 } from 'lucide-react';
 import grammarData from '../../data/romanian_grammar.json';
 import grammarQuizData from '../../data/romanian_grammar_quiz.json';
-import textbookExamplesData from '../../data/textbook_grammar_examples.json';
 import Navbar from '../../components/Navbar';
 import AudioPlayerButton from '../../components/AudioPlayerButton';
 import { useTheme } from '../../context/ThemeContext';
@@ -43,8 +42,6 @@ function GrammarContent() {
   const [activeLevel, setActiveLevel] = useState('all'); // 'all', 'beginner', 'intermediate', 'advanced'
   const [searchQuery, setSearchQuery] = useState('');
   const [exerciseAnswers, setExerciseAnswers] = useState({});
-  const [selectedPdf, setSelectedPdf] = useState(null);
-  const [selectedTbCategory, setSelectedTbCategory] = useState('all');
 
   const filteredGrammar = grammarData.filter((item) => {
     const itemLevel = (item.level || 'beginner').toLowerCase();
@@ -58,18 +55,6 @@ function GrammarContent() {
     const matchesSearch = !q || titleRo.includes(q) || titleAr.includes(q) || titleEn.includes(q);
     
     return matchesLevel && matchesSearch;
-  });
-
-  // Flatten all textbook examples for filtering
-  const allTbExamples = Object.keys(textbookExamplesData).reduce((acc, catKey) => {
-    return acc.concat(textbookExamplesData[catKey] || []);
-  }, []);
-
-  const filteredTbExamples = allTbExamples.filter((ex) => {
-    const matchesCat = selectedTbCategory === 'all' || ex.category === selectedTbCategory;
-    const q = searchQuery.toLowerCase().trim();
-    const matchesQ = !q || ex.ro.toLowerCase().includes(q) || ex.en.toLowerCase().includes(q);
-    return matchesCat && matchesQ;
   });
 
   const handleSelectOption = (moduleId, option) => {
@@ -103,191 +88,51 @@ function GrammarContent() {
 
           <div className="pt-2 flex flex-wrap gap-2 justify-center">
             <Link
+              href="/grammar-books"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-black rounded-2xl text-xs shadow-lg hover:opacity-95 transition-all"
+            >
+              <BookOpen className="w-4 h-4" />
+              <span>مكتبة الكتب والمراجع PDF 📚</span>
+            </Link>
+
+            <Link
               href="/grammar-quiz"
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-amber-500 via-rose-600 to-amber-600 text-white font-black rounded-2xl text-xs shadow-lg hover:opacity-95 transition-all"
             >
               <Trophy className="w-4 h-4" />
-              <span>جرب لعبة اختبار القواعد المصورة ({grammarQuizData.length} أسئلة) 🎮</span>
+              <span>لعبة اختبار القواعد ({grammarQuizData.length} أسئلة) 🎮</span>
             </Link>
           </div>
         </div>
 
-        {/* DOWNLOADABLE PDF TEXTBOOKS SECTION */}
-        <div className={`p-5 rounded-3xl border shadow-xl space-y-4 ${
-          isDark ? 'bg-gradient-to-br from-slate-800 via-slate-800 to-slate-900 border-amber-500/40 text-white' : 'bg-gradient-to-br from-amber-500/10 via-white to-rose-50 border-amber-300 text-slate-900'
+        {/* DEDICATED GRAMMAR BOOKS & TEXTBOOK EXAMPLES PAGE BANNER */}
+        <div className={`p-5 rounded-3xl border shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4 ${
+          isDark ? 'bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-950 border-amber-500/40 text-white' : 'bg-gradient-to-r from-amber-50 to-amber-100 border-amber-300 text-slate-900 shadow-md'
         }`}>
-          <div className="flex items-center justify-between border-b border-amber-500/30 pb-3">
-            <div className="flex items-center gap-2">
-              <span className="p-2 rounded-xl bg-amber-500/20 text-amber-400">
-                <BookOpen className="w-5 h-5" />
+          <div className="flex items-center gap-3">
+            <div className="p-3 rounded-2xl bg-amber-500/20 text-amber-400 border border-amber-500/30 shrink-0">
+              <Library className="w-6 h-6" />
+            </div>
+            <div className="space-y-1">
+              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-rose-500/20 text-rose-400 border border-rose-500/30">
+                📚 Biblioteca de Manuale PDF (pdf2json)
               </span>
-              <div>
-                <h2 className="text-base sm:text-lg font-black">
-                  {appLang === 'ar' ? '📚 كتب ومراجع قواعد اللغة الرومانية المعتمدة (PDF للتحميل والقراءة)' : appLang === 'ro' ? '📚 Manuale de Gramatică Română Descărcabile (PDF)' : '📚 Downloadable Official Romanian Grammar PDFs'}
-                </h2>
-                <p className="text-xs text-theme-sub font-bold">
-                  {appLang === 'ar' ? 'تصفح وحمّل المراجع والأمثلة المستخرجة بواسطة مكتبة pdf2json:' : 'Download or view the official reference textbooks used in our grammar modules:'}
-                </p>
-              </div>
+              <h3 className="text-base sm:text-lg font-black text-amber-400">
+                {appLang === 'ar' ? 'صفحة مكتبة كتب ومراجع القواعد الكاملة (PDF + الأمثلة المقتبسة)' : 'Official Grammar Books & Extracted Examples Library Page'}
+              </h3>
+              <p className="text-xs text-theme-sub font-bold">
+                {appLang === 'ar' ? 'تصفح وحمّل كتب Routledge و Teach Yourself الكاملة، واقرأ مئات الأمثلة المصنفة حسب الأبواب.' : 'Read and download full PDF textbooks and explore categorized textbook examples with audio.'}
+              </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {/* Book 1: Routledge Essential Grammar */}
-            <div className={`p-4 rounded-2xl border space-y-3 flex flex-col justify-between ${
-              isDark ? 'bg-slate-900/80 border-slate-700/80' : 'bg-white border-slate-200 shadow-md'
-            }`}>
-              <div className="space-y-1.5">
-                <div className="flex items-center justify-between">
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-blue-500/20 text-blue-400 border border-blue-500/30">
-                    Routledge (232 P.)
-                  </span>
-                  <span className="text-[11px] font-bold text-slate-400">1.0 MB</span>
-                </div>
-                <h3 className="text-sm font-black text-amber-400">Romanian: An Essential Grammar</h3>
-                <p className="text-xs text-theme-sub leading-relaxed">
-                  {appLang === 'ar' ? 'تأليف Ramona Gönczöl-Davies. مرجع أكاديمي يشرح الأجناس، أدوات التعريف، الـ 11 تصريف للأفعال، وإعراب الحالات.' : 'By Ramona Gönczöl-Davies. Comprehensive reference covering alphabet, genders, articles, 11 verb conjugations, and cases.'}
-                </p>
-              </div>
-
-              <div className="flex items-center gap-2 pt-2 border-t border-slate-700/50">
-                <a
-                  href="/downloads/Romanian_An_Essential_Grammar.pdf"
-                  download="Romanian_An_Essential_Grammar.pdf"
-                  className="flex-1 py-2 px-3 bg-blue-600 hover:bg-blue-700 text-white font-black rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-md transition-all"
-                >
-                  <Download className="w-3.5 h-3.5" />
-                  <span>{appLang === 'ar' ? 'تحميل PDF 📥' : 'Download PDF 📥'}</span>
-                </a>
-                <button
-                  type="button"
-                  onClick={() => setSelectedPdf({ title: 'Romanian: An Essential Grammar', url: '/downloads/Romanian_An_Essential_Grammar.pdf' })}
-                  className="py-2 px-3 bg-slate-700/60 hover:bg-slate-700 text-slate-200 font-black rounded-xl text-xs flex items-center gap-1 transition-all"
-                >
-                  <Eye className="w-3.5 h-3.5" />
-                  <span>{appLang === 'ar' ? 'قراءة 👁️' : 'Read 👁️'}</span>
-                </button>
-              </div>
-            </div>
-
-            {/* Book 2: Teach Yourself Romanian */}
-            <div className={`p-4 rounded-2xl border space-y-3 flex flex-col justify-between ${
-              isDark ? 'bg-slate-900/80 border-slate-700/80' : 'bg-white border-slate-200 shadow-md'
-            }`}>
-              <div className="space-y-1.5">
-                <div className="flex items-center justify-between">
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-rose-500/20 text-rose-400 border border-rose-500/30">
-                    Teach Yourself (436 P.)
-                  </span>
-                  <span className="text-[11px] font-bold text-slate-400">17 MB</span>
-                </div>
-                <h3 className="text-sm font-black text-rose-400">Teach Yourself Romanian</h3>
-                <p className="text-xs text-theme-sub leading-relaxed">
-                  {appLang === 'ar' ? 'تأليف Murrell & Ștefănescu-Drăgănești. مرجع متكامل يحتوي على 30 وحدة مكثفة للمحادثة والقواعد والتطبيقات.' : 'By Murrell & Ștefănescu-Drăgănești. Complete 30-unit textbook with dialogues, grammar exercises, and key rules.'}
-                </p>
-              </div>
-
-              <div className="flex items-center gap-2 pt-2 border-t border-slate-700/50">
-                <a
-                  href="/downloads/Romanian_Teach_Yourself.pdf"
-                  download="Romanian_Teach_Yourself.pdf"
-                  className="flex-1 py-2 px-3 bg-rose-600 hover:bg-rose-700 text-white font-black rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-md transition-all"
-                >
-                  <Download className="w-3.5 h-3.5" />
-                  <span>{appLang === 'ar' ? 'تحميل PDF 📥' : 'Download PDF 📥'}</span>
-                </a>
-                <button
-                  type="button"
-                  onClick={() => setSelectedPdf({ title: 'Teach Yourself Romanian', url: '/downloads/Romanian_Teach_Yourself.pdf' })}
-                  className="py-2 px-3 bg-slate-700/60 hover:bg-slate-700 text-slate-200 font-black rounded-xl text-xs flex items-center gap-1 transition-all"
-                >
-                  <Eye className="w-3.5 h-3.5" />
-                  <span>{appLang === 'ar' ? 'قراءة 👁️' : 'Read 👁️'}</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* EXTENSIVE TEXTBOOK EXAMPLES LIBRARY (Extracted via pdf2json) */}
-        <div className={`p-5 rounded-3xl border shadow-xl space-y-4 ${
-          isDark ? 'bg-slate-800/90 border-slate-700/80 text-white' : 'bg-white border-slate-200 text-slate-900 shadow-md'
-        }`}>
-          <div className="flex items-center justify-between border-b border-slate-700/50 pb-3">
-            <div className="flex items-center gap-2">
-              <span className="p-2 rounded-xl bg-rose-500/20 text-rose-400">
-                <Library className="w-5 h-5" />
-              </span>
-              <div>
-                <h2 className="text-base sm:text-lg font-black text-rose-400">
-                  {appLang === 'ar' ? `📖 مكتبة الأمثلة المستخرجة من الكتب (${filteredTbExamples.length} مثالاً مقتبساً)` : `📖 Extensive Textbook Examples Library (${filteredTbExamples.length} examples)`}
-                </h2>
-                <p className="text-xs text-slate-400 font-bold">
-                  {appLang === 'ar' ? 'أمثلة وجمل عملية مصنفة ومستخرجة بواسطة pdf2json من مرجع Routledge و Teach Yourself:' : 'Categorized textbook examples extracted via pdf2json:'}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Category Filter Pills for Textbook Examples */}
-          <div className="flex flex-wrap gap-1.5 pb-2">
-            {[
-              { id: 'all', label_ar: 'الكل 🌐', label_en: 'All' },
-              { id: 'nouns', label_ar: 'الأسماء 🏷️', label_en: 'Nouns' },
-              { id: 'articles', label_ar: 'أدوات التعريف 📌', label_en: 'Articles' },
-              { id: 'adjectives', label_ar: 'الصفات 🎨', label_en: 'Adjectives' },
-              { id: 'pronouns', label_ar: 'الضمائر 👤', label_en: 'Pronouns' },
-              { id: 'verbs', label_ar: 'الأفعال ⚡', label_en: 'Verbs' },
-              { id: 'prepositions', label_ar: 'حروف الجر 📍', label_en: 'Prepositions' },
-              { id: 'conjunctions', label_ar: 'أدوات الربط 🔗', label_en: 'Conjunctions' },
-              { id: 'numerals', label_ar: 'الأرقام 🔢', label_en: 'Numerals' },
-              { id: 'socializing', label_ar: 'المحادثات 🤝', label_en: 'Socializing' },
-            ].map((cat) => (
-              <button
-                key={cat.id}
-                type="button"
-                onClick={() => setSelectedTbCategory(cat.id)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-black border transition-all ${
-                  selectedTbCategory === cat.id
-                    ? 'bg-amber-500 text-slate-900 border-amber-400 shadow-md scale-105'
-                    : isDark ? 'bg-slate-900/60 text-slate-300 border-slate-700/80 hover:bg-slate-700' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200'
-                }`}
-              >
-                <span>{appLang === 'ar' ? cat.label_ar : cat.label_en}</span>
-              </button>
-            ))}
-          </div>
-
-          {/* Textbook Examples Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[420px] overflow-y-auto pr-1">
-            {filteredTbExamples.map((ex, idx) => (
-              <div 
-                key={ex.id || idx}
-                className={`p-3.5 rounded-2xl border space-y-2 flex flex-col justify-between ${
-                  isDark ? 'bg-slate-900/60 border-slate-700/60' : 'bg-slate-50 border-slate-200 shadow-sm'
-                }`}
-              >
-                <div className="space-y-1">
-                  <div className="flex items-center justify-between gap-1">
-                    <span className="px-2 py-0.5 rounded-full text-[9px] font-black bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 uppercase">
-                      {ex.category}
-                    </span>
-                    <AudioPlayerButton text={ex.ro} lang="ro" />
-                  </div>
-                  <p className="text-xs sm:text-sm font-black text-emerald-300 font-latin leading-snug">
-                    🇹🇩 {ex.ro}
-                  </p>
-                  <p className="text-[11px] font-bold text-slate-300 leading-snug">
-                    🇬🇧 {ex.en}
-                  </p>
-                </div>
-                <div className="pt-1.5 border-t border-slate-700/40 text-[9px] font-bold text-amber-400/90 flex items-center justify-between">
-                  <span>📖 {ex.source}</span>
-                  <span className="text-slate-500">pdf2json</span>
-                </div>
-              </div>
-            ))}
-          </div>
+          <Link
+            href="/grammar-books"
+            className="w-full sm:w-auto px-5 py-3 bg-gradient-to-r from-amber-500 to-rose-600 hover:from-amber-600 hover:to-rose-700 text-white font-black rounded-2xl text-xs shadow-lg flex items-center justify-center gap-2 shrink-0 transition-all"
+          >
+            <BookOpen className="w-4 h-4" />
+            <span>{appLang === 'ar' ? 'افتح مكتبة الكتب والمراجع 📚' : 'Open Grammar Books Library 📚'}</span>
+          </Link>
         </div>
 
         {/* Level Selector & Search */}
@@ -347,7 +192,7 @@ function GrammarContent() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder={appLang === 'ar' ? 'ابحث في القواعد والأمثلة (مثال: الجمع، أداة التعريف، a fi...)' : 'Search grammar rules & textbook examples...'}
+              placeholder={appLang === 'ar' ? 'ابحث في القواعد (مثال: الجمع، أداة التعريف، a fi...)' : 'Search grammar rules...'}
               className={`w-full border rounded-2xl px-4 py-3 text-xs sm:text-sm pl-10 focus:outline-none focus:border-amber-500 font-bold ${
                 isDark ? 'bg-slate-800 border-slate-700/80 text-white placeholder-slate-500' : 'bg-white border-slate-200 text-slate-900 shadow-sm placeholder-slate-400'
               }`}
@@ -550,46 +395,6 @@ function GrammarContent() {
           )}
         </div>
       </main>
-
-      {/* PDF PREVIEW MODAL */}
-      {selectedPdf && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm p-4 flex items-center justify-center animate-fade-in">
-          <div className={`w-full max-w-4xl h-[90vh] rounded-3xl border shadow-2xl flex flex-col overflow-hidden ${
-            isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-white border-slate-200 text-slate-900'
-          }`}>
-            <div className="p-4 border-b border-slate-700 flex items-center justify-between bg-slate-800/80">
-              <div className="flex items-center gap-2">
-                <BookOpen className="w-5 h-5 text-amber-400" />
-                <h3 className="text-sm sm:text-base font-black">{selectedPdf.title}</h3>
-              </div>
-              <div className="flex items-center gap-2">
-                <a
-                  href={selectedPdf.url}
-                  download
-                  className="px-3.5 py-1.5 bg-blue-600 text-white font-black rounded-xl text-xs flex items-center gap-1 shadow-md hover:bg-blue-700"
-                >
-                  <Download className="w-3.5 h-3.5" />
-                  <span>{appLang === 'ar' ? 'تحميل PDF 📥' : 'Download PDF 📥'}</span>
-                </a>
-                <button
-                  type="button"
-                  onClick={() => setSelectedPdf(null)}
-                  className="p-1.5 rounded-xl bg-slate-700 hover:bg-slate-600 text-slate-300 transition-colors"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
-            <div className="flex-1 w-full bg-slate-950">
-              <iframe
-                src={selectedPdf.url}
-                className="w-full h-full border-none"
-                title={selectedPdf.title}
-              />
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
