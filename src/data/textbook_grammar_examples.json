@@ -5,6 +5,7 @@
       "category": "nouns",
       "ro": "Un bărbat înalt – doi bărbați înalți.",
       "en": "A tall man – two tall men.",
+      "ar": "رجل طويل – رجلان طويلان (مذكر مفرد وجمع).",
       "source": "Routledge Essential Grammar (P.15)"
     },
     {
@@ -12,6 +13,7 @@
       "category": "nouns",
       "ro": "O femeie politicoasă – două femei politicoase.",
       "en": "A polite woman – two polite women.",
+      "ar": "امرأة مؤدبة – إمرأتان مؤدبتان (مؤنث مفرد وجمع).",
       "source": "Routledge Essential Grammar (P.18)"
     },
     {
@@ -19,6 +21,7 @@
       "category": "nouns",
       "ro": "Un pașaport valabil – două pașapoarte valabile.",
       "en": "A valid passport – two valid passports.",
+      "ar": "جواز سفر ساري المفعول – جوازا سفر ساريان (محايد).",
       "source": "Routledge Essential Grammar (P.22)"
     },
     {
@@ -26,6 +29,7 @@
       "category": "nouns",
       "ro": "Un scaun confortabil – două scaune confortabile.",
       "en": "A comfortable chair – two comfortable chairs.",
+      "ar": "كرسي مريح – كراسي مريحة (محايد).",
       "source": "Routledge Essential Grammar (P.23)"
     },
     {
@@ -33,6 +37,7 @@
       "category": "nouns",
       "ro": "Un caz neobișnuit – două cazuri neobișnuite.",
       "en": "An unusual case – two unusual cases.",
+      "ar": "حالة غير عادية – حالات غير عادية.",
       "source": "Routledge Essential Grammar (P.24)"
     },
     {
@@ -40,6 +45,7 @@
       "category": "nouns",
       "ro": "Un drept cetățenesc – două drepturi cetățenești.",
       "en": "A civic right – two civic rights.",
+      "ar": "حق مواطنة – حقوق مواطنة.",
       "source": "Routledge Essential Grammar (P.25)"
     },
     {
@@ -47,6 +53,7 @@
       "category": "nouns",
       "ro": "Formarea femininului: profesor -> profesoară, elev -> elevă.",
       "en": "Feminine formation: male teacher -> female teacher.",
+      "ar": "صياغة المؤنث من المذكر: معلم -> معلمة، تلميذ -> تلميذة.",
       "source": "Routledge Essential Grammar (P.19)"
     },
     {
@@ -54,6 +61,7 @@
       "category": "nouns",
       "ro": "Pluralul neutru în -uri: un loc -> două locuri, un cadou -> două cadouri.",
       "en": "Neuter plural in -uri: place -> places, gift -> gifts.",
+      "ar": "جمع المحايد بنهاية -uri: مكان -> أماكن، هدية -> هدايا.",
       "source": "Routledge Essential Grammar (P.26)"
     },
     {
@@ -61,6 +69,7 @@
       "category": "nouns",
       "ro": "Pluralul neutru în -e: un nume -> două nume, un rezultat -> două rezultate.",
       "en": "Neuter plural in -e: name -> names, result -> results.",
+      "ar": "جمع المحايد بنهاية -e: اسم -> أسماء، نتيجة -> نتائج.",
       "source": "Routledge Essential Grammar (P.27)"
     },
     {
@@ -75,6 +84,7 @@
       "category": "nouns",
       "ro": "Pluralul masculin în -i: un frate -> doi frați, un băiat -> doi băieți.",
       "en": "Masculine plural in -i: brother -> brothers, boy -> boys.",
+      "ar": "جمع المذكر بنهاية -i: أخ -> إخوة، ولد -> أولاد.",
       "source": "Teach Yourself Romanian (Unit 2)"
     },
     {
@@ -82,6 +92,7 @@
       "category": "nouns",
       "ro": "Pluralul feminin în -i: o țară -> două țări, o zi -> două zile.",
       "en": "Feminine plural in -i / -e: country -> countries, day -> days.",
+      "ar": "جمع المؤنث بنهاية -i / -e: دولة -> دول، يوم -> أيام.",
       "source": "Teach Yourself Romanian (Unit 3)"
     }
   ],
@@ -91,6 +102,7 @@
       "category": "articles",
       "ro": "Băiatul citește Constituția României.",
       "en": "The boy reads the Constitution of Romania.",
+      "ar": "الولد يقرأ دستور رومانيا.",
       "source": "Routledge Essential Grammar (P.36)"
     },
     {
@@ -98,6 +110,7 @@
       "category": "articles",
       "ro": "Fata a depus jurământul oficial.",
       "en": "The girl took the official oath.",
+      "ar": "الفتاة أدت اليمين الرسمي.",
       "source": "Routledge Essential Grammar (P.38)"
     },
     {
@@ -105,6 +118,7 @@
       "category": "articles",
       "ro": "Scaunul este comod, iar masa este curată.",
       "en": "The chair is comfortable and the table is clean.",
+      "ar": "الكرسي مريح، والطاولة نظيفة.",
       "source": "Routledge Essential Grammar (P.37)"
     },
     {
@@ -112,6 +126,7 @@
       "category": "articles",
       "ro": "Articolul adjectival: cel mare, cea frumoasă, cei buni, cele vechi.",
       "en": "Demonstrative/adjectival article: the big one, the beautiful one.",
+      "ar": "الأداة النعتية: الكبير، الجميلة، الخيّرون، القديمة.",
       "source": "Routledge Essential Grammar (P.41)"
     },
     {
@@ -119,6 +134,7 @@
       "category": "articles",
       "ro": "Articolul posesiv: al meu, a mea, ai mei, ale mele.",
       "en": "Possessive article: mine (M/F singular & plural).",
+      "ar": "الأداة المالكة: لي / خاصتي (للمذكر والمؤنث المفرد والجمع).",
       "source": "Routledge Essential Grammar (P.42)"
     },
     {
@@ -126,6 +142,7 @@
       "category": "articles",
       "ro": "Articol nehotărât: un om, o femeie, niște copii.",
       "en": "Indefinite article: a man, a woman, some children.",
+      "ar": "أداة التنكير: رجل، امرأة، بعض الأطفال.",
       "source": "Teach Yourself Romanian (Unit 1)"
     },
     {
@@ -133,6 +150,7 @@
       "category": "articles",
       "ro": "Articolul hotărât la plural: băieții, fetele, pașapoartele.",
       "en": "Plural definite article: the boys, the girls, the passports.",
+      "ar": "أداة التعريف في الجمع: الأولاد، الفتيات، جوازات السفر.",
       "source": "Routledge Essential Grammar (P.39)"
     }
   ],
@@ -142,6 +160,7 @@
       "category": "adjectives",
       "ro": "Un cetățean responsabil – o cetățeană responsabilă – cetățeni responsabili.",
       "en": "A responsible citizen (M) – (F) – responsible citizens.",
+      "ar": "مواطن مسؤول – مواطنة مسؤولة – مواطنون مسؤولون.",
       "source": "Routledge Essential Grammar (P.48)"
     },
     {
@@ -149,6 +168,7 @@
       "category": "adjectives",
       "ro": "Grade de comparație: mare -> mai mare -> cel mai mare.",
       "en": "Degrees of comparison: big -> bigger -> the biggest.",
+      "ar": "درجات التفضيل: كبير -> أكبر -> الأكبر على الإطلاق.",
       "source": "Routledge Essential Grammar (P.46)"
     },
     {
@@ -156,6 +176,7 @@
       "category": "adjectives",
       "ro": "Poziția adjectivului: de obicei după substantiv (o casă frumoasă).",
       "en": "Adjective position: usually follows the noun.",
+      "ar": "موقع الصفة: تأتي عادة بعد الاسم (بيت جميل).",
       "source": "Routledge Essential Grammar (P.50)"
     },
     {
@@ -163,6 +184,7 @@
       "category": "adjectives",
       "ro": "Adjective cu 3 forme: bun, bună, buni, bune.",
       "en": "3-ending adjectives: good (M/F singular & plural).",
+      "ar": "صفات لها 3 صيغ: جيد، جيدة، جيدون/جيدات.",
       "source": "Teach Yourself Romanian (Unit 4)"
     },
     {
@@ -170,6 +192,7 @@
       "category": "adjectives",
       "ro": "Adjective cu 2 forme: dulce, dulci.",
       "en": "2-ending adjectives: sweet (singular/plural).",
+      "ar": "صفات لها صيغتان: حلو للمفرد، حلوين للجمع.",
       "source": "Routledge Essential Grammar (P.45)"
     },
     {
@@ -177,6 +200,7 @@
       "category": "adjectives",
       "ro": "Adjective invariabile: gri, bej, maro, verde-deschis.",
       "en": "Invariable adjectives: grey, beige, brown, light green.",
+      "ar": "صفات غير متغيرة: رمادي، بيج، بني، أخضر فاتح.",
       "source": "Routledge Essential Grammar (P.45)"
     }
   ],
@@ -186,6 +210,7 @@
       "category": "pronouns",
       "ro": "Dumneavoastră cunoașteți legile țării.",
       "en": "You (formal polite) know the laws of the country.",
+      "ar": "حضرتكم تعرفون قوانين البلاد.",
       "source": "Routledge Essential Grammar (P.64)"
     },
     {
@@ -193,6 +218,7 @@
       "category": "pronouns",
       "ro": "Dânsul este domnul președinte al comisiei.",
       "en": "He (polite) is the president of the commission.",
+      "ar": "سعادته هو السيد رئيس اللجنة.",
       "source": "Routledge Essential Grammar (P.65)"
     },
     {
@@ -200,6 +226,7 @@
       "category": "pronouns",
       "ro": "Unul vrea să meargă, altul nu vrea.",
       "en": "One wants to go, another one doesn't.",
+      "ar": "أحدهم يريد الذهاب، والآخر لا يريد.",
       "source": "Routledge Essential Grammar (P.68)"
     },
     {
@@ -207,6 +234,7 @@
       "category": "pronouns",
       "ro": "Niciunul dintre ei nu a lipsit.",
       "en": "Not one of them was absent.",
+      "ar": "ولا واحد منهم غاب.",
       "source": "Routledge Essential Grammar (P.67)"
     },
     {
@@ -214,6 +242,7 @@
       "category": "pronouns",
       "ro": "Pronume demonstrative: acesta / aceasta / aceștia / acestea.",
       "en": "Demonstrative pronouns: this one (M/F sg & pl).",
+      "ar": "أسماء الإشارة القريبة: هذا / هذه / هؤلاء المذكر / هؤلاء المؤنث.",
       "source": "Routledge Essential Grammar (P.66)"
     },
     {
@@ -221,6 +250,7 @@
       "category": "pronouns",
       "ro": "Pronume de depărtare: acela / aceea / aceia / acelea.",
       "en": "Distal demonstrative pronouns: that one (M/F sg & pl).",
+      "ar": "أسماء الإشارة البعيدة: ذلك / تلك / أولئك.",
       "source": "Teach Yourself Romanian (Unit 8)"
     },
     {
@@ -228,6 +258,7 @@
       "category": "pronouns",
       "ro": "Pronume nehotărâte: cineva, ceva, oricine, orice.",
       "en": "Indefinite pronouns: someone, something, anyone, anything.",
+      "ar": "الضمائر المبهمة: شخص ما، شيء ما، أي شخص، أي شيء.",
       "source": "Routledge Essential Grammar (P.70)"
     }
   ],
@@ -237,6 +268,7 @@
       "category": "verbs",
       "ro": "Eu am învățat limba română pentru examenul ANC.",
       "en": "I learned the Romanian language for the ANC exam.",
+      "ar": "تعلمت اللغة الرومانية لامتحان الجنسية ANC.",
       "source": "Routledge Essential Grammar (P.83)"
     },
     {
@@ -244,6 +276,7 @@
       "category": "verbs",
       "ro": "Când eram mic, locuiam la Iași.",
       "en": "When I was young, I used to live in Iași.",
+      "ar": "عندما كنت صغيراً، كنت أسكن في ياش.",
       "source": "Routledge Essential Grammar (P.92)"
     },
     {
@@ -251,6 +284,7 @@
       "category": "verbs",
       "ro": "Trebuie ca noi să cunoaștem drepturile cetățenești.",
       "en": "We must know civic rights (Subjunctive să).",
+      "ar": "يجب علينا أن نعرف حقوق المواطنة.",
       "source": "Routledge Essential Grammar (P.110)"
     },
     {
@@ -258,6 +292,7 @@
       "category": "verbs",
       "ro": "Aș dori să adaug o precizare importantă.",
       "en": "I would like to add an important clarification (Conditional).",
+      "ar": "أود أن أضيف توضيحاً مهماً.",
       "source": "Routledge Essential Grammar (P.115)"
     },
     {
@@ -265,6 +300,7 @@
       "category": "verbs",
       "ro": "Văzându-mă, m-a salutat respectuos.",
       "en": "Seeing me, he greeted me respectfully (Gerund + Clitic).",
+      "ar": "عندما رآني، سلم عليّ باحترام.",
       "source": "Routledge Essential Grammar (P.123)"
     },
     {
@@ -272,6 +308,7 @@
       "category": "verbs",
       "ro": "Am multe documente de pregătit pentru dosar.",
       "en": "I have many documents to prepare for the file (Supine).",
+      "ar": "لدي الكثير من الوثائق للإعداد للملف.",
       "source": "Routledge Essential Grammar (P.125)"
     },
     {
@@ -279,6 +316,7 @@
       "category": "verbs",
       "ro": "În România se vorbește limba română.",
       "en": "Romanian is spoken in Romania (Reflexive Passive).",
+      "ar": "يُتحدث باللغة الرومانية في رومانيا.",
       "source": "Routledge Essential Grammar (P.126)"
     },
     {
@@ -286,6 +324,7 @@
       "category": "verbs",
       "ro": "Conjugarea I (-a): a lucra -> lucrez, lucrezi, lucrează.",
       "en": "Group I verb conjugation (-ez suffix).",
+      "ar": "تصريف المجموعة الأولى (-a): يعمل -> أعمل، تعمل، يعمل.",
       "source": "Routledge Essential Grammar (P.85)"
     },
     {
@@ -293,6 +332,7 @@
       "category": "verbs",
       "ro": "Conjugarea IV (-i/-î): a citi -> citesc, citești, citește.",
       "en": "Group IV verb conjugation (-esc suffix).",
+      "ar": "تصريف المجموعة الرابعة (-i): يقرأ -> أقرأ، تقرأ، يقرأ.",
       "source": "Routledge Essential Grammar (P.89)"
     },
     {
@@ -300,6 +340,7 @@
       "category": "verbs",
       "ro": "Viitorul oficial: voi lucra, vei lucra, va lucra, vom lucra.",
       "en": "Standard literary future tense.",
+      "ar": "المستقبل الرسمي: سأعمل، ستعمل، سيعمل، سنعمل.",
       "source": "Routledge Essential Grammar (P.98)"
     },
     {
@@ -307,6 +348,7 @@
       "category": "verbs",
       "ro": "Viitorul colocvial: o să lucrez, o să lucrezi, o să lucreze.",
       "en": "Colloquial spoken future tense (o să + să).",
+      "ar": "المستقبل المحكي: سوف أعمل، سوف تعمل، سوف يعمل.",
       "source": "Teach Yourself Romanian (Unit 12)"
     }
   ],
@@ -316,6 +358,7 @@
       "category": "prepositions",
       "ro": "Conform legii, dreptul la vot este garantat.",
       "en": "According to the law (Dative), voting right is guaranteed.",
+      "ar": "وفقاً للقانون، حق التصويت مضمون.",
       "source": "Routledge Essential Grammar (P.139)"
     },
     {
@@ -323,6 +366,7 @@
       "category": "prepositions",
       "ro": "În fața comisiei, am răspuns la toate întrebările.",
       "en": "In front of the commission (Genitive), I answered all questions.",
+      "ar": "أمام اللجنة، أجبت على جميع الأسئلة.",
       "source": "Routledge Essential Grammar (P.139)"
     },
     {
@@ -330,6 +374,7 @@
       "category": "prepositions",
       "ro": "Datorită sprijinului familiei, am reușit.",
       "en": "Thanks to family support (Dative), I succeeded.",
+      "ar": "بفضل دعم العائلة، نجحت.",
       "source": "Routledge Essential Grammar (P.140)"
     },
     {
@@ -337,6 +382,7 @@
       "category": "prepositions",
       "ro": "Prepoziții cu Acuzativ: cu, din, la, pe, pentru, prin, spre.",
       "en": "Accusative prepositions: with, from, at, on, for, through, towards.",
+      "ar": "حروف الجر المسببة للنصب: مع، من، في، على، لأجل، عبر، نحو.",
       "source": "Routledge Essential Grammar (P.138)"
     },
     {
@@ -344,6 +390,7 @@
       "category": "prepositions",
       "ro": "Prepoziții cu Genitiv: asupra, contra, împotriva, înaintea, înapoia.",
       "en": "Genitive prepositions: upon, against, before, behind.",
+      "ar": "حروف الجر المسببة للإضافة: على، ضد، أمام، خلف.",
       "source": "Teach Yourself Romanian (Unit 15)"
     }
   ],
@@ -353,6 +400,7 @@
       "category": "conjunctions",
       "ro": "Învăț zilnic deoarece vreau să trec examenul.",
       "en": "I study daily because I want to pass the exam.",
+      "ar": "أدرس يومياً لأنني أريد اجتياز الامتحان.",
       "source": "Routledge Essential Grammar (P.144)"
     },
     {
@@ -360,6 +408,7 @@
       "category": "conjunctions",
       "ro": "Deși a fost greu, am completat dosarul.",
       "en": "Although it was hard, I completed the application file.",
+      "ar": "بالرغم من أنه كان صعباً، أكملت الملف.",
       "source": "Routledge Essential Grammar (P.145)"
     },
     {
@@ -367,6 +416,7 @@
       "category": "conjunctions",
       "ro": "Conjuncții coordonatoare: și, dar, iar, sau, ci.",
       "en": "Coordinating conjunctions: and, but, while, or, but rather.",
+      "ar": "أدوات العطف: و، لكن، بينما، أو، بل.",
       "source": "Routledge Essential Grammar (P.143)"
     },
     {
@@ -374,6 +424,7 @@
       "category": "conjunctions",
       "ro": "Conjuncții subordonatoare: dacă, fiindcă, pentru ca să, încât.",
       "en": "Subordinating conjunctions: if, since, in order that, so that.",
+      "ar": "أدوات الربط التبعية: إذا، لأن، لكي، حتى أن.",
       "source": "Teach Yourself Romanian (Unit 18)"
     }
   ],
@@ -383,6 +434,7 @@
       "category": "numerals",
       "ro": "Primul articol din Constituție definește statul.",
       "en": "The first article in the Constitution defines the state.",
+      "ar": "المادة الأولى من الدستور تحدد الدولة.",
       "source": "Routledge Essential Grammar (P.81)"
     },
     {
@@ -390,6 +442,7 @@
       "category": "numerals",
       "ro": "Ziua Națională a României este pe 1 Decembrie.",
       "en": "National Day of Romania is on December 1st.",
+      "ar": "اليوم الوطني لرومانيا هو 1 ديسمبر.",
       "source": "Routledge Essential Grammar (P.78)"
     },
     {
@@ -397,6 +450,7 @@
       "category": "numerals",
       "ro": "Numere ordinale: primul / prima, al doilea / a doua, al treilea.",
       "en": "Ordinal numbers: 1st (M/F), 2nd (M/F), 3rd.",
+      "ar": "الأعداد الترتيبية: الأول/الأولى، الثاني/الثانية، الثالث.",
       "source": "Teach Yourself Romanian (Unit 9)"
     }
   ],
@@ -406,6 +460,7 @@
       "category": "socializing",
       "ro": "Bună ziua! Îmi pare bine de cunoștință.",
       "en": "Good day! Pleased to meet you.",
+      "ar": "يوم سعيد! سررت بمعرفتك.",
       "source": "Teach Yourself Romanian (Unit 1)"
     },
     {
@@ -413,6 +468,7 @@
       "category": "socializing",
       "ro": "În opinia mea, respectarea normelor este esențială.",
       "en": "In my opinion, respecting rules is essential.",
+      "ar": "في رأيي، احترام القوانين أمر أساسي.",
       "source": "Routledge Essential Grammar (P.181)"
     },
     {
@@ -420,6 +476,7 @@
       "category": "socializing",
       "ro": "Vă rog să-mi arătați drumul spre centrul orașului.",
       "en": "Please show me the way to the city center.",
+      "ar": "أرجو أن تدلني على الطريق نحو وسط المدينة.",
       "source": "Teach Yourself Romanian (Unit 5)"
     },
     {
@@ -427,6 +484,7 @@
       "category": "socializing",
       "ro": "Sunt complet de acord cu argumentele dumneavoastră.",
       "en": "I completely agree with your arguments.",
+      "ar": "أنا متفق تماماً مع حجج حضرتكم.",
       "source": "Routledge Essential Grammar (P.182)"
     }
   ]
