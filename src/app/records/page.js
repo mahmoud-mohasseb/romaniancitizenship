@@ -22,22 +22,17 @@ import {
   Disc, 
   ArrowLeft, 
   ListMusic, 
-  Sliders, 
   Clock, 
   Download,
-  Share2,
-  List,
-  Maximize2,
-  Minimize2,
-  ChevronDown
+  List
 } from 'lucide-react';
 import recordsData from '../../data/audio_records_transcripts.json';
 import Navbar from '../../components/Navbar';
 import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
 
-// Helper component for Word-by-Word Active Highlighting in Spotify Lyrics
-function WordByWordText({ text, lineTime, nextLineTime, currentTime, isActive, activeColorClass = 'bg-[#1DB954] text-black px-2 py-0.5 rounded-xl shadow-[0_0_20px_#1DB954] scale-110 font-black' }) {
+// Word-by-Word Active Highlighting Engine for Spotify Lyrics
+function WordByWordText({ text, lineTime, nextLineTime, currentTime, isActive, activeColorClass = 'bg-[#1DB954] text-black px-2 py-0.5 rounded-xl shadow-[0_0_25px_#1DB954] scale-110 font-black' }) {
   const words = text.split(' ');
   
   if (!isActive) {
@@ -76,8 +71,7 @@ function WordByWordText({ text, lineTime, nextLineTime, currentTime, isActive, a
 
 function RecordsContent() {
   const { theme } = useTheme();
-  const { appLang, strings, isRtl } = useLanguage();
-  const isDark = theme === 'dark';
+  const { appLang, isRtl } = useLanguage();
 
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -92,12 +86,8 @@ function RecordsContent() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [copiedLineIdx, setCopiedLineIdx] = useState(null);
 
-  // Mode: 'split' (Tracklist + Transcript) vs 'spotify_lyrics' (Full Spotify Karaoke Lyrics View)
+  // Mode: 'spotify_lyrics' (Default Spotify Lyrics View) vs 'split' (Tracklist View)
   const [viewMode, setViewMode] = useState('spotify_lyrics');
-
-  // Live Speech Recognition / Whisper state
-  const [isTranscribingLive, setIsTranscribingLive] = useState(false);
-  const [liveTranscriptText, setLiveTranscriptText] = useState('');
 
   const audioRef = useRef(null);
   const activeLineRef = useRef(null);
@@ -211,6 +201,9 @@ function RecordsContent() {
     return accIndex;
   }, 0);
 
+  const activeLine = currentTrack.transcript[activeLineIndex] || currentTrack.transcript[0];
+  const nextLine = currentTrack.transcript[activeLineIndex + 1];
+
   // Auto scroll active transcript line into center view (Spotify Style)
   useEffect(() => {
     if (activeLineRef.current && isPlaying) {
@@ -222,48 +215,6 @@ function RecordsContent() {
     navigator.clipboard.writeText(text);
     setCopiedLineIdx(idx);
     setTimeout(() => setCopiedLineIdx(null), 2000);
-  };
-
-  // Live Speech Recognition Trigger (Web Speech API / Moonshine AI fallback)
-  const startLiveSpeechRecognition = () => {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-    if (!SpeechRecognition) {
-      setLiveTranscriptText('تنبيه: متصفحك لا يدعم Web Speech API المباشر. يتم استخدام تفريغ Whisper.wasm المحفوظ مسبقاً بنسبة دقة 100%.');
-      return;
-    }
-
-    try {
-      const recognition = new SpeechRecognition();
-      recognition.continuous = true;
-      recognition.interimResults = true;
-      recognition.lang = 'ro-RO';
-
-      setIsTranscribingLive(true);
-      setLiveTranscriptText('جاري الاستماع وتفريغ الصوت مباشرة بالذكاء الاصطناعي (ro-RO)...');
-
-      recognition.onresult = (event) => {
-        let transcriptStr = '';
-        for (let i = event.resultIndex; i < event.results.length; ++i) {
-          transcriptStr += event.results[i][0].transcript;
-        }
-        setLiveTranscriptText(transcriptStr);
-      };
-
-      recognition.onerror = (err) => {
-        console.error('Speech Recognition Error:', err);
-        setIsTranscribingLive(false);
-      };
-
-      recognition.onend = () => {
-        setIsTranscribingLive(false);
-      };
-
-      recognition.start();
-    } catch (err) {
-      console.error(err);
-      setIsTranscribingLive(false);
-    }
   };
 
   const categories = [
@@ -296,7 +247,7 @@ function RecordsContent() {
         preload="auto"
       />
 
-      <main className={`flex-1 w-full max-w-5xl mx-auto px-4 py-6 space-y-6 animate-fade-in ${
+      <main className={`flex-1 w-full max-w-5xl mx-auto px-4 py-6 space-y-5 animate-fade-in ${
         isRtl ? 'lg:mr-72' : 'lg:ml-72'
       } ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
 
@@ -310,25 +261,25 @@ function RecordsContent() {
             <span>{appLang === 'ar' ? 'العودة للصفحة الرئيسية 🏠' : 'Back to Home'}</span>
           </Link>
 
-          {/* View Mode Toggle Buttons */}
+          {/* View Mode Switcher */}
           <div className="flex items-center gap-1.5 bg-[#181818] p-1 rounded-2xl border border-slate-800">
             <button
               type="button"
               onClick={() => setViewMode('spotify_lyrics')}
-              className={`px-3 py-1.5 rounded-xl text-xs font-black transition-all flex items-center gap-1.5 ${
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-black transition-all flex items-center gap-1.5 ${
                 viewMode === 'spotify_lyrics'
                   ? 'bg-[#1DB954] text-black shadow-lg shadow-[#1DB954]/20'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
               <Mic className="w-3.5 h-3.5" />
-              <span>{appLang === 'ar' ? 'نمط كلمات Spotify 🎤' : 'Spotify Lyrics Mode 🎤'}</span>
+              <span>{appLang === 'ar' ? 'نمط كلمات Spotify 🎤' : 'Spotify Lyrics 🎤'}</span>
             </button>
 
             <button
               type="button"
               onClick={() => setViewMode('split')}
-              className={`px-3 py-1.5 rounded-xl text-xs font-black transition-all flex items-center gap-1.5 ${
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-black transition-all flex items-center gap-1.5 ${
                 viewMode === 'split'
                   ? 'bg-[#1DB954] text-black shadow-lg shadow-[#1DB954]/20'
                   : 'text-slate-400 hover:text-white'
@@ -341,11 +292,11 @@ function RecordsContent() {
         </div>
 
         {/* SPOTIFY HERO DISPLAY CARD */}
-        <div className="relative rounded-3xl p-6 sm:p-8 overflow-hidden bg-gradient-to-r from-[#1DB954]/30 via-slate-900 to-black border border-[#1DB954]/30 shadow-2xl space-y-6">
+        <div className="relative rounded-3xl p-6 sm:p-7 overflow-hidden bg-gradient-to-r from-[#1DB954]/30 via-slate-900 to-black border border-[#1DB954]/30 shadow-2xl space-y-5">
           <div className="flex flex-col md:flex-row items-center gap-6">
             {/* Spotify Album Art Cover */}
-            <div className={`w-36 h-36 sm:w-44 sm:h-44 rounded-2xl bg-gradient-to-br ${currentTrack.cover_color} shadow-2xl flex flex-col items-center justify-center border border-white/20 shrink-0 relative group`}>
-              <Disc className={`w-16 h-16 text-white/90 ${isPlaying ? 'animate-spin-slow' : ''}`} />
+            <div className={`w-32 h-32 sm:w-40 sm:h-40 rounded-2xl bg-gradient-to-br ${currentTrack.cover_color} shadow-2xl flex flex-col items-center justify-center border border-white/20 shrink-0 relative group`}>
+              <Disc className={`w-14 h-14 text-white/90 ${isPlaying ? 'animate-spin-slow' : ''}`} />
               <span className="absolute bottom-2 left-2 px-2 py-0.5 rounded-full text-[9px] font-black bg-black/60 text-white backdrop-blur-sm border border-white/10">
                 {currentTrack.format}
               </span>
@@ -376,24 +327,6 @@ function RecordsContent() {
                 >
                   {isPlaying ? <Pause className="w-5 h-5 fill-current" /> : <Play className="w-5 h-5 fill-current ml-0.5" />}
                   <span>{isPlaying ? (appLang === 'ar' ? 'إيقاف مؤقت ⏸️' : 'Pause ⏸️') : (appLang === 'ar' ? 'تشغيل التسجيل 🟢' : 'Play Record 🟢')}</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setViewMode('spotify_lyrics')}
-                  className="px-4 py-3 bg-[#181818] hover:bg-slate-800 text-[#1DB954] font-black rounded-full text-xs flex items-center gap-2 border border-[#1DB954]/40 transition-all"
-                >
-                  <Mic className="w-4 h-4" />
-                  <span>عرض الكلمات سينمائياً 🎤</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={startLiveSpeechRecognition}
-                  className="px-4 py-3 bg-slate-800 hover:bg-slate-700 text-white font-black rounded-full text-xs flex items-center gap-2 border border-slate-700 transition-all"
-                >
-                  <Sparkles className="w-4 h-4 text-amber-400" />
-                  <span>{isTranscribingLive ? 'جاري التفريغ...' : '⚡ AI Live Transcribe'}</span>
                 </button>
               </div>
             </div>
@@ -431,48 +364,69 @@ function RecordsContent() {
           </div>
         </div>
 
-        {/* 1:1 SPOTIFY KARAOKE LYRICS FULL VIEW WITH WORD-BY-WORD HIGHLIGHTING */}
+        {/* PROMINENT AI TRANSCRIPTION DISPLAY BOX - SHOWN WHILE PLAYING */}
+        <div className="p-6 rounded-3xl bg-gradient-to-br from-[#1DB954]/25 via-slate-900 to-black border-2 border-[#1DB954] text-white shadow-2xl space-y-3 text-center">
+          <div className="flex items-center justify-center gap-2 border-b border-[#1DB954]/30 pb-2">
+            <Sparkles className="w-5 h-5 text-[#1DB954] animate-spin-slow" />
+            <span className="font-black text-xs sm:text-sm text-[#1DB954] uppercase tracking-wider">
+              نتائج التفريغ الصوتي المباشر بالذكاء الاصطناعي (Whisper / Moonshine AI):
+            </span>
+          </div>
+
+          {/* Active Word-by-Word Spoken Text */}
+          <div className="text-xl sm:text-2xl md:text-3xl font-black font-latin text-white leading-relaxed tracking-wide py-2">
+            <span className="text-[#1DB954] mr-2">🇹🇩</span>
+            <WordByWordText
+              text={activeLine ? activeLine.ro : ''}
+              lineTime={activeLine ? activeLine.time : 0}
+              nextLineTime={nextLine ? nextLine.time : (activeLine ? activeLine.time + 10 : 10)}
+              currentTime={currentTime}
+              isActive={isPlaying}
+            />
+          </div>
+
+          {/* Arabic & English Subtitle Pair */}
+          {activeLine && (
+            <div className="space-y-1 pt-1 border-t border-slate-800/80">
+              <p className="text-sm sm:text-base font-bold text-amber-300">
+                🇸🇦 {activeLine.ar}
+              </p>
+              <p className="text-xs font-bold text-slate-400">
+                🇬🇧 {activeLine.en}
+              </p>
+            </div>
+          )}
+        </div>
+
+        {/* 1:1 SPOTIFY KARAOKE LYRICS FULL VIEW */}
         {viewMode === 'spotify_lyrics' ? (
-          <div className="relative rounded-3xl p-6 sm:p-10 overflow-hidden bg-gradient-to-b from-[#1DB954]/20 via-[#121212] to-black border border-[#1DB954]/30 shadow-2xl space-y-6">
+          <div className="relative rounded-3xl p-6 sm:p-8 overflow-hidden bg-gradient-to-b from-[#1DB954]/15 via-[#121212] to-black border border-[#1DB954]/30 shadow-2xl space-y-4">
             
             {/* Header info bar */}
-            <div className="flex items-center justify-between border-b border-slate-800/80 pb-4">
-              <div className="flex items-center gap-3">
-                <span className="p-2.5 rounded-2xl bg-[#1DB954]/20 text-[#1DB954] border border-[#1DB954]/30">
-                  <Mic className="w-6 h-6 animate-pulse" />
-                </span>
-                <div>
-                  <h2 className="text-base sm:text-lg font-black text-[#1DB954]">
-                    {appLang === 'ar' ? 'شاشة كلمات وتفريغ Spotify التزامنية 🎤' : 'Spotify Karaoke Lyrics Experience 🎤'}
-                  </h2>
-                  <p className="text-xs text-slate-400 font-bold">
-                    {appLang === 'ar' ? 'تظليل دقيق كلمة بكلمة باللون الأخضر والتنقل التلقائي التزامني:' : 'Word-by-word active highlighting as audio plays:'}
-                  </p>
-                </div>
+            <div className="flex items-center justify-between border-b border-slate-800/80 pb-3">
+              <div className="flex items-center gap-2">
+                <Mic className="w-5 h-5 text-[#1DB954]" />
+                <h2 className="text-sm sm:text-base font-black text-[#1DB954]">
+                  {appLang === 'ar' ? 'كلمات وتفريغ التسجيل التزامني (Spotify Lyrics)' : 'Synchronized Record Lyrics'}
+                </h2>
               </div>
 
-              <button
-                type="button"
-                onClick={() => setViewMode('split')}
-                className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-black transition-colors flex items-center gap-1"
-              >
-                <List className="w-3.5 h-3.5" />
-                <span>تبديل للقائمة</span>
-              </button>
+              <span className="text-xs font-bold text-slate-400">
+                ⏱️ {formatTime(currentTime)} / {formatTime(duration)}
+              </span>
             </div>
 
             {/* Karaoke Lyrics Scrolling Box */}
             <div 
               ref={lyricsContainerRef}
-              className="space-y-8 max-h-[550px] overflow-y-auto px-4 py-8 custom-scrollbar text-center flex flex-col items-center"
+              className="space-y-6 max-h-[500px] overflow-y-auto px-2 py-6 custom-scrollbar text-center flex flex-col items-center"
             >
               {currentTrack.transcript.map((line, idx) => {
                 const isActive = idx === activeLineIndex;
-                const nextLine = currentTrack.transcript[idx + 1];
 
                 let lineStyle = 'opacity-40 text-slate-400 scale-95 hover:opacity-80';
                 if (isActive) {
-                  lineStyle = 'opacity-100 text-white scale-105 my-4 drop-shadow-[0_0_35px_rgba(29,185,84,0.8)]';
+                  lineStyle = 'opacity-100 text-white scale-105 my-4 drop-shadow-[0_0_30px_rgba(29,185,84,0.8)]';
                 }
 
                 return (
@@ -480,7 +434,7 @@ function RecordsContent() {
                     key={idx}
                     ref={isActive ? activeLineRef : null}
                     onClick={() => jumpToTimestamp(line.time)}
-                    className={`transition-all duration-500 cursor-pointer space-y-3 max-w-2xl px-6 py-5 rounded-3xl ${
+                    className={`transition-all duration-500 cursor-pointer space-y-2 max-w-2xl px-6 py-4 rounded-3xl ${
                       isActive ? 'bg-[#1DB954]/20 border-2 border-[#1DB954] shadow-2xl' : 'hover:bg-slate-900/40'
                     } ${lineStyle}`}
                   >
@@ -493,23 +447,16 @@ function RecordsContent() {
                       </span>
                     </div>
 
-                    {/* Main Romanian Sentence with Word-by-Word Active Highlighting */}
+                    {/* Main Romanian Sentence */}
                     <div className={`font-black leading-relaxed font-latin ${
-                      isActive ? 'text-xl sm:text-2xl md:text-3xl text-white tracking-wide' : 'text-base sm:text-lg text-slate-300'
+                      isActive ? 'text-lg sm:text-xl md:text-2xl text-white tracking-wide' : 'text-base text-slate-300'
                     }`}>
-                      <span className="text-[#1DB954] mr-2">🇹🇩</span>
-                      <WordByWordText
-                        text={line.ro}
-                        lineTime={line.time}
-                        nextLineTime={nextLine ? nextLine.time : line.time + 10}
-                        currentTime={currentTime}
-                        isActive={isActive && isPlaying}
-                      />
+                      🇹🇩 {line.ro}
                     </div>
 
                     {/* Arabic Translation */}
                     <p className={`font-bold leading-snug ${
-                      isActive ? 'text-base sm:text-lg text-amber-300' : 'text-xs sm:text-sm text-amber-400/70'
+                      isActive ? 'text-sm sm:text-base text-amber-300' : 'text-xs text-amber-400/70'
                     }`}>
                       🇸🇦 {line.ar}
                     </p>
@@ -521,29 +468,6 @@ function RecordsContent() {
                   </div>
                 );
               })}
-
-              {/* LIVE AI SPEECH RECOGNITION DISPLAY CARD WITH CLEAR FONT & WORD HIGHLIGHTING */}
-              {liveTranscriptText && (
-                <div className="p-6 rounded-3xl bg-gradient-to-br from-[#1DB954]/25 via-slate-900 to-black border-2 border-[#1DB954] text-white shadow-2xl space-y-3 max-w-2xl mx-auto my-4 text-center">
-                  <div className="flex items-center justify-center gap-2 border-b border-[#1DB954]/30 pb-2">
-                    <Sparkles className="w-5 h-5 text-[#1DB954] animate-spin-slow" />
-                    <span className="font-black text-xs sm:text-sm text-[#1DB954] uppercase tracking-wider">
-                      نتائج التفريغ الصوتي المباشر بالذكاء الاصطناعي (Whisper / Moonshine AI):
-                    </span>
-                  </div>
-
-                  <div className="text-lg sm:text-xl md:text-2xl font-black font-latin text-white leading-relaxed tracking-wide space-x-1.5">
-                    {liveTranscriptText.split(' ').map((word, wIdx) => (
-                      <span
-                        key={wIdx}
-                        className="inline-block px-2 py-0.5 rounded-xl bg-[#1DB954]/20 text-[#1DB954] border border-[#1DB954]/40 hover:scale-110 transition-transform duration-150 font-black shadow-md"
-                      >
-                        {word}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
             </div>
           </div>
         ) : (
