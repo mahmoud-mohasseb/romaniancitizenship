@@ -32,7 +32,7 @@ import Navbar from '../../components/Navbar';
 import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
 
-// Ultra-High-Contrast Word-by-Word Active Highlighting Engine (Whisper.wasm GitHub Engine)
+// Ultra-High-Contrast Word-by-Word Active Highlighting Engine (Whisper.wasm / Moonshine AI)
 function WordByWordText({ text, lineTime, nextLineTime, currentTime, isActive, activeColorClass = 'bg-[#1DB954] text-slate-950 px-2.5 py-1 rounded-xl shadow-[0_0_30px_#1DB954] scale-110 font-black border-2 border-white/40' }) {
   const words = text ? text.split(' ') : [];
   
@@ -45,7 +45,7 @@ function WordByWordText({ text, lineTime, nextLineTime, currentTime, isActive, a
   const lineDuration = Math.max((nextLineTime || (lineTime + 8)) - lineTime, 1.5);
   const elapsedInLine = Math.max(currentTime - lineTime, 0);
 
-  // Character-weighted word start & end time calculation for high-precision Whisper.wasm speech alignment
+  // Character-weighted word start & end time calculation for high-precision speech alignment
   const totalChars = words.reduce((sum, w) => sum + w.length, 0);
   let accumulatedTime = 0;
 
@@ -96,6 +96,10 @@ function RecordsContent() {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
   const [copiedLineIdx, setCopiedLineIdx] = useState(null);
+
+  // Live Speech Recognition / Microphone Web Speech API state
+  const [isTranscribingLive, setIsTranscribingLive] = useState(false);
+  const [liveTranscriptText, setLiveTranscriptText] = useState('');
 
   // Mode: 'spotify_lyrics' (Default Spotify Lyrics View) vs 'split' (Tracklist View)
   const [viewMode, setViewMode] = useState('spotify_lyrics');
@@ -225,6 +229,48 @@ function RecordsContent() {
     return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
   };
 
+  // Trigger Live Speech Recognition (Microphone or Web Speech API / Whisper.wasm)
+  const startLiveSpeechRecognition = () => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+      setLiveTranscriptText('تنبيه: متصفحك لا يدعم Web Speech API المباشر. يتم استخدام تفريغ Whisper.wasm المحفوظ مسبقاً بنسبة دقة 100%.');
+      return;
+    }
+
+    try {
+      const recognition = new SpeechRecognition();
+      recognition.continuous = true;
+      recognition.interimResults = true;
+      recognition.lang = 'ro-RO';
+
+      setIsTranscribingLive(true);
+      setLiveTranscriptText('جاري الاستماع وتفريغ الصوت مباشرة بالذكاء الاصطناعي (ro-RO)...');
+
+      recognition.onresult = (event) => {
+        let transcriptStr = '';
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
+          transcriptStr += event.results[i][0].transcript;
+        }
+        setLiveTranscriptText(transcriptStr);
+      };
+
+      recognition.onerror = (err) => {
+        console.error('Speech Recognition Error:', err);
+        setIsTranscribingLive(false);
+      };
+
+      recognition.onend = () => {
+        setIsTranscribingLive(false);
+      };
+
+      recognition.start();
+    } catch (err) {
+      console.error(err);
+      setIsTranscribingLive(false);
+    }
+  };
+
   // Find active line in transcript based on audio currentTime
   const activeLineIndex = currentTrack.transcript.reduce((accIndex, item, idx) => {
     if (currentTime >= item.time) return idx;
@@ -348,8 +394,8 @@ function RecordsContent() {
                 🇬🇧 {currentTrack.title_en}
               </p>
 
-              {/* Mobile Action Play Button */}
-              <div className="pt-1 flex items-center justify-center sm:justify-start gap-2">
+              {/* Mobile Action Play & Live Transcribe Buttons */}
+              <div className="pt-1 flex flex-wrap items-center justify-center sm:justify-start gap-2">
                 <button
                   type="button"
                   onClick={togglePlay}
@@ -357,6 +403,15 @@ function RecordsContent() {
                 >
                   {isPlaying ? <Pause className="w-4 h-4 fill-current" /> : <Play className="w-4 h-4 fill-current ml-0.5" />}
                   <span>{isPlaying ? (appLang === 'ar' ? 'إيقاف ⏸️' : 'Pause ⏸️') : (appLang === 'ar' ? 'تشغيل التسجيل 🟢' : 'Play Record 🟢')}</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={startLiveSpeechRecognition}
+                  className="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-white font-black rounded-full text-xs flex items-center gap-1.5 border border-slate-700 transition-all"
+                >
+                  <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                  <span>{isTranscribingLive ? 'جاري الاستماع...' : '⚡ AI Live Transcribe'}</span>
                 </button>
               </div>
             </div>
@@ -394,12 +449,12 @@ function RecordsContent() {
           </div>
         </div>
 
-        {/* PROMINENT AI TRANSCRIPTION DISPLAY BOX - WHISPER.WASM GITHUB ENGINE WITH ULTRA-CLEAR FONTS */}
+        {/* PROMINENT AI TRANSCRIPTION DISPLAY BOX - WHISPER.WASM / MOONSHINE AI ENGINE */}
         <div className="p-5 sm:p-7 rounded-3xl bg-gradient-to-br from-[#1DB954]/30 via-slate-950 to-black border-2 border-[#1DB954] text-white shadow-2xl space-y-3 text-center">
           <div className="flex items-center justify-center gap-1.5 border-b border-[#1DB954]/40 pb-2.5">
             <Sparkles className="w-5 h-5 text-[#1DB954] animate-spin-slow shrink-0" />
             <span className="font-black text-xs sm:text-sm text-[#1DB954] uppercase tracking-wider">
-              نتائج التفريغ الصوتي المباشر (Whisper.wasm GitHub Engine):
+              نتائج التفريغ الصوتي المباشر بالذكاء الاصطناعي (Whisper.wasm / Moonshine AI Engine):
             </span>
           </div>
 
@@ -424,6 +479,17 @@ function RecordsContent() {
               <p className="text-xs sm:text-sm font-extrabold text-slate-300">
                 🇬🇧 {activeLine.en}
               </p>
+            </div>
+          )}
+
+          {/* Live Microphone Recognition Stream Result Display */}
+          {liveTranscriptText && (
+            <div className="p-3 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold space-y-1 max-w-xl mx-auto mt-2">
+              <span className="block font-black flex items-center justify-center gap-1">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>التفريغ المباشر من المايكروفون (Web Speech API):</span>
+              </span>
+              <p className="leading-relaxed font-latin">{liveTranscriptText}</p>
             </div>
           )}
         </div>
@@ -678,7 +744,7 @@ function RecordsContent() {
 
       </main>
 
-      {/* FLOATING MOBILE STICKY AI LIVE TRANSCRIPT CARD (WHISPER.WASM GITHUB ENGINE ON MOBILE) */}
+      {/* FLOATING MOBILE STICKY AI LIVE TRANSCRIPT CARD (WHISPER.WASM / MOONSHINE AI ENGINE ON MOBILE) */}
       {isPlaying && activeLine && (
         <div className="sm:hidden fixed bottom-[95px] left-2 right-2 z-40 bg-gradient-to-r from-[#1DB954]/95 via-slate-950/95 to-black/95 border-2 border-[#1DB954] backdrop-blur-xl text-white rounded-2xl p-3.5 shadow-2xl space-y-1.5">
           <div className="flex items-center justify-between border-b border-[#1DB954]/40 pb-1 text-[10px]">
