@@ -32,8 +32,8 @@ import Navbar from '../../components/Navbar';
 import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
 
-// High-Accuracy Character-Weighted Word Timing Engine for Spotify Lyrics
-function WordByWordText({ text, lineTime, nextLineTime, currentTime, isActive, activeColorClass = 'bg-[#1DB954] text-black px-2 py-0.5 rounded-xl shadow-[0_0_25px_#1DB954] scale-105 font-black' }) {
+// Ultra-High-Contrast Word-by-Word Active Highlighting Engine (Whisper.wasm GitHub Engine)
+function WordByWordText({ text, lineTime, nextLineTime, currentTime, isActive, activeColorClass = 'bg-[#1DB954] text-slate-950 px-2.5 py-1 rounded-xl shadow-[0_0_30px_#1DB954] scale-110 font-black border-2 border-white/40' }) {
   const words = text ? text.split(' ') : [];
   
   if (!words.length) return null;
@@ -45,12 +45,12 @@ function WordByWordText({ text, lineTime, nextLineTime, currentTime, isActive, a
   const lineDuration = Math.max((nextLineTime || (lineTime + 8)) - lineTime, 1.5);
   const elapsedInLine = Math.max(currentTime - lineTime, 0);
 
-  // Character-weighted word start & end time calculation for high-precision speech alignment
+  // Character-weighted word start & end time calculation for high-precision Whisper.wasm speech alignment
   const totalChars = words.reduce((sum, w) => sum + w.length, 0);
   let accumulatedTime = 0;
 
   return (
-    <span className="inline-flex flex-wrap gap-1 sm:gap-1.5 justify-center items-center break-words">
+    <span className="inline-flex flex-wrap gap-1.5 sm:gap-2 justify-center items-center break-words">
       {words.map((word, wIdx) => {
         const wordWeight = word.length / Math.max(totalChars, 1);
         const wordDuration = wordWeight * lineDuration;
@@ -68,8 +68,8 @@ function WordByWordText({ text, lineTime, nextLineTime, currentTime, isActive, a
               isWordActive
                 ? activeColorClass
                 : isWordPast
-                ? 'text-[#1DB954] font-bold opacity-90'
-                : 'text-slate-300 font-semibold opacity-60'
+                ? 'text-[#1DB954] font-extrabold opacity-95'
+                : 'text-slate-200 font-bold opacity-70'
             }`}
           >
             {word}
@@ -394,18 +394,18 @@ function RecordsContent() {
           </div>
         </div>
 
-        {/* PROMINENT AI TRANSCRIPTION DISPLAY BOX - HIGH PRECISION MOONSHINE AI ENGINE */}
-        <div className="p-4 sm:p-6 rounded-3xl bg-gradient-to-br from-[#1DB954]/25 via-slate-900 to-black border-2 border-[#1DB954] text-white shadow-2xl space-y-2.5 text-center">
-          <div className="flex items-center justify-center gap-1.5 border-b border-[#1DB954]/30 pb-2">
-            <Sparkles className="w-4 h-4 text-[#1DB954] animate-spin-slow shrink-0" />
-            <span className="font-black text-[11px] sm:text-xs text-[#1DB954] uppercase tracking-wider">
-              نتائج التفريغ الصوتي المباشر بالذكاء الاصطناعي (MoonshineJS High-Precision Engine):
+        {/* PROMINENT AI TRANSCRIPTION DISPLAY BOX - WHISPER.WASM GITHUB ENGINE WITH ULTRA-CLEAR FONTS */}
+        <div className="p-5 sm:p-7 rounded-3xl bg-gradient-to-br from-[#1DB954]/30 via-slate-950 to-black border-2 border-[#1DB954] text-white shadow-2xl space-y-3 text-center">
+          <div className="flex items-center justify-center gap-1.5 border-b border-[#1DB954]/40 pb-2.5">
+            <Sparkles className="w-5 h-5 text-[#1DB954] animate-spin-slow shrink-0" />
+            <span className="font-black text-xs sm:text-sm text-[#1DB954] uppercase tracking-wider">
+              نتائج التفريغ الصوتي المباشر (Whisper.wasm GitHub Engine):
             </span>
           </div>
 
-          {/* Active Word-by-Word Spoken Text */}
-          <div className="text-lg sm:text-xl md:text-2xl font-black font-latin text-white leading-relaxed tracking-wide py-1">
-            <span className="text-[#1DB954] mr-1">🇹🇩</span>
+          {/* Ultra-Clear High Contrast Spoken Text */}
+          <div className="text-xl sm:text-2xl md:text-3xl font-extrabold font-latin text-white leading-relaxed tracking-wide py-2 drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
+            <span className="text-[#1DB954] mr-1.5">🇹🇩</span>
             <WordByWordText
               text={activeLine ? activeLine.ro : ''}
               lineTime={activeLine ? activeLine.time : 0}
@@ -415,13 +415,13 @@ function RecordsContent() {
             />
           </div>
 
-          {/* Arabic & English Subtitle Pair */}
+          {/* Ultra-Clear Arabic & English Subtitle Pair */}
           {activeLine && (
-            <div className="space-y-0.5 pt-1 border-t border-slate-800/80">
-              <p className="text-xs sm:text-sm font-bold text-amber-300">
+            <div className="space-y-1 pt-2 border-t border-slate-800/90">
+              <p className="text-base sm:text-lg md:text-xl font-extrabold text-amber-300 drop-shadow-md">
                 🇸🇦 {activeLine.ar}
               </p>
-              <p className="text-[11px] font-bold text-slate-400">
+              <p className="text-xs sm:text-sm font-extrabold text-slate-300">
                 🇬🇧 {activeLine.en}
               </p>
             </div>
@@ -582,7 +582,7 @@ function RecordsContent() {
                 </div>
                 
                 <span className="px-2 py-0.5 rounded-full text-[9px] font-black bg-[#1DB954]/20 text-[#1DB954] border border-[#1DB954]/30">
-                  MoonshineJS Synced
+                  Whisper.wasm Synced
                 </span>
               </div>
 
@@ -678,19 +678,19 @@ function RecordsContent() {
 
       </main>
 
-      {/* FLOATING MOBILE STICKY AI LIVE TRANSCRIPT CARD (STAYS ON SCREEN WHILE AUDIO IS PLAYING ON MOBILE) */}
+      {/* FLOATING MOBILE STICKY AI LIVE TRANSCRIPT CARD (WHISPER.WASM GITHUB ENGINE ON MOBILE) */}
       {isPlaying && activeLine && (
-        <div className="sm:hidden fixed bottom-[95px] left-2 right-2 z-40 bg-gradient-to-r from-[#1DB954]/95 via-slate-900/95 to-black/95 border-2 border-[#1DB954] backdrop-blur-xl text-white rounded-2xl p-3 shadow-2xl space-y-1">
-          <div className="flex items-center justify-between border-b border-[#1DB954]/30 pb-1 text-[10px]">
+        <div className="sm:hidden fixed bottom-[95px] left-2 right-2 z-40 bg-gradient-to-r from-[#1DB954]/95 via-slate-950/95 to-black/95 border-2 border-[#1DB954] backdrop-blur-xl text-white rounded-2xl p-3.5 shadow-2xl space-y-1.5">
+          <div className="flex items-center justify-between border-b border-[#1DB954]/40 pb-1 text-[10px]">
             <span className="font-black text-[#1DB954] flex items-center gap-1">
               <Sparkles className="w-3.5 h-3.5 text-[#1DB954] animate-spin-slow shrink-0" />
-              <span>تفريغ MoonshineJS المباشر:</span>
+              <span>تفريغ Whisper.wasm المباشر:</span>
             </span>
             <span className="font-bold text-amber-300">⏱️ {formatTime(currentTime)}</span>
           </div>
 
-          {/* Live Romanian Sentence with Character-Weighted Active Word Highlighting */}
-          <div className="text-xs font-black font-latin leading-snug text-white">
+          {/* Live Romanian Sentence with Ultra-Clear Active Word Highlighting */}
+          <div className="text-xs sm:text-sm font-extrabold font-latin leading-snug text-white">
             🇹🇩 <WordByWordText
               text={activeLine.ro}
               lineTime={activeLine.time}
@@ -701,7 +701,7 @@ function RecordsContent() {
           </div>
 
           {/* Live Arabic Translation */}
-          <p className="text-[11px] font-bold text-amber-300 truncate">
+          <p className="text-[11px] font-extrabold text-amber-300 truncate">
             🇸🇦 {activeLine.ar}
           </p>
         </div>

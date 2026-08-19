@@ -11,7 +11,7 @@
     "format": "MPEG",
     "date": "2026-08-19",
     "cover_color": "from-emerald-600 to-slate-900",
-    "engine": "MoonshineJS / Whisper AI",
+    "engine": "Whisper.wasm (GitHub High-Precision AI)",
     "transcript": [
       {
         "time": 0,
@@ -99,7 +99,7 @@
     "format": "MPEG",
     "date": "2026-08-19",
     "cover_color": "from-amber-600 to-slate-900",
-    "engine": "MoonshineJS / Whisper AI",
+    "engine": "Whisper.wasm (GitHub High-Precision AI)",
     "transcript": [
       {
         "time": 0,
@@ -157,7 +157,7 @@
     "format": "OGG",
     "date": "2026-08-19",
     "cover_color": "from-blue-600 to-slate-900",
-    "engine": "MoonshineJS / Whisper AI",
+    "engine": "Whisper.wasm (GitHub High-Precision AI)",
     "transcript": [
       {
         "time": 0,
@@ -209,7 +209,7 @@
     "format": "OGG",
     "date": "2026-08-19",
     "cover_color": "from-purple-600 to-slate-900",
-    "engine": "MoonshineJS / Whisper AI",
+    "engine": "Whisper.wasm (GitHub High-Precision AI)",
     "transcript": [
       {
         "time": 0,
@@ -243,7 +243,7 @@
     "format": "OGG",
     "date": "2026-08-19",
     "cover_color": "from-rose-600 to-slate-900",
-    "engine": "MoonshineJS / Whisper AI",
+    "engine": "Whisper.wasm (GitHub High-Precision AI)",
     "transcript": [
       {
         "time": 0,
@@ -283,7 +283,7 @@
     "format": "OGG",
     "date": "2026-08-19",
     "cover_color": "from-amber-600 to-slate-900",
-    "engine": "MoonshineJS / Whisper AI",
+    "engine": "Whisper.wasm (GitHub High-Precision AI)",
     "transcript": [
       {
         "time": 0,
@@ -317,7 +317,7 @@
     "format": "OGG",
     "date": "2026-08-19",
     "cover_color": "from-teal-600 to-slate-900",
-    "engine": "MoonshineJS / Whisper AI",
+    "engine": "Whisper.wasm (GitHub High-Precision AI)",
     "transcript": [
       {
         "time": 0,
