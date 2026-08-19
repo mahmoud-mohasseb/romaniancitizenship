@@ -520,19 +520,6 @@ function RecordsContent() {
 
           {/* SPOTIFY LYRICS & SYNCHRONIZED TRANSCRIPT PANEL (7 Cols) */}
           <div className="lg:col-span-7 space-y-2.5">
-            <div className="flex items-center justify-between px-1">
-              <div className="flex items-center gap-1.5">
-                <FileText className="w-3.5 h-3.5 text-[#1DB954]" />
-                <h2 className="text-xs font-black text-slate-300">
-                  {appLang === 'ar' ? 'التفريغ النصي المباشر للتسجيل (Transcript)' : 'Synchronized Transcript'}
-                </h2>
-              </div>
-              
-              <span className="px-2 py-0.5 rounded-full text-[9px] font-black bg-[#1DB954]/20 text-[#1DB954] border border-[#1DB954]/30">
-                Whisper.wasm Synced
-              </span>
-            </div>
-
             {/* Spotify Lyrics Box */}
             <div className="p-4 sm:p-5 rounded-3xl bg-[#181818] border border-slate-800 shadow-2xl space-y-3 min-h-[450px] flex flex-col justify-between">
               
