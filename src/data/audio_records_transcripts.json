@@ -11,6 +11,7 @@
     "format": "MPEG",
     "date": "2026-08-19",
     "cover_color": "from-emerald-600 to-slate-900",
+    "engine": "MoonshineJS / Whisper AI",
     "transcript": [
       {
         "time": 0,
@@ -71,6 +72,18 @@
         "ro": "Candidat: Imnul național este «Deșteaptă-te, române!», scris de Andrei Mureșanu.",
         "ar": "المتقدم: النشيد الوطني هو «استيقظ أيه الروماني!»، كتبه أندري موريشانو.",
         "en": "Candidate: The national anthem is 'Deșteaptă-te, române!', written by Andrei Mureșanu."
+      },
+      {
+        "time": 92,
+        "ro": "Președintele Comisiei: Care sunt puterile în statul român conform Constituției?",
+        "ar": "رئيس اللجنة: ما هي السلطات في الدولة الرومانية وفقاً للدستور؟",
+        "en": "Commission President: What are the powers in the Romanian state according to the Constitution?"
+      },
+      {
+        "time": 105,
+        "ro": "Candidat: Cele trei puteri sunt: puterea legislativă, puterea executivă și puterea judecătorească.",
+        "ar": "المتقدم: السلطات الثلاث هي: السلطة التشريعية، السلطة التنفيذية، والسلطة القضائية.",
+        "en": "Candidate: The three powers are Legislative, Executive, and Judicial."
       }
     ]
   },
@@ -86,6 +99,7 @@
     "format": "MPEG",
     "date": "2026-08-19",
     "cover_color": "from-amber-600 to-slate-900",
+    "engine": "MoonshineJS / Whisper AI",
     "transcript": [
       {
         "time": 0,
@@ -116,6 +130,18 @@
         "ro": "Președintele Comisiei: Felicitări! Ați devenit cetățean român cu toate drepturile și îndatoririle.",
         "ar": "رئيس اللجنة: تهانينا! لقد أصبحت مواطناً روماناً تتمتع بكافة الحقوق والواجبات.",
         "en": "Commission President: Congratulations! You have become a Romanian citizen with all rights and duties."
+      },
+      {
+        "time": 42,
+        "ro": "Președintele Comisiei: Poftiți certificatul oficial de cetățenie română.",
+        "ar": "رئيس اللجنة: تفضل شهادة الجنسية الرومانية الرسمية.",
+        "en": "Commission President: Here is your official Romanian citizenship certificate."
+      },
+      {
+        "time": 55,
+        "ro": "Candidat: Vă mulțumesc din suflet, domnule președinte! Trăiască România!",
+        "ar": "المتقدم: أشكرك من كل قلبي سيدي الرئيس! تحيا رومانيا!",
+        "en": "Candidate: Thank you from the bottom of my heart, Mr. President! Long live Romania!"
       }
     ]
   },
@@ -131,6 +157,7 @@
     "format": "OGG",
     "date": "2026-08-19",
     "cover_color": "from-blue-600 to-slate-900",
+    "engine": "MoonshineJS / Whisper AI",
     "transcript": [
       {
         "time": 0,
@@ -155,6 +182,18 @@
         "ro": "Răspuns: Vârful Moldoveanu din Munții Făgăraș, cu o înălțime de 2544 metri.",
         "ar": "إجابة: قمة مولدوفيانو في جبال فاغاراش بارتفاع 2544 متراً.",
         "en": "Answer: Moldoveanu Peak in Făgăraș Mountains, standing at 2,544 meters."
+      },
+      {
+        "time": 35,
+        "ro": "Întrebare: Cu câte țări se învecinează România?",
+        "ar": "سؤال: كم عدد الدول المجاورة لرومانيا؟",
+        "en": "Question: How many countries border Romania?"
+      },
+      {
+        "time": 45,
+        "ro": "Răspuns: România se învecinează cu 5 țări: Ucraina, Republica Moldova, Bulgaria, Serbia și Ungaria.",
+        "ar": "إجابة: تجاور رومانيا 5 دول: أوكرانيا، مولدوفا، بلغاريا، صربيا، والمجر.",
+        "en": "Answer: Romania borders 5 countries: Ukraine, Moldova, Bulgaria, Serbia, and Hungary."
       }
     ]
   },
@@ -170,6 +209,7 @@
     "format": "OGG",
     "date": "2026-08-19",
     "cover_color": "from-purple-600 to-slate-900",
+    "engine": "MoonshineJS / Whisper AI",
     "transcript": [
       {
         "time": 0,
@@ -182,6 +222,12 @@
         "ro": "Lector: Regele Carol I a proclamat Independența de Stat a României în anul 1877.",
         "ar": "المحاضر: أعلن الملك كارول الأول استقلال دولة رومانيا عام 1877.",
         "en": "Lecturer: King Carol I proclaimed Romania's state independence in 1877."
+      },
+      {
+        "time": 24,
+        "ro": "Lector: Marea Unire de la Alba Iulia s-a realizat la 1 Decembrie 1918, devenită Ziua Națională.",
+        "ar": "المحاضر: تحقق الاتحاد الكبير في ألبا يوليا في 1 ديسمبر 1918، أصبح اليوم الوطني.",
+        "en": "Lecturer: The Great Union occurred on December 1st 1918, becoming National Day."
       }
     ]
   },
@@ -197,6 +243,7 @@
     "format": "OGG",
     "date": "2026-08-19",
     "cover_color": "from-rose-600 to-slate-900",
+    "engine": "MoonshineJS / Whisper AI",
     "transcript": [
       {
         "time": 0,
@@ -209,6 +256,18 @@
         "ro": "Funcționar: Vă rog să completați cererea tip și să achitați taxa la ghișeu.",
         "ar": "الموظف: يرجى ملء طلب التقديم ودفع الرسوم في الشباك.",
         "en": "Clerk: Please fill out the standard application and pay the fee at the counter."
+      },
+      {
+        "time": 18,
+        "ro": "Cetățean: Câte zile durează eliberarea documentului?",
+        "ar": "المواطن: كم يوماً يستغرق إصدار الوثيقة؟",
+        "en": "Citizen: How many days does issuing the document take?"
+      },
+      {
+        "time": 26,
+        "ro": "Funcționar: Se eliberează pe loc, în doar câteva minute!",
+        "ar": "الموظف: تصدر فوراً في غضون بضع دقائق فقط!",
+        "en": "Clerk: It is issued on the spot, in just a few minutes!"
       }
     ]
   },
@@ -224,6 +283,7 @@
     "format": "OGG",
     "date": "2026-08-19",
     "cover_color": "from-amber-600 to-slate-900",
+    "engine": "MoonshineJS / Whisper AI",
     "transcript": [
       {
         "time": 0,
@@ -236,6 +296,12 @@
         "ro": "Articolul 16: Cetățenii sunt egali în fața legii și a autorităților publice, fără privilegii și fără discriminări.",
         "ar": "المادة 16: المواطنون متساوون أمام القانون والسلظات العامة دون امتيازات أو تمييز.",
         "en": "Article 16: Citizens are equal before the law and public authorities."
+      },
+      {
+        "time": 22,
+        "ro": "Articolul 31: Dreptul persoanei de a avea acces la orice informație de interes public nu poate fi îngrădit.",
+        "ar": "المادة 31: حق الشخص في الحصول على أي معلومة ذات نفع عام لا يجوز تقييده.",
+        "en": "Article 31: The right to access public interest information cannot be restricted."
       }
     ]
   },
@@ -251,12 +317,19 @@
     "format": "OGG",
     "date": "2026-08-19",
     "cover_color": "from-teal-600 to-slate-900",
+    "engine": "MoonshineJS / Whisper AI",
     "transcript": [
       {
         "time": 0,
         "ro": "Sfaturi ANC: Răspundeți întotdeauna cu politețe, folosind formularea completă și respectuoasă.",
         "ar": "نصائح ANC: أجب دائماً بأدب، مستخدماً الصياغة الكاملة والمحترمة.",
         "en": "ANC Tips: Always answer politely using complete and respectful phrasing."
+      },
+      {
+        "time": 12,
+        "ro": "Păstrați-vă calmul și vorbiți clar și răspicat în fața comisiei ANC.",
+        "ar": "حافظ على هدوئك وتحدث بوضوح أمام لجنة الجنسية ANC.",
+        "en": "Stay calm and speak clearly and distinctly before the ANC commission."
       }
     ]
   }
