@@ -24,8 +24,7 @@ import {
   ListMusic, 
   Clock, 
   Download,
-  List,
-  X
+  List
 } from 'lucide-react';
 import recordsData from '../../data/audio_records_transcripts.json';
 import Navbar from '../../components/Navbar';
@@ -101,12 +100,8 @@ function RecordsContent() {
   const [isTranscribingLive, setIsTranscribingLive] = useState(false);
   const [liveTranscriptText, setLiveTranscriptText] = useState('');
 
-  // Mode: 'spotify_lyrics' (Default Spotify Lyrics View) vs 'split' (Tracklist View)
-  const [viewMode, setViewMode] = useState('spotify_lyrics');
-
   const audioRef = useRef(null);
   const activeLineRef = useRef(null);
-  const lyricsContainerRef = useRef(null);
 
   const currentTrack = recordsData[currentTrackIndex] || recordsData[0];
 
@@ -280,7 +275,7 @@ function RecordsContent() {
   const activeLine = currentTrack.transcript[activeLineIndex] || currentTrack.transcript[0];
   const nextLine = currentTrack.transcript[activeLineIndex + 1];
 
-  // Auto scroll active transcript line into center view (Spotify Style)
+  // Auto scroll active transcript line into center view
   useEffect(() => {
     if (activeLineRef.current && isPlaying) {
       activeLineRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -327,7 +322,7 @@ function RecordsContent() {
         isRtl ? 'lg:mr-72' : 'lg:ml-72'
       } ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
 
-        {/* Top Header: Back Link + View Switcher */}
+        {/* Top Header: Back Link */}
         <div className="flex items-center justify-between gap-2">
           <Link
             href="/"
@@ -336,35 +331,6 @@ function RecordsContent() {
             <ArrowLeft className={`w-3.5 h-3.5 ${isRtl ? 'rotate-180' : ''}`} />
             <span>{appLang === 'ar' ? 'الرئيسية 🏠' : 'Home'}</span>
           </Link>
-
-          {/* Mobile Friendly View Mode Switcher */}
-          <div className="flex items-center gap-1 bg-[#181818] p-1 rounded-2xl border border-slate-800">
-            <button
-              type="button"
-              onClick={() => setViewMode('spotify_lyrics')}
-              className={`px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-xl text-[11px] sm:text-xs font-black transition-all flex items-center gap-1 ${
-                viewMode === 'spotify_lyrics'
-                  ? 'bg-[#1DB954] text-black shadow-lg shadow-[#1DB954]/20'
-                  : 'text-slate-400 hover:text-white'
-              }`}
-            >
-              <Mic className="w-3.5 h-3.5" />
-              <span>{appLang === 'ar' ? 'الكلمات 🎤' : 'Lyrics 🎤'}</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setViewMode('split')}
-              className={`px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-xl text-[11px] sm:text-xs font-black transition-all flex items-center gap-1 ${
-                viewMode === 'split'
-                  ? 'bg-[#1DB954] text-black shadow-lg shadow-[#1DB954]/20'
-                  : 'text-slate-400 hover:text-white'
-              }`}
-            >
-              <List className="w-3.5 h-3.5" />
-              <span>{appLang === 'ar' ? 'القائمة 📋' : 'Tracks 📋'}</span>
-            </button>
-          </div>
         </div>
 
         {/* SPOTIFY HERO CARD - MOBILE OPTIMIZED */}
@@ -494,253 +460,170 @@ function RecordsContent() {
           )}
         </div>
 
-        {/* 1:1 SPOTIFY KARAOKE LYRICS VIEW - MOBILE FRIENDLY */}
-        {viewMode === 'spotify_lyrics' ? (
-          <div className="relative rounded-3xl p-4 sm:p-7 overflow-hidden bg-gradient-to-b from-[#1DB954]/15 via-[#121212] to-black border border-[#1DB954]/30 shadow-2xl space-y-3">
-            
-            {/* Header info bar */}
-            <div className="flex items-center justify-between border-b border-slate-800/80 pb-2.5 text-xs">
-              <div className="flex items-center gap-1.5">
-                <Mic className="w-4 h-4 text-[#1DB954]" />
-                <h2 className="font-black text-[#1DB954]">
-                  {appLang === 'ar' ? 'كلمات وتفريغ التسجيل (Spotify Lyrics)' : 'Synchronized Lyrics'}
-                </h2>
-              </div>
+        {/* MAIN DISPLAY GRID: TRACK LIST (LEFT) + SYNCHRONIZED TRANSCRIPT (RIGHT) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
 
-              <span className="font-bold text-slate-400 text-[11px]">
-                ⏱️ {formatTime(currentTime)} / {formatTime(duration)}
-              </span>
+          {/* SPOTIFY TRACK LIST (5 Cols) */}
+          <div className="lg:col-span-5 space-y-2.5">
+            <div className="flex items-center justify-between px-1">
+              <h2 className="text-xs font-black text-slate-300 flex items-center gap-1.5">
+                <ListMusic className="w-3.5 h-3.5 text-[#1DB954]" />
+                <span>قائمة التسجيلات الصوتية ({filteredTracks.length})</span>
+              </h2>
+              <span className="text-[10px] text-slate-500 font-bold">.mpeg / .ogg</span>
             </div>
 
-            {/* Karaoke Lyrics Scrolling Box */}
-            <div 
-              ref={lyricsContainerRef}
-              className="space-y-4 max-h-[460px] overflow-y-auto px-1 py-4 custom-scrollbar text-center flex flex-col items-center"
-            >
-              {currentTrack.transcript.map((line, idx) => {
-                const isActive = idx === activeLineIndex;
-
-                let lineStyle = 'opacity-40 text-slate-400 scale-95 hover:opacity-80';
-                if (isActive) {
-                  lineStyle = 'opacity-100 text-white scale-105 my-3 drop-shadow-[0_0_25px_rgba(29,185,84,0.8)]';
-                }
+            <div className="space-y-2 max-h-[500px] overflow-y-auto pr-1">
+              {filteredTracks.map((track) => {
+                const trackOriginalIndex = recordsData.findIndex(t => t.id === track.id);
+                const isSelected = trackOriginalIndex === currentTrackIndex;
 
                 return (
                   <div
-                    key={idx}
-                    ref={isActive ? activeLineRef : null}
-                    onClick={() => jumpToTimestamp(line.time)}
-                    className={`transition-all duration-500 cursor-pointer space-y-1.5 w-full max-w-xl px-4 py-3 sm:px-6 sm:py-4 rounded-2xl ${
-                      isActive ? 'bg-[#1DB954]/20 border-2 border-[#1DB954] shadow-2xl' : 'hover:bg-slate-900/40'
-                    } ${lineStyle}`}
+                    key={track.id}
+                    onClick={() => handleSelectTrack(trackOriginalIndex)}
+                    className={`p-3 rounded-2xl border transition-all cursor-pointer flex items-center justify-between gap-2.5 ${
+                      isSelected
+                        ? 'bg-[#1DB954]/15 border-[#1DB954] text-white shadow-lg'
+                        : 'bg-[#181818] border-slate-800/80 hover:bg-slate-800/60 text-slate-300'
+                    }`}
                   >
-                    {/* Timestamp Badge */}
-                    <div className="flex items-center justify-center gap-1">
-                      <span className={`px-2.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-black border ${
-                        isActive ? 'bg-[#1DB954] text-black border-[#1DB954]' : 'bg-slate-800 text-slate-400 border-slate-700'
-                      }`}>
-                        ⏱️ {formatTime(line.time)}
+                    <div className="flex items-center gap-2.5 flex-1 min-w-0">
+                      <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${track.cover_color} flex items-center justify-center shrink-0 border border-white/10`}>
+                        {isSelected && isPlaying ? (
+                          <Volume2 className="w-4 h-4 text-[#1DB954] animate-pulse" />
+                        ) : (
+                          <Music className="w-4 h-4 text-white/80" />
+                        )}
+                      </div>
+
+                      <div className="space-y-0.5 truncate">
+                        <h3 className={`text-xs font-black truncate font-latin ${isSelected ? 'text-[#1DB954]' : 'text-white'}`}>
+                          {track.title_ro}
+                        </h3>
+                        <p className="text-[10px] font-bold text-amber-400/90 truncate">
+                          {track.title_ar}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      <span className="text-[9px] font-bold text-slate-400 bg-slate-900 px-1.5 py-0.5 rounded-lg border border-slate-800">
+                        {track.duration}
                       </span>
+                      <button
+                        type="button"
+                        className={`w-7 h-7 rounded-full flex items-center justify-center transition-all ${
+                          isSelected ? 'bg-[#1DB954] text-black' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                        }`}
+                      >
+                        {isSelected && isPlaying ? (
+                          <Pause className="w-3.5 h-3.5 fill-current" />
+                        ) : (
+                          <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
+                        )}
+                      </button>
                     </div>
-
-                    {/* Main Romanian Sentence */}
-                    <div className={`font-black leading-relaxed font-latin ${
-                      isActive ? 'text-base sm:text-lg md:text-xl text-white tracking-wide' : 'text-xs sm:text-sm text-slate-300'
-                    }`}>
-                      🇹🇩 {line.ro}
-                    </div>
-
-                    {/* Arabic Translation */}
-                    <p className={`font-bold leading-snug ${
-                      isActive ? 'text-xs sm:text-sm text-amber-300' : 'text-[11px] text-amber-400/70'
-                    }`}>
-                      🇸🇦 {line.ar}
-                    </p>
-
-                    {/* English Translation */}
-                    <p className="text-[10px] sm:text-xs font-bold text-slate-400 leading-snug">
-                      🇬🇧 {line.en}
-                    </p>
                   </div>
                 );
               })}
             </div>
           </div>
-        ) : (
-          /* SPLIT MAIN DISPLAY GRID: TRACK LIST (LEFT) + SYNCHRONIZED TRANSCRIPT (RIGHT) */
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
 
-            {/* SPOTIFY TRACK LIST (5 Cols) */}
-            <div className="lg:col-span-5 space-y-2.5">
-              <div className="flex items-center justify-between px-1">
-                <h2 className="text-xs font-black text-slate-300 flex items-center gap-1.5">
-                  <ListMusic className="w-3.5 h-3.5 text-[#1DB954]" />
-                  <span>قائمة التسجيلات الصوتية ({filteredTracks.length})</span>
+          {/* SPOTIFY LYRICS & SYNCHRONIZED TRANSCRIPT PANEL (7 Cols) */}
+          <div className="lg:col-span-7 space-y-2.5">
+            <div className="flex items-center justify-between px-1">
+              <div className="flex items-center gap-1.5">
+                <FileText className="w-3.5 h-3.5 text-[#1DB954]" />
+                <h2 className="text-xs font-black text-slate-300">
+                  {appLang === 'ar' ? 'التفريغ النصي المباشر للتسجيل (Transcript)' : 'Synchronized Transcript'}
                 </h2>
-                <span className="text-[10px] text-slate-500 font-bold">.mpeg / .ogg</span>
               </div>
+              
+              <span className="px-2 py-0.5 rounded-full text-[9px] font-black bg-[#1DB954]/20 text-[#1DB954] border border-[#1DB954]/30">
+                Whisper.wasm Synced
+              </span>
+            </div>
 
-              <div className="space-y-2 max-h-[500px] overflow-y-auto pr-1">
-                {filteredTracks.map((track) => {
-                  const trackOriginalIndex = recordsData.findIndex(t => t.id === track.id);
-                  const isSelected = trackOriginalIndex === currentTrackIndex;
+            {/* Spotify Lyrics Box */}
+            <div className="p-4 sm:p-5 rounded-3xl bg-[#181818] border border-slate-800 shadow-2xl space-y-3 min-h-[450px] flex flex-col justify-between">
+              
+              {/* Transcript Lines Scroll Area */}
+              <div className="space-y-3 max-h-[400px] overflow-y-auto pr-1 custom-scrollbar">
+                {currentTrack.transcript.map((line, idx) => {
+                  const isActive = idx === activeLineIndex;
 
                   return (
                     <div
-                      key={track.id}
-                      onClick={() => handleSelectTrack(trackOriginalIndex)}
-                      className={`p-3 rounded-2xl border transition-all cursor-pointer flex items-center justify-between gap-2.5 ${
-                        isSelected
-                          ? 'bg-[#1DB954]/15 border-[#1DB954] text-white shadow-lg'
-                          : 'bg-[#181818] border-slate-800/80 hover:bg-slate-800/60 text-slate-300'
+                      key={idx}
+                      ref={isActive ? activeLineRef : null}
+                      onClick={() => jumpToTimestamp(line.time)}
+                      className={`p-3 sm:p-4 rounded-2xl border transition-all cursor-pointer space-y-1 ${
+                        isActive
+                          ? 'bg-gradient-to-r from-[#1DB954]/25 via-slate-800 to-[#181818] border-[#1DB954] text-white shadow-xl scale-[1.01]'
+                          : 'bg-slate-900/60 border-slate-800/80 hover:bg-slate-800/60 text-slate-300 opacity-80 hover:opacity-100'
                       }`}
                     >
-                      <div className="flex items-center gap-2.5 flex-1 min-w-0">
-                        <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${track.cover_color} flex items-center justify-center shrink-0 border border-white/10`}>
-                          {isSelected && isPlaying ? (
-                            <Volume2 className="w-4 h-4 text-[#1DB954] animate-pulse" />
-                          ) : (
-                            <Music className="w-4 h-4 text-white/80" />
-                          )}
-                        </div>
-
-                        <div className="space-y-0.5 truncate">
-                          <h3 className={`text-xs font-black truncate font-latin ${isSelected ? 'text-[#1DB954]' : 'text-white'}`}>
-                            {track.title_ro}
-                          </h3>
-                          <p className="text-[10px] font-bold text-amber-400/90 truncate">
-                            {track.title_ar}
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-1.5 shrink-0">
-                        <span className="text-[9px] font-bold text-slate-400 bg-slate-900 px-1.5 py-0.5 rounded-lg border border-slate-800">
-                          {track.duration}
-                        </span>
+                      <div className="flex items-center justify-between gap-2">
                         <button
                           type="button"
-                          className={`w-7 h-7 rounded-full flex items-center justify-center transition-all ${
-                            isSelected ? 'bg-[#1DB954] text-black' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            jumpToTimestamp(line.time);
+                          }}
+                          className={`px-2 py-0.5 rounded-lg text-[9px] font-black border transition-all flex items-center gap-1 ${
+                            isActive ? 'bg-[#1DB954] text-black border-[#1DB954]' : 'bg-slate-800 text-slate-400 border-slate-700'
                           }`}
                         >
-                          {isSelected && isPlaying ? (
-                            <Pause className="w-3.5 h-3.5 fill-current" />
-                          ) : (
-                            <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-                          )}
+                          <Clock className="w-2.5 h-2.5" />
+                          <span>{formatTime(line.time)}</span>
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            copyToClipboard(`${line.ro}\n${line.ar}`, idx);
+                          }}
+                          className="p-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 transition-colors"
+                          title="Copy text"
+                        >
+                          {copiedLineIdx === idx ? <Check className="w-3 h-3 text-[#1DB954]" /> : <Copy className="w-3 h-3" />}
                         </button>
                       </div>
+
+                      {/* Romanian Text with Spotify Lyrics Font */}
+                      <p className={`text-xs sm:text-base font-black font-latin leading-relaxed ${
+                        isActive ? 'text-[#1DB954]' : 'text-white'
+                      }`}>
+                        🇹🇩 {line.ro}
+                      </p>
+
+                      {/* Arabic Translation */}
+                      <p className="text-xs font-bold text-amber-300 leading-snug">
+                        🇸🇦 {line.ar}
+                      </p>
+
+                      {/* English Translation */}
+                      <p className="text-[10px] font-bold text-slate-400 leading-snug">
+                        🇬🇧 {line.en}
+                      </p>
                     </div>
                   );
                 })}
               </div>
-            </div>
 
-            {/* SPOTIFY LYRICS & SYNCHRONIZED TRANSCRIPT PANEL (7 Cols) */}
-            <div className="lg:col-span-7 space-y-2.5">
-              <div className="flex items-center justify-between px-1">
-                <div className="flex items-center gap-1.5">
-                  <FileText className="w-3.5 h-3.5 text-[#1DB954]" />
-                  <h2 className="text-xs font-black text-slate-300">
-                    {appLang === 'ar' ? 'التفريغ النصي المباشر للتسجيل (Transcript)' : 'Synchronized Transcript'}
-                  </h2>
-                </div>
-                
-                <span className="px-2 py-0.5 rounded-full text-[9px] font-black bg-[#1DB954]/20 text-[#1DB954] border border-[#1DB954]/30">
-                  Whisper.wasm Synced
+              {/* Bottom Info Bar */}
+              <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400 font-bold">
+                <span className="flex items-center gap-1">
+                  <Mic className="w-3 h-3 text-[#1DB954]" />
+                  <span>اضغط على أي سطر للانتقال المباشر للنقطة الزمنية</span>
                 </span>
               </div>
-
-              {/* Spotify Lyrics Box */}
-              <div className="p-4 sm:p-5 rounded-3xl bg-[#181818] border border-slate-800 shadow-2xl space-y-3 min-h-[450px] flex flex-col justify-between">
-                
-                {/* Transcript Lines Scroll Area */}
-                <div className="space-y-3 max-h-[400px] overflow-y-auto pr-1 custom-scrollbar">
-                  {currentTrack.transcript.map((line, idx) => {
-                    const isActive = idx === activeLineIndex;
-
-                    return (
-                      <div
-                        key={idx}
-                        ref={isActive ? activeLineRef : null}
-                        onClick={() => jumpToTimestamp(line.time)}
-                        className={`p-3 sm:p-4 rounded-2xl border transition-all cursor-pointer space-y-1 ${
-                          isActive
-                            ? 'bg-gradient-to-r from-[#1DB954]/25 via-slate-800 to-[#181818] border-[#1DB954] text-white shadow-xl scale-[1.01]'
-                            : 'bg-slate-900/60 border-slate-800/80 hover:bg-slate-800/60 text-slate-300 opacity-80 hover:opacity-100'
-                        }`}
-                      >
-                        <div className="flex items-center justify-between gap-2">
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              jumpToTimestamp(line.time);
-                            }}
-                            className={`px-2 py-0.5 rounded-lg text-[9px] font-black border transition-all flex items-center gap-1 ${
-                              isActive ? 'bg-[#1DB954] text-black border-[#1DB954]' : 'bg-slate-800 text-slate-400 border-slate-700'
-                            }`}
-                          >
-                            <Clock className="w-2.5 h-2.5" />
-                            <span>{formatTime(line.time)}</span>
-                          </button>
-
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              copyToClipboard(`${line.ro}\n${line.ar}`, idx);
-                            }}
-                            className="p-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 transition-colors"
-                            title="Copy text"
-                          >
-                            {copiedLineIdx === idx ? <Check className="w-3 h-3 text-[#1DB954]" /> : <Copy className="w-3 h-3" />}
-                          </button>
-                        </div>
-
-                        {/* Romanian Text with Spotify Lyrics Font */}
-                        <p className={`text-xs sm:text-base font-black font-latin leading-relaxed ${
-                          isActive ? 'text-[#1DB954]' : 'text-white'
-                        }`}>
-                          🇹🇩 {line.ro}
-                        </p>
-
-                        {/* Arabic Translation */}
-                        <p className="text-xs font-bold text-amber-300 leading-snug">
-                          🇸🇦 {line.ar}
-                        </p>
-
-                        {/* English Translation */}
-                        <p className="text-[10px] font-bold text-slate-400 leading-snug">
-                          🇬🇧 {line.en}
-                        </p>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                {/* Bottom Info Bar */}
-                <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400 font-bold">
-                  <span className="flex items-center gap-1">
-                    <Mic className="w-3 h-3 text-[#1DB954]" />
-                    <span>اضغط على أي سطر للانتقال المباشر</span>
-                  </span>
-
-                  <button
-                    type="button"
-                    onClick={() => setViewMode('spotify_lyrics')}
-                    className="px-2.5 py-1 rounded-xl bg-[#1DB954] text-black font-black text-[10px] flex items-center gap-1 hover:bg-[#1ed760] transition-colors shadow-md"
-                  >
-                    <Mic className="w-3 h-3" />
-                    <span>الكلمات 🎤</span>
-                  </button>
-                </div>
-              </div>
             </div>
-
           </div>
-        )}
+
+        </div>
 
       </main>
 
@@ -777,7 +660,7 @@ function RecordsContent() {
       <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#181818]/95 backdrop-blur-md border-t border-slate-800 px-3 py-2.5 shadow-2xl">
         <div className="max-w-5xl mx-auto space-y-1.5">
 
-          {/* Row 1: Track Info + Play Controls + Lyrics Toggle */}
+          {/* Row 1: Track Info + Play Controls */}
           <div className="flex items-center justify-between gap-2">
             {/* Track Info (Left) */}
             <div className="flex items-center gap-2.5 min-w-0 flex-1">
@@ -825,22 +708,8 @@ function RecordsContent() {
               </button>
             </div>
 
-            {/* Right Lyrics Mode Button & Volume Slider */}
+            {/* Right Volume Slider */}
             <div className="flex items-center gap-2 shrink-0">
-              <button
-                type="button"
-                onClick={() => setViewMode(viewMode === 'spotify_lyrics' ? 'split' : 'spotify_lyrics')}
-                className={`p-1.5 rounded-xl border text-[11px] font-black flex items-center gap-1 transition-all ${
-                  viewMode === 'spotify_lyrics' 
-                    ? 'bg-[#1DB954] text-black border-[#1DB954] shadow-md' 
-                    : 'bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700'
-                }`}
-                title="Toggle Lyrics"
-              >
-                <Mic className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Lyrics 🎤</span>
-              </button>
-
               <div className="hidden md:flex items-center gap-1.5">
                 <button
                   type="button"
