@@ -1,0 +1,263 @@
+[
+  {
+    "id": "record-1",
+    "title_ro": "Ședință Oficială ANC - Interviu Cetățenie (Partea 1)",
+    "title_ar": "الجلسة الرسمية لمقابلة الجنسية ANC - الجزء الأول",
+    "title_en": "Official ANC Citizenship Interview Recording (Part 1)",
+    "category": "Interviu ANC",
+    "duration": "14:25",
+    "src": "/audio/record_1_interview.mpeg",
+    "fallback_src": "/audio/WhatsApp Audio 2026-08-19 at 5.32.29 PM.mpeg",
+    "format": "MPEG",
+    "date": "2026-08-19",
+    "cover_color": "from-emerald-600 to-slate-900",
+    "transcript": [
+      {
+        "time": 0,
+        "ro": "Președintele Comisiei: Bună ziua! Vă rog să luați loc și să prezentați actul de identitate.",
+        "ar": "رئيس اللجنة: نهارك سعيد! تفضل بالجلوس وقدم وثيقة إثبات الشخصية.",
+        "en": "Commission President: Good day! Please take a seat and present your ID."
+      },
+      {
+        "time": 8,
+        "ro": "Candidat: Bună ziua, domnule președinte! Poftiți pașaportul și permisul de ședere.",
+        "ar": "المتقدم: نهارك سعيد سيدي الرئيس! تفضل جواز السفر وتصريح الإقامة.",
+        "en": "Candidate: Good day, Mr. President! Here is my passport and residence permit."
+      },
+      {
+        "time": 16,
+        "ro": "Președintele Comisiei: Vă rog să rostiți numele complet și data nașterii pentru procesul-verbal.",
+        "ar": "رئيس اللجنة: يرجى نطق اسمك بالكامل وتاريخ ميلادك من أجل المحضر الرسمي.",
+        "en": "Commission President: Please state your full name and date of birth for the record."
+      },
+      {
+        "time": 25,
+        "ro": "Candidat: Mă numesc Mahmoud Mohasseb, născut la data de 15 martie.",
+        "ar": "المتقدم: اسمي محمود محاسب، مولود بتاريخ 15 مارس.",
+        "en": "Candidate: My name is Mahmoud Mohasseb, born on March 15th."
+      },
+      {
+        "time": 34,
+        "ro": "Președintele Comisiei: De cât timp locuiți în România și cu ce vă ocupați?",
+        "ar": "رئيس اللجنة: منذ متى تقيم في رومانيا وما هو عملك؟",
+        "en": "Commission President: How long have you lived in Romania and what is your occupation?"
+      },
+      {
+        "time": 42,
+        "ro": "Candidat: Locuiesc în România de peste 8 ani și lucrez ca inginer software în București.",
+        "ar": "المتقدم: أعيش في رومانيا منذ أكثر من 8 سنوات وأعمل كمهندس برمجيات في بوخارست.",
+        "en": "Candidate: I have been living in Romania for over 8 years and work as a software engineer in Bucharest."
+      },
+      {
+        "time": 52,
+        "ro": "Președintele Comisiei: Care sunt culorile drapelului național al României și ce simbolizează ele?",
+        "ar": "رئيس اللجنة: ما هي ألوان العلم الوطني لرومانيا وماذا تمثل؟",
+        "en": "Commission President: What are the colors of the Romanian national flag and what do they symbolize?"
+      },
+      {
+        "time": 62,
+        "ro": "Candidat: Culorile drapelului sunt roșu, galben și albastru, așezate vertical.",
+        "ar": "المتقدم: ألوان العلم هي الأحمر والأصفر والأزرق، مرتبة عمودياً.",
+        "en": "Candidate: The colors of the flag are red, yellow, and blue, arranged vertically."
+      },
+      {
+        "time": 72,
+        "ro": "Președintele Comisiei: Excelent! Care este imnul național al României?",
+        "ar": "رئيس اللجنة: ممتاز! ما هو النشيد الوطني لرومانيا؟",
+        "en": "Commission President: Excellent! What is the national anthem of Romania?"
+      },
+      {
+        "time": 80,
+        "ro": "Candidat: Imnul național este «Deșteaptă-te, române!», scris de Andrei Mureșanu.",
+        "ar": "المتقدم: النشيد الوطني هو «استيقظ أيه الروماني!»، كتبه أندري موريشانو.",
+        "en": "Candidate: The national anthem is 'Deșteaptă-te, române!', written by Andrei Mureșanu."
+      }
+    ]
+  },
+  {
+    "id": "record-2",
+    "title_ro": "Depunerea Jurământului de Credință ANC (Partea 2)",
+    "title_ar": "أداء قسم اليمين والولاء لرومانيا ANC - الجزء الثاني",
+    "title_en": "Official ANC Oath of Allegiance Recitation (Part 2)",
+    "category": "Jurământ ANC",
+    "duration": "12:10",
+    "src": "/audio/record_2_oath.mpeg",
+    "fallback_src": "/audio/WhatsApp Audio 2026-08-19 at 5.32.46 PM.mpeg",
+    "format": "MPEG",
+    "date": "2026-08-19",
+    "cover_color": "from-amber-600 to-slate-900",
+    "transcript": [
+      {
+        "time": 0,
+        "ro": "Președintele Comisiei: Ridicați mâna dreaptă și rostiți clar textul jurământului de credință.",
+        "ar": "رئيس اللجنة: ارفع يدك اليمنى وانطق بوضوح نص قسم الولاء.",
+        "en": "Commission President: Raise your right hand and clearly recite the oath of allegiance."
+      },
+      {
+        "time": 7,
+        "ro": "Candidat: Jur să fiu devotat patriei și poporului român,",
+        "ar": "المتقدم: أقسم أن أكون مخلصاً للوطن وللشعب الروماني،",
+        "en": "Candidate: I swear to be devoted to the homeland and the Romanian people,"
+      },
+      {
+        "time": 15,
+        "ro": "Candidat: să apăr drepturile și interesele naționale,",
+        "ar": "المتقدم: وأن أدافع عن الحقوق والمصالح الوطنية،",
+        "en": "Candidate: to defend national rights and interests,"
+      },
+      {
+        "time": 22,
+        "ro": "Candidat: să respect Constituția și legile României.",
+        "ar": "المتقدم: وأن أحترم دستور وقوانين رومانيا.",
+        "en": "Candidate: to respect the Constitution and laws of Romania."
+      },
+      {
+        "time": 30,
+        "ro": "Președintele Comisiei: Felicitări! Ați devenit cetățean român cu toate drepturile și îndatoririle.",
+        "ar": "رئيس اللجنة: تهانينا! لقد أصبحت مواطناً روماناً تتمتع بكافة الحقوق والواجبات.",
+        "en": "Commission President: Congratulations! You have become a Romanian citizen with all rights and duties."
+      }
+    ]
+  },
+  {
+    "id": "record-3",
+    "title_ro": "Întrebări și Răspunsuri de Istorie și Geografie",
+    "title_ar": "أسئلة وإجابات التاريخ والجغرافيا الرومانية",
+    "title_en": "History & Geography Q&A Audio Drill",
+    "category": "Istorie & Geografie",
+    "duration": "03:45",
+    "src": "/audio/record_3_questions.ogg",
+    "fallback_src": "/audio/WhatsApp Audio 2026-08-19 at 5.49.34 PM.ogg",
+    "format": "OGG",
+    "date": "2026-08-19",
+    "cover_color": "from-blue-600 to-slate-900",
+    "transcript": [
+      {
+        "time": 0,
+        "ro": "Întrebare: Care este cel mai lung fluviu din România?",
+        "ar": "سؤال: ما هو أطول نهر في رومانيا؟",
+        "en": "Question: What is the longest river in Romania?"
+      },
+      {
+        "time": 6,
+        "ro": "Răspuns: Dunărea este cel mai important fluviu, formând granița de sud a țării.",
+        "ar": "إجابة: نهر دانوب هو أهم نهر وشريان، ويشكل الحدود الجنوبية للبلاد.",
+        "en": "Answer: The Danube is the most important river, forming the southern border."
+      },
+      {
+        "time": 14,
+        "ro": "Întrebare: Care este cel mai înalt vârf muntos din România?",
+        "ar": "سؤال: ما هي أعلى قمة جبلية في رومانيا؟",
+        "en": "Question: What is the highest mountain peak in Romania?"
+      },
+      {
+        "time": 22,
+        "ro": "Răspuns: Vârful Moldoveanu din Munții Făgăraș, cu o înălțime de 2544 metri.",
+        "ar": "إجابة: قمة مولدوفيانو في جبال فاغاراش بارتفاع 2544 متراً.",
+        "en": "Answer: Moldoveanu Peak in Făgăraș Mountains, standing at 2,544 meters."
+      }
+    ]
+  },
+  {
+    "id": "record-4",
+    "title_ro": "Lecție Audio - Domnitori și Eroi Naționali",
+    "title_ar": "درس صوتي - الحكام والأبطال القوميون لرومانيا",
+    "title_en": "Audio Lesson - National Heroes & Rulers",
+    "category": "Eroi Naționali",
+    "duration": "02:50",
+    "src": "/audio/record_4_history.ogg",
+    "fallback_src": "/audio/WhatsApp Audio 2026-08-19 at 5.49.35 PM.ogg",
+    "format": "OGG",
+    "date": "2026-08-19",
+    "cover_color": "from-purple-600 to-slate-900",
+    "transcript": [
+      {
+        "time": 0,
+        "ro": "Lector: Alexandru Ioan Cuza a înfăptuit Mica Unire a Moldovei cu Țara Românească la 24 Ianuarie 1859.",
+        "ar": "المحاضر: أنجز ألكسندر إيوان كوزا الاتحاد الصغير بين مولدوفا والوالشيا في 24 يناير 1859.",
+        "en": "Lecturer: Alexandru Ioan Cuza accomplished the Little Union in 1859."
+      },
+      {
+        "time": 12,
+        "ro": "Lector: Regele Carol I a proclamat Independența de Stat a României în anul 1877.",
+        "ar": "المحاضر: أعلن الملك كارول الأول استقلال دولة رومانيا عام 1877.",
+        "en": "Lecturer: King Carol I proclaimed Romania's state independence in 1877."
+      }
+    ]
+  },
+  {
+    "id": "record-5",
+    "title_ro": "Dialog Practic - La Primărie și Administrație",
+    "title_ar": "حوار عملي - في البلدية والإدارة المحلية",
+    "title_en": "Practical Dialogue - Town Hall & Civic Office",
+    "category": "Dialoguri Practice",
+    "duration": "04:15",
+    "src": "/audio/record_5_dialogue.ogg",
+    "fallback_src": "/audio/WhatsApp Audio 2026-08-19 at 5.49.36 PM.ogg",
+    "format": "OGG",
+    "date": "2026-08-19",
+    "cover_color": "from-rose-600 to-slate-900",
+    "transcript": [
+      {
+        "time": 0,
+        "ro": "Cetățean: Bună ziua! Doresc să eliberez un certificat de cazier judiciar.",
+        "ar": "المواطن: نهارك سعيد! أود استخراج شهادة عدم سوء السلوك (السجل العدلي).",
+        "en": "Citizen: Good day! I would like to issue a police clearance certificate."
+      },
+      {
+        "time": 8,
+        "ro": "Funcționar: Vă rog să completați cererea tip și să achitați taxa la ghișeu.",
+        "ar": "الموظف: يرجى ملء طلب التقديم ودفع الرسوم في الشباك.",
+        "en": "Clerk: Please fill out the standard application and pay the fee at the counter."
+      }
+    ]
+  },
+  {
+    "id": "record-6",
+    "title_ro": "Constituția României - Drepturi și Îndatoriri",
+    "title_ar": "الدستور الروماني - الحقوق والواجبات الأساسية",
+    "title_en": "Romanian Constitution - Fundamental Rights",
+    "category": "Constituție",
+    "duration": "03:10",
+    "src": "/audio/record_6_constitution.ogg",
+    "fallback_src": "/audio/WhatsApp Audio 2026-08-19 at 5.49.36 PM (1).ogg",
+    "format": "OGG",
+    "date": "2026-08-19",
+    "cover_color": "from-amber-600 to-slate-900",
+    "transcript": [
+      {
+        "time": 0,
+        "ro": "Articolul 1: România este stat de drept, democratic și social, în care demnitatea omului este valoare supremă.",
+        "ar": "المادة 1: رومانيا دولة قانون ديمقراطية واجتماعية، كرامة الإنسان فيها قيمة عليا.",
+        "en": "Article 1: Romania is a democratic and social state governed by the rule of law."
+      },
+      {
+        "time": 10,
+        "ro": "Articolul 16: Cetățenii sunt egali în fața legii și a autorităților publice, fără privilegii și fără discriminări.",
+        "ar": "المادة 16: المواطنون متساوون أمام القانون والسلظات العامة دون امتيازات أو تمييز.",
+        "en": "Article 16: Citizens are equal before the law and public authorities."
+      }
+    ]
+  },
+  {
+    "id": "record-7",
+    "title_ro": "Rezumat Rapid - Formularea Răspunsurilor la ANC",
+    "title_ar": "ملخص سريع - صياغة الإجابات الرومانية في المقابلة",
+    "title_en": "Quick Summary - ANC Response Protocol",
+    "category": "Sfaturi ANC",
+    "duration": "00:45",
+    "src": "/audio/record_7_short_summary.ogg",
+    "fallback_src": "/audio/WhatsApp Audio 2026-08-19 at 5.49.37 PM.ogg",
+    "format": "OGG",
+    "date": "2026-08-19",
+    "cover_color": "from-teal-600 to-slate-900",
+    "transcript": [
+      {
+        "time": 0,
+        "ro": "Sfaturi ANC: Răspundeți întotdeauna cu politețe, folosind formularea completă și respectuoasă.",
+        "ar": "نصائح ANC: أجب دائماً بأدب، مستخدماً الصياغة الكاملة والمحترمة.",
+        "en": "ANC Tips: Always answer politely using complete and respectful phrasing."
+      }
+    ]
+  }
+]
