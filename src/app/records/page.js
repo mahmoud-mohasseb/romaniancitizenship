@@ -24,7 +24,8 @@ import {
   ListMusic, 
   Clock, 
   Download,
-  List
+  List,
+  X
 } from 'lucide-react';
 import recordsData from '../../data/audio_records_transcripts.json';
 import Navbar from '../../components/Navbar';
@@ -237,7 +238,7 @@ function RecordsContent() {
   });
 
   return (
-    <div className="min-h-screen pb-44 sm:pb-36 bg-[#121212] text-white flex flex-col font-latin selection:bg-[#1DB954] selection:text-black">
+    <div className="min-h-screen pb-48 sm:pb-36 bg-[#121212] text-white flex flex-col font-latin selection:bg-[#1DB954] selection:text-black">
       <Navbar />
 
       {/* Hidden HTML5 Audio Element */}
@@ -647,6 +648,35 @@ function RecordsContent() {
         )}
 
       </main>
+
+      {/* FLOATING MOBILE STICKY AI LIVE TRANSCRIPT CARD (STAYS ON SCREEN WHILE AUDIO IS PLAYING ON MOBILE) */}
+      {isPlaying && activeLine && (
+        <div className="sm:hidden fixed bottom-[95px] left-2 right-2 z-40 bg-gradient-to-r from-[#1DB954]/95 via-slate-900/95 to-black/95 border-2 border-[#1DB954] backdrop-blur-xl text-white rounded-2xl p-3 shadow-2xl space-y-1">
+          <div className="flex items-center justify-between border-b border-[#1DB954]/30 pb-1 text-[10px]">
+            <span className="font-black text-[#1DB954] flex items-center gap-1">
+              <Sparkles className="w-3.5 h-3.5 text-[#1DB954] animate-spin-slow shrink-0" />
+              <span>نتائج التفريغ الصوتي المباشر (Whisper AI):</span>
+            </span>
+            <span className="font-bold text-amber-300">⏱️ {formatTime(currentTime)}</span>
+          </div>
+
+          {/* Live Romanian Sentence with Active Word Highlighting */}
+          <div className="text-xs font-black font-latin leading-snug text-white">
+            🇹🇩 <WordByWordText
+              text={activeLine.ro}
+              lineTime={activeLine.time}
+              nextLineTime={nextLine ? nextLine.time : activeLine.time + 10}
+              currentTime={currentTime}
+              isActive={isPlaying}
+            />
+          </div>
+
+          {/* Live Arabic Translation */}
+          <p className="text-[11px] font-bold text-amber-300 truncate">
+            🇸🇦 {activeLine.ar}
+          </p>
+        </div>
+      )}
 
       {/* SPOTIFY STICKY BOTTOM PLAYER BAR - FULLY RESPONSIVE FOR MOBILE */}
       <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#181818]/95 backdrop-blur-md border-t border-slate-800 px-3 py-2.5 shadow-2xl">
