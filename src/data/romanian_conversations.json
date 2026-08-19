@@ -17,9 +17,9 @@
       },
       {
         "speaker_ro": "Candidat (المتقدم)",
-        "text_ro": "Bună ziua! Mă numesc Mahmoud și sunt din Siria. Locuiesc în România de 8 ani.",
-        "text_ar": "مرحباً! اسمي محمود وأنا من سورية. أعيش في رومانيا منذ 8 سنوات.",
-        "text_en": "Hello! My name is Mahmoud and I am from Syria. I have been living in Romania for 8 years."
+        "text_ro": "Bună ziua! Mă numesc Alexandru și sunt rezident în România. Locuiesc în România de 8 ani.",
+        "text_ar": "مرحباً! اسمي ألكسندر وأنا مقيم في رومانيا. أعيش في رومانيا منذ 8 سنوات.",
+        "text_en": "Hello! My name is Alexandru and I reside in Romania. I have been living in Romania for 8 years."
       },
       {
         "speaker_ro": "Ofițer (اللجنة)",
@@ -269,9 +269,9 @@
       },
       {
         "speaker_ro": "Apelant",
-        "text_ro": "Mă numesc Mahmoud. S-a întâmplat la stația de metrou Unirii.",
-        "text_ar": "اسمي محمود. حدث هذا في محطة مترو أونيري.",
-        "text_en": "My name is Mahmoud. It happened at Unirii metro station."
+        "text_ro": "Mă numesc Alexandru. S-a întâmplat la stația de metrou Unirii.",
+        "text_ar": "اسمي ألكسندر. حدث هذا في محطة مترو أونيري.",
+        "text_en": "My name is Alexandru. It happened at Unirii metro station."
       },
       {
         "speaker_ro": "Polițist",

@@ -762,9 +762,9 @@
     "rule_ro": "Verbele reflexive exprimă o acțiune care se răsfrânge asupra subiectului. Folosesc pronumele reflexive în Acuzativ (mă, te, se, ne, vă, se) sau Dativ (îmi, îți, își, ne, vă, își).",
     "rule_en": "Reflexive verbs show actions reflected back onto the subject. Uses reflexive pronouns (mă, te, se, ne, vă, se) or Dative variants (îmi, îți, își).",
     "rule_ar": "الأفعال الانعكاسية تعبر عن حدث يعود على الفاعل نفسه. تتطلب ضمائر انعكاسية: mă, te, se, ne, vă, se في المنصوب، أو îmi, îți, își في المجرور.",
-    "example_ro": "Mă numesc Mahmoud. | Guvernul se află la Palatul Victoria. | Îmi amintesc data.",
-    "example_en": "My name is Mahmoud. | The Government is located at Victoria Palace. | I remember the date.",
-    "example_ar": "اسمي محمود. | تقع الحكومة في قصر فيكتوريا. | أتذكر التاريخ.",
+    "example_ro": "Mă numesc Alexandru. | Guvernul se află la Palatul Victoria. | Îmi amintesc data.",
+    "example_en": "My name is Alexandru. | The Government is located at Victoria Palace. | I remember the date.",
+    "example_ar": "اسمي ألكسندر. | تقع الحكومة في قصر فيكتوريا. | أتذكر التاريخ.",
     "why_rule_ro": "Formula de introducere «Mă numesc...» este prima frază pe care o rostiți la examen.",
     "why_rule_en": "The self-introduction formula 'Mă numesc...' is the very first sentence spoken in the exam.",
     "why_rule_ar": "عبارة التقديم Mă numesc... هي أول جملة تنطق بها أمام لجنة التجنيس.",
@@ -783,7 +783,7 @@
       "explanation_en": "Correct! For polite address (Dumneavoastră), the reflexive pronoun is 'vă'.",
       "explanation_ar": "صحيح! مع صيغة الاحترام Dumneavoastră نستخدم الضمير الانعكاسي vă لتصبح Cum vă numiți؟"
     },
-    "common_mistake_ro": "Greșeală: «Eu numesc Mahmoud». Corect: «Eu mă numesc Mahmoud» (cu reflexivul «mă»).",
+    "common_mistake_ro": "Greșeală: «Eu numesc Alexandru». Corect: «Eu mă numesc Alexandru» (cu reflexivul «mă»).",
     "common_mistake_en": "Mistake: Omitting 'mă' in 'Mă numesc'. Correct: Include 'mă'.",
     "common_mistake_ar": "خطأ شائع: حذف mă عند التقديم. التصحيح: Eu mă numesc.",
     "rules": [
