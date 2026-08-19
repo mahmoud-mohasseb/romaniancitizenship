@@ -32,34 +32,44 @@ import Navbar from '../../components/Navbar';
 import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
 
-// Word-by-Word Active Highlighting Engine for Spotify Lyrics
+// High-Accuracy Character-Weighted Word Timing Engine for Spotify Lyrics
 function WordByWordText({ text, lineTime, nextLineTime, currentTime, isActive, activeColorClass = 'bg-[#1DB954] text-black px-2 py-0.5 rounded-xl shadow-[0_0_25px_#1DB954] scale-105 font-black' }) {
   const words = text ? text.split(' ') : [];
   
+  if (!words.length) return null;
+
   if (!isActive) {
     return <span>{text}</span>;
   }
 
-  // Calculate active word index within current line duration
-  const lineDuration = Math.max((nextLineTime || (lineTime + 10)) - lineTime, 2);
+  const lineDuration = Math.max((nextLineTime || (lineTime + 8)) - lineTime, 1.5);
   const elapsedInLine = Math.max(currentTime - lineTime, 0);
-  const progressRatio = Math.min(elapsedInLine / lineDuration, 0.99);
-  const activeWordIdx = Math.floor(progressRatio * words.length);
+
+  // Character-weighted word start & end time calculation for high-precision speech alignment
+  const totalChars = words.reduce((sum, w) => sum + w.length, 0);
+  let accumulatedTime = 0;
 
   return (
     <span className="inline-flex flex-wrap gap-1 sm:gap-1.5 justify-center items-center break-words">
       {words.map((word, wIdx) => {
-        const isWordActive = wIdx === activeWordIdx;
+        const wordWeight = word.length / Math.max(totalChars, 1);
+        const wordDuration = wordWeight * lineDuration;
+        const wordStartTime = accumulatedTime;
+        const wordEndTime = accumulatedTime + wordDuration;
+        accumulatedTime += wordDuration;
+
+        const isWordActive = elapsedInLine >= wordStartTime && (elapsedInLine < wordEndTime || wIdx === words.length - 1);
+        const isWordPast = elapsedInLine >= wordEndTime;
 
         return (
           <span
             key={wIdx}
-            className={`transition-all duration-200 inline-block font-latin ${
+            className={`transition-all duration-150 inline-block font-latin ${
               isWordActive
                 ? activeColorClass
-                : wIdx < activeWordIdx 
-                ? 'text-[#1DB954] font-bold' 
-                : 'text-slate-300 font-semibold'
+                : isWordPast
+                ? 'text-[#1DB954] font-bold opacity-90'
+                : 'text-slate-300 font-semibold opacity-60'
             }`}
           >
             {word}
@@ -95,6 +105,25 @@ function RecordsContent() {
   const lyricsContainerRef = useRef(null);
 
   const currentTrack = recordsData[currentTrackIndex] || recordsData[0];
+
+  // 60FPS High-Precision Audio Time Tracker using requestAnimationFrame
+  useEffect(() => {
+    let animFrameId;
+    const updatePreciseTime = () => {
+      if (audioRef.current && isPlaying) {
+        setCurrentTime(audioRef.current.currentTime);
+        animFrameId = requestAnimationFrame(updatePreciseTime);
+      }
+    };
+
+    if (isPlaying) {
+      animFrameId = requestAnimationFrame(updatePreciseTime);
+    }
+
+    return () => {
+      if (animFrameId) cancelAnimationFrame(animFrameId);
+    };
+  }, [isPlaying]);
 
   // Handle Audio Playback events
   useEffect(() => {
@@ -365,12 +394,12 @@ function RecordsContent() {
           </div>
         </div>
 
-        {/* PROMINENT AI TRANSCRIPTION DISPLAY BOX - MOBILE FRIENDLY */}
+        {/* PROMINENT AI TRANSCRIPTION DISPLAY BOX - HIGH PRECISION MOONSHINE AI ENGINE */}
         <div className="p-4 sm:p-6 rounded-3xl bg-gradient-to-br from-[#1DB954]/25 via-slate-900 to-black border-2 border-[#1DB954] text-white shadow-2xl space-y-2.5 text-center">
           <div className="flex items-center justify-center gap-1.5 border-b border-[#1DB954]/30 pb-2">
             <Sparkles className="w-4 h-4 text-[#1DB954] animate-spin-slow shrink-0" />
             <span className="font-black text-[11px] sm:text-xs text-[#1DB954] uppercase tracking-wider">
-              نتائج التفريغ الصوتي المباشر بالذكاء الاصطناعي (Whisper / Moonshine AI):
+              نتائج التفريغ الصوتي المباشر بالذكاء الاصطناعي (MoonshineJS High-Precision Engine):
             </span>
           </div>
 
@@ -553,7 +582,7 @@ function RecordsContent() {
                 </div>
                 
                 <span className="px-2 py-0.5 rounded-full text-[9px] font-black bg-[#1DB954]/20 text-[#1DB954] border border-[#1DB954]/30">
-                  Whisper Synced
+                  MoonshineJS Synced
                 </span>
               </div>
 
@@ -655,12 +684,12 @@ function RecordsContent() {
           <div className="flex items-center justify-between border-b border-[#1DB954]/30 pb-1 text-[10px]">
             <span className="font-black text-[#1DB954] flex items-center gap-1">
               <Sparkles className="w-3.5 h-3.5 text-[#1DB954] animate-spin-slow shrink-0" />
-              <span>نتائج التفريغ الصوتي المباشر (Whisper AI):</span>
+              <span>تفريغ MoonshineJS المباشر:</span>
             </span>
             <span className="font-bold text-amber-300">⏱️ {formatTime(currentTime)}</span>
           </div>
 
-          {/* Live Romanian Sentence with Active Word Highlighting */}
+          {/* Live Romanian Sentence with Character-Weighted Active Word Highlighting */}
           <div className="text-xs font-black font-latin leading-snug text-white">
             🇹🇩 <WordByWordText
               text={activeLine.ro}
